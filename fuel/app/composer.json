@@ -1,0 +1,8 @@
+{
+	"config": {
+		"vendor-dir": "vendor"
+	},
+	"require": {
+		"hybridauth/hybridauth": "dev-master"
+	}
+}
