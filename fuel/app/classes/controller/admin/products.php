@@ -23,6 +23,20 @@ class Controller_Admin_Products extends Controller_Admin
 	}
 
 
+	/**
+	 *
+	 */
+	public function get_view($product_id)
+	{
+		$product = Model_Product::find($product_id);
+
+		is_null($product) and $this->redirect('admin/products', 'error', "invalid product id $product_id");
+
+		$this->template->body = View::forge('admin/products/view', array(
+			'product' => $product,
+		));
+	}
+
 
 	/**
 	 *	Admin > Add Product
