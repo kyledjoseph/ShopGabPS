@@ -145,7 +145,7 @@
 		<hr>
 
 		<div class="footer">
-			<p>&copy; Company 2013</p>
+			<p>&copy; ItemNation 2013</p>
 		</div>
 
 	</div> <!-- /container -->
