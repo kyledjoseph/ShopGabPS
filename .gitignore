@@ -14,3 +14,5 @@ nbproject/
 .idea
 
 /fuel/app/config/crypt.php
+/fuel/app/vendor/.composer/
+/fuel/app/vendor/
