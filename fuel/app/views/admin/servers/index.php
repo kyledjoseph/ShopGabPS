@@ -17,7 +17,7 @@
 					<td>Dallas</td>
 					<td><?= Html::anchor('http://166.78.49.117', '166.78.49.117') ?></td>
 					<td><?= Html::anchor('http://10.181.130.148', '10.181.130.148') ?></td>
-					<td>b709cd9e-742a-404d-b202-5bd3684d1a75</td>
+					<td><?= Html::anchor('https://mycloud.rackspace.com/a/itemnation/#compute%2CcloudServersOpenStack%2CDFW/b709cd9e-742a-404d-b202-5bd3684d1a75', 'b709cd9e-742a-404d-b202-5bd3684d1a75') ?></td>
 				</tr>
 			</tbody>
 		</table>
