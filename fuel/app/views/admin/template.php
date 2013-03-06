@@ -111,7 +111,9 @@
 							<li class="<?= (isset($active_nav) and $active_nav == 'products') ? 'active' : null ?>">
 								<?= Html::anchor('admin/products', 'Products') ?>
 							</li>
-							<li class="<?= (isset($active_nav) and $active_nav == '') ? 'active' : null ?>"><a href="#">Extra</a></li>
+							<li class="<?= (isset($active_nav) and $active_nav == 'accounts') ? 'active' : null ?>">
+								<?= Html::anchor('admin/accounts', 'Accounts') ?>
+							</li>
 							<li class="<?= (isset($active_nav) and $active_nav == '') ? 'active' : null ?>"><a href="#">Extra</a></li>
 							<li class="<?= (isset($active_nav) and $active_nav == '') ? 'active' : null ?>"><a href="#">Extra</a></li>
 							<li class="<?= (isset($active_nav) and $active_nav == 'servers') ? 'active' : null ?>">
