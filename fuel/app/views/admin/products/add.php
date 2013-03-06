@@ -1,6 +1,6 @@
 	
-	<h2>add product</h2>
-	<?= Html::anchor('admin/products', 'back to Product Index') ?>
+	<h2>products &gt; add</h2>
+	<?= Html::anchor('admin/products', 'back to index') ?>
 
 	<hr>
 
