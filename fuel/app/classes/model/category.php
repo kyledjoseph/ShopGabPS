@@ -1,18 +1,11 @@
 <?php
 
-class Model_Product extends \Orm\Model
+class Model_Category extends \Orm\Model
 {
 	protected static $_properties = array(
 		'id',
-		'category_id',
 		'name',
-		'brand',
-		'model',
-		'serial',
-		'warranty',
-		'type',
-		'dimensions',
-		'weight',
+		'url',
 		'created_at',
 		'updated_at',
 	);
@@ -28,16 +21,14 @@ class Model_Product extends \Orm\Model
 		),
 	);
 
+	public function public_url()
+	{
+		return 'category/' . $this->url;
+	}
 
 
 	public static function get_index()
 	{
-		return static::find()->order_by('name', 'asc')->get();
-	}
-	
-	public static function add_product($attr)
-	{
-		$product = static::forge($attr);
-		return $product->save() ? $product : null;
+		return static::find()->get();
 	}
 }
