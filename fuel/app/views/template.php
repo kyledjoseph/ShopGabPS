@@ -2,10 +2,8 @@
 <html>
   <head>
 	<title><?= isset($title) ? $title : 'ItemNation' ?></title>
+	<?= Asset::css('bootstrap.css') ?>
 	<?= Asset::css('main.css') ?>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-	<?= Asset::js('main.js') ?>
   </head>
 
   <body>
@@ -14,15 +12,35 @@
 		<header>
 			<div class="inner">
 				<a class="sprites logo" href="index.html" title="ItemNation"></a>
+				
+				<?php if (isset($user)): ?>
 				<div id="user">
 					<i class="sprites user-none"></i>
-					<span>Kyle Joseph <i class="sprites arrow-d"></i></span>
+					<span><?= $user->email ?> <i class="sprites arrow-d"></i><?= Html::anchor('user/logout', 'logout') ?></span>
+
 				</div>
+				<?php else: ?>
+				<div id="user">
+					<span>
+						<?= Html::anchor('user/login', 'login') ?> | 
+						<?= Html::anchor('user/register', 'register') ?>
+					</span>
+				</div>
+				<?php endif; ?>
 			</div>
 		</header>
 
 		<div id="main">
 			<div class="inner">
+
+				<?php if (isset($notice)): ?>
+
+				<div class="alert alert-<?= $notice->type ?>">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<?= $notice->message ?>
+				</div>
+
+				<?php endif; ?>
 				
 				<!--
 				<div id="pagination">
@@ -129,5 +147,13 @@
 			</div>
 		<div class="right"></div>
 	</div>
+
+	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+	<?= Asset::js('bootstrap/bootstrap.js') ?>
+	<?= Asset::js('bootstrap/bootstrap-alert.js') ?>
+
+	<?= Asset::js('main.js') ?>
+
   </body>
 </html>

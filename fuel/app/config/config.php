@@ -260,7 +260,7 @@ return array(
 		 * );
 		 */
 		'packages'  => array(
-			//'ninjauth',
+			'auth',
 			'orm',
 		),
 
