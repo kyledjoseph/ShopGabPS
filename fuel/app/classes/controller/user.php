@@ -62,6 +62,7 @@ class Controller_User extends Controller_App
 	public function get_logout()
 	{
 		$this->auth->logout();
+		$this->redirect('/', 'info', 'You are now logged out');
 	}
 
 
