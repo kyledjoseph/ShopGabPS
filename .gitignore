@@ -16,3 +16,4 @@ nbproject/
 /fuel/app/config/crypt.php
 /fuel/app/vendor/.composer/
 /fuel/app/vendor/
+/fuel/app/config/development/migrations.php
