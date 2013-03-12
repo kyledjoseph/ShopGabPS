@@ -11,7 +11,7 @@
 	<div id="wrap">
 		<header>
 			<div class="inner">
-				<a class="sprites logo" href="index.html" title="ItemNation"></a>
+				<?= Html::anchor('/', '', array('title' => 'ItemNation', 'class' => 'sprites logo')) ?>
 				
 				<?php if (isset($user)): ?>
 				<div id="user">
