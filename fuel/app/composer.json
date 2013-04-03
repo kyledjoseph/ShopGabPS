@@ -3,6 +3,10 @@
 		"vendor-dir": "vendor"
 	},
 	"require": {
-		"hybridauth/hybridauth": "dev-master"
-	}
+		"hybridauth/hybridauth": "dev-master",
+        "cartalyst/sentry": "2.0.*",
+        "illuminate/database": "4.0.*",
+        "ircmaxell/password-compat": "1.0.*"
+    },
+    "minimum-stability": "dev"
 }
