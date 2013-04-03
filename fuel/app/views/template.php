@@ -16,7 +16,7 @@
 				<?php if (isset($user)): ?>
 				<div id="user">
 					<i class="sprites user-none"></i>
-					<span><?= $user->email ?> <i class="sprites arrow-d"></i><?= Html::anchor('user/logout', 'logout') ?></span>
+					<span><?= Html::anchor('user/account', $user->email) ?> <i class="sprites arrow-d"></i><?= Html::anchor('user/logout', 'logout') ?></span>
 
 				</div>
 				<?php else: ?>

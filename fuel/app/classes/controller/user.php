@@ -28,6 +28,67 @@ class Controller_User extends Controller_App
 	}
 
 
+
+	public function get_process()
+	{
+		Hybrid_Endpoint::process();
+	}
+
+
+
+	/**
+	 * User authentication with Facebook, Twitter, and Google
+	 */
+	public function get_auth($provider)
+	{
+		$provider = strtolower($provider);
+
+		if (! in_array($provider, ['facebook', 'twitter', 'google']))
+		{
+			$this->redirect('user/login', 'info', 'Invalid service provider');
+		}
+
+		// try
+		// {
+		// 	$login_success = $this->auth->social_auth($provider);
+		// }
+		// catch (Exception $e)
+		// {
+		// 	switch ($e->getCode())
+		// 	{
+		// 		case 0 : $error = "Unspecified error."; break;
+		// 		case 1 : $error = "Hybriauth configuration error."; break;
+		// 		case 2 : $error = "Provider not properly configured."; break;
+		// 		case 3 : $error = "Unknown or disabled provider."; break;
+		// 		case 4 : $error = "Missing provider application credentials."; break;
+		// 		case 5 : $error = "Authentication failed. The user has canceled the authentication or the provider refused the connection."; break;
+		// 		case 6 : $error = "User profile request failed. Most likely the user is not connected to the provider and he should to authenticate again."; 
+		// 			     $adapter->logout(); 
+		// 			     break;
+		// 		case 7 : $error = "User not connected to the provider."; 
+		// 			     $adapter->logout(); 
+		// 			     break;
+		// 	}
+
+		// 	// well, basically your should not display this to the end user, just give him a hint and move on..
+		// 	$error = "<br /><br /><b>Original error message:</b> " . $e->getMessage(); 
+		// 	$error.= "<hr /><pre>Trace:<br />" . $e->getTraceAsString() . "</pre>"; 
+		// 	return $error;
+		// }
+
+		$login_success = $this->auth->social_auth($provider);
+
+		if (! $login_success)
+		{
+			$this->redirect('/', 'error', 'An erro has occurred');
+		}
+
+		$this->redirect('/', 'info', 'You are now logged in');
+
+	}
+
+
+
 	/**
 	 * User Registration
 	 */
@@ -51,7 +112,7 @@ class Controller_User extends Controller_App
 		// log user in
 		$this->auth->login($post->email, $post->password);
 
-		$this->redirect('/', 'success', 'You are now registered.');
+		$this->redirect('/', 'info', 'You are now registered.');
 	}
 
 
@@ -84,5 +145,14 @@ class Controller_User extends Controller_App
 
 	}
 
+
+
+	/**
+	 *
+	 */
+	public function get_account()
+	{
+		$this->template->body = View::forge('user/settings');
+	}
 	
 }

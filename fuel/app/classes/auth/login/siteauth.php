@@ -53,6 +53,93 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 		'additional_fields' => array('profile_fields'),
 	);
 
+
+	/**
+	 *
+	 */
+	protected $social_config = array(
+		"base_url" => "http://itemnation.dev/user/process", 
+
+		"debug_mode" => false,
+		"debug_file" => "",
+
+		"providers" => array(
+			
+			"OpenID" => array(
+				"enabled" => false
+			),
+
+			"AOL"  => array( 
+				"enabled" => false 
+			),
+
+			"Yahoo" => array( 
+				"enabled" => false,
+				"keys"    => array(
+					"id" => "", 
+					"secret" => ""
+				)
+			),
+
+			"Google" => array( 
+				"enabled" => true,
+				"keys"    => array(
+					"id" => "claimworks.net",
+					"secret" => "BKWGDqe3pj2AxCuHKl_qR7l0"
+				)
+			),
+
+			"Facebook" => array( 
+				"enabled" => true,
+				"keys"    => array(
+					"id" => "168874813262398",
+					"secret" => "5aa0c283019c1f03cc5430559d80c0de"
+				)
+			),
+
+			"Twitter" => array( 
+				"enabled" => true,
+				"keys"    => array(
+					"key" => "DRIoekFFpaUcIP8TFiynA",
+					"secret" => "Ibdpl9XAT7cKPgUH3dCflQl7R6BYTJ9bDGl4UX051c",
+				) 
+			),
+
+			// windows live
+			"Live" => array( 
+				"enabled" => false,
+				"keys"    => array(
+					"id" => "",
+					"secret" => ""
+				)
+			),
+
+			"MySpace" => array( 
+				"enabled" => false,
+				"keys"    => array(
+					"key" => "",
+					"secret" => ""
+				)
+			),
+
+			"LinkedIn" => array( 
+				"enabled" => false,
+				"keys"    => array(
+					"key" => "",
+					"secret" => ""
+				)
+			),
+
+			"Foursquare" => array(
+				"enabled" => false,
+				"keys"    => array(
+					"id" => "",
+					"secret" => ""
+				)
+			),
+		)
+	);
+
 	/**
 	 * Check for login
 	 *
@@ -143,6 +230,63 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 		return true;
 	}
 
+
+
+
+
+	public function social_auth($provider)
+	{
+		$hybridauth = new Hybrid_Auth($this->social_config);
+
+		// try to authenticate the selected $provider
+		$adapter = $hybridauth->authenticate($provider);
+
+		// grab the user profile
+		$user_profile = $adapter->getUserProfile();
+		$provider_uid = $user_profile->identifier;
+		$email        = $user_profile->email;
+		$first_name   = $user_profile->firstName;
+		$last_name    = $user_profile->lastName;
+		$display_name = $user_profile->displayName;
+		$website_url  = $user_profile->webSiteURL;
+		$profile_url  = $user_profile->profileURL;
+		$password     = '';
+
+		# 1 - check if user already have authenticated using this provider before
+		$user_auth = Model_User_Auth::get_by_provider_uid($provider, $user_profile->identifier);
+
+		# 2 - if authentication exists in the database, then we set the user as connected
+		if (isset($user_auth))
+		{
+			return $this->force_login($user_auth->user->id);
+		}
+
+		# 3 - else, here lets check if the user email we got from the provider already exists in our database
+		$user = Model_User::get_by_email($user_profile->email);
+
+		# 4 - if authentication does not exist and email is not in use, then we create a new user 
+		if (! isset($user))
+		{
+			$user = Model_User::create_account($email, $password, $first_name, $last_name);
+		}
+
+		# 5 - create a new authentication for the user
+		$user->authenticate_with([
+			'provider'     => $provider,
+			'provider_uid' => $provider_uid,
+			'display_name' => $display_name,
+			'profile_url'  => $profile_url,
+			'website_url'  => $website_url,
+		]);
+
+		# 6 - log the new user in
+		return $this->force_login($user->id);
+	}
+
+
+
+
+
 	/**
 	 * Force login user
 	 *
@@ -172,7 +316,7 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 			return false;
 		}
 
-		\Session::set('username', $this->user['username']);
+		\Session::set('username', $this->user['email']);
 		\Session::set('login_hash', $this->create_login_hash());
 		return true;
 	}
@@ -198,14 +342,19 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 	 * @param   int     group id
 	 * @return  bool
 	 */
-	public function create_user($email, $password, $group = 1)
+	public function create_user($email, $password)
 	{
 		$password = trim($password);
-		$email = filter_var(trim($email), FILTER_VALIDATE_EMAIL);
+		$email    = filter_var(trim($email), FILTER_VALIDATE_EMAIL);
+
+		if (empty($email))
+		{
+			throw new \SiteUserUpdateException('Email address given is invalid', 1);
+		}
 
 		if (empty($password) or empty($email))
 		{
-			throw new \SiteUserUpdateException('Username, password or email address is not given, or email address is invalid', 1);
+			throw new \SiteUserUpdateException('Password not given or invalid', 1);
 		}
 
 		$same_users = \DB::select_array(\Config::get('siteauth.table_columns', array('*')))
@@ -225,19 +374,23 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 			}
 		}
 
-		$user = array(
-			'email'           => $email,
-			'password'        => $this->hash_password((string) $password),
-			'group'           => (int) $group,
-			'last_login'      => 0,
-			'login_hash'      => '',
-			'created_at'      => \Date::forge()->get_timestamp()
-		);
-		$result = \DB::insert(\Config::get('siteauth.table_name'))
-			->set($user)
-			->execute(\Config::get('siteauth.db_connection'));
+		// $user = array(
+		// 	'email'           => $email,
+		// 	'password'        => $this->hash_password((string) $password),
+		// 	'group'           => (int) $group,
+		// 	'last_login'      => 0,
+		// 	'login_hash'      => '',
+		// 	'created_at'      => \Date::forge()->get_timestamp()
+		// );
+		// $result = \DB::insert(\Config::get('siteauth.table_name'))
+		// 	->set($user)
+		// 	->execute(\Config::get('siteauth.db_connection'));
 
-		return ($result[1] > 0) ? $result[0] : false;
+		$hashed_password = $this->hash_password((string) $password);
+
+		$user = Model_User::create_account($email, $hashed_password);
+
+		return isset($user);
 	}
 
 	/**
@@ -417,11 +570,11 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 		}
 
 		$last_login = \Date::forge()->get_timestamp();
-		$login_hash = sha1(\Config::get('siteauth.login_hash_salt').$this->user['username'].$last_login);
+		$login_hash = sha1(\Config::get('siteauth.login_hash_salt').$this->user['email'].$last_login);
 
 		\DB::update(\Config::get('siteauth.table_name'))
 			->set(array('last_login' => $last_login, 'login_hash' => $login_hash))
-			->where('username', '=', $this->user['username'])
+			->where('email', '=', $this->user['email'])
 			->execute(\Config::get('siteauth.db_connection'));
 
 		$this->user['login_hash'] = $login_hash;
