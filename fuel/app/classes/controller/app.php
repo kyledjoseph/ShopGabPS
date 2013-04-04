@@ -17,6 +17,15 @@ class Controller_App extends Controller_Base
 		}
 	}
 
+
+
+	public function user_logged_in()
+	{
+		return isset($this->user);
+	}
+
+
+
 	private function _init_auth()
 	{
 		$this->auth = Auth::instance();
