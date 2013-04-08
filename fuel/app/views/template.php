@@ -57,17 +57,11 @@
 
 				<div id="tabs">
 					<ul>
-						<li class="<?= (isset($active_nav) and $active_nav == 'products') ? 'current' : null ?>">
+						<li class="<?= (isset($active_nav) and $active_nav == 'activity') ? 'current' : null ?>">
 							<i class="tab-r"></i>
 							<i class="tab-current-first-l"></i>
 							<i class="tab-current-r"></i>
-							<?= Html::anchor('/', 'Products') ?>
-						</li>
-						<li class="<?= (isset($active_nav) and $active_nav == 'wishlist') ? 'current' : null ?>">
-							<i class="tab-r"></i>
-							<i class="tab-current-l"></i>
-							<i class="tab-current-r"></i>
-							<?= Html::anchor('wishlist', 'Wish Lists') ?>
+							<?= Html::anchor('/', 'Activity') ?>
 						</li>
 						<li class="<?= (isset($active_nav) and $active_nav == 'myitems') ? 'current' : null ?>">
 							<i class="tab-r"></i>
@@ -75,6 +69,13 @@
 							<i class="tab-current-last-r"></i>
 							<?= Html::anchor('my/items', 'My Items') ?>
 						</li>
+						<li class="<?= (isset($active_nav) and $active_nav == 'wishlist') ? 'current' : null ?>">
+							<i class="tab-r"></i>
+							<i class="tab-current-l"></i>
+							<i class="tab-current-r"></i>
+							<?= Html::anchor('wishlist', 'Wish Lists') ?>
+						</li>
+						
 					</ul>
 				</div>
 
