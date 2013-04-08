@@ -4,8 +4,13 @@ class Model_Product extends \Orm\Model
 {
 	protected static $_properties = array(
 		'id',
+		'user_id',
 		'category_id',
 		'name',
+		'description',
+		'domain',
+		'url',
+
 		'brand',
 		'model',
 		'serial',
@@ -13,6 +18,7 @@ class Model_Product extends \Orm\Model
 		'type',
 		'dimensions',
 		'weight',
+		
 		'created_at',
 		'updated_at',
 	);
@@ -40,4 +46,5 @@ class Model_Product extends \Orm\Model
 		$product = static::forge($attr);
 		return $product->save() ? $product : null;
 	}
+
 }
