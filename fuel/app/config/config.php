@@ -53,7 +53,7 @@ return array(
 	 */
 	'index_file' => false,
 
-	'profiling'  => true,
+	'profiling'  => false,
 
 	/**
 	 * Default location for the file cache
