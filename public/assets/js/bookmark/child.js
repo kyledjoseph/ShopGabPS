@@ -151,7 +151,7 @@ child = {
         child.info.description = $('.description').val()
 
         $.ajax({
-            url: 'http://itemnation.dev/bookmark/add',
+            url: 'http://beta.itemnation.com/bookmark/add',
             data: child.info,
             type: 'GET',
             timeout: 30000,
