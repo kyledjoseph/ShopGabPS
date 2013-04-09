@@ -15,7 +15,7 @@ GitHub repository for ItemNation, auto-deployed to the [development server](http
 * **Email:** kyle@itemnation.com
 * **Username:** itemnation
 * **Pass:** Techdev12
-* **Childhood nickname:** beaver
+* **Childhood Nickname:** beaver
 
 ### Mailchimp
 
