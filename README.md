@@ -1,31 +1,29 @@
 # ItemNation
 
+GitHub repository for ItemNation ([project overview](http://youtu.be/_VT-QjDqVaw)), auto-deployed to the [development server](http://166.78.49.117/).
 
-## Authentications
+##Authentication
 
-### Stable host
+### Stablehost
 
-E-mail: kyle@itemnation.com
-ID: itemn
-Pass: Techdev12
+* **Email:** kyle@itemnation.com
+* **ID:** itemn
+* **Pass:** Techdev12
 
+### Rackspace
 
-### Rackspace Cloud Control Panel
-
-E-mail: kyle@itemnation.com
-Username: itemnation
-Pass: Techdev12
-(childhood nickname: beaver)</i>
-
+* **Email:** kyle@itemnation.com
+* **Username:** itemnation
+* **Pass:** Techdev12
+* **Childhood Nickname:** beaver
 
 ### Mailchimp
 
-ID: kyle@itemnation.com
-Pass: Techdev12
-
+* **ID:** kyle@itemnation.com
+* **Pass:** Techdev12
 
 ### Godaddy
 
-ID: 44468901
-Pass: Techdev12
-PIN: 1415 
+* **ID:** 44468901
+* **Pass:** Techdev12
+* **PIN:** 1415
