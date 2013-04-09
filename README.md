@@ -1,5 +1,7 @@
 # ItemNation
 
+GitHub repository for ItemNation, auto-deployed to the [development server](http://166.78.49.117/).
+
 ##Authentication
 
 ### Stablehost
