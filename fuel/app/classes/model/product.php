@@ -35,16 +35,26 @@ class Model_Product extends \Orm\Model
 	);
 
 
+	public function url()
+	{
+		return '#';
+	}
+
 
 	public static function get_index()
 	{
-		return static::find()->order_by('name', 'asc')->get();
+		return static::query()->order_by('name', 'asc')->get();
 	}
 	
 	public static function add_product($attr)
 	{
 		$product = static::forge($attr);
 		return $product->save() ? $product : null;
+	}
+
+	public static function get_users_products($user_id)
+	{
+		return static::query()->where('user_id', $user_id)->get();
 	}
 
 }

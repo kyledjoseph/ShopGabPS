@@ -24,6 +24,14 @@ class Controller_App extends Controller_Base
 		return isset($this->user);
 	}
 
+	public function require_auth()
+	{
+		if (! $this->user_logged_in())
+		{
+			$this->redirect('user/login', 'info', 'You must be logged in to do that.');
+		}
+	}
+
 
 
 	private function _init_auth()
