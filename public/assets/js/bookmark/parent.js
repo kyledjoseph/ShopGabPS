@@ -79,6 +79,10 @@
             parent.info.domain      = document.domain
             parent.info.name        = document.title.substring(0,50)
             parent.info.url         = document.URL
+
+            if (window.location.hostname == 'amazon.com') {
+                //code to run on amazon.com
+            }
         },
 
         report: function() {
