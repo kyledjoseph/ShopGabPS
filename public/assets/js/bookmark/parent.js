@@ -68,7 +68,7 @@
                 if (($(this).width() > '60') && ($(this).height() > '60')) {
                     image = {
                         height: $(this).height(),
-                        src:    $(this).attr('src'),
+                        src:    $(this).prop('src'),
                         width:  $(this).width()
                     }
 
