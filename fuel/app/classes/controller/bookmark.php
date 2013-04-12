@@ -16,8 +16,8 @@ class Controller_Bookmark extends Controller_App
 	public function get_install()
 	{
 		return Response::forge(View::forge('bookmark/install', array(
-			'url'  => 'http://beta.itemnation.com/assets/js/bookmark/parent.js',
-			'text' => 'ItemNation',
+			'url'  => 'http://itemnation.dev/assets/js/bookmark/parent.js',
+			'text' => 'Pull-In',
 		)));
 	}
 

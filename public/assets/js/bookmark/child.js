@@ -29,6 +29,7 @@ child = {
 
     shift: function(direction) {
         id = parseInt($('.product-image').attr('id'))
+
         switch (direction) {
             case 'left':
             shifted =  id + 1
@@ -151,7 +152,7 @@ child = {
         child.info.description = $('.description').val()
 
         $.ajax({
-            url: 'http://beta.itemnation.com/bookmark/add',
+            url: 'http://itemnation.dev/bookmark/add',
             data: child.info,
             type: 'GET',
             timeout: 30000,

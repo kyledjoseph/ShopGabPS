@@ -10,15 +10,14 @@
 	<title>Pull-In Button</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<meta name="description" content="<b>This description</b> is <em>full</em> of <strong>HTML</strong>.">
-	<?= Asset::css('bookmark/normalize.css') ?>
-	<?= Asset::css('bookmark/style.min.css') ?>
+	<link rel="stylesheet" href="/assets/css/bookmark/style.css?cb=<? echo rand(); ?>">
 
 </head>
 <body>
 	<div class="itemnation-box" style="display:none">
-		<?= Asset::img('bookmark/left.png', array('class' => 'arrow left')) ?>
-		<?= Asset::img('bookmark/right.png', array('class' => 'arrow right')) ?>
-		
+		<img class="arrow left" src="/assets/img/bookmark/left.png" />
+		<img class="arrow right" src="/assets/img/bookmark/right.png" />
+		<img class="image" src="/assets/img/bookmark/logo.png" />
 		<img class="product-image" id="1" class="image" src="http://placehold.it/200x200">
 		<div class="gallery">
 		</div>
@@ -29,5 +28,5 @@
 	</div>
 </body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<?= Asset::js('bookmark/child.js') ?>
+<script src="/assets/js/bookmark/child.js?cb=<? echo rand(); ?>"></script>
 </html>
