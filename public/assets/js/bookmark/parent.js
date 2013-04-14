@@ -14,9 +14,7 @@
 
         document.body.appendChild(script)
     }
-})
-
-(window, document, "1.9.1", function($, jquery_loaded) {
+})(window, document, "1.9.1", function($, jquery_loaded) {
     parent = {
         info: {
             description:  '',
@@ -33,7 +31,7 @@
             if (!document.getElementById('itemnation-frame')) {
                 parent.iframe = document.createElement('iframe')
                 parent.iframe.id = 'itemnation-frame'
-                parent.iframe.src = 'http://beta.itemnation.com/bookmark/view?parent=' + encodeURIComponent(parent.info.url) + '&cacheblock=' + Math.floor(Math.random() * 99999999999999999999999)
+                parent.iframe.src = 'http://itemnation.dev/bookmark/view?parent=' + encodeURIComponent(parent.info.url) + '&cacheblock=' + Math.floor(Math.random() * 99999999999999999999999)
                 parent.iframe.width = '290px'
                 parent.iframe.height = '760px'
                 parent.iframe.style.position = 'fixed'
@@ -70,7 +68,7 @@
                 if (($(this).width() > '60') && ($(this).height() > '60')) {
                     image = {
                         height: $(this).height(),
-                        src:    $(this).attr('src'),
+                        src:    $(this).prop('src'),
                         width:  $(this).width()
                     }
 
@@ -81,13 +79,17 @@
             parent.info.domain      = document.domain
             parent.info.name        = document.title.substring(0,50)
             parent.info.url         = document.URL
+
+            if (window.location.hostname == 'amazon.com') {
+                //code to run on amazon.com
+            }
         },
 
         report: function() {
             console.log('parent.report()')
             document.getElementById('itemnation-frame').contentWindow.postMessage(
                 JSON.stringify(parent.info),
-                "http://beta.itemnation.com/assets/js/child.js"
+                "http://itemnation.dev/assets/js/child.js"
                 )
         },
 
