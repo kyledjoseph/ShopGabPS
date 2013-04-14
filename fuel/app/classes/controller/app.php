@@ -9,10 +9,10 @@ class Controller_App extends Controller_Base
 
 		$this->_init_auth();
 		$this->_init_user();
-		$this->_init_notice();
 
 		if (! Input::is_ajax())
 		{
+			$this->_init_notice();
 			$this->_init_template();
 		}
 	}

@@ -349,12 +349,12 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 
 		if (empty($email))
 		{
-			throw new \SiteUserUpdateException('Email address given is invalid', 1);
+			throw new \SiteUserUpdateException('Enter your email address', 1);
 		}
 
-		if (empty($password) or empty($email))
+		if (empty($password))
 		{
-			throw new \SiteUserUpdateException('Password not given or invalid', 1);
+			throw new \SiteUserUpdateException('Choose a password', 2);
 		}
 
 		$same_users = \DB::select_array(\Config::get('siteauth.table_columns', array('*')))
@@ -364,27 +364,8 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 
 		if ($same_users->count() > 0)
 		{
-			if (in_array(strtolower($email), array_map('strtolower', $same_users->current())))
-			{
-				throw new \SiteUserUpdateException('Email address already exists', 2);
-			}
-			else
-			{
-				throw new \SiteUserUpdateException('Username already exists', 3);
-			}
+			throw new \SiteUserUpdateException('Email address is already registered', 3);
 		}
-
-		// $user = array(
-		// 	'email'           => $email,
-		// 	'password'        => $this->hash_password((string) $password),
-		// 	'group'           => (int) $group,
-		// 	'last_login'      => 0,
-		// 	'login_hash'      => '',
-		// 	'created_at'      => \Date::forge()->get_timestamp()
-		// );
-		// $result = \DB::insert(\Config::get('siteauth.table_name'))
-		// 	->set($user)
-		// 	->execute(\Config::get('siteauth.db_connection'));
 
 		$hashed_password = $this->hash_password((string) $password);
 

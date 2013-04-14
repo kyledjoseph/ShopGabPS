@@ -79,7 +79,7 @@
 					</ul>
 				</div>
 
-				<?= $body ?>
+				<?= isset($body) ? $body : null ?>
 
 			</div>
 		</div>
