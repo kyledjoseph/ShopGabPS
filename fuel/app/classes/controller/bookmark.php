@@ -38,6 +38,48 @@ class Controller_Bookmark extends Controller_App
 	/**
 	 * 
 	 */
+	public function get_login_check()
+	{
+		return Response::forge(json_encode(array('logged_in' => $this->user_logged_in())));
+	}
+
+
+	/**
+	 * 
+	 */
+	public function post_login()
+	{
+		$post = $this->post_data('email', 'password');
+		$success = $this->auth->login($post->email, $post->password);
+
+		return Response::forge(json_encode(array('success' => $success)));
+	}
+
+
+	/**
+	 * 
+	 */
+	public function post_register()
+	{
+		$post = $this->post_data('email', 'password');
+
+		try
+		{
+			$this->auth->create_user($post->email, $post->password);
+		}
+		catch (SiteUserUpdateException $e)
+		{
+			return Response::forge(json_encode(array('success' => 'false', 'message' => $e->getMessage())));
+		}
+
+		$this->auth->login($post->email, $post->password);
+		return Response::forge(json_encode(array('success' => $success)));
+	}
+
+
+	/**
+	 * 
+	 */
 	public function get_add()
 	{
 		if (! $this->user_logged_in())
@@ -48,7 +90,17 @@ class Controller_Bookmark extends Controller_App
 			)));
 		}
 
-		$post = $this->get_data('name', 'description', 'domain', 'url', 'images');
+		$post = $this->get_data('name', 'description', 'domain', 'url', 'images', 'type', 'forum_name');
+
+		switch ($post->type)
+		{
+			case 'wish_list':
+				break;
+			case 'forum':
+				break;
+			default:
+
+		}
 
 		$product = Model_Product::add_product(array(
 			'user_id'     => $this->user->id,
@@ -69,39 +121,49 @@ class Controller_Bookmark extends Controller_App
 	/**
 	 * 
 	 */
-	public function get_login_check()
+	public function get_forums()
 	{
-		return Response::forge(json_encode(array('logged_in' => $this->user_logged_in())));
+		if (! $this->user_logged_in())
+		{
+			return Response::forge(json_encode(array(
+				'success' => false,
+				'type'    => 'auth',
+			)));
+		}
+
+		$forums = Model_Forum::get_by_user_id($this->user->id);
+		$output = array();
+
+		foreach ($forums as $forum)
+		{
+			array_push($output, array(
+				'id'   => $forum->id,
+				'name' => $forum->name,
+			));
+		}
+
+		return Response::forge(json_encode(array(
+			'success' => true,
+			'forums'  => $output,
+		)));
 	}
 
 
 	/**
-	 * 
+	 *
 	 */
-	public function post_login()
+	public function post_create_forum()
 	{
-		$post = $this->post_data('email', 'password');
-		$success = $this->auth->login($post->email, $post->password);
+		$post = $this->post_data('name');
 
-		return Response::forge(json_encode(array('success' => $success)));
-	}
+		$forum = Model_Forum::create_forum(array(
+			'name' => $post->name,
+		));
 
-
-	public function post_register()
-	{
-		$post = $this->post_data('email', 'password');
-
-		try
-		{
-			$this->auth->create_user($post->email, $post->password);
-		}
-		catch (SiteUserUpdateException $e)
-		{
-			return Response::forge(json_encode(array('success' => 'false', 'message' => $e->getMessage())));
-		}
-
-		$this->auth->login($post->email, $post->password);
-		return Response::forge(json_encode(array('success' => $success)));
+		return Response::forge(json_encode(array(
+			'id'   => $forum->id,
+			'name' => $forum->name,
+		)));
 	}
 
 }
