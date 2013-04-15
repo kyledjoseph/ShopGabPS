@@ -7,7 +7,7 @@ class Controller_Home extends Controller_App
 
 		$this->template->active_nav = 'products';
 		$this->template->body = View::forge('home/index', array(
-			'categories' => Model_Category::get_index(),
+			//'categories' => Model_Category::get_index(),
 		));
 	}
 }
