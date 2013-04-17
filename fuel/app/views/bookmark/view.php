@@ -24,7 +24,7 @@
 		<input type="text" class="title" placeholder="Product Name" maxlength="50">
 		<textarea class="description" placeholder="Description"></textarea>
 		<a class="cancel" href="#">Cancel</a>
-		<a class="add" href="#">Add To Wishlist</a>
+		<a class="add" href="#">Add Product</a>
 	</div>
 </body>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

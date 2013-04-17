@@ -31,7 +31,7 @@
             if (!document.getElementById('itemnation-frame')) {
                 parent.iframe = document.createElement('iframe')
                 parent.iframe.id = 'itemnation-frame'
-                parent.iframe.src = 'http://itemnation.dev/bookmark/view?parent=' + encodeURIComponent(parent.info.url) + '&cacheblock=' + Math.floor(Math.random() * 99999999999999999999999)
+                parent.iframe.src = 'http://beta.itemnation.com/bookmark/view?parent=' + encodeURIComponent(parent.info.url) + '&cacheblock=' + Math.floor(Math.random() * 99999999999999999999999)
                 parent.iframe.width = '290px'
                 parent.iframe.height = '760px'
                 parent.iframe.style.position = 'fixed'
@@ -89,7 +89,7 @@
             console.log('parent.report()')
             document.getElementById('itemnation-frame').contentWindow.postMessage(
                 JSON.stringify(parent.info),
-                "http://itemnation.dev/assets/js/child.js"
+                "http://beta.itemnation.com/assets/js/child.js"
                 )
         },
 
