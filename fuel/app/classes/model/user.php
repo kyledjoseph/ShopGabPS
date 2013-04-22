@@ -60,6 +60,16 @@ class Model_User extends \Orm\Model
 		return date($format, $this->created_at);
 	}
 
+	public function get_chats()
+	{
+		return Model_Chat::get_user_chats($this->id);
+	}
+
+	public function get_chat($chat_id)
+	{
+		return Model_Chat::get_user_chat($this->id, $chat_id);
+	}
+
 	public function authenticate_with($user_info)
 	{
 		$user_auth = Model_User_Auth::create_user_auth($this, $user_info);

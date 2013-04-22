@@ -110,6 +110,10 @@ class Controller_Bookmark extends Controller_App
 			'url'         => $post->url,
 		));
 
+
+		$image_src = $post->images[0]['src'];
+		$product->add_image($image_src);
+
 		return Response::forge(json_encode(array(
 			'success'    => true,
 			'user_id'    => $product->user_id,

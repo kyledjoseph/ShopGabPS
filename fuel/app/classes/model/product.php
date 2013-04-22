@@ -23,6 +23,26 @@ class Model_Product extends \Orm\Model
 		'updated_at',
 	);
 
+	protected static $_belongs_to = array(
+		'chat' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Chat_Product',
+			'key_to' => 'product_id',
+			'cascade_save' => true,
+			'cascade_delete' => false,
+		)
+	);
+
+	protected static $_has_one = array(
+		'image' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Product_Image',
+			'key_to' => 'product_id',
+			'cascade_save' => true,
+			'cascade_delete' => false,
+		)
+	);
+
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(
 			'events' => array('before_insert'),
@@ -35,11 +55,20 @@ class Model_Product extends \Orm\Model
 	);
 
 
+	public function name()
+	{
+		return $this->name;
+	}
+
 	public function url()
 	{
 		return '#';
 	}
 
+	public function add_image($src)
+	{
+		$product_image = Model_Product_Image::add_image($this->id, $src);
+	}
 
 	public static function get_index()
 	{
