@@ -90,7 +90,7 @@ class Controller_Bookmark extends Controller_App
 			)));
 		}
 
-		$post = $this->get_data('name', 'description', 'domain', 'url', 'images', 'type', 'forum_name');
+		$post = $this->get_data('name', 'description', 'domain', 'url', 'images', 'image', 'type', 'forum_name');
 
 		switch ($post->type)
 		{
@@ -111,7 +111,7 @@ class Controller_Bookmark extends Controller_App
 		));
 
 
-		$image_src = $post->images[0]['src'];
+		$image_src = $post->image['src'];
 		$product->add_image($image_src);
 
 		return Response::forge(json_encode(array(
