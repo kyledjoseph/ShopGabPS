@@ -65,6 +65,16 @@ class Model_Product extends \Orm\Model
 		return '#';
 	}
 
+	public function image()
+	{
+		return $this->image->src();
+	}
+
+	public function image_html()
+	{
+		return Html::img($this->image->src(), array('alt' => $this->name()));
+	}
+
 	public function add_image($src)
 	{
 		$product_image = Model_Product_Image::add_image($this->id, $src);
