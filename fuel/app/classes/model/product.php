@@ -72,7 +72,7 @@ class Model_Product extends \Orm\Model
 
 	public function image_html()
 	{
-		return Html::img($this->image->src(), array('alt' => $this->name()));
+		return Html::img($this->image(), array('alt' => $this->name()));
 	}
 
 	public function add_image($src)
