@@ -76,4 +76,14 @@ class Model_Chat extends \Orm\Model
 	{
 		return static::query()->where('user_id', $user_id)->where('id', $chat_id)->order_by('name', 'asc')->get_one();
 	}
+
+	public static function create_chat($user_id, $name, $description)
+	{
+		$chat = static::forge(array(
+			'user_id'     => $user_id,
+			'name'        => $name,
+			'description' => $description,
+		));
+		return $chat->save() ? $chat : null;
+	}
 }

@@ -42,7 +42,15 @@ class Model_User extends \Orm\Model
 
 	public function display_name()
 	{
-		return 'user_display_name';
+		$name = $this->name();
+		return empty($name) ? "Display Name" : $name;
+	}
+
+	public function name()
+	{
+		return (! empty($this->first_name) and ! empty($this->last_name))
+			? "{$this->first_name} {$this->last_name}"
+			: null;
 	}
 
 	public function has_password()
@@ -68,6 +76,11 @@ class Model_User extends \Orm\Model
 	public function get_chat($chat_id)
 	{
 		return Model_Chat::get_user_chat($this->id, $chat_id);
+	}
+
+	public function create_chat($name, $description)
+	{
+		return Model_Chat::create_chat($this->id, $name, $description);
 	}
 
 	public function authenticate_with($user_info)

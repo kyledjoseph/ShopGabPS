@@ -33,4 +33,20 @@ class Controller_Chats extends Controller_App
 		));
 	}
 
+
+	public function get_create()
+	{
+		$this->template->body = View::forge('chats/create', array(
+			
+		));
+	}
+
+	public function post_create()
+	{
+		$post = $this->post_data('name', 'description');
+		$chat = $this->user->create_chat($post->name, $post->description);
+
+		$this->redirect($chat->url(), 'success', 'Chat created.');
+	}
+
 }
