@@ -45,5 +45,6 @@ class Model_Product_Image extends \Orm\Model
 			'product_id' => $product_id,
 			'src_url'    => $src,
 		));
+		return $product_image->save() ? $product_image : null;
 	}
 }
