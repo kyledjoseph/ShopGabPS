@@ -67,7 +67,7 @@ class Model_Product extends \Orm\Model
 
 	public function image()
 	{
-		return isset($this->image) ? $this->image->src() : null;
+		return is_object($this->image) ? $this->image->src() : null;
 	}
 
 	public function image_html()
