@@ -79,7 +79,7 @@ html[xmlns] .clearfix {display: block;}
 /**** 
 * Gloabl 
 ***/
-#wrap {background: #fff url(../img/top-shadow.png) repeat-x;  /*background-attachment: fixed; background: -moz-linear-gradient(top, #fff, #dae8f1); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dae8f1'); background: -webkit-gradient(linear, left top, left bottom, from(#fff),  to(#dae8f1));*/ overflow: hidden; height: 100%; /* border-bottom: 1px solid #a0a0a0; box-shadow: 0 3px 10px rgba(0,0,0,.4);*/}
+#wrap {background: #fff url(../img/top-shadow.png) repeat-x;  /*background-attachment: fixed; background: -moz-linear-gradient(top, #fff, #dae8f1); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dae8f1'); background: -webkit-gradient(linear, left top, left bottom, from(#fff),  to(#dae8f1));*/ overflow: hidden; height: 100%; min-height: 500px; /* border-bottom: 1px solid #a0a0a0; box-shadow: 0 3px 10px rgba(0,0,0,.4);*/}
 .inner {position: relative; width: 960px; padding: 10px; margin: 0 auto;} 
 
 
