@@ -250,7 +250,6 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 		$display_name = $user_profile->displayName;
 		$website_url  = $user_profile->webSiteURL;
 		$profile_url  = $user_profile->profileURL;
-		$photo_url    = $user_profile->photoURL;
 		$password     = '';
 
 		# 1 - check if user already have authenticated using this provider before
@@ -259,7 +258,6 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 		# 2 - if authentication exists in the database, then we set the user as connected
 		if (isset($user_auth))
 		{
-			throw new Exception("url: $photo_url", 1);
 			return $this->force_login($user_auth->user->id);
 		}
 
