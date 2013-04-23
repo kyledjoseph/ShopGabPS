@@ -112,7 +112,11 @@ class Controller_Bookmark extends Controller_App
 
 
 		$image_src = $post->image['src'];
-		$product->add_image($image_src);
+		
+		if (! empty($image_src))
+		{
+			$product->add_image($image_src);
+		}
 
 		return Response::forge(json_encode(array(
 			'success'    => true,
