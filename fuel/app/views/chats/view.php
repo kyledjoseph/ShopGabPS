@@ -12,7 +12,7 @@
 					<div class="profile">
 
 						<figure>
-							<?= Asset::img('head-shot.png') ?>
+							<?= Html::img($chat->user->profile_pic()) ?>
 						</figure>
 
 						<h2><?= $chat->user->display_name() ?></h2>

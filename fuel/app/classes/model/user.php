@@ -40,12 +40,18 @@ class Model_User extends \Orm\Model
 	);
 
 
+	/**
+	 * User's display name
+	 */
 	public function display_name()
 	{
 		$name = $this->name();
 		return empty($name) ? "Display Name" : $name;
 	}
 
+	/**
+	 * User's name
+	 */
 	public function name()
 	{
 		return (! empty($this->first_name) and ! empty($this->last_name))
@@ -53,45 +59,93 @@ class Model_User extends \Orm\Model
 			: null;
 	}
 
+	/**
+	 * Get user profile picture
+	 */
+	public function profile_pic($width = 30, $height = 30)
+	{
+		$fb_auth = $this->user_authentication('facebook');
+
+		if (isset($fb_auth))
+		{
+			return "https://graph.facebook.com/{$fb_auth->provider_uid}/picture?width={$width}&height={$height}";
+		}
+
+		return 'http://beta.itemnation.com/assets/img/head-shot.png'; //default
+	}
+
+	/**
+	 * Does the user have a password set
+	 */
 	public function has_password()
 	{
 		return count($this->password) > 0;
 	}
 
+	/**
+	 * User registration date
+	 */
 	public function member_since($format = "d M Y")
 	{
 		return date($format, $this->created_at);
 	}
 
+	/**
+	 * Users last login
+	 */
 	public function last_login($format = "d M Y")
 	{
 		return date($format, $this->created_at);
 	}
 
+	/**
+	 * Get all user chats
+	 */
 	public function get_chats()
 	{
 		return Model_Chat::get_user_chats($this->id);
 	}
 
+	/**
+	 * Get a users chat by chat_id
+	 */
 	public function get_chat($chat_id)
 	{
 		return Model_Chat::get_user_chat($this->id, $chat_id);
 	}
 
+	/**
+	 * Create a new chat
+	 */
 	public function create_chat($name, $description)
 	{
 		return Model_Chat::create_chat($this->id, $name, $description);
 	}
 
+	/**
+	 * Authenticate a user with a provider
+	 */
 	public function authenticate_with($user_info)
 	{
 		$user_auth = Model_User_Auth::create_user_auth($this, $user_info);
 	}
 
+	/**
+	 * Get all user authentications
+	 */
 	public function user_authentications()
 	{
 		return $this->authentications;
 	}
+
+	/**
+	 * Get the user authentication for a specific provider
+	 */
+	public function user_authentication($provider)
+	{
+		return Model_User_Auth::get_by_user_and_provider($this->id, $provider);
+	}
+
 
 
 

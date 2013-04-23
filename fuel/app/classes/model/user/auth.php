@@ -52,6 +52,7 @@ class Model_User_Auth extends \Orm\Model
 			'profile_url'  => $user_info['profile_url'],
 			'website_url'  => $user_info['website_url'],
 		]);
+		//$user_data->photoURL
 		return $user_auth->save() ? $user_auth : false;
 	}
 
@@ -63,6 +64,11 @@ class Model_User_Auth extends \Orm\Model
 	public static function get_by_user_id($user_id)
 	{
 		return static::query()->where('user_id', $user_id)->get_one();
+	}
+
+		public static function get_by_user_and_provider($user_id, $provider)
+	{
+		return static::query()->where('user_id', $user_id)->where('provider', $provider)->get_one();
 	}
 
 	public static function get_by_provider_uid($provider, $uid)
