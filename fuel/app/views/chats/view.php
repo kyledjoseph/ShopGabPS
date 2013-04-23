@@ -132,7 +132,7 @@
 
 				</section>
 
-				<div class="ads">
+				<div class="ads hidden"> <!-- will not have ads for now -->
 
 					<div class="ad-100x100">100x100 ad</div>
 					<div class="ad-100x100">100x100 ad</div>
