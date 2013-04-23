@@ -285,7 +285,7 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 * My Chats
 ***/
 
-#mychats {width: 598px; margin-right: 14px;}
+#mychats {min-height: 400px; width: 598px; margin-right: 14px;}
 .mychats-side {width: 346px;}
 
 #mychats-user {margin: 0 0 20px;}
