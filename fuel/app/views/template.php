@@ -2,7 +2,7 @@
 <html>
   <head>
 	<title><?= isset($title) ? $title : 'ItemNation' ?></title>
-	<?= Asset::css('bootstrap.css') ?>
+	<?= //Asset::css('bootstrap.css') ?>
 	<?= Asset::css('main.css') ?>
   </head>
 
