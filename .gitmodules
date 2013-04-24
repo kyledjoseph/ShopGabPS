@@ -25,3 +25,6 @@
 [submodule "fuel/packages/casset"]
 	path = fuel/packages/casset
 	url = git://github.com/fuel-packages/fuel-casset.git
+[submodule "fuel/packages/tinychimp"]
+	path = fuel/packages/tinychimp
+	url = git://github.com/fuel-packages/fuel-tinychimp.git
