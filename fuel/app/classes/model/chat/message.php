@@ -19,6 +19,13 @@ class Model_Chat_Message extends \Orm\Model
 			'key_to' => 'id',
 			'cascade_save' => true,
 			'cascade_delete' => false,
+		),
+		'user' => array(
+			'key_from' => 'user_id',
+			'model_to' => 'Model_User',
+			'key_to' => 'id',
+			'cascade_save' => true,
+			'cascade_delete' => false,
 		)
 	);
 
@@ -41,5 +48,16 @@ class Model_Chat_Message extends \Orm\Model
 			'cascade_delete' => false,
 		)
 	);
+
+
+	public static function create_message($chat_id, $user_id, $body)
+	{
+		$message = static::forge(array(
+			'chat_id' => $chat_id,
+			'user_id' => $user_id,
+			'body'    => $body,
+		));
+		return $message->save() ? $message : null;
+	}
 
 }

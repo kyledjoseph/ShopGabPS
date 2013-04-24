@@ -118,11 +118,19 @@
 					<div class="chat">
 						
 						<div class="scrollable">
+							<ul>
+								<?php foreach ($chat->get_messages() as $message): ?>
+								<li>
+									<?= $message->body ?><br>
+									by <?= $message->user->display_name() ?>
 
+								</li>
+								<?php endforeach; ?>
+							</ul>
 						</div>
 
-						<?= Form::open(array('class' => 'reply')) ?>
-							<textarea placeholder="Your message..." maxlength="140"></textarea>
+						<?= Form::open(array('action' => "chats/message/{$chat->id}", 'method' => 'POST', 'class' => 'reply')) ?>
+							<textarea name="message" placeholder="Your message..." maxlength="140"></textarea>
 							<button type="submit">send</button>
 						</form>
 

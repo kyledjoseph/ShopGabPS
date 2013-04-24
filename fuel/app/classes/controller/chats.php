@@ -68,10 +68,15 @@ class Controller_Chats extends Controller_App
 	/**
 	 *
 	 */
-	public function post_message()
+	public function post_message($chat_id)
 	{
+		$chat = $this->user->get_chat($chat_id);
+		isset($chat) or $this->redirect('chats', 'info', 'Invlaid chat');
+
 		$post = $this->post_data('message');
 
+		$chat->new_message($this->user->id, $post->message);
+		$this->redirect($chat->url(), 'success', 'Message sent');
 		//$message = $this->
 	}
 

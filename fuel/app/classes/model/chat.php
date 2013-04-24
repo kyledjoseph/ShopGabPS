@@ -97,6 +97,15 @@ class Model_Chat extends \Orm\Model
 	}
 
 
+	/**
+	 * 
+	 */
+	public function new_message($user_id, $message)
+	{
+		return Model_Chat_Message::create_message($this->id, $user_id, $message);
+	}
+
+
 
 
 
