@@ -29,7 +29,21 @@ class Model_Chat extends \Orm\Model
 			'key_to' => 'chat_id',
 			'cascade_save' => true,
 			'cascade_delete' => true,
-		)
+		),
+		'messages' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Chat_Message',
+			'key_to' => 'chat_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
+		'comments' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Chat_Product_Comment',
+			'key_to' => 'chat_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
 	);
 
 	// has many users 
@@ -59,10 +73,29 @@ class Model_Chat extends \Orm\Model
 		return 'chats/' . $this->id;
 	}
 
+
+
+	/**
+	 * 
+	 */
 	public function get_chat_products()
 	{
-		return Model_Chat_Product::query()->where('chat_id', $this->id)->order_by('created_at', 'asc')->get();
+		return Model_Chat_Product::query()
+			->where('chat_id', $this->id)
+			->order_by('created_at', 'asc')->get();
 	}
+
+	/**
+	 * 
+	 */
+	public function get_chat_product($chat_product_id)
+	{
+		return Model_Chat_Product::query()
+			->where('chat_id', $this->id)
+			->where('id', $chat_product_id)
+			->order_by('created_at', 'asc')->get_one();
+	}
+
 
 
 

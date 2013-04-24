@@ -22,3 +22,6 @@
 [submodule "fuel/packages/log"]
 	path = fuel/packages/log
 	url = git://github.com/fuel/log.git
+[submodule "fuel/packages/casset"]
+	path = fuel/packages/casset
+	url = git://github.com/fuel-packages/fuel-casset.git

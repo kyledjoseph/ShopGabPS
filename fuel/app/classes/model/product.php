@@ -60,9 +60,19 @@ class Model_Product extends \Orm\Model
 		return $this->name;
 	}
 
+	public function description()
+	{
+		return $this->description;
+	}
+
 	public function url()
 	{
 		return '#';
+	}
+
+	public function product_url()
+	{
+		return $this->url;
 	}
 
 	public function image()

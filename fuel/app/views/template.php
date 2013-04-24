@@ -6,10 +6,14 @@
 
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-	<?php //Asset::js('bootstrap/bootstrap.js') ?>
-	<?php //Asset::js('bootstrap/bootstrap-alert.js') ?>
+	
+	<?= Asset::js('bootstrap/bootstrap.js') ?>
+	<?= Asset::js('bootstrap/bootstrap-alert.js') ?>
+	<?= Asset::css('bootstrap.css') ?>
 
 	<?= Asset::js('main.js') ?>
+	<?= Casset::render_js() ?>
+	<?= Casset::render_css() ?>
   </head>
 
   <body>

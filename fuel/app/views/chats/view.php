@@ -69,40 +69,38 @@
 
 					<li class="recommended">
 						<i class="sprites item-add"></i>
-						<i class="sprites bleft-fold"><span>1</span></i>
+						<i class="sprites bleft-fold"><span><?= $product_i ?></span></i>
 
-						<ul class="info">
-							<li><h3>Model #SGP4330</h3></li>
-							<li><label>User Reviews</label></li>
-							<li><label>Friend Reviews</label></li>
-							<li><label>Current Value</label><span class="price">$325</span></li>
-						</ul>
+						
 
 						<div class="item">
-							<figure><img src="img/mychats-sample.png"></figure>
+							<figure>
+								<?php // $product->image_html() // images disabled due to display format ?>
+							</figure>
 
 							<h2><?= $product->name() ?></h2>
 							<p>
-								2 Built-in Cup Holders for Baby, Buckle Closure, Storage Basket Beneath Seat, 
-								Reclining Seat... <a href="">Learn more</a>
+								<?= $product->description() ?>
+								<?= Html::anchor($product->product_url(), 'Learn more', array('target' => '_blank')) ?>
 							</p>
 
 							<div class="votes">
 								<div>
-									<i class="sprites vote-up"></i>
+									<?= Html::anchor("chats/like/{$chat->id}/{$chat_product->id}", '<i class="sprites vote-up"></i>', array('title' => $chat_product->list_user_likes(), 'class' => 'user_vote_list')) ?>
 									<span class="sprites bubble-blue"><?= $chat_product->total_upvotes() ?></span>
 								</div>
 
 								<div>
-									<i class="sprites vote-down"></i>
+									<?= Html::anchor("chats/dislike/{$chat->id}/{$chat_product->id}", '<i class="sprites vote-down"></i>', array('title' => $chat_product->list_user_dislikes(), 'class' => 'user_vote_list')) ?>
 									<span class="sprites bubble-blue"><?= $chat_product->total_downvotes() ?></span>
 								</div>
 							</div>
 
-							<a class="btn orange" href=""><span>Purchase</span></a>
+							<?= Html::anchor($product->product_url(), '<span>Purchase</span>', array('class' => 'btn orange', 'target' => '_blank')) ?>
 						</div>
 					</li>
 
+					<?php $product_i++ ?>
 					<?php endforeach; ?>
 
 				</ul>
@@ -123,8 +121,9 @@
 
 						</div>
 
-						<form class="reply">
+						<?= Form::open(array('class' => 'reply')) ?>
 							<textarea placeholder="Your message..." maxlength="140"></textarea>
+							<button type="submit">send</button>
 						</form>
 
 

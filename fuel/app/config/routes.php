@@ -4,7 +4,9 @@ return array(
 	'_404_'   => 'error/404',
 
 
-	'chats/create' => 'chats/create',
-	'chats/(:segment)' => 'chats/view/$1',
-	'chats' => 'chats/index',
+	'chats/create'        => 'chats/create',
+	'chats/like/(:any)'   => 'chats/like/$1',
+	'chats/dislike/(:any)'=> 'chats/dislike/$1',
+	'chats/(:segment)'    => 'chats/view/$1',
+	'chats'               => 'chats/index',
 );
