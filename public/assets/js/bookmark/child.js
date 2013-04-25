@@ -154,6 +154,7 @@ child = {
 
         child.info.name        = $('.title').val()
         child.info.description = $('.description').val()
+        child.info.images      = $('.product-image').attr('src') 
 
         $.ajax({
             url: 'http://beta.itemnation.com/bookmark/add',
