@@ -66,13 +66,15 @@
 
             $('img').each(function(i) {
                 if (($(this).width() > '60') && ($(this).height() > '60')) {
-                    image = {
-                        height: $(this).height(),
-                        src:    $(this).prop('src'),
-                        width:  $(this).width()
-                    }
+                    if ((($(this).width() * 4) > $(this).height()) && (($(this).height() * 4) > $(this).width())) {
+                        image = {
+                            height: $(this).height(),
+                            src:    $(this).prop('src'),
+                            width:  $(this).width()
+                        }
 
-                    parent.info.images.push(image)
+                        parent.info.images.push(image)
+                    }
                 }
             })
 
@@ -97,8 +99,8 @@
         close: function() {
             console.log('parent.close()')
             $(parent.iframe).fadeOut(500, function() {
-               $(parent.iframe).remove() 
-           })
+             $(parent.iframe).remove() 
+         })
         }
     }
 
