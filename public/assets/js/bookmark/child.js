@@ -158,7 +158,7 @@ child = {
         $.ajax({
             url: 'http://beta.itemnation.com/bookmark/add',
             data: child.info,
-            type: 'GET',
+            type: 'POST',
             timeout: 30000,
             dataType: 'text',
             complete: function(data) {
