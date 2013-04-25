@@ -80,7 +80,7 @@ class Controller_Bookmark extends Controller_App
 	/**
 	 * 
 	 */
-	public function get_add()
+	public function post_add()
 	{
 		if (! $this->user_logged_in())
 		{
@@ -90,7 +90,7 @@ class Controller_Bookmark extends Controller_App
 			)));
 		}
 
-		$post = $this->get_data('name', 'description', 'domain', 'url', 'images', 'image', 'type', 'forum_name');
+		$post = $this->post_data('name', 'description', 'domain', 'url', 'images', 'image', 'type', 'forum_name');
 
 		switch ($post->type)
 		{
@@ -99,7 +99,6 @@ class Controller_Bookmark extends Controller_App
 			case 'forum':
 				break;
 			default:
-
 		}
 
 		$product = Model_Product::add_product(array(
