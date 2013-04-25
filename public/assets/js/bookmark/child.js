@@ -77,6 +77,9 @@ child = {
             child.sorted.push(largest)
             if ((count >= index) && (drawn < 5)) {
                 $('.gallery').append('<img id ="' + count + '" src="' + source + '" />');
+                if (count == index) {
+                    $('.product-image').attr('src', source)
+                }
                 drawn++
             }
             size = 0
@@ -90,6 +93,7 @@ child = {
 
         $('.gallery img').click(function() {
             $('.product-image').attr('src', $(this).attr('src'));
+            $('.product-image').attr('id', $(this).attr('id'));
         });
     },
 
