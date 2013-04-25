@@ -87,6 +87,7 @@
 
         report: function() {
             console.log('parent.report()')
+            delete Array.prototype.toJSON
             document.getElementById('itemnation-frame').contentWindow.postMessage(
                 JSON.stringify(parent.info),
                 "http://beta.itemnation.com/assets/js/child.js"
