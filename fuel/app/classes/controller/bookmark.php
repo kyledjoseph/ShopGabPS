@@ -2,6 +2,8 @@
 
 class Controller_Bookmark extends Controller_App
 {
+	public $template = 'bookmark/template';
+
 	public function before()
 	{
 		parent::before();
@@ -19,7 +21,7 @@ class Controller_Bookmark extends Controller_App
 			$this->redirect('bookmark/login');
 		}
 
-		return Response::forge(View::forge('bookmark/view'));
+		$this->template->body = View::forge('bookmark/view');
 	}
 
 
@@ -28,7 +30,12 @@ class Controller_Bookmark extends Controller_App
 	 */
 	public function get_login()
 	{
-		return Response::forge(View::forge('bookmark/login'));
+		if ($this->user_logged_in())
+		{
+			$this->redirect('bookmark/view');
+		}
+
+		$this->template->body = View::forge('bookmark/login');
 	}
 
 
@@ -37,7 +44,12 @@ class Controller_Bookmark extends Controller_App
 	 */
 	public function get_register()
 	{
-		return Response::forge(View::forge('bookmark/register'));
+		if ($this->user_logged_in())
+		{
+			$this->redirect('bookmark/view');
+		}
+		
+		$this->template->body = View::forge('bookmark/register');
 	}
 
 
