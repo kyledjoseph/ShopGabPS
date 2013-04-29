@@ -88,6 +88,7 @@ class Model_Product extends \Orm\Model
 	public function add_image($src)
 	{
 		$product_image = Model_Product_Image::add_image($this->id, $src);
+		return $product_image;
 	}
 
 	public static function get_index()
