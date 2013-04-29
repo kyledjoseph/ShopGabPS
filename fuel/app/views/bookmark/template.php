@@ -14,7 +14,7 @@
 
 </head>
 <body>
-	<div class="itemnation-box" style="display:none">
+	<div class="itemnation-box">
 		<?= isset($body) ? $body : null ?>
 	</div>
 </body>
