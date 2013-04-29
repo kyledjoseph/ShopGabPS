@@ -8,18 +8,36 @@ class Controller_Bookmark extends Controller_App
 		//Config::set('profiling', false); // not working
 	}
 
-	// public function after($response)
-	// {
-	// 	return Response::forge(json_encode());
-	// }
-
 
 	/**
 	 * 
 	 */
 	public function get_view()
 	{
+		if (! $this->user_logged_in())
+		{
+			$this->redirect('bookmark/login');
+		}
+
 		return Response::forge(View::forge('bookmark/view'));
+	}
+
+
+	/**
+	 * 
+	 */
+	public function get_login()
+	{
+		return Response::forge(View::forge('bookmark/login'));
+	}
+
+
+	/**
+	 * 
+	 */
+	public function get_register()
+	{
+		return Response::forge(View::forge('bookmark/register'));
 	}
 
 
