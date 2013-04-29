@@ -33,6 +33,14 @@ GitHub repository for ItemNation ([project overview](http://youtu.be/_VT-QjDqVaw
 * **ID:** kyle@itemnation.com
 * **Pass:** Techdev12
 
+### Google Analytics
+* **ID:** tyler@itemnation.com
+* **Pass:** Techdev12
+
+### Optimizely (http://www.optimizely.com)
+* **ID:** kyle@itemnation.com
+* **Pass:** Techdev12
+
 ### Dropbox (shared files)
 
 * **Link:** https://www.dropbox.com/sh/23624mcq1zdc8om/D3vgoTfmBI
