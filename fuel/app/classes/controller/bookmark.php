@@ -35,7 +35,7 @@ class Controller_Bookmark extends Controller_App
 			$this->redirect('bookmark/login');
 		}
 
-		$post = $this->post_data('name', 'description', 'domain', 'url', 'images', 'image', 'add_to', 'chat_id');
+		$post = $this->post_data('name', 'description', 'domain', 'url', 'images', 'add_to', 'chat_id');
 
 		if (! in_array($post->add_to, array('chat', 'wishlist', 'my_items')))
 		{
@@ -52,9 +52,9 @@ class Controller_Bookmark extends Controller_App
 		));
 
 		// product images
-		if (! empty($post->image['src']))
+		if (! empty($post->images['src']))
 		{
-			$product->add_image($post->image['src']);
+			$product->add_images($post->image['src']);
 		}
 
 		// 
