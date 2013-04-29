@@ -12,7 +12,7 @@ class Controller_Bookmark extends Controller_App
 
 
 	/**
-	 * 
+	 * Bookmark
 	 */
 	public function get_view()
 	{
@@ -21,40 +21,76 @@ class Controller_Bookmark extends Controller_App
 			$this->redirect('bookmark/login');
 		}
 
-		$this->template->body = View::forge('bookmark/view');
+		$this->template->body = View::forge('bookmark/view', array());
 	}
 
 
 	/**
-	 * 
+	 * Bookmark Submit
 	 */
-	public function get_login()
+	public function post_add()
 	{
-		if ($this->user_logged_in())
+		if (! $this->user_logged_in())
 		{
-			$this->redirect('bookmark/view');
+			$this->redirect('bookmark/login');
 		}
 
-		$this->template->body = View::forge('bookmark/login');
-	}
+		$post = $this->post_data('name', 'description', 'domain', 'url', 'images', 'image', 'add_to', 'chat_id');
 
-
-	/**
-	 * 
-	 */
-	public function get_register()
-	{
-		if ($this->user_logged_in())
+		if (! in_array($post->add_to, array('chat', 'wishlist', 'my_items')))
 		{
-			$this->redirect('bookmark/view');
+			throw new Exception("Unknown product destination {$post->add_to}");
 		}
-		
-		$this->template->body = View::forge('bookmark/register');
+
+		// create product
+		$product = Model_Product::add_product(array(
+			'user_id'     => $this->user->id,
+			'name'        => $post->name,
+			'description' => $post->description,
+			'domain'      => $post->domain,
+			'url'         => $post->url,
+		));
+
+		// product images
+		if (! empty($post->image['src']))
+		{
+			$product->add_image($post->image['src']);
+		}
+
+		// 
+		switch ($post->add_to)
+		{
+			case 'chat':
+				
+				$chat = $this->user->get_chat($post->chat_id);
+				! isset($chat) and $this->redirect('bookmark/view', 'error', 'Not a valid chat');
+				$chat->add_product($product->id);
+
+				break;
+
+			case 'wishlist':
+
+				break;
+
+			case 'my_items':
+				
+				break;
+				
+			default:
+				throw new Exception("Unknown product destination {$post->add_to}");
+				
+		}
+
+		return Response::forge(json_encode(array(
+			'success'    => true,
+			'user_id'    => $product->user_id,
+			'product_id' => $product->id,
+		)));
 	}
 
 
 	/**
-	 * 
+	 * Bookmark Install
 	 */
 	public function get_install()
 	{
@@ -66,6 +102,76 @@ class Controller_Bookmark extends Controller_App
 
 
 	/**
+	 * Bookmark User Login
+	 */
+	public function get_login()
+	{
+		if ($this->user_logged_in())
+		{
+			$this->redirect('bookmark/view');
+		}
+
+		$this->template->body = View::forge('bookmark/login');
+	}
+
+	public function post_login()
+	{
+		$post    = $this->post_data('email', 'password');
+		$success = $this->auth->login($post->email, $post->password);
+
+		if (! $success)
+		{
+			$this->redirect('bookmark/login', 'error', 'Invalid login.');
+		}
+
+		$this->redirect('bookmark/view');
+	}
+
+
+	/**
+	 * Bookmark User Register
+	 */
+	public function get_register()
+	{
+		if ($this->user_logged_in())
+		{
+			$this->redirect('bookmark/view');
+		}
+		
+		$this->template->body = View::forge('bookmark/register');
+	}
+
+	public function post_register()
+	{
+		$post    = $this->post_data('email', 'password');
+		$success = $this->auth->create_user($post->email, $post->password);
+
+		if (! $success)
+		{
+			$this->redirect('user/register', 'error', 'Invalid email or password.');
+		}
+
+		$this->auth->login($post->email, $post->password);
+		$this->redirect('/', 'info', 'You are now registered.');
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	/**
 	 * 
 	 */
 	public function get_login_check()
@@ -74,85 +180,8 @@ class Controller_Bookmark extends Controller_App
 	}
 
 
-	/**
-	 * 
-	 */
-	public function post_login()
-	{
-		$post = $this->post_data('email', 'password');
-		$success = $this->auth->login($post->email, $post->password);
 
-		return Response::forge(json_encode(array('success' => $success)));
-	}
-
-
-	/**
-	 * 
-	 */
-	public function post_register()
-	{
-		$post = $this->post_data('email', 'password');
-
-		try
-		{
-			$this->auth->create_user($post->email, $post->password);
-		}
-		catch (SiteUserUpdateException $e)
-		{
-			return Response::forge(json_encode(array('success' => 'false', 'message' => $e->getMessage())));
-		}
-
-		$this->auth->login($post->email, $post->password);
-		return Response::forge(json_encode(array('success' => $success)));
-	}
-
-
-	/**
-	 * 
-	 */
-	public function post_add()
-	{
-		if (! $this->user_logged_in())
-		{
-			return Response::forge(json_encode(array(
-				'success' => false,
-				'type'    => 'auth',
-			)));
-		}
-
-		$post = $this->post_data('name', 'description', 'domain', 'url', 'images', 'image', 'type', 'forum_name');
-
-		switch ($post->type)
-		{
-			case 'wish_list':
-				break;
-			case 'forum':
-				break;
-			default:
-		}
-
-		$product = Model_Product::add_product(array(
-			'user_id'     => $this->user->id,
-			'name'        => $post->name,
-			'description' => $post->description,
-			'domain'      => $post->domain,
-			'url'         => $post->url,
-		));
-
-
-		$image_src = $post->image['src'];
-		
-		if (! empty($image_src))
-		{
-			$product->add_image($image_src);
-		}
-
-		return Response::forge(json_encode(array(
-			'success'    => true,
-			'user_id'    => $product->user_id,
-			'product_id' => $product->id,
-		)));
-	}
+	
 
 
 	/**

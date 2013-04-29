@@ -96,6 +96,17 @@ class Model_Chat extends \Orm\Model
 			->order_by('created_at', 'asc')->get_one();
 	}
 
+	/**
+	 * 
+	 */
+	public function add_product($product_id)
+	{
+		$product = Model_Chat_Product::forge(array(
+			'chat_id' => $this->id,
+			'product_id' => $product_id,
+		));
+		return $product->save() ? $product : null;
+	}
 
 	/**
 	 * 
@@ -104,8 +115,6 @@ class Model_Chat extends \Orm\Model
 	{
 		return Model_Chat_Message::create_message($this->id, $user_id, $message);
 	}
-
-
 
 
 

@@ -115,6 +115,19 @@ class Model_User extends \Orm\Model
 	}
 
 	/**
+	 * 
+	 */
+	public function select_chat()
+	{
+		$options = array();
+		foreach ($this->get_chats() as $chat)
+		{
+			$options[$chat->id] = $chat->name();
+		}
+		return empty($options) ? array('none' => 'No Chats Available') : $options;
+	}
+
+	/**
 	 * Create a new chat
 	 */
 	public function create_chat($name, $description)
