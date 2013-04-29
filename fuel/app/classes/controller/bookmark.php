@@ -39,7 +39,7 @@ class Controller_Bookmark extends Controller_App
 
 		if (! in_array($post->add_to, array('chat', 'wishlist', 'my_items')))
 		{
-			throw new Exception("Unknown product destination {$post->add_to}");
+			throw new Exception("Unknown product destination '{$post->add_to}'");
 		}
 
 		// create product
@@ -73,11 +73,11 @@ class Controller_Bookmark extends Controller_App
 				break;
 
 			case 'my_items':
-				
+
 				break;
 				
 			default:
-				throw new Exception("Unknown product destination {$post->add_to}");
+				throw new Exception("Unknown product destination '{$post->add_to}'");
 				
 		}
 

@@ -155,6 +155,8 @@ child = {
         child.info.name        = $('.title').val()
         child.info.description = $('.description').val()
         child.info.images      = $('.product-image').attr('src') 
+        child.info.add_to      = $("input[name='add_to']").val()
+        child.info.chat_id     = $("input[name='chat_id']").val()
 
         $.ajax({
             url: 'http://beta.itemnation.com/bookmark/add',
