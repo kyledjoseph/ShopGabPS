@@ -96,7 +96,7 @@
 								</div>
 							</div>
 
-							<?= Html::anchor($product->product_url(), '<span>Where can I find thhis?</span>', array('class' => 'btn orange', 'target' => '_blank')) ?>
+							<?= Html::anchor($product->product_url(), '<span>Where can I find this?</span>', array('class' => 'btn orange', 'target' => '_blank')) ?>
 						</div>
 					</li>
 
