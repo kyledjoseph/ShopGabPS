@@ -159,5 +159,7 @@
 		<div class="right"></div>
 	</div>
 
+	<?= View::forge('analytics/site') ?>
+
   </body>
 </html>
