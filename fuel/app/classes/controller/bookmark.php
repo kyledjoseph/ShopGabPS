@@ -52,9 +52,9 @@ class Controller_Bookmark extends Controller_App
 		));
 
 		// product images
-		if (! empty($post->images['src']))
+		if (! empty($post->images))
 		{
-			$product->add_images($post->image['src']);
+			$product->add_images($post->image);
 		}
 
 		// 
