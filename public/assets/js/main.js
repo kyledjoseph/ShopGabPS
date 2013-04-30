@@ -33,12 +33,24 @@ $(function() {
 	});
 
 	$('#overlay, .close').click(function () {
-		$('#overlay, .dialog').hide();
+		$('#overlay, .dialog, .view-comment').hide();
 	});
 
 
 	$('#modal-tabs, #terms-tabs').tabs();
-    
+
+	$('.addnew-go').click(function () {
+		$('#overlay, #addnew-product').show();
+	});
+
+	$('.friends-go').click(function () {
+		$('#overlay, #invite-friends.dialog').show();
+	});
+
+ 	$('.comments span').click(function () {
+		$('#overlay').show();
+		$(this).parent('.comments').append('<div class="view-comment">comments go here</div>');
+	});   
     
 	/****
 	* Filter in footer
