@@ -102,13 +102,11 @@
 									</div>
 								</div>
 
-								<a class="btn orange" href="">
-									<span>Where can I buy this?</span>
-								</a>
+								<?= Html::anchor($product->product_url(), '<span>Where can I find this?</span>', array('class' => 'btn orange', 'target' => '_blank')) ?>
 							</div>
 
 
-							<?= Html::anchor($product->product_url(), '<span>Where can I find this?</span>', array('class' => 'btn orange', 'target' => '_blank')) ?>
+							
 						</div>
 					</li>
 
