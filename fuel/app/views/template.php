@@ -41,7 +41,7 @@
 					</ul>
 					<ul class="user-control">
 						<li>
-							<span><i class="head-shot" style="background: url(assets/img/head-shot.png);"></i> <?= Html::anchor('user/account', $user->email) ?> <?= Html::anchor('user/logout', 'logout') ?> <i class="sprites settings-icon"></i></span>
+							<span><i class="head-shot" style="background: url(../assets/img/head-shot.png);"></i> <?= Html::anchor('user/account', $user->email) ?> <?= Html::anchor('user/logout', 'logout') ?> <i class="sprites settings-icon"></i></span>
 						</li>
 					</ul>
 				</nav>
