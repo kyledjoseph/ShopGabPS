@@ -24,9 +24,9 @@
 					</div>
 
 					<div class="invites">
-						<a href="" class="btn green2 invite-button">Invite Friends</a>
+						<span href="" class="btn green2 invite-button friends-go">Invite Friends</span>
 
-						<a href="" class="view-friends"><i class="sprites view-friends-icon"></i> View Friends</a>
+						<span href="" class="view-friends friends-go"><i class="sprites view-friends-icon"></i> View Friends</span>
 
 						<ul style="display: none;">
 							<li>
@@ -55,7 +55,7 @@
 
 				<div class="heading" class="cat-head">
 
-					<a class="btn green">
+					<a class="btn green addnew-go">
 						<span>+ Add New Product</span>
 					</a>
 
