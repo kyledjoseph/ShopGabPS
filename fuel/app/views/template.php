@@ -22,7 +22,32 @@
 		<header>
 			<div class="inner">
 				<?= Html::anchor('/', '', array('title' => 'ItemNation', 'class' => 'sprites logo')) ?>
-				
+
+
+				<i class="sprites mychats-logo"></i>
+
+
+				<nav>
+					<ul class="main-control">
+						<li>
+							<a href="">DASHBOARD</a>
+						</li>
+						<li>
+							<a href="">WISH LISTS</a>
+						</li>
+						<li>
+							<a href="">MY ITEMS</a>
+						</li>
+					</ul>
+					<ul class="user-control">
+						<li>
+							<span><i class="head-shot" style="background: url(img/head-shot.png);"></i> John Smith <i class="sprites settings-icon"></i></span>
+						</li>
+					</ul>
+				</nav>
+
+
+				<!--
 				<?php if (isset($user)): ?>
 				<div id="user">
 					<i class="sprites user-none"></i>
@@ -37,6 +62,8 @@
 					</span>
 				</div>
 				<?php endif; ?>
+				-->
+
 			</div>
 		</header>
 
@@ -65,7 +92,7 @@
 					<input type="text" placeholder="Search">
 				</form>
 
-				<div id="tabs">
+				<div id="tabs" class="hidden">
 					<ul>
 						<li class="<?= (isset($active_nav) and $active_nav == 'activity') ? 'current' : null ?>">
 							<i class="tab-r"></i>
