@@ -84,17 +84,29 @@
 								<?= Html::anchor($product->product_url(), 'Learn more', array('target' => '_blank')) ?>
 							</p>
 
-							<div class="votes">
-								<div>
-									<?= Html::anchor("chats/like/{$chat->id}/{$chat_product->id}", '<i class="sprites vote-up"></i>', array('title' => $chat_product->list_user_likes(), 'class' => 'user_vote_list')) ?>
-									<span class="sprites bubble-blue"><?= $chat_product->total_upvotes() ?></span>
+
+							<div class="comments">
+								<span><i class="sprites comment-icon on">3</i> Comments</span>
+							</div>
+
+							<div class="controls-container">
+								<div class="votes">
+									<div>
+										<?= Html::anchor("chats/like/{$chat->id}/{$chat_product->id}", '<i class="sprites vote-up"></i>', array('title' => $chat_product->list_user_likes(), 'class' => 'user_vote_list')) ?>
+										<span class="sprites bubble-blue"><?= $chat_product->total_upvotes() ?></span>
+									</div>
+
+									<div>
+										<?= Html::anchor("chats/dislike/{$chat->id}/{$chat_product->id}", '<i class="sprites vote-down"></i>', array('title' => $chat_product->list_user_dislikes(), 'class' => 'user_vote_list')) ?>
+										<span class="sprites bubble-blue"><?= $chat_product->total_downvotes() ?></span>
+									</div>
 								</div>
 
-								<div>
-									<?= Html::anchor("chats/dislike/{$chat->id}/{$chat_product->id}", '<i class="sprites vote-down"></i>', array('title' => $chat_product->list_user_dislikes(), 'class' => 'user_vote_list')) ?>
-									<span class="sprites bubble-blue"><?= $chat_product->total_downvotes() ?></span>
-								</div>
+								<a class="btn orange" href="">
+									<span>Where can I buy this?</span>
+								</a>
 							</div>
+
 
 							<?= Html::anchor($product->product_url(), '<span>Where can I find this?</span>', array('class' => 'btn orange', 'target' => '_blank')) ?>
 						</div>
