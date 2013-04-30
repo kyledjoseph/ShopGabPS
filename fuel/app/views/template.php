@@ -29,14 +29,14 @@
 
 				<nav>
 					<ul class="main-control">
-						<li>
-							<a href="">DASHBOARD</a>
+						<li class="<?= (isset($active_nav) and $active_nav == 'dashboard') ? 'current' : null ?>">
+							<?= Html::anchor('/', 'DASHBOARD') ?>
 						</li>
-						<li>
-							<a href="">WISH LISTS</a>
+						<li class="<?= (isset($active_nav) and $active_nav == 'wishlist') ? 'current' : null ?>">
+							<?= Html::anchor('wishlist', 'WISH LISTS') ?>
 						</li>
-						<li>
-							<a href="">MY ITEMS</a>
+						<li class="<?= (isset($active_nav) and $active_nav == 'myitems') ? 'current' : null ?>">
+							<?= Html::anchor('my/items', 'MY ITEMS') ?>
 						</li>
 					</ul>
 					<ul class="user-control">
@@ -88,7 +88,7 @@
 				</div>
 				-->
 
-				<form id="search">
+				<form id="search" class="hidden">
 					<input type="text" placeholder="Search">
 				</form>
 
