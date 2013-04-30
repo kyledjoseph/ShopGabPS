@@ -197,35 +197,72 @@
 	
 
 	<!-- Overlay and Dialog -->
-	<div id="overlay"></div>
-	<div class="dialog product">
-		<div class="left">
-			<div class="header">
-				<div class="close">x</div>
+<div id="overlay"></div>
 
-					<h2>Grills - how do they work</h2>
+<div id="addnew-product" class="dialog">
+	<h2>Add New Product</h2>
 
-					<div class="controls">
-						<ul>
-							<li>Propane</li>
-							<li>Charcoal</li>
-							<li>Smoker</li>
-						</ul>
-					</div>
-				</div>
+	<div class="addnew-form">
+		<h3>Capture any product from the web</h3>
+		<span class="how">How does this work?</span>
 
-				<img src="img/sample-modal.png">
+		<form>
+			<ul>
+				<li>
+					<label>Enter a URL:</label>
+					<input type="text">
+					<button type="submit" class="btn green2">GO</button>
+				</li>
+			</ul>
+		</form>
 
-				<div class="terms">
-					<h3>TERMS</h3>
-					<ul>
-						<li></li>
-					</ul>
-				</div>
+		<form>
+			<h4>Search With:</h4>
+			<ul>
+				<li>
+					<label>Google:</label>
+					<input type="text">
+					<button type="submit" class="btn green2">GO</button>
+				</li>
+				<li>
+					<label>Bing:</label>
+					<input type="text">
+					<button type="submit" class="btn green2">GO</button>
+				</li>
+			</ul>
+		</form>
 
-			</div>
-		<div class="right"></div>
 	</div>
+
+</div>
+
+<div id="invite-friends" class="dialog">
+	<h2>Invite Friends to Join Your "My Chats"</h2>
+
+	<h3>Invite a friend by email <strong>or</strong> sign in to facebook.</h3>
+
+	<form>
+		<ul>
+			<li>
+				<label>From:</label>
+				<input type="text">
+			</li>
+			<li>
+				<label>To:</label>
+				<input type="text">
+			</li>
+			<li>
+				<label>Subject:</label>
+				<input type="text">
+			</li>
+			<li>
+				<textarea placeholder="I'm excited to be looking for a new product on ItemNation and it would be great to have your help in finding the best one! Please follow the link below."></textarea>
+			</li>
+		</ul>
+
+		<button type="submit" class="btn green2">SEND</button>
+	</form>
+</div>
 
 	<?= View::forge('analytics/site') ?>
 
