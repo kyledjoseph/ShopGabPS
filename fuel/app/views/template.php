@@ -122,38 +122,79 @@
 		</div>
 	</div>
 
+
 	<footer>
 		<div class="inner">
+
 			<div class="footer-top">
 				<div>
 					<h3>Who are we?</h3>
+			
 					<ul>
-						<li><?= Html::anchor('about', 'About us') ?></li>
-						<li><?= Html::anchor('about/team', 'Our team') ?></li>
+						<li>
+							<?= Html::anchor('about', 'About us') ?>
+						</li>
+						<li>
+							<?= Html::anchor('about/team', 'Our team') ?>
+						</li>
+						<li>
+							<a href="">ItemNation Blog</a>
+						</li>
+						<li>
+							<a href="">Contact us</a>
+						</li>
+
+
 					</ul>	
 				</div>
 
 				<div>
-					<h3>Social</h3>
-					<ul>
-						<li><a href="">Twitter</a></li>
-						<li><a href="">Facebook</a></li>
+					<h3>Connect with us.</h3>
+
+					<ul class="footer-social">
+						<li>
+							<a href="">
+								<i class="sprites footer-facebook"></i>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<i class="sprites footer-twitter"></i>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<i class="sprites footer-google"></i>
+							</a>
+						</li>
 					</ul>
 				</div>
 
 				<div>
 					<h3>Invite your friends</h3>
+
 					<form>
 						<input type="email" placeholder="yourfriend@email.com">
+						<sub>* Add additional emails by a comma.</sub>
+						<button type="submit">Invite Now</button>
 					</form>
+
+
 				</div>
+
 			</div>
 
 			<div class="footer-bottom">
 				<span>&copy; 2013 ItemNation. All rights reserved. <?= Html::anchor('privacy', 'Privacy Policy') ?> - <?= Html::anchor('terms', 'Terms of Use') ?></span>
+				<i class="sprites footer-logo"></i>
 			</div>
+
+
+
 		</div>
 	</footer>
+
+	
 
 	<!-- Overlay and Dialog -->
 	<div id="overlay"></div>
