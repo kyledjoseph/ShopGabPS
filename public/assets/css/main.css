@@ -5,7 +5,7 @@ table {border-collapse: collapse; border-spacing: 0;}
 input, textarea {outline: 0; margin: 0; padding: 0;}
 button {border: 0; cursor: pointer;}
 html {height: 100%;}
-body {/*background: #f4f4f4;*/ background: #014672; min-height: 100%; min-width: 980px; font: normal 14px/20px "Helvetica Neue", helvetica, arial, sans-serif;}
+body {/*background: #f4f4f4;*/ background: #fff; min-height: 100%; min-width: 980px; font: normal 14px/20px "Helvetica Neue", helvetica, arial, sans-serif;}
 a {color: #333; border: 0; text-decoration: none;}
 a, select, div, button {outline: 0;}
 
@@ -60,6 +60,9 @@ html[xmlns] .clearfix {display: block;}
 .settings-icon 				{background-position: -328px -33px; width: 15px; height: 15px;}
 .help-icon 					{background-position: -274px -77px; width: 16px; height: 16px;}
 .view-friends-icon 			{background-position: -309px -77px; width: 19px; height: 16px;}
+.comment-icon				{width: 18px; height: 16px;}
+.comment-icon.on 			{background-position: -302px -105px;}
+.comment-icon.off			{background-position: -273px -105px;}
 
 
 /****
@@ -79,8 +82,9 @@ html[xmlns] .clearfix {display: block;}
 /**** 
 * Gloabl 
 ***/
-#wrap {background: #fff url(../img/top-shadow.png) repeat-x;  /*background-attachment: fixed; background: -moz-linear-gradient(top, #fff, #dae8f1); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dae8f1'); background: -webkit-gradient(linear, left top, left bottom, from(#fff),  to(#dae8f1));*/ overflow: hidden; height: 100%; min-height: 600px; /* border-bottom: 1px solid #a0a0a0; box-shadow: 0 3px 10px rgba(0,0,0,.4);*/}
+#wrap {background: #fff url(../img/top-shadow.png) repeat-x;  /*background-attachment: fixed; background: -moz-linear-gradient(top, #fff, #dae8f1); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dae8f1'); background: -webkit-gradient(linear, left top, left bottom, from(#fff),  to(#dae8f1));*/ overflow: hidden; height: 100%; /* border-bottom: 1px solid #a0a0a0; box-shadow: 0 3px 10px rgba(0,0,0,.4);*/}
 .inner {position: relative; width: 960px; padding: 10px; margin: 0 auto;} 
+
 
 
 /****
@@ -285,7 +289,7 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 * My Chats
 ***/
 
-#mychats {min-height: 400px; width: 598px; margin-right: 14px;}
+#mychats {width: 598px; margin-right: 14px;}
 .mychats-side {width: 346px;}
 
 #mychats-user {margin: 0 0 20px;}
@@ -303,14 +307,14 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats-user .profile .share-green {display: block; font: bold 12px/18px Arial; margin-top: 3px; color: #39a03e; text-decoration: underline; cursor: pointer;}
 #mychats-user .profile a:hover, #mychats-user .profile span:hover {text-decoration: none;}
 
-#mychats-user .user-message {position: relative; min-height: 72px; width: 500px; padding: 10px; background: -moz-linear-gradient(top, #fff, #f4f4f4); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f4f4f4'); background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f4f4f4)); border: 1px solid #c6c6c6; box-shadow: 0 0 6px rgba(136,136,136,.2);}
+#mychats-user .user-message {position: relative; width: 500px; padding: 10px; background: -moz-linear-gradient(top, #fff, #f4f4f4); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#f4f4f4'); background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f4f4f4)); border: 1px solid #c6c6c6; box-shadow: 0 0 6px rgba(136,136,136,.2);}
 #mychats-user .user-message:after {content: ""; z-index: 2; position: absolute; top: 10px; left: -11px;}
 #mychats-user .user-message p {color: #666; font-size: 12px; margin: 0 0 10px;}
 #mychats-user .user-message p:last-child {margin: 0 0 0;}
 
 #mychats-user .invites {position: absolute; top: 6px; right: 0; width: 164px;}
-#mychats-user .invites .invite-button {padding: 8px 20px; font-size: 18px; position: relative; left: -14px;}
-#mychats-user .invites .view-friends {position: relative; top: 8px; color: #014672; margin-left: 24px; text-decoration: underline;}
+#mychats-user .invites .invite-button {cursor: pointer; padding: 8px 20px; font-size: 18px; position: relative; left: -14px;}
+#mychats-user .invites .view-friends {cursor: pointer; position: relative; top: 8px; color: #014672; margin-left: 24px; text-decoration: underline;}
 #mychats-user .invites .view-friends-icon {position: absolute; top: 0; left: -24px;}
 #mychats-user .invites ul {overflow: hidden;}
 #mychats-user .invites li {float: left;}
@@ -330,25 +334,33 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats .bleft-fold {position: absolute; left: -9px; bottom: -10px; z-index: 20;}
 #mychats .bleft-fold span {position: relative; top: 15px; left: 10px; color: #fff; font-size: 12px; font-weight: bold;}
 
-#mychats .item {position: relative; padding: 10px 0 10px 85px; width: 314px;}
+
+
+#mychats .item {position: relative; padding: 10px 160px 10px 85px;}
 #mychats .item figure {position: absolute; top: 18px; left: 10px; width: 65px; height: 75px;}
 #mychats .item h2 {color: #39a03e; font: bold 15px/24px Arial;}
 #mychats .item p {color: #666; font: 12px/18px Arial;}
 #mychats .item p a {font-weight: bold; color: #003366; text-decoration: underline;}
 #mychats .item p a:hover {text-decoration: none;}
 
-#mychats .votes {overflow: hidden; padding: 10px;}
+#mychats .comments {position: relative; padding: 5px 10px;}
+#mychats .comments span {cursor: pointer; position: relative; padding-left: 24px; font-size: 13px; color: #014672; text-decoration: underline;}
+#mychats .comments span i {position: absolute; left: 0; top: 0; text-align: center; font-size: 11px; line-height: 13px; color: #fff;}
+#mychats .comments span:hover {text-decoration: none;}
+
+#mychats .view-comment {position: absolute; top: -40px; left: 120px; width: 400px; height: 300px; background: #fff; border: 1px solid #aaa; z-index: 999; box-shadow: 0 0 8px rgba(0,0,0,.1);}
+#mychats .view-comment:after {position: absolute; content: ""; top: 43px; left: -10px; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent;  border-right:10px solid #fff;}
+
+#mychats .controls-container {position: absolute; top: 5px; right: 0; width: 160px;}
+
+#mychats .votes {overflow: hidden; padding: 10px; width: 120px; margin: 0 auto 5px;}
 #mychats .votes > div {float: left; position: relative; padding: 1px 0 0 25px; margin-right: 15px;}
+#mychats .votes > div:last-child {margin-right: 0;}
 #mychats .votes i {position: absolute; top: 0; left: 0;}
 #mychats .votes span {display: block; font-size: 12px; text-align: center; color: #fff;}
 
+#mychats .item .btn {display: block; width: 140px;}
 
-#mychats .item .btn {position: absolute; bottom: 15px; right: 0; display: block; width: 84px;}
-
-#mychats .info {float: right; padding: 10px 5px; width: 164px;}
-#mychats .info h3, #mychats .info label {color: #014672; font: bold 12px/22px Arial;}
-#mychats .info label {display: inline-block; width: 96px;}
-#mychats .info .price {color: #39a03e;}
 
 /* Chat box */
 #mychats-chat {min-height: 390px; margin: 0 0 20px;}
@@ -557,6 +569,8 @@ footer button {color: #fff; border-radius: 4px; margin: 0; font-size: 14px; padd
 
 footer .footer-social {overflow: hidden;}
 footer .footer-social li {float: left; margin-right: 10px;}
+footer .footer-social li i {-webkit-transition: opacity 1s ease-in-out; -moz-transition: opacity .3s ease-in-out; -o-transition: opacity .3s ease-in-out; transition: opacity .3s ease-in-out;}
+footer .footer-social li:hover i {opacity: .5;}
 
 footer .footer-bottom {position: relative; padding: 40px 0 20px;}
 footer .footer-bottom span {color: #fff; font-size: 12px;}
@@ -570,7 +584,7 @@ footer .footer-bottom .footer-logo {position: absolute; left: 50%; top: 38px; ma
 #overlay, .dialog {display: none; position: fixed;}
 #overlay {top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.2); z-index: 98;}
 
-.dialog {background: #fff; height: 352px; top: 120px; left: 50%; width: 898px; margin-left: -450px; -webkit-box-shadow: 0 0 6px rgba(0,0,0,0.4); -moz-box-shadow: 0 0 6px rgba(0,0,0,0.4); box-shadow: 0 0 6px rgba(0,0,0,0.4); z-index: 99;}
+.dialog {background: #fff; height: 352px; top: 80px; left: 50%; width: 898px; margin-left: -450px; -webkit-box-shadow: 0 0 6px rgba(0,0,0,0.4); -moz-box-shadow: 0 0 6px rgba(0,0,0,0.4); box-shadow: 0 0 6px rgba(0,0,0,0.4); z-index: 99;}
 .dialog .close {cursor: pointer; position: absolute; top: 2px; right: 8px; color: #ccc; padding: 2px;}
 .dialog .close:hover {color: #aaa;}
 .dialog .left, .dialog .right {float: left; height: 350px;}
@@ -607,11 +621,21 @@ footer .footer-bottom .footer-logo {position: absolute; left: 50%; top: 38px; ma
 #invite-friends li label {display: block; line-height: 28px; width: 80px; text-align: right; color: #666; font-weight: bold; margin-right: 5px;}
 #invite-friends li input {background: #f2f2f2; width: 253px; line-height: 28px; border: 1px solid #b6bcc1; box-shadow: inset 0 1px 1px #f5f5f5; border-radius: 2px;}
 #invite-friends li textarea {background: #f2f2f2; width: 330px; padding: 5px; font-size: 13px; font-family: Arial; height: 270px; border: 1px solid #b6bcc1; box-shadow: inset 0 1px 1px #f5f5f5; border-radius: 2px; resize: none;}
-#invite-friends form button {float: right; background: green; color: #fff;}
+#invite-friends form button {float: right; padding: 6px 26px; font-size: 15px;}
 
+#addnew-product {padding: 10px 20px;}
+#addnew-product h2 {font: normal 26px/32px Arial; color: #014672; padding: 0 0 10px;}
 
+.addnew-form {padding: 0 10px 40px; width: 50%; border-right: 2px solid #d8d8d8; box-sizing: border-box; -moz-box-sizing: border-box;}
+.addnew-form h3 {font: bold 18px/24px Arial; color: #393;}
+.addnew-form .how {cursor: pointer; display: inline-block; color: #014672; font-size: 12px; font-weight: bold; text-decoration: underline; margin: 0 0 15px;}
+.addnew-form .how:hover {text-decoration: none;}
 
+.addnew-form li {padding: 6px 0; overflow: hidden;}
+.addnew-form li > * {float: left;}
+.addnew-form li label {color: #333; display: block; width: 90px; line-height: 30px;}
+.addnew-form li input {background: #f2f2f2; width: 253px; line-height: 28px; border: 1px solid #b6bcc1; box-shadow: inset 0 1px 1px #f5f5f5; border-radius: 2px; margin-right: 10px;}
 
-
+.addnew-form h4 {color: 333; padding: 10px 0 5px;}
 
 
