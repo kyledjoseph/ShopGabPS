@@ -1,13 +1,22 @@
-				<section id="products">
-					
-					<?= Html::anchor('chats', 'My Chats') ?>
 
-				</section>
+				<h2>My Chats</h2>
 
+				<hr>
 
-				<?= Form::open(array('action' => 'home/subscribe')) ?>
+				<?php if (empty($chats)): ?>
 
-					<input name="email" type="text">
-					<button type="submit">subscribe</button>
+				<p>No open chats, <?= Html::anchor('chats/create', 'click here to Start a Chat', array('class' => 'btn btn-success')) ?></p>
 
-				</form>
+				<?php else: ?>
+
+				<?= Html::anchor('chats/create', 'Start a new Chat', array('class' => 'btn btn-success')) ?>
+				
+				<?php foreach ($chats as $chat): ?>
+
+				<p>
+					<?= Html::anchor($chat->url(), $chat->name) ?>
+				</p>
+
+				<?php endforeach; ?>
+
+				<?php endif; ?>
