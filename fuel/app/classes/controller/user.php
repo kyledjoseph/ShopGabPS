@@ -146,6 +146,50 @@ class Controller_User extends Controller_App
 	}
 
 
+	/**
+	 * 
+	 */
+	public function post_subscribe()
+	{
+		$post = $this->post_data('email');
+		empty($post->email) and $this->redirect('', 'info', 'Enter you email address');
+
+		TinyChimp::listSubscribe(array(
+			'id'            => '046b807986',
+			'email_address' => $post->email,
+			'double_optin'  => true,
+			'send_welcome'  => true
+		));
+	}
+
+
+	/**
+	 * 
+	 */
+	public function post_invite()
+	{
+		$post = $this->post_data('emails');
+		empty($post->emails) and $this->redirect('', 'info', 'Enter you email address');
+
+		$emails = explode(',', $post->emails);
+		foreach ($emails as $email)
+		{
+			$email = trim($email);
+
+			Service_Email::send(array(
+				'type'      => 'invite',
+				'to_addr'   => $email,
+				'from_name' => 'ItemNation Invite',
+				'from_addr' => 'invite@itemnation.com',
+				'subject'   => 'You have been invited to ItemNation',
+				'body'      => View::forge('emails/invite'),
+			));
+		}
+		
+		return Response::forge(json_encode($emails));
+	}
+
+
 
 	/**
 	 *

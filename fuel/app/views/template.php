@@ -175,8 +175,8 @@
 				<div>
 					<h3>Invite your friends</h3>
 
-					<form>
-						<input type="email" placeholder="yourfriend@email.com">
+					<?= Form::open(array('action' => 'user/invite', 'method' => 'POST')) ?>
+						<input name="emails" type="text" placeholder="yourfriend@email.com">
 						<sub>* Add additional emails by a comma.</sub>
 						<button type="submit">Invite Now</button>
 					</form>
