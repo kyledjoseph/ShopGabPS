@@ -89,10 +89,10 @@ return array(
 		 * SMTP settings
 		 */
 		'smtp'	=> array(
-			'host'		=> '',
+			'host'		=> 'in.mailjet.com',
 			'port'		=> 25,
-			'username'	=> '',
-			'password'	=> '',
+			'username'	=> '631b2a3b8249e56e7c5793e520c6296f',
+			'password'	=> '23207930f77ba38dd2f80c8de0d06b19',
 			'timeout'	=> 5,
 		),
 
