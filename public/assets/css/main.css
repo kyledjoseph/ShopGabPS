@@ -366,6 +366,8 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats-chat {min-height: 390px; margin: 0 0 20px;}
 #mychats-chat .scrollable {height: 300px; overflow-x: hidden; overflow-y: scroll;}
 
+.chat li {border-radius: 6px; margin: 10px 5px; border: 1px solid #aaa;}
+
 #mychats-chat .reply {position: relative; border-top: 1px solid #b0c5ce; height: 68px;}
 #mychats-chat .reply:after {content: ""; z-index: 2; position: absolute; left: 30px; top: -8px;}
 #mychats-chat .reply textarea {border: none; resize: none; width: 334px; height: 34px; color: #666; line-height: 16px; padding: 5px; overflow: hidden;}
