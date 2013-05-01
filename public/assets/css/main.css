@@ -367,6 +367,8 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats-chat .scrollable {height: 300px; overflow-x: hidden; overflow-y: scroll;}
 
 .chat li {border-radius: 6px; margin: 10px 5px; border: 1px solid #aaa;}
+.chat li {border: 1px solid #f1f1f1; background: -moz-linear-gradient(top, #f1f5f7, #dfe9ec); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f1f5f7', endColorstr='#dfe9ec'); background: -webkit-gradient(linear, left top, left bottom, from(#f1f5f7),  to(#dfe9ec));}
+.chat li p {padding: 6px;}
 
 #mychats-chat .reply {position: relative; border-top: 1px solid #b0c5ce; height: 68px;}
 #mychats-chat .reply:after {content: ""; z-index: 2; position: absolute; left: 30px; top: -8px;}
