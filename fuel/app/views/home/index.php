@@ -5,11 +5,11 @@
 
 				<?php if (empty($chats)): ?>
 
-				<p>No open chats, <?= Html::anchor('chats/create', 'click here to Start a Chat', array('class' => 'btn btn-success')) ?></p>
+				<p>No open chats, <?= Html::anchor('quest/create', 'click here to Start a Quest', array('class' => 'btn btn-success')) ?></p>
 
 				<?php else: ?>
 
-				<?= Html::anchor('chats/create', 'Start a new Chat', array('class' => 'btn btn-success')) ?>
+				<?= Html::anchor('quest/create', 'Start a new Quest', array('class' => 'btn btn-success')) ?>
 				
 				<?php foreach ($chats as $chat): ?>
 
