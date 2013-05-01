@@ -85,7 +85,8 @@ html[xmlns] .clearfix {display: block;}
 #wrap {background: #fff url(../img/top-shadow.png) repeat-x;  /*background-attachment: fixed; background: -moz-linear-gradient(top, #fff, #dae8f1); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#dae8f1'); background: -webkit-gradient(linear, left top, left bottom, from(#fff),  to(#dae8f1));*/ overflow: hidden; height: 100%; /* border-bottom: 1px solid #a0a0a0; box-shadow: 0 3px 10px rgba(0,0,0,.4);*/}
 .inner {position: relative; width: 960px; padding: 10px; margin: 0 auto;} 
 
-
+.breadcrumb {overflow: hidden;}
+.breadcrumb li {float: left;}
 
 /****
 * Header
@@ -364,7 +365,12 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 
 /* Chat box */
 #mychats-chat {min-height: 390px; margin: 0 0 20px;}
-#mychats-chat .scrollable {height: 300px; overflow-x: hidden; overflow-y: scroll;}
+#mychats-chat .scrollable {height: 292px; overflow-x: hidden; overflow-y: scroll; margin: 0 0 8px;}
+
+.chat li {position: relative; border-radius: 6px; margin: 28px 10px 18px; border: 1px solid #aaa;}
+.chat li {border: 1px solid #f1f1f1; background: -moz-linear-gradient(top, #f1f5f7, #dfe9ec); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f1f5f7', endColorstr='#dfe9ec'); background: -webkit-gradient(linear, left top, left bottom, from(#f1f5f7),  to(#dfe9ec));}
+.chat li .name {position: absolute; top: -20px; left: 20px; color: #797979; font-size: 13px;}
+.chat li p {padding: 6px; color: #797979; font-size: 13px;}
 
 #mychats-chat .reply {position: relative; border-top: 1px solid #b0c5ce; height: 68px;}
 #mychats-chat .reply:after {content: ""; z-index: 2; position: absolute; left: 30px; top: -8px;}
