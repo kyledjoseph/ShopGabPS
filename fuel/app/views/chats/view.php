@@ -131,8 +131,8 @@
 							<ul>
 								<?php foreach ($chat->get_messages() as $message): ?>
 								<li>
-									<?= $message->body ?><br>
-									by <?= $message->user->display_name() ?>
+									<p><?= $message->body ?>
+									by <?= $message->user->display_name() ?></p>
 
 								</li>
 								<?php endforeach; ?>
