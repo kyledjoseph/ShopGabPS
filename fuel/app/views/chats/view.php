@@ -1,7 +1,7 @@
 			<section id="mychats-user">
 
 				<ul class="breadcrumb">
-					<li><?= Html::anchor('chats', 'My Chats') ?> <span class="divider">/</span></li>
+					<li><?= Html::anchor('quest', 'My Quests') ?> <span class="divider">/</span></li>
 					<li class="active"><?= $chat->name() ?></li>
 				</ul>
 
@@ -92,12 +92,12 @@
 							<div class="controls-container">
 								<div class="votes">
 									<div>
-										<?= Html::anchor("chats/like/{$chat->id}/{$chat_product->id}", '<i class="sprites vote-up"></i>', array('title' => $chat_product->list_user_likes(), 'class' => 'user_vote_list')) ?>
+										<?= Html::anchor("quest/like/{$chat->id}/{$chat_product->id}", '<i class="sprites vote-up"></i>', array('title' => $chat_product->list_user_likes(), 'class' => 'user_vote_list')) ?>
 										<span class="sprites bubble-blue"><?= $chat_product->total_upvotes() ?></span>
 									</div>
 
 									<div>
-										<?= Html::anchor("chats/dislike/{$chat->id}/{$chat_product->id}", '<i class="sprites vote-down"></i>', array('title' => $chat_product->list_user_dislikes(), 'class' => 'user_vote_list')) ?>
+										<?= Html::anchor("quest/dislike/{$chat->id}/{$chat_product->id}", '<i class="sprites vote-down"></i>', array('title' => $chat_product->list_user_dislikes(), 'class' => 'user_vote_list')) ?>
 										<span class="sprites bubble-blue"><?= $chat_product->total_downvotes() ?></span>
 									</div>
 								</div>
@@ -122,7 +122,7 @@
 				<section id="mychats-chat">
 
 					<div class="heading">
-						<h3>My Chat</h3>
+						<h3>Discussion</h3>
 					</div>
 
 					<div class="chat">
@@ -139,7 +139,7 @@
 							</ul>
 						</div>
 
-						<?= Form::open(array('action' => "chats/message/{$chat->id}", 'method' => 'POST', 'class' => 'reply')) ?>
+						<?= Form::open(array('action' => "quest/message/{$chat->id}", 'method' => 'POST', 'class' => 'reply')) ?>
 							<textarea name="message" placeholder="Your message..." maxlength="140"></textarea>
 							<button type="submit">send</button>
 						</form>

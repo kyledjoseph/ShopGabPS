@@ -11,6 +11,7 @@ class Controller_Chats extends Controller_App
 		
 		// template config
 		$this->template->active_nav = 'activity';
+		$this->template->mychats_logo = true;
 	}
 	
 	/**

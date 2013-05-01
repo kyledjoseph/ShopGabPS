@@ -23,11 +23,13 @@
 			<div class="inner">
 				<?= Html::anchor('/', '', array('title' => 'ItemNation', 'class' => 'sprites logo')) ?>
 
-
+				<?php if (isset($mychats_logo) and $mychats_logo): ?>
 				<i class="sprites mychats-logo"></i>
-
+				<?php endif; ?>
 
 				<nav>
+					<?php if (isset($user)): ?>
+
 					<ul class="main-control">
 						<li class="<?= (isset($active_nav) and $active_nav == 'dashboard') ? 'current' : null ?>">
 							<?= Html::anchor('/', 'DASHBOARD') ?>
@@ -39,32 +41,30 @@
 							<?= Html::anchor('my/items', 'MY ITEMS') ?>
 						</li>
 					</ul>
-					<?php if (isset($user)): ?>
+					
 					<ul class="user-control">
 						<li>
-							<span><i class="head-shot" style="background: url(<?= $user->profile_pic() ?>);"></i> <?= Html::anchor('user/account', $user->email) ?> <?= Html::anchor('user/logout', 'logout') ?> <i class="sprites settings-icon"></i></span>
+							<span>
+								<i class="head-shot" style="background: url(<?= $user->profile_pic() ?>);"></i> 
+								<?= Html::anchor('user/logout', 'logout') ?>
+								<i class="sprites settings-icon"></i>
+							</span>
 						</li>
 					</ul>
+
+					<?php else: // ! isset $user ?>
+
+					<ul class="main-control">
+						<li class="<?= (isset($active_nav) and $active_nav == 'login') ? 'current' : null ?>">
+							<?= Html::anchor('user/login', 'Login') ?>
+						</li>
+						<li class="<?= (isset($active_nav) and $active_nav == 'register') ? 'current' : null ?>">
+							<?= Html::anchor('user/register', 'Register') ?>
+						</li>
+					</ul>
+
 					<?php endif; ?>
 				</nav>
-
-
-				<!--
-				<?php if (isset($user)): ?>
-				<div id="user">
-					<i class="sprites user-none"></i>
-					<span><?= Html::anchor('user/account', $user->email) ?> <i class="sprites arrow-d"></i><?= Html::anchor('user/logout', 'logout') ?></span>
-
-				</div>
-				<?php else: ?>
-				<div id="user">
-					<span>
-						<?= Html::anchor('user/login', 'login') ?> | 
-						<?= Html::anchor('user/register', 'register') ?>
-					</span>
-				</div>
-				<?php endif; ?>
-				-->
 
 			</div>
 		</header>

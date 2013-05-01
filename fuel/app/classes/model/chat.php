@@ -70,7 +70,7 @@ class Model_Chat extends \Orm\Model
 
 	public function url()
 	{
-		return 'chats/' . $this->id;
+		return 'quest/' . $this->id;
 	}
 
 

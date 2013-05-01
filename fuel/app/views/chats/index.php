@@ -1,12 +1,12 @@
 				<h2>My Chats</h2>
 
-				<?= Html::anchor('chats/create', 'Start a Chat', array('class' => 'btn btn-success')) ?>
+				<?= Html::anchor('quest/create', 'Start a Quest', array('class' => 'btn btn-success')) ?>
 
 				<hr>
 
 				<?php if (empty($chats)): ?>
 
-				<p>No open chats</p>
+				<p>No open quests</p>
 
 				<?php else: ?>
 
