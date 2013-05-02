@@ -80,7 +80,7 @@ class Controller_User extends Controller_App
 
 		if (! $login_success)
 		{
-			$this->redirect('/', 'error', 'An erro has occurred');
+			$this->redirect('/', 'error', 'An error has occurred');
 		}
 
 		$this->redirect('/', 'info', 'You are now logged in');
