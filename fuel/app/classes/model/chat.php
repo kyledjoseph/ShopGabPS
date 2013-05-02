@@ -116,6 +116,11 @@ class Model_Chat extends \Orm\Model
 		return Model_Chat_Message::create_message($this->id, $user_id, $message);
 	}
 
+	public function get_messages()
+	{
+		return Model_Chat_Message::query()->where('chat_id', $this->id)->order_by('created_at', 'desc')->get();
+	}
+
 
 
 	public static function get_user_chats($user_id)
