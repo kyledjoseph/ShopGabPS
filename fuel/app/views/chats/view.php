@@ -131,7 +131,10 @@
 							<ul>
 								<?php foreach ($chat->get_messages() as $message): ?>
 								<li>
-									<span class="name"><?= $message->user->display_name() ?></span>
+									<span class="name">
+										<?= Html::img($message->user->profile_pic(20, 20)) ?>
+										<?= $message->user->display_name() ?>
+									</span>
 									<p><?= $message->body ?></p>
 								</li>
 								<?php endforeach; ?>
