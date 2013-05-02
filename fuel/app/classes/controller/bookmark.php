@@ -127,6 +127,26 @@ class Controller_Bookmark extends Controller_App
 		$this->redirect('bookmark/view');
 	}
 
+	public function get_auth($provider)
+	{
+		$provider = strtolower($provider);
+
+		if (! in_array($provider, ['facebook', 'twitter', 'google']))
+		{
+			$this->redirect('bookmark/login', 'info', 'Invalid service provider');
+		}
+
+		$login_success = $this->auth->social_auth($provider);
+
+		if (! $login_success)
+		{
+			$this->redirect('bookmark/login', 'error', 'An error has occurred');
+		}
+
+		$this->redirect('bookmark/view');
+
+	}
+
 
 	/**
 	 * Bookmark User Register
