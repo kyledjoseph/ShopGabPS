@@ -1,6 +1,6 @@
 # ItemNation
 
-GitHub repository for ItemNation ([project overview](http://youtu.be/_VT-QjDqVaw)), auto-deployed to the [development server](http://166.78.49.117/).
+GitHub repository for ItemNation ([project overview](http://youtu.be/_VT-QjDqVaw)), auto-deployed to the [development server](http://beta.itemnation.com).
 
 ##Authentication
 
