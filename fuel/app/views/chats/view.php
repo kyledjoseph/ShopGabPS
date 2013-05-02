@@ -136,6 +136,7 @@
 										<?= $message->user->display_name() ?>
 									</span>
 									<p><?= $message->body ?></p>
+									<span class="date">posted <?= $message->time_ago() ?></span>
 								</li>
 								<?php endforeach; ?>
 							</ul>
