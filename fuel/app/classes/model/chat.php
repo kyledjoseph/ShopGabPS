@@ -125,7 +125,7 @@ class Model_Chat extends \Orm\Model
 
 	public static function get_user_chat($user_id, $chat_id)
 	{
-		return static::query()->where('user_id', $user_id)->where('id', $chat_id)->order_by('name', 'asc')->get_one();
+		return static::query()->where('id', $chat_id)->get_one();
 	}
 
 	public static function create_chat($user_id, $name, $description)
