@@ -58,24 +58,28 @@ class Model_Product_Image extends \Orm\Model
 		$image_data = $curl->response();
 
 		// save paths
-		$save_dir  = DOCROOT . '/assets/img/products/';
-		$rand      = md5(uniqid(rand(), true));
-		$orig_file = $rand . '.' . $ext;
-		$orig_path = $save_dir . $orig_file;
+		$save_dir   = DOCROOT . '/assets/img/products/';
+		$rand       = md5(uniqid(rand(), true));
+		$image_file = $rand . '.' . $ext;
+		$image_path = $save_dir . $image_file;
+		$thumb_file = $rand . '_thumb.' . $ext;
+		$thumb_path = $save_dir . $thumb_file;
 
 		// save original
 		File::create($save_dir, $orig_file, $image_data);
 
 		// crop, resize, and save thumbnail
 		$image = Image::forge();
-		$image->load($orig_path)
+		$image->load($image_path)
 			->crop_resize(200, 200)
-			->save_pa(null, '_thumb');
+			->save($thumb_file);
 
 		// db
 		$product_image = static::forge(array(
 			'product_id' => $product_id,
 			'src_url'    => $url,
+			'src'        => $image_file,
+			'thumb'      => $thumb_file,
 		));
 
 		return $product_image->save() ? $product_image : null;
