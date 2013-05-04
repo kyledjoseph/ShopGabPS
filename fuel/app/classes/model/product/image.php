@@ -66,7 +66,7 @@ class Model_Product_Image extends \Orm\Model
 		$thumb_path = $save_dir . $thumb_file;
 
 		// save original
-		File::create($save_dir, $orig_file, $image_data);
+		File::create($save_dir, $image_file, $image_data);
 
 		// crop, resize, and save thumbnail
 		$image = Image::forge();
