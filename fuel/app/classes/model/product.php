@@ -87,7 +87,7 @@ class Model_Product extends \Orm\Model
 
 	public function thumb()
 	{
-		return is_object($this->image) ? $this->image->src() : null;
+		return is_object($this->image) ? $this->image->thumb() : null;
 	}
 
 	public function thumb_html()
