@@ -67,7 +67,7 @@
 					<?php foreach ($chat->get_chat_products() as $chat_product): ?>
 					<?php $product = $chat_product->product ?>
 
-					<li class="recommended">
+					<li class=""> <!-- class="recommended" -->
 						<i class="sprites item-add"></i>
 						<i class="sprites bleft-fold"><span><?= $product_i ?></span></i>
 
@@ -75,7 +75,7 @@
 
 						<div class="item">
 							<figure>
-								<?php // $product->image_html() // images disabled due to display format ?>
+								<?= $product->thumb_html() ?>
 							</figure>
 
 							<h2><?= $product->name() ?></h2>
@@ -86,7 +86,15 @@
 
 
 							<div class="comments">
-								<span><i class="sprites comment-icon on">3</i> Comments</span>
+								<span><i class="sprites comment-icon on"><?= $chat_product->total_comments() ?></i> Comments</span>
+							</div>
+
+							<div class="comments-display">
+								<?php foreach ($chat_product->get_comments() as $comment): ?>
+
+								
+
+								<?php endforeach; ?>
 							</div>
 
 							<div class="controls-container">
@@ -104,11 +112,11 @@
 
 								<?= Html::anchor($product->product_url(), '<span>Where can I find this?</span>', array('class' => 'btn orange', 'target' => '_blank')) ?>
 							</div>
-
-
 							
 						</div>
 					</li>
+
+					
 
 					<?php $product_i++ ?>
 					<?php endforeach; ?>

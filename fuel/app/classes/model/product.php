@@ -85,6 +85,16 @@ class Model_Product extends \Orm\Model
 		return Html::img($this->image(), array('alt' => $this->name()));
 	}
 
+	public function thumb()
+	{
+		return is_object($this->image) ? $this->image->src() : null;
+	}
+
+	public function thumb_html()
+	{
+		return Html::img($this->thumb(), array('alt' => $this->name()));
+	}
+
 	public function add_image($src)
 	{
 		$product_image = Model_Product_Image::add_image($this->id, $src);

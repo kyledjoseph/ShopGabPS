@@ -33,9 +33,25 @@ class Model_Product_Image extends \Orm\Model
 		),
 	);
 
-	public function src()
+	public function src_url()
 	{
 		return $this->src_url;
+	}
+
+	/**
+	 * 
+	 */
+	public function src()
+	{
+		return $this->src;
+	}
+
+	/**
+	 * 
+	 */
+	public function thumb()
+	{
+		return $this->thumb;
 	}
 
 
