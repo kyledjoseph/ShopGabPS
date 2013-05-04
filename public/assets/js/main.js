@@ -47,10 +47,10 @@ $(function() {
 		$('#overlay, #invite-friends.dialog').show();
 	});
 
- 	$('.comments span').click(function () {
-		$('#overlay').show();
-		$(this).parent('.comments').append('<div class="view-comment">comments go here</div>');
-	});   
+ 	// $('.comments span').click(function () {
+	// 	$('#overlay').show();
+	// 	$(this).parent('.comments').append('<div class="view-comment">comments go here</div>');
+	// });   
     
 	/****
 	* Filter in footer

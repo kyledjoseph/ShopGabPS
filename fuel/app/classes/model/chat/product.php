@@ -55,6 +55,9 @@ class Model_Chat_Product extends \Orm\Model
 	);
 
 
+	/**
+	 * chat product votes
+	 */
 	public function total_upvotes()
 	{
 		return Model_Chat_Product_Vote::query()->where('chat_product_id', $this->id)->where('vote', '1')->count();
@@ -74,7 +77,6 @@ class Model_Chat_Product extends \Orm\Model
 	{
 		return Model_Chat_Product_Vote::query()->where('chat_product_id', $this->id)->where('vote', '0')->get();
 	}
-
 
 	public function list_user_likes()
 	{
@@ -96,7 +98,6 @@ class Model_Chat_Product extends \Orm\Model
 		return $names;
 	}
 
-
 	public function has_user_voted($user_id)
 	{
 		$total = Model_Chat_Product_Vote::query()->where('chat_product_id', $this->id)->where('user_id', $user_id)->count();
@@ -112,5 +113,20 @@ class Model_Chat_Product extends \Orm\Model
 	{
 		return Model_Chat_Product_Vote::create_dislike($this->id, $user_id);
 	}
+
+
+	/**
+	 *  chat product comments
+	 */
+	public function total_comments()
+	{
+		return Model_Chat_Product_Comment::query()->where('chat_product_id', $this->id)->count();
+	}
+
+	public function get_comments()
+	{
+		return Model_Chat_Product_Comment::query()->where('chat_product_id', $this->id)->order_by('created_at', 'desc')->get();
+	}
+
 
 }
