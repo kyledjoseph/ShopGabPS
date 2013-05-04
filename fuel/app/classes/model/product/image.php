@@ -72,7 +72,7 @@ class Model_Product_Image extends \Orm\Model
 		$image = Image::forge();
 		$image->load($image_path)
 			->crop_resize(200, 200)
-			->save($thumb_file);
+			->save($thumb_path);
 
 		// db
 		$product_image = static::forge(array(
