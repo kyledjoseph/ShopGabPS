@@ -38,12 +38,18 @@ class Model_Product_Image extends \Orm\Model
 		return $this->src_url;
 	}
 
+
+	public function image_path()
+	{
+		return '/assets/img/products/';
+	}
+
 	/**
 	 * 
 	 */
 	public function src()
 	{
-		return $this->src;
+		return $this->image_path() . $this->src;
 	}
 
 	/**
@@ -51,7 +57,7 @@ class Model_Product_Image extends \Orm\Model
 	 */
 	public function thumb()
 	{
-		return $this->thumb;
+		return $this->image_path() . $this->thumb;
 	}
 
 
