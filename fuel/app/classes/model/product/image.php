@@ -43,7 +43,7 @@ class Model_Product_Image extends \Orm\Model
 	public static function add_image($product_id, $url)
 	{
 		$path_parts    = pathinfo($url);
-		$ext           = $path_parts['extension'];
+		$ext           = strtolower($path_parts['extension']);
 		$supported_ext = array('jpg', 'jpeg', 'png', 'bmp');
 
 		// file type not supported
