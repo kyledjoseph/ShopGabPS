@@ -41,15 +41,25 @@ class Model_Chat_Product_Comment extends \Orm\Model
 		),
 	);
 
+	public function time_ago()
+	{
+		$now = time();
+		if ($now - $this->created_at < 60)
+		{
+			return 'just now';
+		}
+		return Date::time_ago($this->created_at);
+	}
+
 
 	public static function create_comment($chat_product_id, $user_id, $comment)
 	{
-		$vote = static::forge(array(
+		$comment = static::forge(array(
 			'chat_product_id' => $chat_product_id,
 			'user_id' => $user_id,
 			'comment' => $comment,
 		));
-		return $vote->save() ? $vote : null;
+		return $comment->save() ? $comment : null;
 	}
 
 }

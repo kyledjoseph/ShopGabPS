@@ -1,5 +1,18 @@
 $(function(){
 	
+	// init comments
+	//
+	//
+	$(".show-comments").click(function() {
+
+		if ($(this).attr('data-total') > 0)
+		{
+			$(this).parent().find(".comment-display").show();
+		}
+
+		return false;
+	});
+
 
 	// init tooltip
 	// docs: http://code.drewwilson.com/entry/tiptip-jquery-plugin
@@ -12,7 +25,7 @@ $(function(){
 
 
 
-	// init read more
+	// init product description read more
 	// 
 	// 
 	$('.chat-product-description').expander({

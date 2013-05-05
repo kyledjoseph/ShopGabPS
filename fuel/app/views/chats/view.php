@@ -86,15 +86,35 @@
 
 
 							<div class="comments">
-								<span><i class="sprites comment-icon on"><?= $chat_product->total_comments() ?></i> Comments</span>
-							</div>
+								<span class="show-comments" data-total="<?= $chat_product->total_comments() ?>">
+									<i class="sprites comment-icon <?= $chat_product->has_comments() ? 'on' : 'off' ?>"><?= $chat_product->total_comments() ?></i> Comments
+								</span>
 
-							<div class="comments-display">
-								<?php foreach ($chat_product->get_comments() as $comment): ?>
+								<div class="comment-display" style="display:none">
+									<p>comments</p>
 
-								
+									<?php foreach ($chat_product->get_comments() as $comment): ?>
 
-								<?php endforeach; ?>
+										<div class="comment">
+											<?= Html::img($comment->user->profile_pic(24,24)) ?>
+											<?= $comment->user->display_name() ?><br>
+											
+											<?= $comment->comment ?><br>
+											<?= $comment->time_ago() ?>
+										</div>
+										<hr>
+
+									<?php endforeach; ?>
+								</div>
+
+								<div class="add-comment">
+									<?= Form::open(array('action' => "{$chat->url()}/comment")) ?>
+										<?= Html::img($user->profile_pic(24, 24)) ?>
+										<input name="comment" type="text">
+										<input name="chat_product_id" type="hidden" value="<?= $chat_product->id ?>">
+										<button type="submit">comment</button>
+									<?= Form::close() ?>
+								</div>
 							</div>
 
 							<div class="controls-container">

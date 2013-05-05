@@ -50,6 +50,28 @@ class Controller_Chats extends Controller_App
 		));
 	}
 
+	public function post_comment($chat_id)
+	{
+		$chat = $this->user->get_chat($chat_id);
+		
+		if (! isset($chat))
+		{
+			$this->redirect('quests', 'info', 'Invlaid quest');
+		}
+
+		$post = $this->post_data('comment', 'chat_product_id');
+
+		$chat_product = $chat->get_chat_product($post->chat_product_id);
+
+		if (! isset($chat_product))
+		{
+			$this->redirect('quests', 'info', 'Invlaid quest');
+		}
+
+		$chat_product->add_comment($chat_product->id, $this->user->id, $post->comment);
+		$this->redirect($chat->url(), 'info', 'Comment added');
+	}
+
 
 	/**
 	 * Edit chat

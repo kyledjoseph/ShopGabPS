@@ -123,9 +123,19 @@ class Model_Chat_Product extends \Orm\Model
 		return Model_Chat_Product_Comment::query()->where('chat_product_id', $this->id)->count();
 	}
 
+	public function has_comments()
+	{
+		return $this->total_comments() > 0;
+	}
+
 	public function get_comments()
 	{
 		return Model_Chat_Product_Comment::query()->where('chat_product_id', $this->id)->order_by('created_at', 'desc')->get();
+	}
+
+	public function add_comment($chat_product_id, $user_id, $comment)
+	{
+		return Model_Chat_Product_Comment::create_comment($chat_product_id, $user_id, $comment);
 	}
 
 
