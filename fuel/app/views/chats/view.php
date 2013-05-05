@@ -21,6 +21,7 @@
 					<div class="user-message">
 						<i class="sprites help-icon"></i>
 						<p><?= $chat->description() ?></p>
+						<p><?= Html::anchor("{$chat->url()}/edit", 'edit') ?></p>
 					</div>
 
 					<div class="invites">

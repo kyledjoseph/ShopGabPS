@@ -34,7 +34,7 @@ class Controller_Chats extends Controller_App
 		
 		if (! isset($chat))
 		{
-			$this->redirect('chats', 'info', 'Invlaid chat');
+			$this->redirect('quests', 'info', 'Invlaid quest');
 		}
 
 		Casset::js('lib/jquery.tipTip.minified.js');
@@ -45,6 +45,52 @@ class Controller_Chats extends Controller_App
 			'chat' => $chat,
 			'product_i' => 1,
 		));
+	}
+
+
+	/**
+	 * Edit chat
+	 */
+	public function get_edit($chat_id)
+	{
+		$chat = $this->user->get_chat($chat_id);
+		
+		if (! isset($chat))
+		{
+			$this->redirect('quests', 'info', 'Invlaid quest');
+		}
+
+		if ($chat->user_id !== $this->user->id)
+		{
+			$this->redirect('quests', 'info', 'Invlaid quest');
+		}
+
+		$this->template->body = View::forge('chats/edit', array(
+			'chat' => $chat,
+		));
+	}
+
+	public function post_edit($chat_id)
+	{
+		$chat = $this->user->get_chat($chat_id);
+		
+		if (! isset($chat))
+		{
+			$this->redirect('quests', 'info', 'Invlaid quest');
+		}
+
+		if ($chat->user_id !== $this->user->id)
+		{
+			$this->redirect('quests', 'info', 'Invlaid quest');
+		}
+
+		$post = $this->post_data('name', 'description');
+
+		$chat->name        = $post->name;
+		$chat->description = $post->description;
+		$chat->save();
+
+		$this->redirect($chat->url(), 'info', 'Quest updated');
 	}
 
 
@@ -72,7 +118,7 @@ class Controller_Chats extends Controller_App
 	public function post_message($chat_id)
 	{
 		$chat = $this->user->get_chat($chat_id);
-		isset($chat) or $this->redirect('chats', 'info', 'Invlaid chat');
+		isset($chat) or $this->redirect('chats', 'info', 'Invlaid quest');
 
 		$post = $this->post_data('message');
 
@@ -88,7 +134,7 @@ class Controller_Chats extends Controller_App
 	public function get_like($chat_id, $chat_product_id)
 	{
 		$chat = $this->user->get_chat($chat_id);
-		isset($chat) or $this->redirect('chats', 'info', 'Invlaid chat');
+		isset($chat) or $this->redirect('chats', 'info', 'Invlaid quest');
 
 		$chat_product = $chat->get_chat_product($chat_product_id);
 		isset($chat_product) or $this->redirect($chat->url(), 'info', 'Invlaid product');
@@ -111,7 +157,7 @@ class Controller_Chats extends Controller_App
 	public function get_dislike($chat_id, $chat_product_id)
 	{
 		$chat = $this->user->get_chat($chat_id);
-		isset($chat) or $this->redirect('chats', 'info', 'Invlaid chat');
+		isset($chat) or $this->redirect('quests', 'info', 'Invlaid quest');
 
 		$chat_product = $chat->get_chat_product($chat_product_id);
 		isset($chat_product) or $this->redirect($chat->url(), 'info', 'Invlaid product');
