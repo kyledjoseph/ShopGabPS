@@ -80,9 +80,8 @@
 							</figure>
 
 							<h2><?= $product->name() ?></h2>
-							<p>
+							<p class="chat-product-description">
 								<?= $product->description() ?>
-								<?= Html::anchor($product->product_url(), 'Learn more', array('target' => '_blank')) ?>
 							</p>
 
 

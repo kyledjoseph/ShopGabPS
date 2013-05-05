@@ -38,8 +38,11 @@ class Controller_Chats extends Controller_App
 		}
 
 		Casset::js('lib/jquery.tipTip.minified.js');
-		Casset::css('lib/tipTip.css');
+		Casset::js('lib/jquery.expander.min.js');
 		Casset::js('chats.js');
+
+		Casset::css('lib/tipTip.css');
+		
 
 		$this->template->body = View::forge('chats/view', array(
 			'chat' => $chat,
