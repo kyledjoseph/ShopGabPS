@@ -4,15 +4,15 @@
 		<?= Form::open() ?>
 
 			<div class="control-group">
-				<label class="control-label" for="name"></label>
+				<label class="control-label" for="name">Chat Name</label>
 				<div class="controls">
 					<input type="text" name="name" value="<?= $chat->name ?>">
 				</div>
 			</div>
 			<div class="control-group">
-				<label class="control-label" for="description">Password</label>
+				<label class="control-label" for="description">Chat Description</label>
 				<div class="controls">
-					<textarea name="description"><?= $chat->name ?></textarea>
+					<textarea name="description"><?= $chat->description ?></textarea>
 				</div>
 			</div>
 
