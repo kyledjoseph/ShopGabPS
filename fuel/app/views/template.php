@@ -218,31 +218,33 @@
 		<h3>Capture any product from the web</h3>
 		<span class="how">How does this work?</span>
 
-		<form>
-			<ul>
-				<li>
+		<ul>
+			<li>
+				<form>
 					<label>Enter a URL:</label>
 					<input type="text">
 					<button type="submit" class="btn green2">GO</button>
-				</li>
-			</ul>
-		</form>
+				</form>
+			</li>
+		</ul>
 
-		<form>
-			<h4>Search With:</h4>
-			<ul>
-				<li>
+		<h4>Search With:</h4>
+		<ul>
+			<li>
+				<form method="get" action="http://www.google.com/search" target="_blank">
 					<label>Google:</label>
-					<input type="text">
+					<input name="q" type="text">
 					<button type="submit" class="btn green2">GO</button>
-				</li>
-				<li>
+				</form>
+			</li>
+			<li>
+				<form method="get" action="http://www.bing.com/search"  target="_blank">
 					<label>Bing:</label>
-					<input type="text">
+					<input nane="q" type="text">
 					<button type="submit" class="btn green2">GO</button>
-				</li>
-			</ul>
-		</form>
+				</form>
+			</li>
+		</ul>
 
 	</div>
 
