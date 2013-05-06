@@ -97,7 +97,7 @@ header {position: relative; height: 80px;}
 
 header nav {position: absolute; top: 0; right: 0; padding: 0 10px; border: 1px solid #ccc; border-top: 0; box-shadow: 0 2px 6px rgba(136,136,136,.25);}
 header nav > ul {overflow: hidden; float: left;}
-header nav > ul:last-child {margin-left: 10px;}
+header nav > ul.user-control {margin-left: 10px;}
 header nav > ul li {float: left;}
 header nav > ul li a {color: #014672; line-height: 38px; padding: 0 8px; font-family: Arial;}
 header nav > ul li a:hover {text-decoration: underline;}
@@ -106,7 +106,7 @@ header nav .user-control span {cursor: pointer; position: relative; padding: 0 0
 header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 
 .user-menu {position: absolute; top: 38px; right: 0; z-index: 99; background: #fff; border: 1px solid #ccc; border-top: none;}
-
+.user-menuy li a {display: block; line-height: 26px; padding: 0 10px;}
 
 /**** 
 * User 
