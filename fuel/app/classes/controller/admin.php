@@ -33,7 +33,7 @@ class Controller_Admin extends Controller_App
 
 		if (empty($auth_users) or ! in_array($this->user->id, $auth_users))
 		{
-			$this->redirect('user/login', 'info', 'You must be logged in to do that.');
+			$this->redirect('/');
 		}
 	}
 
