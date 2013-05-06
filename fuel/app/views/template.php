@@ -46,11 +46,21 @@
 						<li>
 							<span>
 								<i class="head-shot" style="background: url(<?= $user->profile_pic() ?>);"></i> 
-								<?= Html::anchor('user/logout', 'logout') ?>
 								<i class="sprites settings-icon"></i>
 							</span>
 						</li>
 					</ul>
+
+					<div class="user-menu">
+						<ul>
+							<li>
+								<?= Html::anchor('', 'My Account') ?>
+							</li>
+							<li>
+								<?= Html::anchor('user/logout', 'Logout') ?>
+							</li>
+						</ul>
+					</div>
 
 					<?php else: // ! isset $user ?>
 
