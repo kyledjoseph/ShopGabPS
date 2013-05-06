@@ -31,7 +31,7 @@ $(function(){
 	$('.chat-product-description').expander({
 
 		// the number of characters at which the contents will be sliced into two parts.
-		slicePoint: 200,
+		slicePoint: 120,
 
 		// whether to keep the last word of the summary whole (true) or let it slice in the middle of a word (false)
 		preserveWords: true,
