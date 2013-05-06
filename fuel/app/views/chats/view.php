@@ -91,7 +91,6 @@
 								</span>
 
 								<div class="comment-display" style="display:none">
-									<p>comments</p>
 
 									<?php foreach ($chat_product->get_comments() as $comment): ?>
 
