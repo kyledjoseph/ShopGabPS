@@ -256,10 +256,6 @@
 	<form>
 		<ul>
 			<li>
-				<label>From:</label>
-				<input type="text">
-			</li>
-			<li>
 				<label>To:</label>
 				<input type="text">
 			</li>
