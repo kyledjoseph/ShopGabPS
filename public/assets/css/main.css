@@ -106,7 +106,7 @@ header nav .user-control span {cursor: pointer; position: relative; padding: 0 0
 header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 
 .user-menu {position: absolute; top: 38px; right: 0; z-index: 99; background: #fff; border: 1px solid #ccc; border-top: none;}
-.user-menuy li a {display: block; line-height: 26px; padding: 0 10px;}
+.user-menu li a {display: block; line-height: 26px; padding: 0 10px;}
 
 /**** 
 * User 
