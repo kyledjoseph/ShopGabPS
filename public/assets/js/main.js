@@ -4,7 +4,7 @@ $(function() {
 	* User Menu
 	***/
 
-	$("#user").click(function(){
+	$(".user-control").click(function(){
 		var disp=$(".user-menu").css("display");
 		if(disp=="none"){$(".user-menu").show(); 
 		$(this).addClass("current");}
