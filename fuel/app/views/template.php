@@ -46,11 +46,21 @@
 						<li>
 							<span>
 								<i class="head-shot" style="background: url(<?= $user->profile_pic() ?>);"></i> 
-								<?= Html::anchor('user/logout', 'logout') ?>
 								<i class="sprites settings-icon"></i>
 							</span>
 						</li>
 					</ul>
+
+					<div class="user-menu">
+						<ul>
+							<li>
+								<?= Html::anchor('', 'My Account') ?>
+							</li>
+							<li>
+								<?= Html::anchor('user/logout', 'Logout') ?>
+							</li>
+						</ul>
+					</div>
 
 					<?php else: // ! isset $user ?>
 
@@ -176,7 +186,7 @@
 					<h3>Invite your friends</h3>
 
 					<?= Form::open(array('action' => 'user/invite', 'method' => 'POST')) ?>
-						<input name="emails" type="text" placeholder="yourfriend@email.com">
+						<input name="emails" type="email" placeholder="yourfriend@email.com">
 						<sub>* Add additional emails by a comma.</sub>
 						<button type="submit">Invite Now</button>
 					</form>
@@ -245,10 +255,6 @@
 
 	<form>
 		<ul>
-			<li>
-				<label>From:</label>
-				<input type="text">
-			</li>
 			<li>
 				<label>To:</label>
 				<input type="text">

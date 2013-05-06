@@ -5,7 +5,7 @@ table {border-collapse: collapse; border-spacing: 0;}
 input, textarea {outline: 0; margin: 0; padding: 0;}
 button {border: 0; cursor: pointer;}
 html {height: 100%;}
-body {/*background: #f4f4f4;*/ background: #fff; min-height: 100%; min-width: 980px; font: normal 14px/20px "Helvetica Neue", helvetica, arial, sans-serif;}
+body {/*background: #f4f4f4;*/ background: #014672; min-height: 100%; min-width: 980px; font: normal 14px/20px "Helvetica Neue", helvetica, arial, sans-serif;}
 a {color: #333; border: 0; text-decoration: none;}
 a, select, div, button {outline: 0;}
 
@@ -96,15 +96,17 @@ header {position: relative; height: 80px;}
 .mychats-logo {position: absolute; top: 15px; left: 314px;}
 
 header nav {position: absolute; top: 0; right: 0; padding: 0 10px; border: 1px solid #ccc; border-top: 0; box-shadow: 0 2px 6px rgba(136,136,136,.25);}
-header nav ul {overflow: hidden; float: left;}
-header nav ul:last-child {margin-left: 10px;}
-header nav li {float: left;}
-header nav li a {color: #014672; line-height: 38px; padding: 0 8px; font-family: Arial;}
-header nav li a:hover {text-decoration: underline;}
+header nav > ul {overflow: hidden; float: left;}
+header nav > ul.user-control {margin-left: 10px;}
+header nav > ul li {float: left;}
+header nav > ul li a {color: #014672; line-height: 38px; padding: 0 8px; font-family: Arial;}
+header nav > ul li a:hover {text-decoration: underline;}
 header nav .head-shot {position: absolute; top: -7px; left: 0;  display: block; width: 30px; height: 31px;}
-header nav .user-control span {cursor: pointer; position: relative; padding: 0 20px 0 40px; line-height: 38px; color: #666; font-size: 13px;}
+header nav .user-control span {cursor: pointer; position: relative; padding: 0 0 0 52px; line-height: 38px; color: #666; font-size: 13px;}
 header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 
+.user-menu {display: none; position: absolute; top: 38px; right: 0; z-index: 99; background: #fff; border: 1px solid #ccc; border-top: none;}
+.user-menu li a {display: block; line-height: 28px; padding: 0 20px;}
 
 /**** 
 * User 
@@ -129,7 +131,7 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 /****
 * Content 
 ***/
-#main {position: relative; padding: 30px 10px 100px; overflow: hidden;}
+#main {position: relative; min-height: 420px; padding: 30px 10px 100px; overflow: hidden;}
 
 #pagination {margin: 0 0 10px;}
 #pagination ul {overflow: hidden;}
@@ -337,8 +339,9 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 
 
 
-#mychats .item {position: relative; padding: 10px 160px 10px 85px;}
+#mychats .item {position: relative; padding: 10px 172px 10px 85px;}
 #mychats .item figure {position: absolute; top: 18px; left: 10px; width: 65px; height: 75px;}
+#mychats .item figure img {width: 65px; height: 75px;}
 #mychats .item h2 {color: #39a03e; font: bold 15px/24px Arial; text-overflow: ellipsis; width: 300px; white-space: nowrap; overflow: hidden;}
 #mychats .item p {color: #666; font: 12px/18px Arial;}
 #mychats .item p a {font-weight: bold; color: #003366; text-decoration: underline;}
