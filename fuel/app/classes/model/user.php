@@ -71,7 +71,7 @@ class Model_User extends \Orm\Model
 			return "https://graph.facebook.com/{$fb_auth->provider_uid}/picture?width={$width}&height={$height}";
 		}
 
-		return 'http://beta.itemnation.com/assets/img/head-shot.png'; //default
+		return 'http://placehold.it/24x24'; //default
 	}
 
 	/**
