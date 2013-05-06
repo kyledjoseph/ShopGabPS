@@ -7,7 +7,14 @@ $(function(){
 
 		if ($(this).attr('data-total') > 0)
 		{
-			$(this).parent().find(".comment-display").show();
+			if ($(".comment-display").is(":visible"))
+			{
+				$(this).parent().find(".comment-display").hide();
+			}
+			else
+			{
+				$(this).parent().find(".comment-display").show();
+			}
 		}
 
 		return false;
