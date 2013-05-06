@@ -91,7 +91,7 @@
 								</span>
 
 								<div class="comment-display" style="display:none">
-
+									<hr>
 									<?php foreach ($chat_product->get_comments() as $comment): ?>
 
 										<div class="comment">
