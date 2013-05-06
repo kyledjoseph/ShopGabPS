@@ -96,13 +96,13 @@ header {position: relative; height: 80px;}
 .mychats-logo {position: absolute; top: 15px; left: 314px;}
 
 header nav {position: absolute; top: 0; right: 0; padding: 0 10px; border: 1px solid #ccc; border-top: 0; box-shadow: 0 2px 6px rgba(136,136,136,.25);}
-header nav ul {overflow: hidden; float: left;}
-header nav ul:last-child {margin-left: 10px;}
-header nav ul li {float: left;}
-header nav ul li a {color: #014672; line-height: 38px; padding: 0 8px; font-family: Arial;}
-header nav ul li a:hover {text-decoration: underline;}
+header nav > ul {overflow: hidden; float: left;}
+header nav > ul:last-child {margin-left: 10px;}
+header nav > ul li {float: left;}
+header nav > ul li a {color: #014672; line-height: 38px; padding: 0 8px; font-family: Arial;}
+header nav > ul li a:hover {text-decoration: underline;}
 header nav .head-shot {position: absolute; top: -7px; left: 0;  display: block; width: 30px; height: 31px;}
-header nav .user-control span {cursor: pointer; position: relative; padding: 0 20px 0 40px; line-height: 38px; color: #666; font-size: 13px;}
+header nav .user-control span {cursor: pointer; position: relative; padding: 0 0 0 52px; line-height: 38px; color: #666; font-size: 13px;}
 header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 
 .user-menu {position: absolute; top: 38px; right: 0; z-index: 99; background: #fff; border: 1px solid #ccc; border-top: none;}
