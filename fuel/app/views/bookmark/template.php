@@ -15,8 +15,10 @@
 <body>
 	<div class="itemnation-box">
 
-		<img class="image" src="/assets/img/bookmark/logo.png" />
-
+		<div>
+			<img class="image" src="/assets/img/bookmark/logo.png" />
+		</div>
+		
 		<?php if (isset($notice)): ?>
 
 		<br><br>

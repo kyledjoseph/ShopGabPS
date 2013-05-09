@@ -1,7 +1,8 @@
 		<img class="arrow left" src="/assets/img/bookmark/left.png" />
 		<img class="arrow right" src="/assets/img/bookmark/right.png" />
-		<!-- <img class="image" src="/assets/img/bookmark/logo.png" /> -->
+
 		<img class="product-image" id="1" class="image" src="http://placehold.it/200x200">
+		
 		<div class="gallery">
 		</div>
 
