@@ -25,7 +25,7 @@ child = {
 
     sorted: [],
 
-    parentURL: '',
+    inlineURL: '',
 
     shift: function(direction) {
         id = parseInt($('.product-image').attr('id'))
@@ -99,7 +99,7 @@ child = {
 
     initialize: function() {
         console.log('child.initialize()')
-        child.parentURL = urlParam('parent')
+        child.inlineURL = urlParam('inline')
         $('.add').click(function() {
             child.send()
         })
@@ -109,13 +109,13 @@ child = {
         })
 
         window.addEventListener("message", function(e) {
-            console.log('parent: \"' + e.data + '\"')
+            console.log('inline: \"' + e.data + '\"')
             child.populate(e.data)
         })
 
         parent.postMessage(
             'ready',
-            child.parentURL
+            child.inlineURL
             )
 
         $('.itemnation-box').fadeIn(500)
@@ -159,7 +159,7 @@ child = {
         child.info.chat_id     = $("select[name='chat_id']").val()
 
         $.ajax({
-            url: 'http://beta.itemnation.com/bookmark/add',
+            url: 'http://itemnation.dev/bookmark/add',
             data: child.info,
             type: 'POST',
             timeout: 30000,
@@ -172,7 +172,7 @@ child = {
 
     terminate: function() {
         console.log('child.terminate()')
-        parent.postMessage(
+        inline.postMessage(
             'terminate',
             child.info.url
             )
