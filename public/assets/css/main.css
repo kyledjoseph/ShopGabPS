@@ -352,6 +352,7 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats .comments > span i {position: absolute; left: 0; top: 0; text-align: center; font-size: 11px; line-height: 13px; color: #fff;}
 #mychats .comments > span:hover {text-decoration: none;}
 
+#mychats .comment {margin-top: 10px;}
 #mychats .comment span {display: block;}
 #mychats .comment .name {position: relative; padding-left: 30px; line-height: 24px;}
 #mychats .comment .name i {position: absolute; top: 0; left: 0; display: block; width: 24px; height: 24px;}
