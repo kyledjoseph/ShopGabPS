@@ -251,6 +251,10 @@
 
 	</div>
 
+	<div class="addnew-right">
+		......
+	</div>
+
 </div>
 
 <div id="invite-friends" class="dialog">
