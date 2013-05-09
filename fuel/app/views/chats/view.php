@@ -108,7 +108,7 @@
 
 								<div class="add-comment">
 									<?= Form::open(array('action' => "{$chat->url()}/comment")) ?>
-										<?= Html::img($user->profile_pic(24, 24)) ?>
+										<?= $user->profile_pic(24, 24) ?>
 										<input name="comment" type="text">
 										<input name="chat_product_id" type="hidden" value="<?= $chat_product->id ?>">
 										<button type="submit">comment</button>
