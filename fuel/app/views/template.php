@@ -34,18 +34,21 @@
 						<li class="<?= (isset($active_nav) and $active_nav == 'dashboard') ? 'current' : null ?>">
 							<?= Html::anchor('/', 'DASHBOARD') ?>
 						</li>
+						<!-- Remove until later
 						<li class="<?= (isset($active_nav) and $active_nav == 'wishlist') ? 'current' : null ?>">
 							<?= Html::anchor('wishlist', 'WISH LISTS') ?>
 						</li>
 						<li class="<?= (isset($active_nav) and $active_nav == 'myitems') ? 'current' : null ?>">
 							<?= Html::anchor('my/items', 'MY ITEMS') ?>
 						</li>
+						-->
 					</ul>
 					
 					<ul class="user-control">
 						<li>
 							<span>
 								<i class="head-shot" style="background: url(<?= $user->profile_pic() ?>);"></i> 
+								Name
 								<i class="sprites settings-icon"></i>
 							</span>
 						</li>
