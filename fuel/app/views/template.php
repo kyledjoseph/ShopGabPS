@@ -48,7 +48,7 @@
 						<li>
 							<span>
 								<i class="head-shot" style="background: url(<?= $user->profile_pic() ?>);"></i> 
-								Name
+								<?= $user->display_name() ?>
 								<i class="sprites settings-icon"></i>
 							</span>
 						</li>
