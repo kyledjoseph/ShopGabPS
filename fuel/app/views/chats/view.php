@@ -95,8 +95,8 @@
 									<?php foreach ($chat_product->get_comments() as $comment): ?>
 
 										<div class="comment">
-											<?= Html::img($comment->user->profile_pic(24,24)) ?>
-											<span class="name"><?= $comment->user->display_name() ?></span>
+											
+											<span class="name"><i><?= $comment->user->profile_pic(24,24) ?></i> <?= $comment->user->display_name() ?></span>
 											
 											<p><?= $comment->comment ?></p>
 											<span class="time"><?= $comment->time_ago() ?></span>
@@ -108,7 +108,7 @@
 
 								<div class="add-comment">
 									<?= Form::open(array('action' => "{$chat->url()}/comment")) ?>
-										<?= $user->profile_pic(24, 24) ?>
+										<?= Html::img($user->profile_pic(24, 24)) ?>
 										<input name="comment" type="text">
 										<input name="chat_product_id" type="hidden" value="<?= $chat_product->id ?>">
 										<button type="submit">comment</button>
