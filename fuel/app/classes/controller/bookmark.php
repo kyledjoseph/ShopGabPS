@@ -24,6 +24,11 @@ class Controller_Bookmark extends Controller_App
 		$this->template->body = View::forge('bookmark/view', array());
 	}
 
+	public function get_test()
+	{
+		return View::forge('bookmark/test');
+	}
+
 
 	/**
 	 * Bookmark Submit
