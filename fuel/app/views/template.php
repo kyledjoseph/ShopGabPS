@@ -24,7 +24,7 @@
 				<?= Html::anchor('/', '', array('title' => 'ItemNation', 'class' => 'sprites logo')) ?>
 
 				<?php if (isset($mychats_logo) and $mychats_logo): ?>
-				<i class="sprites mychats-logo"></i>
+				<i class="sprites quest-logo"></i>
 				<?php endif; ?>
 
 				<nav>

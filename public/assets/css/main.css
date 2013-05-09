@@ -26,8 +26,8 @@ html[xmlns] .clearfix {display: block;}
 #mychats-user .user-message:after,
 #mychats-chat .reply:after,
 .sprites                    {background: url(../img/sprites.png) no-repeat; display: block; position: relative;}
-.logo 						{background-position: -6px -6px; width: 282px; height: 57px;}
-.mychats-logo				{background-position: -6px -235px; width: 160px; height: 55px;}
+.logo 						{background-position: -6px -246px; width: 179px; height: 35px;}
+.quest-logo					{background-position: -166px -214px; width: 64px; height: 25px;}
 .user-none 					{background-position: -354px -1px; width: 44px; height: 44px;}
 .arrow-d 					{background-position: -324px -6px; width: 9px; height: 8px;}
 #user:hover .arrow-d, 
@@ -360,6 +360,7 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats .comment .time {font-size: 11px; color: #999;}
 
 .add-comment {margin-top: 10px;}
+.add-comment input {}
 .add-comment button {visibility: hidden; width: 0; height: 0;}
 
 #mychats .view-comment {position: absolute; top: -40px; left: 120px; width: 400px; height: 300px; background: #fff; border: 1px solid #aaa; z-index: 999; box-shadow: 0 0 8px rgba(0,0,0,.1);}
