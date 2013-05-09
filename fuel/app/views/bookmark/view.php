@@ -24,6 +24,10 @@
 			</li>
 		</ul>
 		<div class="btn-container">
-			<a class="cancel" href="#">Cancel</a>
-			<a class="add" href="#">Add Product</a>
+			<a class="cancel" href="#">
+				<span>Cancel</span>
+			</a>
+			<a class="add" href="#">
+				<span>Add Product</span>
+			</a>
 		</div>
