@@ -4,10 +4,16 @@
 		<img class="product-image" id="1" class="image" src="http://placehold.it/200x200">
 		<div class="gallery">
 		</div>
-		<input type="text" placeholder="Product Name" maxlength="50">
-		
-		<textarea placeholder="Description"></textarea>
-		
+
+		<ul>
+			<li>
+				<input type="text" placeholder="Product Name" maxlength="50">
+			</li>
+			<li>
+				<textarea placeholder="Description"></textarea>
+			</li>
+		</ul>
+
 		<label for="add_to">add to</label>
 		<?= Form::select('add_to', null, array('chat' => 'Chat', 'wishlist' => 'Wish List', 'my_items' => 'My Items')) ?>
 
