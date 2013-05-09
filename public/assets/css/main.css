@@ -355,7 +355,7 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats .comment span {display: block;}
 #mychats .comment .name {}
 #mychats .comment p {color: #666; font-size: 12px;}
-#mychats .comment .date {font-size: 11px; color: #999;}
+#mychats .comment .time {font-size: 11px; color: #999;}
 
 #mychats .view-comment {position: absolute; top: -40px; left: 120px; width: 400px; height: 300px; background: #fff; border: 1px solid #aaa; z-index: 999; box-shadow: 0 0 8px rgba(0,0,0,.1);}
 #mychats .view-comment:after {position: absolute; content: ""; top: 43px; left: -10px; width: 0; height: 0; border-top: 10px solid transparent; border-bottom: 10px solid transparent;  border-right:10px solid #fff;}
