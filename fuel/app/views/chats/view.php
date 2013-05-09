@@ -96,7 +96,7 @@
 
 										<div class="comment">
 											
-											<span class="name"><i><?= $comment->user->profile_pic(24,24) ?></i> <?= $comment->user->display_name() ?></span>
+											<span class="name"><i style="background:url(<?= $comment->user->profile_pic(24,24) ?>);"></i> <?= $comment->user->display_name() ?></span>
 											
 											<p><?= $comment->comment ?></p>
 											<span class="time"><?= $comment->time_ago() ?></span>
