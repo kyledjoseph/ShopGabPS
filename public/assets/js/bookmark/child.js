@@ -1,162 +1,158 @@
-$(document).ready(function () {
-    urlParam = function(name) {
-      name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
-      var regexS = "[\\?&]" + name + "=([^&#]*)";
-      var regex = new RegExp(regexS);
-      var results = regex.exec(window.location.search);
-      if(results == null)
+urlParam = function (name) {
+    name = name.replace(/[[]/, "[").replace(/[]]/, "]");
+    var regexS = "[\\?&]" + name + "=([^&#]*)";
+    var regex = new RegExp(regexS);
+    var results = regex.exec(window.location.search);
+    if (results === null) {
         return "";
-    else
+    } else {
         return decodeURIComponent(results[1].replace(/\+/g, " "));
-}
+    }
+};
 
 child = {
     info: {
-        description:  '',
-        domain:       '',
-        images:       [],
-        name:         '',
-        url:          ''
+        description: '',
+        domain: '',
+        images: [],
+        name: '',
+        url: ''
     },
 
     imageArraySize: 0,
-
     guess: false,
-
     sorted: [],
-
     inlineURL: '',
 
     /** Move gallery thumbnails left or right. */
-    shift: function(direction) {
-        id = parseInt($('.product-image').attr('id'))
+    shift: function (direction) {
+        id = parseInt($('.product-image').attr('id'), 10);
 
         switch (direction) {
-            case 'left':
-            shifted =  id + 1
-            break
-            case 'right':
-            shifted = id - 1
-            break
+        case 'left':
+            shifted = id + 1;
+            break;
+        case 'right':
+            shifted = id - 1;
+            break;
         }
 
         if (shifted < 1) {
-            child.gallery(1)
-        } else if (shifted > (child.imageArraySize - 4)){
-            child.gallery(shifted - 1)
+            child.gallery(1);
+        } else if (shifted > (child.imageArraySize - 4)) {
+            child.gallery(shifted - 1);
         } else {
-            child.gallery(shifted)
+            child.gallery(shifted);
         }
     },
 
     /** Set gallery's index (left-most thumbnail). */
-    gallery: function(index) {
-        console.log('child.gallery(' + index + ')')
-        count = 1
-        size = 0
-        largest = 0
-        arraySize = 0
-        source = ''
-        drawn = 0
-        child.sorted =[]
-        $('.gallery').html('')
+    gallery: function (index) {
+        console.log('child.gallery(' + index + ')');
+        count = 1;
+        size = 0;
+        largest = 0;
+        arraySize = 0;
+        source = '';
+        drawn = 0;
+        child.sorted = [];
+        $('.gallery').html('');
 
-        $('.product-image').attr('id', index)
+        $('.product-image').attr('id', index);
 
-        arraySize = child.imageArraySize
+        arraySize = child.imageArraySize;
 
         while (count <= arraySize) {
-            $(child.info.images).each(function() {
+            $(child.info.images).each(function () {
                 if ((this.width * this.height) > size) {
-                    if (jQuery.inArray(jQuery.inArray(this, child.info.images), child.sorted) == -1) {
-                        size = this.width * this.height
-                        largest = jQuery.inArray(this, child.info.images)
-                        source = this.src
-                    }   
+                    if (jQuery.inArray(jQuery.inArray(this, child.info.images), child.sorted) === -1) {
+                        size = this.width * this.height;
+                        largest = jQuery.inArray(this, child.info.images);
+                        source = this.src;
+                    }
                 }
-            })
+            });
 
-            child.sorted.push(largest)
+            child.sorted.push(largest);
             if ((count >= index) && (drawn < 5)) {
                 $('.gallery').append('<img id ="' + count + '" src="' + source + '" />');
                 if (count == index) {
-                    $('.product-image').attr('src', source)
+                    $('.product-image').attr('src', source);
                 }
-                drawn++
+                drawn++;
             }
-            size = 0
+            size = 0;
 
             if ((count === 1) && (child.guess === false)) {
-                $('.product-image').attr('src', child.info.images[largest].src)
-                child.guess = true
+                $('.product-image').attr('src', child.info.images[largest].src);
+                child.guess = true;
             }
-            count++
+            count++;
         }
 
-        $('.gallery img').click(function() {
+        $('.gallery img').click(function () {
             $('.product-image').attr('src', $(this).attr('src'));
             $('.product-image').attr('id', $(this).attr('id'));
         });
     },
 
     /** Set event handlers and listeners. */
-    initialize: function() {
-        console.log('child.initialize()')
-        child.inlineURL = urlParam('inline')
-        $('.add').click(function() {
-            child.send()
-        })
+    initialize: function () {
+        console.log('child.initialize()');
+        child.inlineURL = urlParam('inline');
+        $('.add').click(function () {
+            child.send();
+        });
 
-        $('.cancel').click(function() {
-            child.terminate()
-        })
+        $('.cancel').click(function () {
+            child.terminate();
+        });
 
-        window.addEventListener("message", function(e) {
-            console.log('inline: \"' + e.data + '\"')
-            child.populate(e.data)
-        })
+        window.addEventListener("message", function (e) {
+            console.log('inline: \"' + e.data + '\"');
+            child.populate(e.data);
+        });
 
         parent.postMessage(
             'ready',
-            child.inlineURL
-            )
-        $('.itemnation-box').fadeIn(500)
+            child.inlineURL);
+        $('.itemnation-box').fadeIn(500);
     },
 
-    populate: function(data) {
-        console.log('child.populate()')
-        child.info = jQuery.parseJSON(data)
+    populate: function (data) {
+        console.log('child.populate()');
+        child.info = jQuery.parseJSON(data);
 
-        $('.title').val(child.info.name)
-        $('.description').val(child.info.description)
+        $('.title').val(child.info.name);
+        $('.description').val(child.info.description);
 
-        $(child.info.images).each(function() {
-            child.imageArraySize++
-        })
+        $(child.info.images).each(function () {
+            child.imageArraySize++;
+        });
 
         if (child.imageArraySize > 5) {
-            $('.arrow').css('display', 'block')
+            $('.arrow').css('display', 'block');
 
-            $('.arrow.left').click(function() {
-                child.shift('right')
-            })
+            $('.arrow.left').click(function () {
+                child.shift('right');
+            });
 
-            $('.arrow.right').click(function() {
-                child.shift('left')
-            })
+            $('.arrow.right').click(function () {
+                child.shift('left');
+            });
         }
 
-        child.gallery(1)
+        child.gallery(1);
     },
 
-    send: function() {
-        console.log('child.send()')
+    send: function () {
+        console.log('child.send()');
 
-        child.info.name        = $('.title').val()
-        child.info.description = $('.description').val()
-        child.info.images      = $('.product-image').attr('src') 
-        child.info.add_to      = $("select[name='add_to']").val()
-        child.info.chat_id     = $("select[name='chat_id']").val()
+        child.info.name = $('.title').val();
+        child.info.description = $('.description').val();
+        child.info.images = $('.product-image').attr('src');
+        child.info.add_to = $("select[name='add_to']").val();
+        child.info.chat_id = $("select[name='chat_id']").val();
 
         $.ajax({
             url: 'http://itemnation.dev/bookmark/add',
@@ -164,21 +160,18 @@ child = {
             type: 'POST',
             timeout: 30000,
             dataType: 'text',
-            complete: function(data) {
-                child.terminate()
+            complete: function (data) {
+                child.terminate();
             }
-        })
+        });
     },
 
-    terminate: function() {
-        console.log('child.terminate()')
+    terminate: function () {
+        console.log('child.terminate()');
         parent.postMessage(
             'terminate',
-            child.info.url
-            )
+            child.info.url);
     }
-}
+};
 
-child.initialize()
-
-})
+child.initialize();
