@@ -6,7 +6,7 @@
 
 	<title>Pull-In Button</title>
 	<link rel="stylesheet" href="/assets/css/bookmark/style.css?cb=<? echo rand(); ?>">
-	<?= Asset::css('bootstrap.css') ?>
+	<?php //Asset::css('bootstrap.css') ?>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="/assets/js/bookmark/child.js?cb=<? echo rand(); ?>"></script>
