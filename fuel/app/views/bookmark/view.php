@@ -12,14 +12,16 @@
 			<li>
 				<textarea placeholder="Description"></textarea>
 			</li>
+
+			<li>
+				<label for="add_to">add to</label>
+				<?= Form::select('add_to', null, array('chat' => 'Chat', 'wishlist' => 'Wish List', 'my_items' => 'My Items')) ?>
+			</li>
+			<li>	
+				<label for="chat_id">chat name</label>
+				<?= Form::select('chat_id', null, $user->select_chat()) ?>
+			</li>
 		</ul>
-
-		<label for="add_to">add to</label>
-		<?= Form::select('add_to', null, array('chat' => 'Chat', 'wishlist' => 'Wish List', 'my_items' => 'My Items')) ?>
-
-		<label for="chat_id">chat name</label>
-		<?= Form::select('chat_id', null, $user->select_chat()) ?>
-
 		<div class="btn-container">
 			<a class="cancel" href="#">Cancel</a>
 			<a class="add" href="#">Add Product</a>
