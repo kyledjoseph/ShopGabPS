@@ -4,13 +4,16 @@ $(function() {
 	* User Menu
 	***/
 
-	$(".user-control").click(function(){
-		var disp=$(".user-menu").css("display");
-		if(disp=="none"){$(".user-menu").show(); 
-		$(this).addClass("current");}
-		else{$(".user-menu").hide(); 
-		$(this).removeClass("current");}
-	});
+
+$('.user-control').click(function(){
+    var disp=$('.user-menu').css('display');
+	if(disp=="none"){
+		$(".user-menu").show(); 
+	}
+	else{$(".user-menu").hide(); 
+	}
+   	return false;
+});
 
 	$('#main').click(function() {
 		$('#user').removeClass('current');
