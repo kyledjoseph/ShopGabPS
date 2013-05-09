@@ -96,10 +96,10 @@
 
 										<div class="comment">
 											<?= Html::img($comment->user->profile_pic(24,24)) ?>
-											<?= $comment->user->display_name() ?><br>
+											<span class="name"><?= $comment->user->display_name() ?></span>
 											
-											<?= $comment->comment ?><br>
-											<?= $comment->time_ago() ?>
+											<p><?= $comment->comment ?></p>
+											<span class="time"><?= $comment->time_ago() ?></span>
 										</div>
 										
 
