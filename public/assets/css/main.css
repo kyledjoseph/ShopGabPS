@@ -26,8 +26,8 @@ html[xmlns] .clearfix {display: block;}
 #mychats-user .user-message:after,
 #mychats-chat .reply:after,
 .sprites                    {background: url(../img/sprites.png) no-repeat; display: block; position: relative;}
-.logo 						{background-position: -6px -246px; width: 179px; height: 35px;}
-.quest-logo					{background-position: -166px -214px; width: 64px; height: 25px;}
+.logo 						{background-position: -6px -242px; width: 179px; height: 35px;}
+.quest-logo					{background-position: -203px -247px; width: 64px; height: 25px;}
 .user-none 					{background-position: -354px -1px; width: 44px; height: 44px;}
 .arrow-d 					{background-position: -324px -6px; width: 9px; height: 8px;}
 #user:hover .arrow-d, 
