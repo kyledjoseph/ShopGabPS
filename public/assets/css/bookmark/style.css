@@ -29,4 +29,5 @@ textarea {margin-top: 10px; height: 120px; border: 1px solid #b6bcc1; box-shadow
 label {display: block;}
 
 
-
+.btn-container {overflow: hidden;}
+.btn-container > * {float: left;}

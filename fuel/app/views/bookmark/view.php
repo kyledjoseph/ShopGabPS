@@ -20,5 +20,7 @@
 		<label for="chat_id">chat name</label>
 		<?= Form::select('chat_id', null, $user->select_chat()) ?>
 
-		<a class="cancel" href="#">Cancel</a>
-		<a class="add" href="#">Add Product</a>
+		<div class="btn-container">
+			<a class="cancel" href="#">Cancel</a>
+			<a class="add" href="#">Add Product</a>
+		</div>
