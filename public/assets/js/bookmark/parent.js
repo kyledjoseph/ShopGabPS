@@ -26,8 +26,13 @@
 
         iframe: null,
 
+
+        /** Open child iframe. */
         open: function() {
+            
             console.log('inline.open()')
+
+            //
             if (!document.getElementById('itemnation-frame')) {
                 inline.iframe = document.createElement('iframe')
                 $(inline.iframe).attr({
@@ -42,7 +47,9 @@
                     border: '0',
                     zIndex: 99999999999999999999
                 });
+
                 document.getElementsByTagName('body')[0].appendChild(inline.iframe)
+
                 window.addEventListener("message", function(e) {
                     console.log('child: \"' + e.data + '\"')
 
@@ -58,6 +65,7 @@
             }
         },
 
+        /** Observe page information. */
         observe: function() {
             console.log('inline.observe()')
 
@@ -90,6 +98,7 @@
             }
         },
 
+        /** Report page information to child. */
         report: function() {
             console.log('inline.report()')
             delete Array.prototype.toJSON
@@ -99,6 +108,7 @@
                 )
         },
 
+        /** Close and terminate. */
         close: function() {
             console.log('inline.close()')
             $(inline.iframe).fadeOut(500, function() {

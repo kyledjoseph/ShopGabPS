@@ -27,6 +27,7 @@ child = {
 
     inlineURL: '',
 
+    /** Move gallery thumbnails left or right. */
     shift: function(direction) {
         id = parseInt($('.product-image').attr('id'))
 
@@ -48,6 +49,7 @@ child = {
         }
     },
 
+    /** Set gallery's index (left-most thumbnail). */
     gallery: function(index) {
         console.log('child.gallery(' + index + ')')
         count = 1
@@ -97,6 +99,7 @@ child = {
         });
     },
 
+    /** Set event handlers and listeners. */
     initialize: function() {
         console.log('child.initialize()')
         child.inlineURL = urlParam('inline')
@@ -117,10 +120,7 @@ child = {
             'ready',
             child.inlineURL
             )
-
         $('.itemnation-box').fadeIn(500)
-
-
     },
 
     populate: function(data) {
