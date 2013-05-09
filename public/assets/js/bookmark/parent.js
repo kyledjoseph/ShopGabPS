@@ -30,15 +30,18 @@
             console.log('inline.open()')
             if (!document.getElementById('itemnation-frame')) {
                 inline.iframe = document.createElement('iframe')
-                inline.iframe.id = 'itemnation-frame'
-                inline.iframe.src = 'http://itemnation.dev/bookmark/view?inline=' + encodeURIComponent(inline.info.url) + '&cacheblock=' + Math.floor(Math.random() * 99999999999999999999999)
-                inline.iframe.width = '290px'
-                inline.iframe.height = '760px'
-                inline.iframe.style.position = 'fixed'
-                inline.iframe.style.top = '10px'
-                inline.iframe.style.right = '20px'
-                inline.iframe.style.border = '0'
-                inline.iframe.style.zIndex = 99999999999999999999
+                $(inline.iframe).attr({
+                    id: 'itemnation-frame',
+                    src: 'http://itemnation.dev/bookmark/view?inline=' + encodeURIComponent(inline.info.url) + '&cacheblock=' + Math.floor(Math.random() * 99999999999999999999999)
+                }).css({
+                    width: '290px',
+                    height: '760px',
+                    position: 'fixed',
+                    top: '10px',
+                    right: '20px',
+                    border: '0',
+                    zIndex: 99999999999999999999
+                });
                 document.getElementsByTagName('body')[0].appendChild(inline.iframe)
                 window.addEventListener("message", function(e) {
                     console.log('child: \"' + e.data + '\"')
@@ -99,8 +102,8 @@
         close: function() {
             console.log('inline.close()')
             $(inline.iframe).fadeOut(500, function() {
-             $(inline.iframe).remove() 
-         })
+               $(inline.iframe).remove() 
+           })
         }
     }
 
