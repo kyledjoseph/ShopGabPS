@@ -93,7 +93,7 @@ html[xmlns] .clearfix {display: block;}
 ***/
 header {position: relative; height: 80px;}
 .logo {position: absolute; top: 15px; left: 10px;}
-.mychats-logo {position: absolute; top: 15px; left: 314px;}
+.quest-logo {position: absolute; top: 15px; left: 194px;}
 
 header nav {position: absolute; top: 0; right: 0; padding: 0 10px; border: 1px solid #ccc; border-top: 0; box-shadow: 0 2px 6px rgba(136,136,136,.25);}
 header nav > ul {overflow: hidden; float: left;}
