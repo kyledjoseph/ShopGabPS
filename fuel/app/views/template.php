@@ -252,7 +252,7 @@
 	</div>
 
 	<div class="addnew-right">
-		......
+		<h3>Use the ItemNation Button</h3>
 	</div>
 
 </div>
