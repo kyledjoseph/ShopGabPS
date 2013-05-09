@@ -172,7 +172,7 @@ child = {
 
     terminate: function() {
         console.log('child.terminate()')
-        inline.postMessage(
+        parent.postMessage(
             'terminate',
             child.info.url
             )
