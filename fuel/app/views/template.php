@@ -254,7 +254,7 @@
 	<div class="addnew-right">
 		<h3>Use the ItemNation Button</h3>
 
-		<img src="assets/img/bookmark-helper.png">
+		<img src="../assets/img/bookmark-helper.png">
 	</div>
 
 </div>
