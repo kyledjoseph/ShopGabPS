@@ -101,9 +101,7 @@
         report: function () {
             console.log('inline.report()');
             delete Array.prototype.toJSON;
-            document.getElementById('itemnation-frame').contentWindow.postMessage(
-                JSON.stringify(inline.info),
-                "http://itemnation.dev/assets/js/child.js");
+            inline.talk(JSON.stringify(inline.info))            
         },
 
         /** Close and terminate. */
@@ -112,6 +110,13 @@
             $(inline.iframe).fadeOut(500, function () {
                 $(inline.iframe).remove();
             });
+        },
+
+        talk: function (message) {
+            document.getElementById('itemnation-frame').contentWindow.postMessage(
+                message,
+                "http://itemnation.dev/assets/js/child.js"
+            );
         }
     };
 

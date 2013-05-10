@@ -1,5 +1,5 @@
 urlParam = function (name) {
-    name = name.replace(/[[]/, "[").replace(/[]]/, "]");
+    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
     var regexS = "[\\?&]" + name + "=([^&#]*)";
     var regex = new RegExp(regexS);
     var results = regex.exec(window.location.search);
@@ -113,9 +113,7 @@ child = {
             child.populate(e.data);
         });
 
-        parent.postMessage(
-            'ready',
-            child.inlineURL);
+        child.talk('ready')
         $('.itemnation-box').fadeIn(500);
     },
 
@@ -148,11 +146,13 @@ child = {
     send: function () {
         console.log('child.send()');
 
-        child.info.name = $('.title').val();
-        child.info.description = $('.description').val();
-        child.info.images = $('.product-image').attr('src');
-        child.info.add_to = $("select[name='add_to']").val();
-        child.info.chat_id = $("select[name='chat_id']").val();
+        $.extend(child.info, {
+            name: $('.title').val(),
+            description: $('.description').val(),
+            images: $('.product-image').attr('src'),
+            add_to: $("select[name='add_to']").val(),
+            chat_id: $("select[name='chat_id']").val()
+        })
 
         $.ajax({
             url: 'http://itemnation.dev/bookmark/add',
@@ -168,9 +168,14 @@ child = {
 
     terminate: function () {
         console.log('child.terminate()');
+        child.talk('terminate');
+    },
+
+    talk: function (message) {
         parent.postMessage(
-            'terminate',
-            child.info.url);
+            message,
+            child.inlineURL
+        );
     }
 };
 
