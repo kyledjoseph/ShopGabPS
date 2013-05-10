@@ -5,6 +5,7 @@
 		<div class="gallery">
 		</div>
 		<input type="text" class="title" placeholder="Product Name" maxlength="50">
+		<input type="text" class="price" placeholder="Price" maxlength="10">
 		<textarea class="description" placeholder="Description"></textarea>
 		
 		<label for="add_to">add to</label>

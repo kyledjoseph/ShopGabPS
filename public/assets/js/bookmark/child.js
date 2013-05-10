@@ -123,6 +123,7 @@ child = {
 
         $('.title').val(child.info.name);
         $('.description').val(child.info.description);
+        $('.price').val(child.info.price[0])
 
         $(child.info.images).each(function () {
             child.imageArraySize++;

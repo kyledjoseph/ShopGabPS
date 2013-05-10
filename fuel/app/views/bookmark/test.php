@@ -1,15 +1,6 @@
 <!DOCTYPE html>
 <html>
-1.302
-23
-$42.53
-4.56
-$6
-0.4
-$53.1
-04.32
-$60
-
+$5,000
 <img src="http://placehold.it/100x600/012/fff" />
 <img src="http://placehold.it/200x500/234/fff" />
 <img src="http://placehold.it/300x400/345/fff" />

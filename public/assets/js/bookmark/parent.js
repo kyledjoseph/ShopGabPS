@@ -67,6 +67,12 @@
         /** Observe page information. */
         observe: function () {
             console.log('inline.observe()');
+            inline.info.price = $('body').text().match(/(\$[0-9,]+(\.[0-9]{2})?)/g);
+
+            if(inline.info.price==null){
+                inline.info.price = [];
+                inline.info.price[0] = '';
+            }
 
             if (inline.info.description = $('meta[name="description"]').attr('content')) {
                 inline.info.description = inline.info.description.replace(/(<.*?>)/ig, '');
