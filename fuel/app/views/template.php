@@ -26,7 +26,7 @@
 				<?= Html::anchor('/', '', array('title' => 'ItemNation', 'class' => 'sprites logo')) ?>
 
 				<?php if (isset($mychats_logo) and $mychats_logo): ?>
-				<i class="sprites mychats-logo"></i>
+				<i class="sprites quest-logo"></i>
 				<?php endif; ?>
 
 				<nav>
@@ -36,18 +36,21 @@
 						<li class="<?= (isset($active_nav) and $active_nav == 'dashboard') ? 'current' : null ?>">
 							<?= Html::anchor('/', 'DASHBOARD') ?>
 						</li>
+						<!-- Remove until later
 						<li class="<?= (isset($active_nav) and $active_nav == 'wishlist') ? 'current' : null ?>">
 							<?= Html::anchor('wishlist', 'WISH LISTS') ?>
 						</li>
 						<li class="<?= (isset($active_nav) and $active_nav == 'myitems') ? 'current' : null ?>">
 							<?= Html::anchor('my/items', 'MY ITEMS') ?>
 						</li>
+						-->
 					</ul>
 					
 					<ul class="user-control">
 						<li>
 							<span>
 								<i class="head-shot" style="background: url(<?= $user->profile_pic() ?>);"></i> 
+								<?= $user->display_name() ?>
 								<i class="sprites settings-icon"></i>
 							</span>
 						</li>
@@ -248,6 +251,12 @@
 			</li>
 		</ul>
 
+	</div>
+
+	<div class="addnew-right">
+		<h3>Use the ItemNation Button</h3>
+
+		<img src="../assets/img/bookmark-helper.png">
 	</div>
 
 </div>

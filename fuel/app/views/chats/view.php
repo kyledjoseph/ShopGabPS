@@ -91,17 +91,17 @@
 								</span>
 
 								<div class="comment-display" style="display:none">
-									<hr>
+									
 									<?php foreach ($chat_product->get_comments() as $comment): ?>
 
 										<div class="comment">
-											<?= Html::img($comment->user->profile_pic(24,24)) ?>
-											<?= $comment->user->display_name() ?><br>
 											
-											<?= $comment->comment ?><br>
-											<?= $comment->time_ago() ?>
+											<span class="name"><i style="background:url(<?= $comment->user->profile_pic(24,24) ?>);"></i> <?= $comment->user->display_name() ?></span>
+											
+											<p><?= $comment->comment ?></p>
+											<span class="time"><?= $comment->time_ago() ?></span>
 										</div>
-										<hr>
+										
 
 									<?php endforeach; ?>
 								</div>
@@ -109,7 +109,7 @@
 								<div class="add-comment">
 									<?= Form::open(array('action' => "{$chat->url()}/comment")) ?>
 										<?= Html::img($user->profile_pic(24, 24)) ?>
-										<input name="comment" type="text">
+										<input name="comment" type="text" autocomplete="off">
 										<input name="chat_product_id" type="hidden" value="<?= $chat_product->id ?>">
 										<button type="submit">comment</button>
 									<?= Form::close() ?>
