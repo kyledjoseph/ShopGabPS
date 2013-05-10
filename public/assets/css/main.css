@@ -584,9 +584,9 @@ aside {width: 300px;}
 /****
 * Main Area 
 ***/
-#main-section h1 {color: #9dbf25; font-weight: bold; font-size: 18px; line-height: 22px; margin: 0 0 15px; border-bottom: 1px solid #c3c3c3; box-shadow: 0 1px #fff;}
+#main-section h1 {color: #9dbf25; font-weight: bold; font-size: 18px; line-height: 28px; margin: 0 0 15px; border-bottom: 1px solid #c3c3c3; box-shadow: 0 1px #fff;}
 
-#main-section .new-quest {padding: 5px 14px;}
+#main-section .new-quest {margin-left: 10px; padding: 5px 14px;}
 
 .quest-list li {padding: 6px 0;}
 .quest-list li a {}
