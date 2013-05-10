@@ -6,7 +6,7 @@
         script.type = "text/javascript";
         script.src = "http://code.jquery.com/jquery-1.9.1.min.js";
         script.onload = script.onreadystatechange = function () {
-            if (!loaded && (!(d = this.readyState) || d == "loaded" || d == "complete")) {
+            if (!loaded && (!(d = this.readyState) || d === "loaded" || d === "complete")) {
                 callback((j = window.jQuery).noConflict(1), loaded = true);
                 j(script).remove();
             }
@@ -14,8 +14,8 @@
 
         document.body.appendChild(script);
     }
-})(window, document, "1.9.1", function ($, jquery_loaded) {
-    inline = {
+})(window, document, "1.9.1", function ($) {
+    var inline = {
         info: {
             description: '',
             domain: '',
@@ -69,21 +69,22 @@
             console.log('inline.observe()');
             inline.info.price = $('body').text().match(/(\$[0-9,]+(\.[0-9]{2})?)/g);
 
-            if(inline.info.price==null){
+            if (inline.info.price === null) {
                 inline.info.price = [];
                 inline.info.price[0] = '';
             }
 
-            if (inline.info.description = $('meta[name="description"]').attr('content')) {
+            inline.info.description = $('meta[name="description"]').attr('content');
+            if (typeof inline.info.description !== 'undefined') {
                 inline.info.description = inline.info.description.replace(/(<.*?>)/ig, '');
             } else {
                 inline.info.description = '';
             }
 
-            $('img').each(function (i) {
+            $('img').each(function () {
                 if (($(this).width() > '60') && ($(this).height() > '60')) {
                     if ((($(this).width() * 4) > $(this).height()) && (($(this).height() * 4) > $(this).width())) {
-                        image = {
+                        var image = {
                             height: $(this).height(),
                             src: $(this).prop('src'),
                             width: $(this).width()
@@ -98,8 +99,8 @@
             inline.info.name = document.title.substring(0, 50);
             inline.info.url = document.URL;
 
-            if (window.location.hostname == 'amazon.com') {
-                //code to run on amazon.com
+            if (window.location.hostname === 'amazon.com') {
+                console.log('amazon.com');
             }
         },
 
@@ -107,10 +108,10 @@
         report: function () {
             console.log('inline.report()');
             delete Array.prototype.toJSON;
-            inline.talk(JSON.stringify(inline.info))            
+            inline.talk(JSON.stringify(inline.info));
         },
 
-        /** Close and terminate. */
+        /** Close and terminate child. */
         close: function () {
             console.log('inline.close()');
             $(inline.iframe).fadeOut(500, function () {
@@ -118,6 +119,7 @@
             });
         },
 
+        /** Send message to child */
         talk: function (message) {
             document.getElementById('itemnation-frame').contentWindow.postMessage(
                 message,

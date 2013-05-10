@@ -1,5 +1,5 @@
-urlParam = function (name) {
-    name = name.replace(/[\[]/, "\\\[").replace(/[\]]/, "\\\]");
+var urlParam = function (name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
     var regexS = "[\\?&]" + name + "=([^&#]*)";
     var regex = new RegExp(regexS);
     var results = regex.exec(window.location.search);
@@ -10,7 +10,7 @@ urlParam = function (name) {
     }
 };
 
-child = {
+var child = {
     info: {
         description: '',
         domain: '',
@@ -26,6 +26,7 @@ child = {
 
     /** Move gallery thumbnails left or right. */
     shift: function (direction) {
+        var shifted, id;
         id = parseInt($('.product-image').attr('id'), 10);
 
         switch (direction) {
@@ -49,21 +50,21 @@ child = {
     /** Set gallery's index (left-most thumbnail). */
     gallery: function (index) {
         console.log('child.gallery(' + index + ')');
-        count = 1;
-        size = 0;
-        largest = 0;
-        arraySize = 0;
-        source = '';
-        drawn = 0;
+        var count = 1;
+        var size = 0;
+        var largest = 0;
+        var arraySize = 0;
+        var source = '';
+        var drawn = 0;
         child.sorted = [];
         $('.gallery').html('');
 
         $('.product-image').attr('id', index);
 
-        arraySize = child.imageArraySize;
+        arraySize = child.imageArraySize;        
 
         while (count <= arraySize) {
-            $(child.info.images).each(function () {
+            $.each(child.info.images, function () {
                 if ((this.width * this.height) > size) {
                     if (jQuery.inArray(jQuery.inArray(this, child.info.images), child.sorted) === -1) {
                         size = this.width * this.height;
@@ -76,7 +77,7 @@ child = {
             child.sorted.push(largest);
             if ((count >= index) && (drawn < 5)) {
                 $('.gallery').append('<img id ="' + count + '" src="' + source + '" />');
-                if (count == index) {
+                if (count === index) {
                     $('.product-image').attr('src', source);
                 }
                 drawn++;
@@ -113,17 +114,18 @@ child = {
             child.populate(e.data);
         });
 
-        child.talk('ready')
+        child.talk('ready');
         $('.itemnation-box').fadeIn(500);
     },
 
+    /** Pre-fill input forms and gallery. */
     populate: function (data) {
         console.log('child.populate()');
         child.info = jQuery.parseJSON(data);
 
         $('.title').val(child.info.name);
         $('.description').val(child.info.description);
-        $('.price').val(child.info.price[0])
+        $('.price').val(child.info.price[0]);
 
         $(child.info.images).each(function () {
             child.imageArraySize++;
@@ -144,6 +146,7 @@ child = {
         child.gallery(1);
     },
 
+    /** Send information to ItemNation */
     send: function () {
         console.log('child.send()');
 
@@ -153,7 +156,7 @@ child = {
             images: $('.product-image').attr('src'),
             add_to: $("select[name='add_to']").val(),
             chat_id: $("select[name='chat_id']").val()
-        })
+        });
 
         $.ajax({
             url: 'http://itemnation.dev/bookmark/add',
@@ -161,17 +164,19 @@ child = {
             type: 'POST',
             timeout: 30000,
             dataType: 'text',
-            complete: function (data) {
+            complete: function () {
                 child.terminate();
             }
         });
     },
 
+    /** Tell inline frame to close and terminate child */
     terminate: function () {
         console.log('child.terminate()');
         child.talk('terminate');
     },
 
+    /** Send message to inline frame */ 
     talk: function (message) {
         parent.postMessage(
             message,
