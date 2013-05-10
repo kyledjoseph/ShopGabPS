@@ -298,9 +298,9 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats-user {margin: 0 0 20px;}
 
 .purchase-head {overflow: hidden; padding: 0 0 5px 210px;}
-.purchase-head > * {float: left; line-height: 22px;}
+.purchase-head > * {float: left; line-height: 26px;}
 .purchase-head h1 {color: #014672; font-size: 16px;}
-.purchase-head h1 span {color: #39a03e; font-size: 22px; line-height: 22px;}
+.purchase-head h1 span {color: #39a03e; font-size: 22px; line-height: 26px;}
 
 .purchase-head > span {margin: 0 5px 0 15px; font-style: italic; color: #666;}
 
