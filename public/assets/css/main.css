@@ -63,7 +63,7 @@ html[xmlns] .clearfix {display: block;}
 .comment-icon				{width: 18px; height: 16px;}
 .comment-icon.on 			{background-position: -302px -105px;}
 .comment-icon.off			{background-position: -273px -105px;}
-
+.quest-private				{background-position: -6px -293px; width: 163px; height: 31px;}
 
 /****
 * Buttons
@@ -296,8 +296,15 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 .mychats-side {width: 346px;}
 
 #mychats-user {margin: 0 0 20px;}
-#mychats-user h1 {padding: 0 0 5px 210px; color: #014672; font-size: 16px;}
-#mychats-user h1 span {color: #39a03e; font-size: 22px; line-height: 22px;}
+
+.purchase-head {overflow: hidden; padding: 0 0 5px 210px;}
+.purchase-head > * {float: left; line-height: 22px;}
+.purchase-head h1 {color: #014672; font-size: 16px;}
+.purchase-head h1 span {color: #39a03e; font-size: 22px; line-height: 22px;}
+
+.purchase-head > span {font-style: italic; color: #666;}
+
+
 #mychats-user > div {position: relative; padding: 0 30px 0 210px;}
 
 #mychats-user .profile {position: absolute; top: 0; left: 0; width: 130px; padding: 0 0 0 60px;}
@@ -315,12 +322,13 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats-user .user-message p {color: #666; font-size: 12px; margin: 0 0 10px;}
 #mychats-user .user-message p:last-child {margin: 0 0 0;}
 
-#mychats-user .invites {position: absolute; top: 6px; right: 0; width: 164px;}
-#mychats-user .invites .invite-button {cursor: pointer; padding: 8px 20px; font-size: 18px; position: relative; left: -14px;}
-#mychats-user .invites .view-friends {cursor: pointer; position: relative; top: 8px; color: #014672; margin-left: 24px; text-decoration: underline;}
-#mychats-user .invites .view-friends-icon {position: absolute; top: 0; left: -24px;}
-#mychats-user .invites ul {overflow: hidden;}
-#mychats-user .invites li {float: left;}
+.invites {position: absolute; top: 6px; right: 0; width: 164px;}
+.invites .quest-toggle {position: relative; margin: 0 0 10px; right: 20px;}
+.invites .invite-button {cursor: pointer; padding: 8px 20px; font-size: 18px; position: relative; left: -14px;}
+.invites .view-friends {cursor: pointer; position: relative; top: 8px; color: #014672; margin-left: 24px; text-decoration: underline;}
+.invites .view-friends-icon {position: absolute; top: 0; left: -24px;}
+.invites ul {overflow: hidden;}
+.invites li {float: left;}
 
 
 #mychats, #mychats-chat {border: 1px solid #99b4c0; border-top: none; border-radius: 0 0 6px 6px;}
@@ -356,11 +364,12 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats .comment span {display: block;}
 #mychats .comment .name {position: relative; padding-left: 30px; line-height: 24px; color: #666; font-weight: bold; font-size: 13px;}
 #mychats .comment .name i {position: absolute; top: 0; left: 0; display: block; width: 24px; height: 24px;}
-#mychats .comment p {color: #666; font-size: 12px;}
-#mychats .comment .time {font-size: 11px; color: #999;}
+#mychats .comment p {color: #666; font-size: 12px; padding-left: 30px;}
+#mychats .comment .time {font-size: 11px; color: #999; padding-left: 30px;}
 
 .add-comment {margin-top: 10px;}
-.add-comment input {}
+.add-comment > img {position: relative; top: 7px;}
+.add-comment input {border: 1px solid #ccc; line-height: 22px; padding: 0 10px; width: 248px;}
 .add-comment button {visibility: hidden; width: 0; height: 0;}
 
 #mychats .view-comment {position: absolute; top: -40px; left: 120px; width: 400px; height: 300px; background: #fff; border: 1px solid #aaa; z-index: 999; box-shadow: 0 0 8px rgba(0,0,0,.1);}
@@ -386,10 +395,10 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 .chat li .name {position: absolute; top: -20px; left: 20px; color: #797979; font-size: 13px;}
 .chat li p {padding: 6px; color: #797979; font-size: 13px;}
 
-#mychats-chat .reply {position: relative; border-top: 1px solid #b0c5ce; height: 68px;}
+#mychats-chat .reply {position: relative; border-top: 1px solid #b0c5ce; height: 74px;}
 #mychats-chat .reply:after {content: ""; z-index: 2; position: absolute; left: 30px; top: -8px;}
 #mychats-chat .reply textarea {border: none; resize: none; width: 334px; height: 34px; color: #666; line-height: 16px; padding: 5px; overflow: hidden;}
-
+#mychats-chat .reply button {float: right; margin: 0 6px; color: #fff; text-shadow: 0 1px #7f9dab; background: -moz-linear-gradient(top, #91aebb, #a2bbc6); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#91aebb', endColorstr='#a2bbc6'); background: -webkit-gradient(linear, left top, left bottom, from(#91aebb), to(#a2bbc6)); border-bottom: 1px solid #517994; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.1);}
 
 .mychats-side .ads {overflow: hidden;}
 .mychats-side .ads > div {float: left; margin-right: 23px;}
@@ -570,6 +579,13 @@ aside {width: 300px;}
 #filters-container.product .contents .spec-detail li span small {font-size: 11px;}
 #filters-container.product .contents .spec-detail li span.friend-count {color: #bdbdbd; font-size: 11px; margin-left: 3px;}
 #filters-container.product .contents .spec-detail li sup {vertical-align: super; font-size: 11px;}
+
+
+/****
+* Main Area 
+***/
+#main-section h1 {color: #9dbf25; font-weight: bold; font-size: 18px; line-height: 22px; margin: 0 0 15px; border-bottom: 1px solid #c3c3c3; box-shadow: 0 1px #fff;}
+
 
 
 /****

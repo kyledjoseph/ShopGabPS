@@ -5,7 +5,15 @@
 					<li class="active"><?= $chat->name() ?></li>
 				</ul>
 
-				<h1>Please help me buy a <span><?= $chat->name() ?></span></h1>
+				<div class="purchase-head">
+					<h1>Please help me buy a <span><?= $chat->name() ?></span></h1>
+					<span>Purchase within</span>
+					<select>
+						<option>2 weeks</option>
+						<option>3 weeks</option>
+						<option>Not sure yet</option>
+					</select>
+				</div>
 
 				<div>
 
@@ -25,6 +33,9 @@
 					</div>
 
 					<div class="invites">
+
+						<i class="sprites quest-toggle quest-private"></i>
+
 						<span href="" class="btn green2 invite-button friends-go">Invite Friends</span>
 
 						<span href="" class="view-friends friends-go"><i class="sprites view-friends-icon"></i> View Friends</span>
