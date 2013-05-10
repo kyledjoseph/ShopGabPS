@@ -1,26 +1,29 @@
-
-				<h2>My Chats</h2>
+			<section id="main-area">
+				
+				<h1>My Chats</h1>
 
 				<hr>
 
-			<?php if (empty($chats)): ?>
+				<?php if (empty($chats)): ?>
 
-				<p>No open chats, <?= Html::anchor('quest/create', 'click here to Start a Quest', array('class' => 'btn btn-success')) ?></p>
+					<p>No open chats, <?= Html::anchor('quest/create', 'click here to Start a Quest', array('class' => 'btn green2')) ?></p>
 
-			<?php else: ?>
-
-
-				<?= Html::anchor('quest/create', 'Start a new Quest', array('class' => 'btn btn-success')) ?>
-				
-				
-				<?php foreach ($chats as $chat): ?>
+				<?php else: ?>
 
 
-				<p>
-					<?= Html::anchor("quest/delete/{$chat->id}", '[x]') ?> 
-					<?= Html::anchor($chat->url(), $chat->name) ?>
-				</p>
+					<?= Html::anchor('quest/create', 'Start a new Quest', array('class' => 'btn btn-success')) ?>
+					
+					
+					<?php foreach ($chats as $chat): ?>
 
-				<?php endforeach; ?>
 
-			<?php endif; ?>
+					<p>
+						<?= Html::anchor("quest/delete/{$chat->id}", '[x]') ?> 
+						<?= Html::anchor($chat->url(), $chat->name) ?>
+					</p>
+
+					<?php endforeach; ?>
+
+				<?php endif; ?>
+
+			</section>
