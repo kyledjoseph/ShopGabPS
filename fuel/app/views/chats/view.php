@@ -182,7 +182,7 @@
 
 						<?= Form::open(array('action' => "quest/message/{$chat->id}", 'method' => 'POST', 'class' => 'reply')) ?>
 							<textarea name="message" placeholder="Your message..." maxlength="140"></textarea>
-							<button type="submit">send</button>
+							<button type="submit">Reply</button>
 						</form>
 
 
