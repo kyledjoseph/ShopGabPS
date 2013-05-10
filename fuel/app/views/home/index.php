@@ -5,7 +5,7 @@
 
 				<?php if (empty($chats)): ?>
 
-					<p>No open chats, <?= Html::anchor('quest/create', 'click here to Start a Quest', array('class' => 'btn green2')) ?></p>
+					<p>No open chats, <?= Html::anchor('quest/create', 'click here to Start a Quest', array('class' => 'btn green2 new-quest')) ?></p>
 
 				<?php else: ?>
 
