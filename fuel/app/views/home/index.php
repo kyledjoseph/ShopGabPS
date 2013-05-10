@@ -2,7 +2,6 @@
 				
 				<h1>My Chats</h1>
 
-				<hr>
 
 				<?php if (empty($chats)): ?>
 
@@ -11,18 +10,21 @@
 				<?php else: ?>
 
 
-					<?= Html::anchor('quest/create', 'Start a new Quest', array('class' => 'btn btn-success')) ?>
+					<?= Html::anchor('quest/create', 'Start a New Quest', array('class' => 'btn green2')) ?>
 					
+					<ul>
 					
-					<?php foreach ($chats as $chat): ?>
+						<?php foreach ($chats as $chat): ?>
 
 
-					<p>
-						<?= Html::anchor("quest/delete/{$chat->id}", '[x]') ?> 
-						<?= Html::anchor($chat->url(), $chat->name) ?>
-					</p>
+						<li>
+							<?= Html::anchor("quest/delete/{$chat->id}", '[x]') ?> 
+							<?= Html::anchor($chat->url(), $chat->name) ?>
+						</li>
 
-					<?php endforeach; ?>
+						<?php endforeach; ?>
+
+					</ul>
 
 				<?php endif; ?>
 
