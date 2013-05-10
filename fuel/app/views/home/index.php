@@ -1,6 +1,6 @@
 			<section id="main-section">
 				
-				<h1>My Chats <?= Html::anchor('quest/create', 'Start a New Quest', array('class' => 'btn green2 new-quest')) ?></h1> 
+				<h1>My Quests <?= Html::anchor('quest/create', 'Start a New Quest', array('class' => 'btn green2 new-quest')) ?></h1> 
 
 
 				<?php if (empty($chats)): ?>
