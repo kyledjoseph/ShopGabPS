@@ -26,15 +26,16 @@ var child = {
 
     /** Move gallery thumbnails left or right. */
     shift: function (direction) {
+        console.log('child.shift(' + direction + ')');
         var shifted, id;
         id = parseInt($('.product-image').attr('id'), 10);
 
         switch (direction) {
         case 'left':
-            shifted = id + 1;
+            shifted = id - 3;
             break;
         case 'right':
-            shifted = id - 1;
+            shifted = id + 3;
             break;
         }
 
@@ -44,6 +45,32 @@ var child = {
             child.gallery(shifted - 1);
         } else {
             child.gallery(shifted);
+        }
+    },
+
+    move: function (direction) {
+        console.log('child.move(' + direction + ')');
+        var product, index, next;
+        current = parseInt($('.product-image').attr('id'), 10);
+        index = parseInt($('.gallery img:first').attr('id'), 10);
+
+
+        switch (direction) {
+        case 'left':
+            next = current - 1;
+            new_source = $('#' + next).attr('src');
+            $('.product-image').attr('id', next);
+            $('.product-image').attr('src', new_source);
+            break;
+        case 'right':
+            next = current + 1;
+            if (next > (index + 4)) {
+                child.shift('left');
+            }
+            new_source = $('#' + next).attr('src');
+            $('.product-image').attr('id', next);
+            $('.product-image').attr('src', new_source);
+            break;
         }
     },
 
@@ -135,11 +162,11 @@ var child = {
             $('.arrow').css('display', 'block');
 
             $('.arrow.left').click(function () {
-                child.shift('right');
+                child.move('left');
             });
 
             $('.arrow.right').click(function () {
-                child.shift('left');
+                child.move('right');
             });
         }
 
