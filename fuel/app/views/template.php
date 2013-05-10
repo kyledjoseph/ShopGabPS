@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+  	<meta charset='utf-8'> 
+
 	<title><?= isset($title) ? $title : 'ItemNation' ?></title>
 	<?= Asset::css('main.css') ?>
 
