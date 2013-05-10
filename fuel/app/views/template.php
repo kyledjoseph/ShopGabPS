@@ -276,7 +276,7 @@
 
 	<?= View::forge('analytics/site') ?>
 	<a href="#" class="feedback">
-		<img src="http://placehold.it/40x100" />
+		<? echo Asset::img('feedback.png') ?>
 	</a>
   </body>
 </html>
