@@ -59,7 +59,7 @@
 					<div class="user-menu">
 						<ul>
 							<li>
-								<?= Html::anchor('', 'My Account') ?>
+								<?= Html::anchor('user/account', 'My Account') ?>
 							</li>
 							<li>
 								<?= Html::anchor('user/logout', 'Logout') ?>
