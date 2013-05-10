@@ -37,13 +37,6 @@ class Model_Chat extends \Orm\Model
 			'cascade_save' => true,
 			'cascade_delete' => true,
 		),
-		'comments' => array(
-			'key_from' => 'id',
-			'model_to' => 'Model_Chat_Product_Comment',
-			'key_to' => 'chat_id',
-			'cascade_save' => true,
-			'cascade_delete' => true,
-		),
 	);
 
 	// has many users 

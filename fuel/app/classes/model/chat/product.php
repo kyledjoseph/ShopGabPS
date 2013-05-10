@@ -39,7 +39,14 @@ class Model_Chat_Product extends \Orm\Model
 			'key_to' => 'chat_product_id',
 			'cascade_save' => true,
 			'cascade_delete' => false,
-		)
+		),
+		'comments' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Chat_Product_Comment',
+			'key_to' => 'chat_product_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
 	);
 
 

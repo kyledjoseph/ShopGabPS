@@ -119,6 +119,32 @@ class Controller_Chats extends Controller_App
 	}
 
 
+
+
+	/**
+	 * Delete a chat
+	 */
+	public function get_delete($chat_id)
+	{
+		$chat = $this->user->get_chat($chat_id);
+		
+		if (! isset($chat))
+		{
+			$this->redirect('quests', 'info', 'Invlaid quest');
+		}
+
+		if ($chat->user_id !== $this->user->id)
+		{
+			$this->redirect('quests', 'info', 'Invlaid quest');
+		}
+
+		$chat->delete();
+		$this->redirect($chat->url(), '/', 'Quest deleted');
+	}
+
+
+
+
 	/**
 	 * Create a new chat
 	 */
