@@ -1,4 +1,4 @@
-			<section id="main-area">
+			<section id="main-section">
 				
 				<h1>My Chats</h1>
 
