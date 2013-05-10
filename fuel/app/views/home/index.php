@@ -12,7 +12,7 @@
 
 					<?= Html::anchor('quest/create', 'Start a New Quest', array('class' => 'btn green2')) ?>
 					
-					<ul>
+					<ul class="quest-list">
 					
 						<?php foreach ($chats as $chat): ?>
 
