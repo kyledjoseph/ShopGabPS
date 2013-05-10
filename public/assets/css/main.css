@@ -298,9 +298,9 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats-user {margin: 0 0 20px;}
 
 .purchase-head {overflow: hidden; padding: 0 0 5px 210px;}
-.purchase-head > * {float: left; line-height: 22px;}
+.purchase-head > * {float: left; line-height: 26px;}
 .purchase-head h1 {color: #014672; font-size: 16px;}
-.purchase-head h1 span {color: #39a03e; font-size: 22px; line-height: 22px;}
+.purchase-head h1 span {color: #39a03e; font-size: 22px; line-height: 26px;}
 
 .purchase-head > span {margin: 0 5px 0 15px; font-style: italic; color: #666;}
 
@@ -395,10 +395,10 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 .chat li .name {position: absolute; top: -20px; left: 20px; color: #797979; font-size: 13px;}
 .chat li p {padding: 6px; color: #797979; font-size: 13px;}
 
-#mychats-chat .reply {position: relative; border-top: 1px solid #b0c5ce; height: 76px;}
+#mychats-chat .reply {position: relative; border-top: 1px solid #b0c5ce; height: 80px;}
 #mychats-chat .reply:after {content: ""; z-index: 2; position: absolute; left: 30px; top: -8px;}
 #mychats-chat .reply textarea {border: none; resize: none; width: 334px; height: 34px; color: #666; line-height: 16px; padding: 5px; overflow: hidden;}
-#mychats-chat .reply button {float: right; padding: 5px 10px; color: #fff; text-shadow: 0 1px #7f9dab; background: -moz-linear-gradient(top, #91aebb, #a2bbc6); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#91aebb', endColorstr='#a2bbc6'); background: -webkit-gradient(linear, left top, left bottom, from(#91aebb), to(#a2bbc6)); border-bottom: 1px solid #517994; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.1);}
+#mychats-chat .reply button {float: right; margin-right: 5px; padding: 5px 10px; color: #fff; text-shadow: 0 1px #7f9dab; background: -moz-linear-gradient(top, #91aebb, #a2bbc6); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#91aebb', endColorstr='#a2bbc6'); background: -webkit-gradient(linear, left top, left bottom, from(#91aebb), to(#a2bbc6)); border-bottom: 1px solid #517994; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,.1);}
 
 .mychats-side .ads {overflow: hidden;}
 .mychats-side .ads > div {float: left; margin-right: 23px;}
@@ -584,8 +584,12 @@ aside {width: 300px;}
 /****
 * Main Area 
 ***/
-#main-section h1 {color: #9dbf25; font-weight: bold; font-size: 18px; line-height: 22px; margin: 0 0 15px; border-bottom: 1px solid #c3c3c3; box-shadow: 0 1px #fff;}
+#main-section h1 {color: #9dbf25; font-weight: bold; padding-bottom: 10px; font-size: 18px; line-height: 32px; margin: 0 0 15px; border-bottom: 1px solid #c3c3c3; box-shadow: 0 1px #fff;}
 
+#main-section .new-quest {margin-left: 10px; padding: 5px 14px;}
+
+.quest-list li {padding: 6px 0;}
+.quest-list li a {}
 
 
 /****
