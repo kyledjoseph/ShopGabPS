@@ -10,7 +10,7 @@
 				<?php else: ?>
 
 
-					<?= Html::anchor('quest/create', 'Start a New Quest', array('class' => 'btn green2')) ?>
+					<?= Html::anchor('quest/create', 'Start a New Quest', array('class' => 'btn green2 new-quest')) ?>
 					
 					<ul class="quest-list">
 					
