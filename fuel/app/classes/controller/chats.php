@@ -128,12 +128,12 @@ class Controller_Chats extends Controller_App
 		
 		if (! isset($chat))
 		{
-			$this->redirect('quests', 'info', 'Invalid quest');
+			$this->redirect($chat->url());
 		}
 
 		if ($chat->user_id !== $this->user->id)
 		{
-			$this->redirect('quests', 'info', 'Invalid quest');
+			$this->redirect($chat->url());
 		}
 
 		$post = $this->post_data('purchase_within');
