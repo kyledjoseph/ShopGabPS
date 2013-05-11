@@ -120,7 +120,7 @@
 												
 												<?= $comment->comment ?>
 												
-												<span class="time"><?= $comment->time_ago() ?></span>
+												<span class="date"><?= $comment->time_ago() ?></span>
 
 											</p>
 										</div>
