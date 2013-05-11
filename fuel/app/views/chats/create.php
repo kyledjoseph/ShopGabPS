@@ -20,7 +20,7 @@
 					<?= Form::select('purchase_within', null, Model_Chat::purchase_within_fields()) ?>
 				</li>
 
-					<button type="submit" class="btn">Create Chat</button>
+					<button type="submit" class="btn green2">Create my Quest</button>
 
 			
 		<?= Form::close() ?>
