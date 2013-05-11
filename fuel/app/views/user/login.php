@@ -15,7 +15,7 @@
 					<input type="password" name="password" placeholder="Password">
 				</li>
 
-				<li>
+				<li class="remember">
 					<label class="checkbox">
 						<input type="checkbox" name="remember" value="true"> Remember me
 					</label>
