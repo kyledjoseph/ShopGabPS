@@ -61,6 +61,12 @@ class Model_Chat_Message extends \Orm\Model
 	);
 
 
+	public function user_is_owner($user_id)
+	{
+		return ($this->user_id == $user_id);
+	}
+
+
 	public function time_ago()
 	{
 		$now = time();

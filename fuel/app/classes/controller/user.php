@@ -118,6 +118,18 @@ class Controller_User extends Controller_App
 
 
 	/**
+	 * Forgot password
+	 */
+	public function get_forgot()
+	{
+		
+	}
+
+
+
+
+
+	/**
 	 *
 	 */
 	public function get_logout()
@@ -128,13 +140,7 @@ class Controller_User extends Controller_App
 
 
 
-	/**
-	 * 
-	 */
-	public function get_forgot()
-	{
-		
-	}
+	
 
 
 	/**
@@ -192,11 +198,68 @@ class Controller_User extends Controller_App
 
 
 	/**
-	 *
+	 * Edit account settings
 	 */
 	public function get_account()
 	{
-		$this->template->body = View::forge('user/settings');
+		$this->require_auth();
+
+		$this->template->body = View::forge('user/account');
+	}
+
+	public function post_account()
+	{
+		$this->require_auth();
+
+		$post = $this->post_data('name', 'email');
+
+		$this->user->display_name = $post->name;
+		$this->user->email        = $post->email;
+		$this->user->save();
+
+		$this->redirect('user/account', 'success', 'Account info updated');
+	}
+
+
+
+	/**
+	 * Change Password
+	 */
+	public function get_password()
+	{
+		$this->require_auth();
+
+		$this->template->body = View::forge('user/password');
+	}
+
+	public function post_password()
+	{
+		$this->require_auth();
+
+		// tmp
+		if (empty($this->user->password))
+		{
+			$this->redirect('user/account', 'error', 'Password empty');
+		}
+
+		$post = $this->post_data('current', 'new', 'confirm');
+
+		if ($post->new !== $post->confirm)
+		{
+			$this->redirect('user/password', 'error', 'Your new password did not match the password confirmation');
+		}
+
+		if (! $this->auth->validate_user($this->user->email, $post->current))
+		{
+			$this->redirect('user/password', 'error', 'Your current password is incorrect');
+		}
+
+		if (! $this->auth->change_password($post->current, $post->new))
+		{
+			$this->redirect('user/password', 'error', 'Your current password is incorrect');
+		}
+
+		$this->redirect('user/account', 'success', 'Password changed');
 	}
 	
 }

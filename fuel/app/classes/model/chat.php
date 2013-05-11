@@ -7,6 +7,7 @@ class Model_Chat extends \Orm\Model
 		'user_id',
 		'name',
 		'description',
+		'purchase_within',
 		'created_at',
 		'updated_at',
 	);
@@ -111,7 +112,7 @@ class Model_Chat extends \Orm\Model
 
 	public function get_messages()
 	{
-		return Model_Chat_Message::query()->where('chat_id', $this->id)->order_by('created_at', 'desc')->get();
+		return Model_Chat_Message::query()->where('chat_id', $this->id)->order_by('created_at', 'asc')->get();
 	}
 
 
