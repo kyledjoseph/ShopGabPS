@@ -1,45 +1,33 @@
 	
-	<h2>My Account</h2>
-	<hr>
+	<section id="main-section">
 
-	<?= Form::open(['class' => 'form-horizontal']) ?>
+		<h1>My Account</h1>
 
-		<div class="control-group">
-			<label class="control-label" for="name">Name</label>
-			<div class="controls">
-				<input type="text" name="name" placeholder="" value="<?= $user->display_name() ?>">
-			</div>
-		</div>
+		<?= Form::open(['class' => 'form-horizontal']) ?>
+			<ul>
+				<li>
+					<label for="name">Name</label>
+					<input type="text" name="name" placeholder="" value="<?= $user->display_name() ?>">
+				</li>
+				<li>
+					<label for="email">Email</label>
+					<input type="text" name="email" placeholder="" value="<?= $user->email ?>">
+				</li>
+				<li>
+					<label for="password">Password</label>
+					<?= Html::anchor('user/password', 'Change Password') ?>
+				</li>
 
-		<div class="control-group">
-			<label class="control-label" for="email">Email</label>
-			<div class="controls">
-				<input type="text" name="email" placeholder="" value="<?= $user->email ?>">
-			</div>
-		</div>
-		
-		<div class="control-group">
-			<label class="control-label" for="password">Password</label>
-			<div class="controls">
-				<?= Html::anchor('user/password', 'Change Password') ?>
-			</div>
-		</div>
+				<li>
+					<label for="name">Facebook</label>
+					<?php if ($user->is_authenticated_with('facebook')): ?>
+						Authenticated
+					<?php else: ?>
+						<?php // Html::anchor('user/auth/facebook', 'Connect with Facebook') ?>
+					<?php endif; ?>
+				</li>
+			</ul>
+			
+				<button type="submit" class="btn green2">Update My Account</button>
 
-		<div class="control-group">
-			<label class="control-label" for="name">Facebook</label>
-			<div class="controls">
-				<?php if ($user->is_authenticated_with('facebook')): ?>
-					Authenticated
-				<?php else: ?>
-					<?php // Html::anchor('user/auth/facebook', 'Connect with Facebook') ?>
-				<?php endif; ?>
-			</div>
-		</div>
-		
-		<div class="control-group">
-			<div class="controls">
-				<button type="submit" class="btn">Update Account</button>
-			</div>
-		</div>
-
-	<?= Form::close() ?>
+		<?= Form::close() ?>
