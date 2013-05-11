@@ -361,10 +361,9 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats .comments > span:hover {text-decoration: none;}
 
 #mychats .comment {position: relative; margin-top: 10px; padding-left: 30px; font-family: Verdana;}
-#mychats .comment span {}
 #mychats .comment i {position: absolute; top: 0; left: 0; display: block; width: 24px; height: 24px;}
 #mychats .comment p {color: #666; font-size: 11px;}
-#mychats .comment .name {font-weight: bold; font-size: 11px; color: #036;}
+#mychats .comment .name {font-weight: bold; font-size: 11px; color: #014672;}
 #mychats .comment .time {display: block; color: #999;}
 
 .add-comment {margin-top: 10px;}
