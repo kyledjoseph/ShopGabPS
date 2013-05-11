@@ -28,8 +28,6 @@
 
 					<p>or sign in with 
 						<?= Html::anchor('user/auth/facebook', 'facebook') ?> | 
-						<?= Html::anchor('user/auth/twitter', 'twitter') ?> | 
-						<?= Html::anchor('user/auth/google', 'google') ?>
 					</p>
 
 		</form>
