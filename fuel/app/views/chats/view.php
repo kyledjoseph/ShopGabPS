@@ -172,7 +172,7 @@
 				<section id="mychats-chat">
 
 					<div class="heading">
-						<h3>Discussion</h3>
+						<h3>IN Chat</h3>
 					</div>
 
 					<div class="chat">
