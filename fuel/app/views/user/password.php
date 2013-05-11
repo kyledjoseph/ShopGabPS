@@ -15,7 +15,7 @@
 				<input type="text" name="new">
 			</li>
 			<li>
-				<label for="email">Confirm New Password</label>
+				<label for="email">Confirm Password</label>
 				<input type="text" name="confirm">
 			</li>
 		</ul>
