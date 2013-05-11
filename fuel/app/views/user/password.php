@@ -1,35 +1,26 @@
 	
-	<h2>My Account</h2>
-	<hr>
+	<section id="main-section">
 
-	<?= Form::open(['class' => 'form-horizontal']) ?>
+		<h1>Change My Password</h1>
 
-		<div class="control-group">
-			<label class="control-label" for="name">Current Password</label>
-			<div class="controls">
+		<?= Form::open(['class' => 'form-horizontal']) ?>
+
+		<ul>
+			<li>
+				<label for="name">Current Password</label>
 				<input type="text" name="current">
-			</div>
-		</div>
-
-		<div class="control-group">
-			<label class="control-label" for="email">New Password</label>
-			<div class="controls">
+			</li>
+			<li>
+				<label for="email">New Password</label>
 				<input type="text" name="new">
-			</div>
-		</div>
-
-		<div class="control-group">
-			<label class="control-label" for="email">Confirm New Password</label>
-			<div class="controls">
+			</li>
+			<li>
+				<label for="email">Confirm New Password</label>
 				<input type="text" name="confirm">
-			</div>
-		</div>
+			</li>
+		</ul>
+					
+		<button type="submit" class="btn green2">Update Password</button>
 
-		
-		<div class="control-group">
-			<div class="controls">
-				<button type="submit" class="btn">Update Password</button>
-			</div>
-		</div>
 
-	<?= Form::close() ?>
+		<?= Form::close() ?>
