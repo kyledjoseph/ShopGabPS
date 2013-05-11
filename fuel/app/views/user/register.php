@@ -15,7 +15,7 @@
 			</li>
 		</ul>		
 
-		<button type="submit" class="btn">Sign in</button>
+		<button type="submit" class="btn green2">Register</button>
 
 		</form>
 
