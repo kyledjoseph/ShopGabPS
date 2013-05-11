@@ -8,7 +8,7 @@
 			-->
 
 				<div class="purchase-head">
-					<h1>Please help me buy a <span><?= $chat->name() ?></span></h1>
+					<h1>Please help me find a <span><?= $chat->name() ?></span></h1>
 					<span>Purchase within</span>
 					
 					<?= Form::open(array('id' => 'purchase_within_form', 'action' => "quest/within/{$chat->id}")) ?>
