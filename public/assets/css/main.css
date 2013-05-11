@@ -352,7 +352,7 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats .item figure img {width: 65px; height: 75px;}
 #mychats .item h2 {color: #39a03e; font: bold 15px/24px Arial; text-overflow: ellipsis; width: 300px; white-space: nowrap; overflow: hidden;}
 #mychats .item p {color: #666; font: 12px/18px Arial;}
-#mychats .item p a {font-weight: bold; color: #003366; text-decoration: underline;}
+#mychats .item p a {font-weight: bold; color: #036; text-decoration: underline;}
 #mychats .item p a:hover {text-decoration: none;}
 
 #mychats .comments {position: relative; padding: 5px 0;}
@@ -363,9 +363,9 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats .comment {position: relative; margin-top: 10px; padding-left: 30px; font-family: Verdana;}
 #mychats .comment span {}
 #mychats .comment i {position: absolute; top: 0; left: 0; display: block; width: 24px; height: 24px;}
-#mychats .comment .name {position: relative; line-height: 24px; color: #666; font-weight: bold; font-size: 11px;}
 #mychats .comment p {color: #666; font-size: 11px;}
-#mychats .comment .time {font-size: 11px; color: #999;}
+#mychats .comment .name {font-weight: bold; font-size: 11px; color: #036;}
+#mychats .comment .time {display: block; color: #999;}
 
 .add-comment {margin-top: 10px;}
 .add-comment img {position: relative; top: 7px;}
