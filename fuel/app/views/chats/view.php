@@ -114,11 +114,15 @@
 											
 											<i style="background:url(<?= $comment->user->profile_pic(24,24) ?>);"></i>
 
-											<span class="name"><?= $comment->user->display_name() ?></span>
-											
-											<p><?= $comment->comment ?></p>
-											
-											<span class="time"><?= $comment->time_ago() ?></span>
+											<p>
+
+												<span class="name"><?= $comment->user->display_name() ?></span>
+												
+												<?= $comment->comment ?>
+												
+												<span class="time"><?= $comment->time_ago() ?></span>
+
+											</p>
 										</div>
 										
 
