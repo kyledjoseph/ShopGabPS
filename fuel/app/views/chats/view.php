@@ -8,11 +8,11 @@
 				<div class="purchase-head">
 					<h1>Please help me buy a <span><?= $chat->name() ?></span></h1>
 					<span>Purchase within</span>
-					<select>
-						<option>2 weeks</option>
-						<option>3 weeks</option>
-						<option>Not sure yet</option>
-					</select>
+					
+					<?= Form::open(array('id' => 'purchase_within_form', 'action' => "quest/within/{$chat->id}")) ?>
+						<?= Form::select('purchase_within', $chat->purchase_within(), Model_Chat::purchase_within_fields()) ?>
+					<?= Form::close() ?>
+
 				</div>
 
 				<div>

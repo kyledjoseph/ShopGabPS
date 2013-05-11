@@ -22,6 +22,13 @@
 		</div>
 
 		<div class="control-group">
+			<label class="control-label" for="purchase_within">I want to purchase this within</label>
+			<div class="controls">
+				<?= Form::select('purchase_within', null, Model_Chat::purchase_within_fields()) ?>
+			</div>
+		</div>
+
+		<div class="control-group">
 			<div class="controls">
 				<button type="submit" class="btn">Create Chat</button>
 			</div>

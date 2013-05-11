@@ -130,9 +130,9 @@ class Model_User extends \Orm\Model
 	/**
 	 * Create a new chat
 	 */
-	public function create_chat($name, $description)
+	public function create_chat($name, $description, $purchase_within)
 	{
-		return Model_Chat::create_chat($this->id, $name, $description);
+		return Model_Chat::create_chat($this->id, $name, $description, $purchase_within);
 	}
 
 	/**
