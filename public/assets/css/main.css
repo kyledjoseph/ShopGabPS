@@ -363,8 +363,8 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats .comment {position: relative; margin-top: 10px; padding-left: 24px; font-family: Verdana;}
 #mychats .comment span {}
 #mychats .comment i {position: absolute; top: 0; left: -26px; display: block; width: 24px; height: 24px;}
-#mychats .comment .name {position: relative; line-height: 24px; color: #666; font-weight: bold; font-size: 13px;}
-#mychats .comment p {color: #666; font-size: 12px;}
+#mychats .comment .name {position: relative; line-height: 24px; color: #666; font-weight: bold; font-size: 11px;}
+#mychats .comment p {color: #666; font-size: 11px;}
 #mychats .comment .time {font-size: 11px; color: #999;}
 
 .add-comment {margin-top: 10px;}
