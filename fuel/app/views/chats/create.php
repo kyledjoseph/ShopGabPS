@@ -2,6 +2,8 @@
 
 	<section id="main-section">
 
+		<h1>Create a new Quest</h1>
+
 		<?= Form::open(array('class' => 'form-horizontal')) ?>
 
 			<ul>
