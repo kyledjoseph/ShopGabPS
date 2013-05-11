@@ -1,9 +1,11 @@
 			<section id="mychats-user">
 
+			<!-- Will not show for now
 				<ul class="breadcrumb">
 					<li><?= Html::anchor('quest', 'My Quests') ?> <span class="divider">/</span></li>
 					<li class="active"><?= $chat->name() ?></li>
 				</ul>
+			-->
 
 				<div class="purchase-head">
 					<h1>Please help me buy a <span><?= $chat->name() ?></span></h1>
@@ -34,7 +36,10 @@
 
 					<div class="invites">
 
+					<!-- Public/Private toggle
 						<i class="sprites quest-toggle quest-private"></i>
+					-->
+
 
 						<span href="" class="btn green2 invite-button friends-go">Invite Friends</span>
 
