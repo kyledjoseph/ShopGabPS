@@ -277,6 +277,7 @@
 				<input type="text">
 			</li>
 			<li>
+				<label>Description:</label>
 				<textarea placeholder="I'm excited to be looking for a new product on ItemNation and it would be great to have your help in finding the best one! Please follow the link below."></textarea>
 			</li>
 		</ul>
