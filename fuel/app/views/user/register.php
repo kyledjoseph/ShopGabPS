@@ -17,7 +17,7 @@
 
 		<button type="submit" class="btn green2">Register</button>
 
-		<?= Html::anchor('user/auth/facebook', '<i class=\"sprites login-facebook\"></i>') ?>
+		<?= Html::anchor('user/auth/facebook', '<i class="sprites login-facebook"></i>') ?>
 
 		</form>
 
