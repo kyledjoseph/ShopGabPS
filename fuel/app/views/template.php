@@ -269,6 +269,10 @@
 	<form>
 		<ul>
 			<li>
+				<label>From:</label>
+				<input type="text" value="info@itemnation.com" disabled>
+			</li>
+			<li>
 				<label>To:</label>
 				<input type="text">
 			</li>
