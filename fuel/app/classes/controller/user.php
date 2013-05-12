@@ -24,7 +24,7 @@ class Controller_User extends Controller_App
 			$this->redirect('user/login', 'error', 'Invalid login.');
 		}
 
-		$this->redirect('/', 'success', 'You are now logged in.');
+		
 	}
 
 
