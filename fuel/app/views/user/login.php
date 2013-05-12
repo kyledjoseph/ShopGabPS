@@ -26,9 +26,7 @@
 			<button type="submit" class="btn green2">Sign in</button>
 	
 
-					<p>or sign in with 
-						<?= Html::anchor('user/auth/facebook', 'facebook') ?> | 
-					</p>
+			<?= Html::anchor('user/auth/facebook', '<i class=\"sprites login-facebook\"></i>') ?>
 
 		</form>
 
