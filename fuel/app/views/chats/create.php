@@ -16,11 +16,11 @@
 					<textarea name="description" rows="6"></textarea>
 				</li>
 				<li>
-					<label for="purchase_within">I want to purchase this within</label>
+					<label for="purchase_within">Purchase within</label>
 					<?= Form::select('purchase_within', null, Model_Chat::purchase_within_fields()) ?>
 				</li>
 
-					<button type="submit" class="btn green2">Create my Quest</button>
+				<button type="submit" class="btn green2">Create my Quest</button>
 
 			
 		<?= Form::close() ?>
