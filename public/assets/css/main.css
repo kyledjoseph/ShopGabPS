@@ -310,8 +310,8 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 #mychats-user > div {position: relative; padding: 0 30px 0 210px;}
 
 #mychats-user .profile {position: absolute; top: 0; left: 0; width: 130px; padding: 0 0 0 60px;}
-#mychats-user .profile figure {position: absolute; top: 5px; left: 0;}
 #mychats-user .profile h2 {font-size: 18px; line-height: 24px; font-weight: bold;}
+#mychats-user .profile figure, #mychats-user .profile figure img {width: 80px; height: 80px;}
 
 #mychats-user .help-icon {position: absolute; top: 0; right: -24px;}
 

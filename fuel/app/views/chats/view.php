@@ -20,12 +20,11 @@
 				<div>
 
 					<div class="profile">
-
+						<h2><?= $chat->user->display_name() ?></h2>
 						<figure>
 							<?= Html::img($chat->user->profile_pic()) ?>
 						</figure>
 
-						<h2><?= $chat->user->display_name() ?></h2>
 					</div>
 
 					<div class="user-message">
