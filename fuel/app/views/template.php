@@ -256,7 +256,7 @@
 	<div class="addnew-right">
 		<h3>Use the ItemNation Button</h3>
 
-		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/assets/js/bookmark/parent.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><img src="../assets/img/bookmark-helper.png"></a>
+		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/assets/js/bookmark/parent.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><span>Add To ItemNation</span></a>
 	</div>
 
 </div>
