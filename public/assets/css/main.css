@@ -394,7 +394,7 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 
 .chat li {position: relative; border-radius: 6px; margin: 28px 10px 24px; border: 1px solid #f1f1f1; padding: 5px; background: -moz-linear-gradient(top, #fbfbfb, #f7f7f7); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fbfbfb', endColorstr='#f7f7f7'); background: -webkit-gradient(linear, left top, left bottom, from(#fbfbfb), to(#f7f7f7));}
 .chat li.quest-owner {background: -moz-linear-gradient(top, #f1f5f7, #dfe9ec); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f1f5f7', endColorstr='#dfe9ec'); background: -webkit-gradient(linear, left top, left bottom, from(#f1f5f7), to(#dfe9ec));}
-.chat li .name {position: absolute; top: -20px; left: 0; right: 0; color: #797979; text-align: right; font-size: 13px; padding: 0 10px;}
+.chat li .name {position: absolute; top: -20px; left: 0; right: 0; color: #797979; text-align: right; font-size: 12px; padding: 0 10px;}
 .chat li.quest-owner .name {text-align: left;}
 .chat li p {padding: 6px; color: #797979; font-size: 13px;}
 .chat li .date {font-size: 11px;}
