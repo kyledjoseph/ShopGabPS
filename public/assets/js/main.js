@@ -15,8 +15,7 @@ $('.user-control').click(function(){
    	return false;
 });
 
-	$('#main').click(function() {
-		$('#user').removeClass('current');
+	$('body').click(function() {
 		$('.user-menu').hide();
 	});
 
@@ -31,23 +30,27 @@ $('.user-control').click(function(){
 	* Products modal
 	***/
 
-	$('#products .item-i').click(function () {
-		$('#overlay, .dialog.product').show();
+	$('#products .item-i').click(function() {
+		$('#overlay, .dialog.product').fadeIn(300);
 	});
 
-	$('#overlay, .close').click(function () {
-		$('#overlay, .dialog, .view-comment').hide();
+	$('#overlay, .close').click(function() {
+		$('#overlay, .dialog, .view-comment').fadeOut(300);
 	});
 
 
 	$('#modal-tabs, #terms-tabs').tabs();
 
-	$('.addnew-go').click(function () {
-		$('#overlay, #addnew-product').show();
+	$('.addnew-go').click(function() {
+		$('#overlay, #addnew-product').fadeIn(300);
 	});
 
-	$('.friends-go').click(function () {
-		$('#overlay, #invite-friends.dialog').show();
+	$('#addnew-product button').click(function() {
+		$('#overlay, .dialog').fadeOut(300);
+	});
+
+	$('.friends-go').click(function() {
+		$('#overlay, #invite-friends.dialog').fadeIn(300);
 	});
 
  	// $('.comments span').click(function () {
@@ -59,7 +62,7 @@ $('.user-control').click(function(){
 	* Filter in footer
 	***/
 
-    $('#filters').click(function () {
+    $('#filters').click(function() {
     	$(this).parent('.inner').toggleClass("open");
     });
 

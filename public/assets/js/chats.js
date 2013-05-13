@@ -1,5 +1,11 @@
 $(function(){
 	
+	// change purchase_within time
+
+	$("#purchase_within_form").bind("change", function() {
+		$(this).submit();
+	});
+
 	// init comments
 	//
 	//

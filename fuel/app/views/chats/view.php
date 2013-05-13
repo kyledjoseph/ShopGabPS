@@ -1,21 +1,21 @@
 			<section id="mychats-user">
 
-				<ul class="breadcrumb">
-					<li><?= Html::anchor('quest', 'My Quests') ?> <span class="divider">/</span></li>
+				<!-- <ul class="breadcrumb">
+					<li><?= Html::anchor('/', 'My Quests') ?> <span class="divider">/</span></li>
 					<li class="active"><?= $chat->name() ?></li>
-				</ul>
+				</ul> -->
 
-				<h1>Please help me buy a <span><?= $chat->name() ?></span></h1>
+				<div class="purchase-head">
+					<h1>Please help me find a <span><?= $chat->name() ?></span></h1>
+				</div>
 
 				<div>
 
 					<div class="profile">
-
-						<figure>
-							<?= Html::img($chat->user->profile_pic()) ?>
-						</figure>
-
 						<h2><?= $chat->user->display_name() ?></h2>
+						<figure>
+							<?= Html::img($chat->user->profile_pic(80, 80)) ?>
+						</figure>
 					</div>
 
 					<div class="user-message">
@@ -24,7 +24,19 @@
 						<p><?= Html::anchor("{$chat->url()}/edit", 'edit') ?></p>
 					</div>
 
+					<span>Purchase within</span>
+					
+					<?= Form::open(array('id' => 'purchase_within_form', 'action' => "quest/within/{$chat->id}")) ?>
+						<?= Form::select('purchase_within', $chat->purchase_within(), Model_Chat::purchase_within_fields()) ?>
+					<?= Form::close() ?>
+
 					<div class="invites">
+
+					<!-- Public/Private toggle
+						<i class="sprites quest-toggle quest-private"></i>
+					-->
+
+
 						<span href="" class="btn green2 invite-button friends-go">Invite Friends</span>
 
 						<span href="" class="view-friends friends-go"><i class="sprites view-friends-icon"></i> View Friends</span>
@@ -96,10 +108,17 @@
 
 										<div class="comment">
 											
-											<span class="name"><i style="background:url(<?= $comment->user->profile_pic(24,24) ?>);"></i> <?= $comment->user->display_name() ?></span>
-											
-											<p><?= $comment->comment ?></p>
-											<span class="time"><?= $comment->time_ago() ?></span>
+											<i style="background:url(<?= $comment->user->profile_pic(24,24) ?>);"></i>
+
+											<p>
+
+												<span class="name"><?= $comment->user->display_name() ?></span>
+												
+												<?= $comment->comment ?>
+												
+												<span class="date"><?= $comment->time_ago() ?></span>
+
+											</p>
 										</div>
 										
 
@@ -149,7 +168,7 @@
 				<section id="mychats-chat">
 
 					<div class="heading">
-						<h3>Discussion</h3>
+						<h3>IN Chat</h3>
 					</div>
 
 					<div class="chat">
@@ -157,13 +176,13 @@
 						<div class="scrollable">
 							<ul>
 								<?php foreach ($chat->get_messages() as $message): ?>
-								<li>
+								<li class="<?= $message->user_is_owner($user->id) ? 'quest-owner' : null ?>">
 									<span class="name">
-										<?= Html::img($message->user->profile_pic(20, 20)) ?>
+										<?php //Html::img($message->user->profile_pic(20, 20)) ?>
 										<?= $message->user->display_name() ?>
 									</span>
 									<p><?= $message->body ?></p>
-									<span class="date">posted <?= $message->time_ago() ?></span>
+									<span class="date"><?= $message->time_ago() ?></span>
 								</li>
 								<?php endforeach; ?>
 							</ul>
@@ -171,7 +190,7 @@
 
 						<?= Form::open(array('action' => "quest/message/{$chat->id}", 'method' => 'POST', 'class' => 'reply')) ?>
 							<textarea name="message" placeholder="Your message..." maxlength="140"></textarea>
-							<button type="submit">send</button>
+							<button type="submit">Reply</button>
 						</form>
 
 

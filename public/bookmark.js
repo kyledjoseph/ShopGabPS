@@ -26,7 +26,6 @@
 
         iframe: null,
 
-
         /** Open child iframe. */
         open: function () {
 
@@ -131,3 +130,4 @@
     inline.observe();
     inline.open();
 });
+

@@ -7,6 +7,7 @@ class Model_Chat extends \Orm\Model
 		'user_id',
 		'name',
 		'description',
+		'purchase_within',
 		'created_at',
 		'updated_at',
 	);
@@ -33,13 +34,6 @@ class Model_Chat extends \Orm\Model
 		'messages' => array(
 			'key_from' => 'id',
 			'model_to' => 'Model_Chat_Message',
-			'key_to' => 'chat_id',
-			'cascade_save' => true,
-			'cascade_delete' => true,
-		),
-		'comments' => array(
-			'key_from' => 'id',
-			'model_to' => 'Model_Chat_Product_Comment',
 			'key_to' => 'chat_id',
 			'cascade_save' => true,
 			'cascade_delete' => true,
@@ -73,6 +67,23 @@ class Model_Chat extends \Orm\Model
 		return 'quest/' . $this->id;
 	}
 
+
+	public function purchase_within()
+	{
+		return ! empty($this->purchase_within) ? $this->purchase_within : '0';
+	}
+
+	public static function purchase_within_fields()
+	{
+		return array(
+			'0' => 'Not Sure',
+			'1' => '1 week',
+			'2' => '2 weeks',
+			'3' => '3 weeks',
+			'4' => '1 month',
+			'5' => 'more than 1 month',
+		);
+	}
 
 
 	/**
@@ -118,7 +129,7 @@ class Model_Chat extends \Orm\Model
 
 	public function get_messages()
 	{
-		return Model_Chat_Message::query()->where('chat_id', $this->id)->order_by('created_at', 'desc')->get();
+		return Model_Chat_Message::query()->where('chat_id', $this->id)->order_by('created_at', 'asc')->get();
 	}
 
 
@@ -133,12 +144,13 @@ class Model_Chat extends \Orm\Model
 		return static::query()->where('id', $chat_id)->get_one();
 	}
 
-	public static function create_chat($user_id, $name, $description)
+	public static function create_chat($user_id, $name, $description, $purchase_within)
 	{
 		$chat = static::forge(array(
-			'user_id'     => $user_id,
-			'name'        => $name,
-			'description' => $description,
+			'user_id'         => $user_id,
+			'name'            => $name,
+			'description'     => $description,
+			'purchase_within' => $purchase_within,
 		));
 		return $chat->save() ? $chat : null;
 	}

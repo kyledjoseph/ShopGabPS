@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+  	<meta charset='utf-8'> 
+
 	<title><?= isset($title) ? $title : 'ItemNation' ?></title>
 	<?= Asset::css('main.css') ?>
 
@@ -57,7 +59,7 @@
 					<div class="user-menu">
 						<ul>
 							<li>
-								<?= Html::anchor('', 'My Account') ?>
+								<?= Html::anchor('user/account', 'My Account') ?>
 							</li>
 							<li>
 								<?= Html::anchor('user/logout', 'Logout') ?>
@@ -168,7 +170,7 @@
 
 					<ul class="footer-social">
 						<li>
-							<a href="">
+							<a href="http://www.facebook.com/ItemNation">
 								<i class="sprites footer-facebook"></i>
 							</a>
 						</li>
@@ -254,7 +256,7 @@
 	<div class="addnew-right">
 		<h3>Use the ItemNation Button</h3>
 
-		<img src="../assets/img/bookmark-helper.png">
+		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/assets/js/bookmark/parent.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><span>Add To ItemNation</span></a>
 	</div>
 
 </div>
@@ -267,6 +269,10 @@
 	<form>
 		<ul>
 			<li>
+				<label>From:</label>
+				<input type="text" value="info@itemnation.com" disabled>
+			</li>
+			<li>
 				<label>To:</label>
 				<input type="text">
 			</li>
@@ -275,6 +281,7 @@
 				<input type="text">
 			</li>
 			<li>
+				<label>Description:</label>
 				<textarea placeholder="I'm excited to be looking for a new product on ItemNation and it would be great to have your help in finding the best one! Please follow the link below."></textarea>
 			</li>
 		</ul>

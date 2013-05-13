@@ -9,6 +9,7 @@ class Model_User extends \Orm\Model
 		'password',
 		'group',
 		'email',
+		'display_name',
 		'first_name',
 		'last_name',
 		'last_login',
@@ -45,8 +46,7 @@ class Model_User extends \Orm\Model
 	 */
 	public function display_name()
 	{
-		$name = $this->name();
-		return empty($name) ? "Display Name" : $name;
+		return empty($this->display_name) ? "Display Name" : $this->display_name;
 	}
 
 	/**
@@ -130,9 +130,9 @@ class Model_User extends \Orm\Model
 	/**
 	 * Create a new chat
 	 */
-	public function create_chat($name, $description)
+	public function create_chat($name, $description, $purchase_within)
 	{
-		return Model_Chat::create_chat($this->id, $name, $description);
+		return Model_Chat::create_chat($this->id, $name, $description, $purchase_within);
 	}
 
 	/**
@@ -159,6 +159,14 @@ class Model_User extends \Orm\Model
 		return Model_User_Auth::get_by_user_and_provider($this->id, $provider);
 	}
 
+	/**
+	 * Is user authenticated with auth provider
+	 */
+	public function is_authenticated_with($provider)
+	{
+		$auth = Model_User_Auth::get_by_user_and_provider($this->id, $provider);
+		return isset($auth->id);
+	}
 
 
 
