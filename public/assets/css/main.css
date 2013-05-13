@@ -397,7 +397,7 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 .chat li .name {position: absolute; top: -20px; left: 0; right: 0; color: #797979; text-align: right; font-size: 12px; padding: 0 10px;}
 .chat li.quest-owner .name {text-align: left;}
 .chat li p {padding: 6px; color: #797979; font-size: 13px;}
-.chat li .date {font-size: 11px;}
+.chat li .date {font-size: 11px; padding: 0 6px;}
 
 #mychats-chat .reply {position: relative; border-top: 1px solid #b0c5ce; height: 80px;}
 #mychats-chat .reply:after {content: ""; z-index: 2; position: absolute; left: 30px; top: -8px;}
