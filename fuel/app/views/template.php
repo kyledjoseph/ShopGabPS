@@ -170,7 +170,7 @@
 
 					<ul class="footer-social">
 						<li>
-							<a href="">
+							<a href="http://www.facebook.com/ItemNation">
 								<i class="sprites footer-facebook"></i>
 							</a>
 						</li>
