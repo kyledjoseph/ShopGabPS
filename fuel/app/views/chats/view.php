@@ -14,7 +14,7 @@
 					<div class="profile">
 						<h2><?= $chat->user->display_name() ?></h2>
 						<figure>
-							<?= Html::img($chat->user->profile_pic()) ?>
+							<?= Html::img($chat->user->profile_pic(80, 80)) ?>
 						</figure>
 					</div>
 
