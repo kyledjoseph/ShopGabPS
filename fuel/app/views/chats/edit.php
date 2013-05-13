@@ -1,7 +1,7 @@
 		
 	<section id="main-section">
 			
-		<h1>Edit Chat</h1>
+		<h1>Edit Quest</h1>
 
 		<?= Form::open() ?>
 
@@ -16,7 +16,7 @@
 				</li>
 			</ul>
 					
-			<button type="submit" class="btn">Update</button>
+			<button type="submit" class="btn green2">Update</button>
 
 		<?= Form::close() ?>
 
