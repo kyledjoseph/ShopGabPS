@@ -181,7 +181,7 @@
 								<?php foreach ($chat->get_messages() as $message): ?>
 								<li class="<?= $message->user_is_owner($user->id) ? 'quest-owner' : null ?>">
 									<span class="name">
-										<?= Html::img($message->user->profile_pic(20, 20)) ?>
+										<?php //Html::img($message->user->profile_pic(20, 20)) ?>
 										<?= $message->user->display_name() ?>
 									</span>
 									<p><?= $message->body ?></p>
