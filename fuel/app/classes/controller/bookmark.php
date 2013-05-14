@@ -10,11 +10,16 @@ class Controller_Bookmark extends Controller_App
 		
 		if (Fuel::$env == 'production')
 		{
-			$this->template->domain = 'http://beta.itemnation.com/'
+			$this->domain = 'http://beta.itemnation.com/';
 		}
 		else
 		{
-			$this->template->domain = 'http://itemnation.dev/'
+			$this->domain = 'http://itemnation.dev/';
+		}
+
+		if (! Input::is_ajax())
+		{
+			$this->template->domain = $this->domain;
 		}
 
 		//Config::set('profiling', false); // not working
