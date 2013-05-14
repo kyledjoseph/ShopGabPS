@@ -38,12 +38,12 @@
                     id: 'itemnation-frame',
                     src: 'http://itemnation.dev/bookmark/view?inline=' + encodeURIComponent(inline.info.url) + '&cacheblock=' + Math.floor(Math.random() * 99999999999999999999999)
                 }).css({
-                    width: '290px',
-                    height: '760px',
-                    position: 'fixed',
-                    top: '10px',
-                    right: '20px',
-                    border: '0',
+                    width: '290px !important',
+                    height: '760px !important',
+                    position: 'fixed !important',
+                    top: '10px !important',
+                    right: '20px !important',
+                    border: '0 !important',
                     zIndex: 99999999999999999999
                 });
 
