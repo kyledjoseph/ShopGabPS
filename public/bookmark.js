@@ -45,10 +45,10 @@
                 window.addEventListener("message", function (e) {
                     console.log('child: \"' + e.data + '\"');
                     switch (e.data) {
-                    case 'ready':
+                        case 'ready':
                         inline.report();
                         break;
-                    case 'terminate':
+                        case 'terminate':
                         inline.close();
                         break;
                     }
@@ -74,15 +74,17 @@
             }
 
             $('img').each(function () {
-                if (($(this).width() > '60') && ($(this).height() > '60')) {
-                    if ((($(this).width() * 4) > $(this).height()) && (($(this).height() * 4) > $(this).width())) {
-                        var image = {
-                            height: $(this).height(),
-                            src: $(this).prop('src'),
-                            width: $(this).width()
-                        };
+                if (this.complete) {
+                    if (($(this)[0].naturalWidth > '60') && ($(this)[0].naturalHeight > '60')) {
+                        if ((($(this)[0].naturalWidth * 4) > $(this)[0].naturalHeight) && (($(this)[0].naturalHeight * 4) > $(this)[0].naturalWidth)) {
+                            var image = {
+                                height: $(this)[0].naturalHeight,
+                                src: $(this).prop('src'),
+                                width: $(this)[0].naturalWidth
+                            };
 
-                        inline.info.images.push(image);
+                            inline.info.images.push(image);
+                        }
                     }
                 }
             });
@@ -116,7 +118,7 @@
             document.getElementById('itemnation-frame').contentWindow.postMessage(
                 message,
                 "http://itemnation.dev/assets/js/child.js"
-            );
+                );
         }
     };
 
