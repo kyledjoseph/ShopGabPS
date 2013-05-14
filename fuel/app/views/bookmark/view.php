@@ -8,10 +8,13 @@
 
 		<ul>
 			<li>
-				<input type="text" placeholder="Product Name" maxlength="50">
+				<input type="text" class="title" placeholder="Product Name" maxlength="50">
 			</li>
 			<li>
-				<textarea placeholder="Description"></textarea>
+				<input type="text" class="price" placeholder="Price" maxlength="50">
+			</li>
+			<li>
+				<textarea class="description" placeholder="Description"></textarea>
 			</li>
 
 			<li id="add_to">
