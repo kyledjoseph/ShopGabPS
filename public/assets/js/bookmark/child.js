@@ -58,19 +58,19 @@ $(document).ready(function () {
 
             switch (direction) {
                 case 'left':
-                next = current - 1;
-                new_source = $('#' + next).attr('src');
-                $('.product-image').attr('id', next);
-                $('.product-image').attr('src', new_source);
+                console.log('stahp')
                 break;
                 case 'right':
-                next = current + 1;
-                if (next > (index + 4)) {
-                    child.shift('left');
-                }
-                new_source = $('#' + next).attr('src');
-                $('.product-image').attr('id', next);
-                $('.product-image').attr('src', new_source);
+                    console.log(child.imageArraySize)
+                    if (current < (child.imageArraySize)) {
+                    next = current + 1;
+                    if (next > (index + 4)) {
+                        child.shift('left');
+                    }
+                    new_source = $('#' + next).attr('src');
+                    $('.product-image').attr('id', next);
+                    $('.product-image').attr('src', new_source);
+                    }
                 break;
             }
         },
