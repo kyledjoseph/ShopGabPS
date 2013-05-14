@@ -108,6 +108,16 @@ child = {
             child.terminate()
         })
 
+        $('#form_add_to').change(function() {
+            var add_to = $(this).val();
+            child.display_options(add_to);
+        });
+
+        $('#form_friend').change(function() {
+            var friend_id = $(this).val();
+            child.load_friend_quests(friend_id);
+        });
+
         window.addEventListener("message", function(e) {
             console.log('parent: \"' + e.data + '\"')
             child.populate(e.data)
@@ -121,6 +131,49 @@ child = {
         $('.itemnation-box').fadeIn(500)
 
 
+    },
+
+    display_options: function(add_to) {
+        console.log('child.display_options(' + add_to + ')');
+        if (add_to == 'my')
+        {
+            $('#friends').hide();
+            $('#friend_quests').hide();
+            $('#new_quest').hide();
+            $('#my_quests').show();
+        }
+        if (add_to == 'friend')
+        {
+            $('#friends').show();
+            $('#friend_quests').hide();
+            $('#new_quest').hide();
+            $('#my_quests').hide();
+
+            child.load_friend_quests($('#form_friend').val());
+        }
+        if (add_to == 'new')
+        {
+            $('#friends').hide();
+            $('#friend_quests').hide();
+            $('#new_quest').show();
+            $('#my_quests').hide();
+        }
+    },
+
+    load_friend_quests: function(friend_id) {
+        console.log('child.load_friend_quests(' + friend_id + ')');
+
+        if (friend_id == 'none') return;
+
+        $.ajax({
+            url: 'http://beta.itemnation.com/bookmark/friend_quests/' . friend_id,
+            type: 'GET',
+            timeout: 30000,
+            dataType: 'json',
+            success: function(data) {
+                $('#friend_quests').show();
+            }
+        })
     },
 
     populate: function(data) {

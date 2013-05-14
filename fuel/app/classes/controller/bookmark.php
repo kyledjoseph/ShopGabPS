@@ -202,7 +202,36 @@ class Controller_Bookmark extends Controller_App
 	}
 
 
+	/**
+	 * 
+	 */
+	public function get_friend_quests($friend_id)
+	{
+		if (! $this->user_logged_in())
+		{
+			return Response::forge(json_encode(array(
+				'success' => false,
+				'type'    => 'auth',
+			)));
+		}
 
+		$friend = $this->user->get_friend($friend_id);
+
+		if (! isset($friend))
+		{
+			return Response::forge(json_encode(array(
+				'success' => false,
+				'type'    => 'invalid_friend_id',
+			)));
+		}
+
+
+
+		return Response::forge(json_encode(array(
+			'success' => true,
+			'friends'  => $friend->select_chat(),
+		)));
+	}
 	
 
 

@@ -136,6 +136,37 @@ class Model_User extends \Orm\Model
 	}
 
 	/**
+	 * undocumented class variable
+	 */
+	public function get_friends()
+	{
+		return Model_User::query()->order_by('display_name', 'asc')->get();
+	}
+
+	/**
+	 * undocumented class variable
+	 */
+	public function select_friends()
+	{
+		$options = array();
+		$options['select'] = 'Select';
+		foreach ($this->get_friends() as $friend)
+		{
+			$options[$friend->id] = $friend->display_name();
+		}
+		return empty($options) ? array('none' => 'No Friends Available') : $options;
+	}
+
+	/**
+	 * undocumented class variable
+	 */
+	public function get_friend($friend_id)
+	{
+		return Model_User::query()->where('id', $friend_id)->get_one();
+	}
+
+
+	/**
 	 * Authenticate a user with a provider
 	 */
 	public function authenticate_with($user_info)
