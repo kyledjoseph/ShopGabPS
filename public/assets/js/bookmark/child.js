@@ -192,7 +192,6 @@ $(document).ready(function () {
                 type: 'POST',
                 timeout: 30000,
                 dataType: 'text',
-                <<<<<<< HEAD
                 complete: function () {
                     child.terminate();
                 }
@@ -213,4 +212,6 @@ $(document).ready(function () {
                 );
         }
     };
+
+    child.initialize();
 });
