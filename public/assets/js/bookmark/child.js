@@ -58,10 +58,17 @@ $(document).ready(function () {
 
             switch (direction) {
                 case 'left':
-                console.log('stahp')
+                    if (current > 0) {
+                    next = current - 1;
+                    if (next < index) {
+                        child.shift('left');
+                    }
+                    new_source = $('#' + next).attr('src');
+                    $('.product-image').attr('id', next);
+                    $('.product-image').attr('src', new_source);
+                    }
                 break;
                 case 'right':
-                    console.log(child.imageArraySize)
                     if (current < (child.imageArraySize)) {
                     next = current + 1;
                     if (next > (index + 4)) {
