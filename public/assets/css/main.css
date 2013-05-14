@@ -336,9 +336,9 @@ header nav .settings-icon {position: absolute; top: 0; right: 0px;}
 
 #mychats, #mychats-chat {border: 1px solid #99b4c0; border-top: none; border-radius: 0 0 6px 6px;}
 #mychats .heading, #mychats-chat .heading {color: #fff; text-shadow: 0 1px #888; background: -moz-linear-gradient(top, #c1dce9, #99b4c0); filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c1dce9', endColorstr='#99b4c0'); background: -webkit-gradient(linear, left top, left bottom, from(#c1dce9), to(#99b4c0));}
-#mychats .heading h3, #mychats-chat .heading h3 {font-size: 18px; line-height: 32px; padding-left: 10px;}
+#mychats .heading h3, #mychats-chat .heading h3 {font-size: 18px; line-height: 38px; padding-left: 10px;}
 
-#mychats .heading .btn {position: relative; top: 3px; right: 5px;float: right;}
+#mychats .heading .btn {position: relative; top: 6px; right: 5px;float: right;}
 
 #mychats > ul {padding: 15px 10px;}
 #mychats > ul > li {position: relative; border: 1px solid #bfdbe8; min-height: 100px; margin: 0 0 20px;}
@@ -588,7 +588,7 @@ aside {width: 300px;}
 /****
 * Main Area 
 ***/
-#main-section h1 {color: #9dbf25; font-weight: bold; padding-bottom: 10px; font-size: 18px; line-height: 32px; margin: 0 0 15px; border-bottom: 1px solid #c3c3c3; box-shadow: 0 1px #fff;}
+#main-section h1 {color: #004a76; font-weight: bold; padding-bottom: 10px; font-size: 18px; line-height: 32px; margin: 0 0 15px; border-bottom: 1px solid #c3c3c3; box-shadow: 0 1px #fff;}
 
 #main-section .new-quest {margin-left: 10px; padding: 5px 14px;}
 
@@ -677,6 +677,8 @@ footer .footer-bottom .footer-logo {position: absolute; left: 50%; top: 38px; ma
 #invite-friends li input {background: #f2f2f2; width: 243px; padding: 0 5px; line-height: 28px; border: 1px solid #b6bcc1; box-shadow: inset 0 1px 1px #f5f5f5; border-radius: 2px;}
 #invite-friends li textarea {background: #f2f2f2; width: 490px; height: 200px; padding: 5px; font-size: 13px; font-family: Arial; border: 1px solid #b6bcc1; box-shadow: inset 0 1px 1px #f5f5f5; border-radius: 2px; resize: none;}
 #invite-friends form button {float: right; padding: 6px 26px; font-size: 15px; margin-right: 2px;}
+#invite-friends li input[disabled] {background: transparent!important; border: none!important; box-shadow: none!important;}
+
 
 #addnew-product {padding: 10px 20px; height: auto;}
 #addnew-product h2 {font: normal 26px/32px Arial; color: #014672; padding: 0 0 10px;}
