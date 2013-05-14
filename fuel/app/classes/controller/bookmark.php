@@ -7,6 +7,16 @@ class Controller_Bookmark extends Controller_App
 	public function before()
 	{
 		parent::before();
+		
+		if (Fuel::$env == 'production')
+		{
+			$this->template->domain = 'http://beta.itemnation.com/'
+		}
+		else
+		{
+			$this->template->domain = 'http://itemnation.dev/'
+		}
+
 		//Config::set('profiling', false); // not working
 	}
 
