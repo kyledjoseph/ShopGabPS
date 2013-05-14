@@ -19,7 +19,9 @@
 					</div>
 
 					<div class="user-message">
+					<!-- question sign
 						<i class="sprites help-icon"></i>
+					-->
 						<p><?= $chat->description() ?></p>
 						<p><?= Html::anchor("{$chat->url()}/edit", 'edit') ?></p>
 					</div>

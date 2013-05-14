@@ -168,6 +168,14 @@
 				<div>
 					<h3>Connect with us.</h3>
 
+<script>
+$(function () {
+	$('.footer-social li a').click(function() {
+		return false;
+	});
+})
+</script>
+
 					<ul class="footer-social">
 						<li>
 							<a href="http://www.facebook.com/ItemNation">
@@ -175,7 +183,7 @@
 							</a>
 						</li>
 						<li>
-							<a href="">
+							<a href="https://twitter.com/itemnation">
 								<i class="sprites footer-twitter"></i>
 							</a>
 						</li>
@@ -254,7 +262,7 @@
 	</div>
 
 	<div class="addnew-right">
-		<h3>Use the ItemNation Button</h3>
+		<h3>How do I add an item?</h3>
 
 		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/assets/js/bookmark/parent.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><span>Add To ItemNation</span></a>
 	</div>
@@ -262,9 +270,9 @@
 </div>
 
 <div id="invite-friends" class="dialog">
-	<h2>Invite Friends to Join Your "My Chats"</h2>
+	<h2>Invite Friends to Join Your Quest</h2>
 
-	<h3>Invite a friend by email <strong>or</strong> sign in to facebook.</h3>
+	<h3>Invite a friend by email.</h3>
 
 	<form>
 		<ul>
