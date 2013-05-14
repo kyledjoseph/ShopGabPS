@@ -17,6 +17,9 @@ GitHub repository for ItemNation ([project overview](http://youtu.be/_VT-QjDqVaw
 * **Pass:** Techdev12
 * **Childhood Nickname:** beaver
 
+### Servers
+* **beta** c7B6gdMOyroisOS
+
 ### Mailchimp
 
 * **ID:** kyle@itemnation.com

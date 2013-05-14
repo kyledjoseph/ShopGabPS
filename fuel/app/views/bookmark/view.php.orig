@@ -5,16 +5,22 @@
 		
 		<div class="gallery">
 		</div>
+<<<<<<< HEAD
+		<input type="text" class="title" placeholder="Product Name" maxlength="50">
+		<input type="text" class="price" placeholder="Price" maxlength="10">
+		<textarea class="description" placeholder="Description"></textarea>
+		
+		<label for="add_to">add to</label>
+		<?= Form::select('add_to', null, array('chat' => 'Chat', 'wishlist' => 'Wish List', 'my_items' => 'My Items')) ?>
+=======
+>>>>>>> master
 
 		<ul>
 			<li>
-				<input type="text" class="title" placeholder="Product Name" maxlength="50">
+				<input type="text" placeholder="Product Name" maxlength="50">
 			</li>
 			<li>
-				<input type="text" class="price" placeholder="Price" maxlength="50">
-			</li>
-			<li>
-				<textarea class="description" placeholder="Description"></textarea>
+				<textarea placeholder="Description"></textarea>
 			</li>
 
 			<li>

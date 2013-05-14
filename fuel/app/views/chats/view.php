@@ -1,20 +1,12 @@
 			<section id="mychats-user">
 
-			<!-- Will not show for now
-				<ul class="breadcrumb">
-					<li><?= Html::anchor('quest', 'My Quests') ?> <span class="divider">/</span></li>
+				<!-- <ul class="breadcrumb">
+					<li><?= Html::anchor('/', 'My Quests') ?> <span class="divider">/</span></li>
 					<li class="active"><?= $chat->name() ?></li>
-				</ul>
-			-->
+				</ul> -->
 
 				<div class="purchase-head">
 					<h1>Please help me find a <span><?= $chat->name() ?></span></h1>
-					<span>Purchase within</span>
-					
-					<?= Form::open(array('id' => 'purchase_within_form', 'action' => "quest/within/{$chat->id}")) ?>
-						<?= Form::select('purchase_within', $chat->purchase_within(), Model_Chat::purchase_within_fields()) ?>
-					<?= Form::close() ?>
-
 				</div>
 
 				<div>
@@ -22,9 +14,8 @@
 					<div class="profile">
 						<h2><?= $chat->user->display_name() ?></h2>
 						<figure>
-							<?= Html::img($chat->user->profile_pic()) ?>
+							<?= Html::img($chat->user->profile_pic(80, 80)) ?>
 						</figure>
-
 					</div>
 
 					<div class="user-message">
@@ -34,6 +25,12 @@
 						<p><?= $chat->description() ?></p>
 						<p><?= Html::anchor("{$chat->url()}/edit", 'edit') ?></p>
 					</div>
+
+					<span>Purchase within</span>
+					
+					<?= Form::open(array('id' => 'purchase_within_form', 'action' => "quest/within/{$chat->id}")) ?>
+						<?= Form::select('purchase_within', $chat->purchase_within(), Model_Chat::purchase_within_fields()) ?>
+					<?= Form::close() ?>
 
 					<div class="invites">
 

@@ -299,6 +299,8 @@ $(function () {
 </div>
 
 	<?= View::forge('analytics/site') ?>
-
+	<a href="/feedback" class="feedback">
+		<? echo Asset::img('feedback.png') ?>
+	</a>
   </body>
 </html>

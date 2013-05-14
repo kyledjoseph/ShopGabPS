@@ -89,6 +89,7 @@ html[xmlns] .clearfix {display: block;}
 
 .breadcrumb {overflow: hidden;}
 .breadcrumb li {float: left;}
+.feedback {position: fixed; right: 0; top: 80%;}
 
 /****
 * Header
