@@ -21,10 +21,10 @@ class Controller_User extends Controller_App
 
 		if (! $login_success)
 		{
-			$this->redirect('user/login', 'error', 'Invalid login.');
+			$this->redirect('user/login', 'error', 'Invalid email address or password');
 		}
 
-		$this->redirect('/', 'success', 'You are now logged in.');
+		$this->redirect('/');
 	}
 
 
@@ -80,10 +80,12 @@ class Controller_User extends Controller_App
 
 		if (! $login_success)
 		{
+			throw new Exception("Could not log in social auth user to provider: '{$provider}'", 1);
+			
 			$this->redirect('/', 'error', 'An error has occurred');
 		}
 
-		$this->redirect('/', 'info', 'You are now logged in');
+		$this->redirect('/');
 
 	}
 
@@ -106,13 +108,13 @@ class Controller_User extends Controller_App
 
 		if (! $registration_success)
 		{
-			$this->redirect('user/register', 'error', 'Invalid email or password.');
+			$this->redirect('user/register', 'error', 'Invalid email address or password');
 		}
 
 		// log user in
 		$this->auth->login($post->email, $post->password);
 
-		$this->redirect('/', 'info', 'You are now registered.');
+		$this->redirect('/');
 	}
 
 
@@ -135,7 +137,7 @@ class Controller_User extends Controller_App
 	public function get_logout()
 	{
 		$this->auth->logout();
-		$this->redirect('/', 'info', 'You are now logged out');
+		$this->redirect('/');
 	}
 
 
@@ -217,7 +219,7 @@ class Controller_User extends Controller_App
 		$this->user->email        = $post->email;
 		$this->user->save();
 
-		$this->redirect('user/account', 'success', 'Account info updated');
+		$this->redirect('user/account', 'success', 'Account information updated');
 	}
 
 
@@ -239,6 +241,7 @@ class Controller_User extends Controller_App
 		// tmp
 		if (empty($this->user->password))
 		{
+			throw new Exception("Could not change password for user with none set", 1);
 			$this->redirect('user/account', 'error', 'Password empty');
 		}
 

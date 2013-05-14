@@ -13,6 +13,16 @@ class Controller_Chats extends Controller_App
 		$this->template->active_nav = 'activity';
 		$this->template->mychats_logo = true;
 	}
+
+
+	/**
+	 * 
+	 */
+	public function redirect_invalid_quest()
+	{
+		$this->redirect('quests', 'info', 'Invalid quest');
+	}
+
 	
 	/**
 	 * Show all chats of the current user
@@ -34,7 +44,7 @@ class Controller_Chats extends Controller_App
 		
 		if (! isset($chat))
 		{
-			$this->redirect('quests', 'info', 'Invalid quest');
+			$this->redirect_invalid_quest();
 		}
 
 		Casset::js('lib/jquery.tipTip.minified.js');
@@ -56,7 +66,7 @@ class Controller_Chats extends Controller_App
 		
 		if (! isset($chat))
 		{
-			$this->redirect('quests', 'info', 'Invalid quest');
+			$this->redirect_invalid_quest();
 		}
 
 		$post = $this->post_data('comment', 'chat_product_id');
@@ -65,11 +75,11 @@ class Controller_Chats extends Controller_App
 
 		if (! isset($chat_product))
 		{
-			$this->redirect('quests', 'info', 'Invalid quest');
+			$this->redirect_invalid_quest();
 		}
 
 		$chat_product->add_comment($chat_product->id, $this->user->id, $post->comment);
-		$this->redirect($chat->url(), 'info', 'Comment added');
+		$this->redirect($chat->url());
 	}
 
 
@@ -82,12 +92,12 @@ class Controller_Chats extends Controller_App
 		
 		if (! isset($chat))
 		{
-			$this->redirect('quests', 'info', 'Invalid quest');
+			$this->redirect_invalid_quest();
 		}
 
 		if ($chat->user_id !== $this->user->id)
 		{
-			$this->redirect('quests', 'info', 'Invalid quest');
+			$this->redirect_invalid_quest();
 		}
 
 		$this->template->body = View::forge('chats/edit', array(
@@ -101,12 +111,12 @@ class Controller_Chats extends Controller_App
 		
 		if (! isset($chat))
 		{
-			$this->redirect('quests', 'info', 'Invalid quest');
+			$this->redirect_invalid_quest();
 		}
 
 		if ($chat->user_id !== $this->user->id)
 		{
-			$this->redirect('quests', 'info', 'Invalid quest');
+			$this->redirect_invalid_quest();
 		}
 
 		$post = $this->post_data('name', 'description');
@@ -115,7 +125,7 @@ class Controller_Chats extends Controller_App
 		$chat->description = $post->description;
 		$chat->save();
 
-		$this->redirect($chat->url(), 'info', 'Quest updated');
+		$this->redirect($chat->url());
 	}
 
 
@@ -156,16 +166,16 @@ class Controller_Chats extends Controller_App
 		
 		if (! isset($chat))
 		{
-			$this->redirect('quests', 'info', 'Invalid quest');
+			$this->redirect_invalid_quest();
 		}
 
 		if ($chat->user_id !== $this->user->id)
 		{
-			$this->redirect('quests', 'info', 'Invalid quest');
+			$this->redirect_invalid_quest();
 		}
 
 		$chat->delete();
-		$this->redirect($chat->url(), '/', 'Quest deleted');
+		$this->redirect($chat->url());
 	}
 
 
@@ -185,7 +195,7 @@ class Controller_Chats extends Controller_App
 	{
 		$post = $this->post_data('name', 'description', 'purchase_within');
 		$chat = $this->user->create_chat($post->name, $post->description, $post->purchase_within);
-		$this->redirect($chat->url(), 'success', 'Chat created.');
+		$this->redirect($chat->url());
 	}
 
 
@@ -195,12 +205,12 @@ class Controller_Chats extends Controller_App
 	public function post_message($chat_id)
 	{
 		$chat = $this->user->get_chat($chat_id);
-		isset($chat) or $this->redirect('chats', 'info', 'Invalid quest');
+		isset($chat) or $this->redirect_invalid_quest();
 
 		$post = $this->post_data('message');
 
 		$chat->new_message($this->user->id, $post->message);
-		$this->redirect($chat->url(), 'success', 'Message sent');
+		$this->redirect($chat->url());
 		//$message = $this->
 	}
 
@@ -211,7 +221,7 @@ class Controller_Chats extends Controller_App
 	public function get_like($chat_id, $chat_product_id)
 	{
 		$chat = $this->user->get_chat($chat_id);
-		isset($chat) or $this->redirect('chats', 'info', 'Invalid quest');
+		isset($chat) or $this->redirect_invalid_quest();
 
 		$chat_product = $chat->get_chat_product($chat_product_id);
 		isset($chat_product) or $this->redirect($chat->url(), 'info', 'Invalid product');
@@ -234,7 +244,7 @@ class Controller_Chats extends Controller_App
 	public function get_dislike($chat_id, $chat_product_id)
 	{
 		$chat = $this->user->get_chat($chat_id);
-		isset($chat) or $this->redirect('quests', 'info', 'Invalid quest');
+		isset($chat) or $this->redirect_invalid_quest();
 
 		$chat_product = $chat->get_chat_product($chat_product_id);
 		isset($chat_product) or $this->redirect($chat->url(), 'info', 'Invalid product');
@@ -242,7 +252,7 @@ class Controller_Chats extends Controller_App
 		// has the user already voted?
 		if ($chat_product->has_user_voted($this->user->id))
 		{
-			$this->redirect($chat->url(), 'info', 'You have already voted');
+			$this->redirect($chat->url());
 		}
 		
 		// like the hat product
