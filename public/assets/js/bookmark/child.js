@@ -167,7 +167,7 @@ $(document).ready(function () {
             if (friend_id == 'none') return;
 
             $.ajax({
-                url: 'http://beta.itemnation.com/bookmark/friend_quests/' . friend_id,
+                url: '/bookmark/friend_quests/' . friend_id,
                 type: 'GET',
                 timeout: 30000,
                 dataType: 'json',
@@ -249,7 +249,7 @@ $(document).ready(function () {
             });
 
             $.ajax({
-                url: 'http://itemnation.dev/bookmark/add',
+                url: '/bookmark/add',
                 data: child.info,
                 type: 'POST',
                 timeout: 30000,
