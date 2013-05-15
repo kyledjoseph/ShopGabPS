@@ -3,6 +3,8 @@ return array(
 	'_root_'  => 'home/index',
 	'_404_'   => 'error/404',
 
+	'bookmark' => 'bookmark/view',
+
 	'quest/create'             => 'chats/create',
 	'quest/delete/(:any)'      => 'chats/delete/$1',
 	'quest/like/(:any)'        => 'chats/like/$1',
