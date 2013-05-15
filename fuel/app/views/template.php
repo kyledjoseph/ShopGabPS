@@ -235,8 +235,8 @@ $(function () {
 			<li>
 				<form>
 					<label>Enter a URL:</label>
-					<input type="text">
-					<button type="submit" class="btn green2">GO</button>
+					<input id="open_url_location" type="text">
+					<button id="open_url" type="submit" class="btn green2">GO</button>
 				</form>
 			</li>
 		</ul>
@@ -264,7 +264,7 @@ $(function () {
 	<div class="addnew-right">
 		<h3>How do I add an item?</h3>
 
-		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/assets/js/bookmark/parent.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><span>Add To ItemNation</span></a>
+		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/bookmark.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><span>Add To ItemNation</span></a>
 	</div>
 
 </div>
