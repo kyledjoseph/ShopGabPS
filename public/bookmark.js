@@ -117,7 +117,7 @@
         talk: function (message) {
             document.getElementById('itemnation-frame').contentWindow.postMessage(
                 message,
-                "/assets/js/child.js"
+                "http://" + document.domain + "/assets/js/child.js"
                 );
         }
     };
