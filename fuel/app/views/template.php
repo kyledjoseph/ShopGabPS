@@ -169,11 +169,11 @@
 					<h3>Connect with us.</h3>
 
 <script>
-$(function () {
-	$('.footer-social li a').click(function() {
-		return false;
-	});
-})
+// $(function () {
+// 	$('.footer-social li a').click(function() {
+// 		return false;
+// 	});
+// })
 </script>
 
 					<ul class="footer-social">
@@ -188,7 +188,7 @@ $(function () {
 							</a>
 						</li>
 						<li>
-							<a href="">
+							<a href="https://plus.google.com/113964272651935695754" rel="publisher">
 								<i class="sprites footer-google"></i>
 							</a>
 						</li>
