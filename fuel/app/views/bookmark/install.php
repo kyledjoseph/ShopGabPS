@@ -1,1 +1,2 @@
-<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/bookmark.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();">Add To ItemNation</a>
+<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/bookmark?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();">Add To ItemNation</a>
+<a href="javascript:(function(){var e=document.createElement('script');e.src='http://itemnation.dev/bookmark?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();">Add To ItemNation.dev</a>
