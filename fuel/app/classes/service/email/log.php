@@ -2,7 +2,7 @@
 
 class Service_Email_Log extends \Orm\Model
 {
-	protected static $_table_name = 'users';
+	protected static $_table_name = 'log_emails';
 	protected static $_properties = array(
 		'id',
 		'to_name',
@@ -25,4 +25,10 @@ class Service_Email_Log extends \Orm\Model
 			'mysql_timestamp' => false,
 		),
 	);
+
+	public static function log_event($attr)
+	{
+		$log = static::forge($attr);
+		return $log->save() ? $log : null;
+	}
 }

@@ -2,41 +2,39 @@
 
 class Service_Email
 {
-	public static function send($email)
+	public static function send($attr)
 	{
-		// valid $email['type'] [invite,register,password_reset]
+		// valid $attr['type'] [invite,register,password_reset]
 
-		if (empty($email['from_name']))
+		if (empty($attr['from_name']))
 		{
-			$email['from_name'] = $email['from_addr'];
+			$attr['from_name'] = $attr['from_addr'];
 		}
 
-		if (empty($email['to_name']))
+		if (empty($attr['to_name']))
 		{
-			$email['to_name'] = $email['to_addr'];
+			$attr['to_name'] = $attr['to_addr'];
 		}
 
 
 		$email = Email::forge();
 
-		$email->from($email['from_addr'], $email['from_name']);
-		$email->to($email['to_addr'], $email['to_name']);
+		$email->from($attr['from_addr'], $attr['from_name']);
+		$email->to($attr['to_addr'], $attr['to_name']);
 
-		$email->subject($email['subject']);
-		$email->body($email['body']);
+		$email->subject($attr['subject']);
+		$email->body($attr['body']);
 
 		$email->send();
 
 		$log = Service_Email_Log::log_event(array(
-			'to_name'   => $email['to_name'],
-			'to_addr'   => $email['to_addr'],
-			'from_name' => $email['from_name'],
-			'from_addr' => $email['from_addr'],
-			'subject'   => $email['subject'],
-			'body'      => $email['body'],
+			'to_name'   => $attr['to_name'],
+			'to_addr'   => $attr['to_addr'],
+			'from_name' => $attr['from_name'],
+			'from_addr' => $attr['from_addr'],
+			'subject'   => $attr['subject'],
+			'body'      => $attr['body'],
 		));
-
-
 
 	}
 }

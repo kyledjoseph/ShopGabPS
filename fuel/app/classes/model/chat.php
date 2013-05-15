@@ -67,6 +67,11 @@ class Model_Chat extends \Orm\Model
 		return 'quest/' . $this->id;
 	}
 
+	public function invite_url()
+	{
+		return 'quest/invite/' . $this->id;
+	}
+
 
 	public function purchase_within()
 	{

@@ -156,6 +156,38 @@ class Controller_Chats extends Controller_App
 
 
 
+	/**
+	 *
+	 */
+	public function post_invite($chat_id)
+	{
+		$chat = $this->user->get_chat($chat_id);
+		
+		if (! isset($chat))
+		{
+			$this->redirect_invalid_quest();
+		}
+
+		// if ($chat->user_id !== $this->user->id)
+		// {
+		// 	$this->redirect($chat->url());
+		// }
+
+		$post = $this->post_data('to', 'subject', 'description');
+
+		Service_Email::send(array(
+			'to_addr'   => $post->to,
+			'from_name' => 'info@itemnation.com',
+			'from_addr' => 'info@itemnation.com',
+			'subject'   => $post->subject,
+			'body'      => $post->description,
+		));
+
+		$this->redirect($chat->url(), 'info', "Invitation to '{$post->to}' has been sent");
+	}
+
+
+
 
 	/**
 	 * Delete a chat

@@ -262,6 +262,7 @@ return array(
 		'packages'  => array(
 			'auth',
 			'casset',
+			'email',
 			'orm',
 			'tinychimp',
 		),
