@@ -36,7 +36,7 @@
                 inline.iframe = document.createElement('iframe');
                 $(inline.iframe).attr({
                     id: 'itemnation-frame',
-                    src: 'http://itemnation.dev/bookmark/view?inline=' + encodeURIComponent(inline.info.url) + '&cacheblock=' + Math.floor(Math.random() * 99999999999999999999999),
+                    src: 'http://' + document.domain + '/bookmark/view?inline=' + encodeURIComponent(inline.info.url) + '&cacheblock=' + Math.floor(Math.random() * 99999999999999999999999),
                     style: 'width: 290px !important; height: 760px !important; position: fixed !important; top: 10px !important; right: 20px !important; border: 0 !important; z-index: 99999999999999999 !important;'
                 });
 
@@ -117,7 +117,7 @@
         talk: function (message) {
             document.getElementById('itemnation-frame').contentWindow.postMessage(
                 message,
-                "http://itemnation.dev/assets/js/child.js"
+                "/assets/js/child.js"
                 );
         }
     };
