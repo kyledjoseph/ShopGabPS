@@ -25,7 +25,7 @@ $(document).ready(function () {
         sorted: [],
         inlineURL: '',
 
-        /** Move gallery thumbnails left or right. */
+        /* Move entire gallery left or right.. */
         shift: function (direction) {
             console.log('child.shift(' + direction + ')');
             var shifted, id;
@@ -49,6 +49,7 @@ $(document).ready(function () {
             }
         },
 
+        /* Move current image left or right through thumbnails. */
         move: function (direction) {
             console.log('child.move(' + direction + ')');
             var index, next, current, new_source;
@@ -82,9 +83,10 @@ $(document).ready(function () {
             }
         },
 
-        /** Set gallery's index (left-most thumbnail). */
+        /* Set gallery's index (left-most thumbnail). */
         gallery: function (index) {
             console.log('child.gallery(' + index + ')');
+
             var count = 1;
             var size = 0;
             var largest = 0;
@@ -92,11 +94,13 @@ $(document).ready(function () {
             var source = '';
             var drawn = 0;
             child.sorted = [];
+            arraySize = child.imageArraySize; 
+
+            /* Truncate gallery. */
             $('.gallery').html('');
 
+            /* Why isn't this breaking when we move right from index 5? */
             $('.product-image').attr('id', index);
-
-            arraySize = child.imageArraySize;        
 
             while (count <= arraySize) {
                 $.each(child.info.images, function () {
@@ -132,7 +136,6 @@ $(document).ready(function () {
             });
         },
 
-        /**  */
         display_options: function(add_to) {
             console.log('child.display_options(' + add_to + ')');
             if (add_to === 'my')
@@ -160,7 +163,6 @@ $(document).ready(function () {
             }
         },
 
-        /**  */
         load_friend_quests: function(friend_id) {
             console.log('child.load_friend_quests(' + friend_id + ')');
             if (friend_id !== 'none') {
@@ -177,10 +179,13 @@ $(document).ready(function () {
             
         },
 
-        /** Set event handlers and listeners. */
+        /* Set event handlers and listeners. */
         initialize: function () {
             console.log('child.initialize()');
+
+            /* Save inline parent's URL for communication. */
             child.inlineURL = urlParam('inline');
+
             $('.add').click(function () {
                 child.send();
             });
@@ -199,18 +204,21 @@ $(document).ready(function () {
                 child.load_friend_quests(friend_id);
             });
 
+            /* Populate the bookmarklet with any information sent by inline. */
             window.addEventListener("message", function (e) {
                 console.log('inline: \"' + e.data + '\"');
                 child.populate(e.data);
             });
 
+            /* Tell inline we're ready, and fade in. */
             child.talk('ready');
             $('.itemnation-box').fadeIn(500);
         },
 
         /** Pre-fill input forms and gallery. */
         populate: function (data) {
-            console.log('child.populate()');
+            console.log('child.populate(' + data +')');
+
             child.info = jQuery.parseJSON(data);
 
             $('.title').val(child.info.name);
@@ -236,10 +244,11 @@ $(document).ready(function () {
             child.gallery(1);
         },
 
-        /** Send information to ItemNation */
+        /* Send information to ItemNation */
         send: function () {
             console.log('child.send()');
 
+            /* Replace info object with current inputs. */
             $.extend(child.info, {
                 name: $('.title').val(),
                 description: $('.description').val(),
@@ -248,6 +257,7 @@ $(document).ready(function () {
                 chat_id: $("select[name='chat_id']").val()
             });
 
+            /* Send an AJAX request and terminate. */
             $.ajax({
                 url: '/bookmark/add',
                 data: child.info,
@@ -260,13 +270,13 @@ $(document).ready(function () {
             });
         },
 
-        /** Tell inline frame to close and terminate child */
+        /* Tell inline frame to close and terminate child */
         terminate: function () {
             console.log('child.terminate()');
             child.talk('terminate');
         },
 
-        /** Send message to inline frame */ 
+        /* Send message to inline frame */ 
         talk: function (message) {
             parent.postMessage(message, child.inlineURL);
         }
