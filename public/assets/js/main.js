@@ -15,8 +15,6 @@ $('.user-control').click(function(){
    	return false;
 });
 
-	var dontclose = 0;
-
 	$('body').click(function() {
 		$('.user-menu').hide();
 	});
@@ -32,11 +30,6 @@ $('.user-control').click(function(){
 	* Products modal
 	***/
 
-	$('.feedback_clickable').click(function() {
-		dontclose = 1;
-		$('.feedback_modal.dialog, #overlay').fadeIn(300);
-	});
-
 	$('#products .item-i').click(function() {
 		$('#overlay, .dialog.product').fadeIn(300);
 	});
@@ -44,6 +37,11 @@ $('.user-control').click(function(){
 	$('#overlay, .close').click(function() {
 		$('#overlay, .dialog, .view-comment').fadeOut(300);
 	});
+
+		$('.feedback').click(function() {
+		$('.feedback_modal.dialog, #overlay').fadeIn(300);
+	});
+
 
 
 	$('#modal-tabs, #terms-tabs').tabs();
