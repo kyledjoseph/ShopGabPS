@@ -51,14 +51,14 @@ $(document).ready(function () {
 
         move: function (direction) {
             console.log('child.move(' + direction + ')');
-            var product, index, next;
+            var index, next, current, new_source;
             current = parseInt($('.product-image').attr('id'), 10);
             index = parseInt($('.gallery img:first').attr('id'), 10);
 
 
             switch (direction) {
                 case 'left':
-                    if (current > 0) {
+                if (current > 0) {
                     next = current - 1;
                     if (next < index) {
                         child.shift('left');
@@ -66,10 +66,10 @@ $(document).ready(function () {
                     new_source = $('#' + next).attr('src');
                     $('.product-image').attr('id', next);
                     $('.product-image').attr('src', new_source);
-                    }
+                }
                 break;
                 case 'right':
-                    if (current < (child.imageArraySize)) {
+                if (current < (child.imageArraySize)) {
                     next = current + 1;
                     if (next > (index + 4)) {
                         child.shift('left');
@@ -77,7 +77,7 @@ $(document).ready(function () {
                     new_source = $('#' + next).attr('src');
                     $('.product-image').attr('id', next);
                     $('.product-image').attr('src', new_source);
-                    }
+                }
                 break;
             }
         },
@@ -135,14 +135,14 @@ $(document).ready(function () {
         /**  */
         display_options: function(add_to) {
             console.log('child.display_options(' + add_to + ')');
-            if (add_to == 'my')
+            if (add_to === 'my')
             {
                 $('#friends').hide();
                 $('#friend_quests').hide();
                 $('#new_quest').hide();
                 $('#my_quests').show();
             }
-            if (add_to == 'friend')
+            if (add_to === 'friend')
             {
                 $('#friends').show();
                 $('#friend_quests').hide();
@@ -151,7 +151,7 @@ $(document).ready(function () {
 
                 child.load_friend_quests($('#form_friend').val());
             }
-            if (add_to == 'new')
+            if (add_to === 'new')
             {
                 $('#friends').hide();
                 $('#friend_quests').hide();
@@ -163,18 +163,18 @@ $(document).ready(function () {
         /**  */
         load_friend_quests: function(friend_id) {
             console.log('child.load_friend_quests(' + friend_id + ')');
-
-            if (friend_id == 'none') return;
-
-            $.ajax({
-                url: '/bookmark/friend_quests/' . friend_id,
-                type: 'GET',
-                timeout: 30000,
-                dataType: 'json',
-                success: function(data) {
-                    $('#friend_quests').show();
-                }
-            })
+            if (friend_id !== 'none') {
+                $.ajax({
+                    url: '/bookmark/friend_quests/' . friend_id,
+                    type: 'GET',
+                    timeout: 30000,
+                    dataType: 'json',
+                    success: function() {
+                        $('#friend_quests').show();
+                    }
+                });
+            }
+            
         },
 
         /** Set event handlers and listeners. */

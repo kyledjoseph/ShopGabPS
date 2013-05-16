@@ -30,7 +30,6 @@
         /** Open child iframe. */
         open: function () {
             console.log('inline.open()');
-            console.log($("#itemnation-script").attr('src'))
             if ($("#itemnation-script").attr('src').indexOf('itemnation.dev') >= 0) {
                 inline.script_domain = 'itemnation.dev';
             } else {
