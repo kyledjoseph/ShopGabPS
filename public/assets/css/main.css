@@ -639,16 +639,16 @@ footer .footer-bottom .footer-logo {position: absolute; left: 50%; top: 38px; ma
 #overlay, .dialog {display: none; position: fixed;}
 #overlay {top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,.2); z-index: 98;}
 
-.dialog {background: #fff; height: 352px; top: 80px; left: 50%; width: 898px; margin-left: -450px; -webkit-box-shadow: 0 0 6px rgba(0,0,0,0.4); -moz-box-shadow: 0 0 6px rgba(0,0,0,0.4); box-shadow: 0 0 6px rgba(0,0,0,0.4); z-index: 99;}
+.dialog {background: #fff; top: 80px; left: 50%; margin-left: auto; margin-right: auto; -webkit-box-shadow: 0 0 6px rgba(0,0,0,0.4); -moz-box-shadow: 0 0 6px rgba(0,0,0,0.4); box-shadow: 0 0 6px rgba(0,0,0,0.4); z-index: 99; border-radius:2px;}
 .dialog .close {cursor: pointer; position: absolute; top: 2px; right: 8px; color: #ccc; padding: 2px;}
 .dialog .close:hover {color: #aaa;}
-.dialog .left, .dialog .right {float: left; height: 350px;}
-.dialog .left {position: relative; width: 520px; border: 1px solid #d3d3d3; border-radius: 6px}
-.dialog .right {width: 376px;}
+.dialog.left, .dialog.right {float: left; height: 350px;}
+.dialog.left {position: relative; width: 520px; border: 1px solid #d3d3d3; border-radius: 6px}
+.dialog.right {width: 376px;}
 
 .dialog .header {position: relative; overflow: hidden;}
-.dialog .header h2 {float: left; background: #6e6e6e; color: #fff; font-size: 14px; line-height: 32px; padding: 0 30px 0 10px; margin: 0 0 10px; border-radius: 6px 0 0 0;}
-
+.dialog .header h2 { background: #6e6e6e; color: #fff; font-size: 14px; line-height: 32px; padding: 0 30px 0 20px; margin: 0 0 00px;}
+.dialog .content { padding: 1em;}
 
 #modal-tabs .ui-tabs-nav {position: absolute; top: 0; right: 80px;}
 #modal-tabs .ui-tabs-nav li {float: left;}
@@ -658,11 +658,8 @@ footer .footer-bottom .footer-logo {position: absolute; left: 50%; top: 38px; ma
 
 #modal-tabs .ui-tabs-panel {position: relative; }
 
-
-
 .dialog.product .terms {position: absolute; top: 0; right: 0; width: 120px;}
 .dialog.product .terms h3 {color: #888; font-size: 13px;}
-
 
 #invite-friends {background: #fff; width: 600px; height: auto!important; padding: 10px;}
 #invite-friends.dialog {margin-left: -300px;}
