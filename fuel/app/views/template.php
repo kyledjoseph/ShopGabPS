@@ -222,7 +222,7 @@
         <div class="header">
             <h2>Feedback</h2>
         </div>
-        <div class="content">
+        <div class="content feedback_clickable">
             <?= Form::open(array('class' => 'form-horizontal')) ?>
 
             <?php if (! isset($user)): ?>
