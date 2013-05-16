@@ -3,14 +3,16 @@ $(function() {
 	/****
 	* User Menu
 	***/
-	$('.user-control').click(function(){
-		var disp=$('.user-menu').css('display');
-		if(disp=="none"){
-			$(".user-menu").show(); 
-		}
-		else{$(".user-menu").hide(); 
+
+
+$('.user-control').click(function(){
+    var disp=$('.user-menu').css('display');
+	if(disp=="none"){
+		$(".user-menu").show(); 
 	}
-	return false;
+	else{$(".user-menu").hide(); 
+	}
+   	return false;
 });
 
 	var dontclose = 0;
@@ -43,9 +45,6 @@ $(function() {
 		$('#overlay, .dialog, .view-comment').fadeOut(300);
 	});
 
-	$('.feedback').click(function() {
-		$('.feedback_modal.dialog, #overlay').fadeIn(300);
-	});
 
 	$('#modal-tabs, #terms-tabs').tabs();
 
@@ -65,14 +64,14 @@ $(function() {
 	// 	$('#overlay').show();
 	// 	$(this).parent('.comments').append('<div class="view-comment">comments go here</div>');
 	// });   
-
+    
 	/****
 	* Filter in footer
 	***/
 
-	$('#filters').click(function() {
-		$(this).parent('.inner').toggleClass("open");
-	});
+    $('#filters').click(function() {
+    	$(this).parent('.inner').toggleClass("open");
+    });
 
 	$( "#slider-range" ).slider({
 		range: true,
@@ -80,8 +79,11 @@ $(function() {
 		max: 500,
 		values: [ 75, 300 ],
 		slide: function( event, ui ) {
-			$( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
-		}
+	    $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+	  }
 	});
-	$( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + " - $" + $( "#slider-range" ).slider( "values", 1 ) );
-});
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) + 
+    	" - $" + $( "#slider-range" ).slider( "values", 1 ) );
+
+
+ });
