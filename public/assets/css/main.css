@@ -633,6 +633,10 @@ footer .footer-bottom span a {text-decoration: underline; color: #99b4c0;}
 footer .footer-bottom span a:hover {color: #fff;}
 footer .footer-bottom .footer-logo {position: absolute; left: 50%; top: 38px; margin-left: -62px;}
 
+/****
+* Landing Page
+***/
+
 /**** 
 * Overlays and modal windows 
 ***/
@@ -704,3 +708,19 @@ footer .footer-bottom .footer-logo {position: absolute; left: 50%; top: 38px; ma
 .addnew-right h3 {position: relative; top: -34px; text-align: center; font-size: 24px; line-height: 28px; font-weight: bold;}
 .addnew-right a {display: block; position: relative; top: -76px; background: url(../img/bookmark-helper.png); width: 440px; height: 188px;}
 .addnew-right a span {opacity: 0;}
+
+
+/* Bookmarklet iframe */
+
+.full-size {
+	width: 100%;
+	height: 100%;
+}
+
+.layer-one {
+	z-index: 1;
+}
+
+.layer-two {
+	z-index: 2;
+}
