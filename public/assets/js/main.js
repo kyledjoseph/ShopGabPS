@@ -39,7 +39,7 @@ $('.user-control').click(function(){
 	});
 
 		$('.feedback').click(function() {
-		$('.feedback_modal.dialog, #overlay').fadeIn(300);
+		$('.feedback_modal, #overlay').fadeIn(300);
 	});
 
 
