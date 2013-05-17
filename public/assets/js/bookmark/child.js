@@ -23,7 +23,6 @@ $(document).ready(function () {
         imageArraySize: 0,
         guess: false,
         sorted: [],
-        inlineURL: '',
 
         /* Move entire gallery left or right.. */
         shift: function (direction) {
@@ -183,9 +182,6 @@ $(document).ready(function () {
         initialize: function () {
             console.log('child.initialize()');
 
-            /* Save inline parent's URL for communication. */
-            child.inlineURL = urlParam('inline');
-
             $('.add').click(function () {
                 child.send();
             });
@@ -278,7 +274,7 @@ $(document).ready(function () {
 
         /* Send message to inline frame */ 
         talk: function (message) {
-            parent.postMessage(message, child.inlineURL);
+            parent.postMessage(message, '*');
         }
     };
 
