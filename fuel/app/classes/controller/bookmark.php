@@ -44,7 +44,7 @@ class Controller_Bookmark extends Controller_App
 		return View::forge('bookmark/test');
 	}
 
-	public function iframe()
+	public function get_iframe()
 	{
 		return View::forge('bookmark/iframe');
 	}
