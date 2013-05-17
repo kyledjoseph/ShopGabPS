@@ -166,7 +166,7 @@ $(document).ready(function () {
             console.log('child.load_friend_quests(' + friend_id + ')');
             if (friend_id !== 'none') {
                 $.ajax({
-                    url: '/bookmark/friend_quests/' . friend_id,
+                    url: '/bookmark/friend_quests/' + friend_id,
                     type: 'GET',
                     timeout: 30000,
                     dataType: 'json',
