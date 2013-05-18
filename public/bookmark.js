@@ -53,7 +53,13 @@
                 $(inline.iframe).attr({
                     id: 'itemnation-frame',
                     src: 'http://' + inline.script_domain + '/bookmark/view?cacheblock=' + Math.floor(Math.random() * 99999999999999999999999),
-                    style: 'width: 290px !important; height: 760px !important; position: fixed !important; top: 10px !important; right: 20px !important; border: 0 !important; z-index: 99999999999999999 !important;'
+                    style: 'width: 290px !important;' +
+                           'height: 760px !important;' +
+                           'position: fixed !important;' +
+                           'top: 10px !important;' +
+                           'right: 20px !important;' +
+                           'border: 0 !important;' +
+                           'z-index: 99999999999999999 !important;'
                 });
 
                 /* Add child iframe to document. */

@@ -218,10 +218,9 @@
 
 <!-- Overlay and Dialog -->
 <div id="overlay">
+</div>
     <div class="feedback_modal dialog">
-        <div class="header">
             <h2>Feedback</h2>
-        </div>
         <div class="content feedback_clickable">
             <?= Form::open(array('class' => 'form-horizontal')) ?>
 
@@ -237,7 +236,7 @@
         <div class="control-group">
             <label class="control-label" for="feedback">Feedback</label>
             <div class="controls">
-                <textarea name="feedback"></textarea>
+                <textarea name="feedback" placeholder="Feedback"></textarea>
             </div>
         </div>
         <div class="control-group">
@@ -247,9 +246,7 @@
             </div>
         </div>
     </div>
-
     <?= Form::close() ?>
-</div>
 </div>
 
 <?= View::forge('analytics/site') ?>
