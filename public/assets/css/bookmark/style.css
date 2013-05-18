@@ -15,7 +15,7 @@ html{background-color: rgba(0,0,0,0);}
 .arrow {position:absolute; top:170px; cursor:pointer; display:none;}
 .left {left:15px;}
 .right {right:15px;}
-.product-image{display:block;margin-top:25px;margin-bottom:25px;border:1px solid #CFD9DC;border-radius:8px;overflow:hidden;max-width:150px;height:150px;margin-left:auto;margin-right:auto;}
+.product-image{display:block;margin-top:25px;margin-bottom:25px;border:1px solid #CFD9DC;border-radius:8px;overflow:hidden;max-width:100px;height:100px;margin-left:auto;margin-right:auto;}
 
 .gallery {width:200px;margin-left:auto;margin-right:auto;}
 .gallery img {cursor: pointer; width:30px;height:30px;margin:3px;border:1px solid #CFD9DC;border-radius:2px;overflow:hidden;}
@@ -35,5 +35,6 @@ select {float: left; width: 119px; font-size: 16px; }
 .cancel {float: left;margin-right: 5px; background: #da4f49; background-image:-moz-linear-gradient(top, #ee5f5b, #bd362f); background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#bd362f)); background-image:-webkit-linear-gradient(top, #ee5f5b, #bd362f); background-image:-o-linear-gradient(top, #ee5f5b, #bd362f); background-image:linear-gradient(to bottom, #ee5f5b, #bd362f); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffee5f5b', endColorstr='#ffbd362f', GradientType=0);}
 .add 	{float: right; background: #5bb75b; background-image:-moz-linear-gradient(top, #62c462, #51a351); background-image:-webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#51a351)); background-image:-webkit-linear-gradient(top, #62c462, #51a351); background-image:-o-linear-gradient(top, #62c462, #51a351); background-image:linear-gradient(to bottom, #62c462, #51a351); filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff62c462', endColorstr='#ff51a351', GradientType=0);}
 
-
-
+.itemnation-box textarea {
+	height: 5em;
+}
