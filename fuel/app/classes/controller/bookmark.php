@@ -55,9 +55,12 @@ class Controller_Bookmark extends Controller_App
 			$this->redirect('bookmark/login');
 		}
 
-		$post = $this->post_data('name', 'description', 'domain', 'url', 'images', 'add_to', 'chat_id');
+		$post = $this->post_data(
+			'name', 'description', 'domain', 'url', 'images',
+			'add_to', 'friend', 'friend_quest', 'new_quest', 'my_quest');
 
-		if (! in_array($post->add_to, array('chat', 'wishlist', 'my_items')))
+
+		if (! in_array($post->add_to, array('my', 'friend', 'new')))
 		{
 			throw new Exception("Unknown product destination '{$post->add_to}'");
 		}
@@ -80,7 +83,7 @@ class Controller_Bookmark extends Controller_App
 		// 
 		switch ($post->add_to)
 		{
-			case 'chat':
+			case 'my':
 				
 				$chat = $this->user->get_chat($post->chat_id);
 				! isset($chat) and $this->redirect('bookmark/view', 'error', 'Not a valid chat');
@@ -88,11 +91,11 @@ class Controller_Bookmark extends Controller_App
 
 				break;
 
-			case 'wishlist':
+			case 'friend':
 
 				break;
 
-			case 'my_items':
+			case 'new':
 
 				break;
 				
@@ -190,6 +193,14 @@ class Controller_Bookmark extends Controller_App
 
 		$this->auth->login($post->email, $post->password);
 		$this->redirect('/', 'info', 'You are now registered.');
+	}
+
+
+	public function post_log()
+	{
+		$post = $this->post_data('url', 'error');
+		$success = Model_Error_Bookmark::log_error($post->url, $post->error);
+		return Response::forge(array('success' => $success));
 	}
 
 
