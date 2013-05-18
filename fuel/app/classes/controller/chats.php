@@ -175,6 +175,11 @@ class Controller_Chats extends Controller_App
 
 		$post = $this->post_data('to', 'subject', 'description');
 
+		$body = $post->description;
+		$body.= '<br><br>';
+		$body.= '<a href="http://itemnation.com/'.$chat->url().'">http://itemnation.com/'.$chat->url().'</a>';
+
+
 		Service_Email::send(array(
 			'to_addr'   => $post->to,
 			'from_name' => 'info@itemnation.com',
