@@ -7,6 +7,7 @@ class Model_Chat_Product extends \Orm\Model
 		'chat_id',
 		'product_id',
 		'description',
+		'added_by',
 		'created_at',
 		'updated_at',
 	);
@@ -19,7 +20,14 @@ class Model_Chat_Product extends \Orm\Model
 			'key_to' => 'id',
 			'cascade_save' => true,
 			'cascade_delete' => false,
-		)
+		),
+		'added_by' => array(
+			'key_from' => 'added_by',
+			'model_to' => 'Model_User',
+			'key_to' => 'id',
+			'cascade_save' => true,
+			'cascade_delete' => false,
+		),		
 	);
 
 	protected static $_has_one = array(

@@ -61,12 +61,12 @@ class Controller_Bookmark extends Controller_App
 
 		$post = $this->post_data(
 			'name', 'description', 'domain', 'url', 'images',
-			'add_to', 'friend', 'friend_quest', 'new_quest', 'my_quest');
+			'add_to', 'friend_id', 'friend_quest_id', 'new_quest_name', 'my_quest_id');
 
 
 		if (! in_array($post->add_to, array('my', 'friend', 'new')))
 		{
-			throw new Exception("Unknown product destination '{$post->add_to}'");
+			return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_product_destination')));
 		}
 
 		// create product
@@ -89,22 +89,41 @@ class Controller_Bookmark extends Controller_App
 		{
 			case 'my':
 				
-				$chat = $this->user->get_chat($post->chat_id);
-				! isset($chat) and $this->redirect('bookmark/view', 'error', 'Not a valid chat');
-				$chat->add_product($product->id);
+				$quest = $this->user->get_chat($post->my_quest_id);
+				if (! isset($quest))
+				{
+					return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_quest_id')));
+				}
 
+				$quest->add_product($product->id);
 				break;
 
 			case 'friend':
+
+				$friend = $this->user->get_friend_by_id($post->friend_id);
+				if (! isset($friend))
+				{
+					return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_friend_id')));
+				}
+
+				$quest = $friend->get_chat($post->friend_quest_id);
+				if (! isset($quest))
+				{
+					return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_friend_quest_id')));
+				}
+
+				$quest->add_product($product->id);
 
 				break;
 
 			case 'new':
 
+				$quest = $this->user->create_chat($post->new_quest_name, '', '0');
+				$quest->add_product($product->id);
 				break;
 				
 			default:
-				throw new Exception("Unknown product destination '{$post->add_to}'");
+				return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_product_destination')));
 				
 		}
 
@@ -241,11 +260,11 @@ class Controller_Bookmark extends Controller_App
 		{
 			return Response::forge(json_encode(array(
 				'success' => false,
-				'type'    => 'auth',
+				'type'    => 'invalid_friend_id',
 			)));
 		}
 
-		$friend = $this->user->get_friend($friend_id);
+		$friend = $this->user->get_friend_by_id($friend_id);
 
 		if (! isset($friend))
 		{
@@ -259,7 +278,7 @@ class Controller_Bookmark extends Controller_App
 
 		return Response::forge(json_encode(array(
 			'success' => true,
-			'friends'  => $friend->select_chat(),
+			'quests'  => $friend->select_chat(),
 		)));
 	}
 	

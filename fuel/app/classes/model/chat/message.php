@@ -26,7 +26,7 @@ class Model_Chat_Message extends \Orm\Model
 			'key_to' => 'id',
 			'cascade_save' => true,
 			'cascade_delete' => false,
-		)
+		),
 	);
 
 	// protected static $_ = array(

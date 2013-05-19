@@ -20,7 +20,7 @@ class Model_Chat extends \Orm\Model
 			'key_to' => 'id',
 			'cascade_save' => true,
 			'cascade_delete' => false,
-		)
+		),
 	);
 
 	protected static $_has_many = array(
@@ -115,11 +115,13 @@ class Model_Chat extends \Orm\Model
 	/**
 	 * 
 	 */
-	public function add_product($product_id)
+	public function add_product($product_id, $added_by = 0)
 	{
+
 		$product = Model_Chat_Product::forge(array(
 			'chat_id' => $this->id,
 			'product_id' => $product_id,
+			'added_by' => ($added_by == 0) ? $this->user_id : $added_by,
 		));
 		return $product->save() ? $product : null;
 	}

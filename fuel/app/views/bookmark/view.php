@@ -22,24 +22,24 @@
 				<?= Form::select('add_to', 'my', array('my' => 'My Quest', 'friend' => 'Friend\'s Quest', 'new' => 'New Quest')) ?>
 			</li>
 
-			<li id="friends" style="display:none">
-				<label for="add_to">Friends' Quests:</label>
-				<?= Form::select('friend', null, $user->select_friends()) ?>
+			<li id="friend_id" style="display:none">
+				<label for="friend_id">Friends' Quests:</label>
+				<?= Form::select('friend_id', null, $user->select_friends()) ?>
 			</li>
 
-			<li id="friend_quests" style="display:none">
-				<label for="friend_quests">Friends' Quests:</label>
-				<?= Form::select('friend_quest', null, array()) ?>
+			<li id="friend_quest_id" style="display:none">
+				<label for="friend_quest_id">Friends' Quests:</label>
+				<?= Form::select('friend_quest_id', null, array()) ?>
 			</li>
 
-			<li id="new_quest" style="display:none">
-				<label for="new_quest">New Quest:</label>
-				<?= Form::input('new_quest') ?>
+			<li id="new_quest_name" style="display:none">
+				<label for="new_quest_name">New Quest:</label>
+				<?= Form::input('new_quest_name') ?>
 			</li>
 
-			<li id="my_quests">
-				<label for="my_quests">My Quests: </label>
-				<?= Form::select('my_quest', null, $user->select_chat()) ?>
+			<li id="my_quest_id">
+				<label for="my_quest_id">My Quests: </label>
+				<?= Form::select('my_quest_id', null, $user->select_chat()) ?>
 			</li>
 
 		</ul>
