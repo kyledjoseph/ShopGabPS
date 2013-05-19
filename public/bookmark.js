@@ -52,7 +52,10 @@
                 /* Set child iframe attributes. */
                 $(inline.iframe).attr({
                     id: 'itemnation-frame',
-                    src: 'http://' + inline.script_domain + '/bookmark/view?cacheblock=' + Math.floor(Math.random() * 99999999999999999999999),
+		    src: 'http://' +
+			 inline.script_domain +
+			 '/bookmark/view?cacheblock=' +
+			 Math.floor(Math.random() * 99999999999999999999999),
                     style: 'width: 290px !important;' +
                            'height: 760px !important;' +
                            'position: fixed !important;' +
@@ -115,9 +118,11 @@
             });
 
             /* Save domain, title, and URL to the info object */
-            inline.info.domain = document.domain;
-            inline.info.name = document.title.substring(0, 50);
-            inline.info.url = document.URL;
+	    $.extend(inline.info, {
+		domain: document.domain,
+		name: document.title.substring(0, 50),
+		url: document.URL
+	    });
 
             /* Site-specific code. */
             if (window.location.hostname === 'amazon.com') {
