@@ -26,7 +26,21 @@ class Model_User extends \Orm\Model
 			'key_to' => 'user_id',
 			'cascade_save' => true,
 			'cascade_delete' => true,
-		)
+		),
+		'added_chat_products' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Chat_Product',
+			'key_to' => 'added_by',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
+		'chats' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Chat',
+			'key_to' => 'user_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
 	);
 
 	protected static $_observers = array(
@@ -160,7 +174,7 @@ class Model_User extends \Orm\Model
 	/**
 	 * undocumented class variable
 	 */
-	public function get_friend($friend_id)
+	public function get_friend_by_id($friend_id)
 	{
 		return Model_User::query()->where('id', $friend_id)->get_one();
 	}

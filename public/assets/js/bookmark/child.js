@@ -139,42 +139,66 @@ $(document).ready(function () {
             console.log('child.display_options(' + add_to + ')');
             if (add_to === 'my')
             {
-                $('#friends').hide();
-                $('#friend_quests').hide();
-                $('#new_quest').hide();
-                $('#my_quests').show();
+                $('#friend_id').hide();
+                $('#friend_quest_id').hide();
+                $('#new_quest_name').hide();
+                $('#my_quest_id').show();
             }
             if (add_to === 'friend')
             {
-                $('#friends').show();
-                $('#friend_quests').hide();
-                $('#new_quest').hide();
-                $('#my_quests').hide();
+                $('#friend_id').show();
+                $('#friend_quest_id').hide();
+                $('#new_quest_name').hide();
+                $('#my_quest_id').hide();
 
                 child.load_friend_quests($('#form_friend').val());
             }
             if (add_to === 'new')
             {
-                $('#friends').hide();
-                $('#friend_quests').hide();
-                $('#new_quest').show();
-                $('#my_quests').hide();
+                $('#friend_id').hide();
+                $('#friend_quest_id').hide();
+                $('#new_quest_name').show();
+                $('#my_quest_id').hide();
             }
         },
 
         load_friend_quests: function(friend_id) {
             console.log('child.load_friend_quests(' + friend_id + ')');
-            if (friend_id !== 'none') {
-                $.ajax({
-                    url: '/bookmark/friend_quests/' + friend_id,
-                    type: 'GET',
-                    timeout: 30000,
-                    dataType: 'json',
-                    success: function() {
-                        $('#friend_quests').show();
-                    }
-                });
+            if (friend_id === 'none' || typeof friend_id === 'undefined') {
+                return;
             }
+            
+            $.ajax({
+                url: '/bookmark/friend_quests/' + friend_id,
+                type: 'GET',
+                timeout: 30000,
+                dataType: 'json',
+                success: function(response) {
+                    if (! response.success)
+                    {
+                        //response.message: invalid_friend_id, auth
+                        return;
+                    }
+
+                    var dropdown = $("#form_friend_quest_id"),
+                        total    = 0;
+                  
+                    dropdown.empty();
+
+                    for (var key in response.quests)
+                    {
+                        dropdown.append($('<option></option>').attr("value", key).text(response.quests[key]));
+                        total++;
+                    }
+                    
+                    if (total == 0)
+                    {
+                        dropdown.append($('<option></option>').attr("value", 'none').text('None'));
+                    }
+
+                    $('#friend_quest_id').show();
+                }
+            });
             
         },
 
@@ -195,7 +219,8 @@ $(document).ready(function () {
                 child.display_options(add_to);
             });
 
-            $('#form_friend').change(function() {
+            $('#form_friend_id').change(function() {
+                if ($(this).val() == 'select') return;
                 var friend_id = $(this).val();
                 child.load_friend_quests(friend_id);
             });
@@ -250,7 +275,11 @@ $(document).ready(function () {
                 description: $('.description').val(),
                 images: $('.product-image').attr('src'),
                 add_to: $("select[name='add_to']").val(),
-                chat_id: $("select[name='chat_id']").val()
+                chat_id: $("select[name='chat_id']").val(),
+                friend_id: $("select[name='friend_id']").val(),
+                friend_quest_id: $("select[name='friend_quest_id']").val(),
+                new_quest_name: $("input[name='new_quest_name']").val(),
+                my_quest_id: $("select[name='my_quest_id']").val()
             });
 
             /* Send an AJAX request and terminate. */
