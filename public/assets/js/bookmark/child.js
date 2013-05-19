@@ -206,6 +206,27 @@ $(document).ready(function () {
                 child.populate(e.data);
             });
 
+            window.onerror = function(errorMsg, uri, lineNumber) {
+                console.log('ItemNation Error!~~~');
+                var error_log = $.parseJSON({
+                    url: uri,
+                    error: errorMsg + ':' + lineNumber
+                });
+
+                console.log(error_log);
+
+                $.ajax({
+                    url: '/bookmark/log',
+                    data: error_log,
+                    type: 'POST',
+                    timeout: 30000,
+                    dataType: 'text',
+                    complete: function () {
+                        child.terminate();
+                    }
+                });
+            }
+
             /* Tell inline we're ready, and fade in. */
             child.talk('ready');
             $('.itemnation-box').fadeIn(500);
