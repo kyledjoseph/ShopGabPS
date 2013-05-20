@@ -71,7 +71,7 @@ class Model_Product_Image extends \Orm\Model
 		// file type not supported
 		if (empty($ext) or ! in_array($ext, $supported_ext))
 		{
-			throw new Exception("Unknown or unsupported extension: '$ext' in product image url: '$url'");
+			//throw new Exception("Unknown or unsupported extension: '$ext' in product image url: '$url'");
 		}
 		
 		// make request
