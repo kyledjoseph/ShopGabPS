@@ -2588,6 +2588,9 @@ footer .footer-bottom .footer-logo {
 	overflow: hidden;
 }
 
+.bookmark-video iframe {
+	margin: 0 auto;
+}
 
 .bookmark-video h4 {
 	font-size: 18px;
