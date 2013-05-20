@@ -2586,8 +2586,11 @@ footer .footer-bottom .footer-logo {
 	overflow: hidden;
 }
 
-.bookmark-video > * {
-	float: left;
+
+.bookmark-video h4 {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
 }
 
 
