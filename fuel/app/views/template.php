@@ -1,179 +1,179 @@
 <!DOCTYPE html>
 <html>
-  <head>
-  	<meta charset='utf-8'> 
+<head>
+    <meta charset='utf-8'> 
 
-	<title><?= isset($title) ? $title : 'ItemNation' ?></title>
-	<?= Asset::css('main.css') ?>
+    <title><?= isset($title) ? $title : 'ItemNation' ?></title>
+    <?= Asset::css('main.css') ?>
 
-	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-	
-	<?php //Asset::js('bootstrap/bootstrap.js') ?>
-	<?php //Asset::js('bootstrap/bootstrap-alert.js') ?>
-	<?php //Asset::css('bootstrap.css') ?>
+    <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+    
+    <?php //Asset::js('bootstrap/bootstrap.js') ?>
+    <?php //Asset::js('bootstrap/bootstrap-alert.js') ?>
+    <?php //Asset::css('bootstrap.css') ?>
 
-	<?= Asset::js('main.js') ?>
-	<?= Casset::render_js() ?>
-	<?= Casset::render_css() ?>
-  </head>
+    <?= Asset::js('main.js') ?>
+    <?= Casset::render_js() ?>
+    <?= Casset::render_css() ?>
+</head>
 
-  <body>
+<body>
 
-	<div id="wrap">
-		<header>
-			<div class="inner">
-				<?= Html::anchor('/', '', array('title' => 'ItemNation', 'class' => 'sprites logo')) ?>
+    <div id="wrap">
+        <header>
+            <div class="inner">
+                <?= Html::anchor('/', '', array('title' => 'ItemNation', 'class' => 'sprites logo')) ?>
 
-				<?php if (isset($mychats_logo) and $mychats_logo): ?>
-				<i class="sprites quest-logo"></i>
-				<?php endif; ?>
+                <?php if (isset($mychats_logo) and $mychats_logo): ?>
+                <i class="sprites quest-logo"></i>
+            <?php endif; ?>
 
-				<nav>
-					<?php if (isset($user)): ?>
+            <nav>
+                <?php if (isset($user)): ?>
 
-					<ul class="main-control">
-						<li class="<?= (isset($active_nav) and $active_nav == 'dashboard') ? 'current' : null ?>">
-							<?= Html::anchor('/', 'DASHBOARD') ?>
-						</li>
-						<!-- Remove until later
-						<li class="<?= (isset($active_nav) and $active_nav == 'wishlist') ? 'current' : null ?>">
-							<?= Html::anchor('wishlist', 'WISH LISTS') ?>
-						</li>
-						<li class="<?= (isset($active_nav) and $active_nav == 'myitems') ? 'current' : null ?>">
-							<?= Html::anchor('my/items', 'MY ITEMS') ?>
-						</li>
-						-->
-					</ul>
-					
-					<ul class="user-control">
-						<li>
-							<span>
-								<i class="head-shot" style="background: url(<?= $user->profile_pic() ?>);"></i> 
-								<?= $user->display_name() ?>
-								<i class="sprites settings-icon"></i>
-							</span>
-						</li>
-					</ul>
+                <ul class="main-control">
+                    <li class="<?= (isset($active_nav) and $active_nav == 'dashboard') ? 'current' : null ?>">
+                        <?= Html::anchor('/', 'DASHBOARD') ?>
+                    </li>
+                        <!-- Remove until later
+                        <li class="<?= (isset($active_nav) and $active_nav == 'wishlist') ? 'current' : null ?>">
+                            <?= Html::anchor('wishlist', 'WISH LISTS') ?>
+                        </li>
+                        <li class="<?= (isset($active_nav) and $active_nav == 'myitems') ? 'current' : null ?>">
+                            <?= Html::anchor('my/items', 'MY ITEMS') ?>
+                        </li>
+                    -->
+                </ul>
 
-					<div class="user-menu">
-						<ul>
-							<li>
-								<?= Html::anchor('user/account', 'My Account') ?>
-							</li>
-							<li>
-								<?= Html::anchor('user/logout', 'Logout') ?>
-							</li>
-						</ul>
-					</div>
+                <ul class="user-control">
+                    <li>
+                        <span>
+                            <i class="head-shot" style="background: url(<?= $user->profile_pic() ?>);"></i> 
+                            <?= $user->display_name() ?>
+                            <i class="sprites settings-icon"></i>
+                        </span>
+                    </li>
+                </ul>
 
-					<?php else: // ! isset $user ?>
+                <div class="user-menu">
+                    <ul>
+                        <li>
+                            <?= Html::anchor('user/account', 'My Account') ?>
+                        </li>
+                        <li>
+                            <?= Html::anchor('user/logout', 'Logout') ?>
+                        </li>
+                    </ul>
+                </div>
 
-					<ul class="main-control">
-						<li class="<?= (isset($active_nav) and $active_nav == 'login') ? 'current' : null ?>">
-							<?= Html::anchor('user/login', 'Login') ?>
-						</li>
-						<li class="<?= (isset($active_nav) and $active_nav == 'register') ? 'current' : null ?>">
-							<?= Html::anchor('user/register', 'Register') ?>
-						</li>
-					</ul>
+            <?php else: // ! isset $user ?>
 
-					<?php endif; ?>
-				</nav>
+            <ul class="main-control">
+                <li class="<?= (isset($active_nav) and $active_nav == 'login') ? 'current' : null ?>">
+                    <?= Html::anchor('user/login', 'Login') ?>
+                </li>
+                <li class="<?= (isset($active_nav) and $active_nav == 'register') ? 'current' : null ?>">
+                    <?= Html::anchor('user/register', 'Register') ?>
+                </li>
+            </ul>
 
-			</div>
-		</header>
+        <?php endif; ?>
+    </nav>
 
-		<div id="main">
-			<div class="inner">
+</div>
+</header>
 
-				<?php if (isset($notice)): ?>
+<div id="main">
+    <div class="inner">
 
-				<div class="alert alert-<?= $notice->type ?>">
-					<button type="button" class="close" data-dismiss="alert">&times;</button>
-					<?= $notice->message ?>
-				</div>
+        <?php if (isset($notice)): ?>
 
-				<?php endif; ?>
-				
-				<!--
-				<div id="pagination">
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><span>Home &amp; Garden</span></li>
-					</ul>
-				</div>
-				-->
+        <div class="alert alert-<?= $notice->type ?>">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            <?= $notice->message ?>
+        </div>
 
-				<form id="search" class="hidden">
-					<input type="text" placeholder="Search">
-				</form>
+    <?php endif; ?>
 
-				<div id="tabs" class="hidden">
-					<ul>
-						<li class="<?= (isset($active_nav) and $active_nav == 'activity') ? 'current' : null ?>">
-							<i class="tab-r"></i>
-							<i class="tab-current-first-l"></i>
-							<i class="tab-current-r"></i>
-							<?= Html::anchor('/', 'Activity') ?>
-						</li>
-						<li class="<?= (isset($active_nav) and $active_nav == 'myitems') ? 'current' : null ?>">
-							<i class="tab-r"></i>
-							<i class="tab-current-l"></i>
-							<i class="tab-current-last-r"></i>
-							<?= Html::anchor('my/items', 'My Items') ?>
-						</li>
-						<li class="<?= (isset($active_nav) and $active_nav == 'wishlist') ? 'current' : null ?>">
-							<i class="tab-r"></i>
-							<i class="tab-current-l"></i>
-							<i class="tab-current-r"></i>
-							<?= Html::anchor('wishlist', 'Wish Lists') ?>
-						</li>
-						
-					</ul>
-				</div>
+                <!--
+                <div id="pagination">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><span>Home &amp; Garden</span></li>
+                    </ul>
+                </div>
+            -->
 
-				<?= isset($body) ? $body : null ?>
+            <form id="search" class="hidden">
+                <input type="text" placeholder="Search">
+            </form>
 
-			</div>
-		</div>
-	</div>
+            <div id="tabs" class="hidden">
+                <ul>
+                    <li class="<?= (isset($active_nav) and $active_nav == 'activity') ? 'current' : null ?>">
+                        <i class="tab-r"></i>
+                        <i class="tab-current-first-l"></i>
+                        <i class="tab-current-r"></i>
+                        <?= Html::anchor('/', 'Activity') ?>
+                    </li>
+                    <li class="<?= (isset($active_nav) and $active_nav == 'myitems') ? 'current' : null ?>">
+                        <i class="tab-r"></i>
+                        <i class="tab-current-l"></i>
+                        <i class="tab-current-last-r"></i>
+                        <?= Html::anchor('my/items', 'My Items') ?>
+                    </li>
+                    <li class="<?= (isset($active_nav) and $active_nav == 'wishlist') ? 'current' : null ?>">
+                        <i class="tab-r"></i>
+                        <i class="tab-current-l"></i>
+                        <i class="tab-current-r"></i>
+                        <?= Html::anchor('wishlist', 'Wish Lists') ?>
+                    </li>
 
+                </ul>
+            </div>
 
-	<footer>
-		<div class="inner">
+            <?= isset($body) ? $body : null ?>
 
-			<div class="footer-top">
-				<div>
-					<h3>Who are we?</h3>
-			
-					<ul>
-						<li>
-							<?= Html::anchor('about', 'About us') ?>
-						</li>
-						<li>
-							<?= Html::anchor('about/team', 'Our team') ?>
-						</li>
-						<li>
-							<a href="">ItemNation Blog</a>
-						</li>
-						<li>
-							<a href="">Contact us</a>
-						</li>
+        </div>
+    </div>
+</div>
 
 
-					</ul>	
-				</div>
+<footer>
+    <div class="inner">
 
-				<div>
-					<h3>Connect with us.</h3>
+        <div class="footer-top">
+            <div>
+                <h3>Who are we?</h3>
 
-<script>
-$(function () {
-	$('.footer-social li a').click(function() {
-		return false;
-	});
-})
+                <ul>
+                    <li>
+                        <?= Html::anchor('about', 'About us') ?>
+                    </li>
+                    <li>
+                        <?= Html::anchor('about/team', 'Our team') ?>
+                    </li>
+                    <li>
+                        <a href="">ItemNation Blog</a>
+                    </li>
+                    <li>
+                        <a href="">Contact us</a>
+                    </li>
+
+
+                </ul>   
+            </div>
+
+            <div>
+                <h3>Connect with us.</h3>
+
+                <script>
+// $(function () {
+//  $('.footer-social li a').click(function() {
+//      return false;
+//  });
+// })
 </script>
 
 					<ul class="footer-social">
@@ -221,91 +221,42 @@ $(function () {
 
 	
 
-	<!-- Overlay and Dialog -->
-<div id="overlay"></div>
+<!-- Overlay and Dialog -->
+<div id="overlay">
+</div>
+    <div class="feedback_modal dialog">
+            <h2>Feedback</h2>
+        <div class="content feedback_clickable">
+            <?= Form::open(array('class' => 'form-horizontal')) ?>
 
-<div id="addnew-product" class="dialog">
-	<h2>Add New Product</h2>
+            <?php if (! isset($user)): ?>
+            <div class="control-group">
+                <label class="control-label" for="user_email">Your Email</label>
+                <div class="controls">
+                    <input type="text" name="user_email" placeholder="Email">
+                </div>
+            </div>
+        <?php endif; ?>
 
-	<div class="addnew-form">
-		<h3>Capture any product from the web</h3>
-		<span class="how">How does this work?</span>
-
-		<ul>
-			<li>
-				<form>
-					<label>Enter a URL:</label>
-					<input type="text">
-					<button type="submit" class="btn green2">GO</button>
-				</form>
-			</li>
-		</ul>
-
-		<h4>Search With:</h4>
-		<ul>
-			<li>
-				<form method="get" action="http://www.google.com/search" target="_blank">
-					<label>Google:</label>
-					<input name="q" type="text">
-					<button type="submit" class="btn green2">GO</button>
-				</form>
-			</li>
-			<li>
-				<form method="get" action="http://www.bing.com/search"  target="_blank">
-					<label>Bing:</label>
-					<input nane="q" type="text">
-					<button type="submit" class="btn green2">GO</button>
-				</form>
-			</li>
-		</ul>
-
-	</div>
-
-	<div class="addnew-right">
-		<h3>How do I add an item?</h3>
-
-		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/assets/js/bookmark/parent.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><span>Add To ItemNation</span></a>
-
-		<div class="bookmark-video">
-			<h4>How does the bookmark work?</h4>
-			<iframe width="224" height="114" src="http://www.youtube.com/embed/x0ArM1rtwNI" frameborder="0" allowfullscreen></iframe>
-		</div>
-	</div>
-
+        <div class="control-group">
+            <label class="control-label" for="feedback">Feedback</label>
+            <div class="controls">
+                <textarea name="feedback" placeholder="Feedback"></textarea>
+            </div>
+        </div>
+        <div class="control-group">
+            <div class="controls">
+                <input name="referral_url" type="hidden" value="sample_referral_url">
+                <button type="submit" class="btn green2">Send Feedback</button>
+            </div>
+        </div>
+    </div>
+    <?= Form::close() ?>
 </div>
 
-<div id="invite-friends" class="dialog">
-	<h2>Invite Friends to Join Your Quest</h2>
-
-	<h3>Invite a friend by email.</h3>
-
-	<form>
-		<ul>
-			<li>
-				<label>From:</label>
-				<input type="text" value="info@itemnation.com" disabled>
-			</li>
-			<li>
-				<label>To:</label>
-				<input type="text">
-			</li>
-			<li>
-				<label>Subject:</label>
-				<input type="text">
-			</li>
-			<li>
-				<label>Description:</label>
-				<textarea placeholder="I'm excited to be looking for a new product on ItemNation and it would be great to have your help in finding the best one! Please follow the link below."></textarea>
-			</li>
-		</ul>
-
-		<button type="submit" class="btn green2">SEND</button>
-	</form>
-</div>
-
-	<?= View::forge('analytics/site') ?>
-	<a href="/feedback" class="feedback">
-		<? echo Asset::img('feedback.png') ?>
-	</a>
-  </body>
+<?= View::forge('analytics/site') ?>
+<a href="#" class="feedback">
+    <? echo Asset::img('feedback.png') ?>
+</a>
+</body>
 </html>

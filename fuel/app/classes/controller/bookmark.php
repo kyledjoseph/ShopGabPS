@@ -7,6 +7,21 @@ class Controller_Bookmark extends Controller_App
 	public function before()
 	{
 		parent::before();
+		
+		if (Fuel::$env == 'production')
+		{
+			$this->domain = 'http://beta.itemnation.com/';
+		}
+		else
+		{
+			$this->domain = 'http://itemnation.dev/';
+		}
+
+		if (! Input::is_ajax())
+		{
+			$this->template->domain = $this->domain;
+		}
+
 		//Config::set('profiling', false); // not working
 	}
 
@@ -29,6 +44,10 @@ class Controller_Bookmark extends Controller_App
 		return View::forge('bookmark/test');
 	}
 
+	public function get_iframe()
+	{
+		return View::forge('bookmark/iframe');
+	}
 
 	/**
 	 * Bookmark Submit
@@ -40,11 +59,14 @@ class Controller_Bookmark extends Controller_App
 			$this->redirect('bookmark/login');
 		}
 
-		$post = $this->post_data('name', 'description', 'domain', 'url', 'images', 'add_to', 'chat_id');
+		$post = $this->post_data(
+			'name', 'description', 'price', 'domain', 'url', 'images',
+			'add_to', 'friend_id', 'friend_quest_id', 'new_quest_name', 'my_quest_id');
 
-		if (! in_array($post->add_to, array('chat', 'wishlist', 'my_items')))
+
+		if (! in_array($post->add_to, array('my', 'friend', 'new')))
 		{
-			throw new Exception("Unknown product destination '{$post->add_to}'");
+			return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_product_destination')));
 		}
 
 		// create product
@@ -52,6 +74,7 @@ class Controller_Bookmark extends Controller_App
 			'user_id'     => $this->user->id,
 			'name'        => $post->name,
 			'description' => $post->description,
+			'price'       => $post->price,
 			'domain'      => $post->domain,
 			'url'         => $post->url,
 		));
@@ -65,24 +88,43 @@ class Controller_Bookmark extends Controller_App
 		// 
 		switch ($post->add_to)
 		{
-			case 'chat':
+			case 'my':
 				
-				$chat = $this->user->get_chat($post->chat_id);
-				! isset($chat) and $this->redirect('bookmark/view', 'error', 'Not a valid chat');
-				$chat->add_product($product->id);
+				$quest = $this->user->get_chat($post->my_quest_id);
+				if (! isset($quest))
+				{
+					return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_quest_id')));
+				}
+
+				$quest->add_product($product->id);
+				break;
+
+			case 'friend':
+
+				$friend = $this->user->get_friend_by_id($post->friend_id);
+				if (! isset($friend))
+				{
+					return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_friend_id')));
+				}
+
+				$quest = $friend->get_chat($post->friend_quest_id);
+				if (! isset($quest))
+				{
+					return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_friend_quest_id')));
+				}
+
+				$quest->add_product($product->id);
 
 				break;
 
-			case 'wishlist':
+			case 'new':
 
-				break;
-
-			case 'my_items':
-
+				$quest = $this->user->create_chat($post->new_quest_name, '', '0');
+				$quest->add_product($product->id);
 				break;
 				
 			default:
-				throw new Exception("Unknown product destination '{$post->add_to}'");
+				return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_product_destination')));
 				
 		}
 
@@ -178,6 +220,14 @@ class Controller_Bookmark extends Controller_App
 	}
 
 
+	public function post_log()
+	{
+		$post = $this->post_data('url', 'error');
+		$success = Model_Error_Bookmark::log_error($post->url, $post->error);
+		return Response::forge(array('success' => $success));
+	}
+
+
 
 
 
@@ -202,7 +252,36 @@ class Controller_Bookmark extends Controller_App
 	}
 
 
+	/**
+	 * 
+	 */
+	public function get_friend_quests($friend_id)
+	{
+		if (! $this->user_logged_in())
+		{
+			return Response::forge(json_encode(array(
+				'success' => false,
+				'type'    => 'invalid_friend_id',
+			)));
+		}
 
+		$friend = $this->user->get_friend_by_id($friend_id);
+
+		if (! isset($friend))
+		{
+			return Response::forge(json_encode(array(
+				'success' => false,
+				'type'    => 'invalid_friend_id',
+			)));
+		}
+
+
+
+		return Response::forge(json_encode(array(
+			'success' => true,
+			'quests'  => $friend->select_chat(),
+		)));
+	}
 	
 
 

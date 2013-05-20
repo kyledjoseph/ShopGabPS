@@ -6,6 +6,20 @@ $(function(){
 		$(this).submit();
 	});
 
+
+	$('#open_url').click(function(){
+		var url = $('#open_url_location').val();
+
+		if (!/^(f|ht)tps?:\/\//i.test(url))
+		{
+			url = "http://" + url;
+		}
+
+		window.open(url);
+		$('#open_url_location').val('');
+		return false;
+	});
+
 	// init comments
 	//
 	//

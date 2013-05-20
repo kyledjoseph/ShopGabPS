@@ -149,7 +149,7 @@
 										<span class="sprites bubble-blue"><?= $chat_product->total_downvotes() ?></span>
 									</div>
 								</div>
-
+								<span class="product-price"><?= $product->price() ?></span>
 								<?= Html::anchor($product->product_url(), '<span>Where can I find this?</span>', array('class' => 'btn orange', 'target' => '_blank')) ?>
 							</div>
 							
@@ -210,3 +210,79 @@
 
 
 			</aside>
+
+
+
+<div id="addnew-product" class="dialog">
+	<h2>Add New Product</h2>
+
+	<div class="addnew-form">
+		<h3>Capture any product from the web</h3>
+		<span class="how">How does this work?</span>
+
+		<ul>
+			<li>
+				<form>
+					<label>Enter a URL:</label>
+					<input id="open_url_location" type="text">
+					<button id="open_url" type="submit" class="btn green2">GO</button>
+				</form>
+			</li>
+		</ul>
+
+		<h4>Search With:</h4>
+		<ul>
+			<li>
+				<form method="get" action="http://www.google.com/search" target="_blank">
+					<label>Google:</label>
+					<input name="q" type="text">
+					<button type="submit" class="btn green2">GO</button>
+				</form>
+			</li>
+			<li>
+				<form method="get" action="http://www.bing.com/search"  target="_blank">
+					<label>Bing:</label>
+					<input nane="q" type="text">
+					<button type="submit" class="btn green2">GO</button>
+				</form>
+			</li>
+		</ul>
+
+	</div>
+
+	<div class="addnew-right">
+		<h3>How do I add an item?</h3>
+
+		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/bookmark.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><span>Add To ItemNation</span></a>
+	</div>
+
+</div>
+
+<div id="invite-friends" class="dialog">
+	<h2>Invite Friends to Join Your Quest</h2>
+
+	<h3>Invite a friend by email.</h3>
+
+	<?= Form::open($chat->invite_url()) ?>
+		<ul>
+			<li>
+				<label>From:</label>
+				<input type="text" value="info@itemnation.com" disabled>
+			</li>
+			<li>
+				<label>To:</label>
+				<input name="to" type="text">
+			</li>
+			<li>
+				<label>Subject:</label>
+				<input name="subject" type="text" value="Help me find <?= $chat->name ?>">
+			</li>
+			<li>
+				<label>Description:</label>
+				<textarea name="description"><?= $chat->user->display_name() ?> is trying to find a <?= $chat->name ?> for them through ItemNation and has requested your input! Please click on the link below to see their page and join in the search. Thanks!</textarea>
+			</li>
+		</ul>
+
+		<button type="submit" class="btn green2">SEND</button>
+	</form>
+</div>

@@ -13,7 +13,7 @@
 
 </head>
 <body>
-	<div class="itemnation-box">
+	<div class="itemnation-box" data-domain="<?= $domain ?>">
 
 		<div>
 			<img class="image" src="/assets/img/bookmark/logo.png" />

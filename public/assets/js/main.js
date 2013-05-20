@@ -38,6 +38,11 @@ $('.user-control').click(function(){
 		$('#overlay, .dialog, .view-comment').fadeOut(300);
 	});
 
+		$('.feedback').click(function() {
+		$('.feedback_modal, #overlay').fadeIn(300);
+	});
+
+
 
 	$('#modal-tabs, #terms-tabs').tabs();
 

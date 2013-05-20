@@ -26,7 +26,21 @@ class Model_User extends \Orm\Model
 			'key_to' => 'user_id',
 			'cascade_save' => true,
 			'cascade_delete' => true,
-		)
+		),
+		'added_chat_products' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Chat_Product',
+			'key_to' => 'added_by',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
+		'chats' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Chat',
+			'key_to' => 'user_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
 	);
 
 	protected static $_observers = array(
@@ -134,6 +148,37 @@ class Model_User extends \Orm\Model
 	{
 		return Model_Chat::create_chat($this->id, $name, $description, $purchase_within);
 	}
+
+	/**
+	 * undocumented class variable
+	 */
+	public function get_friends()
+	{
+		return Model_User::query()->order_by('display_name', 'asc')->get();
+	}
+
+	/**
+	 * undocumented class variable
+	 */
+	public function select_friends()
+	{
+		$options = array();
+		$options['select'] = 'Select';
+		foreach ($this->get_friends() as $friend)
+		{
+			$options[$friend->id] = $friend->display_name();
+		}
+		return empty($options) ? array('none' => 'No Friends Available') : $options;
+	}
+
+	/**
+	 * undocumented class variable
+	 */
+	public function get_friend_by_id($friend_id)
+	{
+		return Model_User::query()->where('id', $friend_id)->get_one();
+	}
+
 
 	/**
 	 * Authenticate a user with a provider
