@@ -279,8 +279,7 @@
 			</li>
 			<li>
 				<label>Description:</label>
-				<textarea name="description">
-					<?= $chat->user->display_name() ?> is trying to find a <?= $chat->name ?> for them through ItemNation and has requested your input! Please click on the link below to see their page and join in the search. Thanks!</textarea>
+				<textarea name="description"><?= $chat->user->display_name() ?> is trying to find a <?= $chat->name ?> for them through ItemNation and has requested your input! Please click on the link below to see their page and join in the search. Thanks!</textarea>
 			</li>
 		</ul>
 
