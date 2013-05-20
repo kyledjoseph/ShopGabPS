@@ -265,6 +265,11 @@ $(function () {
 		<h3>How do I add an item?</h3>
 
 		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/assets/js/bookmark/parent.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><span>Add To ItemNation</span></a>
+
+		<div class="bookmark-video">
+			<h4>How does the bookmark work?</h4>
+			<iframe width="224" height="114" src="http://www.youtube.com/embed/x0ArM1rtwNI" frameborder="0" allowfullscreen></iframe>
+		</div>
 	</div>
 
 </div>
