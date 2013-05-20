@@ -8,6 +8,7 @@ class Model_Product extends \Orm\Model
 		'category_id',
 		'name',
 		'description',
+		'price',
 		'domain',
 		'url',
 
@@ -63,6 +64,11 @@ class Model_Product extends \Orm\Model
 	public function description()
 	{
 		return $this->description;
+	}
+
+	public function price()
+	{
+		return $this->price;
 	}
 
 	public function url()

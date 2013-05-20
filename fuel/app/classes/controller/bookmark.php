@@ -60,7 +60,7 @@ class Controller_Bookmark extends Controller_App
 		}
 
 		$post = $this->post_data(
-			'name', 'description', 'domain', 'url', 'images',
+			'name', 'description', 'price', 'domain', 'url', 'images',
 			'add_to', 'friend_id', 'friend_quest_id', 'new_quest_name', 'my_quest_id');
 
 
@@ -74,6 +74,7 @@ class Controller_Bookmark extends Controller_App
 			'user_id'     => $this->user->id,
 			'name'        => $post->name,
 			'description' => $post->description,
+			'price'       => $post->price,
 			'domain'      => $post->domain,
 			'url'         => $post->url,
 		));

@@ -149,7 +149,7 @@
 										<span class="sprites bubble-blue"><?= $chat_product->total_downvotes() ?></span>
 									</div>
 								</div>
-
+								<span class="product-price"><?= $product->price() ?></span>
 								<?= Html::anchor($product->product_url(), '<span>Where can I find this?</span>', array('class' => 'btn orange', 'target' => '_blank')) ?>
 							</div>
 							

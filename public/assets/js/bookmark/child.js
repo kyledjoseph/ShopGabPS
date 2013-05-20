@@ -294,6 +294,7 @@ $(document).ready(function () {
             $.extend(child.info, {
                 name: $('.title').val(),
                 description: $('.description').val(),
+                price: $('.price').val(),
                 images: $('.product-image').attr('src'),
                 add_to: $("select[name='add_to']").val(),
                 chat_id: $("select[name='chat_id']").val(),
