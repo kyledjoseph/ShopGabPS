@@ -146,7 +146,7 @@ class Controller_User extends Controller_App
 		$user->generate_reset_code();
 		
 		Service_Email::send(array(
-			'type'      => 'reset',
+			'type'      => 'password_reset',
 			'to_addr'   => $user->email,
 			'from_name' => 'ItemNation',
 			'from_addr' => 'info@itemnation.com',
@@ -256,7 +256,7 @@ class Controller_User extends Controller_App
 			$email = trim($email);
 
 			Service_Email::send(array(
-				'type'      => 'invite',
+				'type'      => 'in_invite',
 				'to_addr'   => $email,
 				'from_name' => 'ItemNation Invite',
 				'from_addr' => 'invite@itemnation.com',

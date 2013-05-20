@@ -28,6 +28,7 @@ class Service_Email
 		$email->send();
 
 		$log = Service_Email_Log::log_event(array(
+			'type'      => $attr['type'],
 			'to_name'   => $attr['to_name'],
 			'to_addr'   => $attr['to_addr'],
 			'from_name' => $attr['from_name'],

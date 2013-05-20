@@ -181,8 +181,9 @@ class Controller_Chats extends Controller_App
 
 
 		Service_Email::send(array(
+			'type'      => 'quest_invite',
 			'to_addr'   => $post->to,
-			'from_name' => 'info@itemnation.com',
+			'from_name' => 'ItemNation',
 			'from_addr' => 'info@itemnation.com',
 			'subject'   => $post->subject,
 			'body'      => $body,
