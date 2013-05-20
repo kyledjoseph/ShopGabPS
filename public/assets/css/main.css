@@ -2581,7 +2581,14 @@ footer .footer-bottom .footer-logo {
 	opacity: 0
 }
 
+.bookmark-video {
+	padding: 0 20px;
+	overflow: hidden;
+}
 
+.bookmark-video > * {
+	float: left;
+}
 
 
 /* Bookmarklet iframe */
