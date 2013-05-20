@@ -221,6 +221,59 @@
 
 	
 
+	<!-- Overlay and Dialog -->
+<div id="overlay"></div>
+
+<div id="addnew-product" class="dialog">
+	<h2>Add New Product</h2>
+
+	<div class="addnew-form">
+		<h3>Capture any product from the web</h3>
+		<span class="how">How does this work?</span>
+
+		<ul>
+			<li>
+				<form>
+					<label>Enter a URL:</label>
+					<input type="text">
+					<button type="submit" class="btn green2">GO</button>
+				</form>
+			</li>
+		</ul>
+
+		<h4>Search With:</h4>
+		<ul>
+			<li>
+				<form method="get" action="http://www.google.com/search" target="_blank">
+					<label>Google:</label>
+					<input name="q" type="text">
+					<button type="submit" class="btn green2">GO</button>
+				</form>
+			</li>
+			<li>
+				<form method="get" action="http://www.bing.com/search"  target="_blank">
+					<label>Bing:</label>
+					<input nane="q" type="text">
+					<button type="submit" class="btn green2">GO</button>
+				</form>
+			</li>
+		</ul>
+
+	</div>
+
+	<div class="addnew-right">
+		<h3>How do I add an item?</h3>
+
+		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/assets/js/bookmark/parent.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><span>Add To ItemNation</span></a>
+
+		<div class="bookmark-video">
+			<h4>How does the bookmark work?</h4>
+			<iframe width="224" height="114" src="http://www.youtube.com/embed/x0ArM1rtwNI" frameborder="0" allowfullscreen></iframe>
+		</div>
+	</div>
+
+</div>
+
 <!-- Overlay and Dialog -->
 <div id="overlay">
 </div>
