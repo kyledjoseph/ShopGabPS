@@ -61,23 +61,7 @@ th,
 td,
 article,
 aside,
-canvas,
-details,
-embed,
-figure,
-figcaption,
-footer,
-header,
-hgroup,
-menu,
-nav,
-output,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,section,summary,time,mark,audio, video {
 	margin: 0;
 	padding: 0;
 	border: 0;
@@ -2596,6 +2580,26 @@ footer .footer-bottom .footer-logo {
 .addnew-right a span {
 	opacity: 0
 }
+
+.bookmark-video {
+	position: relative;
+	top: -30px;
+	padding: 0 20px;
+	overflow: hidden;
+}
+
+.bookmark-video iframe {
+	margin: 0 auto;
+}
+
+.bookmark-video h4 {
+	font-size: 18px;
+	font-weight: bold;
+	text-align: center;
+	padding: 0 0 5px;
+}
+
+
 /* Bookmarklet iframe */
 .full-size {
 	width: 100%;
@@ -2649,3 +2653,7 @@ footer .footer-bottom .footer-logo {
 .feedback_modal label {
 	display: none;
 }
+
+
+
+
