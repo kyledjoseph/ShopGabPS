@@ -81,9 +81,14 @@ class Model_Product extends \Orm\Model
 		return $this->url;
 	}
 
+	public function has_image()
+	{
+		return is_object($this->image);
+	}
+
 	public function image()
 	{
-		return is_object($this->image) ? $this->image->src() : null;
+		return $this->has_image() ? $this->image->src() : null;
 	}
 
 	public function image_html()
@@ -93,7 +98,7 @@ class Model_Product extends \Orm\Model
 
 	public function thumb()
 	{
-		return is_object($this->image) ? $this->image->thumb() : 'http://placehold.it/65x75';
+		return $this->has_image() ? $this->image->thumb() : 'http://placehold.it/65x75';
 	}
 
 	public function thumb_html()

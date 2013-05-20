@@ -19,7 +19,7 @@ class Model_Product_Image extends \Orm\Model
 			'key_to' => 'id',
 			'cascade_save' => true,
 			'cascade_delete' => false,
-		)
+		),
 	);
 
 	protected static $_observers = array(
@@ -61,6 +61,11 @@ class Model_Product_Image extends \Orm\Model
 	}
 
 
+
+	public static function get_by_id($image_id)
+	{
+		return static::query()->where('id', $image_id)->get_one();
+	}
 
 	public static function add_image($product_id, $url)
 	{

@@ -18,9 +18,13 @@
 
 
 						<li>
+							<?= Html::img($chat->default_thumb_url()) ?>
+							<br>
 							<?= Html::anchor("quest/delete/{$chat->id}", '[x]') ?> 
 							<?= Html::anchor($chat->url(), $chat->name) ?>
 						</li>
+
+						<hr>
 
 						<?php endforeach; ?>
 
