@@ -23,7 +23,7 @@ class Service_Email
 		$email->to($attr['to_addr'], $attr['to_name']);
 
 		$email->subject($attr['subject']);
-		$email->body($attr['body']);
+		$email->html_body($attr['body']);
 
 		$email->send();
 
