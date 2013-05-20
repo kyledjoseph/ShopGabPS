@@ -185,7 +185,7 @@ class Controller_Chats extends Controller_App
 			'from_name' => 'info@itemnation.com',
 			'from_addr' => 'info@itemnation.com',
 			'subject'   => $post->subject,
-			'body'      => $post->description,
+			'body'      => $body,
 		));
 
 		$this->redirect($chat->url(), 'info', "Invitation to '{$post->to}' has been sent");
