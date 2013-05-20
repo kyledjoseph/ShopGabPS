@@ -1,17 +1,16 @@
 <?php
 return array(
-	'_root_'  => 'home/index',
-	'_404_'   => 'error/404',
+	'_root_'                   => 'home/index',
+	'_404_'                    => 'error/404',
 
-	'bookmark' => 'bookmark/view',
+	'bookmark'                 => 'bookmark/view',
 
-
-	'login'    => 'user/login',
-	'register' => 'user/register',
-	'logout'   => 'user/logout',
-	'forgot'   => 'user/forgot',
-	'account'  => 'user/account',
-
+	'login'                    => 'user/login',
+	'logout'                   => 'user/logout',
+	'register'                 => 'user/register',
+	'forgot'                   => 'user/forgot',
+	'reset/(:segment)'         => 'user/reset/$1',
+	'account'                  => 'user/account',
 
 	'quest/create'             => 'chats/create',
 	'quest/delete/(:any)'      => 'chats/delete/$1',

@@ -29,13 +29,6 @@ class Controller_User extends Controller_App
 
 
 
-	public function get_process()
-	{
-		Hybrid_Endpoint::process();
-	}
-
-
-
 	/**
 	 * User authentication with Facebook, Twitter, and Google
 	 */
@@ -89,6 +82,11 @@ class Controller_User extends Controller_App
 
 	}
 
+	public function get_process()
+	{
+		Hybrid_Endpoint::process();
+	}
+
 
 
 	/**
@@ -132,15 +130,78 @@ class Controller_User extends Controller_App
 	 */
 	public function get_forgot()
 	{
+		$this->template->body = View::forge('user/forgot');
+	}
+
+	public function post_forgot()
+	{
+		$post = $this->post_data('email');
+		$user = Model_User::get_by_email($post->email);
 		
+		if (! isset($user))
+		{
+			$this->redirect('forgot', 'error', 'That email address is not registered');
+		}
+
+		$user->generate_reset_code();
+		
+		Service_Email::send(array(
+			'type'      => 'reset',
+			'to_addr'   => $user->email,
+			'from_name' => 'ItemNation',
+			'from_addr' => 'info@itemnation.com',
+			'subject'   => 'Reset your ItemNation password',
+			'body'      => View::forge('emails/reset', array(
+				'reset_code' => $user->reset_code,
+			)),
+		));
+
+		$this->redirect('login', 'success', 'An email with instructions to reset your password has been sent to the address provided');
 	}
 
 
 
+	/**
+	 * Reset password
+	 */
+	public function get_reset($reset_code)
+	{
+		$user = Model_User::get_by_rest_code($reset_code);
+
+		if (! isset($user))
+		{
+			$this->redirect('forgot', 'error', 'Invalid password reset');
+		}
+
+		$this->template->body = View::forge('user/reset');
+	}
+	
+	public function post_reset($reset_code)
+	{
+		$user = Model_User::get_by_rest_code($reset_code);
+
+		if (! isset($user) or ! $user->is_reset_code_valid())
+		{
+			$this->redirect('forgot', 'error', 'Invalid password reset');
+		}
+
+		$post = $this->post_data('password', 'confirm_password');
+
+		// password match
+		if ($post->password !== $post->confirm_password)
+		{
+			$this->redirect('user/register', 'error', 'Your password does not match the password confirmation');
+		}
+
+		$this->auth->reset_password($user->email, $post->password);
+		$user->empty_reset_code();
+		$this->redirect('login', 'success', 'Your password has been changed.');
+	}
+
 
 
 	/**
-	 *
+	 * Logout
 	 */
 	public function get_logout()
 	{
@@ -154,12 +215,14 @@ class Controller_User extends Controller_App
 
 
 	/**
-	 *
+	 * Verify email address
 	 */
-	public function get_activate($user_hash)
+	public function get_verify($user_hash)
 	{
 
 	}
+
+
 
 
 	/**
