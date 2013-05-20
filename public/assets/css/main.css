@@ -2582,6 +2582,8 @@ footer .footer-bottom .footer-logo {
 }
 
 .bookmark-video {
+	position: relative;
+	top: -30px;
 	padding: 0 20px;
 	overflow: hidden;
 }
