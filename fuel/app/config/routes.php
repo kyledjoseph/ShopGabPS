@@ -5,6 +5,14 @@ return array(
 
 	'bookmark' => 'bookmark/view',
 
+
+	'login'    => 'user/login',
+	'register' => 'user/register',
+	'logout'   => 'user/logout',
+	'forgot'   => 'user/forgot',
+	'account'  => 'user/account',
+
+
 	'quest/create'             => 'chats/create',
 	'quest/delete/(:any)'      => 'chats/delete/$1',
 	'quest/like/(:any)'        => 'chats/like/$1',

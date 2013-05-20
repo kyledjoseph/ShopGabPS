@@ -371,7 +371,7 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 
 		$user = Model_User::create_user($email, $hashed_password);
 
-		return isset($user);
+		return $user;
 	}
 
 	/**

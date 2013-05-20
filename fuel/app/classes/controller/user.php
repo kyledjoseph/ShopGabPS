@@ -101,19 +101,27 @@ class Controller_User extends Controller_App
 
 	public function post_register()
 	{
-		$post = $this->post_data('email', 'password');
+		$post = $this->post_data('name', 'email', 'password', 'confirm_password');
+
+		// password match
+		if ($post->password !== $post->confirm_password)
+		{
+			$this->redirect('user/register', 'error', 'Your password does not match the password confirmation');
+		}
 
 		// register user
-		$registration_success = $this->auth->create_user($post->email, $post->password);
-
-		if (! $registration_success)
+		$user = $this->auth->create_user($post->email, $post->password);
+		if (! isset($user))
 		{
 			$this->redirect('user/register', 'error', 'Invalid email address or password');
 		}
 
+		// additional account info
+		$user->display_name = $post->name;
+		$user->save();
+		
 		// log user in
 		$this->auth->login($post->email, $post->password);
-
 		$this->redirect('/');
 	}
 
