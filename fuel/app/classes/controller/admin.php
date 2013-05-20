@@ -25,7 +25,7 @@ class Controller_Admin extends Controller_App
 	{
 		$this->require_auth();
 		
-		$super_admins = array('4');
+		$super_admins = array('2', '3', '4', '5', '6');
 		if (in_array($this->user->id, $super_admins))
 		{
 			return true;

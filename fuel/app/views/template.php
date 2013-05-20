@@ -71,10 +71,10 @@
 
             <ul class="main-control">
                 <li class="<?= (isset($active_nav) and $active_nav == 'login') ? 'current' : null ?>">
-                    <?= Html::anchor('user/login', 'Login') ?>
+                    <?= Html::anchor('login', 'Login') ?>
                 </li>
                 <li class="<?= (isset($active_nav) and $active_nav == 'register') ? 'current' : null ?>">
-                    <?= Html::anchor('user/register', 'Register') ?>
+                    <?= Html::anchor('register', 'Register') ?>
                 </li>
             </ul>
 

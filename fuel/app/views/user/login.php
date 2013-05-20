@@ -24,6 +24,7 @@
 			</ul>
 
 			<button type="submit" class="btn green2">Sign in</button>
+			<?= Html::anchor('forgot', 'Forgot your password?') ?>
 	
 
 			<?= Html::anchor('user/auth/facebook', '<i class="sprites login-facebook"></i>') ?>

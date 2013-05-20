@@ -8,6 +8,7 @@ class Model_Chat extends \Orm\Model
 		'name',
 		'description',
 		'purchase_within',
+		'default_image_id',
 		'created_at',
 		'updated_at',
 	);
@@ -24,7 +25,7 @@ class Model_Chat extends \Orm\Model
 	);
 
 	protected static $_has_many = array(
-		'products' => array(
+		'chat_products' => array(
 			'key_from' => 'id',
 			'model_to' => 'Model_Chat_Product',
 			'key_to' => 'chat_id',
@@ -88,6 +89,31 @@ class Model_Chat extends \Orm\Model
 			'4' => '1 month',
 			'5' => 'more than 1 month',
 		);
+	}
+
+	public function default_thumb_url()
+	{
+		if (isset($this->default_image_id))
+		{
+			$image = Model_Product_Image::get_by_id($this->default_image_id);
+
+			if (isset($image))
+			{
+				return $image->thumb();
+			}
+		}
+
+		foreach ($this->chat_products as $chat_product)
+		{
+			if ($chat_product->product->has_image())
+			{
+				$this->default_image_id = $chat_product->product->image->id;
+				$this->save();
+				return $chat_product->product->thumb();
+			}
+		}
+
+		return '/assets/img/product-default.png';
 	}
 
 

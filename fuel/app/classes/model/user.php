@@ -15,6 +15,8 @@ class Model_User extends \Orm\Model
 		'last_login',
 		'login_hash',
 		'profile_fields',
+		'reset_code',
+		'reset_created_at',
 		'created_at',
 		'updated_at',
 	);
@@ -180,6 +182,8 @@ class Model_User extends \Orm\Model
 	}
 
 
+
+
 	/**
 	 * Authenticate a user with a provider
 	 */
@@ -215,6 +219,65 @@ class Model_User extends \Orm\Model
 
 
 
+	/**
+	 * Generate a new password reset
+	 */
+	public function generate_reset_code()
+	{
+		$unique = false;
+		while (! $unique)
+		{
+			$rand   = md5(uniqid(rand(), true));
+			$total  = static::query()->where('reset_code', $rand)->count();
+			$unique = $total == 0;
+		}
+
+		$this->reset_code = $rand;
+		$this->reset_created_at = time();
+		$this->save();
+	}
+
+	/**
+	 * Validate a password reset code
+	 */
+	public function is_reset_code_valid()
+	{
+		$code    = $this->reset_code;
+		$time    = $this->reset_created_at;
+		$timeout = $time + (60 * 60 * 24 * 7); // 7 days
+
+		if (! isset($code) or empty($code))
+		{
+			return false;
+		}
+
+		// reset expired
+		if (! isset($time) or $timeout < time())
+		{
+			$this->empty_reset_code();
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * Empty reset code
+	 */
+	public function empty_reset_code()
+	{
+		$this->reset_code = null;
+		$this->reset_created_at = null;
+		$this->save();
+	}
+
+
+
+
+
+	/**
+	 * 
+	 */
 	public static function create_user($email, $password, $first_name = null, $last_name = null)
 	{
 		$user = static::forge([
@@ -235,4 +298,10 @@ class Model_User extends \Orm\Model
 	{
 		return static::query()->where('email', $email)->get_one();
 	}
+
+	public static function get_by_rest_code($reset_code)
+	{
+		return static::query()->where('reset_code', $reset_code)->get_one();
+	}
+
 }

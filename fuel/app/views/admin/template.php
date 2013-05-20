@@ -114,10 +114,16 @@
 							<li class="<?= (isset($active_nav) and $active_nav == 'accounts') ? 'active' : null ?>">
 								<?= Html::anchor('admin/accounts', 'Accounts') ?>
 							</li>
+							<li class="<?= (isset($active_nav) and $active_nav == 'feedback') ? 'active' : null ?>">
+								<?= Html::anchor('admin/feedback', 'Feedback') ?>
+							</li>
 							<li class="<?= (isset($active_nav) and $active_nav == 'subscribers') ? 'active' : null ?>">
 								<?= Html::anchor('admin/subscribers', 'Subscribers') ?>
 							</li>
-							<li class="<?= (isset($active_nav) and $active_nav == '') ? 'active' : null ?>"><a href="#">Extra</a></li>
+							<li class="<?= (isset($active_nav) and $active_nav == 'logs') ? 'active' : null ?>">
+								<?= Html::anchor('admin/logs', 'Logs') ?>
+
+							</li>
 							<li class="<?= (isset($active_nav) and $active_nav == 'servers') ? 'active' : null ?>">
 								<?= Html::anchor('admin/servers', 'Servers') ?>
 							</li>
@@ -139,6 +145,7 @@
 		<div class="row-fluid">
 			<div class="span12">
 
+<?= isset($page_nav) ? $page_nav : null ?>
 <?= $body ?>
 
 			</div>

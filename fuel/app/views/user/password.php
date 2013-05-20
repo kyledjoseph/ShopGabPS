@@ -8,15 +8,15 @@
 		<ul>
 			<li>
 				<label for="name">Current Password</label>
-				<input type="text" name="current">
+				<input type="password" name="current">
 			</li>
 			<li>
 				<label for="email">New Password</label>
-				<input type="text" name="new">
+				<input type="password" name="new">
 			</li>
 			<li>
 				<label for="email">Confirm Password</label>
-				<input type="text" name="confirm">
+				<input type="password" name="confirm">
 			</li>
 		</ul>
 					

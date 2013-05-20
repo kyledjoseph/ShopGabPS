@@ -207,10 +207,10 @@ class Controller_Bookmark extends Controller_App
 
 	public function post_register()
 	{
-		$post    = $this->post_data('email', 'password');
-		$success = $this->auth->create_user($post->email, $post->password);
+		$post = $this->post_data('email', 'password');
+		$user = $this->auth->create_user($post->email, $post->password);
 
-		if (! $success)
+		if (! isset($user))
 		{
 			$this->redirect('user/register', 'error', 'Invalid email or password.');
 		}
@@ -223,7 +223,7 @@ class Controller_Bookmark extends Controller_App
 	public function post_log()
 	{
 		$post = $this->post_data('url', 'error');
-		$success = Model_Error_Bookmark::log_error($post->url, $post->error);
+		$success = Model_Log_Bookmark_Error::log_error($post->url, $post->error);
 		return Response::forge(array('success' => $success));
 	}
 

@@ -5,6 +5,7 @@ class Service_Email_Log extends \Orm\Model
 	protected static $_table_name = 'log_emails';
 	protected static $_properties = array(
 		'id',
+		'type',
 		'to_name',
 		'to_addr',
 		'from_name',
@@ -25,6 +26,12 @@ class Service_Email_Log extends \Orm\Model
 			'mysql_timestamp' => false,
 		),
 	);
+
+	public function date($format = "r")
+	{
+		return date($format, $this->created_at);
+	}
+
 
 	public static function log_event($attr)
 	{

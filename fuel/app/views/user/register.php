@@ -6,12 +6,20 @@
 
 		<ul>
 			<li>			
+				<label for="name">Name</label>
+				<input type="text" name="name" placeholder="">
+			</li>
+			<li>			
 				<label for="email">Email</label>
 				<input type="text" name="email" placeholder="Email">
 			</li>
 			<li>
 				<label for="password">Password</label>
-				<input type="password" name="password" placeholder="Password">
+				<input type="password" name="password">
+			</li>
+			<li>
+				<label for="confirm_password">Confirm Password</label>
+				<input type="password" name="confirm_password">
 			</li>
 		</ul>		
 

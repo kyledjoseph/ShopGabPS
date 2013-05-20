@@ -181,22 +181,19 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 	 *
 	 * @return  bool
 	 */
-	public function validate_user($username_or_email = '', $password = '')
+	public function validate_user($email = '', $password = '')
 	{
-		$username_or_email = trim($username_or_email);
+		$email    = trim($email);
 		$password = trim($password);
 
-		if (empty($username_or_email) or empty($password))
+		if (empty($email) or empty($password))
 		{
 			return false;
 		}
 
 		$password = $this->hash_password($password);
 		$this->user = \DB::select_array(\Config::get('siteauth.table_columns', array('*')))
-			->where_open()
-			->where('username', '=', $username_or_email)
-			->or_where('email', '=', $username_or_email)
-			->where_close()
+			->where('email', '=', $email)
 			->where('password', '=', $password)
 			->from(\Config::get('siteauth.table_name'))
 			->execute(\Config::get('siteauth.db_connection'))->current();
@@ -371,7 +368,7 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 
 		$user = Model_User::create_user($email, $hashed_password);
 
-		return isset($user);
+		return $user;
 	}
 
 	/**
@@ -386,7 +383,7 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 	{
 		$username = $username ?: $this->user['username'];
 		$current_values = \DB::select_array(\Config::get('siteauth.table_columns', array('*')))
-			->where('username', '=', $username)
+			->where('email', '=', $username)
 			->from(\Config::get('siteauth.table_name'))
 			->execute(\Config::get('siteauth.db_connection'));
 
@@ -500,14 +497,13 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 	 * @param   string  $username
 	 * @return  string
 	 */
-	public function reset_password($username)
+	public function reset_password($email, $new_password)
 	{
-		$new_password = \Str::random('alnum', 8);
 		$password_hash = $this->hash_password($new_password);
 
 		$affected_rows = \DB::update(\Config::get('siteauth.table_name'))
 			->set(array('password' => $password_hash))
-			->where('username', '=', $username)
+			->where('email', '=', $email)
 			->execute(\Config::get('siteauth.db_connection'));
 
 		if ( ! $affected_rows)
@@ -515,7 +511,7 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 			throw new \SiteUserUpdateException('Failed to reset password, user was invalid.', 8);
 		}
 
-		return $new_password;
+		return true;
 	}
 
 	/**
