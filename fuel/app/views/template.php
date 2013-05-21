@@ -269,7 +269,7 @@
 		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/assets/js/bookmark/parent.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><span>Add To ItemNation</span></a>
 
 		<div class="bookmark-video">
-			<iframe width="224" height="114" src="http://www.youtube.com/watch?v=StC9A8xlJ9E&feature=youtu.be" frameborder="0" allowfullscreen></iframe>
+			<iframe width="224" height="114" src="http://www.youtube.com/embed/StC9A8xlJ9E" frameborder="0" allowfullscreen></iframe>
 		</div>
 	</div>
 
