@@ -7,11 +7,11 @@
 
 			<ul>
 				<li>
-					<label for="name">Chat Name</label>
+					<label for="name">Name</label>
 					<input type="text" name="name" value="<?= $chat->name ?>">
 				</li>
 				<li>
-					<label for="description">Chat Description</label>
+					<label for="description">Description</label>
 					<textarea name="description"><?= $chat->description ?></textarea>
 				</li>
 			</ul>
