@@ -281,7 +281,7 @@
     <div class="feedback_modal dialog">
             <h2>Feedback</h2>
         <div class="content feedback_clickable">
-            <?= Form::open(array('class' => 'form-horizontal')) ?>
+            <?= Form::open(array('action' => 'feedback', 'class' => 'form-horizontal')) ?>
 
             <?php if (! isset($user)): ?>
             <div class="control-group">
@@ -300,7 +300,7 @@
         </div>
         <div class="control-group">
             <div class="controls">
-                <input name="referral_url" type="hidden" value="sample_referral_url">
+                <input name="referral_url" type="hidden" value="<?= Uri::current() ?>">
                 <button type="submit" class="btn green2">Send Feedback</button>
             </div>
         </div>

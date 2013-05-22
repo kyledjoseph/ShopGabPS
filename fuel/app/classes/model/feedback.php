@@ -33,6 +33,11 @@ class Model_Feedback extends \Orm\Model
 		),
 	);
 
+	public function date($format = "r")
+	{
+		return date($format, $this->created_at);
+	}
+
 
 	public static function create_feedback($attr)
 	{
