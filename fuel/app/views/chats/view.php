@@ -253,7 +253,7 @@
 	<div class="addnew-right">
 		<h3>How do I add an item?</h3>
 
-		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://beta.itemnation.com/bookmark.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><span>Add To ItemNation</span></a>
+		<a href="javascript:(function(){var e=document.createElement('script');e.src='http://itemnation.com/bookmark.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><span>Add To ItemNation</span></a>
 	</div>
 
 </div>

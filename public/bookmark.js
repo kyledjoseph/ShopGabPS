@@ -42,7 +42,7 @@
             if ($("#itemnation-script").attr('src').indexOf('itemnation.dev') >= 0) {
                 inline.script_domain = 'itemnation.dev';
             } else {
-                inline.script_domain = 'beta.itemnation.com';
+                inline.script_domain = 'itemnation.com';
             }
 
             /* Open child iframe. */

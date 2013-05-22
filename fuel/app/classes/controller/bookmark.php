@@ -10,7 +10,7 @@ class Controller_Bookmark extends Controller_App
 		
 		if (Fuel::$env == 'production')
 		{
-			$this->domain = 'http://beta.itemnation.com/';
+			$this->domain = 'http://itemnation.com/';
 		}
 		else
 		{
