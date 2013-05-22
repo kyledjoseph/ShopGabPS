@@ -58,7 +58,7 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 	 *
 	 */
 	protected $social_config = array(
-		"base_url" => "http://beta.itemnation.com/user/process", 
+		"base_url" => "http://itemnation.com/user/process", 
 
 		"debug_mode" => false,
 		"debug_file" => "",
