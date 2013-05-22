@@ -1,12 +1,20 @@
 $(function(){
 	
-	// change purchase_within time
+	// 
+	$('textarea[name=message]').keydown(function(e) {
+		if (e.keyCode == 13)
+		{
+			$(this).parent().submit();
+			return false;
+		}
+	});
 
+	// change purchase_within time
 	$("#purchase_within_form").bind("change", function() {
 		$(this).submit();
 	});
 
-
+	// 
 	$('#open_url').click(function(){
 		var url = $('#open_url_location').val();
 
