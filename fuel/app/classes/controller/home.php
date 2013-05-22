@@ -10,7 +10,7 @@ class Controller_Home extends Controller_App
 		}
 
 		$this->template->active_nav = 'activity';
-		$this->template->body = View::forge('dashbord/view', array(
+		$this->template->body = View::forge('dashboard/view', array(
 			'chats' => $this->user->get_chats(),
 		));
 	}
