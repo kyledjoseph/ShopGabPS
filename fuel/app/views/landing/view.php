@@ -44,7 +44,7 @@
 
 						<h2>Not sure what to buy?</h2>
 						<?= Asset::img('landing/ask-your-friends.png', array('class' => 'ask')) ?>
-						<a href="" class="button-big btn green2">Start Here</a>
+						<?= Html::anchor('register', 'Start Here', array('class' => 'button-big btn green2')) ?>
 						<span class="reigster-low">Start Today! <a href="">Click Here.</a></span>
 					</div>
 				</section>
