@@ -15,7 +15,7 @@
 			<div class="inner">
 				<a class="sprites logo" href="index.html" title="ItemNation"></a>
 				<div class="landing-head">
-					<?= Html::anchor('login', 'Login', array('class' => 'l-login')) ?> or 
+					<?= Html::anchor('login', 'Log in', array('class' => 'l-login')) ?> or 
 					<?= Html::anchor('register', 'Sign up', array('class' => 'btn green2 l-signup')) ?>
 				</div>
 			</div>
