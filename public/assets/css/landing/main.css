@@ -94,10 +94,11 @@ header nav li a {color: #86bfd9; text-decoration: underline;}
 	position: absolute;
 	top: 15px;
 	right: 10px;
+	color: #014672;
 }
 
 .l-login {
-	color: #86bfd9;
+	color: inherit;
 }
 
 .l-signup {
