@@ -111,7 +111,7 @@ class Model_User extends \Orm\Model
 	 */
 	public function last_login($format = "d M Y")
 	{
-		return date($format, $this->created_at);
+		return date($format, $this->last_login);
 	}
 
 	/**
