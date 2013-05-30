@@ -27,7 +27,7 @@ class Model_Chat_Product extends \Orm\Model
 			'key_to' => 'id',
 			'cascade_save' => true,
 			'cascade_delete' => false,
-		),		
+		),
 	);
 
 	protected static $_has_one = array(
@@ -46,7 +46,7 @@ class Model_Chat_Product extends \Orm\Model
 			'model_to' => 'Model_Chat_Product_Vote',
 			'key_to' => 'chat_product_id',
 			'cascade_save' => true,
-			'cascade_delete' => false,
+			'cascade_delete' => true,
 		),
 		'comments' => array(
 			'key_from' => 'id',

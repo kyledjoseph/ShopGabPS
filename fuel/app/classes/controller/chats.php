@@ -20,7 +20,7 @@ class Controller_Chats extends Controller_App
 	 */
 	public function redirect_invalid_quest()
 	{
-		$this->redirect('quests', 'info', 'Invalid quest');
+		$this->redirect('/');
 	}
 
 	

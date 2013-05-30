@@ -14,7 +14,7 @@ class Model_Chat_Product_Vote extends \Orm\Model
 
 	protected static $_belongs_to = array(
 		'chat_product' => array(
-			'key_from' => 'chat_id',
+			'key_from' => 'chat_product_id',
 			'model_to' => 'Model_Chat_Product',
 			'key_to' => 'id',
 			'cascade_save' => true,

@@ -41,8 +41,6 @@ class Model_Chat extends \Orm\Model
 		),
 	);
 
-	// has many users 
-
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(
 			'events' => array('before_insert'),
@@ -68,11 +66,20 @@ class Model_Chat extends \Orm\Model
 		return 'quest/' . $this->id;
 	}
 
+	public function belongs_to_user($user_id)
+	{
+		return $user_id == $this->user_id;
+	}
+
 	public function invite_url()
 	{
 		return 'quest/invite/' . $this->id;
 	}
-
+	
+	public function date($format = "r")
+	{
+		return date($format, $this->created_at);
+	}
 
 	public function purchase_within()
 	{
@@ -165,7 +172,18 @@ class Model_Chat extends \Orm\Model
 		return Model_Chat_Message::query()->where('chat_id', $this->id)->order_by('created_at', 'asc')->get();
 	}
 
+	public function remove()
+	{
+		// remove associated images
 
+		return $this->delete();
+	}
+
+
+	public static function get_by_id($chat_id)
+	{
+		return static::query()->where('id', $chat_id)->get_one();
+	}
 
 	public static function get_user_chats($user_id)
 	{

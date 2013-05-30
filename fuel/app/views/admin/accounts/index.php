@@ -1,24 +1,24 @@
 
 		<h2>accounts</h2>
 
-		<?php if (empty($users)): ?><p>no accounts to display</p><?php else: ?>
+		<?php if (empty($accounts)): ?><p>no accounts to display</p><?php else: ?>
 
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>user</th>
+					<th>display_name</th>
 					<th>email</th>
 					<th>member since</th>
 				</tr>
 			</thead>
 
-		<?php foreach ($users as $user): ?>
+		<?php foreach ($accounts as $account): ?>
 
 			<tbody>
 				<tr>
-					<td><?= Html::anchor("admin/accounts/view/{$user->id}", $user->email) ?></td>
-					<td><?= $user->email ?></td>
-					<td><?= $user->member_since() ?></td>
+					<td><?= Html::anchor("admin/accounts/view/{$account->id}", $account->display_name()) ?></td>
+					<td><?= $account->email ?></td>
+					<td><?= $account->member_since() ?></td>
 				</tr>
 			</tbody>
 

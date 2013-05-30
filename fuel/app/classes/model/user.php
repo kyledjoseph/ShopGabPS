@@ -29,7 +29,7 @@ class Model_User extends \Orm\Model
 			'cascade_save' => true,
 			'cascade_delete' => true,
 		),
-		'added_chat_products' => array(
+		'chat_products' => array(
 			'key_from' => 'id',
 			'model_to' => 'Model_Chat_Product',
 			'key_to' => 'added_by',
@@ -152,6 +152,26 @@ class Model_User extends \Orm\Model
 	}
 
 	/**
+	 * 
+	 */
+	public function remove_quest($quest_id)
+	{
+		$quest = Model_Chat::get_by_id($quest_id);
+
+		if (! $quest->belongs_to_user($this->id))
+		{
+			return false;
+		}
+
+		return $quest->remove();
+	}
+
+
+
+
+
+
+	/**
 	 * undocumented class variable
 	 */
 	public function get_friends()
@@ -269,6 +289,12 @@ class Model_User extends \Orm\Model
 		$this->reset_code = null;
 		$this->reset_created_at = null;
 		$this->save();
+	}
+
+
+	public function remove()
+	{
+		return $this->delete();
 	}
 
 
