@@ -23,7 +23,7 @@ GitHub repository for ItemNation ([project overview](http://youtu.be/_VT-QjDqVaw
 ### Mailchimp
 
 * **ID:** kyle@itemnation.com
-* **Pass:** Techdev12
+* **Pass:** Marketing13
 
 ### Godaddy
 
