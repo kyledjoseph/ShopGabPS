@@ -90,7 +90,20 @@ header nav li:after {content: "|"; padding: 0 5px;}
 header nav li:last-child:after {content: none;}
 header nav li a {color: #86bfd9; text-decoration: underline;}
 
+.landing-head {
+	position: absolute;
+	top: 15px;
+	right: 10px;
+	color: #666;
+}
 
+.l-login {
+	color: #014672;
+}
+
+.l-signup {
+	padding: 4px 14px!important;
+}
 
 /**** 
 * User 

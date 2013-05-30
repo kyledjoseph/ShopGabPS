@@ -250,6 +250,13 @@ html[xmlns] .clearfix {
 	width: 194px;
 	height: 35px;
 }
+.default-user {
+	background-position: -319px -129px;
+	width: 80px;
+	height: 77px;
+}
+
+
 /****
 * Buttons
 ***/
@@ -411,6 +418,17 @@ header nav .settings-icon {
 	line-height: 28px;
 	padding: 0 20px;
 }
+
+.landing-head {
+	position: absolute;
+	top: 15px;
+	right: 10px;
+}
+
+.l-login {
+
+}
+
 /**** 
 * User 
 ***/

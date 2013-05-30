@@ -14,7 +14,10 @@
 		<header>
 			<div class="inner">
 				<a class="sprites logo" href="index.html" title="ItemNation"></a>
-				<div class="landing-head"></div>
+				<div class="landing-head">
+					<?= Html::anchor('login', 'Log in', array('class' => 'l-login')) ?> or 
+					<?= Html::anchor('register', 'Sign up', array('class' => 'btn green2 l-signup')) ?>
+				</div>
 			</div>
 		</header>
 
@@ -41,11 +44,8 @@
 
 						<h2>Not sure what to buy?</h2>
 						<?= Asset::img('landing/ask-your-friends.png', array('class' => 'ask')) ?>
-						<a href="" class="button-big btn green2">Start Here</a>
-						<span class="reigster-low">
-							<?= Html::anchor('login', 'Login') ?> or 
-							<?= Html::anchor('register', 'Register') ?>
-						</span>
+						<?= Html::anchor('register', 'Start Here', array('class' => 'button-big btn green2')) ?>
+						<span class="reigster-low">Start Today! <a href="">Click Here.</a></span>
 					</div>
 				</section>
 			</div>
