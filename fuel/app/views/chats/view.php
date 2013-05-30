@@ -15,7 +15,7 @@
 						<h2><?= $chat->user->display_name() ?></h2>
 						<figure>
 							<i class="sprites default-user"></i>
-							<?php //Html::img($chat->user->profile_pic(80, 80)) ?>
+							<?= Html::img($chat->user->profile_pic(80, 80)) ?>
 						</figure>
 					</div>
 

@@ -82,12 +82,12 @@ class Model_User extends \Orm\Model
 	{
 		$fb_auth = $this->user_authentication('facebook');
 
-		if (isset($fb_auth))
+		if (isset($fb_auth->id))
 		{
 			return "https://graph.facebook.com/{$fb_auth->provider_uid}/picture?width={$width}&height={$height}";
 		}
 
-		return 'http://placehold.it/24x24'; //default
+		return '/assets/img/default/user.png'; //default
 	}
 
 	/**

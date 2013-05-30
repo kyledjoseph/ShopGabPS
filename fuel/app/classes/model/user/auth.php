@@ -66,7 +66,7 @@ class Model_User_Auth extends \Orm\Model
 		return static::query()->where('user_id', $user_id)->get_one();
 	}
 
-		public static function get_by_user_and_provider($user_id, $provider)
+	public static function get_by_user_and_provider($user_id, $provider)
 	{
 		return static::query()->where('user_id', $user_id)->where('provider', $provider)->get_one();
 	}
