@@ -55,92 +55,6 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 
 
 	/**
-	 *
-	 */
-	protected $social_config = array(
-		"base_url" => "http://itemnation.com/user/process", 
-		//"base_url" => Uri::create('user/process'),
-		"debug_mode" => false,
-		"debug_file" => "",
-
-		"providers" => array(
-			
-			"OpenID" => array(
-				"enabled" => false
-			),
-
-			"AOL"  => array( 
-				"enabled" => false 
-			),
-
-			"Yahoo" => array( 
-				"enabled" => false,
-				"keys"    => array(
-					"id" => "", 
-					"secret" => ""
-				)
-			),
-
-			"Google" => array( 
-				"enabled" => true,
-				"keys"    => array(
-					"id" => "claimworks.net",
-					"secret" => "BKWGDqe3pj2AxCuHKl_qR7l0"
-				)
-			),
-
-			"Facebook" => array( 
-				"enabled" => true,
-				"keys"    => array(
-					"id" => "168874813262398",
-					"secret" => "5aa0c283019c1f03cc5430559d80c0de"
-				)
-			),
-
-			"Twitter" => array( 
-				"enabled" => true,
-				"keys"    => array(
-					"key" => "DRIoekFFpaUcIP8TFiynA",
-					"secret" => "Ibdpl9XAT7cKPgUH3dCflQl7R6BYTJ9bDGl4UX051c",
-				) 
-			),
-
-			// windows live
-			"Live" => array( 
-				"enabled" => false,
-				"keys"    => array(
-					"id" => "",
-					"secret" => ""
-				)
-			),
-
-			"MySpace" => array( 
-				"enabled" => false,
-				"keys"    => array(
-					"key" => "",
-					"secret" => ""
-				)
-			),
-
-			"LinkedIn" => array( 
-				"enabled" => false,
-				"keys"    => array(
-					"key" => "",
-					"secret" => ""
-				)
-			),
-
-			"Foursquare" => array(
-				"enabled" => false,
-				"keys"    => array(
-					"id" => "",
-					"secret" => ""
-				)
-			),
-		)
-	);
-
-	/**
 	 * Check for login
 	 *
 	 * @return  bool
@@ -233,7 +147,7 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 
 	public function social_auth($provider)
 	{
-		$hybridauth = new Hybrid_Auth($this->social_config);
+		$hybridauth = new Hybrid_Auth($this->get_social_config());
 
 		// try to authenticate the selected $provider
 		$adapter = $hybridauth->authenticate($provider);
@@ -278,6 +192,92 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 
 		# 6 - log the new user in
 		return $this->force_login($user->id);
+	}
+
+	private function get_social_config()
+	{
+		return array(
+			//"base_url" => "http://itemnation.com/user/process", 
+			"base_url" => Uri::create('user/process'),
+			"debug_mode" => false,
+			"debug_file" => "",
+
+			"providers" => array(
+				
+				"OpenID" => array(
+					"enabled" => false
+				),
+
+				"AOL"  => array( 
+					"enabled" => false 
+				),
+
+				"Yahoo" => array( 
+					"enabled" => false,
+					"keys"    => array(
+						"id" => "", 
+						"secret" => ""
+					)
+				),
+
+				"Google" => array( 
+					"enabled" => true,
+					"keys"    => array(
+						"id" => "claimworks.net",
+						"secret" => "BKWGDqe3pj2AxCuHKl_qR7l0"
+					)
+				),
+
+				"Facebook" => array( 
+					"enabled" => true,
+					"keys"    => array(
+						"id" => "168874813262398",
+						"secret" => "5aa0c283019c1f03cc5430559d80c0de"
+					)
+				),
+
+				"Twitter" => array( 
+					"enabled" => true,
+					"keys"    => array(
+						"key" => "DRIoekFFpaUcIP8TFiynA",
+						"secret" => "Ibdpl9XAT7cKPgUH3dCflQl7R6BYTJ9bDGl4UX051c",
+					) 
+				),
+
+				// windows live
+				"Live" => array( 
+					"enabled" => false,
+					"keys"    => array(
+						"id" => "",
+						"secret" => ""
+					)
+				),
+
+				"MySpace" => array( 
+					"enabled" => false,
+					"keys"    => array(
+						"key" => "",
+						"secret" => ""
+					)
+				),
+
+				"LinkedIn" => array( 
+					"enabled" => false,
+					"keys"    => array(
+						"key" => "",
+						"secret" => ""
+					)
+				),
+
+				"Foursquare" => array(
+					"enabled" => false,
+					"keys"    => array(
+						"id" => "",
+						"secret" => ""
+					)
+				),
+			)
+		);
 	}
 
 
