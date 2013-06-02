@@ -5287,6 +5287,7 @@ a.badge:focus {
 .box {
   border: 1px solid #ddd;
   margin-top: 1.5em;
+  border-radius: .2em;
 }
 .box h4 {
   display: block;
@@ -5473,4 +5474,74 @@ a {
 .friend-box .form-search {
   margin-top: 0em;
   margin-bottom: 0;
+}
+.bubble {
+  position: relative;
+  padding: 1em;
+  background: #fafafa;
+  border: #aaa solid 1px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  color: #666;
+}
+.bubble:after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -15px;
+  border-style: solid;
+  border-width: 10px 15px 10px 0;
+  border-color: transparent #f7f7f7;
+  display: block;
+  width: 0;
+  z-index: 1;
+}
+.bubble:before {
+  content: "";
+  position: absolute;
+  top: 10px;
+  left: -16px;
+  border-style: solid;
+  border-width: 10px 15px 10px 0;
+  border-color: transparent #7F7F7F;
+  display: block;
+  width: 0;
+  z-index: 0;
+}
+.view-friends {
+  display: inline-block;
+  margin-top: 1em;
+}
+.chat .message {
+  margin: 1em;
+}
+.chat .name {
+  margin-left: 1em;
+  padding-bottom: .5em;
+  opacity: .7;
+}
+.chat .content {
+  padding: 1em;
+  background-color: #E2EBEE;
+  border-radius: .5em;
+}
+.chat .time {
+  margin-top: .5em;
+  font-style: italic;
+  opacity: .7;
+}
+.chat .input-append {
+  margin-bottom: -1px;
+  margin-left: -1px;
+  width: 100%;
+}
+.chat .input-append input {
+  width: 81%;
+  box-sizing: border-box;
+  height: 30px;
+}
+.chat .input-append button {
+  width: 20%;
+  box-sizing: border-box;
 }
