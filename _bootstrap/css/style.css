@@ -5475,6 +5475,12 @@ a {
   margin-top: 0em;
   margin-bottom: 0;
 }
+.help-me {
+  opacity: .7;
+}
+.help-me span {
+  color: green;
+}
 .bubble {
   position: relative;
   padding: 1em;
@@ -5512,6 +5518,9 @@ a {
 .view-friends {
   display: inline-block;
   margin-top: 1em;
+}
+.product div {
+  display: inline-block;
 }
 .chat .message {
   margin: 1em;
