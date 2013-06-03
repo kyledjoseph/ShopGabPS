@@ -48,10 +48,62 @@
 }
 
 .product {
-	div {
-		display:inline-block;
+	margin: 1em;
+	padding: 1em;
+	border: 1px solid #ddd;
+	.clearfix;
+
+	.info {
+		margin-left: .5em;
+
+		.inline-block;
 	}
 
+	.inline-block {
+		display: inline-block;
+	}
+
+	.comments {
+		display: block;
+	}
+
+	.name {
+		display: block;
+		margin-top: 0em;
+
+		span {
+			color: green;
+			font-size: 1.2em;
+			font-weight: bold;
+			.faded;
+		}
+	}
+
+	.price {
+			.faded;
+		}
+
+	.image {
+		img {
+			margin-top: -3em;
+		}
+	}
+
+	.details {
+		display: inline;
+		width: 13em;
+		float: right;
+		text-align: center;
+
+		.score{
+			margin-bottom: .5em;
+			i:hover {
+				opacity: 1;
+				cursor: pointer;
+			}
+		}
+		
+	}
 }
 
 .chat {

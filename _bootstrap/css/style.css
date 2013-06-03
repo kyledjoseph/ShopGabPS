@@ -5261,18 +5261,75 @@ a.badge:focus {
 .affix {
   position: fixed;
 }
-.push-center {
-  margin-left: auto;
-  margin-right: auto;
-}
-.align-center {
-  text-align: center;
-}
 .alt-font-family {
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 .faded {
   opacity: .7;
+}
+.three-em {
+  font-size: 3em;
+}
+.align-left {
+  text-align: left;
+}
+.align-center {
+  text-align: center;
+}
+.align-right {
+  text-align: right;
+}
+.border-box {
+  box-sizing: border-box;
+}
+.content-box {
+  box-sizing: content-box;
+}
+.padding-box {
+  box-sizing: padding-box;
+}
+.block {
+  display: block;
+}
+.inline {
+  display: inline;
+}
+.inline-block {
+  display: inline-block;
+}
+.hide {
+  display: none;
+}
+.pull-left {
+  float: left;
+}
+.pull-right {
+  float: right;
+}
+.layer-zero {
+  z-index: 0;
+}
+.layer-one {
+  z-index: 1;
+}
+.layer-two {
+  z-index: 2;
+}
+.layer-infinity {
+  z-index: 2147483647;
+}
+.push-center {
+  margin-left: auto;
+  margin-right: auto;
+}
+.push-left {
+  margin-right: auto;
+}
+.push-right {
+  margin-left: auto;
+}
+.full-height {
+  width: 100%;
 }
 .full-size {
   height: 100%;
@@ -5281,8 +5338,11 @@ a.badge:focus {
 .full-width {
   width: 100%;
 }
-.three-em {
-  font-size: 3em;
+.invisible {
+  visibility: hidden;
+}
+.visible {
+  visibility: visible;
 }
 .box {
   border: 1px solid #ddd;
@@ -5519,8 +5579,59 @@ a {
   display: inline-block;
   margin-top: 1em;
 }
-.product div {
+.product {
+  margin: 1em;
+  padding: 1em;
+  border: 1px solid #ddd;
+  *zoom: 1;
+}
+.product:before,
+.product:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.product:after {
+  clear: both;
+}
+.product .info {
+  margin-left: .5em;
   display: inline-block;
+}
+.product .inline-block {
+  display: inline-block;
+}
+.product .comments {
+  display: block;
+}
+.product .name {
+  display: block;
+  margin-top: 0em;
+}
+.product .name span {
+  color: green;
+  font-size: 1.2em;
+  font-weight: bold;
+  opacity: .7;
+}
+.product .price {
+  opacity: .7;
+}
+.product .image img {
+  margin-top: -3em;
+}
+.product .details {
+  display: inline;
+  width: 13em;
+  float: right;
+  text-align: center;
+}
+.product .details .score {
+  margin-bottom: .5em;
+}
+.product .details .score i:hover {
+  opacity: 1;
+  cursor: pointer;
 }
 .chat .message {
   margin: 1em;
