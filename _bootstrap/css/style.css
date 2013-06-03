@@ -5579,57 +5579,57 @@ a {
   display: inline-block;
   margin-top: 1em;
 }
-.product {
+.product-block {
   margin: 1em;
   padding: 1em;
   border: 1px solid #ddd;
   *zoom: 1;
 }
-.product:before,
-.product:after {
+.product-block:before,
+.product-block:after {
   display: table;
   content: "";
   line-height: 0;
 }
-.product:after {
+.product-block:after {
   clear: both;
 }
-.product .info {
+.product-block .info {
   margin-left: .5em;
   display: inline-block;
 }
-.product .inline-block {
+.product-block .inline-block {
   display: inline-block;
 }
-.product .comments {
+.product-block .comments {
   display: block;
 }
-.product .name {
+.product-block .name {
   display: block;
   margin-top: 0em;
 }
-.product .name span {
+.product-block .name span {
   color: green;
   font-size: 1.2em;
   font-weight: bold;
   opacity: .7;
 }
-.product .price {
+.product-block .price {
   opacity: .7;
 }
-.product .image img {
+.product-block .image img {
   margin-top: -3em;
 }
-.product .details {
+.product-block .details {
   display: inline;
   width: 13em;
   float: right;
   text-align: center;
 }
-.product .details .score {
+.product-block .details .score {
   margin-bottom: .5em;
 }
-.product .details .score i:hover {
+.product-block .details .score i:hover {
   opacity: 1;
   cursor: pointer;
 }
