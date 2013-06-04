@@ -5594,6 +5594,7 @@ a {
   margin: 1em;
   padding: 1em;
   border: 1px solid #ddd;
+  position: relative;
   *zoom: 1;
 }
 .product-block:before,
@@ -5614,6 +5615,21 @@ a {
 }
 .product-block .comments {
   display: block;
+  margin-bottom: .5em;
+}
+.product-block .comment {
+  float: left;
+  clear: both;
+  margin-left: 1em;
+  margin-top: .5em;
+  display: block;
+}
+.product-block .comment .name {
+  font-weight: bold;
+  display: inline;
+}
+.product-block .comment .time {
+  opacity: .7;
 }
 .product-block .name {
   display: block;
@@ -5643,6 +5659,23 @@ a {
 .product-block .details .score i:hover {
   opacity: 1;
   cursor: pointer;
+}
+.product-block .product-number {
+  position: absolute;
+  left: -4px;
+  bottom: -4px;
+  background-color: red;
+  height: 36px;
+  width: 37px;
+  background: url('../img/bleft.png');
+}
+.product-block .product-number span {
+  font-size: .9em;
+  display: block;
+  margin-top: 1.2em;
+  margin-left: .5em;
+  color: white;
+  text-shadow: 1px 1px 1px #000;
 }
 .chat .message {
   margin: 1em;
