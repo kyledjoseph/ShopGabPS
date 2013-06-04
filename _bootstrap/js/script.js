@@ -1,3 +1,3 @@
 $('[data-typer-targets]').typer();
 
-$('.comments').click(function(){ $('.comment').toggle();});
+$('.comments').click(function(){ $('.comment').toggle(100);});

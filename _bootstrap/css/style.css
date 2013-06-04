@@ -5348,6 +5348,7 @@ a.badge:focus {
   border: 1px solid #ddd;
   margin-top: 1.5em;
   border-radius: .2em;
+  position: relative;
 }
 .box h4 {
   display: block;
@@ -5359,6 +5360,9 @@ a.badge:focus {
   color: #fff;
   text-shadow: 1px 1px 1px #999;
   border-radius: .1em .1em 0 0;
+  background: -moz-linear-gradient(top, #c1dce9, #99b4c0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c1dce9', endColorstr='#99b4c0');
+  background: -webkit-gradient(linear, left top, left bottom, from(#c1dce9), to(#99b4c0));
 }
 body {
   background-color: #004574;
@@ -5590,6 +5594,12 @@ a {
   display: inline-block;
   margin-top: 1em;
 }
+#inviteModal form {
+  margin-top: 1em;
+}
+#inviteModal .from-email {
+  margin-top: .5em;
+}
 .product-block {
   margin: 1em;
   padding: 1em;
@@ -5677,6 +5687,11 @@ a {
   margin-left: .5em;
   color: white;
   text-shadow: 1px 1px 1px #000;
+}
+.add-product {
+  position: absolute;
+  top: .5em;
+  right: .5em;
 }
 .chat .message {
   margin: 1em;
