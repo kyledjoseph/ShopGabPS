@@ -5388,10 +5388,6 @@ a {
 .nav-image img {
   margin-right: .5em;
 }
-#loginModal .control-label,
-#registerModal .control-label {
-  display: none;
-}
 .container {
   padding-bottom: 2em;
 }
@@ -5458,6 +5454,10 @@ a {
 }
 .landing-action {
   padding-top: 4em;
+}
+#loginModal .control-label,
+#registerModal .control-label {
+  display: none;
 }
 .call-to-action {
   font-size: 2em;
@@ -5579,6 +5579,14 @@ a {
   width: 0;
   z-index: 0;
 }
+.bookmarklet {
+  display: block;
+  text-align: center;
+  margin-bottom: 1em;
+}
+.drag-to {
+  margin-left: 1em;
+}
 .purchase-within {
   margin-top: .5em;
   font-weight: bold;
@@ -5590,9 +5598,25 @@ a {
   margin-top: .5em;
   width: 7em;
 }
+.grab {
+  cursor: move;
+}
 .view-friends {
   display: inline-block;
   margin-top: 1em;
+}
+.add-product-drag {
+  margin-right: -1.5em;
+  padding-left: 1.5em;
+}
+.add-product-form {
+  border-left: 1px solid #eee;
+  padding-left: 1em;
+  margin-left: 1em;
+}
+.add-product-form form {
+  padding-top: .5em;
+  padding-right: 1.5em;
 }
 #inviteModal form {
   margin-top: 1em;
@@ -5687,6 +5711,9 @@ a {
   margin-left: .5em;
   color: white;
   text-shadow: 1px 1px 1px #000;
+}
+#addProductModal .control-label {
+  display: none;
 }
 .add-product {
   position: absolute;
