@@ -5625,6 +5625,7 @@ a {
   display: block;
 }
 .product-block .comment .name {
+  color: #004574;
   font-weight: bold;
   display: inline;
 }
