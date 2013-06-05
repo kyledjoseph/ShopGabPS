@@ -5504,6 +5504,15 @@ a {
   position: absolute;
   top: 0;
 }
+.dashboard-box h4 {
+  margin-left: .6em;
+  margin-top: 2em;
+  color: #5fa8d9;
+  position: absolute;
+  top: 0;
+  opacity: .6;
+  font-weight: normal;
+}
 .dashboard-box .btn-group {
   position: absolute;
   top: -1px;
