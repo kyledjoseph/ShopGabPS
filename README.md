@@ -34,7 +34,7 @@ GitHub repository for ItemNation ([project overview](http://youtu.be/_VT-QjDqVaw
 ### MailJet
 
 * **ID:** kyle@itemnation.com
-* **Pass:** Techdev12
+* **Pass:** Rebootstrap13
 
 ### Google Analytics
 * **ID:** tyler@itemnation.com
