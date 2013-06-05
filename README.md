@@ -8,7 +8,7 @@ GitHub repository for ItemNation ([project overview](http://youtu.be/_VT-QjDqVaw
 
 * **Email:** kyle@itemnation.com
 * **ID:** itemn
-* **Pass:** Techdev12
+* **Pass:** Rebootstrap13
 
 ### Rackspace
 
