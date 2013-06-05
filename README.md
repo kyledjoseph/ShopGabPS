@@ -28,7 +28,7 @@ GitHub repository for ItemNation ([project overview](http://youtu.be/_VT-QjDqVaw
 ### Godaddy
 
 * **ID:** 44468901
-* **Pass:** Techdev12
+* **Pass:** Rebootstrap13
 * **PIN:** 1415
 
 ### MailJet
