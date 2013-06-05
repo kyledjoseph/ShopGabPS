@@ -14,7 +14,7 @@ GitHub repository for ItemNation ([project overview](http://youtu.be/_VT-QjDqVaw
 
 * **Email:** kyle@itemnation.com
 * **Username:** itemnation
-* **Pass:** Techdev12
+* **Pass:** Rebootstrap13
 * **Childhood Nickname:** beaver
 
 ### Servers
