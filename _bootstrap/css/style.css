@@ -5649,6 +5649,20 @@ a {
 .product-block:after {
   clear: both;
 }
+.product-block.from-tab {
+  margin-top: 3em;
+}
+.product-block.from-tab h5 {
+  position: absolute;
+  top: -2.8em;
+  left: -0.1em;
+  background-color: #5fa8d9;
+  padding: .3em;
+  padding-left: 1em;
+  border-radius: 6em .5em 0 0;
+  color: #fff;
+  opacity: .4;
+}
 .product-block .info {
   margin-left: .5em;
   display: inline-block;
