@@ -5533,6 +5533,9 @@ a {
 #questModal form select {
   width: 104%;
 }
+#questModal form textarea {
+  width: 100%;
+}
 .friend-box {
   padding: 1em;
   border-bottom: 1px solid #ddd;
