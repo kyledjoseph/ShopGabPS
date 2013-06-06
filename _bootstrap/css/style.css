@@ -5793,3 +5793,15 @@ a {
   width: 20%;
   box-sizing: border-box;
 }
+.my-account {
+  padding-left: 0em;
+  padding-bottom: .5em;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 1em;
+}
+.account-form {
+  margin-left: 0em;
+}
+.change-password {
+  margin-left: 2.2em;
+}
