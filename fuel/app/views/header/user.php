@@ -5,7 +5,7 @@
 					</div>
 					<div class="span7 offset1 header-right">
 						<ul class="site-nav nav nav-pills pull-right">
-							<li><?= Html::anchor('', 'My Quests') ?></li>
+							<li><?= Html::anchor('/', 'My Quests') ?></li>
 							<li class="nav-image">
 								<?= Html::anchor('account', Html::img($user->profile_pic(30, 30)) . $user->display_name()) ?>
 							</li>
