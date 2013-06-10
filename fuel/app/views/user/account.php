@@ -1,33 +1,53 @@
-	
-	<section id="main-section">
 
-		<h1>My Account</h1>
-
-		<?= Form::open(['class' => 'form-horizontal']) ?>
-			<ul>
-				<li>
-					<label for="name">Name</label>
-					<input type="text" name="name" placeholder="" value="<?= $user->display_name() ?>">
-				</li>
-				<li>
-					<label for="email">Email</label>
-					<input type="text" name="email" placeholder="" value="<?= $user->email ?>">
-				</li>
-				<li>
-					<label for="password">Password</label>
-					<?= Html::anchor('user/password', 'Change Password') ?>
-				</li>
-
-				<li>
-					<label for="name">Facebook</label>
-					<?php if ($user->is_authenticated_with('facebook')): ?>
-						Authenticated
-					<?php else: ?>
-						<?php // Html::anchor('user/auth/facebook', 'Connect with Facebook') ?>
-					<?php endif; ?>
-				</li>
-			</ul>
+		<ul class="breadcrumb">
+			<li><?= Html::anchor('/', 'Dashboard') ?> <span class="divider">/</span></li>
+			<li class="active">My Account</li>
+		</ul>
+		
+		<?= Form::open(array('class' => 'form-horizontal')) ?>
+			<div class="control-group account-form">
+				<label class="control-label" for="inputName">Change avatar:</label>
+				<div class="controls">
+					<input class="avatar-upload" type="file" name="fileToUpload" id="fileToUpload" />
+				</div>
+			</div>
+			<hr>
 			
-				<button type="submit" class="btn green2">Update My Account</button>
+			<div class="control-group account-form">
+				<label class="control-label" for="name">Name:</label>
+				<div class="controls">
+					<input type="text" name="name" id="inputName" placeholder="John Smith" value="<?= $user->display_name() ?>">
+				</div>
+			</div>
+			
+			<div class="control-group account-form">
+				<label class="control-label" for="email">Email:</label>
+				<div class="controls">
+					<input type="text" name="email" id="inputEmail" placeholder="Email" value="<?= $user->email ?>">
+				</div>
+			</div>
+			
+			<div class="control-group account-form">
+				<label class="control-label" for="inputEmail">Facebook:</label>
+				<div class="controls">
+					<span class="facebook-account">Authenticated</span>
+				</div>
+			</div>
 
-		<?= Form::close() ?>
+			<div class="control-group account-form">
+				<div class="controls">
+					<button class="btn">Update Account</button>
+				</div>
+			</div>
+			<hr />
+			
+			<div class="control-group">
+				<label class="control-label" for="inputPassword">Current Password:</label>
+				<div class="controls">
+					<span class="facebook-account"><?= Html::anchor('account/password', 'Change Password') ?></span>
+				</div>
+			</div>
+
+			
+			
+		</form>

@@ -6,12 +6,21 @@ class Controller_Home extends Controller_App
 	{
 		if (! $this->user_logged_in())
 		{
-			return Response::forge(View::forge('landing/view'));
+			$this->add_modal(View::forge('user/modal/login'));
+			$this->add_modal(View::forge('user/modal/register'));
+
+			$this->template->body = View::forge('landing/view', array());
 		}
 
-		$this->template->active_nav = 'activity';
-		$this->template->body = View::forge('dashboard/view', array(
-			'chats' => $this->user->get_chats(),
-		));
+		else
+		{
+			$this->add_modal(View::forge('user/modal/start_quest'));
+
+			$this->template->body = View::forge('user/dashboard', array(
+				'quests' => $this->user->get_quests(),
+			));
+		}
+
+		
 	}
 }

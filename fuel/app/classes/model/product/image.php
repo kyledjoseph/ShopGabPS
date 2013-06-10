@@ -7,7 +7,6 @@ class Model_Product_Image extends \Orm\Model
 		'product_id',
 		'src_url',
 		'src',
-		'thumb',
 		'created_at',
 		'updated_at',
 	);
@@ -57,7 +56,12 @@ class Model_Product_Image extends \Orm\Model
 	 */
 	public function thumb()
 	{
-		return $this->image_path(). 'thumb/' . $this->thumb;
+		return $this->image_path(). '250x220/' . $this->src;
+	}
+
+	public function small()
+	{
+		return $this->image_path(). '50x50/' . $this->src;
 	}
 
 
@@ -92,11 +96,13 @@ class Model_Product_Image extends \Orm\Model
 
 		$tmp_dir    = DOCROOT . '/assets/img/products/tmp/';
 		$full_dir   = DOCROOT . '/assets/img/products/full/';
-		$thumb_dir  = DOCROOT . '/assets/img/products/thumb/';
+		$thumb_dir  = DOCROOT . '/assets/img/products/250x220/';
+		$small_dir  = DOCROOT . '/assets/img/products/50x50/';
 		
 		$tmp_path   = $tmp_dir . $file_name;
-		$thumb_path = $thumb_dir . $file_name;
 		$full_path  = $full_dir . $file_name;
+		$thumb_path = $thumb_dir . $file_name;
+		$small_path = $small_dir . $file_name;
 
 		// save tmp
 		File::create($tmp_dir, $file_name, $image_data);
@@ -143,15 +149,21 @@ class Model_Product_Image extends \Orm\Model
 
 		$full_file  = $full_path . '.' . $ext;
 		$thumb_file = $thumb_path . '.' . $ext;
+		$small_file = $small_path . '.' . $ext;
 
 		// save full size image
 		File::copy($tmp_path, $full_file);
 
-		// crop, resize, and save thumbnail
+		// crop, resize, and save
 		$image = Image::forge();
+
 		$image->load($full_file)
-			->crop_resize(200, 200)
+			->crop_resize(250, 220)
 			->save($thumb_file);
+
+		$image->load($full_file)
+			->crop_resize(50, 50)
+			->save($small_file);
 
 		// remove temporary file
 		File::delete($tmp_path);
@@ -160,7 +172,6 @@ class Model_Product_Image extends \Orm\Model
 			'product_id' => $product_id,
 			'src_url'    => $url,
 			'src'        => $file_name . '.' . $ext,
-			'thumb'      => $file_name . '.' . $ext,
 		));
 
 		return $product_image->save() ? $product_image : null;

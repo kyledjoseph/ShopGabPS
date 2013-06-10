@@ -142,14 +142,14 @@ $(document).ready(function () {
                 $('#friend_id').hide();
                 $('#friend_quest_id').hide();
                 $('#new_quest_name').hide();
-                $('#my_quest_id').show();
+                $('#my_quest_url').show();
             }
             if (add_to === 'friend')
             {
                 $('#friend_id').show();
                 $('#friend_quest_id').hide();
                 $('#new_quest_name').hide();
-                $('#my_quest_id').hide();
+                $('#my_quest_url').hide();
 
                 child.load_friend_quests($('#form_friend').val());
             }
@@ -158,7 +158,7 @@ $(document).ready(function () {
                 $('#friend_id').hide();
                 $('#friend_quest_id').hide();
                 $('#new_quest_name').show();
-                $('#my_quest_id').hide();
+                $('#my_quest_url').hide();
             }
         },
 
@@ -301,7 +301,7 @@ $(document).ready(function () {
                 friend_id: $("select[name='friend_id']").val(),
                 friend_quest_id: $("select[name='friend_quest_id']").val(),
                 new_quest_name: $("input[name='new_quest_name']").val(),
-                my_quest_id: $("select[name='my_quest_id']").val()
+                my_quest_url: $("select[name='my_quest_url']").val()
             });
 
             /* Send an AJAX request and terminate. */

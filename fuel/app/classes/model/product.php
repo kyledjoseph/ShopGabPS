@@ -25,9 +25,9 @@ class Model_Product extends \Orm\Model
 	);
 
 	protected static $_belongs_to = array(
-		'chat' => array(
+		'quest' => array(
 			'key_from' => 'id',
-			'model_to' => 'Model_Chat_Product',
+			'model_to' => 'Model_Quest_Product',
 			'key_to' => 'product_id',
 			'cascade_save' => true,
 			'cascade_delete' => false,
@@ -41,7 +41,14 @@ class Model_Product extends \Orm\Model
 			'key_to' => 'product_id',
 			'cascade_save' => true,
 			'cascade_delete' => false,
-		)
+		),
+		'quest_product' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Quest_Product',
+			'key_to' => 'product_id',
+			'cascade_save' => true,
+			'cascade_delete' => false,
+		),
 	);
 
 	protected static $_observers = array(
@@ -98,12 +105,22 @@ class Model_Product extends \Orm\Model
 
 	public function thumb()
 	{
-		return $this->has_image() ? $this->image->thumb() : 'http://placehold.it/65x75';
+		return $this->has_image() ? $this->image->thumb() : 'http://placehold.it/250x230';
 	}
 
 	public function thumb_html()
 	{
 		return Html::img($this->thumb(), array('alt' => $this->name()));
+	}
+
+	public function small()
+	{
+		return $this->has_image() ? $this->image->small() : 'http://placehold.it/50x50';
+	}
+
+	public function small_html()
+	{
+		return Html::img($this->small(), array('alt' => $this->name()));
 	}
 
 	public function add_image($src)

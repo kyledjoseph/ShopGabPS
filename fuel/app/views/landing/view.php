@@ -1,60 +1,24 @@
-<!DOCTYPE html>
-<html>
-  <head>
-	<title>ItemNation</title>
-	<?= Asset::css('landing/main.css') ?>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
-	<!-- <script type="text/javascript" src="js/landing/main.js"></script> -->
+<h2 class="align-center"><?= Asset::img('social-online-shopping.png') ?></h2>
+<div class="row">
+<div class="span6 landing-video">
+<iframe width="100%" height="250" src="http://www.youtube.com/embed/x0ArM1rtwNI?rel=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
+</div>
+<div class="span6 landing-action">
+<p class="lead align-center"><small>Not sure which <span class="typer-products" data-typer-targets="computer,television,stroller,dishwasher,gift for dad, formal dress, carseat">stroller</span> to buy? Ask your friends!</small></p>
+<button href="#registerModal" class="btn btn-large btn-block btn-success call-to-action" type="button" data-toggle="modal">Get started!</button>
+<p class="align-center">Start today! <a href="#registerModal" data-toggle="modal">Click here</a></p>
+</div>
+</div>
+<hr />
 
-  </head>
-
-  <body>
-	<div id="wrap">
-		<header>
-			<div class="inner">
-				<a class="sprites logo" href="index.html" title="ItemNation"></a>
-				<div class="landing-head">
-					<?= Html::anchor('login', 'Log in', array('class' => 'l-login')) ?> or 
-					<?= Html::anchor('register', 'Sign up', array('class' => 'btn green2 l-signup')) ?>
-				</div>
-			</div>
-		</header>
-
-		<div id="main" style="padding-bottom: 20px;">
-			<div class="inner">
-				<section id="landing">
-					<?= Asset::img('landing/social-shopping-head.png', array('style' => "position: relative; top: -43px; margin: 0 auto; width: 600px; display: block;")) ?>
-
-					<div id="video">
-						<h2>How Does it Work?<h2>
-						<div class="device-mac">
-							<iframe width="448" height="257" src="http://www.youtube.com/embed/x0ArM1rtwNI" frameborder="0" allowfullscreen></iframe>
-						</div>
-					</div>
-
-					<div id="welcome">
-						<div class="hidden">
-							<h2>Let your friends and family help you shop</h2>
-							<span>Start today! Click <a href="">here</a></span>
-							<a href="" class="button-big">
-								<span>Wassup</span>
-							</a>
-						</div>
-
-						<h2>Not sure what to buy?</h2>
-						<?= Asset::img('landing/ask-your-friends.png', array('class' => 'ask')) ?>
-						<?= Html::anchor('register', 'Start Here', array('class' => 'button-big btn green2')) ?>
-						<span class="reigster-low">Start Today! <a href="">Click Here.</a></span>
-					</div>
-				</section>
-			</div>
-
-			<div class="welcome-footer">
-				<span>&copy; 2013 ItemNation. All rights reserved.</span>
-			</div>
-		</div>
-	</div>
-
-  </body>
-</html>
+<div class="row testimonies">
+<blockquote class="clearfix">
+<p>This site is simply awesome. I started a Quest and I was able to get all the feedback and reviews from my friends around the world!<p>
+<small class="pull-right">John Doe</small>
+</blockquote>
+<div class="align-center">
+<button class="btn btn-warning btn-large">See what others are saying!</button>
+</div>
+</div>
+</div>
+</div>

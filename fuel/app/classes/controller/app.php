@@ -14,6 +14,7 @@ class Controller_App extends Controller_Base
 		{
 			$this->_init_notice();
 			$this->_init_template();
+			$this->_init_assets();
 		}
 	}
 
@@ -31,6 +32,12 @@ class Controller_App extends Controller_Base
 			$this->redirect('user/login', 'info', 'You must be logged in to do that.');
 		}
 	}
+
+	public function add_modal($content)
+	{
+		$this->template->modal.= $content;
+	}
+
 
 
 
@@ -71,6 +78,16 @@ class Controller_App extends Controller_Base
 		// set global template variables
 		$this->template->set_global('user', $this->user, false);
 
+		
+		$this->template->view  = new stdClass;
+		$this->template->modal = '';
+
+		// site header
+		$this->user_logged_in()
+			? $this->template->view->header = View::forge('header/user')
+			: $this->template->view->header = View::forge('header/guest');
+		
+
 		// enviroment specific
 		switch (Fuel::$env)
 		{
@@ -82,6 +99,16 @@ class Controller_App extends Controller_Base
 				//Casset::js('itemnation.js');
 			
 		}
+	}
+
+	private function _init_assets()
+	{
+		Casset::css('style.css');
+		Casset::js('jquery-typer.js');
+		Casset::js('script.js');
+		Casset::js('bootstrap/bootstrap-modal.js');
+		Casset::js('bootstrap/bootstrap-tab.js');
+		Casset::js('bootstrap/bootstrap-dropdown.js');
 	}
 
 }

@@ -2,12 +2,13 @@
 
 class Controller_User extends Controller_App
 {
-
+	
 	/**
 	 * User Login
 	 */
 	public function get_login()
 	{
+		$this->redirect('/');
 		$this->template->body = View::forge('user/login');
 	}
 
@@ -94,6 +95,7 @@ class Controller_User extends Controller_App
 	 */
 	public function get_register()
 	{
+		$this->redirect('/');
 		$this->template->body = View::forge('user/register');
 	}
 

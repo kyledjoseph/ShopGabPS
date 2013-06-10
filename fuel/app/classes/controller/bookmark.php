@@ -61,7 +61,7 @@ class Controller_Bookmark extends Controller_App
 
 		$post = $this->post_data(
 			'name', 'description', 'price', 'domain', 'url', 'images',
-			'add_to', 'friend_id', 'friend_quest_id', 'new_quest_name', 'my_quest_id');
+			'add_to', 'friend_id', 'friend_quest_id', 'new_quest_name', 'my_quest_url');
 
 
 		if (! in_array($post->add_to, array('my', 'friend', 'new')))
@@ -90,7 +90,7 @@ class Controller_Bookmark extends Controller_App
 		{
 			case 'my':
 				
-				$quest = $this->user->get_chat($post->my_quest_id);
+				$quest = $this->user->get_quest($post->my_quest_url);
 				if (! isset($quest))
 				{
 					return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_quest_id')));
@@ -107,7 +107,7 @@ class Controller_Bookmark extends Controller_App
 					return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_friend_id')));
 				}
 
-				$quest = $friend->get_chat($post->friend_quest_id);
+				$quest = $friend->get_quest($post->friend_quest_id);
 				if (! isset($quest))
 				{
 					return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_friend_quest_id')));
@@ -119,7 +119,7 @@ class Controller_Bookmark extends Controller_App
 
 			case 'new':
 
-				$quest = $this->user->create_chat($post->new_quest_name, '', '0');
+				$quest = $this->user->create_quest($post->new_quest_name, '', '0');
 				$quest->add_product($product->id);
 				break;
 				
@@ -279,7 +279,7 @@ class Controller_Bookmark extends Controller_App
 
 		return Response::forge(json_encode(array(
 			'success' => true,
-			'quests'  => $friend->select_chat(),
+			'quests'  => $friend->select_quest(),
 		)));
 	}
 	

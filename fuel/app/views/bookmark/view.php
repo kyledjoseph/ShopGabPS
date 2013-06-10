@@ -37,9 +37,9 @@
 				<?= Form::input('new_quest_name') ?>
 			</li>
 
-			<li id="my_quest_id">
-				<label for="my_quest_id">My Quests: </label>
-				<?= Form::select('my_quest_id', null, $user->select_chat()) ?>
+			<li id="my_quest_url">
+				<label for="my_quest_url">My Quests: </label>
+				<?= Form::select('my_quest_url', null, $user->select_quest()) ?>
 			</li>
 
 		</ul>

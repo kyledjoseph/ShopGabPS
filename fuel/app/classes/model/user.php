@@ -29,16 +29,30 @@ class Model_User extends \Orm\Model
 			'cascade_save' => true,
 			'cascade_delete' => true,
 		),
-		'chat_products' => array(
+		'quest_products' => array(
 			'key_from' => 'id',
-			'model_to' => 'Model_Chat_Product',
+			'model_to' => 'Model_Quest_Product',
 			'key_to' => 'added_by',
 			'cascade_save' => true,
 			'cascade_delete' => true,
 		),
-		'chats' => array(
+		'quest_product_comments' => array(
 			'key_from' => 'id',
-			'model_to' => 'Model_Chat',
+			'model_to' => 'Model_Quest_Product_Comment',
+			'key_to' => 'user_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
+		'quest_product_votes' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Quest_Product_Vote',
+			'key_to' => 'user_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
+		'quests' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Quest',
 			'key_to' => 'user_id',
 			'cascade_save' => true,
 			'cascade_delete' => true,
@@ -115,40 +129,40 @@ class Model_User extends \Orm\Model
 	}
 
 	/**
-	 * Get all user chats
+	 * Get all user quests
 	 */
-	public function get_chats()
+	public function get_quests()
 	{
-		return Model_Chat::get_user_chats($this->id);
+		return Model_Quest::get_user_quests($this->id);
 	}
 
 	/**
-	 * Get a users chat by chat_id
+	 * Get a users quest by quest_url
 	 */
-	public function get_chat($chat_id)
+	public function get_quest($quest_url)
 	{
-		return Model_Chat::get_user_chat($this->id, $chat_id);
+		return Model_Quest::get_user_quest($this->id, $quest_url);
+	}
+
+	/**
+	 * Create a new quest
+	 */
+	public function create_quest($name, $description, $purchase_within)
+	{
+		return Model_Quest::create_quest($this->id, $name, $description, $purchase_within);
 	}
 
 	/**
 	 * 
 	 */
-	public function select_chat()
+	public function select_quest()
 	{
 		$options = array();
-		foreach ($this->get_chats() as $chat)
+		foreach ($this->get_quests() as $quest)
 		{
-			$options[$chat->id] = $chat->name();
+			$options[$quest->url] = $quest->name();
 		}
-		return empty($options) ? array('none' => 'No Chats Available') : $options;
-	}
-
-	/**
-	 * Create a new chat
-	 */
-	public function create_chat($name, $description, $purchase_within)
-	{
-		return Model_Chat::create_chat($this->id, $name, $description, $purchase_within);
+		return empty($options) ? array('none' => 'No Quests Available') : $options;
 	}
 
 	/**
@@ -156,7 +170,7 @@ class Model_User extends \Orm\Model
 	 */
 	public function remove_quest($quest_id)
 	{
-		$quest = Model_Chat::get_by_id($quest_id);
+		$quest = Model_Quest::get_by_id($quest_id);
 
 		if (! $quest->belongs_to_user($this->id))
 		{
