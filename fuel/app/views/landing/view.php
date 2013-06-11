@@ -10,7 +10,6 @@
 </div>
 </div>
 <hr />
-
 <div class="row testimonies">
 <blockquote class="clearfix">
 <p>This site is simply awesome. I started a Quest and I was able to get all the feedback and reviews from my friends around the world!<p>
