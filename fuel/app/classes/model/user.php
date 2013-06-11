@@ -101,7 +101,7 @@ class Model_User extends \Orm\Model
 			return "https://graph.facebook.com/{$fb_auth->provider_uid}/picture?width={$width}&height={$height}";
 		}
 
-		return '/assets/img/default/user.png'; //default
+		return '/assets/img/default-user.png'; //default
 	}
 
 	/**
