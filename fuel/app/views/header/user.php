@@ -15,7 +15,6 @@
 								</a>
 								<ul class="dropdown-menu">
 									<li><?= Html::anchor('account', 'Account') ?></li>
-									<li><?= Html::anchor('freemoney', 'Free Money') ?></li>
 									<li><?= Html::anchor('logout', 'Logout') ?></li>
 								</ul>
 							</li>
