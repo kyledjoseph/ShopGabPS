@@ -15,8 +15,10 @@
 				<div class="span6">
 					<div class="bubble">
 						<p><?= $quest->description() ?></p>
+						<?php if ($quest->belongs_to_user($user->id)): ?>
 						<?= Html::anchor($quest->edit_url(), 'Edit Quest') ?> | 
 						<?= Html::anchor($quest->delete_url(), 'Delete Quest') ?>
+						<?php endif; ?>
 					</div>
 					
 					<div class="purchase-within">
@@ -80,7 +82,9 @@
 								</div>
 
 								<?= Html::anchor($product->product_url(), 'Where can I find this?', array('class' => 'btn btn-warning', 'target' => '_blank')) ?>
+								<?php if ($quest->belongs_to_user($user->id)): ?>
 								<?= Html::anchor($quest_product->remove_url(), 'Remove') ?>
+								<?php endif; ?>
 			
 							</div>
 								
