@@ -1,1 +1,1 @@
-$("[data-typer-targets]").typer();$(".comments").click(function(){$(".comment").toggle(100)});
+$("[data-typer-targets]").typer();$(".comments").click(function(){var e=$(this).parent().parent().data("product");$(".product-block[data-product="+e+"] .comment").toggle(100)});
