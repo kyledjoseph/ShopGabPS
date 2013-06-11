@@ -5443,14 +5443,14 @@ a {
   background: url('../img/landing-watermark.png') no-repeat 50% 50%;
 }
 .social-login {
-  margin-top: 1em;
-  padding-left: .5em;
+  margin-top: 1.5em;
+  padding-left: 1em;
 }
 .form-login {
   margin-top: 1.5em;
 }
 .form-login form {
-  padding-right: 1.5em;
+  padding-right: 2em;
 }
 .landing-action {
   padding-top: 4em;
