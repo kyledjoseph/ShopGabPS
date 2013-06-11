@@ -9,7 +9,7 @@
 
 			<div class="row">
 				<div class="span3 social-login">
-					<?= Asset::img('social-login.png') ?>
+					<?= Html::anchor('auth/facebook', Asset::img('facebook-login.png')) ?>
 				</div>
 				<div class="span4 form-login">
 					

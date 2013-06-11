@@ -6,6 +6,7 @@ return array(
 	'bookmark'                 => 'bookmark/view',
 
 	'login'                    => 'user/login',
+	'auth/(:any)'              => 'user/auth/$1',
 	'logout'                   => 'user/logout',
 	'register'                 => 'user/register',
 	'forgot'                   => 'user/forgot',
