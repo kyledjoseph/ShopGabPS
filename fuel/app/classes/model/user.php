@@ -92,7 +92,7 @@ class Model_User extends \Orm\Model
 	/**
 	 * Get user profile picture
 	 */
-	public function profile_pic($width = 30, $height = 30)
+	public function profile_pic($width = 32, $height = 32)
 	{
 		$fb_auth = $this->user_authentication('facebook');
 
@@ -101,7 +101,7 @@ class Model_User extends \Orm\Model
 			return "https://graph.facebook.com/{$fb_auth->provider_uid}/picture?width={$width}&height={$height}";
 		}
 
-		return '/assets/img/default-user.png'; //default
+		return '/assets/img/default/user/' . $width . 'x' . $height . '.png';
 	}
 
 	/**
