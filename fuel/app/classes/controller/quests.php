@@ -50,7 +50,7 @@ class Controller_Quests extends Controller_App
 		Casset::js('site/quest.js');
 		// Casset::css('lib/tipTip.css');
 
-		$this->add_modal(View::forge('quests/modal/invite'));
+		$this->add_modal(View::forge('quests/modal/invite', array('quest' => $quest)));
 		$this->add_modal(View::forge('quests/modal/add_product'));
 
 		$this->template->body = View::forge('quests/view', array(
