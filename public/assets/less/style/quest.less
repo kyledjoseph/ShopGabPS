@@ -121,9 +121,8 @@
 	}
 
 	.info {
-		margin-left: .5em;
-
-		.inline-block;
+		display: inline-block;
+		width: 22em;
 	}
 
 	.inline-block {
@@ -175,10 +174,12 @@
 	}
 
 	.details {
-		display: inline;
-		width: 13em;
-		float: right;
+		display: inline-block;
 		text-align: center;
+		width: 13em;
+		position: absolute;
+		top: 1em;
+		right: 1em;
 
 		.score{
 			margin-bottom: .5em;
@@ -186,6 +187,11 @@
 				opacity: 1;
 				cursor: pointer;
 			}
+		}
+
+		.btn {
+			margin: 0;
+			width: 100%;
 		}
 		
 	}
@@ -218,6 +224,8 @@
 	position: absolute;
 	top: .5em;
 	right: .5em;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
 }
 
 .chat {

@@ -44,13 +44,13 @@
 						<?php foreach ($quest->get_quest_products() as $quest_product): ?>
 						<?php $product = $quest_product->product ?>
 
-						<div class="product-block <?= ! $quest_product->was_added_by_owner() ? 'from-tab' : null ?>">
-							
-							<div class="image inline-block">
+						<div class="product-block <?= ! $quest_product->was_added_by_owner() ? 'from-tab' : null ?>" data-product="<?= $product_i ?>">
+							<div class="media">
+							<div class="pull-left">
 								<?= $product->small_html() ?>
 							</div>
 
-							<div class="info">
+							<div class="info media-body">
 								<div class="name">
 									<span><?= $product->name() ?></span>
 								</div>
@@ -76,7 +76,7 @@
 
 							</div>
 
-							<div class="details">
+							<div class="details media-body">
 								<div class="score">
 									<?= $quest_product->total_upvotes() ?> <?= Html::anchor($quest_product->like_url(), '<i class="icon-circle-arrow-up faded"></i>') ?> &nbsp; 
 									<?= $quest_product->total_downvotes() ?> <?= Html::anchor($quest_product->dislike_url(), '<i class="icon-circle-arrow-down faded"></i>') ?>
@@ -96,7 +96,7 @@
 							<?php if (! $quest_product->was_added_by_owner()): ?>
 							<h5>Added by <?= $quest_product->user->display_name() ?></h5>
 							<?php endif; ?>
-								
+							</div>
 						</div>
 
 						<?php $product_i++; endforeach; ?>

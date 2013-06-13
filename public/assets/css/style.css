@@ -5369,7 +5369,7 @@ a.badge:focus {
   border-bottom: 1px solid #ddd;
   margin-bottom: 1em;
 }
-.footer-in-form {
+.modal-in-form {
   margin-left: -1em;
   margin-right: -2em;
   margin-bottom: -1em;
@@ -5468,10 +5468,6 @@ a {
 #loginModal .control-label,
 #registerModal .control-label {
   display: none;
-}
-#loginModal .controls > input,
-#registerModal .controls > input {
-  width: 90%;
 }
 .call-to-action {
   font-size: 2em;
@@ -5696,8 +5692,8 @@ a {
   opacity: .4;
 }
 .product-block .info {
-  margin-left: .5em;
   display: inline-block;
+  width: 22em;
 }
 .product-block .inline-block {
   display: inline-block;
@@ -5738,10 +5734,12 @@ a {
   margin-top: -3em;
 }
 .product-block .details {
-  display: inline;
-  width: 13em;
-  float: right;
+  display: inline-block;
   text-align: center;
+  width: 13em;
+  position: absolute;
+  top: 1em;
+  right: 1em;
 }
 .product-block .details .score {
   margin-bottom: .5em;
@@ -5749,6 +5747,10 @@ a {
 .product-block .details .score i:hover {
   opacity: 1;
   cursor: pointer;
+}
+.product-block .details .btn {
+  margin: 0;
+  width: 100%;
 }
 .product-block .product-number {
   position: absolute;
@@ -5774,6 +5776,8 @@ a {
   position: absolute;
   top: .5em;
   right: .5em;
+  padding-left: 1.5em;
+  padding-right: 1.5em;
 }
 .chat .message {
   margin: 1em;
