@@ -34,9 +34,9 @@
 					</div>
 				</div> 
 			</div>
-			<div class="modal-footer">
-				<button type="submit" class="btn btn-primary">Login</button>
+			<div class="modal-footer footer-in-form">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button type="submit" class="btn btn-primary">Login</button>
 			</div>
 
 			<?= Form::close() ?>

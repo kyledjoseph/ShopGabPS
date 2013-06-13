@@ -34,9 +34,9 @@
 				</div>
 			</div>
 			
-			<div class="modal-footer">
-				<button class="btn btn-primary">Start Quest</button>
+			<div class="modal-footer footer-in-form">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button class="btn btn-primary">Start Quest</button>
 			</div>
 		</form>
 	</div>

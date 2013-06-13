@@ -5364,6 +5364,16 @@ a.badge:focus {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#c1dce9', endColorstr='#99b4c0');
   background: -webkit-gradient(linear, left top, left bottom, from(#c1dce9), to(#99b4c0));
 }
+.header-underline {
+  padding-bottom: 1em;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 1em;
+}
+.footer-in-form {
+  margin-left: -1em;
+  margin-right: -2em;
+  margin-bottom: -1em;
+}
 body {
   background-color: #004574;
 }
@@ -5443,14 +5453,14 @@ a {
   background: url('../img/landing-watermark.png') no-repeat 50% 50%;
 }
 .social-login {
-  margin-top: 1em;
-  padding-left: .5em;
+  margin-top: 1.5em;
+  padding-left: 1em;
 }
 .form-login {
   margin-top: 1.5em;
 }
 .form-login form {
-  padding-right: 1.5em;
+  padding-right: 2em;
 }
 .landing-action {
   padding-top: 4em;
@@ -5458,6 +5468,10 @@ a {
 #loginModal .control-label,
 #registerModal .control-label {
   display: none;
+}
+#loginModal .controls > input,
+#registerModal .controls > input {
+  width: 90%;
 }
 .call-to-action {
   font-size: 2em;

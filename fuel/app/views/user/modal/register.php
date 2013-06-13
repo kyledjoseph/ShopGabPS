@@ -47,7 +47,7 @@
 				</div> 
 			</div>
 			
-			<div class="modal-footer">
+			<div class="modal-footer footer-in-form">
 				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 				<button class="btn btn-primary">Sign Up</button>
 			</div>
