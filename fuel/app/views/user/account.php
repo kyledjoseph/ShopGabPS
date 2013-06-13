@@ -1,8 +1,5 @@
 
-		<ul class="breadcrumb">
-			<li><?= Html::anchor('/', 'Dashboard') ?> <span class="divider">/</span></li>
-			<li class="active">My Account</li>
-		</ul>
+		<h4 class="header-underline">My Account</h4>
 		
 		<?= Form::open(array('class' => 'form-horizontal')) ?>
 			<div class="control-group account-form">

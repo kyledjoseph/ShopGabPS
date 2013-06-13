@@ -5,3 +5,5 @@ $('.comments').click(function(){
 	var comment = $(this).parent().parent().parent().data('product');
 	$('.product-block[data-product='+comment+'] .comment').toggle(100);
 });
+
+$('.delete-quest-link').popover({ html : true });

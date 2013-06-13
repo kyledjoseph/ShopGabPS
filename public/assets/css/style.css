@@ -5366,7 +5366,7 @@ a.badge:focus {
 }
 .header-underline {
   padding-bottom: 1em;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #eee;
   margin-bottom: 1em;
 }
 .modal-in-form {
