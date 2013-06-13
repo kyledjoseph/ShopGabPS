@@ -1,1 +1,1 @@
-$("[data-typer-targets]").typer();$(".comments").click(function(){event.preventDefault();var e=$(this).parent().parent().parent().data("product");$(".product-block[data-product="+e+"] .comment").toggle(100)});$(".delete-quest-link").popover({html:!0});
+$("[data-typer-targets]").typer();$(".comments").click(function(){event.preventDefault();var e=$(this).parent().parent().parent().data("product");$(".product-block[data-product="+e+"] .comment").toggle(100)});
