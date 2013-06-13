@@ -5369,6 +5369,11 @@ a.badge:focus {
   border-bottom: 1px solid #ddd;
   margin-bottom: 1em;
 }
+.modal-in-form {
+  margin-left: -1em;
+  margin-right: -2em;
+  margin-bottom: -1em;
+}
 body {
   background-color: #004574;
 }
