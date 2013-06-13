@@ -52,6 +52,7 @@ class Controller_Quests extends Controller_App
 
 		$this->add_modal(View::forge('quests/modal/invite', array('quest' => $quest)));
 		$this->add_modal(View::forge('quests/modal/add_product'));
+		$this->add_modal(View::forge('quests/modal/edit_quest', array('quest' => $quest)));
 
 		$this->template->body = View::forge('quests/view', array(
 			'quest'           => $quest,
@@ -105,10 +106,12 @@ class Controller_Quests extends Controller_App
 			$this->redirect_invalid_quest();
 		}
 
-		$post = $this->post_data('name', 'description');
+		$post = $this->post_data('name', 'description', 'purchase_within');
 
-		$quest->name        = $post->name;
-		$quest->description = $post->description;
+		$quest->name            = $post->name;
+		$quest->description     = $post->description;
+		$quest->purchase_within = $post->purchase_within;
+
 		$quest->save();
 
 		$this->redirect($quest->url());

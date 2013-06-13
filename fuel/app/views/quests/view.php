@@ -16,7 +16,8 @@
 					<div class="bubble">
 						<p><?= $quest->description() ?></p>
 						<?php if ($quest->belongs_to_user($user->id)): ?>
-						<?= Html::anchor($quest->edit_url(), 'Edit Quest') ?> | 
+						<?= Html::anchor('#questModal', 'Edit Quest', array('class' => '', 'data-toggle' => 'modal')) ?> | 
+						
 						<?= Html::anchor($quest->delete_url(), 'Delete Quest') ?>
 						<?php endif; ?>
 					</div>
