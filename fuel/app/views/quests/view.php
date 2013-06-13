@@ -24,7 +24,7 @@
 					
 					<div class="purchase-within">
 						Purchase within:
-						<?= Form::open(array('id' => 'purchase_within_form', 'action' => $quest->within_url())) ?>
+						<?= Form::open(array('id' => 'purchase_within_form', 'class' => 'inline-block', 'action' => $quest->within_url())) ?>
 							<?= Form::select('purchase_within', $quest->purchase_within(), Model_Quest::purchase_within_fields()) ?>
 						<?= Form::close() ?>
 					</div>
