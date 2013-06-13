@@ -21,7 +21,6 @@ $(function(){
 	});
 
 	// comments
-	$('.comments').click(function(){ $('.comment').toggle(100);});
 
 
 
