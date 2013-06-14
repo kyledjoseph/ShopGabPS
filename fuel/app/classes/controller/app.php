@@ -109,8 +109,6 @@ class Controller_App extends Controller_Base
 		Casset::js('bootstrap/bootstrap-modal.js');
 		Casset::js('bootstrap/bootstrap-tab.js');
 		Casset::js('bootstrap/bootstrap-dropdown.js');
-		Casset::js('bootstrap/bootstrap-tooltip.js');
-		Casset::js('bootstrap/bootstrap-popover.js');
 	}
 
 }
