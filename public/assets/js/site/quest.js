@@ -26,7 +26,7 @@ $(function(){
 		var comment = $(this).parent().parent().parent().data('product');
 		$('.product-block[data-product='+comment+'] .comment').toggle(100);
 	});
-
+	
 
 	// init tooltip for product votes
 	// docs: http://code.drewwilson.com/entry/tiptip-jquery-plugin
