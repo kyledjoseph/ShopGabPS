@@ -9,7 +9,7 @@
 				<div class="control-group">
 					<label class="control-label" for="inputFrom">From:</label>
 					<div class="controls">
-						<div class="from-email"><?= $user->email ?></div>
+						<div class="from-email">info@itemnation.com</div>
 					</div>
 				</div>
 				<div class="control-group">
