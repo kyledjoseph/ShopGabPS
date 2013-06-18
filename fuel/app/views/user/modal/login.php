@@ -36,7 +36,7 @@
 			</div>
 			<div class="modal-footer footer-in-form">
 				<input type="hidden" name="login_redirect" value="<?= Uri::string() ?>" ?>
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
 				<button type="submit" class="btn btn-primary">Login</button>
 			</div>
 
