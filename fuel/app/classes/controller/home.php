@@ -6,9 +6,6 @@ class Controller_Home extends Controller_App
 	{
 		if (! $this->user_logged_in())
 		{
-			$this->add_modal(View::forge('user/modal/login'));
-			$this->add_modal(View::forge('user/modal/register'));
-
 			$this->template->body = View::forge('landing/view', array());
 		}
 

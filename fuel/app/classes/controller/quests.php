@@ -6,7 +6,7 @@ class Controller_Quests extends Controller_App
 	{
 		parent::before();
 
-		$this->require_auth();
+		//$this->require_auth();
 	}
 
 
@@ -15,10 +15,14 @@ class Controller_Quests extends Controller_App
 	 */
 	private function get_quest_by_url($quest_url)
 	{
-		$quest = $this->user->get_quest($quest_url);
-		//$quest = Model_Quest::get_by_url($quest_url);
+		$quest = Model_Quest::get_by_url($quest_url);
 
 		if (! isset($quest))
+		{
+			$this->redirect('/');
+		}
+
+		if ($quest->is_private())
 		{
 			$this->redirect('/');
 		}
@@ -50,9 +54,14 @@ class Controller_Quests extends Controller_App
 		Casset::js('site/quest.js');
 		// Casset::css('lib/tipTip.css');
 
-		$this->add_modal(View::forge('quests/modal/invite', array('quest' => $quest)));
-		$this->add_modal(View::forge('quests/modal/add_product'));
-		$this->add_modal(View::forge('quests/modal/edit_quest', array('quest' => $quest)));
+		if ($this->user_logged_in())
+		{
+			// $this->modal->add_view('quests/modal/invite', array('quest' => $quest)));
+			$this->add_modal(View::forge('quests/modal/invite', array('quest' => $quest)));
+			$this->add_modal(View::forge('quests/modal/add_product'));
+			$this->add_modal(View::forge('quests/modal/edit_quest', array('quest' => $quest)));
+			$this->add_modal(View::forge('quests/modal/delete_quest', array('quest' => $quest)));
+		}
 
 		$this->template->body = View::forge('quests/view', array(
 			'quest'           => $quest,
@@ -63,15 +72,8 @@ class Controller_Quests extends Controller_App
 
 
 	/**
-	 * Create a new quest
+	 * 
 	 */
-	public function get_create()
-	{
-		$this->template->body = View::forge('quests/create', array(
-			
-		));
-	}
-
 	public function post_create()
 	{
 		$post  = $this->post_data('name', 'description', 'purchase_within');
@@ -86,6 +88,8 @@ class Controller_Quests extends Controller_App
 	public function get_edit($quest_url)
 	{
 		$quest = $this->get_quest_by_url($quest_url);
+		
+		$this->require_auth($quest->url());
 
 		if ($quest->user_id !== $this->user->id)
 		{
@@ -100,6 +104,8 @@ class Controller_Quests extends Controller_App
 	public function post_edit($quest_url)
 	{
 		$quest = $this->get_quest_by_url($quest_url);
+
+		$this->require_auth($quest->url());
 
 		if ($quest->user_id !== $this->user->id)
 		{
@@ -125,6 +131,8 @@ class Controller_Quests extends Controller_App
 	{
 		$quest = $this->get_quest_by_url($quest_url);
 
+		$this->require_auth($quest->url());
+
 		if ($quest->user_id !== $this->user->id)
 		{
 			$this->redirect('/');
@@ -141,6 +149,8 @@ class Controller_Quests extends Controller_App
 	public function post_invite($quest_url)
 	{
 		$quest = $this->get_quest_by_url($quest_url);
+
+		$this->require_auth($quest->url());
 
 		// if ($quest->user_id !== $this->user->id)
 		// {
@@ -174,6 +184,8 @@ class Controller_Quests extends Controller_App
 	{
 		$quest = $this->get_quest_by_url($quest_url);
 
+		$this->require_auth($quest->url());
+
 		if ($quest->user_id !== $this->user->id)
 		{
 			$this->redirect($quest->url());
@@ -196,6 +208,8 @@ class Controller_Quests extends Controller_App
 		$quest = $this->get_quest_by_url($quest_url);
 		$post  = $this->post_data('message');
 
+		$this->require_auth($quest->url());
+
 		$quest->new_message($this->user->id, $post->message);
 		$this->redirect($quest->url());
 	}
@@ -208,6 +222,8 @@ class Controller_Quests extends Controller_App
 	{
 		$quest = $this->get_quest_by_url($quest_url);
 		$quest_product = $quest->get_quest_product($quest_product_id);
+
+		$this->require_auth($quest->url());
 
 		if (! $quest-belongs_to_user($this->user->id))
 		{
@@ -232,6 +248,8 @@ class Controller_Quests extends Controller_App
 		$quest = $this->get_quest_by_url($quest_url);
 		$post  = $this->post_data('comment');
 
+		$this->require_auth($quest->url());
+
 		$quest_product = $quest->get_quest_product($quest_product_id);
 
 		if (! isset($quest_product))
@@ -251,6 +269,8 @@ class Controller_Quests extends Controller_App
 	public function get_like($quest_url, $quest_product_id)
 	{
 		$quest = $this->get_quest_by_url($quest_url);
+
+		$this->require_auth($quest->url());
 
 		$quest_product = $quest->get_quest_product($quest_product_id);
 		isset($quest_product) or $this->redirect($quest->url(), 'info', 'Invalid product');
@@ -281,6 +301,8 @@ class Controller_Quests extends Controller_App
 	public function get_dislike($quest_url, $quest_product_id)
 	{
 		$quest = $this->get_quest_by_url($quest_url);
+
+		$this->require_auth($quest->url());
 
 		$quest_product = $quest->get_quest_product($quest_product_id);
 		isset($quest_product) or $this->redirect($quest->url(), 'info', 'Invalid product');

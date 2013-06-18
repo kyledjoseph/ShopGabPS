@@ -2,6 +2,8 @@
 
 class Controller_App extends Controller_Base
 {
+	public $auth = null;
+	public $user = null;
 
 	public function before()
 	{
@@ -25,11 +27,11 @@ class Controller_App extends Controller_Base
 		return isset($this->user);
 	}
 
-	public function require_auth()
+	public function require_auth($location = '/')
 	{
 		if (! $this->user_logged_in())
 		{
-			$this->redirect('user/login', 'info', 'You must be logged in to do that.');
+			$this->redirect($location, 'info', 'You must be logged in to do that.');
 		}
 	}
 
@@ -86,6 +88,13 @@ class Controller_App extends Controller_Base
 		$this->user_logged_in()
 			? $this->template->view->header = View::forge('header/user')
 			: $this->template->view->header = View::forge('header/guest');
+
+		// login/signup modals
+		if (! $this->user_logged_in())
+		{
+			$this->add_modal(View::forge('user/modal/login'));
+			$this->add_modal(View::forge('user/modal/register'));
+		}
 		
 
 		// enviroment specific

@@ -14,7 +14,7 @@ class Controller_User extends Controller_App
 
 	public function post_login()
 	{
-		$post = $this->post_data('email', 'password', 'remember');
+		$post = $this->post_data('email', 'password', 'remember', 'login_redirect');
 		$remember_user = ($post->remember == 'true');
 
 		// attempt login
@@ -23,6 +23,11 @@ class Controller_User extends Controller_App
 		if (! $login_success)
 		{
 			$this->redirect('user/login', 'error', 'Invalid email address or password');
+		}
+
+		if (! empty($post->login_redirect))
+		{
+			$this->redirect($post->login_redirect);
 		}
 
 		$this->redirect('/');
@@ -101,7 +106,7 @@ class Controller_User extends Controller_App
 
 	public function post_register()
 	{
-		$post = $this->post_data('name', 'email', 'password', 'confirm_password');
+		$post = $this->post_data('name', 'email', 'password', 'confirm_password', 'login_redirect');
 
 		// password match
 		if ($post->password !== $post->confirm_password)
@@ -122,6 +127,12 @@ class Controller_User extends Controller_App
 		
 		// log user in
 		$this->auth->login($post->email, $post->password);
+
+		if (! empty($post->login_redirect))
+		{
+			$this->redirect($post->login_redirect);
+		}
+
 		$this->redirect('/');
 	}
 

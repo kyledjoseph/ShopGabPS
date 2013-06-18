@@ -23,7 +23,7 @@ return array(
 	'quest/(:segment)/within'  => 'quests/within/$1',
 	'quest/(:segment)/invite'  => 'quests/invite/$1',
 	'quest/(:segment)/edit'    => 'quests/edit/$1',
-	'quest/(:segment)/delete'   => 'quests/delete/$1',
+	'quest/(:segment)/delete'  => 'quests/delete/$1',
 	'quest/(:segment)'         => 'quests/view/$1',
 	'quest'                    => 'quests/index',
 );

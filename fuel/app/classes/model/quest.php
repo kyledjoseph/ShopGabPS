@@ -149,6 +149,14 @@ class Model_Quest extends \Orm\Model
 	}
 
 
+
+	public function is_private()
+	{
+		return false;
+	}
+
+
+
 	/**
 	 * 
 	 */
