@@ -30,7 +30,7 @@
 
 <div class="span4 align-center">
 	<?php if (isset($user)): ?>
-	<button href="#inviteModal" class="btn btn-success btn-block btn-large" data-toggle="modal">Invite friends</button>
+	<button href="#inviteModal" class="btn btn-success btn-large block push-center" data-toggle="modal">Invite friends</button>
 	<?php else: ?>
 	<button href="#loginModal" class="btn btn-success btn-block btn-large" data-toggle="modal">Invite friends</button>
 	<?php endif; ?>
@@ -119,7 +119,7 @@
 			<?php $product_i++; endforeach; ?>
 
 			<?php if (isset($user)): ?>
-			<button href="#addProductModal" class="add-product btn btn-small btn-success" data-toggle="modal">Add Product</button>
+			<button href="#addProductModal" class="add-product btn btn-medium btn-success" data-toggle="modal">Add Product</button>
 			<?php else: ?>
 			<button href="#loginModal" class="add-product btn btn-small btn-success" data-toggle="modal">Add Product</button>
 			<?php endif; ?>
