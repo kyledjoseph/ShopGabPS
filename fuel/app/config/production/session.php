@@ -39,7 +39,7 @@ return array(
 	'match_ua'			=> true,
 
 	// cookie domain  (optional, default = '')
-	'cookie_domain' 	=> '',
+	'cookie_domain' 	=> 'itemnation.com',
 
 	// cookie path  (optional, default = '/')
 	'cookie_path'		=> '/',
@@ -54,7 +54,7 @@ return array(
 	'expire_on_close'	=> false,
 
 	// session expiration time, <= 0 means 2 years! (optional, default = 2 hours)
-	'expiration_time'	=> 86400,
+	'expiration_time'	=> 1209600,
 
 	// session ID rotation time  (optional, default = 300)
 	'rotation_time'		=> 300,
