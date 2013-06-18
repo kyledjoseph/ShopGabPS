@@ -4,12 +4,13 @@
 			<h3 id="loginModalLabel">Sign Up</h3>
 		</div>
 		
-		<?= Form::open(array('action' => 'user/register', 'method' => 'post')) ?>
+		
 			<div class="row">
 				<div class="span3 social-login">
 					<?= Html::anchor('auth/facebook', Asset::img('facebook-login.png')) ?>
 				</div>
 				<div class="span4 form-login">
+					<?= Form::open(array('action' => 'user/register', 'method' => 'post')) ?>
 					<div>
 						<div class="control-group">
 							<label class="control-label" for="name">Full Name</label>

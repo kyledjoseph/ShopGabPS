@@ -5,14 +5,14 @@
 		</div>
 		<div class="">
 			
-			<?= Form::open(array('action' => 'login')) ?>
+			
 
 			<div class="row">
 				<div class="span3 social-login">
 					<?= Html::anchor('auth/facebook', Asset::img('facebook-login.png')) ?>
 				</div>
 				<div class="span4 form-login">
-					
+					<?= Form::open(array('action' => 'login')) ?>
 					<div class="control-group">
 						<label class="control-label" for="email">Email</label>
 						<div class="controls">
@@ -28,7 +28,7 @@
 					<div class="control-group">
 						<div class="controls">
 							<label class="checkbox">
-								<input type="checkbox"> Remember me
+								<input type="checkbox"> Remember me <a href="#" class="pull-right" data-action="switch-modal">Sign Up</a>
 							</label>
 						</div>
 					</div>
