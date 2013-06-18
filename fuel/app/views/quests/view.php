@@ -148,9 +148,8 @@
 
 				<?php endforeach; ?>
 				<?php endif; ?>
-
-
-				<?= Form::open(array('action' => $quest->message_url(), 'class' => 'input-append')) ?>
+			</div>
+			<?= Form::open(array('action' => $quest->message_url(), 'class' => 'input-append')) ?>
 					<input name="message" class="block" id="appendedInputButton" type="text">
 					<?php if (isset($user)): ?>
 					<button class="btn" type="submit">Send</button>
@@ -158,7 +157,6 @@
 					<button href="#loginModal" class="btn" data-toggle="modal">Send</button>
 					<?php endif; ?>
 				</form>
-			</div>
 		</div>
 	</div>
 </div>

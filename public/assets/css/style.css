@@ -5622,7 +5622,7 @@ a {
   margin-bottom: 1em;
 }
 .drag-to {
-  margin-left: 1em;
+  margin-left: 5.5em;
 }
 .purchase-within {
   margin-top: .5em;
@@ -5660,6 +5660,16 @@ a {
 }
 #inviteModal .from-email {
   margin-top: .5em;
+}
+#inviteModal .control-label {
+  width: 100px;
+}
+#inviteModal .controls {
+  margin-left: 120px;
+}
+#inviteModal input,
+#inviteModal textarea {
+  width: 28em;
 }
 .product-block {
   margin: 1em;
@@ -5769,6 +5779,10 @@ a {
   color: white;
   text-shadow: 1px 1px 1px #000;
 }
+#addProductModal {
+  width: 720px;
+  margin-left: -360px;
+}
 #addProductModal .control-label {
   display: none;
 }
@@ -5781,35 +5795,39 @@ a {
   padding-top: .6em;
   padding-bottom: .6em;
 }
+.chat {
+  max-height: 300px;
+  overflow-y: scroll;
+}
 .chat .message {
   margin: 1em;
 }
 .chat .name {
-  margin-left: 1em;
+  margin-left: .5em;
   padding-bottom: .5em;
   opacity: .7;
 }
 .chat .content {
-  padding: 1em;
+  padding: .5em;
   background-color: #E2EBEE;
   border-radius: .5em;
 }
 .chat .time {
-  margin-top: .5em;
+  margin-top: 0;
   font-style: italic;
   opacity: .7;
 }
-.chat .input-append {
+.input-append {
   margin-bottom: -1px;
   margin-left: -1px;
   width: 100%;
 }
-.chat .input-append input {
+.input-append input {
   width: 81%;
   box-sizing: border-box;
   height: 30px;
 }
-.chat .input-append button {
+.input-append button {
   width: 20%;
   box-sizing: border-box;
 }

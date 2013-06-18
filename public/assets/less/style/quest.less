@@ -50,7 +50,7 @@
 }
 
 .drag-to {
-	margin-left: 1em;
+	margin-left: 5.5em;
 }
 
 .purchase-within {
@@ -94,6 +94,18 @@
 	}
 	.from-email {
 		margin-top: .5em;
+	}
+
+	.control-label {
+		width: 100px;
+	}
+
+	.controls {
+		margin-left: 120px;
+	}
+
+	input, textarea {
+		width: 28em;
 	}
 }
 
@@ -218,6 +230,8 @@
 	.control-label {
 		display: none;
 	}
+	width: 720px;
+	margin-left: -360px;
 }
 
 .add-product {
@@ -232,29 +246,34 @@
 }
 
 .chat {
+
+	max-height: 300px;
+	overflow-y: scroll;
+
 	.message {
 		margin: 1em;
 	}
 
 	.name {
-		margin-left: 1em;
+		margin-left: .5em;
 		padding-bottom: .5em;
 		.faded;
 	}
 
 	.content {
-		padding: 1em;
+		padding: .5em;
 		background-color: #E2EBEE;
 		border-radius: .5em;
 	}
 
 	.time {
-		margin-top: .5em;
+		margin-top: 0;
 		font-style: italic;
 		.faded;
 	}
+}
 
-	.input-append {
+.input-append {
 		margin-bottom: -1px;
 		margin-left: -1px;
 		.full-width;
@@ -270,4 +289,3 @@
 			box-sizing: border-box;
 		}
 	}
-}
