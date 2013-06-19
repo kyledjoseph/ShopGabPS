@@ -5667,8 +5667,14 @@ a {
 .thumbs-up {
   margin-bottom: 5px;
 }
+.thumbs-up:hover {
+  opacity: 1;
+}
 .thumbs-down {
   margin-top: 5px;
+}
+.thumbs-down:hover {
+  opacity: 1;
 }
 .grab {
   cursor: move;
