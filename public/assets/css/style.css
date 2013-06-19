@@ -5746,7 +5746,6 @@ a {
 .product-block .comment {
   float: left;
   clear: both;
-  margin-left: 1em;
   margin-top: .5em;
   display: block;
 }
