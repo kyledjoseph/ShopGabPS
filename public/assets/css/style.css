@@ -5788,6 +5788,11 @@ a {
 }
 .product-block .price {
   opacity: .7;
+  display: block;
+}
+.product-block .description {
+  opacity: .7;
+  display: block;
 }
 .product-block .image img {
   margin-top: -3em;
