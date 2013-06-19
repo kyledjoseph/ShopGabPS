@@ -158,7 +158,7 @@
 				<?php endforeach; ?>
 				<?php endif; ?>
 			</div>
-			<?= Form::open(array('action' => $quest->message_url(), 'class' => 'input-append')) ?>
+			<?= Form::open(array('action' => $quest->message_url(), 'class' => 'input-append chat-append')) ?>
 					<input name="message" class="block" id="appendedInputButton" type="text">
 					<?php if (isset($user)): ?>
 					<button class="btn" type="submit">Send</button>

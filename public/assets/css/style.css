@@ -5528,6 +5528,32 @@ a {
   top: -1px;
   right: -1px;
 }
+.dashboard-box .lock {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+.dashboard-box .friends {
+  position: absolute;
+  bottom: 5px;
+  left: 35px;
+}
+.dashboard-box .basket {
+  position: absolute;
+  bottom: 5px;
+  right: 35px;
+}
+.dashboard-box .chat {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.dashboard-box .inactive {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: .2;
+}
 #questModal {
   width: 400px;
   margin-left: -200px;
@@ -5822,17 +5848,17 @@ a {
   font-style: italic;
   opacity: .7;
 }
-.input-append {
+.chat-append {
   margin-bottom: -1px;
   margin-left: -1px;
   width: 100%;
 }
-.input-append input {
+.chat-append input {
   width: 81%;
   box-sizing: border-box;
   height: 30px;
 }
-.input-append button {
+.chat-append button {
   width: 20%;
   box-sizing: border-box;
 }
