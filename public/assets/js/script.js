@@ -10,7 +10,9 @@
 // landing page text animation
 $('[data-typer-targets]').typer();
 
-$('.product-block .description').expander();
+$('.product-block .description').expander({
+  slicePoint: 40
+});
 
 $(".switch-to-signup").click(function() {
     $("#loginModal").modal('hide');
