@@ -1,7 +1,10 @@
 <h2 class="align-center"><?= Asset::img('social-online-shopping.png') ?></h2>
 <div class="row">
 <div class="span6 landing-video">
-<iframe width="100%" height="250" src="http://www.youtube.com/embed/x0ArM1rtwNI?rel=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
+<iframe class="landing-video" width="100%" height="250" src="http://www.youtube.com/embed/x0ArM1rtwNI?rel=0&showinfo=0&controls=0" frameborder="0" allowfullscreen></iframe>
+<div class="video-buttons">
+	<button class="btn new-parent">New parent?</button> <button class="btn expert-opinion">Expert opinion</button> <button class="btn fashion-and-fun">Fashion and fun</button>
+</div>
 </div>
 <div class="span6 landing-action">
 <p class="lead align-center"><small>Not sure which <span class="typer-products" data-typer-targets="computer,television,stroller,dishwasher,gift for dad, formal dress, carseat">stroller</span> to buy? Ask your friends!</small></p>

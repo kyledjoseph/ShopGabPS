@@ -18,3 +18,16 @@ $(".switch-to-signup").click(function() {
     $("#loginModal").modal('hide');
     $("#registerModal").modal('show');
 });
+
+
+$(".new-parent").click(function() {
+    $(".landing-video").attr('src', 'http://www.youtube.com/embed/pk1fqq9Wxdk?rel=0&showinfo=0&controls=0');
+});
+
+$(".expert-opinion").click(function() {
+    $(".landing-video").attr('src', 'http://www.youtube.com/embed/F4mw8tMdhEM?rel=0&showinfo=0&controls=0');
+});
+
+$(".fashion-and-fun").click(function() {
+    $(".landing-video").attr('src', 'http://www.youtube.com/embed/i7lRIbnKIHY?rel=0&showinfo=0&controls=0');
+});

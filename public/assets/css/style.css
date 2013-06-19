@@ -5452,6 +5452,14 @@ a {
 .landing-action {
   background: url('../img/landing-watermark.png') no-repeat 50% 50%;
 }
+.video-buttons {
+  text-align: center;
+  margin-top: 1em;
+}
+.video-buttons .btn {
+  margin-left: .5em;
+  margin-right: .5em;
+}
 .social-login {
   margin-top: 1.5em;
   padding-left: 1em;
