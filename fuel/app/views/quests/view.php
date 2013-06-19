@@ -114,6 +114,15 @@
 					<h5>Added by <?= $quest_product->user->display_name() ?></h5>
 					<?php endif; ?>
 				</div>
+				<div class="btn-group">
+  <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu">
+    <li><a href="#">Add to Wishlist</a></li>
+    <li><a href="#">Add to My Items</a></li>
+  </ul>
+</div>
 			</div>
 
 			<?php $product_i++; endforeach; ?>
