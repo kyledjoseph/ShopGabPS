@@ -5697,6 +5697,10 @@ a {
 #inviteModal textarea {
   width: 28em;
 }
+.invite-btn {
+  padding-left: 2.5em;
+  padding-right: 2.5em;
+}
 .product-block {
   margin: 1em;
   padding: 1em;
@@ -5818,12 +5822,12 @@ a {
 }
 .add-product {
   position: absolute;
-  top: -0.1em;
-  right: -0.1em;
+  top: .3em;
+  right: .4em;
   padding-left: 1.5em;
   padding-right: 1.5em;
-  padding-top: .6em;
-  padding-bottom: .6em;
+  padding-top: .2em;
+  padding-bottom: .2em;
 }
 .chat {
   max-height: 300px;

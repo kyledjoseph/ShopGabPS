@@ -30,7 +30,7 @@
 
 <div class="span4 align-center">
 	<?php if (isset($user)): ?>
-	<button href="#inviteModal" class="btn btn-success btn-large block push-center" data-toggle="modal">Invite friends</button>
+	<button href="#inviteModal" class="btn btn-success btn-large block push-center invite-btn" data-toggle="modal">Invite friends</button>
 	<?php else: ?>
 	<button href="#loginModal" class="btn btn-success btn-block btn-large" data-toggle="modal">Invite friends</button>
 	<?php endif; ?>
