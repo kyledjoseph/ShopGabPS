@@ -84,8 +84,8 @@
 						<div class="score">
 
 							<?php if (isset($user)): ?>
-							<?= $quest_product->total_upvotes() ?> <?= Html::anchor($quest_product->like_url(), '<i class="icon-circle-arrow-up faded"></i>') ?> &nbsp; 
-							<?= $quest_product->total_downvotes() ?> <?= Html::anchor($quest_product->dislike_url(), '<i class="icon-circle-arrow-down faded"></i>') ?>
+							<?= $quest_product->total_upvotes() ?> <?= Html::anchor($quest_product->like_url(), '<img src="/assets/img/thumbs-up.png" />') ?> &nbsp; 
+							<?= $quest_product->total_downvotes() ?> <?= Html::anchor($quest_product->dislike_url(), '<img src="/assets/img/thumbs-down.png" />') ?>
 							<?php else: ?>
 							<?= $quest_product->total_upvotes() ?> <a href="#loginModal" data-toggle="modal"><i class="icon-circle-arrow-up faded"></i></a> &nbsp; 
 							<?= $quest_product->total_downvotes() ?> <a href="#loginModal" data-toggle="modal"><i class="icon-circle-arrow-down faded"></i></a>

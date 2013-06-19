@@ -39,7 +39,7 @@
 								<?php endif; ?>
 
 									<div class="span3">
-										<div class="dashboard-box">
+										<div class="dashboard-box highlight">
 											<a href="<?= Uri::create($quest->url()) ?>">
 												<img class="full-size" src="<?= $quest->default_thumb_url() ?>">
 												<h3><?= $quest->name() ?></h3>

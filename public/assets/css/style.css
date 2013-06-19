@@ -5507,6 +5507,9 @@ a {
   border-radius: .2em;
   box-sizing: border-box;
 }
+.dashboard-box.highlight img.full-size {
+  box-shadow: 0 0 2px;
+}
 .dashboard-box h3 {
   margin-left: .4em;
   margin-top: .1em;
