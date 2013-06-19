@@ -31,7 +31,7 @@
 					<ul class="site-links">
 						<li><?= Html::anchor('#', 'About Us') // Html::anchor('about', 'About Us') ?></li>
 						<li><?= Html::anchor('#', 'Our Team') // Html::anchor('about/team', 'Our Team') ?></li>
-						<li><?= Html::anchor('http://itemnation.wordpress.com/, 'ItemNation Blog') // Html::anchor('blog', 'ItemNation Blog') ?></li>
+						<li><?= Html::anchor('http://itemnation.wordpress.com/', 'ItemNation Blog') // Html::anchor('blog', 'ItemNation Blog') ?></li>
 						<li><?= Html::anchor('#', 'Contact Us') // Html::anchor('contact', 'Contact Us') ?></li>
 					</ul>
 				</div>
