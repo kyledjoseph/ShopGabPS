@@ -56,6 +56,7 @@
 					<div class="info media-body">
 						<div class="name"><span><?= $product->name() ?></span></div>
 						<span class="price"><?= $product->price() ?></span>
+						<span class="description"><?= $product->description() ?></span>
 						<div>
 							<?php if (isset($user)): ?>
 							<a href="#" class="comments"><?= $quest_product->total_comments_text() ?></a>
