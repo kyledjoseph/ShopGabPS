@@ -28,7 +28,7 @@
 					<div class="control-group">
 						<div class="controls">
 							<label class="checkbox">
-								<input type="checkbox"> Remember me <a href="#" class="pull-right" data-action="switch-modal">Sign Up</a>
+								<input type="checkbox"> Remember me <a href="#" class="pull-right switch-to-signup">Sign Up</a>
 							</label>
 						</div>
 					</div>
