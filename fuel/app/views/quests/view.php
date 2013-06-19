@@ -81,7 +81,7 @@
 						</form>
 					</div>
 
-					<div class="details media-body">
+					<div class="options media-body">
 						<div class="score">
 
 							<?php if (isset($user)): ?>
