@@ -5369,7 +5369,7 @@ a.badge:focus {
   border-bottom: 1px solid #eee;
   margin-bottom: 1em;
 }
-.modal-in-form {
+.footer-in-form {
   margin-left: -1em;
   margin-right: -2em;
   margin-bottom: -1em;
@@ -5686,6 +5686,11 @@ a {
 }
 .product-block:after {
   clear: both;
+}
+.product-block .btn-group {
+  position: absolute;
+  top: -1px;
+  right: -1px;
 }
 .product-block.from-tab {
   margin-top: 3em;
