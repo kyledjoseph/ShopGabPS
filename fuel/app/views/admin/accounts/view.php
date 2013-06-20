@@ -54,12 +54,12 @@
 
 			<tbody>
 
-				<?php foreach ($account->get_chats() as $chat): ?>
+				<?php foreach ($account->get_quests() as $quest): ?>
 				
 				<tr>
-					<td><?= Html::anchor($chat->url(), $chat->name) ?></td>
-					<td><?= $chat->date() ?></td>
-					<td><?= Html::anchor("admin/accounts/delete_quest/{$account->id}/{$chat->id}", 'delete') ?></td>
+					<td><?= Html::anchor($quest->url(), $quest->name) ?></td>
+					<td><?= $quest->date() ?></td>
+					<td><?= Html::anchor("admin/accounts/delete_quest/{$account->id}/{$quest->id}", 'delete') ?></td>
 				</tr>
 
 				<?php endforeach; ?>
