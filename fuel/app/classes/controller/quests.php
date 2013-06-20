@@ -225,7 +225,7 @@ class Controller_Quests extends Controller_App
 
 		$this->require_auth($quest->url());
 
-		if (! $quest-belongs_to_user($this->user->id))
+		if (! $quest->belongs_to_user($this->user->id))
 		{
 			$this->redirect($quest->url());
 		}
