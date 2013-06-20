@@ -3,9 +3,8 @@
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="inviteModalLabel">Invite Friends</h3>
 		</div>
-		<?= Form::open(array('action' => $quest->invite_url(), 'class' => 'form-horizontal')) ?>
 			<div>
-			
+			<?= Form::open(array('action' => $quest->invite_url(), 'class' => 'form-horizontal')) ?>
 				<div class="control-group">
 					<label class="control-label" for="inputFrom">From:</label>
 					<div class="controls">

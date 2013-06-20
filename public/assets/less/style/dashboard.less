@@ -3,6 +3,8 @@
 	margin-left: 1em;
 }
 
+
+
 .dashboard-box {
 	height: 200px;
 	border: 1px solid lightgrey;
@@ -10,6 +12,12 @@
 	position: relative;
 	border-radius: .2em;
 	box-sizing: border-box;
+
+	&.highlight {
+		img.full-size {
+			box-shadow: 0 0 2px;
+		}
+	}
 
 	h3 {
 		margin-left: .4em;
@@ -34,6 +42,37 @@
 		top: -1px;
 		right: -1px;
 	}
+
+	.lock {
+		position: absolute;
+		bottom: 5px;
+		left: 5px;
+	}
+
+	.friends {
+		position: absolute;
+		bottom: 5px;
+		left: 35px;
+	}
+
+	.basket {
+		position: absolute;
+		bottom: 5px;
+		right: 35px;
+	}
+
+	.chat {
+		position: absolute;
+		bottom: 5px;
+		right: 5px;
+	}
+
+	.inactive { filter: grayscale(100%);
+		-webkit-filter: grayscale(100%);
+		-moz-filter: grayscale(100%);
+		filter: grayscale(100%);
+		opacity: .2;
+	}
 }
 
 #questModal {
@@ -41,22 +80,22 @@
 	margin-left: -200px;
 
 	form {
-	margin-left: 1em;
-	margin-top: 1em;
-	margin-right: 2em;
+		margin-left: 1em;
+		margin-top: 1em;
+		margin-right: 2em;
 
-	input {
-		width: 100%;
-	}
+		input {
+			width: 100%;
+		}
 
-	select {
-		width: 104%;
-	}
+		select {
+			width: 104%;
+		}
 
-	textarea {
-		width: 100%;
+		textarea {
+			width: 100%;
+		}
 	}
-}
 }
 
 .friend-box {

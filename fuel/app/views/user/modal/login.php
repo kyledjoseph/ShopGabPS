@@ -28,13 +28,13 @@
 					<div class="control-group">
 						<div class="controls">
 							<label class="checkbox">
-								<input type="checkbox"> Remember me <a href="#" class="pull-right" data-action="switch-modal">Sign Up</a>
+								<input type="checkbox"> Remember me <a href="#" class="pull-right switch-to-signup">Sign Up</a>
 							</label>
 						</div>
 					</div>
 				</div> 
 			</div>
-			<div class="modal-footer footer-in-form">
+			<div class="modal-footer">
 				<input type="hidden" name="login_redirect" value="<?= Uri::string() ?>" ?>
 				<!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
 				<button type="submit" class="btn btn-primary">Login</button>

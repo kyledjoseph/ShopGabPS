@@ -5369,7 +5369,7 @@ a.badge:focus {
   border-bottom: 1px solid #eee;
   margin-bottom: 1em;
 }
-.modal-in-form {
+.footer-in-form {
   margin-left: -1em;
   margin-right: -2em;
   margin-bottom: -1em;
@@ -5452,6 +5452,14 @@ a {
 .landing-action {
   background: url('../img/landing-watermark.png') no-repeat 50% 50%;
 }
+.video-buttons {
+  text-align: center;
+  margin-top: 1em;
+}
+.video-buttons .btn {
+  margin-left: .5em;
+  margin-right: .5em;
+}
 .social-login {
   margin-top: 1.5em;
   padding-left: 1em;
@@ -5507,6 +5515,9 @@ a {
   border-radius: .2em;
   box-sizing: border-box;
 }
+.dashboard-box.highlight img.full-size {
+  box-shadow: 0 0 2px;
+}
 .dashboard-box h3 {
   margin-left: .4em;
   margin-top: .1em;
@@ -5527,6 +5538,32 @@ a {
   position: absolute;
   top: -1px;
   right: -1px;
+}
+.dashboard-box .lock {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+}
+.dashboard-box .friends {
+  position: absolute;
+  bottom: 5px;
+  left: 35px;
+}
+.dashboard-box .basket {
+  position: absolute;
+  bottom: 5px;
+  right: 35px;
+}
+.dashboard-box .chat {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+}
+.dashboard-box .inactive {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  filter: grayscale(100%);
+  opacity: .2;
 }
 #questModal {
   width: 400px;
@@ -5582,6 +5619,9 @@ a {
 .help-me span {
   color: green;
 }
+.btn-sharing button {
+  margin-bottom: .7em;
+}
 .bubble {
   position: relative;
   padding: 1em;
@@ -5635,12 +5675,24 @@ a {
   margin-top: .5em;
   width: 7em;
 }
+.thumbs-up {
+  margin-bottom: 5px;
+}
+.thumbs-up:hover {
+  opacity: 1;
+}
+.thumbs-down {
+  margin-top: 5px;
+}
+.thumbs-down:hover {
+  opacity: 1;
+}
 .grab {
   cursor: move;
 }
 .view-friends {
   display: inline-block;
-  margin-top: 1em;
+  margin-top: .7em;
 }
 .add-product-drag {
   margin-right: -1.5em;
@@ -5671,6 +5723,12 @@ a {
 #inviteModal textarea {
   width: 28em;
 }
+.invite-btn {
+  padding-left: 3.5em;
+  padding-right: 3.5em;
+  padding-top: .5em;
+  padding-bottom: .5em;
+}
 .product-block {
   margin: 1em;
   padding: 1em;
@@ -5686,6 +5744,11 @@ a {
 }
 .product-block:after {
   clear: both;
+}
+.product-block .btn-group {
+  position: absolute;
+  top: -1px;
+  right: -1px;
 }
 .product-block.from-tab {
   margin-top: 3em;
@@ -5715,7 +5778,6 @@ a {
 .product-block .comment {
   float: left;
   clear: both;
-  margin-left: 1em;
   margin-top: .5em;
   display: block;
 }
@@ -5739,11 +5801,16 @@ a {
 }
 .product-block .price {
   opacity: .7;
+  display: block;
+}
+.product-block .description {
+  opacity: .7;
+  display: block;
 }
 .product-block .image img {
   margin-top: -3em;
 }
-.product-block .details {
+.product-block .options {
   display: inline-block;
   text-align: center;
   width: 13em;
@@ -5751,14 +5818,14 @@ a {
   top: 1em;
   right: 1em;
 }
-.product-block .details .score {
+.product-block .options .score {
   margin-bottom: .5em;
 }
-.product-block .details .score i:hover {
+.product-block .options .score i:hover {
   opacity: 1;
   cursor: pointer;
 }
-.product-block .details .btn {
+.product-block .options .btn {
   margin: 0;
   width: 82%;
 }
@@ -5788,12 +5855,12 @@ a {
 }
 .add-product {
   position: absolute;
-  top: -0.1em;
-  right: -0.1em;
+  top: .3em;
+  right: .4em;
   padding-left: 1.5em;
   padding-right: 1.5em;
-  padding-top: .6em;
-  padding-bottom: .6em;
+  padding-top: .2em;
+  padding-bottom: .2em;
 }
 .chat {
   max-height: 300px;
@@ -5817,17 +5884,17 @@ a {
   font-style: italic;
   opacity: .7;
 }
-.input-append {
+.chat-append {
   margin-bottom: -1px;
   margin-left: -1px;
   width: 100%;
 }
-.input-append input {
+.chat-append input {
   width: 81%;
   box-sizing: border-box;
   height: 30px;
 }
-.input-append button {
+.chat-append button {
   width: 20%;
   box-sizing: border-box;
 }

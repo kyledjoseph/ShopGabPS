@@ -6,6 +6,10 @@
 }
 
 
+.btn-sharing button {
+	margin-bottom: .7em;
+}
+
 .bubble {
 	position: relative;
 	padding: 1em;
@@ -65,11 +69,25 @@
 	}
 }
 
+.thumbs-up {
+	margin-bottom: 5px;
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.thumbs-down {
+	margin-top: 5px;
+	&:hover {
+		opacity: 1;
+	}
+}
+
 .grab { cursor: move; }
 
 .view-friends {
 	display: inline-block;
-	margin-top: 1em;
+	margin-top: .7em;
 }
 
 .add-product-drag {
@@ -109,12 +127,25 @@
 	}
 }
 
+.invite-btn {
+	padding-left: 3.5em;
+	padding-right: 3.5em;
+	padding-top: .5em;
+	padding-bottom: .5em;
+}
+
 .product-block {
 	margin: 1em;
 	padding: 1em;
 	border: 1px solid #ddd;
 	position: relative;
 	.clearfix;
+
+	.btn-group {
+		position: absolute;
+		top: -1px;
+		right: -1px;
+	}
 
 	&.from-tab {
 		margin-top: 3em;
@@ -149,7 +180,6 @@
 	.comment {
 		float: left;
 		clear: both;
-		margin-left: 1em;
 		margin-top: .5em;
 		display: block;
 		.name {
@@ -177,15 +207,20 @@
 
 	.price {
 		.faded;
+		.block;
 	}
 
+	.description {
+		.faded;
+		.block;
+	}
 	.image {
 		img {
 			margin-top: -3em;
 		}
 	}
 
-	.details {
+	.options {
 		display: inline-block;
 		text-align: center;
 		width: 13em;
@@ -236,12 +271,12 @@
 
 .add-product {
 	position: absolute;
-	top: -.1em;
-	right: -.1em;
+	top: .3em;
+	right: .4em;
 	padding-left: 1.5em;
 	padding-right: 1.5em;
-	padding-top: .6em;
-	padding-bottom: .6em;
+	padding-top: .2em;
+	padding-bottom: .2em;
 
 }
 
@@ -273,7 +308,7 @@
 	}
 }
 
-.input-append {
+.chat-append {
 		margin-bottom: -1px;
 		margin-left: -1px;
 		.full-width;

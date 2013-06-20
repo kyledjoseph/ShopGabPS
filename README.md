@@ -1,49 +1,5 @@
 # ItemNation
 
-GitHub repository for ItemNation ([project overview](http://youtu.be/_VT-QjDqVaw)), auto-deployed to the [development server](http://beta.itemnation.com).
+GitHub repository for [ItemNation](http://itemnation.com) and [development server](http://beta.itemnation.com).
 
-##Authentication
-
-### Stablehost
-
-* **Email:** kyle@itemnation.com
-* **ID:** itemn
-* **Pass:** Rebootstrap13
-
-### Rackspace
-
-* **Email:** kyle@itemnation.com
-* **Username:** itemnation
-* **Pass:** Rebootstrap13
-* **Childhood Nickname:** beaver
-
-### Servers
-* **beta** c7B6gdMOyroisOS
-
-### Mailchimp
-
-* **ID:** kyle@itemnation.com
-* **Pass:** Marketing13
-
-### Godaddy
-
-* **ID:** 44468901
-* **Pass:** Rebootstrap13
-* **PIN:** 1415
-
-### MailJet
-
-* **ID:** kyle@itemnation.com
-* **Pass:** Rebootstrap13
-
-### Google Analytics
-* **ID:** tyler@itemnation.com
-* **Pass:** Rebootstrap13
-
-### Optimizely (http://www.optimizely.com)
-* **ID:** kyle@itemnation.com
-* **Pass:** Rebootstrap13
-
-### Dropbox (shared files)
-
-* **Link:** https://www.dropbox.com/sh/23624mcq1zdc8om/D3vgoTfmBI
+[Get logged in](https://github.com/kyledjoseph/itemnation/wiki/Authentication), [install the development environment](https://github.com/kyledjoseph/itemnation/wiki/Local-Installation-Instructions), and [deploy](https://github.com/kyledjoseph/itemnation/wiki/Deployment-Access).

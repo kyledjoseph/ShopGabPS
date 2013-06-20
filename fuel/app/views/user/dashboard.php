@@ -39,7 +39,7 @@
 								<?php endif; ?>
 
 									<div class="span3">
-										<div class="dashboard-box">
+										<div class="dashboard-box highlight">
 											<a href="<?= Uri::create($quest->url()) ?>">
 												<img class="full-size" src="<?= $quest->default_thumb_url() ?>">
 												<h3><?= $quest->name() ?></h3>
@@ -53,7 +53,12 @@
 													<li><a href="#">Option 2</a></li>
 													<li><a href="#">Option 3</a></li>
 												</ul>
-											</div> -->
+											</div> 
+											<a href="#"><img class="lock" src="/assets/img/notification-lock.png" /></a>
+											<a href="#"><img class="friends inactive" src="/assets/img/notification-friends.png" /></a>
+											<a href="#"><img class="basket inactive" src="/assets/img/notification-basket.png" /></a>
+											<a href="#"><img class="chat inactive" src="/assets/img/notification-chat.png" /></a>
+											-->
 										</div>
 									</div>
 

@@ -29,8 +29,13 @@
 </div>
 
 <div class="span4 align-center">
+
+	<!--<div class="btn-group btn-sharing" data-toggle="buttons-radio">
+		<button type="button" class="btn">Public</button>
+  		<button type="button" class="btn btn active">Private</button>
+	</div>-->
 	<?php if (isset($user)): ?>
-	<button href="#inviteModal" class="btn btn-success btn-large block push-center" data-toggle="modal">Invite friends</button>
+	<button href="#inviteModal" class="btn btn-success btn-large block push-center invite-btn" data-toggle="modal">Invite friends</button>
 	<?php else: ?>
 	<button href="#loginModal" class="btn btn-success btn-block btn-large" data-toggle="modal">Invite friends</button>
 	<?php endif; ?>
@@ -56,6 +61,7 @@
 					<div class="info media-body">
 						<div class="name"><span><?= $product->name() ?></span></div>
 						<span class="price"><?= $product->price() ?></span>
+						<span class="description"><?= $product->description() ?></span>
 						<div>
 							<?php if (isset($user)): ?>
 							<a href="#" class="comments"><?= $quest_product->total_comments_text() ?></a>
@@ -80,17 +86,15 @@
 						</form>
 					</div>
 
-					<div class="details media-body">
+					<div class="options media-body">
 						<div class="score">
-
 							<?php if (isset($user)): ?>
-							<?= $quest_product->total_upvotes() ?> <?= Html::anchor($quest_product->like_url(), '<i class="icon-circle-arrow-up faded"></i>') ?> &nbsp; 
-							<?= $quest_product->total_downvotes() ?> <?= Html::anchor($quest_product->dislike_url(), '<i class="icon-circle-arrow-down faded"></i>') ?>
+							<?= $quest_product->total_upvotes() ?> <?= Html::anchor($quest_product->like_url(), '<img class="thumbs-up faded" src="/assets/img/thumbs-up.png" />') ?> &nbsp; 
+							<?= $quest_product->total_downvotes() ?> <?= Html::anchor($quest_product->dislike_url(), '<img class="thumbs-down faded" src="/assets/img/thumbs-down.png" />') ?>
 							<?php else: ?>
-							<?= $quest_product->total_upvotes() ?> <a href="#loginModal" data-toggle="modal"><i class="icon-circle-arrow-up faded"></i></a> &nbsp; 
-							<?= $quest_product->total_downvotes() ?> <a href="#loginModal" data-toggle="modal"><i class="icon-circle-arrow-down faded"></i></a>
+							<?= $quest_product->total_upvotes() ?> <a href="#loginModal" data-toggle="modal"><img class="thumbs-up faded" src="/assets/img/thumbs-up.png" /></i></a> &nbsp; 
+							<?= $quest_product->total_downvotes() ?> <a href="#loginModal" data-toggle="modal"><img class="thumbs-down faded" src="/assets/img/thumbs-down.png" /></i></a>
 							<?php endif; ?>
-							
 						</div>
 
 						<?php if (isset($user)): ?>
@@ -114,14 +118,23 @@
 					<h5>Added by <?= $quest_product->user->display_name() ?></h5>
 					<?php endif; ?>
 				</div>
+				<!--<div class="btn-group">
+  					<a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+ 					   <span class="caret"></span>
+ 					 </a>
+					<ul class="dropdown-menu">
+ 						<li><a href="#">Add to Wishlist</a></li>
+    					<li><a href="#">Add to My Items</a></li>
+  					</ul>
+				</div>-->
 			</div>
 
 			<?php $product_i++; endforeach; ?>
 
 			<?php if (isset($user)): ?>
-			<button href="#addProductModal" class="add-product btn btn-medium btn-success" data-toggle="modal">Add Product</button>
+			<button href="#addProductModal" class="add-product btn btn-medium btn-success" data-toggle="modal">+ Add Product</button>
 			<?php else: ?>
-			<button href="#loginModal" class="add-product btn btn-small btn-success" data-toggle="modal">Add Product</button>
+			<button href="#loginModal" class="add-product btn btn-small btn-success" data-toggle="modal">+ Add Product</button>
 			<?php endif; ?>
 
 		</div>
@@ -149,7 +162,7 @@
 				<?php endforeach; ?>
 				<?php endif; ?>
 			</div>
-			<?= Form::open(array('action' => $quest->message_url(), 'class' => 'input-append')) ?>
+			<?= Form::open(array('action' => $quest->message_url(), 'class' => 'input-append chat-append')) ?>
 					<input name="message" class="block" id="appendedInputButton" type="text">
 					<?php if (isset($user)): ?>
 					<button class="btn" type="submit">Send</button>
