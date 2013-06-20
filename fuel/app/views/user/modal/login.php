@@ -9,7 +9,7 @@
 
 			<div class="row">
 				<div class="span3 social-login">
-					<?= Html::anchor('auth/facebook', Asset::img('facebook-login.png')) ?>
+					<?= Html::anchor('auth/facebook?r=' . Uri::string(), Asset::img('facebook-login.png')) ?>
 				</div>
 				<div class="span4 form-login">
 					<?= Form::open(array('action' => 'login')) ?>

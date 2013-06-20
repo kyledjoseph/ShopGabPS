@@ -17,10 +17,7 @@ class Controller_User extends Controller_App
 		$post = $this->post_data('email', 'password', 'remember', 'login_redirect');
 		$remember_user = ($post->remember == 'true');
 
-		// attempt login
-		$login_success = $this->auth->login($post->email, $post->password);
-
-		if (! $login_success)
+		if (! $this->auth->login($post->email, $post->password))
 		{
 			$this->redirect('user/login', 'error', 'Invalid email address or password');
 		}
@@ -41,6 +38,7 @@ class Controller_User extends Controller_App
 	public function get_auth($provider)
 	{
 		$provider = strtolower($provider);
+		$get      = $this->get_data('r');
 
 		if (! in_array($provider, ['facebook', 'twitter', 'google']))
 		{
@@ -75,13 +73,16 @@ class Controller_User extends Controller_App
 		// 	return $error;
 		// }
 
-		$login_success = $this->auth->social_auth($provider);
-
-		if (! $login_success)
+		
+		if (! $this->auth->social_auth($provider))
 		{
 			throw new Exception("Could not log in social auth user to provider: '{$provider}'", 1);
-			
 			$this->redirect('/', 'error', 'An error has occurred');
+		}
+
+		if (! empty($get->r))
+		{
+			$this->redirect($get->r);
 		}
 
 		$this->redirect('/');
