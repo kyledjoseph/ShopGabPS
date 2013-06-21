@@ -23,7 +23,7 @@ $('.del-add-product-video').click(function() {
     $('.add-product-video').attr('src', '');
 });
 
-$('#addProductModal').click(function() {
+$('.add-product').click(function() {
     $('.add-product-video').attr('src', 'http://www.youtube.com/embed/qDf4w9spx5U?showinfo=0');
 });
 
