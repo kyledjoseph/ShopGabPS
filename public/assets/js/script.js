@@ -20,23 +20,12 @@ $(".switch-to-signup").click(function() {
 });
 
 $('.del-add-product-video').click(function() {
-    $('add-product-video').attr('src', '');
+    $('.add-product-video').attr('src', '');
 });
 
 $('#addProductModal').click(function() {
-    $('add-product-video').attr('src', 'http://www.youtube.com/embed/qDf4w9spx5U?showinfo=0');
+    $('.add-product-video').attr('src', 'http://www.youtube.com/embed/qDf4w9spx5U?showinfo=0');
 });
-
-function deleteVideo()
-{
-document.getElementById('VideoPlayer').src='';
-}
-
-function LoadVideo()
-{
-document.getElementById('VideoPlayer').src='http://www.youtube.com/embed/WHAT,EVER,YOUTUBE,VIDEO,YOU,WHANT';
-}
-
 
 $(".new-parent").click(function() {
     $(".landing-video").attr('src', 'http://www.youtube.com/embed/pk1fqq9Wxdk?rel=0&showinfo=0&controls=0');
