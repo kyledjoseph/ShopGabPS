@@ -20,7 +20,7 @@
 						</div>
 						<button id="open_url" class="btn btn-primary" data-dismiss="modal">Go</button>
 					</form>
-					<?= Form::open(array('action' => 'http://google.com/search', 'method' => 'get')) ?>
+					<?= Form::open(array('action' => 'http://google.com/search', 'method' => 'get', 'target' => '_blank')) ?>
 						<div class="control-group">
 							<div class="controls">
 								<input type="text" id="google" name="q" class="full-width" placeholder="Search with Google">
