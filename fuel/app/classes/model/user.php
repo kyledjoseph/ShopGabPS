@@ -10,8 +10,6 @@ class Model_User extends \Orm\Model
 		'group',
 		'email',
 		'display_name',
-		'first_name',
-		'last_name',
 		'last_login',
 		'login_hash',
 		'profile_fields',
@@ -319,13 +317,12 @@ class Model_User extends \Orm\Model
 	/**
 	 * 
 	 */
-	public static function create_user($email, $password, $first_name = null, $last_name = null)
+	public static function create_user($email, $password, $display_name = null)
 	{
 		$user = static::forge([
-			'email'      => $email,
-			'password'   => $password,
-			'first_name' => $first_name,
-			'last_name'  => $last_name,
+			'email'        => $email,
+			'password'     => $password,
+			'display_name' => $display_name,
 		]);
 		return $user->save() ? $user : false;
 	}

@@ -178,7 +178,7 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 		# 4 - if authentication does not exist and email is not in use, then we create a new user 
 		if (! isset($user))
 		{
-			$user = Model_User::create_user($email, $password, $first_name, $last_name);
+			$user = Model_User::create_user($email, $password, $display_name);
 		}
 
 		# 5 - create a new authentication for the user

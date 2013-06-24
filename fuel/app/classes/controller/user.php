@@ -80,6 +80,8 @@ class Controller_User extends Controller_App
 			$this->redirect('/', 'error', 'An error has occurred');
 		}
 
+		
+
 		if (! empty($get->r))
 		{
 			$this->redirect($get->r);
