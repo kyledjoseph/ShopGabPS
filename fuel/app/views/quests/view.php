@@ -89,8 +89,8 @@
 					<div class="options media-body">
 						<div class="score">
 							<?php if (isset($user)): ?>
-							<?= $quest_product->total_upvotes() ?> <?= Html::anchor($quest_product->like_url(), '<img class="thumbs-up faded" src="/assets/img/thumbs-up.png" />') ?> &nbsp; 
-							<?= $quest_product->total_downvotes() ?> <?= Html::anchor($quest_product->dislike_url(), '<img class="thumbs-down faded" src="/assets/img/thumbs-down.png" />') ?>
+							<?= $quest_product->total_upvotes() ?> <?= Html::anchor($quest_product->like_url(), '<img class="thumbs-up faded" src="/assets/img/thumbs-up.png" />', array('title' => $quest_product->list_user_likes(), 'class' => 'user_product_vote')) ?> &nbsp; 
+							<?= $quest_product->total_downvotes() ?> <?= Html::anchor($quest_product->dislike_url(), '<img class="thumbs-down faded" src="/assets/img/thumbs-down.png" />', array('title' => $quest_product->list_user_dislikes(), 'class' => 'user_product_vote')) ?>
 							<?php else: ?>
 							<?= $quest_product->total_upvotes() ?> <a href="#loginModal" data-toggle="modal"><img class="thumbs-up faded" src="/assets/img/thumbs-up.png" /></i></a> &nbsp; 
 							<?= $quest_product->total_downvotes() ?> <a href="#loginModal" data-toggle="modal"><img class="thumbs-down faded" src="/assets/img/thumbs-down.png" /></i></a>

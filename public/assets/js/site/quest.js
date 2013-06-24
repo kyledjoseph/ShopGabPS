@@ -31,11 +31,11 @@ $(function(){
 	// init tooltip for product votes
 	// docs: http://code.drewwilson.com/entry/tiptip-jquery-plugin
 	// 
-	// $(".user_vote_list").tipTip({
-	// 	maxWidth: "auto", 
-	// 	edgeOffset: 0,
-	// 	defaultPosition: 'right'
-	// });
+	$(".user_product_vote").tipTip({
+		maxWidth: "auto", 
+		edgeOffset: 0,
+		defaultPosition: 'right'
+	});
 
 
 	// message submit on enter
