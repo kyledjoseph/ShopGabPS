@@ -169,7 +169,7 @@ class Controller_Quests extends Controller_App
 
 			Service_Email::send(array(
 				'type'      => 'quest_invite',
-				'to_addr'   => $post->to,
+				'to_addr'   => $recipient,
 				'from_name' => 'ItemNation',
 				'from_addr' => 'info@itemnation.com',
 				'subject'   => $post->subject,
