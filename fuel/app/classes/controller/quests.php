@@ -149,31 +149,45 @@ class Controller_Quests extends Controller_App
 	public function post_invite($quest_url)
 	{
 		$quest = $this->get_quest_by_url($quest_url);
-
 		$this->require_auth($quest->url());
 
-		// if ($quest->user_id !== $this->user->id)
-		// {
-		// 	$this->redirect($quest->url());
-		// }
-
-		$post = $this->post_data('to', 'subject', 'description');
-
-		$body = $post->description;
-		$body.= '<br><br>';
-		$body.= '<a href="http://itemnation.com/'.$quest->url().'">http://itemnation.com/'.$quest->url().'</a>';
+		$post   = $this->post_data('to', 'subject', 'description');
+		$emails = explode(',', $post->emails);
 
 
-		Service_Email::send(array(
-			'type'      => 'quest_invite',
-			'to_addr'   => $post->to,
-			'from_name' => 'ItemNation',
-			'from_addr' => 'info@itemnation.com',
-			'subject'   => $post->subject,
-			'body'      => $body,
-		));
+		if (! isset($post->to) or empty($post->to))
+		{
+			$this->redirect($quest->url(), 'error', "Enter one or more recipients to invite to this Quest");
+		}
+		
+		foreach ($recipients as $recipient)
+		{
+			$recipient = trim($recipient);
 
-		$this->redirect($quest->url(), 'info', "Invitation to '{$post->to}' has been sent");
+			$body = $post->description;
+			$body.= '<br><br>';
+			$body.= '<a href="http://itemnation.com/'.$quest->url().'">http://itemnation.com/'.$quest->url().'</a>';
+
+			Service_Email::send(array(
+				'type'      => 'quest_invite',
+				'to_addr'   => $post->to,
+				'from_name' => 'ItemNation',
+				'from_addr' => 'info@itemnation.com',
+				'subject'   => $post->subject,
+				'body'      => $body,
+			));
+		}
+
+		if (count($recipients) > 1)
+		{
+			$this->redirect($quest->url(), 'info', "Invitations to '{$post->to}' have been sent");
+		}
+
+		else
+		{
+			$this->redirect($quest->url(), 'info', "Invitation to '{$post->to}' has been sent");
+		}
+		
 	}
 
 
