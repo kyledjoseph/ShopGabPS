@@ -151,9 +151,8 @@ class Controller_Quests extends Controller_App
 		$quest = $this->get_quest_by_url($quest_url);
 		$this->require_auth($quest->url());
 
-		$post   = $this->post_data('to', 'subject', 'description');
-		$emails = explode(',', $post->emails);
-
+		$post       = $this->post_data('to', 'subject', 'description');
+		$recipients = explode(',', $post->to);
 
 		if (! isset($post->to) or empty($post->to))
 		{
