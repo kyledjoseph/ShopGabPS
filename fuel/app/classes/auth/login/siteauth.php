@@ -167,7 +167,7 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 		$user_auth = Model_User_Auth::get_by_provider_uid($provider, $user_profile->identifier);
 
 		# 2 - if authentication exists in the database, then we set the user as connected
-		if (isset($user_auth))
+		if (isset($user_auth->id))
 		{
 			return $this->force_login($user_auth->user->id);
 		}
