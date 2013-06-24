@@ -27,7 +27,7 @@
 			<div class="control-group account-form">
 				<label class="control-label" for="inputEmail">Facebook:</label>
 				<div class="controls">
-					<span class="facebook-account"><?= $user->is_authenticated_with('facebook') ? 'Authenticated': Html::anchor('auth/facebook?r=account', 'Login with Facebook') ?></span>
+					<span class="facebook-account"><?= $user->is_authenticated_with('facebook') ? "Authenticated as {$user->user_authentication()->email}" : Html::anchor('auth/facebook?r=account', 'Login with Facebook') ?></span>
 				</div>
 			</div>
 
