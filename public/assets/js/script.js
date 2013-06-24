@@ -19,6 +19,13 @@ $(".switch-to-signup").click(function() {
     $("#registerModal").modal('show');
 });
 
+$('.del-add-product-video').click(function() {
+    $('.add-product-video').attr('src', '');
+});
+
+$('.add-product').click(function() {
+    $('.add-product-video').attr('src', 'http://www.youtube.com/embed/qDf4w9spx5U?showinfo=0');
+});
 
 $(".new-parent").click(function() {
     $(".landing-video").attr('src', 'http://www.youtube.com/embed/pk1fqq9Wxdk?rel=0&showinfo=0&controls=0');
