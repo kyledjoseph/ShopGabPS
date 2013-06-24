@@ -76,18 +76,19 @@ class Model_User extends \Orm\Model
 	 */
 	public function display_name()
 	{
-		return empty($this->display_name) ? "Display Name" : $this->display_name;
+
+		return (isset($this->display_name) and ! empty($this->display_name)) ? $this->display_name : $this->email;
 	}
 
 	/**
 	 * User's name
 	 */
-	public function name()
-	{
-		return (! empty($this->first_name) and ! empty($this->last_name))
-			? "{$this->first_name} {$this->last_name}"
-			: null;
-	}
+	// public function name()
+	// {
+	// 	return (! empty($this->first_name) and ! empty($this->last_name))
+	// 		? "{$this->first_name} {$this->last_name}"
+	// 		: null;
+	// }
 
 	/**
 	 * Get user profile picture
