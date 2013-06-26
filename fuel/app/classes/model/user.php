@@ -338,7 +338,7 @@ class Model_User extends \Orm\Model
 	{
 		foreach ($this->get_facebook_friends() as $friend)
 		{
-			if ($friend->is_registered)
+			if ($friend->is_registered())
 			{
 				$friends[] = $friend;
 			}
