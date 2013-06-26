@@ -10,10 +10,13 @@
 			<li>
 				<?= Html::img($friend->photo_url()) ?>
 				<?= Html::anchor($friend->profile_url(), $friend->identifier) ?> - 
-				<?= $friend->display_ame ?>
+				<?= $friend->display_name ?>
 			</li>
 			<?php endforeach; // is_authenticated_with('facebook') ?>
 
+			<?php else: ?>
+
+			<p>Not authenticated with Facebook</p>
 
 			<?php endif; ?>
 		</div>
