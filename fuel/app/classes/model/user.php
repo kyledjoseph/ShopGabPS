@@ -196,7 +196,8 @@ class Model_User extends \Orm\Model
 
 	public function get_facebook_friends()
 	{
-		$hybridauth = $this->auth->hybridauth_instance();
+		$auth       = Auth::instance();
+		$hybridauth = $auth->hybridauth_instance();
 		$adapter    = $hybridauth->authenticate('facebook');
 		// return $adapter->getUserContacts();
 

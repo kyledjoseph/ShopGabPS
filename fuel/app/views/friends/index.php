@@ -7,11 +7,10 @@
 			<h4>Facebook Friends</h4>
 
 			<?php foreach ($this->user->get_facebook_friends() as $friend): ?>
-			<?php $url = strtok($friend->photoURL, '?') . '?width=32&height=32' ?>
 			<li>
-				<?= Html::img($url) ?>
-				<?= Html::anchor($friend->profileURL, $friend->identifier) ?> - 
-				<?= $friend->displayName ?>
+				<?= Html::img($friend->photo_url()) ?>
+				<?= Html::anchor($friend->profile_url(), $friend->identifier) ?> - 
+				<?= $friend->display_ame ?>
 			</li>
 			<?php endforeach; // is_authenticated_with('facebook') ?>
 
