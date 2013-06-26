@@ -1,8 +1,19 @@
 <?php
 
-class Controller_Debug extends Controller
+class Controller_Debug extends Controller_App
 {
 
+	public function get_friends()
+	{
+		$hybridauth = $this->auth->hybridauth_instance();
+		$friends = $hybridauth->getAdapter('facebook');
+
+		echo '<pre>';
+		echo var_dump($friends);
+		echo '</pre>';
+
+		return Response::forge();
+	}
 
 	public function get_curl()
 	{

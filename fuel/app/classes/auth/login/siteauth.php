@@ -35,6 +35,11 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 	protected $user = null;
 
 	/**
+	 * 
+	 */
+	protected $hybridauth = null;
+
+	/**
 	 * @var  array  value for guest login
 	 */
 	protected static $guest_login = array(
@@ -147,7 +152,8 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 
 	public function social_auth($provider)
 	{
-		$hybridauth = new Hybrid_Auth($this->get_social_config());
+		//$hybridauth = ($this->get_social_config());
+		$hybridauth = $this->hybridauth_instance();
 
 		// try to authenticate the selected $provider
 		$adapter = $hybridauth->authenticate($provider);
@@ -194,11 +200,16 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 		return $this->force_login($user->id);
 	}
 
-	private function get_social_config()
+	public function hybridauth_instance()
 	{
-		return array(
+		if (! is_null($this->hybridauth))
+		{
+			return $this->hybridauth;
+		}
+
+		return new Hybrid_Auth(array(
 			//"base_url" => "http://itemnation.com/user/process", 
-			"base_url" => Uri::create('user/process'),
+			"base_url"   => Uri::create('user/process'),
 			"debug_mode" => false,
 			"debug_file" => "",
 
@@ -277,7 +288,7 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 					)
 				),
 			)
-		);
+		));
 	}
 
 
