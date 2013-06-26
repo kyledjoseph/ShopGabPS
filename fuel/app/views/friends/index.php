@@ -6,7 +6,7 @@
 
 			<h4>Facebook Friends</h4>
 
-			<?php foreach ($facebook_friends as $friend): ?>
+			<?php foreach ($this->user->get_facebook_friends() as $friend): ?>
 			<?php $url = strtok($friend->photoURL, '?') . '?width=32&height=32' ?>
 			<li>
 				<?= Html::img($url) ?>

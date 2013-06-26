@@ -196,13 +196,13 @@ class Model_User extends \Orm\Model
 
 	public function get_facebook_friends()
 	{
-		// $hybridauth = $this->auth->hybridauth_instance();
-		// $adapter    = $hybridauth->authenticate('facebook');
+		$hybridauth = $this->auth->hybridauth_instance();
+		$adapter    = $hybridauth->authenticate('facebook');
 		// return $adapter->getUserContacts();
 
 		try
 		{ 
-			$response = $this->api->api('/me/friends'); 
+			$response = $adapter->api()->api('/me/friends'); 
 		}
 		catch (FacebookApiException $e)
 		{
