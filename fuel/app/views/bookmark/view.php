@@ -24,7 +24,7 @@
 
 			<li id="friend_id" style="display:none">
 				<label for="friend_id">Friends' Quests:</label>
-				<?= Form::select('friend_id', null, $user->select_all_users()) ?>
+				<?= Form::select('friend_id', null, $user->select_friends()) ?>
 			</li>
 
 			<li id="friend_quest_id" style="display:none">

@@ -21,4 +21,10 @@ class Model_Facebook_Friend extends Model
 	{
 		return "https://graph.facebook.com/" . $this->identifier . "/picture?width={$width}&height={$height}";
 	}
+
+	public function is_registered()
+	{
+		$count = Model_User_Auth::query()->where('provider', 'facebook')->where('provider_uid', $this->identifier)->count();
+		return $count > 0;
+	}
 }

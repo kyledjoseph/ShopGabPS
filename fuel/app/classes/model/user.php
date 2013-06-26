@@ -334,6 +334,18 @@ class Model_User extends \Orm\Model
 
 	}
 
+	public function get_registered_facebook_friends()
+	{
+		foreach ($this->get_facebook_friends() as $friend)
+		{
+			if ($friend->is_registered)
+			{
+				$friends[] = $friend;
+			}
+		}
+		return ! empty($friends) ? $friends : array();
+	}
+
 
 
 
