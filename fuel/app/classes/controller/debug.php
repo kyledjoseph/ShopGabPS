@@ -6,7 +6,8 @@ class Controller_Debug extends Controller_App
 	public function get_friends()
 	{
 		$hybridauth = $this->auth->hybridauth_instance();
-		$friends = $hybridauth->getAdapter('facebook');
+		$adapter    = $hybridauth->getAdapter('facebook');
+		$friends    = $adapter->getUserContacts();
 
 		echo '<pre>';
 		echo var_dump($friends);
