@@ -192,6 +192,41 @@ class Model_User extends \Orm\Model
 		return Model_User::query()->order_by('display_name', 'asc')->get();
 	}
 
+
+
+	public function get_facebook_friends()
+	{
+		// $hybridauth = $this->auth->hybridauth_instance();
+		// $adapter    = $hybridauth->authenticate('facebook');
+		// return $adapter->getUserContacts();
+
+		try
+		{ 
+			$response = $this->api->api('/me/friends'); 
+		}
+		catch (FacebookApiException $e)
+		{
+			throw new Exception( "User contacts request failed! {$this->providerId} returned an error: $e" );
+		} 
+ 
+		if (! $response || ! count( $response["data"]))
+		{
+			return array();
+		}
+
+		$contacts = array();
+ 
+		foreach ($response["data"] as $info)
+		{
+			$contacts[] = new Model_Facebook_Friend($info);
+		}
+
+		return $contacts;
+
+
+	}
+
+
 	/**
 	 * undocumented class variable
 	 */

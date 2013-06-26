@@ -1,6 +1,9 @@
 
 	<div class="row">
 		<div class="span6">
+
+			<?php if ($this->user->is_authenticated_with('facebook')): ?>
+
 			<h4>Facebook Friends</h4>
 
 			<?php foreach ($facebook_friends as $friend): ?>
@@ -10,7 +13,10 @@
 				<?= Html::anchor($friend->profileURL, $friend->identifier) ?> - 
 				<?= $friend->displayName ?>
 			</li>
-			<?php endforeach; ?>
+			<?php endforeach; // is_authenticated_with('facebook') ?>
+
+
+			<?php endif; ?>
 		</div>
 		<div class="span6">
 			
