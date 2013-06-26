@@ -113,7 +113,7 @@ class Controller_Bookmark extends Controller_App
 					return Response::forge(json_encode(array('success' => true, 'message' => 'invalid_friend_quest_id')));
 				}
 
-				$quest->add_product($product->id, $this->account->id);
+				$quest->add_product($product->id, $this->user->id);
 
 				break;
 
