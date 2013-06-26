@@ -66,7 +66,37 @@ class Model_User extends \Orm\Model
 			'events' => array('before_save'),
 			'mysql_timestamp' => false,
 		),
+		'Orm\\Observer_Self' => array(
+			'events' => array('before_save', 'after_insert')
+		),
 	);
+
+	public function _event_after_insert()
+	{
+		$this->_update_friendships();
+	}
+
+	public function _event_before_save()
+	{
+		if ($this->is_changed('display_name'))
+		{
+			$this->_update_friendships();
+		}
+	}
+
+	private function _update_friendships()
+	{
+		$friendships = Model_Friend::query()
+			->where('friend_id', $this->id)
+			->get();
+
+		foreach ($friendships as $friendship)
+		{
+			$friendship->friend_name       = $this->display_name;
+			$friendship->friend_registered = '1';
+			$friendship->save();
+		}
+	}
 
 
 	/**
@@ -184,12 +214,89 @@ class Model_User extends \Orm\Model
 
 
 
+
+
+	//TMP
+	public function get_all_users()
+	{
+		return Model_User::query()->order_by('display_name', 'asc')->get();
+	}
+	public function select_all_users()
+	{
+		$options = array();
+		$options['select'] = 'Select';
+		foreach ($this->get_friends() as $friend)
+		{
+			$options[$friend->id] = $friend->display_name();
+		}
+		return empty($options) ? array('none' => 'No Friends Available') : $options;
+	}
+
+
+
 	/**
 	 * undocumented class variable
 	 */
+	public function get_friendships()
+	{
+		return Model_Friend::query()
+			->where('user_id', $this->id)
+			->where('friend_registered', '1')
+			->get();
+	}
+
 	public function get_friends()
 	{
-		return Model_User::query()->order_by('display_name', 'asc')->get();
+		$users = array();
+		foreach ($this->get_friendships() as $friendship)
+		{
+			$users[] = $friendship->get_friend();
+		}
+		return $users;
+	}
+
+	public function select_friends()
+	{
+		$options = array();
+		$options['select'] = 'Select';
+		foreach ($this->get_friends() as $friend)
+		{
+			$options[$friend->id] = $friend->display_name();
+		}
+		return (count($options) > 1) ? array('none' => 'No Friends Available') : $options;
+	}
+
+	public function get_friend_by_id($friend_id)
+	{
+		return Model_User::query()->where('id', $friend_id)->get_one();
+	}
+
+	public function is_friend($friend_id)
+	{
+		$count = Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->count();
+		return $count > 0;
+	}
+
+	public function add_friend($user)
+	{
+		if ($this->is_friend($user->id))
+		{
+			throw new Exception("user '{$this->id}' is already friends with '{$user_id}'");
+		}
+
+		$self = new Model_Friend;
+		$self->user_id           = $this->id;
+		$self->friend_id         = $user->id;
+		$self->friend_name       = $user->display_name;
+		$self->friend_registered = '1';
+
+		$friend = new Model_Friend;
+		$friend->user_id           = $user->id;
+		$friend->friend_id         = $this->id;
+		$friend->friend_name       = $this->display_name;
+		$friend->friend_registered = '1';
+
+		return $self->save() and $friend->save();
 	}
 
 
@@ -227,28 +334,6 @@ class Model_User extends \Orm\Model
 
 	}
 
-
-	/**
-	 * undocumented class variable
-	 */
-	public function select_friends()
-	{
-		$options = array();
-		$options['select'] = 'Select';
-		foreach ($this->get_friends() as $friend)
-		{
-			$options[$friend->id] = $friend->display_name();
-		}
-		return empty($options) ? array('none' => 'No Friends Available') : $options;
-	}
-
-	/**
-	 * undocumented class variable
-	 */
-	public function get_friend_by_id($friend_id)
-	{
-		return Model_User::query()->where('id', $friend_id)->get_one();
-	}
 
 
 

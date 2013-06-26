@@ -19,4 +19,25 @@ class Controller_Friends extends Controller_App
 		));
 	}
 
+
+	public function post_add()
+	{
+		$email = Input::post('email');
+
+		$user = Model_User::get_by_email($email);
+
+		if (! isset($user))
+		{
+			$this->redirect('friends', 'info', 'user does not exist');
+		}
+
+		if ($this->user->is_friend($user->id))
+		{
+			$this->redirect('friends', 'info', 'already friends');
+		}
+
+		$this->user->add_friend($user);
+		$this->redirect('friends', 'success', 'friend added');
+	}
+
 }

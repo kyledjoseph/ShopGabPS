@@ -15,8 +15,14 @@
   <body>
 	<div class="wrap">
 		<div class="container">
-
 			<?= $view->header ?>
+
+			<?php if (isset($notice)): ?>
+			<div class="alert alert-<?= $notice->type ?>">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<?= $notice->message ?>
+			</div>
+			<?php endif; ?>
 
 			<?= $body ?>
 

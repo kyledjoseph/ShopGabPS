@@ -200,38 +200,21 @@
 										<input type="text" class="input-medium search-query" placeholder="Search">
 									</form>
 								</div>
+
+								<?php foreach ($user->get_friends() as $friend): ?>
 					
 								<div class="friend-box">
 									<div class="image">
 										<img src="//placehold.it/50x50" />
 									</div>
 									<div class="text">
-										<h5>Jane Smith</h5>
+										<h5><?= $friend->display_name() ?></h5>
 										<a class="remove" href="#">Remove friend</a>
 									</div>
 								</div>
-						
-								<div class="friend-box">
-									<div class="image">
-										<img src="//placehold.it/50x50" />
-									</div>
-			
-									<div class="text">
-										<h5>Ashley Thomas</h5>
-										<a class="remove" href="#">Remove friend</a>
-									</div>
-								</div>
-						
-								<div class="friend-box">
-									<div class="image">
-										<img src="//placehold.it/50x50" />
-									</div>
-							
-									<div class="text">
-										<h5>Jane Smith</h5>
-										<a class="remove" href="#">Remove friend</a>
-									</div>
-								</div>
+
+								<?php endforeach; ?>
+
 							</div>
 						</div>
 					</div>
