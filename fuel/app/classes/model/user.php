@@ -357,15 +357,13 @@ class Model_User extends \Orm\Model
 
 		try
 		{ 
-			$query = urlencode("SELECT uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$this->user_authentication('facebook')->provider_uid}) AND is_app_user = 1");
+			$query = urlencode("SELECT id, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$this->user_authentication('facebook')->provider_uid}) AND is_app_user = 1");
 			$response = $adapter->api()->api('fql?q='.$query); 
 		}
 		catch (FacebookApiException $e)
 		{
 			throw new Exception( "User contacts request failed! {$this->providerId} returned an error: $e" );
-		} 
- 
-		return $response;
+		}
 
 		if (! $response || ! count( $response["data"]))
 		{
