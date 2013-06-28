@@ -8,6 +8,10 @@ class Model_Facebook_Friend extends Model
 	public function __construct($info)
 	{
 		$this->identifier   = (array_key_exists("id", $info)) ? $info["id"] : null;
+		if (! isset($this->identifier))
+		{
+			$this->identifier   = (array_key_exists("uid", $info)) ? $info["uid"] : null;
+		}
 		$this->display_name = (array_key_exists("name", $info)) ? $info["name"] : null;
 	}
 
