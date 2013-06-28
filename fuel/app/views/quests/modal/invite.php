@@ -46,7 +46,7 @@
 				<hr>
 
 				<h4>All Friends</h4>
-				<?php foreach ($user->get_registered_facebook_friends() as $facebook_friend): ?>
+				<?php foreach ($user->get_facebook_friends() as $facebook_friend): ?>
 				
 				<li>
 					<?= Html::img($facebook_friend->photo_url()) ?>
