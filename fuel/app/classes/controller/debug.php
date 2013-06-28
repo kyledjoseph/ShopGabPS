@@ -2,6 +2,13 @@
 
 class Controller_Debug extends Controller_App
 {
+	public function get_fb()
+	{
+		$friends = $this->user->get_registered_facebook_friends();
+		echo '<pre>';
+		echo var_dump($friends);
+		echo '</pre>';
+	}
 
 	public function get_friends()
 	{
