@@ -6,7 +6,7 @@ class Controller_Debug extends Controller_App
 	{
 		$friends = $this->user->get_registered_facebook_friends();
 		echo '<pre>';
-		echo var_dump($friends);
+		echo var_dump($friends[1]['data']);
 		echo '</pre>';
 	}
 
