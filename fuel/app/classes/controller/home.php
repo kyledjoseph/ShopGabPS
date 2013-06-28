@@ -15,6 +15,7 @@ class Controller_Home extends Controller_App
 
 			$this->template->body = View::forge('user/dashboard', array(
 				'quests' => $this->user->get_quests(),
+				'friends_quests' => $this->user->get_friends_quests(),
 			));
 		}
 

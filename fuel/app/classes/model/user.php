@@ -55,6 +55,20 @@ class Model_User extends \Orm\Model
 			'cascade_save' => true,
 			'cascade_delete' => true,
 		),
+		'friends' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Friend',
+			'key_to' => 'user_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
+		'friends_of' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Friend',
+			'key_to' => 'friend_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
 	);
 
 	protected static $_observers = array(
@@ -336,14 +350,48 @@ class Model_User extends \Orm\Model
 
 	public function get_registered_facebook_friends()
 	{
-		foreach ($this->get_facebook_friends() as $friend)
-		{
-			if ($friend->is_registered())
-			{
-				$friends[] = $friend;
-			}
+		$auth       = Auth::instance();
+		$hybridauth = $auth->hybridauth_instance();
+		$adapter    = $hybridauth->authenticate('facebook');
+		// return $adapter->getUserContacts();
+
+		try
+		{ 
+			$response = $adapter->api()->api('/me/friends?fields=installed'); 
 		}
-		return ! empty($friends) ? $friends : array();
+		catch (FacebookApiException $e)
+		{
+			throw new Exception( "User contacts request failed! {$this->providerId} returned an error: $e" );
+		} 
+ 
+		if (! $response || ! count( $response["data"]))
+		{
+			return array();
+		}
+
+		$contacts = array();
+ 
+		foreach ($response["data"] as $info)
+		{
+			$contacts[] = new Model_Facebook_Friend($info);
+		}
+
+		return $contacts;
+
+		// foreach ($this->get_facebook_friends() as $friend)
+		// {
+		// 	if ($friend->is_registered())
+		// 	{
+		// 		$friends[] = $friend;
+		// 	}
+		// }
+		// return ! empty($friends) ? $friends : array();
+	}
+
+
+	public function get_friends_quests()
+	{
+		return array();
 	}
 
 

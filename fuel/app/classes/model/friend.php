@@ -20,8 +20,25 @@ class Model_Friend extends \Orm\Model
 		),
 	);
 
+	protected static $_belongs_to = array(
+		'user' => array(
+			'key_from'       => 'user_id',
+			'model_to'       => 'Model_User',
+			'key_to'         => 'id',
+			'cascade_save'   => true,
+			'cascade_delete' => false,
+		),
+		'friend' => array(
+			'key_from'       => 'friend_id',
+			'model_to'       => 'Model_User',
+			'key_to'         => 'id',
+			'cascade_save'   => true,
+			'cascade_delete' => false,
+		),
+	);
+
 	public function get_friend()
 	{
-		return Model_User::query()->where('id', $this->friend_id)->get_one();
+		return $this->friend;
 	}
 }
