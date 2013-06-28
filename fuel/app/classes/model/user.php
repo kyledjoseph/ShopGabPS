@@ -353,16 +353,17 @@ class Model_User extends \Orm\Model
 		$auth       = Auth::instance();
 		$hybridauth = $auth->hybridauth_instance();
 		$adapter    = $hybridauth->authenticate('facebook');
+		$fb_uid     = $this->user_authentication('facebook')->provider_uid;
 		// return $adapter->getUserContacts();
 
 		try
 		{ 
-			$query = urlencode("SELECT id, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$this->user_authentication('facebook')->provider_uid}) AND is_app_user = 1");
+			$query = urlencode("SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$fb_uid}) AND is_app_user = 1");
 			$response = $adapter->api()->api('fql?q='.$query); 
 		}
 		catch (FacebookApiException $e)
 		{
-			throw new Exception( "User contacts request failed! {$this->providerId} returned an error: $e" );
+			throw new Exception( "User contacts request failed! {$fb_uid} returned an error: $e" );
 		}
 
 		if (! $response || ! count( $response["data"]))
