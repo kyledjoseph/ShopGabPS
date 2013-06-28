@@ -357,7 +357,8 @@ class Model_User extends \Orm\Model
 
 		try
 		{ 
-			$response = $adapter->api()->api('/me/friends?fields=installed'); 
+			$query = urlencode("SELECT uid FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$this->user_authentication('facebook')->provider_uid}) AND is_app_user = 1");
+			$response = $adapter->api()->api('fql?q='.$query); 
 		}
 		catch (FacebookApiException $e)
 		{
