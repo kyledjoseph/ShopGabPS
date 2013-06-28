@@ -33,12 +33,12 @@
 			<div class="tab-pane fade" id="faceook">
 				
 				<h4>Friends on ItemNation</h4>
-				<?php foreach ($user->get_registered_facebook_friends() as $faceook_friend): ?>
+				<?php foreach ($user->get_registered_facebook_friends() as $facebook_friend): ?>
 				
 				<li>
-					<?= Html::img($friend->photo_url()) ?>
-					<?= Html::anchor($friend->profile_url(), $friend->identifier) ?> - 
-					<?= $friend->display_name ?>
+					<?= Html::img($facebook_friend->photo_url()) ?>
+					<?= Html::anchor($facebook_friend->profile_url(), $facebook_friend->identifier) ?> - 
+					<?= $facebook_friend->display_name ?>
 				</li>
 				
 				<?php endforeach; ?>
@@ -46,12 +46,12 @@
 				<hr>
 
 				<h4>All Friends</h4>
-				<?php foreach ($user->get_registered_facebook_friends() as $faceook_friend): ?>
+				<?php foreach ($user->get_registered_facebook_friends() as $facebook_friend): ?>
 				
 				<li>
-					<?= Html::img($friend->photo_url()) ?>
-					<?= Html::anchor($friend->profile_url(), $friend->identifier) ?> - 
-					<?= $friend->display_name ?>
+					<?= Html::img($facebook_friend->photo_url()) ?>
+					<?= Html::anchor($facebook_friend->profile_url(), $facebook_friend->identifier) ?> - 
+					<?= $facebook_friend->display_name ?>
 				</li>
 
 				<?php endforeach; ?>
