@@ -30,7 +30,7 @@
 			</div>
 		
 			<?php if ($user->is_authenticated_with('facebook')): ?>
-			<div class="tab-pane fade" id="faceook">
+			<div class="tab-pane fade" id="facebook">
 				
 				<h4>Friends on ItemNation</h4>
 				<?php foreach ($user->get_registered_facebook_friends() as $facebook_friend): ?>
