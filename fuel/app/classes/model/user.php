@@ -365,6 +365,8 @@ class Model_User extends \Orm\Model
 			throw new Exception( "User contacts request failed! {$this->providerId} returned an error: $e" );
 		} 
  
+		return $repsonse;
+
 		if (! $response || ! count( $response["data"]))
 		{
 			return array();
