@@ -277,7 +277,7 @@ class Model_User extends \Orm\Model
 		{
 			$options[$friend->id] = $friend->display_name();
 		}
-		return (count($options) > 1) ? array('none' => 'No Friends Available') : $options;
+		return (count($options) < 1) ? array('none' => 'No Friends Available') : $options;
 	}
 
 	public function get_friend_by_id($friend_id)
