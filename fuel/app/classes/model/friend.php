@@ -41,4 +41,16 @@ class Model_Friend extends \Orm\Model
 	{
 		return $this->friend;
 	}
+
+	public function related_frienship()
+	{
+		return static::query()->where('user_id', $this->friend_id)->where('friend_id', $this->user_id)->get_one();
+	}
+
+	public function destroy()
+	{
+		$friend = $this->related_frienship();
+		$friend->delete();
+		return $this->delete();
+	}
 }

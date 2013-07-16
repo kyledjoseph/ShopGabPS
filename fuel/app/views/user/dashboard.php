@@ -190,7 +190,7 @@
 								</div>
 								<div class="text">
 									<h5><?= $friend->display_name() ?></h5>
-									<a class="remove" href="#">Remove friend</a>
+									<?= Html::anchor("friends/remove/{$friend->id}", 'Remove friend', array('class' => 'remove')) ?>
 								</div>
 							</div>
 

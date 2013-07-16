@@ -40,4 +40,22 @@ class Controller_Friends extends Controller_App
 		$this->redirect('friends', 'success', 'friend added');
 	}
 
+
+	/**
+	 * Remove friend
+	 */
+	public function get_remove($friend_id)
+	{
+		$friendship = $this->user->get_friendship_by_id($friend_id);
+
+		if (! isset($friendship))
+		{
+			$this->redirect('/', 'error', 'You are not friends with this user');
+		}
+
+		$friendship->destroy();
+
+		$this->redirect('/', 'info', 'Friend removed');
+	}
+
 }

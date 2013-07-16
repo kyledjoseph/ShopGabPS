@@ -280,9 +280,15 @@ class Model_User extends \Orm\Model
 		return (count($options) < 1) ? array('none' => 'No Friends Available') : $options;
 	}
 
+	public function get_friendship_by_id($friend_id)
+	{
+		return Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->get_one();
+	}
+
 	public function get_friend_by_id($friend_id)
 	{
-		return Model_User::query()->where('id', $friend_id)->get_one();
+		$friendship = $this->get_friendship_by_id($friend_id);
+		return isset($friendship) ? $friendship->friend : null;
 	}
 
 	public function is_friend($friend_id)
