@@ -14,20 +14,33 @@ class Controller_User extends Controller_App
 
 	public function post_login()
 	{
-		$post = $this->post_data('email', 'password', 'remember', 'login_redirect');
-		$remember_user = ($post->remember == 'true');
-
-		if (! $this->auth->login($post->email, $post->password))
+		if (! Input::is_ajax())
 		{
-			$this->redirect('user/login', 'error', 'Invalid email address or password');
+			$this->redirect('/');
 		}
 
-		if (! empty($post->login_redirect))
+		$post     = $this->post_data('email', 'password', 'remember', 'redirect');
+		$remember = ($post->remember == 'true');
+		$success  = $this->auth->login($post->email, $post->password);
+
+		
+		if (! $success)
 		{
-			$this->redirect($post->login_redirect);
+			return Response::forge(json_encode(array(
+				'success' => false,
+				'type'    => 'login_invalid',
+				'field'    => '#error_login',
+				'message' => 'Invalid email address or password',
+			)));
 		}
 
-		$this->redirect('/');
+		return Response::forge(json_encode(array(
+			'success'  => true,
+			'type'     => 'login_success',
+			'message'  => 'You are now logged in',
+			'redirect' => $post->redirect,
+		)));
+
 	}
 
 
@@ -109,34 +122,96 @@ class Controller_User extends Controller_App
 
 	public function post_register()
 	{
-		$post = $this->post_data('name', 'email', 'password', 'confirm_password', 'login_redirect');
+		if (! Input::is_ajax())
+		{
+			$this->redirect('/');
+		}
+
+		$post = $this->post_data('name', 'email', 'password', 'confirm_password', 'redirect');
+
+		// name missing
+		if (empty($post->name))
+		{
+			return Response::forge(json_encode(array(
+				'success' => false,
+				'type'    => 'name_missing',
+				'field'   => '#error_name',
+				'message' => 'Enter your name',
+			)));
+		}
+
+		// email missing
+		if (empty($post->email))
+		{
+			return Response::forge(json_encode(array(
+				'success' => false,
+				'type'    => 'email_missing',
+				'field'   => '#error_email',
+				'message' => 'Enter your email address',
+			)));
+		}
+
+		// password match
+		if (empty($post->password) or empty($post->confirm_password))
+		{
+			return Response::forge(json_encode(array(
+				'success' => false,
+				'type'    => 'password_match',
+				'field'   => '#error_password',
+				'message' => 'Enter and confirm your new password',
+			)));
+		}
 
 		// password match
 		if ($post->password !== $post->confirm_password)
 		{
-			$this->redirect('user/register', 'error', 'Your password does not match the password confirmation');
+			return Response::forge(json_encode(array(
+				'success' => false,
+				'type'    => 'password_match',
+				'field'   => '#error_password',
+				'message' => 'Your password does not match the password confirmation',
+			)));
 		}
 
 		// register user
-		$user = $this->auth->create_user($post->email, $post->password);
+		try
+		{
+			$user = $this->auth->create_user($post->email, $post->password);
+		}
+		catch (SiteUserUpdateException $e)
+		{
+			return Response::forge(json_encode(array(
+				'success' => false,
+				'type'    => 'email_registered',
+				'field'   => '#error_email',
+				'message' => $e->getMessage(),
+			)));
+		}
+		
 		if (! isset($user))
 		{
-			$this->redirect('user/register', 'error', 'Invalid email address or password');
+			return Response::forge(json_encode(array(
+				'success' => false,
+				'type'    => 'register_error',
+				'field'   => '#error_password',
+				'message' => 'An error has occured',
+			)));
 		}
 
 		// additional account info
 		$user->display_name = $post->name;
 		$user->save();
-		
+
 		// log user in
 		$this->auth->login($post->email, $post->password);
 
-		if (! empty($post->login_redirect))
-		{
-			$this->redirect($post->login_redirect);
-		}
-
-		$this->redirect('/');
+		// success
+		return Response::forge(json_encode(array(
+			'success'  => true,
+			'type'     => 'login_success',
+			'message'  => 'You are now logged in',
+			'redirect' => $post->redirect,
+		)));
 	}
 
 

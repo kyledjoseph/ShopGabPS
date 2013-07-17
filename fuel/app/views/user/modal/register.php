@@ -17,12 +17,15 @@
 							<div class="controls">
 								<input type="text" name="name" id="inputFullName" class="full-width" placeholder="Full Name">
 							</div>
+							<span id="error_name" class="modal_error"></span>
 						</div>
+
 						<div class="control-group">
 							<label class="control-label" for="email">Email</label>
 							<div class="controls">
 								<input type="text" name="email" id="inputEmail" class="full-width" placeholder="Email">
 							</div>
+							<span id="error_email" class="modal_error"></span>
 						</div>
 
 						<div class="control-group">
@@ -31,12 +34,15 @@
 								<input type="password" name="password" id="inputPassword" class="full-width" placeholder="Password">
 							</div>
 						</div>
+
 						<div class="control-group">
 							<label class="control-label" for="confirm_password">Confirm Password</label>
 							<div class="controls">
 								<input type="password" name="confirm_password" id="inputPasswordAgain" class="full-width" placeholder="Confirm Password">
 							</div>
+							<span id="error_password" class="modal_error"></span>
 						</div>
+						
 						<div class="control-group">
 							<div class="controls">
 								<label class="checkbox">
@@ -51,7 +57,7 @@
 			<div class="modal-footer">
 				<input type="hidden" name="login_redirect" value="<?= Uri::string() ?>" ?>
 				<!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
-				<button class="btn btn-primary">Sign Up</button>
+				<button id="user_register" class="btn btn-primary">Sign Up</button>
 			</div>
 		</form>
 	</div>

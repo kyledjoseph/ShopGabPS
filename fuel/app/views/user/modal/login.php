@@ -24,6 +24,7 @@
 						<div class="controls">
 							<input type="password" name="password" class="full-width" placeholder="Password">
 						</div>
+						<span id="error_login" class="modal_error"></span>
 					</div>
 					<div class="control-group">
 						<div class="controls">
@@ -35,9 +36,9 @@
 				</div> 
 			</div>
 			<div class="modal-footer">
-				<input type="hidden" name="login_redirect" value="<?= Uri::string() ?>" ?>
+				<input type="hidden" name="redirect" value="<?= Uri::string() ?>" ?>
 				<!-- <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button> -->
-				<button type="submit" class="btn btn-primary">Login</button>
+				<button id="user_login" type="submit" class="btn btn-primary">Login</button>
 			</div>
 
 			<?= Form::close() ?>

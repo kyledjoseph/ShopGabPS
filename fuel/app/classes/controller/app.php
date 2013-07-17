@@ -94,6 +94,8 @@ class Controller_App extends Controller_Base
 		{
 			$this->add_modal(View::forge('user/modal/login'));
 			$this->add_modal(View::forge('user/modal/register'));
+
+			Casset::js('site/auth.js');
 		}
 		
 
