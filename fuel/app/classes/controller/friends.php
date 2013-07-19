@@ -12,10 +12,8 @@ class Controller_Friends extends Controller_App
 
 	public function get_index()
 	{
-		
-
 		$this->template->body = View::forge('friends/index', array(
-			
+			'friends_quests' => $this->user->get_friends_quests(),
 		));
 	}
 

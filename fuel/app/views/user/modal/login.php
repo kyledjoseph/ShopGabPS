@@ -33,7 +33,7 @@
 							</label>
 						</div>
 					</div>
-				</div> 
+				</div>
 			</div>
 			<div class="modal-footer">
 				<input type="hidden" name="redirect" value="<?= Uri::string() ?>" ?>
