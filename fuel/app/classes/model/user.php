@@ -280,6 +280,21 @@ class Model_User extends \Orm\Model
 		return (count($options) < 1) ? array('none' => 'No Friends Available') : $options;
 	}
 
+	public function get_friend_ids()
+	{
+		$ids = array();
+		foreach ($this->get_friendships() as $friendship)
+		{
+			array_push($ids, $friendship->friend_id);
+		}
+		return $ids;
+	}
+
+	public function get_friend_ids_csv()
+	{
+		return join(',', $this->get_friend_ids());
+	}
+
 	public function get_friendship_by_id($friend_id)
 	{
 		return Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->get_one();
@@ -399,7 +414,13 @@ class Model_User extends \Orm\Model
 
 	public function get_friends_quests()
 	{
-		return array();
+		$result = DB::select()
+			->from(Model_Quest::table())
+			->where('user_id', 'in', $this->get_friend_ids())
+			->as_object('Model_Quest')
+			->execute();
+
+		return $result->as_array();
 	}
 
 
