@@ -67,9 +67,9 @@ class Model_Quest extends \Orm\Model
 		return ! empty($this->description) ? $this->description : 'no description';
 	}
 
-	public function url()
+	public function url($page = null)
 	{
-		return 'quest/' . $this->url;
+		return 'quest/' . $this->url . (! empty($page) ? '/' . $page : null);
 	}
 
 	public function edit_url()

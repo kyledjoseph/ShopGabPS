@@ -19,6 +19,7 @@ return array(
 	'quest/(:segment)/like/(:segment)'    => 'quests/like/$1/$2',
 	'quest/(:segment)/dislike/(:segment)' => 'quests/dislike/$1/$2',
 	'quest/(:segment)/comment/(:segment)' => 'quests/comment/$1/$2',
+	'quest/(:segment)/access/(:segment)'  => 'quests/access/$1/$2',
 	'quest/(:segment)/message' => 'quests/message/$1',
 	'quest/(:segment)/within'  => 'quests/within/$1',
 	'quest/(:segment)/invite'  => 'quests/invite/$1',

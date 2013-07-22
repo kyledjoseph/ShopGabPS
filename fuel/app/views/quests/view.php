@@ -30,10 +30,11 @@
 
 <div class="span4 align-center">
 
-	<!--<div class="btn-group btn-sharing" data-toggle="buttons-radio">
-		<button type="button" class="btn">Public</button>
-  		<button type="button" class="btn btn active">Private</button>
-	</div>-->
+	<div class="btn-group btn-sharing" data-toggle="buttons-radio">
+		<?= Html::anchor($quest->url('access/public'), 'Public', array('class' => "btn" . ($quest->is_public() ? ' active' : null))) ?>
+		<?= Html::anchor($quest->url('access/private'), 'Private', array('class' => "btn" . (! $quest->is_public() ? ' active' : null))) ?>
+	</div>
+
 	<?php if (isset($user)): ?>
 	<button href="#inviteModal" class="btn btn-success btn-large block push-center invite-btn" data-toggle="modal">Invite friends</button>
 	<?php else: ?>

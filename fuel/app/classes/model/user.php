@@ -417,6 +417,7 @@ class Model_User extends \Orm\Model
 		$result = DB::select()
 			->from(Model_Quest::table())
 			->where('user_id', 'in', $this->get_friend_ids())
+			->where('is_public', '1')
 			->as_object('Model_Quest')
 			->execute();
 

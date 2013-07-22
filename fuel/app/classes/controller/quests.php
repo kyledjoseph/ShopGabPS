@@ -22,11 +22,6 @@ class Controller_Quests extends Controller_App
 			$this->redirect('/');
 		}
 
-		if (! $quest->is_public())
-		{
-			$this->redirect('/');
-		}
-
 		return $quest;
 	}
 
@@ -187,6 +182,29 @@ class Controller_Quests extends Controller_App
 			$this->redirect($quest->url(), 'info', "Invitation to '{$post->to}' has been sent");
 		}
 		
+	}
+
+
+	public function get_access($quest_url, $type)
+	{
+		$quest = $this->get_quest_by_url($quest_url);
+
+		$this->require_auth($quest->url());
+
+		if ($quest->user_id !== $this->user->id)
+		{
+			$this->redirect($quest->url());
+		}
+
+		if (! in_array($type, array('public', 'private')))
+		{
+			$this->redirect($quest->url());
+		}
+
+		$quest->is_public = ($type == 'public' ? 1 : 0);
+		$quest->save();
+
+		$this->redirect($quest->url());
 	}
 
 
