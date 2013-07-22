@@ -430,6 +430,7 @@ class Model_User extends \Orm\Model
 			->from(Model_Quest::table())
 			->where('user_id', 'in', $this->get_friend_ids())
 			->where('purchase_by', '>', time())
+			->where('is_public', '1')
 			->order_by('purchase_by', 'asc')
 			->as_object('Model_Quest')
 			->execute();
