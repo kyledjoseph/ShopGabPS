@@ -72,38 +72,22 @@
 			<div class="span3">
 				<div class="box">
 					<h4>Help A Friend</h4>
-						<div class="friend-box">
-							<div class="image">
-								<img src="//placehold.it/50x50" />
-							</div>
-							<div class="text">
-								<h5>Jane Smith</h5>
-								<span class="product">Fridge</span>
-								(3 days)
-							</div>
+
+					<?php foreach ($user->get_friends_upcoming_quests() as $quest): ?>
+
+					<div class="friend-box">
+						<div class="image">
+							<?= Html::img($quest->user->profile_pic()) ?>
 						</div>
-						
-						<div class="friend-box">
-							<div class="image">
-								<img src="//placehold.it/50x50" />
-							</div>
-							<div class="text">
-								<h5>Ashley Thomas</h5>
-								<span class="product">Carseat</span>
-								(3 days)
-							</div>
+						<div class="text">
+							<h5>Jane Smith</h5>
+							<span class="product"><?= $quest->name() ?></span>
+							(<?= $quest->purchase_within() ?> days)
 						</div>
+					</div>
+
+					<?php endforeach; ?>
 					
-						<div class="friend-box">
-							<div class="image">
-								<img src="//placehold.it/50x50" />
-							</div>
-							<div class="text">
-								<h5>Jane Smith</h5>
-								<span class="product">Fridge</span>
-								(3 days)
-							</div>
-						</div>
 				</div>
 			</div>
 		</div>

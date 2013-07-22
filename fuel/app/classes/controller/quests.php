@@ -22,7 +22,7 @@ class Controller_Quests extends Controller_App
 			$this->redirect('/');
 		}
 
-		if ($quest->is_private())
+		if (! $quest->is_public())
 		{
 			$this->redirect('/');
 		}
@@ -206,8 +206,7 @@ class Controller_Quests extends Controller_App
 
 		$post = $this->post_data('purchase_within');
 
-		$quest->purchase_within = $post->purchase_within;
-		$quest->save();
+		$quest->set_purchase_within($post->purchase_within);
 
 		$this->redirect($quest->url());
 	}

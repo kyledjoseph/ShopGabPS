@@ -423,7 +423,18 @@ class Model_User extends \Orm\Model
 		return $result->as_array();
 	}
 
+	public function get_friends_upcoming_quests()
+	{
+		$result = DB::select()
+			->from(Model_Quest::table())
+			->where('user_id', 'in', $this->get_friend_ids())
+			->where('purchase_by', '>', time())
+			->order_by('purchase_by', 'asc')
+			->as_object('Model_Quest')
+			->execute();
 
+		return $result->as_array();
+	}
 
 
 

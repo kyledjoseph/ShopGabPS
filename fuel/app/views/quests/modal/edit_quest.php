@@ -22,7 +22,7 @@
 				<div class="control-group">
 					<label class="control-label" for="purchase_within">When would you like to buy it?</label>
 					<div class="controls">
-						<?= Form::select('purchase_within', $quest->purchase_within(), Model_Quest::purchase_within_fields()) ?>
+						<?= Form::select('purchase_within', $quest->purchase_within_option(), Model_Quest::purchase_within_fields()) ?>
 					</div>
 				</div>
 			</div>

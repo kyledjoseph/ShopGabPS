@@ -9,7 +9,9 @@ class Model_Quest extends \Orm\Model
 		'name',
 		'description',
 		'purchase_within',
+		'purchase_by',
 		'default_image_id',
+		'is_public',
 		'created_at',
 		'updated_at',
 	);
@@ -105,9 +107,18 @@ class Model_Quest extends \Orm\Model
 		return date($format, $this->created_at);
 	}
 
-	public function purchase_within()
+
+
+
+
+	public function purchase_within_option()
 	{
 		return ! empty($this->purchase_within) ? $this->purchase_within : '0';
+	}
+
+	public function purchase_within()
+	{
+		return round(($this->purchase_by - time()) / 86400);
 	}
 
 	public static function purchase_within_fields()
@@ -118,9 +129,34 @@ class Model_Quest extends \Orm\Model
 			'2' => '2 weeks',
 			'3' => '3 weeks',
 			'4' => '1 month',
-			'5' => 'more than 1 month',
+			//'5' => 'more than 1 month',
 		);
 	}
+
+	public static function purchase_within_value($index)
+	{
+		$values = array(
+			'0' => 0,
+			'1' => 604800,
+			'2' => 1209600,
+			'3' => 1814400,
+			'4' => 2419200,
+			//'5' => 'more than 1 month',
+		);
+
+		return $values[$index];
+	}
+
+	public function set_purchase_within($purchase_within)
+	{
+		$this->purchase_within = $purchase_within;
+		$this->purchase_by     = time() + $this->purchase_within_value($purchase_within);
+		$this->save();
+	}
+
+
+
+
 
 	public function default_thumb_url()
 	{
@@ -150,9 +186,10 @@ class Model_Quest extends \Orm\Model
 
 
 
-	public function is_private()
+
+	public function is_public()
 	{
-		return false;
+		return ($this->is_public == 1);
 	}
 
 
