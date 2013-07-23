@@ -80,7 +80,7 @@
 							<?= Html::img($quest->user->profile_pic()) ?>
 						</div>
 						<div class="text">
-							<h5>Jane Smith</h5>
+							<h5><?= $quest->user->display_name() ?></h5>
 							<span class="product"><?= $quest->name() ?></span>
 							(<?= $quest->purchase_within() ?> days)
 						</div>
