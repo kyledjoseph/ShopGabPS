@@ -38,12 +38,25 @@
 			</div>
 			<hr />
 			
+			<?php if ($user->has_password()): ?>
+
 			<div class="control-group">
 				<label class="control-label" for="inputPassword">Current Password:</label>
 				<div class="controls">
 					<span class="facebook-account"><?= Html::anchor('account/password', 'Change Password') ?></span>
 				</div>
 			</div>
+
+			<?php else: ?>
+
+			<div class="control-group">
+				<label class="control-label" for="inputPassword">Current Password:</label>
+				<div class="controls">
+					<span class="facebook-account"><?= Html::anchor('account/password', 'Set a Password') ?></span>
+				</div>
+			</div>
+
+			<?php endif; ?>
 
 			
 			

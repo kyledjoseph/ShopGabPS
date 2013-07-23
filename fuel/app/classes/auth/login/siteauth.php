@@ -408,26 +408,7 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 		{
 			throw new \SiteUserUpdateException('Username cannot be changed.', 5);
 		}
-		if (array_key_exists('password', $values))
-		{
-			if (empty($values['old_password'])
-				or $current_values->get('password') != $this->hash_password(trim($values['old_password'])))
-			{
-				throw new \SiteUserWrongPassword('Old password is invalid');
-			}
-
-			$password = trim(strval($values['password']));
-			if ($password === '')
-			{
-				throw new \SiteUserUpdateException('Password can\'t be empty.', 6);
-			}
-			$update['password'] = $this->hash_password($password);
-			unset($values['password']);
-		}
-		if (array_key_exists('old_password', $values))
-		{
-			unset($values['old_password']);
-		}
+		
 		if (array_key_exists('email', $values))
 		{
 			$email = filter_var(trim($values['email']), FILTER_VALIDATE_EMAIL);
@@ -488,17 +469,42 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 	 * @param   string  username or null for current user
 	 * @return  bool
 	 */
-	public function change_password($old_password, $new_password, $username = null)
+	public function change_password($old_password, $new_password)
 	{
-		try
-		{
-			return (bool) $this->update_user(array('old_password' => $old_password, 'password' => $new_password), $username);
-		}
-		// Only catch the wrong password exception
-		catch (SiteUserWrongPassword $e)
+		$current_values = \DB::select_array(\Config::get('siteauth.table_columns', array('*')))
+			->where('id', '=', $this->user['id'])
+			->from(\Config::get('siteauth.table_name'))
+			->execute(\Config::get('siteauth.db_connection'));
+			
+		if (empty($old_password) or $current_values->get('password') != $this->hash_password(trim($old_password)))
 		{
 			return false;
 		}
+
+		return $this->set_password($new_password);
+	}
+
+
+	/**
+	 * 
+	 */
+	public function set_password($password)
+	{
+		$password = trim(strval($password));
+
+		if ($password === '')
+		{
+			throw new \SiteUserUpdateException('Password can\'t be empty.', 6);
+		}
+
+		$update['password'] = $this->hash_password($password);
+
+		$affected_rows = \DB::update(\Config::get('siteauth.table_name'))
+			->set($update)
+			->where('id', '=', $this->user['id'])
+			->execute(\Config::get('siteauth.db_connection'));
+
+		return $affected_rows > 0;
 	}
 
 	/**

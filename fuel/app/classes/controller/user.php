@@ -400,12 +400,6 @@ class Controller_User extends Controller_App
 	{
 		$this->require_auth();
 
-		// tmp
-		if (empty($this->user->password))
-		{
-			throw new Exception("Could not change password for user with none set", 1);
-			$this->redirect('user/account', 'error', 'Password empty');
-		}
 
 		$post = $this->post_data('current', 'new', 'confirm');
 
@@ -414,9 +408,10 @@ class Controller_User extends Controller_App
 			$this->redirect('user/password', 'error', 'Your new password did not match the password confirmation');
 		}
 
-		if (! $this->auth->validate_user($this->user->email, $post->current))
+		// set initial user password (for account using social auth)
+		if (! $this->user->has_password() and $this->auth->set_password($post->new))
 		{
-			$this->redirect('user/password', 'error', 'Your current password is incorrect');
+			$this->redirect('user/account', 'success', 'Password set');
 		}
 
 		if (! $this->auth->change_password($post->current, $post->new))

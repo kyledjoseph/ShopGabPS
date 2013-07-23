@@ -152,7 +152,7 @@ class Model_User extends \Orm\Model
 	 */
 	public function has_password()
 	{
-		return count($this->password) > 0;
+		return ! empty($this->password);
 	}
 
 	/**
