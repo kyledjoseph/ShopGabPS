@@ -46,7 +46,7 @@
 						<div class="control-group">
 							<div class="controls">
 								<label class="checkbox">
-									<input type="checkbox"> Remember me
+									<input type="checkbox"> Remember me <a href="#" class="pull-right switch-to-signin">Sign In</a>
 								</label>
 							</div>
 						</div>

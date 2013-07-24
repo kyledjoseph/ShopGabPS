@@ -5375,7 +5375,7 @@ a.badge:focus {
   margin-bottom: -1em;
 }
 body {
-  background-color: #004574;
+  background-color: #fff;
 }
 a {
   transition: color .1s linear;
@@ -5400,6 +5400,7 @@ a {
 }
 .container {
   padding-bottom: 2em;
+  background-color: #fff;
 }
 .wrap {
   background: url('../img/top-shadow.png') repeat-x;
@@ -5917,4 +5918,14 @@ a {
 .avatar-upload {
   line-height: normal !important;
   padding-top: 8px;
+}
+
+.invite-friend {
+  position: absolute;
+  top: .3em;
+  right: .4em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  padding-top: .2em;
+  padding-bottom: .2em;
 }

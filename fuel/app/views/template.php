@@ -13,7 +13,6 @@
   </head>
 
   <body>
-	<div class="wrap">
 		<div class="container">
 			<?= $view->header ?>
 
@@ -25,12 +24,10 @@
 			<?php endif; ?>
 
 			<?= $body ?>
-
-		</div>
-	</div>
+			</div>
 
 	<div class="footer">
-		<div class="container">
+			<div class="container">
 			<div class="row">
 				<div class="span4 left-footer">
 					<h3>Who are we?</h3>
@@ -55,7 +52,8 @@
 				</div>
 			</div>
 			<p>&copy; 2013 ItemNation. All rights reserved. <?= Html::anchor('#', 'Privacy Policy') ?> - <?= Html::anchor('#', 'Terms of Use') ?></p>
-		</div>
+			</div>
+			
 	</div>
 
 	<?= isset($modal) ? $modal : null ?>

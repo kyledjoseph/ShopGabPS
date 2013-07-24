@@ -19,6 +19,11 @@ $(".switch-to-signup").click(function() {
     $("#registerModal").modal('show');
 });
 
+$(".switch-to-signin").click(function() {
+    $("#registerModal").modal('hide');
+    $("#loginModal").modal('show');
+});
+
 $('.del-add-product-video').click(function() {
     $('.add-product-video').attr('src', '');
 });
@@ -38,3 +43,13 @@ $(".expert-opinion").click(function() {
 $(".fashion-and-fun").click(function() {
     $(".landing-video").attr('src', 'http://www.youtube.com/embed/i7lRIbnKIHY?rel=0&showinfo=0&controls=0');
 });
+
+$(".remove").click(function() {
+    $(".remove").html('Show')
+});
+
+$(".invite-friend-btn").click(function() {
+    $(".invite-friend-btn").html('Pending...');
+});
+
+
