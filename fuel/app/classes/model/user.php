@@ -251,6 +251,19 @@ class Model_User extends \Orm\Model
 	/**
 	 * undocumented class variable
 	 */
+	public function has_friends()
+	{
+		return $this->total_friends() > 0;
+	}
+
+	public function total_friends()
+	{
+		return Model_Friend::query()
+			->where('user_id', $this->id)
+			->where('friend_registered', '1')
+			->count();
+	}
+
 	public function get_friendships()
 	{
 		return Model_Friend::query()
@@ -414,6 +427,8 @@ class Model_User extends \Orm\Model
 
 	public function get_friends_quests()
 	{
+		if (! $this->has_friends()) return array();
+		
 		$result = DB::select()
 			->from(Model_Quest::table())
 			->where('user_id', 'in', $this->get_friend_ids())
@@ -426,6 +441,8 @@ class Model_User extends \Orm\Model
 
 	public function get_friends_upcoming_quests()
 	{
+		if (! $this->has_friends()) return array();
+
 		$result = DB::select()
 			->from(Model_Quest::table())
 			->where('user_id', 'in', $this->get_friend_ids())
