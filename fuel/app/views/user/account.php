@@ -3,6 +3,11 @@
 		
 		<?= Form::open(array('class' => 'form-horizontal')) ?>
 			<div class="control-group account-form">
+				<label class="control-label" for="inputName"></label>
+				<div class="controls">
+					<img class="account-img" src="<?= $user->profile_pic(32, 32) ?>" />
+
+				</div>
 				<label class="control-label" for="inputName">Change avatar:</label>
 				<div class="controls">
 					<input class="avatar-upload" type="file" name="fileToUpload" id="fileToUpload" />

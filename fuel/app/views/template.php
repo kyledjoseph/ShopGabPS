@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
 	<meta charset="utf-8">
 	<title>ItemNation</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,24 +10,25 @@
 	<!--[if lt IE 9]>
 	<script src="../assets/js/html5shiv.js"></script>
 	<![endif]-->
-  </head>
+</head>
 
-  <body>
-		<div class="container">
-			<?= $view->header ?>
+<body>
+	<a class="feedback" href="#feedbackModal" data-toggle="modal"><img src="/assets/img/feedback.png" /></a>
+	<div class="container">
+		<?= $view->header ?>
 
-			<?php if (isset($notice)): ?>
+		<?php if (isset($notice)): ?>
 			<div class="alert alert-<?= $notice->type ?>">
 				<button type="button" class="close" data-dismiss="alert">&times;</button>
 				<?= $notice->message ?>
 			</div>
-			<?php endif; ?>
+		<?php endif; ?>
 
-			<?= $body ?>
-			</div>
+		<?= $body ?>
+	</div>
 
 	<div class="footer">
-			<div class="container">
+		<div class="container">
 			<div class="row">
 				<div class="span4 left-footer">
 					<h3>Who are we?</h3>
@@ -52,13 +53,27 @@
 				</div>
 			</div>
 			<p>&copy; 2013 ItemNation. All rights reserved. <?= Html::anchor('#', 'Privacy Policy') ?> - <?= Html::anchor('#', 'Terms of Use') ?></p>
-			</div>
-			
+		</div>
+
+	</div>
+
+	<div id="feedbackModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+		<div class="modal-header">
+			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+			<h3 id="feedbackModalLabel">Feedback</h3>
+		</div>
+		<div class="modal-body">
+			Form
+		</div>
+		<div class="modal-footer">
+			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+			<button class="btn btn-primary">Save changes</button>
+		</div>
 	</div>
 
 	<?= isset($modal) ? $modal : null ?>
-  
+
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<?= Casset::render_js() ?>
-  </body>
+</body>
 </html>

@@ -5620,7 +5620,7 @@ a {
 .help-me span {
   color: green;
 }
-.btn-sharing button {
+.btn-sharing {
   margin-bottom: .7em;
 }
 .bubble {
@@ -5729,6 +5729,7 @@ a {
   padding-right: 3.5em;
   padding-top: .5em;
   padding-bottom: .5em;
+  margin-top: 10px;
 }
 .product-block {
   margin: 1em;
@@ -5928,4 +5929,32 @@ a {
   padding-right: 0.5em;
   padding-top: .2em;
   padding-bottom: .2em;
+}
+
+.feedback {
+  position:fixed;
+  top:50%;
+  right:0%;
+  z-index:500;
+}
+
+.account-img {
+  display: block;
+  width:50px;
+}
+
+.left-box {
+  margin-left: 1em;
+  width: 15em;
+  display:inline-block;
+}
+
+.right-box {
+  margin-left: 1em;
+  width: 15em;
+  display:inline-block;
+}
+
+.auto-width {
+  width:auto !important;
 }
