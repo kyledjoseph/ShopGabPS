@@ -9,6 +9,7 @@ class Model_Friend extends \Orm\Model
 		'friend_name',
 		'friend_email',
 		'friend_registered',
+		'hidden',
 		'created_at',
 	);
 
@@ -47,10 +48,9 @@ class Model_Friend extends \Orm\Model
 		return static::query()->where('user_id', $this->friend_id)->where('friend_id', $this->user_id)->get_one();
 	}
 
-	public function destroy()
+	public function hide()
 	{
-		$friend = $this->related_frienship();
-		$friend->delete();
-		return $this->delete();
+		$this->hidden = '1';
+		return $this->save();
 	}
 }

@@ -40,20 +40,20 @@ class Controller_Friends extends Controller_App
 
 
 	/**
-	 * Remove friend
+	 * Hide friend
 	 */
-	public function get_remove($friend_id)
+	public function get_hide($friend_id)
 	{
 		$friendship = $this->user->get_friendship_by_id($friend_id);
 
 		if (! isset($friendship))
 		{
-			$this->redirect('/', 'error', 'You are not friends with this user');
+			$this->redirect('friends', 'error', 'You are not friends with this user');
 		}
 
-		$friendship->destroy();
+		$friendship->hide();
 
-		$this->redirect('/', 'info', 'Friend removed');
+		$this->redirect('friends', 'info', 'Friend removed');
 	}
 
 }

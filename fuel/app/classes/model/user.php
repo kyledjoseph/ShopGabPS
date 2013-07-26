@@ -261,6 +261,7 @@ class Model_User extends \Orm\Model
 		return Model_Friend::query()
 			->where('user_id', $this->id)
 			->where('friend_registered', '1')
+			->where('hidden', '0')
 			->count();
 	}
 
@@ -269,6 +270,7 @@ class Model_User extends \Orm\Model
 		return Model_Friend::query()
 			->where('user_id', $this->id)
 			->where('friend_registered', '1')
+			->where('hidden', '0')
 			->get();
 	}
 
