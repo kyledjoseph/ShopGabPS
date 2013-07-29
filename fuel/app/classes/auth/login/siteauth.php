@@ -196,7 +196,10 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 			'website_url'  => $website_url,
 		]);
 
-		# 6 - log the new user in
+		# 6 - friend all facebook friends who are registered
+		$user->add_registered_facebook_friends();
+
+		# 7 - log the new user in
 		return $this->force_login($user->id);
 	}
 

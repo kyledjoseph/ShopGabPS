@@ -15,6 +15,7 @@ class Model_User extends \Orm\Model
 		'profile_fields',
 		'reset_code',
 		'reset_created_at',
+		'fb_friends_last_updated',
 		'created_at',
 		'updated_at',
 	);
@@ -424,6 +425,23 @@ class Model_User extends \Orm\Model
 		// 	}
 		// }
 		// return ! empty($friends) ? $friends : array();
+	}
+
+
+	public function add_registered_facebook_friends()
+	{
+		foreach ($this->get_registered_facebook_friends() as $facebook_friend)
+		{
+			$friend = $facebook_friend->get_user();
+
+			if (! $this->is_friend($friend->id))
+			{
+				$this->add_friend();
+			}
+		}
+
+		$this->fb_friends_last_updated = time();
+		$this->save();
 	}
 
 
