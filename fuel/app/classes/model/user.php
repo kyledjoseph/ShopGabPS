@@ -339,12 +339,14 @@ class Model_User extends \Orm\Model
 		$self->user_id           = $this->id;
 		$self->friend_id         = $user->id;
 		$self->friend_name       = $user->display_name;
+		$self->hidden            = '0';
 		$self->friend_registered = '1';
 
 		$friend = new Model_Friend;
 		$friend->user_id           = $user->id;
 		$friend->friend_id         = $this->id;
 		$friend->friend_name       = $this->display_name;
+		$friend->hidden            = '0';
 		$friend->friend_registered = '1';
 
 		return $self->save() and $friend->save();
