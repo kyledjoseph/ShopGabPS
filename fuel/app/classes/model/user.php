@@ -436,7 +436,7 @@ class Model_User extends \Orm\Model
 
 			if (! $this->is_friend($friend->id))
 			{
-				$this->add_friend();
+				$this->add_friend($friend);
 			}
 		}
 
