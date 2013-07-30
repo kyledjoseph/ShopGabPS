@@ -2,6 +2,24 @@
 
 class Controller_Debug extends Controller_App
 {
+	public function get_email()
+	{
+		$message = array(
+			'html'       => 'hello world!',
+			'subject'    => 'test message',
+			'from_email' => 'test@itemnation.com',
+			'from_name'  => 'itemnation.com',
+			'to' => array(
+				array('email'  => 'tmatthewsdev@gmail.com', 'name'   => 'Tyler Matthews',)
+			),
+		);
+
+		$mandrill = new Mandrill('TuKwIsrSRAh7nwWiWVXZyQ');
+		$mandrill->messages->send($message, true);
+
+		return Response::forge('sent');
+	}
+
 	public function get_fb()
 	{
 		$friends = $this->user->get_registered_facebook_friends();

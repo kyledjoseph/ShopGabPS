@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "53a338f6967dc739e4b1d7d33a39f96c",
+    "hash": "4f902e6c96d07c7d4603fc682d7baed4",
     "packages": [
         {
             "name": "cartalyst/sentry",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cartalyst/sentry.git",
-                "reference": "ae1480d46802f7566321554f082214863353f2f6"
+                "reference": "v2.0.0-RC2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/ae1480d46802f7566321554f082214863353f2f6",
-                "reference": "ae1480d46802f7566321554f082214863353f2f6",
+                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/v2.0.0-RC2",
+                "reference": "v2.0.0-RC2",
                 "shasum": ""
             },
             "require": {
@@ -30,11 +30,8 @@
                 "mockery/mockery": "0.7.2"
             },
             "suggest": {
-                "dhorrigan/capsule": "Capsule is a small utility for managing database connections given to illuminate/database outside of Laravel 4.",
-                "illuminate/cookie": "Sentry provides an Illuminate cookie driver for cookie integration.",
-                "illuminate/database": "Sentry provides Eloquent models for User, Group and Throttle providers.",
-                "illuminate/session": "Sentry provides an Illuminate session driver for storage integration.",
-                "ircmaxell/password-compat": "A forward-compatible PHP 5.5 password package for password_* functions can be used as a hasher (NativeHasher) in Sentry."
+                "illuminate/database": "Default sentry user, group and throttling implementations.",
+                "ircmaxell/password-compat": "Default hashing uses PHP 5.5 password_* functions, with forward-compatible support."
             },
             "type": "library",
             "extra": {
@@ -102,7 +99,7 @@
                 "laravel",
                 "security"
             ],
-            "time": "2013-05-12 20:25:37"
+            "time": "2013-07-13 05:06:11"
         },
         {
             "name": "hybridauth/hybridauth",
@@ -160,12 +157,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
-                "reference": "1b6435854c4ee0571510816cc3bda5bce39249e5"
+                "reference": "908a2e4ac315c58317b2197c3f057e94bcbf869a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/1b6435854c4ee0571510816cc3bda5bce39249e5",
-                "reference": "1b6435854c4ee0571510816cc3bda5bce39249e5",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/908a2e4ac315c58317b2197c3f057e94bcbf869a",
+                "reference": "908a2e4ac315c58317b2197c3f057e94bcbf869a",
                 "shasum": ""
             },
             "require": {
@@ -177,7 +174,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -186,115 +183,16 @@
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "Taylor Otwell",
                     "email": "taylorotwell@gmail.com"
                 }
             ],
-            "time": "2013-04-30 20:01:45"
-        },
-        {
-            "name": "illuminate/database",
-            "version": "dev-master",
-            "target-dir": "Illuminate/Database",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/illuminate/database.git",
-                "reference": "b57332cd2ff2ecc4b640f994c580c01b7a79b58e"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/b57332cd2ff2ecc4b640f994c580c01b7a79b58e",
-                "reference": "b57332cd2ff2ecc4b640f994c580c01b7a79b58e",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/container": "4.0.x",
-                "illuminate/events": "4.0.x",
-                "illuminate/support": "4.0.x",
-                "nesbot/carbon": "1.*",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "illuminate/console": "4.0.x",
-                "illuminate/filesystem": "4.0.x",
-                "illuminate/pagination": "4.0.x",
-                "illuminate/support": "4.0.x",
-                "mockery/mockery": "0.7.2",
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Illuminate\\Database": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "description": "An elegant database abstraction library.",
-            "keywords": [
-                "database",
-                "laravel",
-                "orm",
-                "sql"
-            ],
-            "time": "2013-05-10 13:20:23"
-        },
-        {
-            "name": "illuminate/events",
-            "version": "dev-master",
-            "target-dir": "Illuminate/Events",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/illuminate/events.git",
-                "reference": "6ea4f171da9b5b302834276ed6c9b1229ca85522"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/events/zipball/6ea4f171da9b5b302834276ed6c9b1229ca85522",
-                "reference": "6ea4f171da9b5b302834276ed6c9b1229ca85522",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/container": "4.0.x",
-                "illuminate/support": "4.0.x",
-                "php": ">=5.3.0"
-            },
-            "require-dev": {
-                "mockery/mockery": "0.7.2",
-                "phpunit/phpunit": "3.7.*"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Illuminate\\Events": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
-                }
-            ],
-            "description": "A simple, powerful events system.",
-            "time": "2013-05-02 16:43:30"
+            "time": "2013-05-28 18:31:39"
         },
         {
             "name": "illuminate/support",
@@ -303,12 +201,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "3416ba8aa0ceb44e80a2c53d51c8eac11716b3eb"
+                "reference": "c5175eabb5e992096d8853d438aed072fca1e7bb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/3416ba8aa0ceb44e80a2c53d51c8eac11716b3eb",
-                "reference": "3416ba8aa0ceb44e80a2c53d51c8eac11716b3eb",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/c5175eabb5e992096d8853d438aed072fca1e7bb",
+                "reference": "c5175eabb5e992096d8853d438aed072fca1e7bb",
                 "shasum": ""
             },
             "require": {
@@ -322,7 +220,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.0-dev"
+                    "dev-master": "4.1-dev"
                 }
             },
             "autoload": {
@@ -334,14 +232,16 @@
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
             "authors": [
                 {
                     "name": "Taylor Otwell",
                     "email": "taylorotwell@gmail.com"
                 }
             ],
-            "description": "Various utilities and support functions.",
-            "time": "2013-05-12 01:10:00"
+            "time": "2013-07-09 13:05:22"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -381,6 +281,49 @@
                 "password"
             ],
             "time": "2013-04-30 19:58:08"
+        },
+        {
+            "name": "mandrill/mandrill",
+            "version": "1.0.37",
+            "source": {
+                "type": "git",
+                "url": "https://bitbucket.org/mailchimp/mandrill-api-php.git",
+                "reference": "1.0.37"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://bitbucket.org/mailchimp/mandrill-api-php/get/1.0.37.zip",
+                "reference": "1.0.37",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Mandrill": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mandrill Devs",
+                    "email": "community@mandrill.com",
+                    "homepage": "http://mandrill.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "API client library for the Mandrill email as a service platform",
+            "homepage": "https://bitbucket.org/mailchimp/mandrill-api-php",
+            "keywords": [
+                "api",
+                "email"
+            ],
+            "time": "2013-07-26 17:41:25"
         },
         {
             "name": "nesbot/carbon",
@@ -424,6 +367,47 @@
                 "time"
             ],
             "time": "2012-10-14 17:41:18"
+        },
+        {
+            "name": "videlalvaro/php-amqplib",
+            "version": "v2.0.2",
+            "source": {
+                "type": "git",
+                "url": "git://github.com/videlalvaro/php-amqplib.git",
+                "reference": "v2.0.2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/videlalvaro/php-amqplib/zipball/v2.0.2",
+                "reference": "v2.0.2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "PhpAmqpLib": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-2.1"
+            ],
+            "authors": [
+                {
+                    "name": "Alvaro Videla"
+                }
+            ],
+            "description": "This library is a pure PHP implementation of the AMQP protocol. It's been tested against RabbitMQ.",
+            "homepage": "https://github.com/videlalvaro/php-amqplib/",
+            "keywords": [
+                "message",
+                "queue",
+                "rabbitmq"
+            ],
+            "time": "2013-02-13 19:43:51"
         }
     ],
     "packages-dev": [
