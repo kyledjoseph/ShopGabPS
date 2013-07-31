@@ -84,7 +84,7 @@
 						</div>
 						<div class="text">
 							<h5><?= $friend->display_name() ?></h5>
-							<?= Html::anchor("friends/hide/{$friend->id}", 'Hide', array('class' => 'remove')) ?>
+							<?= Html::anchor("friends/hide/{$friend->id}", 'Remove', array('class' => 'remove')) ?>
 						</div>
 					</div>
 
