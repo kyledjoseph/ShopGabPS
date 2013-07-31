@@ -2478,11 +2478,11 @@ table th[class*="span"],
   text-decoration: none;
   color: #ffffff;
   background-color: #0081c2;
-  background-image: -moz-linear-gradient(top, #EC619F, #0077b3);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#EC619F), to(#0077b3));
-  background-image: -webkit-linear-gradient(top, #EC619F, #0077b3);
-  background-image: -o-linear-gradient(top, #EC619F, #0077b3);
-  background-image: linear-gradient(to bottom, #EC619F, #0077b3);
+  background-image: -moz-linear-gradient(top, #EC619F, #E046D9);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#EC619F), to(#E046D9));
+  background-image: -webkit-linear-gradient(top, #EC619F, #E046D9);
+  background-image: -o-linear-gradient(top, #EC619F, #E046D9);
+  background-image: linear-gradient(to bottom, #EC619F, #E046D9);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
 }
@@ -2493,11 +2493,11 @@ table th[class*="span"],
   text-decoration: none;
   outline: 0;
   background-color: #0081c2;
-  background-image: -moz-linear-gradient(top, #EC619F, #0077b3);
-  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#EC619F), to(#0077b3));
-  background-image: -webkit-linear-gradient(top, #EC619F, #0077b3);
-  background-image: -o-linear-gradient(top, #EC619F, #0077b3);
-  background-image: linear-gradient(to bottom, #EC619F, #0077b3);
+  background-image: -moz-linear-gradient(top, #EC619F, #E046D9);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#EC619F), to(#E046D9));
+  background-image: -webkit-linear-gradient(top, #EC619F, #E046D9);
+  background-image: -o-linear-gradient(top, #EC619F, #E046D9);
+  background-image: linear-gradient(to bottom, #EC619F, #E046D9);
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff0088cc', endColorstr='#ff0077b3', GradientType=0);
 }
@@ -5389,7 +5389,7 @@ a {
   margin-top: 1em;
 }
 .nav-image {
-  margin-top: -0.5em;
+  margin-top: -0.65em;
 }
 .nav-image img {
   margin-right: .5em;
