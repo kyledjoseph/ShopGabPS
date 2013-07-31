@@ -39,7 +39,7 @@
 						<div class="dashboard-box highlight">
 							<a href="<?= Uri::create($quest->url()) ?>">
 								<img class="full-size" src="<?= $quest->default_thumb_url() ?>">
-								<h3><?= $quest->name() ?></h3>
+								<h3><span><?= $quest->name() ?></span></h3>
 							</a>
 							<!-- <div class="btn-group">
 								<button class="btn dropdown-toggle" data-toggle="dropdown">
