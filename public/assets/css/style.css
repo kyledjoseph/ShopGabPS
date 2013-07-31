@@ -5520,7 +5520,7 @@ border-top: 0.5em solid #EC619F;
 .dashboard-box h3 {
 color: #6F6F6F;
 position: absolute;
-bottom: 55%;
+bottom: 70%;
 text-align: center;
 margin-left: auto;
 margin-right: auto;
@@ -5545,6 +5545,7 @@ border-radius: .1em;
 padding-left: .4em;
 padding-right: .4em;
 color: #FFF;
+display:inline-block;
 }
 .dashboard-box .btn-group {
   position: absolute;
