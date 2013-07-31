@@ -6,7 +6,7 @@
 					<div class="span7 offset1 header-right">
 						<ul class="site-nav nav nav-pills pull-right">
 							<li><?= Html::anchor('/', 'My Quests') ?></li>
-							<li class="nav-image">
+							<li>
 								<?= Html::anchor('account', Html::img($user->profile_pic(32, 32)) . $user->display_name()) ?>
 							</li>
 							<li class="dropdown">
