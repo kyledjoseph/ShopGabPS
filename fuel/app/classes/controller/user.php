@@ -384,6 +384,39 @@ class Controller_User extends Controller_App
 		$this->redirect('user/account', 'success', 'Account information updated');
 	}
 
+	public function post_avatar()
+	{
+		$this->require_auth();
+
+		Upload::process(array(
+			'path' => APPPATH . 'tmp',
+			'randomize' => true,
+			'ext_whitelist' => array('jpg', 'jpeg', 'gif', 'png', 'bmp'),
+		));
+
+		if (Upload::is_valid())
+		{
+			Upload::save();
+
+			foreach (Upload::get_files() as $file)
+			{
+				//$this->user->set_avatar();
+
+				break;
+			}
+		}
+
+		// and process any errors
+		foreach (Upload::get_errors() as $file)
+		{
+			// $file is an array with all file information,
+			// $file['errors'] contains an array of all error occurred
+			// each array element is an an array containing 'error' and 'message'
+		}
+
+		$this->redirect('user/account', 'success', 'Avatar');
+	}
+
 
 
 	/**

@@ -5,6 +5,7 @@ return array(
 
 	'bookmark'                 => 'bookmark/view',
 
+	'try'                      => 'home/try',
 	'login'                    => 'user/login',
 	'auth/(:any)'              => 'user/auth/$1',
 	'logout'                   => 'user/logout',
@@ -12,6 +13,7 @@ return array(
 	'forgot'                   => 'user/forgot',
 	'reset/(:segment)'         => 'user/reset/$1',
 	'account'                  => 'user/account',
+	'account/avatar'           => 'user/avatar',
 	'account/password'         => 'user/password',
 
 	'quest/create'             => 'quests/create',

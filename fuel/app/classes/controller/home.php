@@ -6,7 +6,12 @@ class Controller_Home extends Controller_App
 	{
 		if (! $this->user_logged_in())
 		{
-			$this->template->body = View::forge('landing/view', array());
+			Casset::css('landing/bootstrap.css');
+			Casset::css('landing/bootstrap-responsive.css');
+			Casset::css('landing/style.css');
+			Casset::css('landing/parallax-slider.css');
+
+			return Response::forge(View::forge('landing/index', array()));
 		}
 
 		else
@@ -18,6 +23,14 @@ class Controller_Home extends Controller_App
 			));
 		}
 
-		
+	}
+
+	public function post_try()
+	{
+		$email = Input::post('email');
+
+		Model_Try::add_address($email);
+
+		$this->redirect('/');
 	}
 }

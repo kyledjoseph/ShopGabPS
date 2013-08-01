@@ -10,6 +10,7 @@ class Model_User extends \Orm\Model
 		'group',
 		'email',
 		'display_name',
+		'profile_pic',
 		'last_login',
 		'login_hash',
 		'profile_fields',
@@ -146,6 +147,30 @@ class Model_User extends \Orm\Model
 		}
 
 		return '/assets/img/default/user/' . $width . 'x' . $height . '.png';
+	}
+
+	public function profile_pic_path()
+	{
+		return '/assets/img/uploads/avatar/' . $this->profile_pic;
+	}
+
+	public function set_profile_pic($path)
+	{
+		$this->delete_profile_pic();
+		$this->profile_pic = $path;
+		$this->save();
+	}
+
+	public function delete_profile_pic()
+	{
+		if (! empty($this->profile_pic))
+		{
+			$path = $this->profile_pic_path();
+			if (file_exists($path))
+			{
+				unlink($path);
+			}
+		}
 	}
 
 	/**

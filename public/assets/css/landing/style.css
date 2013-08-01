@@ -362,11 +362,11 @@ header {
 }
 
 .image-overlay-link {
-	background-image: url(../img/overlay-icon-01.png);
+	background-image: url(../../img/landing/overlay-icon-01.png);
 }
 
 .image-overlay-zoom {
-	background-image: url(../img/overlay-icon-02.png);
+	background-image: url(../../img/landing/overlay-icon-02.png);
 }
 
 
@@ -883,7 +883,7 @@ input[type="button"] {
 }
 
 .testimonials-bg {
-	background: url(../img/testimonials-bg.png) no-repeat;
+	background: url(../../img/landing/testimonials-bg.png) no-repeat;
 	margin-top: -1px;
 	display: block;
 	width: 200px;
@@ -1937,7 +1937,7 @@ li.current {
 ====================================================================== */
 #footer-menu {
 	height: 50px;
-	background: #fcfcfc url(../img/bg-k20.png) repeat;
+	background: #fcfcfc url(../../img/landing/bg-k20.png) repeat;
 	border-top: 4px solid #f6f6f6;
 	border-bottom: 4px solid #f6f6f6;
 	margin-top: -13px;
@@ -2055,7 +2055,7 @@ li.current {
 	height: 30px;
 	display: block;
 	background-color: #29a9df;
-	background-image: url(../img/scroll-top-top.png);
+	background-image: url(../../img/landing/scroll-top-top.png);
 	background-repeat: no-repeat;
 	background-position: 50%;
 	-webkit-transition: all 0.1s ease-in-out;
@@ -2068,7 +2068,7 @@ li.current {
 #footer-menu-back-to-top a:hover {background-color: #aaa;}
 
 #footer {
-	background: url(../img/bg-k10.png) repeat;
+	background: url(../../img/landing/bg-k10.png) repeat;
 	border-bottom: 4px solid #f6f6f6;
 	color: #666 !important;
 	padding: 40px 0px;

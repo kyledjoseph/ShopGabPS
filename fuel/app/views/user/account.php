@@ -1,19 +1,9 @@
 
 		<h4 class="header-underline">My Account</h4>
 		
-		<?= Form::open(array('class' => 'form-horizontal')) ?>
-			<div class="control-group account-form">
-				<label class="control-label" for="inputName"></label>
-				<div class="controls">
-					<img class="account-img" src="<?= $user->profile_pic(32, 32) ?>" />
+		
 
-				</div>
-				<label class="control-label" for="inputName">Change avatar:</label>
-				<div class="controls">
-					<input class="avatar-upload" type="file" name="fileToUpload" id="fileToUpload" />
-				</div>
-			</div>
-			<hr>
+		<?= Form::open(array('class' => 'form-horizontal')) ?>
 			
 			<div class="control-group account-form">
 				<label class="control-label" for="name">Name:</label>
@@ -41,8 +31,29 @@
 					<button class="btn">Update Account</button>
 				</div>
 			</div>
-			<hr />
-			
+		<?= Form::close() ?>
+		
+		<hr />
+
+		<?= Form::open(array('action' => 'account/avatar', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal')) ?>
+			<div class="control-group account-form">
+				<label class="control-label" for="inputName"></label>
+				<div class="controls">
+					<img class="account-img" src="<?= $user->profile_pic(32, 32) ?>" />
+
+				</div>
+				<label class="control-label" for="avatar">Change avatar:</label>
+				<div class="controls">
+					<input class="avatar-upload" type="file" name="avatar" id="avatar" />
+				</div>
+			</div>
+			<div class="control-group account-form">
+				<div class="controls">
+					<button class="btn">Upload Avatar</button>
+				</div>
+			</div>
+			<hr>
+
 			<?php if ($user->has_password()): ?>
 
 			<div class="control-group">
@@ -63,6 +74,5 @@
 
 			<?php endif; ?>
 
-			
-			
-		</form>
+		<?= Form::close() ?>
+		

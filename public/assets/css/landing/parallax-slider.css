@@ -15,7 +15,7 @@
 	position: relative;
 	margin: 0 auto;
 	overflow: hidden;
-	background: transparent url(../img/chicago.png) repeat 50% 50%;
+	background: transparent url(../../img/landing/chicago.png) repeat 50% 50%;
 	border-bottom: 5px solid #f6f6f6 !important;
 	-moz-background-size: cover;
   background-size: cover;
