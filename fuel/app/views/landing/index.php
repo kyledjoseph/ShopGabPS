@@ -175,7 +175,7 @@
 						<div class="span3">
 							<div class="picture">
 								<a href="#" rel="image" title="mobile app">
-									<?= Asset::img('landing/photostream_1.jpg') ?>
+									<?= Asset::img('landing/photostream/photostream_1.jpg') ?>
 									<div class="image-overlay-zoom"></div>
 								</a>
 							</div>
@@ -188,7 +188,7 @@
 						<div class="span3">
 							<div class="picture">
 								<a href="#">
-									<?= Asset::img('landing/photostream_4.jpg') ?>
+									<?= Asset::img('landing/photostream/photostream_4.jpg') ?>
 									<div class="image-overlay-link"></div>
 								</a>
 							</div>
@@ -200,7 +200,7 @@
 						<div class="span3">
 							<div class="picture">
 								<a href="" rel="image" title="mobile app">
-									<?= Asset::img('landing/photostream_3.jpg') ?>
+									<?= Asset::img('landing/photostream/photostream_3.jpg') ?>
 									<div class="image-overlay-zoom"></div>
 								</a>
 							</div>
