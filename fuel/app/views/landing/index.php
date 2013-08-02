@@ -59,10 +59,12 @@
 					</a>
 					<a class="brand" href="index.html"><?= Asset::img('landing/logo.png', array('class' => 'logo-top')) ?></a>
 					<div class="nav-collapse collapse">
-						<!--<ul class="nav">
-						<li><a href="#">Login</a>
-						<li><a href="#">Register</a></li>
-						</ul>-->
+						<?php if (Fuel::$env !== 'production'): ?>
+						<ul class="nav">
+							<li><a href="#loginModal" data-toggle="modal">Login</a></li>
+							<li><a href="#registerModal" data-toggle="modal">Sign Up</a></li>
+						</ul>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>
