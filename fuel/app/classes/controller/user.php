@@ -14,32 +14,42 @@ class Controller_User extends Controller_App
 
 	public function post_login()
 	{
-		if (! Input::is_ajax())
-		{
-			$this->redirect('/');
-		}
-
 		$post     = $this->post_data('email', 'password', 'remember', 'redirect');
 		$remember = ($post->remember == 'true');
 		$success  = $this->auth->login($post->email, $post->password);
 
 		
-		if (! $success)
+		if (Input::is_ajax())
 		{
+
+			if (! $success)
+			{
+				return Response::forge(json_encode(array(
+					'success' => false,
+					'type'    => 'login_invalid',
+					'field'    => '#error_login',
+					'message' => 'Invalid email address or password',
+				)));
+			}
+
 			return Response::forge(json_encode(array(
-				'success' => false,
-				'type'    => 'login_invalid',
-				'field'    => '#error_login',
-				'message' => 'Invalid email address or password',
+				'success'  => true,
+				'type'     => 'login_success',
+				'message'  => 'You are now logged in',
+				'redirect' => $post->redirect,
 			)));
 		}
-
-		return Response::forge(json_encode(array(
-			'success'  => true,
-			'type'     => 'login_success',
-			'message'  => 'You are now logged in',
-			'redirect' => $post->redirect,
-		)));
+		else
+		{
+			if (! $success)
+			{
+				$this->redirect('/', 'error', 'Invalid email address or password');
+			}
+			else
+			{
+				$this->redirect('/', 'success', 'You are now logged in');
+			}
+		}
 
 	}
 

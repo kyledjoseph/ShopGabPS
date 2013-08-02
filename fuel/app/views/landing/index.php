@@ -420,6 +420,7 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<?= Asset::js('landing/jquery-1.9.1.min.js') ?>
 	<?= Asset::js('landing/bootstrap.min.js') ?>
+	<?= Casset::render_js() ?>
 	<!-- end: Java Script -->
 
   </body>

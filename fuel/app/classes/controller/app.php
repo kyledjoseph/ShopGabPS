@@ -116,11 +116,11 @@ class Controller_App extends Controller_Base
 	{
 		Casset::css('style.css');
 		Casset::js('jquery-typer.js');
-		Casset::js('script.js');
-		Casset::js('bootstrap/bootstrap-modal.js');
-		Casset::js('bootstrap/bootstrap-tab.js');
-		Casset::js('bootstrap/bootstrap-dropdown.js');
-		Casset::js('bootstrap/bootstrap-button.js');
+		//Casset::js('script.js');
+		// Casset::js('bootstrap/bootstrap-modal.js');
+		// Casset::js('bootstrap/bootstrap-tab.js');
+		// Casset::js('bootstrap/bootstrap-dropdown.js');
+		// Casset::js('bootstrap/bootstrap-button.js');
 	}
 
 }
