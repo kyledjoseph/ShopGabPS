@@ -420,16 +420,6 @@
 	<!-- Placed at the end of the document so the pages load faster -->
 	<?= Asset::js('landing/jquery-1.9.1.min.js') ?>
 	<?= Asset::js('landing/bootstrap.min.js') ?>
-	<?= Asset::js('landing/jquery.isotope.min.js') ?>
-	<?= Asset::js('landing/jquery.imagesloaded.js') ?>
-	<?= Asset::js('landing/carousel.js') ?>
-	<?= Asset::js('landing/jquery.fancybox.js') ?>
-	<?= Asset::js('landing/excanvas.js') ?>
-	<?= Asset::js('landing/jquery.flot.js') ?>
-	<?= Asset::js('landing/jquery.flot.pie.min.js') ?>
-	<?= Asset::js('landing/jquery.flot.stack.js') ?>
-	<?= Asset::js('landing/jquery.flot.resize.min.js') ?>
-	<?= Asset::js('landing/custom.js') ?>
 	<!-- end: Java Script -->
 
   </body>
