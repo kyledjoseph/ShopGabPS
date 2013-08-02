@@ -239,9 +239,9 @@ class Controller_User extends Controller_App
 		Service_Email::send(array(
 			'type'      => 'password_reset',
 			'to_addr'   => $user->email,
-			'from_name' => 'ItemNation',
-			'from_addr' => 'info@itemnation.com',
-			'subject'   => 'Reset your ItemNation password',
+			'from_name' => 'ShopGab',
+			'from_addr' => 'info@shopgab.com',
+			'subject'   => 'Reset your ShopGab password',
 			'body'      => View::forge('emails/reset', array(
 				'reset_code' => $user->reset_code,
 			)),
@@ -349,9 +349,9 @@ class Controller_User extends Controller_App
 			Service_Email::send(array(
 				'type'      => 'in_invite',
 				'to_addr'   => $email,
-				'from_name' => 'ItemNation Invite',
-				'from_addr' => 'invite@itemnation.com',
-				'subject'   => 'You have been invited to ItemNation',
+				'from_name' => 'ShopGab Invite',
+				'from_addr' => 'invite@shopgab.com',
+				'subject'   => 'You have been invited to ShopGab',
 				'body'      => View::forge('emails/invite'),
 			));
 		}

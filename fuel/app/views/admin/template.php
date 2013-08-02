@@ -100,7 +100,7 @@
 	<div class="container">
 
 		<div class="masthead">
-			<h3 class="muted">ItemNation Admin</h3>
+			<h3 class="muted">ShopGab Admin</h3>
 			<div class="navbar">
 				<div class="navbar-inner">
 					<div class="container">
@@ -154,7 +154,7 @@
 		<hr>
 
 		<div class="footer">
-			<p>&copy; ItemNation 2013</p>
+			<p>&copy; ShopGab 2013</p>
 		</div>
 
 	</div> <!-- /container -->

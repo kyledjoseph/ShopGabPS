@@ -2,7 +2,7 @@
 <head>
 	<meta charset="utf-8"> 
 
-	<title>ItemNation</title>
+	<title>ShopGab</title>
 	<link type="text/css" rel="stylesheet" href="/assets/css/main.css?1368753865">
 	<script type="text/javascript" async="" src="http://www.google-analytics.com/ga.js"></script>
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>

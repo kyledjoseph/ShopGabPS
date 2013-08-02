@@ -75,7 +75,7 @@
 			<div class="control-group">
 				<label class="control-label" for="inputFrom">From:</label>
 				<div class="controls">
-					<div class="from-email">info@itemnation.com</div>
+					<div class="from-email">info@shopgab.com</div>
 				</div>
 			</div>
 			<div class="control-group">
@@ -93,7 +93,7 @@
 			<div class="control-group">
 				<label class="control-label" for="description">Description</label>
 				<div class="controls">
-					<textarea name="description" rows="7"><?= $user->display_name() ?> is trying to find a <?= $quest->name ?> through ItemNation and has requested your input! Please click on the link below to see their page and join in the search. Thanks!</textarea>
+					<textarea name="description" rows="7"><?= $user->display_name() ?> is trying to find a <?= $quest->name ?> through ShopGab and has requested your input! Please click on the link below to see their page and join in the search. Thanks!</textarea>
 				</div>
 			</div>
 		</div>

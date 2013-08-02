@@ -106,7 +106,7 @@
 				<?php if ($this->user->is_authenticated_with('facebook')): ?>
 				<div class="box">
 					
-					<h4>Facebook Friends on ItemNation</h4>
+					<h4>Facebook Friends on ShopGab</h4>
 					<?php foreach ($this->user->get_registered_facebook_friends() as $friend): ?>
 
 					<div class="friend-box">
@@ -159,7 +159,7 @@
 			<?php if ($user->is_authenticated_with('facebook')): ?>
 			<div class="tab-pane fade" id="facebook">
 				
-				<h4>Friends on ItemNation</h4>
+				<h4>Friends on ShopGab</h4>
 				<?php foreach ($user->get_registered_facebook_friends() as $facebook_friend): ?>
 				
 				<li>
@@ -192,7 +192,7 @@
 					<div class="control-group">
 						<label class="control-label" for="inputFrom">From:</label>
 						<div class="controls">
-							<div class="from-email">info@itemnation.com</div>
+							<div class="from-email">info@shopgab.com</div>
 						</div>
 					</div>
 					<div class="control-group">
@@ -210,7 +210,7 @@
 					<div class="control-group">
 						<label class="control-label" for="description">Description</label>
 						<div class="controls">
-							<textarea name="description" rows="7"><?= $user->display_name() ?> is trying to find a through ItemNation and has requested your input! Please click on the link below to see their page and join in the search. Thanks!</textarea>
+							<textarea name="description" rows="7"><?= $user->display_name() ?> is trying to find a through ShopGab and has requested your input! Please click on the link below to see their page and join in the search. Thanks!</textarea>
 						</div>
 					</div>
 				</div>

@@ -10,11 +10,11 @@ class Controller_Bookmark extends Controller_App
 		
 		if (Fuel::$env == 'production')
 		{
-			$this->domain = 'http://itemnation.com/';
+			$this->domain = 'http://shopgab.com/';
 		}
 		else
 		{
-			$this->domain = 'http://itemnation.dev/';
+			$this->domain = 'http://shopgab.dev/';
 		}
 
 		if (! Input::is_ajax())

@@ -160,13 +160,13 @@ class Controller_Quests extends Controller_App
 
 			$body = $post->description;
 			$body.= '<br><br>';
-			$body.= '<a href="http://itemnation.com/'.$quest->url().'">http://itemnation.com/'.$quest->url().'</a>';
+			$body.= '<a href="http://shopgab.com/'.$quest->url().'">http://shopgab.com/'.$quest->url().'</a>';
 
 			Service_Email::send(array(
 				'type'      => 'quest_invite',
 				'to_addr'   => $recipient,
-				'from_name' => 'ItemNation',
-				'from_addr' => 'info@itemnation.com',
+				'from_name' => 'ShopGab',
+				'from_addr' => 'info@shopgab.com',
 				'subject'   => $post->subject,
 				'body'      => $body,
 			));

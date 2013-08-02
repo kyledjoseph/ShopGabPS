@@ -35,14 +35,14 @@
 					<ul class="site-links">
 						<li><?= Html::anchor('#', 'About Us') // Html::anchor('about', 'About Us') ?></li>
 						<li><?= Html::anchor('#', 'Our Team') // Html::anchor('about/team', 'Our Team') ?></li>
-						<li><?= Html::anchor('http://itemnation.wordpress.com/', 'ItemNation Blog') // Html::anchor('blog', 'ItemNation Blog') ?></li>
+						<li><?= Html::anchor('http://shopgab.wordpress.com/', 'ShopGab Blog') ?></li>
 						<li><?= Html::anchor('#', 'Contact Us') // Html::anchor('contact', 'Contact Us') ?></li>
 					</ul>
 				</div>
 				<div class="span4 center-footer">
 					<h3>Connect with us.</h3>
-					<a href="https://www.facebook.com/ItemNation"><?= Asset::img('facebook.png') ?></a>
-					<a href="https://twitter.com/itemnation"><?= Asset::img('twitter.png') ?></a>
+					<a href="https://www.facebook.com/shopgab"><?= Asset::img('facebook.png') ?></a>
+					<a href="https://twitter.com/shopgab"><?= Asset::img('twitter.png') ?></a>
 					<a href="https://plus.google.com/113964272651935695754" rel="publisher"><?= Asset::img('google.png') ?></a>
 				</div>
 				<div class="span4 right-footer">
@@ -52,7 +52,7 @@
 					<button class="btn btn-success" type="button">Invite Now!</button>
 				</div>
 			</div>
-			<p>&copy; 2013 ItemNation. All rights reserved. <?= Html::anchor('#', 'Privacy Policy') ?> - <?= Html::anchor('#', 'Terms of Use') ?></p>
+			<p>&copy; 2013 ShopGab. All rights reserved. <?= Html::anchor('#', 'Privacy Policy') ?> - <?= Html::anchor('#', 'Terms of Use') ?></p>
 		</div>
 
 	</div>

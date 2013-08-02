@@ -39,10 +39,10 @@
             delete Array.prototype.toJSON;
 
             /** Set script domain. */
-            if ($("#itemnation-script").attr('src').indexOf('itemnation.dev') >= 0) {
-                inline.script_domain = 'itemnation.dev';
+            if ($("#itemnation-script").attr('src').indexOf('shopgab.dev') >= 0) {
+                inline.script_domain = 'shopgab.dev';
             } else {
-                inline.script_domain = 'itemnation.com';
+                inline.script_domain = 'shopgab.com';
             }
 
             /* Open child iframe. */
