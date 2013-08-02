@@ -414,6 +414,8 @@
 	</div>	
 	<!-- end: Copyright -->
 
+	<?= isset($modal) ? $modal : null ?>
+
 	<!-- start: Java Script -->
 	<!-- Placed at the end of the document so the pages load faster -->
 	<?= Asset::js('landing/jquery-1.9.1.min.js') ?>

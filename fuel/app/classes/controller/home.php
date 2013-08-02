@@ -11,7 +11,12 @@ class Controller_Home extends Controller_App
 			Casset::css('landing/style.css');
 			Casset::css('landing/parallax-slider.css');
 
-			return Response::forge(View::forge('landing/index', array()));
+			$modal = View::forge('user/modal/login');
+			$modal.= View::forge('user/modal/register');
+
+			return Response::forge(View::forge('landing/index', array(
+				'modal' => $modal,
+			)));
 		}
 
 		else
