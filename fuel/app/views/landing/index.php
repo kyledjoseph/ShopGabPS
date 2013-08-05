@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ShopGab – Shop Socially!</title>
+  <title>ShopGab - Shop Socially!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap -->
   <script type="text/javascript" src="//use.typekit.net/kxv0tmh.js"></script>
