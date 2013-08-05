@@ -14,12 +14,12 @@
   <!-- Header -->
   <div class="header container">
     <!-- Logo -->
-    <div class="col-6 col-sm-2">
+    <div class="col-4 col-sm-2">
       <h1><img src="/assets/tmp/img/logo.png" alt="ShopGab" /></h1>
     </div>
 
     <!-- Navigation -->
-    <div class="col-6 col-sm-10">
+    <div class="col-8 col-sm-10">
       <?php if (Fuel::$env !== 'production'): ?>
       <ul class="landing-nav nav nav-pills pull-right">
         <li><a href="#loginModal" data-toggle="modal">Login</a></li>

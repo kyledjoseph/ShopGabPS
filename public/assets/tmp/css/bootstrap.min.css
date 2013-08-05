@@ -17,7 +17,7 @@ h1,h2,h3,h4,h5,h6{color:#666}
 .title-content{text-align:center;color:#fff;text-shadow:2px 2px 2px rgba(0,0,0,0.4);padding-top:50px;padding-bottom:50px}.title-content h2{font-size:40px;font-weight:700}
 .title-content h2,.title-content h3,.title-content p{font-weight:500;color:#fff}
 .title-soon{opacity:.9;margin-top:10px}
-.steps{margin-top:50px}.steps p,.steps h3{padding-left:15px}
+.steps{margin-top:50px}.steps p,.steps h3{padding-left:30px}
 html body p{color:#777}
 a:hover .icon-background-circle{background-color:#f17baf}
 .proofs{margin-top:50px}.proofs h3{padding-bottom:10px;border-bottom:3px solid #f17baf;display:inline-block}
