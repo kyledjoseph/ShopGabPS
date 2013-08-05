@@ -99,7 +99,7 @@
           <div class="col-12 col-sm-4">
             <img src="/assets/tmp/img/photostream_1.jpg" />
           </div>
-          <div class="col-12col-sm-4">
+          <div class="col-12 col-sm-4">
             <img src="/assets/tmp/img/photostream_4.jpg" />
           </div>
           <div class="col-12 col-sm-4">
