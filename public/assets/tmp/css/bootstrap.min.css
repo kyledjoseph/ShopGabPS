@@ -26,7 +26,7 @@ a:hover .icon-background-circle{background-color:#f17baf}
 .email-form{margin-top:25px}
 .testimonial{padding:25px;background-color:#eee}
 .testimonial-credit{color:#aaa;padding-left:60px;background:url(../img/testimonial-bg.png) 0 -1px no-repeat}
-.in-form{margin-left:-20px !important;margin-right:-20px !important}
+.in-form{margin-left:-20px !important;margin-right:-20px !important;padding-bottom:0 !important}
 .social-login{margin-bottom:25px}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 audio,canvas,video{display:inline-block}
