@@ -96,13 +96,13 @@
         <h3>Most Popular</h3>
         <hr />
         <div class="popular-images row">
-          <div class="col-4 col-sm-4">
+          <div class="col-12 col-sm-4">
             <img src="/assets/tmp/img/photostream_1.jpg" />
           </div>
-          <div class="col-4 col-sm-4">
+          <div class="col-12col-sm-4">
             <img src="/assets/tmp/img/photostream_4.jpg" />
           </div>
-          <div class="col-4 col-sm-4">
+          <div class="col-12 col-sm-4">
             <img src="/assets/tmp/img/photostream_3.jpg" />
           </div>
         </div>
