@@ -134,18 +134,18 @@
           <h4>Follow Us</h4>
           <hr />
           <div class="social-links">
-            <div class="facebook">
+            <a href="http://facebook.com/shopgab" class="facebook">
               <i class="icon-facebook icon-2x icon-light"></i>
-            </div>
-            <div class="twitter">
+          </a>
+            <a href="http://twitter.com/weshopgab" class="twitter">
               <i class="icon-twitter icon-2x icon-light"></i>
-            </div>
-            <div class="pinterest">
+            </a>
+            <a href="http://pinterest.com/WeShopGab/boards/" class="pinterest">
               <i class="icon-pinterest icon-2x icon-light"></i>
-            </div>
-            <div class="google-plus">
+            </a>
+            <a href="https://plus.google.com/u/0/113964272651935695754/posts" class="google-plus">
               <i class="icon-google-plus icon-2x icon-light"></i>
-            </div>
+            </a>
           </div>
         </div>
       </div>

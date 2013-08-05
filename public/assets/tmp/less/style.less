@@ -33,13 +33,19 @@ h1, h2, h3, h4, h5, h6 {
 	padding-bottom: 1em;
 	text-align: center;
 
-	div {
+	a {
 		height: 58px;
 		width: 58px;
 		background-color: black;
 		text-align: center;
 		display: inline-block;
 		margin-right: 20px;
+		opacity: .9;
+
+		&:hover {
+			text-decoration: none;
+			opacity: 1;
+		}
 	}
 
 	.google-plus {
