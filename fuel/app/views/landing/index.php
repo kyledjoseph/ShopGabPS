@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>ShopGab - Shop Socially!</title>
+  <title>ShopGab - Shop Socially!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- Bootstrap -->
   <script type="text/javascript" src="//use.typekit.net/kxv0tmh.js"></script>
@@ -113,7 +113,7 @@
         <h3>What Users Say</h3>
         <hr />
         <div class="testimonial">
-        <p>ShopGab was amazing! I still can’t believe how easy it was for me and friends to find and buy the best products for me and my new baby, and at the best prices. Teamwork in shopping!</p>
+        <p>ShopGab was amazing! I still can't believe how easy it was for me and friends to find and buy the best products for me and my new baby, and at the best prices. Teamwork in shopping!</p>
         </div>
         <div class="testimonial-credit">
         <span>Jill Sandberg</span>
