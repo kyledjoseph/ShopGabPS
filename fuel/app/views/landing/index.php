@@ -45,6 +45,7 @@
                     <button type="submit" class="btn btn-default" type="button">Sign Up Now</button>
                   </span>
                 </div>
+                <?= Form::close() ?>
                 <p class="title-soon">Sign up to receive updates.<br />Coming Soon: 09/01/13</p>
               </div>
             </div>
