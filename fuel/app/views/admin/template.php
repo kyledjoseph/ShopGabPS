@@ -160,8 +160,7 @@
 	</div> <!-- /container -->
 
 	<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-	<?= Asset::js('bootstrap/bootstrap.js') ?>
-	<?= Asset::js('bootstrap/bootstrap-alert.js') ?>
+	<?= Asset::js('bootstrap/bootstrap.min.js') ?>
 
   </body>
 </html>
