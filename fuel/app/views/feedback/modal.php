@@ -8,6 +8,7 @@
 				<input name="name" type="text" placeholder="Your Name">
 				<input name="email" type="text" placeholder="Your Email">
 				<textarea name="content"></textarea>
+				<input name="referral" type="hidden" value="<?= Uri::current() ?>">
 				<button type="submit">Send Feedback</button>
 			<?= Form::close() ?>
 		</div>

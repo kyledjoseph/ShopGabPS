@@ -370,6 +370,27 @@ class Controller_User extends Controller_App
 	}
 
 
+	/**
+	 * User Feedback
+	 */
+	public function post_feedback()
+	{
+		$name     = Input::post('name');
+		$email    = Input::post('email');
+		$referral = Input::post('referral');
+		$content  = Input::post('content');
+
+		Model_Feedback::create_feedback(array(
+			'user_id'      => ($this->user_logged_in() ? $this->user->id ? null),
+			'user_email'   => $email,
+			'referral_url' => $referral,
+			'feedback'     => $content,
+		));
+
+		$this->redirect($referral, 'success', 'Thank you for your feedback!');
+	}
+
+
 
 	/**
 	 * Edit account settings

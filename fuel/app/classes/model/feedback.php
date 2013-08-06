@@ -6,6 +6,7 @@ class Model_Feedback extends \Orm\Model
 		'id',
 		'user_id',
 		'user_email',
+		'user_name',
 		'referral_url',
 		'feedback',
 		'created_at',
