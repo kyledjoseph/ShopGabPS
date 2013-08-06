@@ -97,6 +97,9 @@ class Controller_App extends Controller_Base
 
 			Casset::js('site/auth.js');
 		}
+
+		// feedback modal
+		$this->add_modal(View::forge('feedback/modal'));
 		
 
 		// enviroment specific
@@ -115,7 +118,10 @@ class Controller_App extends Controller_Base
 	private function _init_assets()
 	{
 		Casset::css('style.css');
+		Casset::css('bootstrap/bootstrap.css');
 		Casset::js('jquery-typer.js');
+		Casset::js('bootstrap/bootstrap.min.js');
+
 		//Casset::js('script.js');
 		// Casset::js('bootstrap/bootstrap-modal.js');
 		// Casset::js('bootstrap/bootstrap-tab.js');
