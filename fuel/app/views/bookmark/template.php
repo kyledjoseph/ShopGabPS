@@ -34,6 +34,5 @@
 
 	<?= View::forge('analytics/bookmark') ?>
   	<?= Asset::js('bootstrap/bootstrap.js') ?>
-	<?= Asset::js('bootstrap/bootstrap-alert.js') ?>
 </body>
 </html>
