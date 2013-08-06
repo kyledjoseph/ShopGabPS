@@ -381,7 +381,7 @@ class Controller_User extends Controller_App
 		$content  = Input::post('content');
 
 		Model_Feedback::create_feedback(array(
-			'user_id'      => ($this->user_logged_in() ? $this->user->id ? null),
+			'user_id'      => ($this->user_logged_in() ? $this->user->id : null),
 			'user_email'   => $email,
 			'referral_url' => $referral,
 			'feedback'     => $content,
