@@ -3,9 +3,7 @@
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="inviteModalLabel">Invite Friends</h3>
 		</div>
-
 		<br>
-
 		<ul id="myTab" class="nav nav-tabs">
 			<li>&nbsp;&nbsp;&nbsp;</li>
 			<li class="active"><a href="#friends" data-toggle="tab">Friends</a></li>
@@ -67,8 +65,6 @@
 			<img class="push-center" src="/assets/img/share-with-friends.png" />
 		</a>
 	</div>
-
-
 	<div class="tab-pane fade" id="email">
 		<div>
 			<?= Form::open(array('action' => $quest->invite_url(), 'class' => 'form-horizontal')) ?>
@@ -102,10 +98,7 @@
 			<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
 		</div>
 	</div>
-
 </div>
-
-
 </form>
 </div>
 </div>

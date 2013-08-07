@@ -40,7 +40,7 @@ a:hover .icon-background-circle{background-color:#f17baf}
 .dash-item img{box-sizing:border-box;border:5px solid #ddd}
 .dash-item h3{position:absolute;bottom:25px;left:25px;padding-top:.5em;padding-bottom:.5em;margin-bottom:0;display:block;box-sizing:border-box;color:rgba(0,0,0,0.6);margin-left:auto;margin-right:auto}
 .dash-item a:hover img{border-color:#f17baf}
-.box{margin-top:25px;border-radius:5px;border:1px solid #ddd}
+.box{border-radius:5px;border:1px solid #ddd}
 .box h4{margin-top:0;color:#fafafa;background-color:rgba(0,0,0,0.8);padding:14px;border-top-left-radius:5px;border-top-right-radius:5px;margin-bottom:0}
 .box .content{padding:.5em}
 .inline-block{display:inline-block}
@@ -52,7 +52,6 @@ a:hover .icon-background-circle{background-color:#f17baf}
 .bubble{position:relative;padding:1em;background:#fafafa;border:#aaa solid 1px;-webkit-border-radius:10px;-moz-border-radius:10px;border-radius:10px;color:#666}.bubble:after{content:"";position:absolute;top:10px;left:-15px;border-style:solid;border-width:10px 15px 10px 0;border-color:transparent #f7f7f7;display:block;width:0;z-index:1}
 .bubble:before{content:"";position:absolute;top:10px;left:-16px;border-style:solid;border-width:10px 15px 10px 0;border-color:transparent #7f7f7f;display:block;width:0;z-index:0}
 .bookmarklet{display:block;text-align:center;margin-bottom:1em}
-.drag-to{margin-left:5.5em}
 .purchase-within{margin-top:.5em;font-weight:bold;font-size:1.2em;opacity:.8}.purchase-within select{margin-left:.5em;margin-top:.5em;width:7em}
 .thumbs-up{margin-bottom:5px}.thumbs-up:hover{opacity:1}
 .thumbs-down{margin-top:5px}.thumbs-down:hover{opacity:1}
@@ -78,13 +77,13 @@ a:hover .icon-background-circle{background-color:#f17baf}
 .product-block .comment{float:left;clear:both;margin-top:.5em;display:block}.product-block .comment .name{color:#f17baf;font-weight:bold;display:inline}
 .product-block .comment .time{opacity:.8}
 .product-block .name{display:block;margin-top:0}.product-block .name span{color:#008000;font-size:1.2em;font-weight:bold;opacity:.8}
-.product-block .price{opacity:.8;display:block}
-.product-block .description{opacity:.8;display:block}
+.product-block .price{opacity:.8;display:block;display:block !important}
+.product-block .description{opacity:.8;display:block;display:block !important}
 .product-block .image img{margin-top:-3em}
 .product-block .options{display:inline-block;text-align:center;width:13em;position:absolute;top:1em;right:1em}.product-block .options .score{margin-bottom:.5em}.product-block .options .score i:hover{opacity:1;cursor:pointer}
 .product-block .options .btn{margin:0}
 .product-block .product-number{position:absolute;left:-4px;bottom:-4px;background-color:#f00;height:36px;width:37px;background:url('../img/bleft.png')}.product-block .product-number span{font-size:.9em;display:block;margin-top:1.2em;margin-left:.5em;color:#fff;text-shadow:1px 1px 1px #000}
-#addProductModal{width:720px;margin-left:-360px}#addProductModal .control-label{display:none}
+#addProductModal .control-label{display:none}
 .add-product{position:absolute;top:.3em;right:.4em;padding-left:1.5em;padding-right:1.5em;padding-top:.2em;padding-bottom:.2em}
 .chat{max-height:300px;overflow-y:scroll}.chat .message{margin:1em}
 .chat .name{margin-left:.5em;padding-bottom:.5em;opacity:.8}
@@ -92,6 +91,10 @@ a:hover .icon-background-circle{background-color:#f17baf}
 .chat .time{margin-top:0;font-style:italic;opacity:.8}
 .chat-append{margin-bottom:-1px;margin-left:-1px;width:100%}.chat-append input{width:81%;box-sizing:border-box;height:30px}
 .chat-append button{width:20%;box-sizing:border-box}
+.no-dec:hover{text-decoration:none}
+.block{display:block !important}
+.push-center{margin-left:auto;margin-right:auto}
+.modal-slice{padding:1em}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 audio,canvas,video{display:inline-block}
 audio:not([controls]){display:none;height:0}

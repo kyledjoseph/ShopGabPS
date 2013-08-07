@@ -7,7 +7,7 @@
 	</div>
 </div>
 <div class="container">
-	<div class="col-12 col-sm-9">
+	<div class="col-12 col-sm-8">
 		<div class="row">
 			<div class="col-12 col-sm-8 pad-top">
 				<?php if (Fuel::$env !== 'production'): ?>
@@ -73,7 +73,7 @@
 		</div>
 </div>
 </div>
-<div class="col-12 col-sm-3 pad-top">
+<div class="col-12 col-sm-4 pad-top">
 			<div class="box help-a-friend">
 				<h4>Help A Friend</h4>
 				<div class="content"><?php foreach ($user->get_friends_upcoming_quests() as $quest): ?>
