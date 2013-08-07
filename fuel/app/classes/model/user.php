@@ -235,7 +235,7 @@ class Model_User extends \Orm\Model
 
 	public function default_avatar_uri($width = 32, $height = 32)
 	{
-		return Uri::create("public/assets/img/avatar/default_{$width}x{$height}.png");
+		return Uri::create("assets/img/avatar/default_{$width}x{$height}.png");
 	}
 
 	public function delete_avatars()
