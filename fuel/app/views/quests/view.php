@@ -95,8 +95,8 @@
 					<div class="options media-body">
 						<div class="score">
 							<?php if (isset($user)): ?>
-							<?= $quest_product->total_likes ?> <?= Html::anchor($quest_product->like_url(), '<img class="thumbs-up faded" src="/assets/img/thumbs-up.png" />', array('title' => $quest_product->list_user_likes(), 'class' => 'user_product_vote')) ?> &nbsp; 
-							<?= $quest_product->total_dislikes ?> <?= Html::anchor($quest_product->dislike_url(), '<img class="thumbs-down faded" src="/assets/img/thumbs-down.png" />', array('title' => $quest_product->list_user_dislikes(), 'class' => 'user_product_vote')) ?>
+							<?= $quest_product->total_likes() ?> <?= Html::anchor($quest_product->like_url(), '<img class="thumbs-up faded" src="/assets/img/thumbs-up.png" />', array('title' => $quest_product->list_user_likes(), 'class' => 'user_product_vote')) ?> &nbsp; 
+							<?= $quest_product->total_dislikes() ?> <?= Html::anchor($quest_product->dislike_url(), '<img class="thumbs-down faded" src="/assets/img/thumbs-down.png" />', array('title' => $quest_product->list_user_dislikes(), 'class' => 'user_product_vote')) ?>
 							<?php else: ?>
 							<?= $quest_product->total_likes() ?> <a href="#loginModal" data-toggle="modal"><img class="thumbs-up faded" src="/assets/img/thumbs-up.png" /></i></a> &nbsp; 
 							<?= $quest_product->total_dislikes() ?> <a href="#loginModal" data-toggle="modal"><img class="thumbs-down faded" src="/assets/img/thumbs-down.png" /></i></a>
