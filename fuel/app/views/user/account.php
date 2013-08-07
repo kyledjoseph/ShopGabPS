@@ -53,7 +53,7 @@
 				</div>
 			</div>
 
-			<?php if ($user->is_authenticated_with('facebook')): ?>
+			<?php if ($user->is_authenticated_with('facebook') and $user->avatar_type() !== 'facebook'): ?>
 
 			<div class="control-group account-form">
 				<div class="controls">

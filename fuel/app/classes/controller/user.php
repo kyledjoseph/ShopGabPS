@@ -420,7 +420,10 @@ class Controller_User extends Controller_App
 		if ($network == 'facebook')
 		{
 			$this->user->set_avatar_type('facebook');
+			$this->redirect('user/account', 'success', 'Account information updated');
 		}
+
+		$this->redirect('user/account', 'error', 'Invalid avatar type');
 	}
 
 	public function post_avatar()

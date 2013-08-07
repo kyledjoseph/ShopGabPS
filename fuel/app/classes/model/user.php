@@ -218,6 +218,20 @@ class Model_User extends \Orm\Model
 		return false;
 	}
 
+	public function avatar_type()
+	{
+		if ($this->avatar_type == 2)
+		{
+			return 'facebook';
+		}
+		if ($this->avatar_type == 1)
+		{
+			return 'custom';
+		}
+
+		return false;
+	}
+
 	public function get_avatar_uri($width = 32, $height = 32)
 	{
 		if ($this->avatar_type == 2)
