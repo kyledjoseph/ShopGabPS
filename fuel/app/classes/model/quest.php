@@ -113,7 +113,8 @@ class Model_Quest extends \Orm\Model
 
 	public function purchase_within_option()
 	{
-		return ! empty($this->purchase_within) ? $this->purchase_within : '0';
+		return round(($this->purchase_within() / 7));
+		//return ! empty($this->purchase_within) ? $this->purchase_within : '0';
 	}
 
 	public function purchase_within()

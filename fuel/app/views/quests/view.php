@@ -23,7 +23,7 @@
 	<div class="purchase-within">
 		Purchase within:
 		<?= Form::open(array('id' => 'purchase_within_form', 'class' => 'inline-block', 'action' => $quest->within_url())) ?>
-		<?= Form::select('purchase_within', $quest->purchase_within_option(), Model_Quest::purchase_within_fields()) ?>
+		<?= Form::select('purchase_within', $quest->purchase_within_option(), Model_Quest::purchase_within_fields()) ?> (<?= $quest->purchase_within() ?> days)
 		<?= Form::close() ?>
 	</div>
 </div>
