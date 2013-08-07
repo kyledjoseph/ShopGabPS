@@ -1,4 +1,4 @@
-	<div id="questModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="questModalLabel" aria-hidden="true">
+	<div id="questModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="questModalLabel" aria-hidden="true">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="questModalLabel">Edit Quest</h3>

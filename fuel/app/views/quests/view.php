@@ -1,17 +1,17 @@
-<div class="row">
-	<div class="span2 ">
+<div class="container">
+	<div class="col-2 ">
 		<h4><?= $quest->user->display_name() ?></h4>
 	</div>
-	<div class="span10">
+	<div class="col-10">
 		<h4 class="help-me">Please help me find a <span class="product-name"><?= $quest->name() ?></span></h4>
 	</div>
 </div>
 
-<div class="row">
-	<div class="span2">
+<div class="container">
+	<div class="col-2">
 		<?= Html::img($quest->user->profile_pic(100, 100)) ?>
 	</div>
-	<div class="span6">
+	<div class="col-6">
 		<div class="bubble">
 			<p><?= $quest->description() ?></p>
 			<?php if (isset($user) and $quest->belongs_to_user($user->id)): ?>
@@ -28,7 +28,7 @@
 	</div>
 </div>
 
-<div class="span4 align-center">
+<div class="col-4 align-center">
 
 	<div class="btn-group btn-sharing" data-toggle="buttons-radio">
 		<?= Html::anchor($quest->url('access/public'), 'Public', array('class' => "btn" . ($quest->is_public() ? ' active' : null))) ?>
@@ -45,8 +45,8 @@
 </div>
 </div>
 
-<div class="row">
-	<div class="span8">
+<div class="container">
+	<div class="col-8">
 		<div class="box">
 			<h4>Products</h4>
 
@@ -81,7 +81,7 @@
 
 						<?php endforeach; ?>
 
-						<?= Form::open(array('action' => $quest_product->comment_url(), 'class' => 'comment input-append', 'style' => 'display:none')) ?>
+						<?= Form::open(array('action' => $quest_product->comment_url(), 'class' => 'comment input-append form-control', 'style' => 'display:none')) ?>
 							<input name="comment" type="text" placeholder="What do you think?"/>
 							<button class="btn" type="submit">Comment</button>
 						</form>
@@ -133,15 +133,15 @@
 			<?php $product_i++; endforeach; ?>
 
 			<?php if (isset($user)): ?>
-			<button href="#addProductModal" class="add-product btn btn-medium btn-success" data-toggle="modal">+ Add Product</button>
+			<button href="#addProductModal" class="corner-button btn btn-medium btn-success" data-toggle="modal">+ Add Product</button>
 			<?php else: ?>
-			<button href="#loginModal" class="add-product btn btn-small btn-success" data-toggle="modal">+ Add Product</button>
+			<button href="#loginModal" class="corner-button btn btn-small btn-success" data-toggle="modal">+ Add Product</button>
 			<?php endif; ?>
 
 		</div>
 	</div>
 
-	<div class="span4">
+	<div class="col-4">
 		<div class="box">
 			<h4>Chat</h4>
 			<div class="chat">
@@ -163,7 +163,7 @@
 				<?php endforeach; ?>
 				<?php endif; ?>
 			</div>
-			<?= Form::open(array('action' => $quest->message_url(), 'class' => 'input-append chat-append')) ?>
+			<?= Form::open(array('action' => $quest->message_url(), 'class' => 'input-append chat-append form-control')) ?>
 					<input name="message" class="block" id="appendedInputButton" type="text">
 					<?php if (isset($user)): ?>
 					<button class="btn" type="submit">Send</button>

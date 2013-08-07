@@ -1,4 +1,4 @@
-	<div id="questModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="questModalLabel" aria-hidden="true">
+	<div id="questModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="questModalLabel" aria-hidden="true">
 		<div class="modal-header">
 			<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 			<h3 id="questModalLabel">New Quest</h3>
@@ -27,7 +27,7 @@
 			</form>
 			
 			<div class="modal-footer">
-				<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button class="btn btn-primary">Start Quest</button>
 			</div>
 		</div>
