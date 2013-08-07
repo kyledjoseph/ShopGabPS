@@ -22,7 +22,7 @@
 
 	<div class="purchase-within">
 		Purchase within:
-		<?= Form::open(array('id' => 'purchase_within_form', 'class' => 'inline-block', 'action' => $quest->within_url())) ?>
+		<?= Form::open(array('id' => 'purchase_within_form', 'class' => 'inline-block submit-on-change', 'action' => $quest->within_url())) ?>
 		<?= Form::select('purchase_within', $quest->purchase_within_option(), Model_Quest::purchase_within_fields()) ?> (<?= $quest->purchase_within() ?> days)
 		<?= Form::close() ?>
 	</div>
@@ -48,9 +48,14 @@
 <div class="row">
 	<div class="span8">
 		<div class="box">
+
+			<?= Form::open(array('id' => 'sort_quest_by', 'class' => 'inline-block submit-on-change', 'method' => 'GET', 'action' => $quest->url())) ?>
+				order by <?= Form::select('order', $quest->active_sort(), $quest->sort_options()) ?>
+			<?= Form::close() ?>
+
 			<h4>Products</h4>
 
-			<?php foreach ($quest->get_quest_products() as $quest_product): ?>
+			<?php foreach ($quest->get_quest_products_sorted() as $quest_product): ?>
 			<?php $product = $quest_product->product ?>
 
 			<div class="product-block <?= ! $quest_product->was_added_by_owner() ? 'from-tab' : null ?>" data-product="<?= $product_i ?>">
@@ -90,11 +95,11 @@
 					<div class="options media-body">
 						<div class="score">
 							<?php if (isset($user)): ?>
-							<?= $quest_product->total_upvotes() ?> <?= Html::anchor($quest_product->like_url(), '<img class="thumbs-up faded" src="/assets/img/thumbs-up.png" />', array('title' => $quest_product->list_user_likes(), 'class' => 'user_product_vote')) ?> &nbsp; 
-							<?= $quest_product->total_downvotes() ?> <?= Html::anchor($quest_product->dislike_url(), '<img class="thumbs-down faded" src="/assets/img/thumbs-down.png" />', array('title' => $quest_product->list_user_dislikes(), 'class' => 'user_product_vote')) ?>
+							<?= $quest_product->total_likes() ?>/<?= $quest_product->total_likes ?> <?= Html::anchor($quest_product->like_url(), '<img class="thumbs-up faded" src="/assets/img/thumbs-up.png" />', array('title' => $quest_product->list_user_likes(), 'class' => 'user_product_vote')) ?> &nbsp; 
+							<?= $quest_product->total_dislikes() ?>/<?= $quest_product->total_dislikes ?> <?= Html::anchor($quest_product->dislike_url(), '<img class="thumbs-down faded" src="/assets/img/thumbs-down.png" />', array('title' => $quest_product->list_user_dislikes(), 'class' => 'user_product_vote')) ?>
 							<?php else: ?>
-							<?= $quest_product->total_upvotes() ?> <a href="#loginModal" data-toggle="modal"><img class="thumbs-up faded" src="/assets/img/thumbs-up.png" /></i></a> &nbsp; 
-							<?= $quest_product->total_downvotes() ?> <a href="#loginModal" data-toggle="modal"><img class="thumbs-down faded" src="/assets/img/thumbs-down.png" /></i></a>
+							<?= $quest_product->total_likes() ?> <a href="#loginModal" data-toggle="modal"><img class="thumbs-up faded" src="/assets/img/thumbs-up.png" /></i></a> &nbsp; 
+							<?= $quest_product->total_dislikes() ?> <a href="#loginModal" data-toggle="modal"><img class="thumbs-down faded" src="/assets/img/thumbs-down.png" /></i></a>
 							<?php endif; ?>
 						</div>
 
