@@ -206,6 +206,11 @@ class Model_User extends \Orm\Model
 	{
 		if ($type == 'facebook')
 		{
+			if ($this->has_avatars())
+			{
+				$this->delete_avatars();
+			}
+
 			$this->avatar_type = 2;
 			return $this->save();
 		}
