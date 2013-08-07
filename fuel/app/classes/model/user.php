@@ -362,6 +362,14 @@ class Model_User extends \Orm\Model
 	}
 
 	/**
+	 * 
+	 */
+	public function get_public_quests()
+	{
+		return Model_Quest::query()->where('user_id', $this->id)->where('is_public', 1)->order_by('name', 'asc')->get();
+	}
+
+	/**
 	 * Get a users quest by quest_url
 	 */
 	public function get_quest($quest_url)
@@ -492,14 +500,14 @@ class Model_User extends \Orm\Model
 		return join(',', $this->get_friend_ids());
 	}
 
-	public function get_friendship_by_id($friend_id)
+	public function get_friendship_by_id($id)
 	{
-		return Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->get_one();
+		return Model_Friend::query()->where('user_id', $this->id)->where('id', $id)->get_one();
 	}
 
 	public function get_friend_by_id($friend_id)
 	{
-		$friendship = $this->get_friendship_by_id($friend_id);
+		$friendship = Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->get_one();
 		return isset($friendship) ? $friendship->friend : null;
 	}
 
