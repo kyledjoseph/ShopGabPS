@@ -26,7 +26,7 @@
 									<input class="inline-block auto-width" type="checkbox" />
 								</div>
 								<div class="inline-block">
-									<?= Html::img($friend->profile_pic(32,32)) ?>
+									<?= Html::img($friend->get_avatar_uri(32,32)) ?>
 									<?= $friend->display_name() ?>
 								</div>
 							</label>

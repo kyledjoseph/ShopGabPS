@@ -9,7 +9,7 @@
 
 <div class="row">
 	<div class="span2">
-		<?= Html::img($quest->user->profile_pic(100, 100)) ?>
+		<?= Html::img($quest->user->get_avatar_uri(200, 200)) ?>
 	</div>
 	<div class="span6">
 		<div class="bubble">

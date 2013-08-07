@@ -415,6 +415,14 @@ class Controller_User extends Controller_App
 		$this->redirect('user/account', 'success', 'Account information updated');
 	}
 
+	public function get_avatar($action, $network)
+	{
+		if ($network == 'facebook')
+		{
+			$this->user->set_avatar_type('facebook');
+		}
+	}
+
 	public function post_avatar()
 	{
 		$this->require_auth();
@@ -429,15 +437,21 @@ class Controller_User extends Controller_App
 		{
 			Upload::save();
 
+			if ($this->user->has_avatars())
+			{
+				$this->user->delete_avatars();
+			}
+
 			foreach (Upload::get_files() as $file)
 			{
-				//$this->user->set_avatar();
+				// return Response::forge(var_export($file));
+				// $file = array ( 'name' => 'computech.jpg', 'type' => 'image/jpeg', 'error' => false, 'size' => 550696, 'field' => 'avatar', 'file' => '/Applications/MAMP/tmp/php/phpum5qaT', 'errors' => array ( ), 'extension' => 'jpg', 'filename' => 'computech', 'mimetype' => 'image/jpeg', 'saved_to' => '/Users/tmatthews/Sites/shopgab/fuel/app/tmp/', 'saved_as' => 'b30b61736b21b15b59a78fe16742c0c4.jpg', )
 
+				$this->user->add_avatar($file);
 				break;
 			}
 		}
 
-		// and process any errors
 		foreach (Upload::get_errors() as $file)
 		{
 			// $file is an array with all file information,
@@ -445,7 +459,7 @@ class Controller_User extends Controller_App
 			// each array element is an an array containing 'error' and 'message'
 		}
 
-		$this->redirect('user/account', 'success', 'Avatar');
+		$this->redirect('user/account', 'success', 'Avatar Uploaded');
 	}
 
 

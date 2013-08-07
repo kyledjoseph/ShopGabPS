@@ -149,7 +149,7 @@
 				
 				<?php foreach ($user->get_friends() as $friend): ?>
 				<p>
-					<?= Html::img($friend->profile_pic(32,32)) ?>
+					<?= Html::img($friend->get_avatar_uri()) ?>
 					<?= $friend->display_name() ?>
 				</p>
 				<?php endforeach; ?>

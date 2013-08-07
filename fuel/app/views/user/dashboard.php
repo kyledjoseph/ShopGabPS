@@ -77,7 +77,7 @@
 
 					<div class="friend-box">
 						<div class="image">
-							<?= Html::img($quest->user->profile_pic()) ?>
+							<?= Html::img($quest->user->get_avatar_uri()) ?>
 						</div>
 						<div class="text">
 							<h5><?= $quest->user->display_name() ?></h5>

@@ -2,6 +2,66 @@
 
 class Controller_Debug extends Controller_App
 {
+
+
+	public function get_cloud()
+	{
+		$username = 'itemnation';
+		$api_key  = '750116f1c657bddb347b0a747ea5fd1d';
+
+		# Authenticate to Cloud Files.  The default is to automatically try
+		# to re-authenticate if an authentication token expires.
+		#
+		# NOTE: Some versions of cURL include an outdated certificate authority (CA)
+		#       file.  This API ships with a newer version obtained directly from
+		#       cURL's web site (http://curl.haxx.se).  To use the newer CA bundle,
+		#       call the CF_Authentication instance's 'ssl_use_cabundle()' method.
+		#
+		$auth = new CF_Authentication($username, $api_key);
+		# $auth->ssl_use_cabundle();  # bypass cURL's old CA bundle
+		$auth->authenticate();
+
+		
+		# Establish a connection to the storage system
+		#
+		# NOTE: Some versions of cURL include an outdated certificate authority (CA)
+		#       file.  This API ships with a newer version obtained directly from
+		#       cURL's web site (http://curl.haxx.se).  To use the newer CA bundle,
+		#       call the CF_Connection instance's 'ssl_use_cabundle()' method.
+		#
+		$conn = new CF_Connection($auth);
+		# $conn->ssl_use_cabundle();  # bypass cURL's old CA bundle
+
+
+		# Create a Container and make it public
+		$images = $conn->create_container("avatar_32x32");
+		$uri    = $images->make_public();
+
+		$images = $conn->create_container("avatar_200x200");
+		$uri    = $images->make_public();
+
+		return $uri;
+
+		# Get a remote Container and storage Object
+		#
+		$images = $conn->get_container("photos");
+		$image  = $images->create_object("first_birthday.jpg");
+
+		$image->load_from_filename("/home/user/photos/birthdays/birthday1.jpg");
+
+		# Or... print out the Object's public URI
+		#
+		return $image->public_uri();
+	}
+
+
+
+
+
+
+
+
+
 	public function get_email()
 	{
 		$message = array(
