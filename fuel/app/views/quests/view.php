@@ -159,7 +159,7 @@
 				<?php foreach ($quest_messages as $message): ?>
 
 				<div class="message">
-					<div class="name"><?= isset($message->user) ? $message->user->display_name() : 'Account Deleted' ?></div>
+					<div class="name"><?= ! empty($message->user) ? $message->user->display_name() : 'Account Deleted' ?></div>
 					<div class="content">
 						<?= $message->body ?>
 						<div class="time"><?= $message->time_ago() ?></div>
