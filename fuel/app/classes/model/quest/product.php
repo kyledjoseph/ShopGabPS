@@ -9,6 +9,7 @@ class Model_Quest_Product extends \Orm\Model
 		'description',
 		'total_likes',
 		'total_dislikes',
+		'vote_score',
 		'added_by',
 		'created_at',
 		'updated_at',
@@ -108,6 +109,7 @@ class Model_Quest_Product extends \Orm\Model
 	{
 		$this->total_likes    = $this->total_likes();
 		$this->total_dislikes = $this->total_dislikes();
+		$this->vote_score     = $this->total_likes - $this->total_dislikes;
 		$this->save();
 	}
 
