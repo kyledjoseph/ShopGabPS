@@ -12,6 +12,8 @@ class Controller_Friends extends Controller_App
 
 	public function get_index()
 	{
+		$this->add_modal(View::forge('user/modal/start_quest'));
+		
 		$this->template->body = View::forge('friends/index', array(
 			'friends_quests' => $this->user->get_friends_quests(),
 		));
