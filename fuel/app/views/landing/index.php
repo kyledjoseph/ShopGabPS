@@ -33,11 +33,14 @@
   <div class="title">
     <div class="title-inner">
       <div class="title-content container">
-        <div class="col-12">
+        <div class="col-12 col-sm-6">
+          <img width="100%" src="/assets/img/girls.png" />
+        </div>
+        <div class="col-12 col-sm-6">
           <h2>Shop Socially!</h2>
           <h3>Because shopping is more fun with your friends.</h3>
             <div class="email-form row">
-              <div class="col-12 col-sm-6 col-sm-offset-3">
+              <div class="col-12 col-sm-12">
                 <?= Form::open(array('action' => 'try')) ?>
                 <div class="input-group">
                   <input name="email" type="text" class="form-control" placeholder="you@email.com">
