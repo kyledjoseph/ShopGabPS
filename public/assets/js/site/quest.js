@@ -2,7 +2,7 @@ $(function(){
 
 
 	// change purchase_within time
-	$("#purchase_within_form").bind("change", function() {
+	$(".submit-on-change").bind("change", function() {
 		$(this).submit();
 	});
 

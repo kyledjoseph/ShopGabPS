@@ -58,6 +58,8 @@ class Model_Quest extends \Orm\Model
 		),
 	);
 
+	protected $active_sort = 'recent';
+
 	public function name()
 	{
 		return ! empty($this->name) ? $this->name : 'no name';
@@ -113,7 +115,8 @@ class Model_Quest extends \Orm\Model
 
 	public function purchase_within_option()
 	{
-		return ! empty($this->purchase_within) ? $this->purchase_within : '0';
+		return round(($this->purchase_within() / 7));
+		//return ! empty($this->purchase_within) ? $this->purchase_within : '0';
 	}
 
 	public function purchase_within()
@@ -193,6 +196,40 @@ class Model_Quest extends \Orm\Model
 	}
 
 
+	/**
+	 * 
+	 */
+	public function sort_options()
+	{
+		return array(
+			'recent'   => 'Recently Added',
+			'likes'    => 'Most Liked',
+			'dislikes' => 'Most Disliked',
+			'updated'  => 'Recent Updates',
+		);
+	}
+
+	public function is_sort_type($type)
+	{
+		return in_array($type, array_keys($this->sort_options()));
+	}
+
+	public function set_active_sort($type)
+	{
+		if (! $this->is_sort_type($type))
+		{
+			throw new Exception("Invalid Quest Products sort type '$type'", 1);
+		}
+
+		$this->active_sort = $type;
+	}
+
+	public function active_sort()
+	{
+		return $this->is_sort_type($this->active_sort) ? $this->active_sort : 'recent';
+	}
+
+
 
 	/**
 	 * 
@@ -202,6 +239,37 @@ class Model_Quest extends \Orm\Model
 		return Model_Quest_Product::query()
 			->where('quest_id', $this->id)
 			->order_by('created_at', 'asc')->get();
+	}
+
+	/**
+	 * 
+	 */
+	public function get_quest_products_sorted()
+	{
+		$sort  = $this->active_sort();
+		$query = Model_Quest_Product::query()->where('quest_id', $this->id);
+
+		if ($sort == 'recent')
+		{
+			$query->order_by('created_at', 'desc');
+		}
+
+		if ($sort == 'likes')
+		{
+			$query->order_by('total_likes', 'desc');
+		}
+
+		if ($sort == 'dislikes')
+		{
+			$query->order_by('total_dislikes', 'desc');
+		}
+
+		if ($sort == 'updated')
+		{
+			$query->order_by('updated_at', 'desc');
+		}
+
+		return $query->get();
 	}
 
 	/**

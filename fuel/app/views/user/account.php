@@ -31,13 +31,13 @@
 			</div>
 		<?= Form::close() ?>
 		
-		<hr />
+		<hr>
 
 		<?= Form::open(array('action' => 'account/avatar', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal')) ?>
 			<div class="control-group account-form">
 				<label class="control-label" for="inputName"></label>
 				<div class="controls">
-					<img class="account-img" src="<?= $user->profile_pic(32, 32) ?>" />
+					<img class="account-img" src="<?= $user->get_avatar_uri() ?>" />
 
 				</div>
 				<label class="control-label" for="avatar">Change avatar:</label>
@@ -50,8 +50,22 @@
 					<button class="btn btn-default marg-top">Upload Avatar</button>
 				</div>
 			</div>
-			<hr>
 
+			<?php if ($user->is_authenticated_with('facebook') and $user->avatar_type() !== 'facebook'): ?>
+
+			<div class="control-group account-form">
+				<div class="controls">
+					<?= Html::anchor('user/avatar/use/facebook', 'or use your Facebook profile picture') ?>
+				</div>
+			</div>
+
+			<?php endif; ?>
+
+		<?= Form::close() ?>
+		
+		<hr>
+
+		<?= Form::open(array('class' => 'form-horizontal')) ?>
 			<?php if ($user->has_password()): ?>
 
 			<div class="control-group">
@@ -71,7 +85,6 @@
 			</div>
 
 			<?php endif; ?>
-
 		<?= Form::close() ?>
 		</div>
 	</div>

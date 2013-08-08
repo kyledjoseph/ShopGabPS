@@ -69,7 +69,6 @@
 
 			<?php endforeach; ?>
 			<?php if ($i != 1): ?></div><?php endif; ?>
-
 		</div>
 </div>
 </div>

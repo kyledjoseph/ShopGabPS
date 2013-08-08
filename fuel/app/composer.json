@@ -8,7 +8,8 @@
         "cartalyst/sentry": "2.0.*",
         "illuminate/database": "4.0.*",
         "ircmaxell/password-compat": "1.0.*",
-        "mandrill/mandrill": "1.0.37"
+        "mandrill/mandrill": "1.0.37",
+        "omissis/php-cloudfiles": "v1.7.13"
     },
     "minimum-stability": "dev"
 }

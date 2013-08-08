@@ -85,20 +85,21 @@
 						</form>
 					</div>
 					<h5 class="align-center">Friends On ShopGab</h5>
-					<?php foreach ($user->get_friends() as $friend): ?>
+					<?php foreach ($user->get_friendships() as $friendship): ?>
 		
 					<div class="friend-box">
 						<div class="image">
 							<img src="//placehold.it/50x50" />
 						</div>
 						<div class="text">
-							<h5><?= $friend->display_name() ?></h5>
-							<?= Html::anchor("friends/hide/{$friend->id}", 'Remove', array('class' => 'remove')) ?>
+							<h5><?= Html::anchor("friends/view/{$friendship->id}", $friendship->friend->display_name()) ?></h5>
+							<?= Html::anchor("friends/hide/{$friendship->id}", 'Remove', array('class' => 'remove')) ?>
 						</div>
 					</div>
 
 					<?php endforeach; ?>
 
+					<?php if (false): ?>
 					<h5 class="align-center">Friends On Facebook</h5>
 					<div class="friend-box">
 						<div class="image">
@@ -109,6 +110,30 @@
 							<button href="#inviteModal" class="btn btn-default invite-friend-btn" data-toggle="modal">Invite</button>
 						</div>
 					</div>
+					<?php endif; ?>
+				</div>
+
+				
+				<?php if (false and $this->user->is_authenticated_with('facebook')): ?>
+				<div class="box">
+					
+					<h4>Facebook Friends on ShopGab</h4>
+					<?php foreach ($this->user->get_registered_facebook_friends() as $friend): ?>
+
+					<div class="friend-box">
+						<div class="image">
+							<?= Html::img($friend->photo_url()) ?>
+						</div>
+						<div class="text">
+							<h5><?= $friend->display_name ?></h5>
+						</div>
+					</div>
+
+					<?php endforeach; // is_authenticated_with('facebook') ?>
+				</div>
+				<?php endif; ?>
+
+			</div>
 		</div>
 		</div>
 	</div>
@@ -127,6 +152,7 @@
 		<div class="form-group">
 			<label class="control-label" for="inputFrom">From:</label>
 			<div class="from-email">info@shopgab.com</div>
+
 		</div>
 		<div class="form-group">
 			<label class="control-label" for="to">To:</label>

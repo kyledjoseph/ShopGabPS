@@ -7,6 +7,9 @@ class Model_Quest_Product extends \Orm\Model
 		'quest_id',
 		'product_id',
 		'description',
+		'total_likes',
+		'total_dislikes',
+		'vote_score',
 		'added_by',
 		'created_at',
 		'updated_at',
@@ -90,15 +93,26 @@ class Model_Quest_Product extends \Orm\Model
 	/**
 	 * quest product votes
 	 */
-	public function total_upvotes()
+	public function total_likes()
 	{
-		return Model_Quest_Product_Vote::query()->where('quest_product_id', $this->id)->where('vote', '1')->count();
+		$total = Model_Quest_Product_Vote::query()->where('quest_product_id', $this->id)->where('vote', '1')->count();
+		return $total;
 	}
 
-	public function total_downvotes()
+	public function total_dislikes()
 	{
-		return Model_Quest_Product_Vote::query()->where('quest_product_id', $this->id)->where('vote', '0')->count();
+		$total = Model_Quest_Product_Vote::query()->where('quest_product_id', $this->id)->where('vote', '0')->count();
+		return $total;
 	}
+
+	public function cache_votes()
+	{
+		$this->total_likes    = $this->total_likes();
+		$this->total_dislikes = $this->total_dislikes();
+		$this->vote_score     = $this->total_likes - $this->total_dislikes;
+		$this->save();
+	}
+
 
 	public function get_likes()
 	{
@@ -143,12 +157,14 @@ class Model_Quest_Product extends \Orm\Model
 
 	public function like($user_id)
 	{
-		return Model_Quest_Product_Vote::create_like($this->id, $user_id);
+		$success = Model_Quest_Product_Vote::create_like($this->id, $user_id);
+		return $success and $this->cache_votes();
 	}
 
 	public function dislike($user_id)
 	{
-		return Model_Quest_Product_Vote::create_dislike($this->id, $user_id);
+		$success = Model_Quest_Product_Vote::create_dislike($this->id, $user_id);
+		return $success and $this->cache_votes();
 	}
 
 	public function like_url()

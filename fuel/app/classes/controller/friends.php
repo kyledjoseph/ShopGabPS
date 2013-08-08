@@ -17,6 +17,20 @@ class Controller_Friends extends Controller_App
 		));
 	}
 
+	public function get_view($friend_id)
+	{
+		$friendship = $this->user->get_friendship_by_id($friend_id);
+
+		if (! isset($friendship))
+		{
+			$this->redirect('friends', 'error', 'You are not friends with this user');
+		}
+
+		$this->template->body = View::forge('friends/index', array(
+			'friends_quests' => $friendship->friend->get_public_quests(),
+		));
+	}
+
 
 	public function post_add()
 	{

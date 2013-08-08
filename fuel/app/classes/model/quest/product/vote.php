@@ -55,13 +55,13 @@ class Model_Quest_Product_Vote extends \Orm\Model
 	public function change_to_like()
 	{
 		$this->vote = '1';
-		$this->save();
+		return $this->save() and $this->quest_product->cache_votes();
 	}
 
 	public function change_to_dislike()
 	{
 		$this->vote = '0';
-		$this->save();
+		return $this->save() and $this->quest_product->cache_votes();
 	}
 
 

@@ -43,6 +43,17 @@ class Controller_Quests extends Controller_App
 	public function get_view($quest_url)
 	{
 		$quest = $this->get_quest_by_url($quest_url);
+		$sort  = Input::get('order');
+
+		if (! empty($sort))
+		{
+			if (! $quest->is_sort_type($sort))
+			{
+				$this->redirect($quest->url());
+			}
+		
+			$quest->set_active_sort($sort);
+		}
 
 		// Casset::js('lib/jquery.expander.min.js');
 		Casset::js('lib/jquery.tipTip.js');

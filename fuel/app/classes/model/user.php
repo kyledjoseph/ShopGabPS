@@ -10,7 +10,7 @@ class Model_User extends \Orm\Model
 		'group',
 		'email',
 		'display_name',
-		'profile_pic',
+		'avatar_type',
 		'last_login',
 		'login_hash',
 		'profile_fields',
@@ -87,6 +87,8 @@ class Model_User extends \Orm\Model
 		),
 	);
 
+	protected $avatar_sizes = array('200' => '200', '32' => '32');
+
 	public function _event_after_insert()
 	{
 		$this->_update_friendships();
@@ -134,6 +136,154 @@ class Model_User extends \Orm\Model
 	// 		: null;
 	// }
 
+
+
+	/**
+	 * Avatar
+	 */
+
+	public function add_avatar($file)
+	{
+		$connection = Service_Cloudfiles::get_connection();
+
+		foreach ($this->avatar_sizes as $width => $height)
+		{
+			$tmp_path        = $file['saved_to'] . $file['saved_as'];
+			$file_name       = pathinfo($tmp_path, PATHINFO_FILENAME);
+			$new_file_name   = "{$file_name}.png";
+			$tmp_resize_path = APPPATH . "tmp/{$width}x{$height}_{$new_file_name}";
+
+			Image::load($file['saved_to'] . $file['saved_as'])
+				->crop_resize($width, $height)
+				->save($tmp_resize_path);
+
+			$container = $connection->get_container("avatar_{$width}x{$height}");
+			$image     = $container->create_object($new_file_name);
+			$image->load_from_filename($tmp_resize_path);
+
+			$avatar = new Model_User_Avatar;
+			$avatar->user_id              = $this->id;
+			$avatar->name                 = $image->name;
+			$avatar->public_uri           = $image->public_uri();
+			$avatar->public_ssl_uri       = $image->public_ssl_uri();
+			$avatar->public_streaming_uri = $image->public_streaming_uri();
+			$avatar->width                = $width;
+			$avatar->height               = $height;
+			$avatar->content_length       = $image->content_length;
+			$avatar->save();
+
+			File::delete($tmp_resize_path);
+		}
+
+		$this->set_avatar_type('custom');
+
+		File::delete($tmp_path);
+
+	}
+
+	public function has_avatars()
+	{
+		return Model_User_Avatar::query()->where('user_id', $this->id)->count() > 0;
+	}
+
+	public function get_avatar($width = 32, $height = 32)
+	{
+		return Model_User_Avatar::query()
+			->where('user_id', $this->id)
+			->where('width', $width)
+			->where('height', $height)
+			->get_one();
+	}
+
+	public function get_avatars()
+	{
+		return Model_User_Avatar::query()
+			->where('user_id', $this->id)
+			->get();
+	}
+
+	public function set_avatar_type($type)
+	{
+		if ($type == 'facebook')
+		{
+			if ($this->has_avatars())
+			{
+				$this->delete_avatars();
+			}
+
+			$this->avatar_type = 2;
+			return $this->save();
+		}
+		if ($type == 'custom')
+		{
+			$this->avatar_type = 1;
+			return $this->save();
+		}
+
+		return false;
+	}
+
+	public function avatar_type()
+	{
+		if ($this->avatar_type == 2)
+		{
+			return 'facebook';
+		}
+		if ($this->avatar_type == 1)
+		{
+			return 'custom';
+		}
+
+		return false;
+	}
+
+	public function get_avatar_uri($width = 32, $height = 32)
+	{
+		if ($this->avatar_type == 2)
+		{
+			return $this->facebook_profile_pic();
+		}
+
+		if ($this->avatar_type == 1)
+		{
+			$avatar = $this->get_avatar($width, $height);
+		}
+		
+		return isset($avatar) ? $avatar->public_uri : $this->default_avatar_uri($width, $height);
+	}
+
+	public function default_avatar_uri($width = 32, $height = 32)
+	{
+		return Uri::create("assets/img/avatar/default_{$width}x{$height}.png");
+	}
+
+	public function delete_avatars()
+	{
+		$connection = Service_Cloudfiles::get_connection();
+
+		foreach ($this->get_avatars() as $avatar)
+		{
+			$container = $connection->get_container($avatar->container_name());
+			$container->delete_object($avatar->name);
+			$avatar->delete();
+		}
+	}
+
+	public function facebook_profile_pic($width = 32, $height = 32)
+	{
+		$fb_auth = $this->user_authentication('facebook');
+
+		if (isset($fb_auth->id))
+		{
+			return "https://graph.facebook.com/{$fb_auth->provider_uid}/picture?width={$width}&height={$height}";
+		}
+
+		return $this->default_avatar_uri($width, $height);
+	}
+
+
+
+
 	/**
 	 * Get user profile picture
 	 */
@@ -173,6 +323,12 @@ class Model_User extends \Orm\Model
 		}
 	}
 
+
+
+
+
+
+
 	/**
 	 * Does the user have a password set
 	 */
@@ -203,6 +359,14 @@ class Model_User extends \Orm\Model
 	public function get_quests()
 	{
 		return Model_Quest::get_user_quests($this->id);
+	}
+
+	/**
+	 * 
+	 */
+	public function get_public_quests()
+	{
+		return Model_Quest::query()->where('user_id', $this->id)->where('is_public', 1)->order_by('name', 'asc')->get();
 	}
 
 	/**
@@ -336,14 +500,14 @@ class Model_User extends \Orm\Model
 		return join(',', $this->get_friend_ids());
 	}
 
-	public function get_friendship_by_id($friend_id)
+	public function get_friendship_by_id($id)
 	{
-		return Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->get_one();
+		return Model_Friend::query()->where('user_id', $this->id)->where('id', $id)->get_one();
 	}
 
 	public function get_friend_by_id($friend_id)
 	{
-		$friendship = $this->get_friendship_by_id($friend_id);
+		$friendship = Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->get_one();
 		return isset($friendship) ? $friendship->friend : null;
 	}
 
