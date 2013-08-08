@@ -23,11 +23,18 @@
 	<div class="purchase-within">
 		Purchase within:
 		<?= Form::open(array('id' => 'purchase_within_form', 'class' => 'inline-block', 'action' => $quest->within_url())) ?>
+
 		<?= Form::select('purchase_within', $quest->purchase_within_option(), Model_Quest::purchase_within_fields(), array('class' => 'form-control')) ?>
-		<?= Form::open(array('id' => 'purchase_within_form', 'class' => 'inline-block submit-on-change', 'action' => $quest->within_url())) ?>
-		<?= Form::select('purchase_within', $quest->purchase_within_option(), Model_Quest::purchase_within_fields()) ?>
-		<?= $quest->purchase_within !== '0' ? "({$quest->purchase_within()}) days" : '' ?>
+		
 		<?= Form::close() ?>
+		<span class="faded"><?= $quest->purchase_within !== '0' ? "({$quest->purchase_within()}) days" : '' ?></span>
+	</div>
+	<div class="purchase-within">
+		Order by:
+		<?= Form::open(array('id' => 'sort_quest_by', 'class' => 'inline-block submit-on-change', 'method' => 'GET', 'action' => $quest->url())) ?>
+		 <?= Form::select('order', $quest->active_sort(), $quest->sort_options(), array('class' => 'form-control')) ?>
+		<?= Form::close() ?>
+
 	</div>
 </div>
 
@@ -51,9 +58,6 @@
 <div class="container">
 	<div class="col-8">
 		<div class="box marg-top">
-			<?= Form::open(array('id' => 'sort_quest_by', 'class' => 'inline-block submit-on-change', 'method' => 'GET', 'action' => $quest->url())) ?>
-				order by <?= Form::select('order', $quest->active_sort(), $quest->sort_options()) ?>
-			<?= Form::close() ?>
 			<h4>Products</h4>
 
 			<?php foreach ($quest->get_quest_products_sorted() as $quest_product): ?>
