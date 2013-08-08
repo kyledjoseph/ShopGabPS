@@ -99,11 +99,11 @@
 	<div class="options media-body">
 		<div class="score">
 			<?php if (isset($user)): ?>
-			<span class="badge"><?= $quest_product->total_upvotes() ?></span> <?= Html::anchor($quest_product->like_url(), '<i class="icon-thumbs-up-alt faded no-dec icon-large"></i>', array('title' => $quest_product->list_user_likes(), 'class' => 'user_product_vote')) ?> &nbsp; 
-			<span class="badge"><?= $quest_product->total_downvotes() ?></span> <?= Html::anchor($quest_product->dislike_url(), '<i class="icon-thumbs-down-alt faded no-dec icon-large"></i>', array('title' => $quest_product->list_user_dislikes(), 'class' => 'user_product_vote')) ?>
+			<span class="badge"><?= $quest_product->total_likes() ?></span> <?= Html::anchor($quest_product->like_url(), '<i class="icon-thumbs-up-alt faded no-dec icon-large"></i>', array('title' => $quest_product->list_user_likes(), 'class' => 'user_product_vote')) ?> &nbsp; 
+			<span class="badge"><?= $quest_product->total_dislikes() ?></span> <?= Html::anchor($quest_product->dislike_url(), '<i class="icon-thumbs-down-alt faded no-dec icon-large"></i>', array('title' => $quest_product->list_user_dislikes(), 'class' => 'user_product_vote')) ?>
 		<?php else: ?>
-		<span class="badge"><?= $quest_product->total_upvotes() ?></span> <a href="#loginModal" data-toggle="modal"><i class="icon-thumbs-up-alt faded no-dec icon-large"></i></a> &nbsp; 
-		<span class="badge"><?= $quest_product->total_downvotes() ?></span> <a href="#loginModal" data-toggle="modal"><i class="icon-thumbs-down-alt faded no-dec icon-large"></i></a>
+		<span class="badge"><?= $quest_product->total_likes() ?></span> <a href="#loginModal" data-toggle="modal"><i class="icon-thumbs-up-alt faded no-dec icon-large"></i></a> &nbsp; 
+		<span class="badge"><?= $quest_product->total_dislikes() ?></span> <a href="#loginModal" data-toggle="modal"><i class="icon-thumbs-down-alt faded no-dec icon-large"></i></a>
 	<?php endif; ?>
 	<?php if (isset($user) and $quest->belongs_to_user($user->id)): ?>
 	<a href="<?= $quest_product->remove_url() ?>" class="btn btn-danger pull-right" data-toggle="modal">&times;</a>
