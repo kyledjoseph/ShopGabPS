@@ -63,7 +63,6 @@ a:hover .icon-background-circle{background-color:#f17baf}
 #inviteModal .from-email{margin-top:.5em}
 #inviteModal .control-label{width:100px}
 #inviteModal .controls{margin-left:120px}
-#inviteModal input,#inviteModal textarea{width:28em}
 .invite-btn{padding-left:3.5em;padding-right:3.5em;padding-top:.5em;padding-bottom:.5em}
 .product-block{margin:1em;padding:1em;border:1px solid #ddd;position:relative}.product-block:before,.product-block:after{content:" ";display:table;}
 .product-block:after{clear:both}
