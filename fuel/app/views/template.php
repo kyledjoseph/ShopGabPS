@@ -1,65 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-	<meta charset="utf-8">
-	<title>ShopGab - Shop social!</title>
+	<title>ShopGab - Shop Socially!</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta name="description" content="">
-	<meta name="author" content="">
-	<?= Casset::render_css() ?>
-	<!--[if lt IE 9]>
-	<script src="../assets/js/html5shiv.js"></script>
-	<![endif]-->
+	<!-- Bootstrap -->
+	<script type="text/javascript" src="//use.typekit.net/kxv0tmh.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="/assets/css/font-awesome.min.css" rel="stylesheet" media="screen">
 </head>
-
 <body>
-	<a class="feedback" href="#feedbackModal" data-toggle="modal"><img src="/assets/img/feedback.png" /></a>
-	<div class="container">
-		<?= $view->header ?>
 
-		<?php if (isset($notice)): ?>
-			<div class="alert alert-<?= $notice->type ?>">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<?= $notice->message ?>
-			</div>
-		<?php endif; ?>
+	<!-- Header -->
+	<?= $view->header ?>
 
-		<?= $body ?>
-	</div>
-
-	<div class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="span4 left-footer">
-					<h3>Who are we?</h3>
-					<ul class="site-links">
-						<li><?= Html::anchor('#', 'About Us') // Html::anchor('about', 'About Us') ?></li>
-						<li><?= Html::anchor('#', 'Our Team') // Html::anchor('about/team', 'Our Team') ?></li>
-						<li><?= Html::anchor('http://shopgab.wordpress.com/', 'ShopGab Blog') ?></li>
-						<li><?= Html::anchor('#', 'Contact Us') // Html::anchor('contact', 'Contact Us') ?></li>
-					</ul>
-				</div>
-				<div class="span4 center-footer">
-					<h3>Connect with us.</h3>
-					<a href="https://www.facebook.com/shopgab"><?= Asset::img('facebook.png') ?></a>
-					<a href="https://twitter.com/shopgab"><?= Asset::img('twitter.png') ?></a>
-					<a href="https://plus.google.com/113964272651935695754" rel="publisher"><?= Asset::img('google.png') ?></a>
-				</div>
-				<div class="span4 right-footer">
-					<h3>Invite your friends.</h3>
-					<input type="text" placeholder="yourfriend@email.com">
-					<p class="faded">*Add additional emails by a comma</p>
-					<button class="btn btn-success" type="button">Invite Now!</button>
-				</div>
-			</div>
-			<p>&copy; 2013 ShopGab. All rights reserved. <?= Html::anchor('#', 'Privacy Policy') ?> - <?= Html::anchor('#', 'Terms of Use') ?></p>
+	<?php if (isset($notice)): ?>
+		<div class="alert alert-<?= $notice->type ?>">
+			<button type="button" class="close" data-dismiss="alert">&times;</button>
+			<?= $notice->message ?>
 		</div>
+	<?php endif; ?>
 
+	<?= $body ?>
+	</div>
+<div class="footer">
+	<div class="footer-white">
+		<div class="container">
+			<div class="about col-12 col-sm-6">
+				<h4>About Us</h4>
+				<hr />
+				<p>At ShopGab our mission is to help shoppers confidently purchase the best products for their needs. We provide a fun and simple way to store any product, gather feedback and get product recommendations from trusted friends. No longer does online shopping have to be a lonely, individualized process! Shop together and buy with the confidence and support of your friends and family.</p>
+			</div>
+			<div class="follow col-12 col-sm-6">
+				<h4>Follow Us</h4>
+				<hr />
+				<div class="social-links">
+					<a href="http://facebook.com/shopgab" class="facebook">
+						<i class="icon-facebook icon-2x icon-light"></i>
+					</a>
+					<a href="http://twitter.com/weshopgab" class="twitter">
+						<i class="icon-twitter icon-2x icon-light"></i>
+					</a>
+					<a href="http://pinterest.com/WeShopGab/boards/" class="pinterest">
+						<i class="icon-pinterest icon-2x icon-light"></i>
+					</a>
+					<a href="https://plus.google.com/u/0/113964272651935695754/posts" class="google-plus">
+						<i class="icon-google-plus icon-2x icon-light"></i>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<div class="col-12">
+				<p class="text-muted">&copy; ShopGab 2013, all rights reserved.</p>
+			</div>
+		</div>
 	</div>
 
 	<?= isset($modal) ? $modal : null ?>
 
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<!-- JavaScript plugins (requires jQuery) -->
+	<script src="http://code.jquery.com/jquery.js"></script>
+	<!-- Include all compiled plugins (below), or include individual files as needed -->
+	<script src="/assets/js/script.js"></script>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-42842086-1', 'shopgab.com');
+		ga('send', 'pageview');
+
+	</script>
 	<?= Casset::render_js() ?>
 </body>
 </html>

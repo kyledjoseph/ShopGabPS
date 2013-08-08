@@ -1,15 +1,20 @@
-<div id="deleteQuestModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deleteQuestModalLabel" aria-hidden="true">
-	<div class="modal-header">
-		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-		<h3 id="deleteQuestModalLabel">Are you sure?</h3>
-	</div>
-	<div class="modal-body">
-		<p>This change is permanent and can <em>not</em> be reversed.</p>
-	</div>
-	<div class="modal-footer">
-		<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-		<a href="/<?= $quest->delete_url() ?>">
-			<button class="btn btn-danger">Delete Quest</button>
-		</a>
-	</div>
-</div>
+<div class="modal fade" id="deleteQuestModal">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Are you sure?</h4>
+			</div>
+			<div class="modal-body">
+				<p>This change is permanent and can <strong>not</strong> be reversed.</p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<a href="/<?= $quest->delete_url() ?>">
+					<button type="button" class="btn btn-danger">Delete Quest</button>
+				</a>
+
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->

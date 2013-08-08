@@ -11,8 +11,16 @@ h1, h2, h3, h4, h5, h6 {
 	top: 20px;
 }
 
+.marg-top {
+	margin-top: 25px;
+}
+
 .header {
 	margin-bottom: 10px;
+}
+
+.full-width {
+	width: 100%;
 }
 
 .footer {
@@ -26,6 +34,14 @@ h1, h2, h3, h4, h5, h6 {
 		padding-top: 25px;
 		padding-bottom: 25px;
 	}
+}
+
+.block {
+	display: block;
+}
+
+.faded {
+	opacity: .8;
 }
 
 .social-links {
@@ -188,4 +204,427 @@ a:hover {
 
 .social-login {
 	margin-bottom: 25px;
+}
+
+.pad-top {
+	padding-top: 25px;
+}
+
+.pad-bottom {
+	padding-bottom: 25px;
+}
+
+.dash-search-select {
+	display: inline-block !important;
+	width: 180px !important;
+}
+
+.dash-search-select-small {
+	display: inline-block !important;
+	width: 100px !important;
+}
+
+.nav-image {
+	margin-top: -5px;
+}
+
+.dash-item a {
+
+}
+
+.dash-item img {
+	box-sizing: border-box;
+	border: 5px solid #ddd;
+}
+
+.dash-item h3 {
+	position: absolute;
+	bottom: 25px;
+	left: 25px;
+	padding-top: .5em;
+	padding-bottom: .5em;
+	margin-bottom: 0;
+	display: block;
+	box-sizing: border-box;
+	color: rgba(0,0,0,.6);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.dash-item a:hover img {
+	border-color: @brand-primary;
+}
+
+.box {
+	border-radius: 5px;
+	border: 1px solid #ddd;
+}
+
+.box h4 {
+	margin-top: 0;
+	color: #fafafa;
+	background-color: rgba(0,0,0,.8);
+	padding: 14px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	margin-bottom: 0;
+}
+
+.box .content {
+	padding: .5em;
+}
+
+
+.inline-block {
+	display: inline-block;
+}
+
+.help-a-friend .image {
+	display: none;
+}
+
+.corner-button {
+	position: absolute;
+	top: 32px;
+	right: 22px;
+}
+
+.align-center {
+	text-align: center;
+}
+
+
+/* quest.less */
+.help-me {
+	.faded;
+	span {
+		color: green;
+	}
+}
+
+
+.btn-sharing button {
+	margin-bottom: .7em;
+}
+
+.bubble {
+	position: relative;
+	padding: 1em;
+	background: #fafafa;
+	border: #aaa solid 1px;
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	color: #666;
+	&:after {
+		content: "";
+		position: absolute;
+		top: 10px;
+		left: -15px;
+		border-style: solid;
+		border-width: 10px 15px 10px 0;
+		border-color: transparent #f7f7f7;
+		display: block;
+		width: 0;
+		z-index: 1;
+	}
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 10px;
+		left: -16px;
+		border-style: solid;
+		border-width: 10px 15px 10px 0;
+		border-color: transparent #7F7F7F;
+		display: block;
+		width: 0;
+		z-index: 0;
+	}
+}
+
+.bookmarklet {
+	display: block;
+
+	text-align: center;
+	margin-bottom: 1em;
+}
+
+.purchase-within {
+	margin-top: .5em;
+	font-weight: bold;
+	font-size: 1.2em;
+	.faded;
+	select {
+		margin-left: .5em;
+		margin-top: .5em;
+		width: 7em;
+	}
+}
+
+.thumbs-up {
+	margin-bottom: 5px;
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.thumbs-down {
+	margin-top: 5px;
+	&:hover {
+		opacity: 1;
+	}
+}
+
+.grab { cursor: move; }
+
+.view-friends {
+	display: inline-block;
+	margin-top: .7em;
+}
+
+.add-product-drag {
+	margin-right: -1.5em;
+	padding-left: 1.5em;
+}
+
+.add-product-form  {
+	border-left: 1px solid #eee;
+	padding-left: 1em;
+	margin-left: 1em;
+
+	form{
+		padding-top: .5em;
+		padding-right: 1.5em;
+	}
+}
+
+#inviteModal {
+	form {
+		margin-top: 1em;
+	}
+	.from-email {
+		margin-top: .5em;
+	}
+
+	.control-label {
+		width: 100px;
+	}
+
+	.controls {
+		margin-left: 120px;
+	}
+}
+
+.invite-btn {
+	padding-left: 3.5em;
+	padding-right: 3.5em;
+	padding-top: .5em;
+	padding-bottom: .5em;
+}
+
+.product-block {
+	margin: 1em;
+	padding: 1em;
+	border: 1px solid #ddd;
+	position: relative;
+	.clearfix;
+
+	.btn-group {
+		position: absolute;
+		top: -1px;
+		right: -1px;
+	}
+
+	&.from-tab {
+		margin-top: 3em;
+
+		h5 {
+			position: absolute;
+			top: -2.8em;
+			left: -.1em;
+			background-color: @brand-primary;
+			padding: .3em;
+			padding-left: 1em;
+			border-radius: 6em .5em 0 0;
+			color: #fff;
+			opacity: .4;
+		}
+	}
+
+	.info {
+		display: inline-block;
+		width: 22em;
+	}
+
+	.inline-block {
+		display: inline-block;
+	}
+
+	.comments {
+		display: block;
+		margin-bottom: .5em;
+	}
+
+	.comment {
+		float: left;
+		clear: both;
+		margin-top: .5em;
+		display: block;
+		.name {
+			color: @brand-primary;
+			font-weight: bold;
+			display: inline;
+		}
+
+		.time {
+			.faded;
+		}
+	}
+
+	.name {
+		display: block;
+		margin-top: 0em;
+
+		span {
+			color: green;
+			font-size: 1.2em;
+			font-weight: bold;
+			.faded;
+		}
+	}
+
+	.price {
+		.faded;
+		.block;
+	}
+
+	.description {
+		.faded;
+		.block;
+	}
+	.image {
+		img {
+			margin-top: -3em;
+		}
+	}
+
+	.options {
+		display: inline-block;
+		text-align: center;
+		width: 13em;
+		position: absolute;
+		top: 1em;
+		right: 1em;
+
+		.score{
+			margin-bottom: .5em;
+			i:hover {
+				opacity: 1;
+				cursor: pointer;
+			}
+		}
+
+		.btn {
+			margin: 0;
+		}
+		
+	}
+	.product-number {
+		position: absolute;
+		left: -4px;
+		bottom: -4px;
+		background-color: red;
+		height: 36px;
+		width: 37px;
+		background: url('../img/bleft.png');
+		span {
+			font-size: .9em;
+			display: block;
+			margin-top: 1.2em;
+			margin-left: .5em;
+			color: white;
+			text-shadow: 1px 1px 1px #000;
+		}
+	}
+}
+
+#addProductModal {
+	.control-label {
+		display: none;
+	}
+
+}
+
+.add-product {
+	position: absolute;
+	top: .3em;
+	right: .4em;
+	padding-left: 1.5em;
+	padding-right: 1.5em;
+	padding-top: .2em;
+	padding-bottom: .2em;
+
+}
+
+.chat {
+
+	max-height: 300px;
+	overflow-y: scroll;
+
+	.message {
+		margin: 1em;
+	}
+
+	.name {
+		margin-left: .5em;
+		padding-bottom: .5em;
+		.faded;
+	}
+
+	.content {
+		padding: .5em;
+		background-color: #E2EBEE;
+		border-radius: .5em;
+	}
+
+	.time {
+		margin-top: 0;
+		font-style: italic;
+		.faded;
+	}
+}
+
+.chat-append {
+		margin-bottom: -1px;
+		margin-left: -1px;
+		.full-width;
+
+		input {
+			width: 81%;
+			box-sizing: border-box;
+			height: 30px;
+		}
+
+		button {
+			width: 20%;
+			box-sizing: border-box;
+		}
+	}
+
+.no-dec:hover {
+	text-decoration: none;
+}
+
+.block {
+	display: block !important;
+}
+
+.push-center {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.modal-slice {
+	padding: 1em;
 }

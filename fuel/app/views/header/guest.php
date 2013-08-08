@@ -1,17 +1,16 @@
-			<div class="page-header clearfix">
-				<div class="row">
-					<div class="span4 header-left">
-						<?= Html::anchor('/', Asset::img('full-logo.png')) ?>
-					</div>
-					<div class="span4 offset4 header-right">
-						<ul class="site-nav nav nav-pills pull-right">
-							<li>
-								<a href="#loginModal" data-toggle="modal">Login</a>
-							</li>
-							<li>
-								<button href="#registerModal" data-toggle="modal" class="btn btn-success">Sign Up</button>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
+  <div class="header container">
+    <!-- Logo -->
+    <div class="col-4 col-sm-2">
+      <h1><a href="/"><img src="/assets/tmp/img/logo.png" alt="ShopGab" /></a></h1>
+    </div>
+
+    <!-- Navigation -->
+    <div class="col-8 col-sm-10">
+      <?php if (Fuel::$env !== 'production'): ?>
+      <ul class="landing-nav nav nav-pills pull-right">
+        <li><a href="#loginModal" data-toggle="modal">Login</a></li>
+        <li class="active"><a href="#registerModal" data-toggle="modal">Sign Up</button></a></li>
+      </ul>
+      <?php endif; ?>
+    </div>
+  </div>
