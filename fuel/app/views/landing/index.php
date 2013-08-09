@@ -38,7 +38,7 @@
         </div>
         <div class="col-12 col-sm-6">
           <h2>Shop Socially!</h2>
-          <h3>Because shopping is more fun with your friends.</h3>
+          <h3>Because shopping is more fun with friends.</h3>
             <div class="email-form row">
               <div class="col-12 col-sm-12">
                 <?= Form::open(array('action' => 'try')) ?>
