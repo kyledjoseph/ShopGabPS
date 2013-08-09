@@ -33,10 +33,10 @@
   <div class="title">
     <div class="title-inner">
       <div class="title-content container">
-        <div class="col-12 col-sm-6">
+        <div class="col-12 col-sm-5 hidden-sm">
           <img width="100%" src="/assets/img/girls.png" />
         </div>
-        <div class="col-12 col-sm-6">
+        <div class="col-12 col-sm-7 align-center">
           <h2>Shop Socially!</h2>
           <h3>Because shopping is more fun with friends.</h3>
             <div class="email-form row">
