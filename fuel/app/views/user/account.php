@@ -51,7 +51,7 @@
 				</div>
 			</div>
 
-			<?php if ($user->is_authenticated_with('facebook'): ?>
+			<?php if ($user->is_authenticated_with('facebook') ?>
 
 			<div class="control-group account-form">
 				<div class="controls">
