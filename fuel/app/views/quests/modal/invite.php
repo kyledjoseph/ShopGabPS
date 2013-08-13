@@ -52,7 +52,7 @@
 						</div>
 					</label>
 				</div>
-		<?php if ($i >= 50) break; $i++; endforeach; ?>git
+		<?php if ($i >= 50) break; $i++; endforeach; ?>
 	<?php endif; ?>
 </div>
 <div class="tab-pane fade invite-friends-container" id="email">
