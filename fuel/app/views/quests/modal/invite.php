@@ -15,8 +15,8 @@
 			</ul>
 
 			<div id="myTabContent" class="tab-content">
-				<div class="tab-pane fade in active" id="friends">
-					<div class="modal-slice invite-friends-container">
+				<div class="tab-pane fade in active invite-friends-container" id="friends">
+					<div class="modal-slice">
 						<h4>Friends on ShopGab</h4>
 						<?php foreach ($user->get_friends() as $friend): ?>
 						<div class="checkbox">
@@ -28,7 +28,6 @@
 				</div>
 			</div>
 			<?php if ($user->is_authenticated_with('facebook')): ?>
-			<div class="right-box">
 				<h4>Invite Friends to ShopGab</h4>
 				<?php foreach ($user->get_facebook_friends() as $facebook_friend): ?>
 				<div class="media">
@@ -44,7 +43,6 @@
 					</label>
 				</div>
 		<?php endforeach; ?>
-		</div>
 	<?php endif; ?>
 	<div class="tab-pane fade" id="facebook">
 		<a class="" href="#" 
