@@ -7,20 +7,9 @@ class Controller_Bookmark extends Controller_App
 	public function before()
 	{
 		parent::before();
-		
-		if (Fuel::$env == 'production')
-		{
-			$this->domain = 'http://shopgab.com/';
-		}
-		else
-		{
-			$this->domain = 'http://shopgab.dev/';
-		}
 
-		if (! Input::is_ajax())
-		{
-			$this->template->domain = $this->domain;
-		}
+		$child_js = File::file_info(DOCROOT . 'assets/js/bookmark/child.js');
+		$this->template->last_modified = $child_js['last_modified'];
 
 		//Config::set('profiling', false); // not working
 	}

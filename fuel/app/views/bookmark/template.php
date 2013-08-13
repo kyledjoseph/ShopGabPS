@@ -9,11 +9,11 @@
 	<?php //Asset::css('bootstrap.css') ?>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-	<script src="/assets/js/bookmark/child.js?cb=<? echo rand(); ?>"></script>
+	<script src="/assets/js/bookmark/child.js?cb=<?= isset($last_modified) ? $last_modified : time() ?>"></script>
 
 </head>
 <body>
-	<div class="itemnation-box" data-domain="<?= $domain ?>">
+	<div class="itemnation-box">
 
 		<div>
 			<img class="image" src="/assets/img/bookmark/logo.png" />
