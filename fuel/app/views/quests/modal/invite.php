@@ -43,8 +43,8 @@
 						</div>
 					</label>
 				</div>
-			</div>
 		<?php endforeach; ?>
+		</div>
 	<?php endif; ?>
 	<div class="tab-pane fade" id="facebook">
 		<a class="" href="#" 
