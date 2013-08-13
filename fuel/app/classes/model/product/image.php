@@ -7,7 +7,7 @@ class Model_Product_Image extends \Orm\Model
 		'product_id',
 		'name',
 		'src',     // deprecated
-		'src_url', // deprecated
+		'src_url',
 		'public_uri',
 		'public_ssl_uri',
 		'public_streaming_uri',

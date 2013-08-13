@@ -97,12 +97,12 @@ class Model_Product extends \Orm\Model
 
 
 
-	public function add_image($file)
+	public function add_image($src_url)
 	{
 		$connection = Service_Cloudfiles::get_connection();
 
 		// make request
-		$curl = Request::forge($url, 'curl');
+		$curl = Request::forge($src_url, 'curl');
 		$curl->execute();
 		$response   = $curl->response();
 
@@ -136,6 +136,7 @@ class Model_Product extends \Orm\Model
 			$product_image = new Model_Product_Image;
 			$product_image->user_id              = $this->id;
 			$product_image->name                 = $image->name;
+			$product_image->src_url              = $src_url;
 			$product_image->public_uri           = $image->public_uri();
 			$product_image->public_ssl_uri       = $image->public_ssl_uri();
 			$product_image->public_streaming_uri = $image->public_streaming_uri();
