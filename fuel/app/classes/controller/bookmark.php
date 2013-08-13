@@ -9,7 +9,7 @@ class Controller_Bookmark extends Controller_App
 		parent::before();
 
 		$child_js = File::file_info(DOCROOT . 'assets/js/bookmark/child.js');
-		$this->template->last_modified = $child_js['last_modified'];
+		$this->template->last_modified = $child_js['modified'];
 
 		//Config::set('profiling', false); // not working
 	}
