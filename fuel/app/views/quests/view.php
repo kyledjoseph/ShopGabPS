@@ -29,13 +29,6 @@
 		<?= Form::close() ?>
 		<span class="faded"><?= $quest->purchase_within !== '0' ? "({$quest->purchase_within()}) days" : '' ?></span>
 	</div>
-	<div class="purchase-within">
-		Order by:
-		<?= Form::open(array('id' => 'sort_quest_by', 'class' => 'inline-block submit-on-change', 'method' => 'GET', 'action' => $quest->url())) ?>
-		 <?= Form::select('order', $quest->active_sort(), $quest->sort_options(), array('class' => 'form-control')) ?>
-		<?= Form::close() ?>
-
-	</div>
 </div>
 
 <div class="col-4 align-center">
@@ -59,7 +52,9 @@
 	<div class="col-8">
 		<div class="box marg-top">
 			<h4>Products</h4>
-
+			<?= Form::open(array('id' => 'sort_quest_by', 'class' => 'pull-right sort-by inline-block submit-on-change', 'method' => 'GET', 'action' => $quest->url())) ?>
+				<?= Form::select('order', $quest->active_sort(), $quest->sort_options(), array('class' => 'form-control')) ?>
+				<?= Form::close() ?>
 			<?php foreach ($quest->get_quest_products_sorted() as $quest_product): ?>
 			<?php $product = $quest_product->product ?>
 
