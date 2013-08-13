@@ -1,12 +1,12 @@
 <div class="modal fade" id="inviteModal">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title">Invite Friends</h4>
-      </div>
-     <div class="modal-body">
-			<ul id="myTab" class="nav nav-tabs">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h4 class="modal-title">Invite Friends</h4>
+			</div>
+			<div class="modal-body">
+				<ul id="myTab" class="nav nav-tabs">
 					<li class="active"><a href="#friends" data-toggle="tab">Friends</a></li>
 					<?php if (($user->is_authenticated_with('facebook')) || 1==1): ?>
 					<li><a href="#facebook" data-toggle="tab">Facebook</a></li>
@@ -27,7 +27,6 @@
 					<?php endforeach; ?>
 				</div>
 			</div>
-
 			<?php if ($user->is_authenticated_with('facebook')): ?>
 			<div class="right-box">
 				<h4>Invite Friends to ShopGab</h4>
@@ -44,9 +43,9 @@
 						</div>
 					</label>
 				</div>
+			</div>
 		<?php endforeach; ?>
 	<?php endif; ?>
-
 	<div class="tab-pane fade" id="facebook">
 		<a class="" href="#" 
 		onclick="
@@ -78,11 +77,11 @@
 			<textarea class="form-control" name="description" rows="7"><?= $user->display_name() ?> is trying to find a <?= $quest->name ?> through ShopGab and has requested your input! Please click on the link below to see their page and join in the search. Thanks!</textarea>
 		</div>
 	</div>
-		<div class="modal-footer">
-			<button class="btn btn-primary">Invite</button>
-			<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-		</form>
-	</div>
+	<div class="modal-footer">
+		<button class="btn btn-primary">Invite</button>
+		<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+	</form>
+</div>
 </div>
 </div>
 </div>
