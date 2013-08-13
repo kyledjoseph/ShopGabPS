@@ -121,7 +121,9 @@ class Model_Quest extends \Orm\Model
 
 	public function purchase_within()
 	{
-		return round(($this->purchase_by - time()) / 86400);
+		return ! empty($this->purchase_by)
+		 ? round(($this->purchase_by - time()) / 86400)
+		 : $this->purchase_within_value($this->purchase_within) / 86400;
 	}
 
 	public static function purchase_within_fields()
@@ -154,7 +156,6 @@ class Model_Quest extends \Orm\Model
 	{
 		$this->purchase_within = $purchase_within;
 		$this->purchase_by     = time() + $this->purchase_within_value($purchase_within);
-		$this->save();
 	}
 
 
@@ -344,8 +345,10 @@ class Model_Quest extends \Orm\Model
 			'user_id'         => $user_id,
 			'name'            => $name,
 			'description'     => $description,
-			'purchase_within' => $purchase_within,
 		));
+
+		$quest->set_purchase_within($purchase_within);
+
 		return $quest->save() ? $quest : null;
 	}
 }

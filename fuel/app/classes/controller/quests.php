@@ -82,7 +82,9 @@ class Controller_Quests extends Controller_App
 	public function post_create()
 	{
 		$post  = $this->post_data('name', 'description', 'purchase_within');
+
 		$quest = $this->user->create_quest($post->name, $post->description, $post->purchase_within);
+		
 		$this->redirect($quest->url());
 	}
 
@@ -235,6 +237,7 @@ class Controller_Quests extends Controller_App
 		$post = $this->post_data('purchase_within');
 
 		$quest->set_purchase_within($post->purchase_within);
+		$quest->save();
 
 		$this->redirect($quest->url());
 	}

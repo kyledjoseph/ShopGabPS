@@ -17,14 +17,7 @@
 				</div>
 				<div class="control-group">
 					<label for="purchase_within">When would you like to buy it?</label>
-						<select class="form-control" name="purchase_within">
-							<option disabled selected>Purchase by</option>
-							<option>1 week</option>
-							<option>2 weeks</option>
-							<option>3 weeks</option>
-							<option>4 weeks</option>
-							<option>5 weeks</option>
-						</select>
+					<?= Form::select('purchase_within', null, Model_Quest::purchase_within_fields(), array('class' => 'form-control')) ?>
 				</div>
 			</div>
 			<div class="modal-footer footer-in-form">
