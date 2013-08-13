@@ -8,8 +8,11 @@ class Controller_Bookmark extends Controller_App
 	{
 		parent::before();
 
-		$child_js = File::file_info(DOCROOT . 'assets/js/bookmark/child.js');
-		$this->template->last_modified = $child_js['time_modified'];
+		if (! Input::is_ajax())
+		{
+			$child_js = File::file_info(DOCROOT . 'assets/js/bookmark/child.js');
+			$this->template->last_modified = $child_js['time_modified'];
+		}
 
 		//Config::set('profiling', false); // not working
 	}
