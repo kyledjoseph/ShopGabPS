@@ -55,6 +55,8 @@ class Controller_Quests extends Controller_App
 			$quest->set_active_sort($sort);
 		}
 
+		$quest_products = $quest->get_quest_products_sorted();
+
 		// Casset::js('lib/jquery.expander.min.js');
 		Casset::js('lib/jquery.tipTip.js');
 		Casset::js('site/quest.js');
@@ -70,8 +72,9 @@ class Controller_Quests extends Controller_App
 
 		$this->template->body = View::forge('quests/view', array(
 			'quest'           => $quest,
+			'quest_products'  => $quest_products,
+			'total_products'  => count($quest_products),
 			'quest_messages'  => $quest->get_messages(),
-			'product_i'       => 1,
 		));
 	}
 
