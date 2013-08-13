@@ -97,7 +97,7 @@ a:hover .icon-background-circle{background-color:#f17baf}
 .invite-friends-container{height:500px;overflow:scroll}
 .marg-left{margin-left:25px}
 .sort-by{margin-top:5px;margin-bottom:5px;margin-right:5px}
-.clear{clear:both;margin-top:-13px}
+.clear{clear:both;margin-bottom:-13px}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 audio,canvas,video{display:inline-block}
 audio:not([controls]){display:none;height:0}
