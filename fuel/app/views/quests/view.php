@@ -55,6 +55,7 @@
 			<?= Form::open(array('id' => 'sort_quest_by', 'class' => 'pull-right sort-by inline-block submit-on-change', 'method' => 'GET', 'action' => $quest->url())) ?>
 				<?= Form::select('order', $quest->active_sort(), $quest->sort_options(), array('class' => 'form-control')) ?>
 				<?= Form::close() ?>
+				<div class="clear"></div>
 			<?php foreach ($quest->get_quest_products_sorted() as $quest_product): ?>
 			<?php $product = $quest_product->product ?>
 
