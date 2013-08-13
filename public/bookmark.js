@@ -41,6 +41,8 @@
             /** Set script domain. */
             if ($("#itemnation-script").attr('src').indexOf('shopgab.dev') >= 0) {
                 inline.script_domain = 'shopgab.dev';
+            } else if ($("#itemnation-script").attr('src').indexOf('test.shopgab.com') >= 0) {
+                inline.script_domain = 'test.shopgab.com';
             } else {
                 inline.script_domain = 'shopgab.com';
             }
@@ -80,7 +82,7 @@
                     error: errorMsg + ':' + lineNumber
                 });
 
-                $.ajax({
+               /*$.ajax({
                     url: '/bookmark/log',
                     data: error_log,
                     type: 'POST',
@@ -89,7 +91,7 @@
                     complete: function () {
                         child.terminate();
                     }
-                });
+                });*/
             }
             }
         },

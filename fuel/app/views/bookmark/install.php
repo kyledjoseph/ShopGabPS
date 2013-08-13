@@ -2,4 +2,4 @@
 <br />
 <a href="javascript:(function(){var e=document.createElement('script');e.id='itemnation-script';e.src='http://shopgab.dev/bookmark.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();">sg.dev</a>
 <br />
-<a href="javascript:(function(){var e=document.createElement('script');e.id='itemnation-script';e.src='http://shopgab.dev/bookmark.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();">sg.test</a>
+<a href="javascript:(function(){var e=document.createElement('script');e.id='itemnation-script';e.src='http://test.shopgab.com/bookmark.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();">sg.test</a>

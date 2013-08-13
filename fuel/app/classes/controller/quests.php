@@ -62,7 +62,6 @@ class Controller_Quests extends Controller_App
 
 		if ($this->user_logged_in())
 		{
-			// $this->modal->add_view('quests/modal/invite', array('quest' => $quest)));
 			$this->add_modal(View::forge('quests/modal/invite', array('quest' => $quest)));
 			$this->add_modal(View::forge('quests/modal/add_product'));
 			$this->add_modal(View::forge('quests/modal/edit_quest', array('quest' => $quest)));
