@@ -15,7 +15,7 @@
 			</ul>
 
 			<div id="myTabContent" class="tab-content">
-				<div class="tab-pane fade in active" id="friends">
+				<div class="tab-pane fade in active invite-friends-container" id="friends">
 					<div class="modal-slice">
 						<h4>Friends on ShopGab</h4>
 						<?php foreach ($user->get_friends() as $friend): ?>
@@ -27,7 +27,7 @@
 					<?php endforeach; ?>
 				</div>
 			</div>
-	<div class="tab-pane fade" id="facebook">
+	<div class="tab-pane fade invite-friends-container" id="facebook">
 		<a class="" href="#" 
 		onclick="
 		window.open(
@@ -55,7 +55,7 @@
 		<?php if ($i >= 50) break; $i++; endforeach; ?>
 	<?php endif; ?>
 </div>
-<div class="tab-pane fade" id="email">
+<div class="tab-pane fade invite-friends-container" id="email">
 	<div class="modal-slice">
 		<?= Form::open(array('action' => $quest->invite_url(), 'class' => '')) ?>
 		<div class="form-group">
