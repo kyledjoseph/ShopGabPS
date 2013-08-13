@@ -39,7 +39,7 @@
 	</a>
 	<?php if ($user->is_authenticated_with('facebook')): ?>
 				<h4>Invite Friends to ShopGab</h4>
-				<?php foreach ($user->get_facebook_friends() as $facebook_friend): ?>
+				<?php $i = 1; foreach ($user->get_facebook_friends() as $facebook_friend): ?>
 				<div class="media">
 					<label>
 						<div class="inline-block">
@@ -52,7 +52,7 @@
 						</div>
 					</label>
 				</div>
-		<?php endforeach; ?>
+		<?php if ($i >= 50) break; $i++; endforeach; ?>
 	<?php endif; ?>
 </div>
 <div class="tab-pane fade" id="email">
