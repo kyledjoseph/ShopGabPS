@@ -241,7 +241,7 @@ class Model_User extends \Orm\Model
 	{
 		if ($this->avatar_type == 2)
 		{
-			return $this->facebook_profile_pic();
+			return $this->facebook_profile_pic($width, $height);
 		}
 
 		if ($this->avatar_type == 1)
