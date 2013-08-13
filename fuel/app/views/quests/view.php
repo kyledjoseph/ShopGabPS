@@ -9,7 +9,7 @@
 
 <div class="container">
 	<div class="col-2">
-		<?= Html::img($quest->user->profile_pic(100, 100)) ?>
+		<?= Html::img($quest->user->get_avatar_uri(200, 200), array('width' => 100, 'height' => 100)) ?>
 	</div>
 	<div class="col-6">
 		<div class="bubble">

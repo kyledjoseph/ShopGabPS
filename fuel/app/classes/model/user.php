@@ -283,52 +283,6 @@ class Model_User extends \Orm\Model
 
 
 
-
-	/**
-	 * Get user profile picture
-	 */
-	public function profile_pic($width = 32, $height = 32)
-	{
-		$fb_auth = $this->user_authentication('facebook');
-
-		if (isset($fb_auth->id))
-		{
-			return "https://graph.facebook.com/{$fb_auth->provider_uid}/picture?width={$width}&height={$height}";
-		}
-
-		return '/assets/img/default/user/' . $width . 'x' . $height . '.png';
-	}
-
-	public function profile_pic_path()
-	{
-		return '/assets/img/uploads/avatar/' . $this->profile_pic;
-	}
-
-	public function set_profile_pic($path)
-	{
-		$this->delete_profile_pic();
-		$this->profile_pic = $path;
-		$this->save();
-	}
-
-	public function delete_profile_pic()
-	{
-		if (! empty($this->profile_pic))
-		{
-			$path = $this->profile_pic_path();
-			if (file_exists($path))
-			{
-				unlink($path);
-			}
-		}
-	}
-
-
-
-
-
-
-
 	/**
 	 * Does the user have a password set
 	 */

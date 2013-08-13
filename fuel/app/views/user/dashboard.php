@@ -78,7 +78,7 @@
 				<div class="content"><?php foreach ($user->get_friends_upcoming_quests() as $quest): ?>
 				<div class="friend-box">
 					<div class="image">
-						<?= Html::img($quest->user->profile_pic()) ?>
+						<?= Html::img($quest->user->get_avatar_uri()) ?>
 					</div>
 					<div class="text">
 						<h5><?= $quest->user->display_name() ?></h5>

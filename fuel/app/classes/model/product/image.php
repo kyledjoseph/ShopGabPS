@@ -5,8 +5,9 @@ class Model_Product_Image extends \Orm\Model
 	protected static $_properties = array(
 		'id',
 		'product_id',
-		'src',
-		'src_url',
+		'name',
+		'src',     // deprecated
+		'src_url', // deprecated
 		'public_uri',
 		'public_ssl_uri',
 		'public_streaming_uri',

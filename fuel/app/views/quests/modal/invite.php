@@ -21,7 +21,7 @@
 						<?php foreach ($user->get_friends() as $friend): ?>
 						<div class="checkbox">
 							<label>
-								<input type="checkbox"> <?= Html::img($friend->profile_pic(32,32)) ?> <?= $friend->display_name() ?>
+								<input type="checkbox"> <?= Html::img($friend->get_avatar_uri()) ?> <?= $friend->display_name() ?>
 							</label>
 						</div>
 					<?php endforeach; ?>
