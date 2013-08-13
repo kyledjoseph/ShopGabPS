@@ -62,6 +62,8 @@ class Model_Product extends \Orm\Model
 		),
 	);
 
+	protected $image_sizes = array('250' => '220', '50' => '50');
+
 
 	public function name()
 	{
@@ -93,6 +95,66 @@ class Model_Product extends \Orm\Model
 		return is_object($this->image);
 	}
 
+
+
+	public function add_image($file)
+	{
+		$connection = Service_Cloudfiles::get_connection();
+
+		// make request
+		$curl = Request::forge($url, 'curl');
+		$curl->execute();
+		$response   = $curl->response();
+
+		// save paths
+		$file_name = md5(uniqid(rand(), true)) . '.png';
+		$tmp_dir   = APPPATH . 'tmp/';
+		$tmp_path  = $tmp_dir . $file_name;
+
+		// save tmp
+		File::create($tmp_dir, $file_name, $response->body());
+
+		// resize thumbs
+		foreach ($this->image_sizes as $width => $height)
+		{
+			$tmp_resize_path = APPPATH . "tmp/{$width}x{$height}_{$file_name}";
+
+			if (! is_dir($tmp_resize_path))
+			{
+				mkdir($tmp_resize_path, 777, true);
+			}
+
+			Image::load($tmp_path)
+				->crop_resize($width, $height)
+				->save($tmp_resize_path);
+
+			$container = $connection->get_container("products_{$width}x{$height}");
+			$image     = $container->create_object($file_name);
+
+			$image->load_from_filename($tmp_resize_path);
+
+			$product_image = new Model_Product_Image;
+			$product_image->user_id              = $this->id;
+			$product_image->name                 = $image->name;
+			$product_image->public_uri           = $image->public_uri();
+			$product_image->public_ssl_uri       = $image->public_ssl_uri();
+			$product_image->public_streaming_uri = $image->public_streaming_uri();
+			$product_image->width                = $width;
+			$product_image->height               = $height;
+			$product_image->content_length       = $image->content_length;
+			$product_image->save();
+
+			File::delete($tmp_resize_path);
+		}
+
+		$this->set_avatar_type('custom');
+
+		File::delete($tmp_path);
+
+	}
+
+
+
 	public function image()
 	{
 		return $this->has_image() ? $this->image->src() : null;
@@ -121,12 +183,6 @@ class Model_Product extends \Orm\Model
 	public function small_html()
 	{
 		return Html::img($this->small(), array('alt' => $this->name()));
-	}
-
-	public function add_image($src)
-	{
-		$product_image = Model_Product_Image::add_image($this->id, $src);
-		return $product_image;
 	}
 
 	public static function get_index()
