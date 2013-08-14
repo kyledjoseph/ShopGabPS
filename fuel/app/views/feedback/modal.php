@@ -6,7 +6,7 @@
 					<h3 id="feedbackModalLabel">Feedback</h3>
 				</div>
 				<div class="modal-body">
-					<form action="user/feedback">
+					<form action="user/feedback" method="post">
 						<div class="form-group">
 						<input class="form-control" name="name" type="text" placeholder="Your Name">
 					</div>
