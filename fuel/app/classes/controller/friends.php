@@ -13,6 +13,7 @@ class Controller_Friends extends Controller_App
 	public function get_index()
 	{
 		$this->add_modal(View::forge('user/modal/start_quest'));
+		$this->add_modal(View::forge('friends/modal/invite'));
 		
 		$this->template->body = View::forge('friends/index', array(
 			'friends_quests' => $this->user->get_friends_quests(),
@@ -28,6 +29,8 @@ class Controller_Friends extends Controller_App
 			$this->redirect('friends', 'error', 'You are not friends with this user');
 		}
 
+		$this->add_modal(View::forge('user/modal/start_quest'));
+		
 		$this->template->body = View::forge('friends/index', array(
 			'friends_quests' => $friendship->friend->get_public_quests(),
 		));
