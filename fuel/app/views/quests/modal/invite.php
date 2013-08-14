@@ -22,7 +22,7 @@
 									<?php foreach ($user->get_friends() as $friend): ?>
 									<div class="checkbox">
 										<label>
-											<input type="checkbox"> <?= Html::img($friend->get_avatar_uri()) ?> <?= $friend->display_name() ?>
+											<input type="checkbox" name="sg_friends[]" value="<?= $friend->id ?>"> <?= Html::img($friend->get_avatar_uri()) ?> <?= $friend->display_name() ?>
 										</label>
 									</div>
 									<?php endforeach; ?>
@@ -34,7 +34,7 @@
 										<div class="media">
 											<label>
 												<div class="inline-block">
-													<input class="inline-block auto-width" type="checkbox" />
+													<input class="inline-block auto-width" name="fb_friends[]" value="<?= $facebook_friend->identifier ?>" type="checkbox" />
 												</div>
 												<div class="inline-block">
 													<?= Html::img($facebook_friend->photo_url()) ?>
