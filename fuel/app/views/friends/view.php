@@ -37,7 +37,7 @@
 		<div class="row pad-top">
 			<div class="col-12">
 
-				<?php $i = 1; foreach ($friends_quests as $quest): ?>
+				<?php $i = 1; foreach ($quests as $quest): ?>
 
 				<?php if ($i == 1): ?>
 				<div class="row">
@@ -80,29 +80,10 @@
 
 	<div class="col-12 col-sm-4 pad-top">
 		<div class="box help-a-friend">
-			<h4>Friends</h4>
-			<button href="#inviteFriendsModal" class="corner-button btn btn-medium btn-success" data-toggle="modal">+ Invite</button>
+			<h4><?= $friendship->friend->display_name() ?></h4>
 			<div class="content">
-						
-				<div class="friend-box align-center">
-					<form class="form-search">
-						<input type="text" class="input-medium form-control" placeholder="Search">
-					</form>
-				</div>
-
-				<?php foreach ($user->get_friendships() as $friendship): ?>
-				<div class="friend-box">
-					<div class="media">
-						<a class="pull-left" href="#">
-							<img class="media-object" src="<?= $friendship->friend->get_avatar_uri() ?>" />
-						</a>
-						<div class="media-body">
-							<strong><?= Html::anchor("friends/view/{$friendship->id}", $friendship->friend->display_name()) ?></strong>  - <?= Html::anchor("friends/hide/{$friendship->id}", 'Remove', array('class' => 'remove')) ?>
-						</div>
-					</div>
-				</div>
-				<?php endforeach; ?>
-
+				<?= Html::img($friendship->friend->get_avatar_uri(200, 200)) ?>
+				<p><?= $total_quests . ' ' . Inflector::pluralize('quest', $total_quests) ?>
 			</div>
 		</div>
 	</div>

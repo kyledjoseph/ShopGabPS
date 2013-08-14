@@ -29,10 +29,14 @@ class Controller_Friends extends Controller_App
 			$this->redirect('friends', 'error', 'You are not friends with this user');
 		}
 
+		$quests = $friendship->friend->get_public_quests();
+
 		$this->add_modal(View::forge('user/modal/start_quest'));
-		
-		$this->template->body = View::forge('friends/index', array(
-			'friends_quests' => $friendship->friend->get_public_quests(),
+
+		$this->template->body = View::forge('friends/view', array(
+			'friendship'   => $friendship,
+			'quests'       => $quests,
+			'total_quests' => count($quests),   
 		));
 	}
 
