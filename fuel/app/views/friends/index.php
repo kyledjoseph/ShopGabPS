@@ -89,7 +89,7 @@
 					<div class="friend-box">
 						<div class="media">
 							<a class="pull-left" href="#">
-    							<img class="media-object" src="//placehold.it/50x50" />
+    							<img class="media-object" src="//placehold.it/30x30" />
   							</a>
   							<div class="media-body">
     							<strong><?= Html::anchor("friends/view/{$friendship->id}", $friendship->friend->display_name()) ?></strong>  - <?= Html::anchor("friends/hide/{$friendship->id}", 'Remove', array('class' => 'remove')) ?>
