@@ -9,8 +9,16 @@
 
 	<div class="container">
 		<div class="col-12 col-sm-8">
+			
+			<div class="row pad-top">
+				<ul class="breadcrumb">
+					<li><?= Html::anchor('friends', 'All ShopGab Friends') ?></li>
+					<li class="active"><?= $friendship->friend->display_name() ?>'s Quests</li>
+				</ul>
+			</div>
+
 			<div class="row">
-				<div class="col-12 col-sm-8 pad-top">
+				<div class="col-12 col-sm-8">
 					<?php if (Fuel::$env !== 'production'): ?>
 					<select class="dash-search-select form-control">
 						<option disabled selected>Sort By Recent Updates</option>
@@ -30,7 +38,7 @@
 					</select>
 				<?php endif; ?>
 			</div>
-			<div class="col-12 col-sm-4 pad-top">
+			<div class="col-12 col-sm-4">
 					<button href="#questModal" class="btn btn-success pull-right" data-toggle="modal">Start a new quest!</button>
 			</div>
 		</div>

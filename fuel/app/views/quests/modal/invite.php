@@ -16,37 +16,43 @@
 
 					<div id="myTabContent" class="tab-content">
 						<div class="tab-pane fade in active" id="friends">
-							<div class="row">
-								<div class="col-12 col-sm-6">
-									<h3>Friends on ShopGab</h3>
-									<?php foreach ($user->get_friends() as $friend): ?>
-									<div class="checkbox">
-										<label>
-											<input type="checkbox" name="sg_friends[]" value="<?= $friend->id ?>"> <?= Html::img($friend->get_avatar_uri()) ?> <?= $friend->display_name() ?>
-										</label>
-									</div>
-									<?php endforeach; ?>
-								</div>
-								<div class="col-12 col-sm-6 invite-friends-container">
-									<?php if ($user->is_authenticated_with('facebook')): ?>
-										<h3>Friends on Facebook</h3>
-										<?php $i = 1; foreach ($user->get_facebook_friends() as $facebook_friend): ?>
-										<div class="media">
+							<?= Form::open(array('action' => $quest->url('invite/friends'), 'class' => '')) ?>
+								<div class="row">
+									<div class="col-12 col-sm-6">
+										<h3>Friends on ShopGab</h3>
+										<?php foreach ($user->get_friends() as $friend): ?>
+										<div class="checkbox">
 											<label>
-												<div class="inline-block">
-													<input class="inline-block auto-width" name="fb_friends[]" value="<?= $facebook_friend->identifier ?>" type="checkbox" />
-												</div>
-												<div class="inline-block">
-													<?= Html::img($facebook_friend->photo_url()) ?>
-													<?= $facebook_friend->display_name ?>
-													<!--<?= Html::anchor($facebook_friend->profile_url(), $facebook_friend->identifier) ?>-->
-												</div>
+												<input type="checkbox" name="sg_friends[]" value="<?= $friend->id ?>"> <?= Html::img($friend->get_avatar_uri()) ?> <?= $friend->display_name() ?>
 											</label>
 										</div>
-										<?php if ($i >= 50) break; $i++; endforeach; ?>
-									<?php endif; ?>
+										<?php endforeach; ?>
+									</div>
+									<div class="col-12 col-sm-6 invite-friends-container">
+										<?php if ($user->is_authenticated_with('facebook')): ?>
+											<h3>Friends on Facebook</h3>
+											<?php $i = 1; foreach ($user->get_facebook_friends() as $facebook_friend): ?>
+											<div class="media">
+												<label>
+													<div class="inline-block">
+														<input class="inline-block auto-width" name="fb_friends[]" value="<?= $facebook_friend->identifier ?>" type="checkbox" />
+													</div>
+													<div class="inline-block">
+														<?= Html::img($facebook_friend->photo_url()) ?>
+														<?= $facebook_friend->display_name ?>
+														<!--<?= Html::anchor($facebook_friend->profile_url(), $facebook_friend->identifier) ?>-->
+													</div>
+												</label>
+											</div>
+											<?php if ($i >= 50) break; $i++; endforeach; ?>
+										<?php endif; ?>
+									</div>
 								</div>
-							</div>
+								<div class="modal-footer">
+									<button class="btn btn-primary">Invite</button>
+									<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+								</div>
+							<?= Form::close() ?>
 						</div>
 						<div class="tab-pane fade" id="facebook">
 							<a class="" href="#" 
@@ -60,7 +66,7 @@
 							</a>
 						</div>
 						<div class="tab-pane fade invite-friends-container" id="email">
-							<?= Form::open(array('action' => $quest->url('invite'), 'class' => '')) ?>
+							<?= Form::open(array('action' => $quest->url('invite/email'), 'class' => '')) ?>
 								<div class="modal-slice">
 									<div class="form-group">
 										<label class="control-label" for="inputFrom">From:</label>

@@ -156,19 +156,19 @@ class Controller_Quests extends Controller_App
 	/**
 	 *
 	 */
-	public function post_invite($quest_url)
+	public function post_invite_email($quest_url)
 	{
 		$quest = $this->get_quest_by_url($quest_url);
 		$this->require_auth($quest->url());
 
-		$post       = $this->post_data('to', 'subject', 'description');
-		$recipients = explode(',', $post->to);
+		$post = $this->post_data('to', 'subject', 'description');
 
 		if (! isset($post->to) or empty($post->to))
 		{
 			$this->redirect($quest->url(), 'error', "Enter one or more recipients to invite to this Quest");
 		}
 		
+		$recipients = explode(',', $post->to);
 		foreach ($recipients as $recipient)
 		{
 			$recipient = trim($recipient);
@@ -189,14 +189,41 @@ class Controller_Quests extends Controller_App
 
 		if (count($recipients) > 1)
 		{
-			$this->redirect($quest->url(), 'info', "Invitations to '{$post->to}' have been sent");
+			$this->redirect($quest->url(), 'info', "Invitations sent");
 		}
-
 		else
 		{
-			$this->redirect($quest->url(), 'info', "Invitation to '{$post->to}' has been sent");
+			$this->redirect($quest->url(), 'info', "Invitation sent");
 		}
 		
+	}
+
+	public function post_invite_friends($quest_url)
+	{
+		$quest = $this->get_quest_by_url($quest_url);
+		$this->require_auth($quest->url());
+
+		$post = $this->post_data('sg_friends', 'fb_friends');
+
+		if (! empty($post->sg_friends))
+		{
+			foreach ($post->sg_friends as $friend_id)
+			{
+
+			}
+		}
+		
+		if (! empty($post->fb_friends))
+		{
+			foreach ($post->fb_friends as $friend_id)
+			{
+
+			}
+		}
+
+		$this->redirect($quest->url(), 'success', "Invitations sent");
+		
+
 	}
 
 
