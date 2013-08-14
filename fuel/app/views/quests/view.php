@@ -67,7 +67,7 @@
 				<div class="product-block <?= ! $quest_product->was_added_by_owner() ? 'from-tab' : null ?>" data-product="<?= $product_i ?>">
 					<div class="media">
 						<div class="pull-left">
-							<?= $product->small_html() ?>
+							<?= Html::img($product->image_url(), array('alt' => $product->name())) ?>
 						</div>
 
 						<div class="info media-body">

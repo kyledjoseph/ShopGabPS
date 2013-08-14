@@ -62,8 +62,6 @@ class Model_Product extends \Orm\Model
 		),
 	);
 
-	protected $image_sizes = array('250' => '220', '50' => '50');
-
 
 	public function name()
 	{
@@ -90,12 +88,36 @@ class Model_Product extends \Orm\Model
 		return $this->url;
 	}
 
-	public function has_image()
+
+
+
+
+
+	/**
+	 * Product Image
+	 */
+	protected $image_sizes = array('250' => '220', '50' => '50');
+
+	public function is_image_size($width, $height)
 	{
-		return is_object($this->image);
+		return isset($this->image_sizes[$width]) and $this->image_sizes[$width] == $height;
 	}
 
+	public function image_url($width = 50, $height = 50)
+	{
+		if (! $this->is_image_size($width, $height))
+		{
+			throw new Exception("Invalid Product_Image size {$width}x{$height}");
+		}
+		$image = Model_Product_Image::query()->where('product_id', $this->id)->where('width', $width)->where('height', $height)->get_one();
 
+		if (! isset($image))
+		{
+			throw new Exception("Product_Image not found");
+		}
+
+		return $image->public_uri;
+	}
 
 	public function add_image($src_url)
 	{
@@ -137,7 +159,7 @@ class Model_Product extends \Orm\Model
 				throw new Exception("Unknown image type: '{$tmp_type}'", 1);
 		}
 
-		
+		// rename file with proper extension
 		File::rename($tmp_path, $tmp_path . $ext);
 		$file_name = $file_name . $ext;
 		$tmp_path  = $tmp_path . $ext;
@@ -157,7 +179,7 @@ class Model_Product extends \Orm\Model
 			$image->load_from_filename($tmp_resize_path);
 
 			$product_image = new Model_Product_Image;
-			$product_image->user_id              = $this->id;
+			$product_image->product_id           = $this->id;
 			$product_image->name                 = $image->name;
 			$product_image->src_url              = $src_url;
 			$product_image->public_uri           = $image->public_uri();
@@ -173,43 +195,11 @@ class Model_Product extends \Orm\Model
 			$i = null;
 		}
 
-		$this->set_avatar_type('custom');
-
 		File::delete($tmp_path);
 
 	}
 
 
-
-	public function image()
-	{
-		return $this->has_image() ? $this->image->src() : null;
-	}
-
-	public function image_html()
-	{
-		return Html::img($this->image(), array('alt' => $this->name()));
-	}
-
-	public function thumb()
-	{
-		return $this->has_image() ? $this->image->thumb() : 'http://placehold.it/250x230';
-	}
-
-	public function thumb_html()
-	{
-		return Html::img($this->thumb(), array('alt' => $this->name()));
-	}
-
-	public function small()
-	{
-		return $this->has_image() ? $this->image->small() : 'http://placehold.it/50x50';
-	}
-
-	public function small_html()
-	{
-		return Html::img($this->small(), array('alt' => $this->name()));
-	}
 
 	public static function get_index()
 	{
