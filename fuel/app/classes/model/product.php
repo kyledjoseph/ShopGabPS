@@ -103,19 +103,27 @@ class Model_Product extends \Orm\Model
 		return isset($this->image_sizes[$width]) and $this->image_sizes[$width] == $height;
 	}
 
-	public function image_url($width = 50, $height = 50)
+	public function image($width = 50, $height = 50)
 	{
 		if (! $this->is_image_size($width, $height))
 		{
 			throw new Exception("Invalid Product_Image size {$width}x{$height}");
 		}
+
 		$image = Model_Product_Image::query()->where('product_id', $this->id)->where('width', $width)->where('height', $height)->get_one();
 
 		if (! isset($image))
 		{
-			throw new Exception("Product_Image not found");
+			throw new Exception("Product_Image {$width}x{$height} not found for product_id #{$this->id}");
 		}
+		
+		return $image;
+	}
 
+	public function image_url($width = 50, $height = 50)
+	{
+		$image = $this->image($width, $height);
+		
 		return $image->public_uri;
 	}
 

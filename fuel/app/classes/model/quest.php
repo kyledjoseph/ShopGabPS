@@ -10,7 +10,7 @@ class Model_Quest extends \Orm\Model
 		'description',
 		'purchase_within',
 		'purchase_by',
-		'default_image_id',
+		'default_product_id',
 		'is_public',
 		'created_at',
 		'updated_at',
@@ -71,7 +71,7 @@ class Model_Quest extends \Orm\Model
 
 	public function url($page = null)
 	{
-		return 'quest/' . $this->url . (! empty($page) ? '/' . $page : null);
+		return '/quest/' . $this->url . (! empty($page) ? '/' . $page : null);
 	}
 
 	public function edit_url()
@@ -162,30 +162,31 @@ class Model_Quest extends \Orm\Model
 
 
 
-	public function default_thumb_url()
+	public function default_thumb_url($width = 50, $height = 50)
 	{
-		if (isset($this->default_image_id))
+		if (isset($this->default_product_id))
 		{
-			$image = Model_Product_Image::get_by_id($this->default_image_id);
+			$image = Model_Product_Image::query()->where('product_id', $this->default_product_id)->where('width', $width)->where('height', $height)->get_one();
 
 			if (isset($image))
 			{
-				return $image->thumb();
+				return $image->public_uri;
 			}
 		}
 
 		foreach ($this->quest_products as $quest_product)
 		{
-			if ($quest_product->product->has_image())
+			$image = $quest_product->product->image();
+			if (! empty($image->public_uri))
 			{
-				$this->default_image_id = $quest_product->product->image->id;
+				$this->default_product_id = $image->product_id;
 				$this->save();
-				return $quest_product->product->thumb();
+				return $image->public_uri;
 			}
 		}
 
 		return '//placehold.it/250x220/fff';
-		return '/assets/img/product-default.png';
+		//return '/assets/img/product-default.png';
 	}
 
 
