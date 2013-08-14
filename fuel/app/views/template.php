@@ -8,6 +8,7 @@
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="/assets/css/font-awesome.min.css" rel="stylesheet" media="screen">
+	<?= Casset::render_css() ?>
 </head>
 <body>
 
