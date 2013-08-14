@@ -5,7 +5,7 @@
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title">Edit Quest</h4>
         </div>
-        <?= Form::open(array('action' => $quest->edit_url(), 'method' => 'POST', 'class' => 'form-vertical push-center')) ?>
+        <?= Form::open(array('action' => $quest->url('edit'), 'method' => 'POST', 'class' => 'form-vertical push-center')) ?>
         <div class="modal-body">
            	<div class="form-group">
 					<label for="name">What are you shopping for?</label>

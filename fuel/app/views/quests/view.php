@@ -22,7 +22,7 @@
 
 			<div class="purchase-within">
 				Purchase within:
-				<?= Form::open(array('id' => 'purchase_within_form', 'class' => 'inline-block submit-on-change', 'action' => $quest->within_url())) ?>
+				<?= Form::open(array('id' => 'purchase_within_form', 'class' => 'inline-block submit-on-change', 'action' => $quest->url('within'))) ?>
 
 				<?= Form::select('purchase_within', $quest->purchase_within_option(), Model_Quest::purchase_within_fields(), array('class' => 'form-control')) ?>
 				
@@ -185,7 +185,7 @@
 				</div>
 				<div class="row">
 					<div class="col-12">
-						<?= Form::open(array('action' => $quest->message_url())) ?>
+						<?= Form::open(array('action' => $quest->url('message'))) ?>
 							<div class="input-group">
 								<input name="message" type="text" class="form-control">
 								<span class="input-group-btn">

@@ -60,7 +60,7 @@
 							</a>
 						</div>
 						<div class="tab-pane fade invite-friends-container" id="email">
-							<?= Form::open(array('action' => $quest->invite_url(), 'class' => '')) ?>
+							<?= Form::open(array('action' => $quest->url('invite'), 'class' => '')) ?>
 								<div class="modal-slice">
 									<div class="form-group">
 										<label class="control-label" for="inputFrom">From:</label>

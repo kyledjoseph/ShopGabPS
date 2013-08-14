@@ -74,31 +74,6 @@ class Model_Quest extends \Orm\Model
 		return '/quest/' . $this->url . (! empty($page) ? '/' . $page : null);
 	}
 
-	public function edit_url()
-	{
-		return $this->url() . '/edit';
-	}
-
-	public function delete_url()
-	{
-		return $this->url() . '/delete';
-	}
-
-	public function within_url()
-	{
-		return $this->url() . '/within';
-	}	
-
-	public function message_url()
-	{
-		return $this->url() . '/message';
-	}
-
-	public function invite_url()
-	{
-		return $this->url() . '/invite';
-	}
-
 	public function belongs_to_user($user_id)
 	{
 		return $user_id == $this->user_id;
