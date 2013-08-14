@@ -1,6 +1,5 @@
 $(function(){
 
-
 	// change purchase_within time
 	$(".submit-on-change").bind("change", function() {
 		$(this).submit();

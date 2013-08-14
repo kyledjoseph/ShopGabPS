@@ -44,7 +44,7 @@
 
 		<div class="col-12 col-sm-4 dash-item pad-bottom">
 				<a href="<?= Uri::create($quest->url()) ?>">
-					<img width="100%" src="<?= $quest->default_thumb_url() ?>">
+					<img width="100%" src="<?= $quest->default_thumb_url(250,220) ?>">
 					<h3><span><?= $quest->name() ?></span></h3>
 				</a>
 							<!-- <div class="btn-group">
@@ -88,7 +88,7 @@
 					<div class="friend-box">
 						<div class="media">
 							<a class="pull-left" href="#">
-    							<img class="media-object" src="//placehold.it/30x30" />
+    							<img class="media-object" src="<?= $friendship->friend->get_avatar_uri() ?>" />
   							</a>
   							<div class="media-body">
     							<strong><?= Html::anchor("friends/view/{$friendship->id}", $friendship->friend->display_name()) ?></strong>  - <?= Html::anchor("friends/hide/{$friendship->id}", 'Remove', array('class' => 'remove')) ?>

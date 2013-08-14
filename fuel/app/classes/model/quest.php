@@ -345,6 +345,7 @@ class Model_Quest extends \Orm\Model
 			'user_id'         => $user_id,
 			'name'            => $name,
 			'description'     => $description,
+			'is_public'       => 1,
 		));
 
 		$quest->set_purchase_within($purchase_within);
