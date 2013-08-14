@@ -99,6 +99,8 @@ class Model_Product extends \Orm\Model
 
 	public function add_image($src_url)
 	{
+		ini_set('memory_limit', '128M');
+
 		$connection = Service_Cloudfiles::get_connection();
 
 		// make request
@@ -135,6 +137,7 @@ class Model_Product extends \Orm\Model
 				throw new Exception("Unknown image type: '{$tmp_type}'", 1);
 		}
 
+		
 		File::rename($tmp_path, $tmp_path . $ext);
 		$file_name = $file_name . $ext;
 		$tmp_path  = $tmp_path . $ext;
@@ -142,14 +145,9 @@ class Model_Product extends \Orm\Model
 		// resize thumbs
 		foreach ($this->image_sizes as $width => $height)
 		{
-			$tmp_resize_path = APPPATH . "tmp/{$width}x{$height}_{$file_name}";
+			$tmp_resize_path = $tmp_dir . "{$width}x{$height}_{$file_name}";
 
-			if (! is_dir($tmp_resize_path))
-			{
-				mkdir($tmp_resize_path, 777, true);
-			}
-
-			Image::load($tmp_path)
+			$i = Image::load($tmp_path)
 				->crop_resize($width, $height)
 				->save($tmp_resize_path);
 
@@ -171,6 +169,8 @@ class Model_Product extends \Orm\Model
 			$product_image->save();
 
 			File::delete($tmp_resize_path);
+
+			$i = null;
 		}
 
 		$this->set_avatar_type('custom');
