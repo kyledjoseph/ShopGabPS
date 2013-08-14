@@ -84,7 +84,6 @@
 							<input type="text" class="input-medium form-control" placeholder="Search">
 						</form>
 					</div>
-					<h5 class="align-center">Friends On ShopGab</h5>
 					<?php foreach ($user->get_friendships() as $friendship): ?>
 					<div class="friend-box">
 						<div class="media">
