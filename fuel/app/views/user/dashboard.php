@@ -71,7 +71,6 @@
 				<?php if ($i != 1): ?></div><?php endif; ?>
 			</div>
 		</div>
-<<<<<<< HEAD
 </div>
 </div>
 <div class="col-12 col-sm-4 pad-top">
@@ -91,25 +90,5 @@
 				</div>
 			<?php endforeach; ?>
 		</div>
-=======
-	</div>
-	<div class="col-12 col-sm-4 pad-top">
-				<div class="box help-a-friend">
-					<h4>Help A Friend</h4>
-					<div class="content"><?php foreach ($user->get_friends_upcoming_quests() as $quest): ?>
-					<div class="friend-box">
-						<div class="image">
-							<?= Html::img($quest->user->get_avatar_uri()) ?>
-						</div>
-						<div class="text">
-							<h5><?= $quest->user->display_name() ?></h5>
-							<span class="product"><?= Html::anchor($quest->url(), $quest->name()) ?></span>
-							(<?= $quest->purchase_within() ?> days)
-						</div>
-					</div>
-				<?php endforeach; ?>
-			</div>
-			</div>
->>>>>>> fb10cf007d993ba442a9b94533384183d835bcff
 		</div>
 	</div>
