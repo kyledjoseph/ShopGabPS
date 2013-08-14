@@ -120,7 +120,7 @@ class Controller_App extends Controller_Base
 		// Casset::css('style.css');
 		// Casset::css('bootstrap.min.css');
 		// Casset::js('jquery-typer.js');
-		// Casset::js('bootstrap/bootstrap.min.js');
+		Casset::js('bootstrap/bootstrap.min.js');
 
 		// Casset::js('script.js');
 		// Casset::js('bootstrap/bootstrap-modal.js');
