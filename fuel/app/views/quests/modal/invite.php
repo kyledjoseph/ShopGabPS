@@ -15,10 +15,10 @@
 			</ul>
 
 			<div id="myTabContent" class="tab-content">
-				<div class="tab-pane fade in active invite-friends-container" id="friends">
+				<div class="tab-pane fade in active" id="friends">
 					<div class="row">
 						<div class="col-12 col-sm-6">
-							<h4>Friends on ShopGab</h4>
+							<h3>Friends on ShopGab</h3>
 							<?php foreach ($user->get_friends() as $friend): ?>
 							<div class="checkbox">
 								<label>
@@ -27,9 +27,9 @@
 							</div>
 							<?php endforeach; ?>
 						</div>
-						<div class="col-12 col-sm-6 invite-friends-container"
+						<div class="col-12 col-sm-6 invite-friends-container">
 							<?php if ($user->is_authenticated_with('facebook')): ?>
-								<h4>Invite Friends to ShopGab</h4>
+								<h3>Friends on Facebook</h3>
 								<?php $i = 1; foreach ($user->get_facebook_friends() as $facebook_friend): ?>
 								<div class="media">
 									<label>
