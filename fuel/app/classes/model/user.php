@@ -459,10 +459,21 @@ class Model_User extends \Orm\Model
 		return Model_Friend::query()->where('user_id', $this->id)->where('id', $id)->get_one();
 	}
 
+	public function get_friendship_by_user_id($friend_id)
+	{
+		return Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->get_one();
+	}
+
 	public function get_friend_by_id($friend_id)
 	{
 		$friendship = Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->get_one();
 		return isset($friendship) ? $friendship->friend : null;
+	}
+
+	public function get_friend_profile_url($friend_id)
+	{
+		$friendship = $this->get_friendship_by_user_id($friend_id);
+		return isset($friendship) ? $friendship->profile_url() : false;
 	}
 
 	public function is_friend($friend_id)

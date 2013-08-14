@@ -45,7 +45,7 @@
 
 				<div class="col-12 col-sm-4 dash-item pad-bottom">
 					<?= Html::img($quest->user->get_avatar_uri()) ?>
-					<?= Html::anchor('#', $quest->user->display_name()) ?>
+					<?= Html::anchor($user->get_friend_profile_url($quest->user->id), $quest->user->display_name()) ?>
 					
 					<a href="<?= Uri::create($quest->url()) ?>">
 						<img width="100%" src="<?= $quest->default_thumb_url(250,220) ?>">

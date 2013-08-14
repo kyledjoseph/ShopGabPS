@@ -83,7 +83,7 @@
 								<img class="media-object" src="<?= $quest->user->get_avatar_uri() ?>" />
 							</a>
 							<div class="media-body">
-								<strong><?= $quest->user->display_name() ?></strong>  - <?= $quest->name() ?> (<?= $quest->purchase_within() ?> days)
+								<strong><?= Html::anchor($user->get_friend_profile_url($quest->user->id), $quest->user->display_name()) ?></strong> - <?= $quest->name() ?> (<?= $quest->purchase_within() ?> days)
 							</div>
 						</div>
 					</div>

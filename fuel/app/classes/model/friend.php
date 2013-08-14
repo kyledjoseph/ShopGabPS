@@ -38,6 +38,11 @@ class Model_Friend extends \Orm\Model
 		),
 	);
 
+	public function profile_url()
+	{
+		return 'friends/view/' . $this->id;
+	}
+
 	public function get_friend()
 	{
 		return $this->friend;
