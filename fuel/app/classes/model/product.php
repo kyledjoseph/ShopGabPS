@@ -107,12 +107,37 @@ class Model_Product extends \Orm\Model
 		$response   = $curl->response();
 
 		// save paths
-		$file_name = md5(uniqid(rand(), true)) . '.png';
+		$file_name = md5(uniqid(rand(), true));
 		$tmp_dir   = APPPATH . 'tmp/';
 		$tmp_path  = $tmp_dir . $file_name;
 
 		// save tmp
 		File::create($tmp_dir, $file_name, $response->body());
+
+		// add file extension
+		$tmp_type = exif_imagetype($tmp_path);
+
+		switch ($tmp_type)
+		{
+			case IMAGETYPE_GIF:
+				$ext = '.gif';
+				break;
+
+			case IMAGETYPE_JPEG:
+				$ext = '.jpg';
+				break;
+
+			case IMAGETYPE_PNG:
+				$ext = '.png';
+				break;
+
+			default:
+				throw new Exception("Unknown image type: '{$tmp_type}'", 1);
+		}
+
+		File::rename($tmp_path, $tmp_path . $ext);
+		$file_name = $file_name . $ext;
+		$tmp_path  = $tmp_path . $ext;
 
 		// resize thumbs
 		foreach ($this->image_sizes as $width => $height)
