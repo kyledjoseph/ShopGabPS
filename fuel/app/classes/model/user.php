@@ -17,6 +17,7 @@ class Model_User extends \Orm\Model
 		'reset_code',
 		'reset_created_at',
 		'fb_friends_last_updated',
+		'welcome_message',
 		'created_at',
 		'updated_at',
 	);
@@ -124,6 +125,17 @@ class Model_User extends \Orm\Model
 	{
 
 		return (isset($this->display_name) and ! empty($this->display_name)) ? $this->display_name : $this->email;
+	}
+
+	public function show_welcome_message()
+	{
+		return $this->welcome_message == 1;
+	}
+
+	public function hide_welcome_message()
+	{
+		$this->welcome_message = 0;
+		return $this->welcome_message->save();
 	}
 
 	/**
@@ -736,9 +748,10 @@ class Model_User extends \Orm\Model
 	public static function create_user($email, $password, $display_name = null)
 	{
 		$user = static::forge([
-			'email'        => $email,
-			'password'     => $password,
-			'display_name' => $display_name,
+			'email'           => $email,
+			'password'        => $password,
+			'display_name'    => $display_name,
+			'welcome_message' => 1,
 		]);
 		return $user->save() ? $user : false;
 	}
