@@ -84,19 +84,16 @@
 							<input type="text" class="input-medium form-control" placeholder="Search">
 						</form>
 					</div>
-					<h5 class="align-center">Friends On ShopGab</h5>
 					<?php foreach ($user->get_friendships() as $friendship): ?>
-		
 					<div class="friend-box">
-						<div class="image">
-							<img src="//placehold.it/50x50" />
-						</div>
-						<div class="text">
-							<h5><?= Html::anchor("friends/view/{$friendship->id}", $friendship->friend->display_name()) ?></h5>
-							<?= Html::anchor("friends/hide/{$friendship->id}", 'Remove', array('class' => 'remove')) ?>
-						</div>
-					</div>
-
+						<div class="media">
+							<a class="pull-left" href="#">
+    							<img class="media-object" src="//placehold.it/30x30" />
+  							</a>
+  							<div class="media-body">
+    							<strong><?= Html::anchor("friends/view/{$friendship->id}", $friendship->friend->display_name()) ?></strong>  - <?= Html::anchor("friends/hide/{$friendship->id}", 'Remove', array('class' => 'remove')) ?>
+  							</div>
+  						</div>
 					<?php endforeach; ?>
 
 					<?php if (false): ?>
