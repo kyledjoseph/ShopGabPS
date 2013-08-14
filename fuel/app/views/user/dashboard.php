@@ -76,15 +76,16 @@
 			<div class="box help-a-friend">
 				<h4>Help A Friend</h4>
 				<div class="content"><?php foreach ($user->get_friends_upcoming_quests() as $quest): ?>
-				<div class="friend-box">
-					<div class="image">
-						<?= Html::img($quest->user->get_avatar_uri()) ?>
-					</div>
-					<div class="text">
-						<h5><?= $quest->user->display_name() ?></h5>
-						<span class="product"><?= $quest->name() ?></span>
-						(<?= $quest->purchase_within() ?> days)
-					</div>
+
+					<div class="friend-box">
+						<div class="media">
+							<a class="pull-left" href="#">
+    							<img class="media-object" src="<?= $quest->user->get_avatar_uri() ?>" />
+  							</a>
+  							<div class="media-body">
+    							<strong><?= $quest->user->display_name() ?></strong>  - <?= $quest->name() ?> (<?= $quest->purchase_within() ?> days)
+  							</div>
+  						</div>
 				</div>
 			<?php endforeach; ?>
 		</div>
