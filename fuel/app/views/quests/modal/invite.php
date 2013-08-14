@@ -46,44 +46,45 @@
 								<?php if ($i >= 50) break; $i++; endforeach; ?>
 							<?php endif; ?>
 						</div>
+					</div>
+				</div>
+				<div class="tab-pane fade" id="facebook">
+					<a class="" href="#" 
+						onclick="
+						window.open(
+						'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
+						'facebook-share-dialog', 
+						'width=626,height=436'); 
+						return false;">
+						<img class="push-center" src="/assets/img/share-with-friends.png" />
+					</a>
+				</div>
+				<div class="tab-pane fade invite-friends-container" id="email">
+					<div class="modal-slice">
+						<?= Form::open(array('action' => $quest->invite_url(), 'class' => '')) ?>
+						<div class="form-group">
+							<label class="control-label" for="inputFrom">From:</label>
+							<div class="from-email">info@shopgab.com</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="to">To:</label>
+							<input type="text" class="form-control" name="to" id="inputTo" placeholder="yourfriend@email.com">
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="subject">Subject:</label>
+							<input type="text" class="form-control" name="subject" id="inputSubject" placeholder="Subject" value="Help me find a <?= $quest->name ?>">
+						</div>
+						<div class="form-group">
+							<label class="control-label" for="description">Description</label>
+							<textarea class="form-control" name="description" rows="7"><?= $user->display_name() ?> is trying to find a <?= $quest->name ?> through ShopGab and has requested your input! Please click on the link below to see their page and join in the search. Thanks!</textarea>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button class="btn btn-primary">Invite</button>
+						<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
+					</form>
+					</div>
 			</div>
-	<div class="tab-pane fade" id="facebook">
-		<a class="" href="#" 
-		onclick="
-		window.open(
-		'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
-		'facebook-share-dialog', 
-		'width=626,height=436'); 
-		return false;">
-		<img class="push-center" src="/assets/img/share-with-friends.png" />
-	</a>
-</div>
-<div class="tab-pane fade invite-friends-container" id="email">
-	<div class="modal-slice">
-		<?= Form::open(array('action' => $quest->invite_url(), 'class' => '')) ?>
-		<div class="form-group">
-			<label class="control-label" for="inputFrom">From:</label>
-			<div class="from-email">info@shopgab.com</div>
-		</div>
-		<div class="form-group">
-			<label class="control-label" for="to">To:</label>
-			<input type="text" class="form-control" name="to" id="inputTo" placeholder="yourfriend@email.com">
-		</div>
-		<div class="form-group">
-			<label class="control-label" for="subject">Subject:</label>
-			<input type="text" class="form-control" name="subject" id="inputSubject" placeholder="Subject" value="Help me find a <?= $quest->name ?>">
-		</div>
-		<div class="form-group">
-			<label class="control-label" for="description">Description</label>
-			<textarea class="form-control" name="description" rows="7"><?= $user->display_name() ?> is trying to find a <?= $quest->name ?> through ShopGab and has requested your input! Please click on the link below to see their page and join in the search. Thanks!</textarea>
-		</div>
-	</div>
-	<div class="modal-footer">
-		<button class="btn btn-primary">Invite</button>
-		<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-	</form>
-</div>
-</div>
 </div>
 </div>
 
