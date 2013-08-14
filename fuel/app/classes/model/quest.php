@@ -176,7 +176,7 @@ class Model_Quest extends \Orm\Model
 
 		foreach ($this->quest_products as $quest_product)
 		{
-			$image = $quest_product->product->image();
+			$image = $quest_product->product->image($width, $height);
 			if (! empty($image->public_uri))
 			{
 				$this->default_product_id = $image->product_id;
@@ -185,8 +185,7 @@ class Model_Quest extends \Orm\Model
 			}
 		}
 
-		return '//placehold.it/250x220/fff';
-		//return '/assets/img/product-default.png';
+		return "//placehold.it/{$width}x{$height}/fff";
 	}
 
 
