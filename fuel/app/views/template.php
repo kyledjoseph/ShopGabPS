@@ -57,6 +57,8 @@
 		</div>
 	</div>
 
+	<a href="#feedbackModal" class="feedback-button" data-toggle="modal"><img src="/assets/img/feedback.png" /></a>
+
 	<?= isset($modal) ? $modal : null ?>
 
 	<!-- JavaScript plugins (requires jQuery) -->
