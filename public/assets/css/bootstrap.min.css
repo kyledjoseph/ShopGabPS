@@ -100,6 +100,16 @@ a:hover .icon-background-circle{background-color:#f17baf}
 .clear{clear:both;margin-bottom:-13px}
 .friend-box .media{padding-top:5px;padding-bottom:5px}
 .feedback-button{position:fixed;right:0;top:50%}
+.bookmarklet{background:transparent}
+.itemnation-box{width:250px;position:fixed;top:20px;right:20px;z-index:100000000000000000;background:rgba(0,0,0,0);border:1px solid #cfd9dc;-webkit-border-radius:8px;-moz-border-radius:8px;border-radius:8px;background-image:-webkit-linear-gradient(top, #ecf9ff 0, #fff 33%);text-align:center;font-size:16px;font-family:sans-serif;padding:25px;-webkit-box-shadow:0 0 15px 0 rgba(0,0,0,0.4);box-shadow:0 0 15px 0 rgba(0,0,0,0.4)}.itemnation-box .image{margin:0 auto}
+.itemnation-box .arrow{position:absolute;top:170px;cursor:pointer;display:none}
+.itemnation-box .left{left:15px}
+.itemnation-box .right{right:15px}
+.itemnation-box .product-image{display:block;margin-top:25px;margin-bottom:25px;border:1px solid #cfd9dc;border-radius:8px;overflow:hidden;max-width:100px;height:100px;margin-left:auto;margin-right:auto}
+.itemnation-box .gallery{width:200px;margin-left:auto;margin-right:auto}
+.itemnation-box .gallery img{cursor:pointer;width:30px;height:30px;margin:3px;border:1px solid #cfd9dc;border-radius:2px;overflow:hidden}
+.itemnation-box ul{margin:20px 0}
+.itemnation-box li{overflow:hidden;padding:6px 0}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 audio,canvas,video{display:inline-block}
 audio:not([controls]){display:none;height:0}

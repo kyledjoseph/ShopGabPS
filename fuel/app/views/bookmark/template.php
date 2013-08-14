@@ -5,20 +5,19 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
 	<title>Pull-In Button</title>
-	<link rel="stylesheet" href="/assets/css/bookmark/style.css?cb=<? echo rand(); ?>">
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">
 	<?php //Asset::css('bootstrap.css') ?>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 	<script src="/assets/js/bookmark/child.js?cb=<?= isset($last_modified) ? $last_modified : time() ?>"></script>
 
 </head>
-<body>
+<body class="bookmarklet">
 	<div class="itemnation-box">
 
 		<div>
-			<img class="image" src="/assets/img/bookmark/logo.png" />
+			<img class="image" src="/assets/tmp/img/logo.png" />
 		</div>
-		
 		<?php if (isset($notice)): ?>
 
 		<br><br>
