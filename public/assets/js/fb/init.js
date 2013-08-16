@@ -11,9 +11,14 @@
 		});
 
 		// Additional initialization code such as adding Event Listeners goes here
-		FB.ui({method: 'apprequests',
-			message: 'My Great Request'
-		}, function() {});
+		$(document).ready(function() {
+			console.log('fb init');
+			
+			FB.ui({method: 'apprequests',
+				message: 'My Great Request'
+			}, function() {});
+
+		});
 
 	};
 
