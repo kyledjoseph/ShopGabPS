@@ -23,7 +23,7 @@
 										<?php foreach ($user->get_friends() as $friend): ?>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" name="sg_friends[]" value="<?= $friend->id ?>"> <?= Html::img($friend->get_avatar_uri()) ?> <?= $friend->display_name() ?>
+												<input type="checkbox" class="select_fb_friend" name="sg_friends[]" value="<?= $friend->id ?>"> <?= Html::img($friend->get_avatar_uri()) ?> <?= $friend->display_name() ?>
 											</label>
 										</div>
 										<?php endforeach; ?>
@@ -35,7 +35,7 @@
 											<div class="media">
 												<label>
 													<div class="inline-block">
-														<input class="inline-block auto-width" name="fb_friends[]" value="<?= $facebook_friend->identifier ?>" type="checkbox" />
+														<input class="select_fb_friend inline-block auto-width" name="fb_friends[]" value="<?= $facebook_friend->identifier ?>" type="checkbox" />
 													</div>
 													<div class="inline-block">
 														<?= Html::img($facebook_friend->photo_url()) ?>
@@ -49,7 +49,7 @@
 									</div>
 								</div>
 								<div class="modal-footer">
-									<button class="btn btn-primary">Invite</button>
+									<button id="submit_invite_friends" class="btn btn-primary">Invite</button>
 									<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
 								</div>
 							<?= Form::close() ?>

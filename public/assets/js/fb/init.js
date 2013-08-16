@@ -1,6 +1,18 @@
 
 	$(document).ready(function() {
 		
+		function selected_friends()
+		{
+			friends = [];
+			
+			$( ".select_fb_friend" ).each(function(index) {
+				friends.push($(this).val());
+			});
+
+			return friends;
+		}
+
+
 		$.ajaxSetup({ cache: true });
 		$.getScript('//connect.facebook.net/en_UK/all.js', function(){
 		
@@ -34,9 +46,17 @@
 				}
 			});
 
+
+			$('#submit_invite_friends').click(function() {
+				console.log(selected_friends());
+				return false;
+			});
+
 			// FB.ui({method: 'apprequests',
-			// 	message: 'My Great Request'
-			// }, function() {});
+			// 	to: selected_friends(),
+			// 	title: 'My Great Invite',
+			// 	message: 'Check out this Awesome App!',
+			// }, callback);
 
 
 		});
