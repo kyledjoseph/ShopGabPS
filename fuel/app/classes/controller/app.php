@@ -117,10 +117,13 @@ class Controller_App extends Controller_Base
 
 	private function _init_assets()
 	{
+		$env = strtolower(\Fuel::$env);
+
 		// Casset::css('style.css');
 		// Casset::css('bootstrap.min.css');
 		// Casset::js('jquery-typer.js');
 		Casset::js('bootstrap/bootstrap.min.js');
+		Casset::js("site/{$env}/shopgab.js");
 
 		// Casset::js('script.js');
 		// Casset::js('bootstrap/bootstrap-modal.js');

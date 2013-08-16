@@ -61,6 +61,7 @@
 	<a href="#feedbackModal" class="feedback-button" data-toggle="modal"><img src="/assets/img/feedback.png" /></a>
 
 	<?= isset($modal) ? $modal : null ?>
+	<div id="fb-root"></div>
 
 	<!-- JavaScript plugins (requires jQuery) -->
 	<script src="http://code.jquery.com/jquery.js"></script>
