@@ -208,6 +208,8 @@ $(document).ready(function () {
 
             $('.add').click(function () {
                 child.send();
+                $('.add').attr("disabled", "disabled");
+                $('.cancel').attr("disabled", "disabled");
             });
 
             $('.cancel').click(function () {
