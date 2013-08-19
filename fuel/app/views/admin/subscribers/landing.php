@@ -29,6 +29,10 @@
 
 
 
-		<textarea rows="8" style="width:100%"><?php foreach ($subscribers as $subscriber): ?><?= $subscriber->email ?>, <?php endforeach; ?></textarea>
+		<textarea>
+		<?php foreach ($subscribers as $subscriber): ?>
+		<?= $subscriber->email ?>, 
+		<?php endforeach; ?>
+		</textarea>
 
 		<?php endif; ?>

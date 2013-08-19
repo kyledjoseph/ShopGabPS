@@ -15,6 +15,16 @@ class Model_Try extends \Orm\Model
 		),
 	);
 
+	public function date($format = "r")
+	{
+		return date($format, $this->created_at);
+	}
+
+	public static function get_all()
+	{
+		return static::query()->where('email', '!=', '')->order_by('created_at', 'desc')->get();
+	}
+
 	public static function add_address($email)
 	{
 		$try = static::forge(array(
