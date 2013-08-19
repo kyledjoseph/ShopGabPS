@@ -41,8 +41,6 @@
 			<?php if (isset($user) and $quest->belongs_to_user($user->id)): ?>
 			<button href="#inviteModal" class="btn btn-success btn-large block push-center invite-btn" data-toggle="modal">Invite friends</button>
 			<?php endif; ?>
-
-			<a class="view-friends" href="#">View Friends</a>
 		</div>
 	</div>
 
