@@ -8,7 +8,7 @@
 	<meta name="author" content="">
 
 	<!-- Le styles -->
-	<?= Asset::css('bootstrap.css') ?>
+	<?= Asset::css('bootstrap.min.css') ?>
 	<style type="text/css">
 	  body {
 		padding-top: 20px;
@@ -81,7 +81,7 @@
 	  }
 	</style>
 
-	<?= Asset::css('bootstrap-responsive.css') ?>
+	
 
 	<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 	<!--[if lt IE 9]>
