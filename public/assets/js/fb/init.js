@@ -60,7 +60,7 @@
 
 				FB.ui({method: 'apprequests',
 					to: friends,
-					title: 'My Great Invite',
+					title: 'ShopGab Invitation',
 					message: 'Check out this Awesome App!',
 				}, callback);
 				

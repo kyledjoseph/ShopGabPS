@@ -50,7 +50,7 @@
 				<div class="modal-footer in-form">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 					<input type="hidden" name="redirect" value="<?= Uri::string() ?>" ?>
-					<button id="user_login" type="submit" class="btn btn-primary">Login</button>
+					<button id="user_register" type="submit" class="btn btn-primary">Register</button>
 				</div>
 				<?= Form::close() ?>
 			</div>
