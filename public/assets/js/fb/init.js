@@ -9,11 +9,13 @@
 		{
 			if (this.status !== 'connected')
 			{
+				console.log('i', this.status);
 				this.callbacks.push(callback);
 			}
 			else
 			{
-				this.run_callback(callback);
+				console.log('e');
+				facebook.run_callback(callback);
 			}
 		},
 
@@ -35,7 +37,7 @@
 
 			console.log('facebook.update_status', response);
 
-			this.status = response.status;
+			facebook.status = response.status;
 
 
 

@@ -37,32 +37,36 @@ $(function(){
 	});
 
 
-	facebook.add_callback(function() {
-		FB.api('/me/friends?limit=0', {fields: 'name,id,location,birthday'}, function(response) {
-			//console.log(response);
+	$(".invite-btn").click(function() {
 
-			c = '';
+		facebook.add_callback(function() {
 
-			$.each(response.data, function(index, friend) {
+			FB.api({ method: 'fql.query', query: 'SELECT uid,name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me())'}, 
+				function(response) {
 
-				c+='<label>';
-				c+='	<div class="inline-block">';
-				c+='		<input class="select_fb_friend inline-block auto-width" name="fb_friends[]" value="'+friend.id+'" type="checkbox" />';
-				c+='	</div>';
-				c+='	<div class="inline-block">';
-				c+='		<img style="width:32px;height:32px" src="https://graph.facebook.com/'+friend.id+'/picture?width=32&height=32">';
-				c+='		'+ friend.name;
-				c+='	</div>';
-				c+='</label>';
-				c+='<br>';
+					$('#facebook-friends').empty();
 
-				console.log(friend.name, friend.id);
-			});
+					$.each(response, function(index, friend) {
 
-			$('#facebook-friends').html(c);
+						c = '<label>';
+						c+= '	<div class="inline-block">';
+						c+= '		<input class="select_fb_friend inline-block auto-width" name="fb_friends[]" value="'+friend.uid+'" type="checkbox" />';
+						c+= '	</div>';
+						c+= '	<div class="inline-block">';
+						c+= '		<img style="width:32px;height:32px" src="https://graph.facebook.com/'+friend.uid+'/picture?width=32&height=32">';
+						c+= '		'+ friend.name;
+						c+= '	</div>';
+						c+= '</label>';
+						c+= '<br>';
+
+						$('#facebook-friends').append(c);
+					});
+				}
+			);
 		});
-	});
 
+	});
+	
 
 	// message submit on enter
 	// $('textarea[name=message]').keydown(function(e) {
