@@ -1,6 +1,18 @@
 
 	$(document).ready(function() {
+
+
+
+		// function load_friends()
+		// {
+			
+		// }
+
 		
+
+
+
+
 		function selected_friends()
 		{
 			friends = [];
@@ -15,12 +27,12 @@
 
 		function callback(response)
 		{
-			consolr.log('callback', response);
+			console.log('callback', response);
 		}
 
 
 		$.ajaxSetup({ cache: true });
-		$.getScript('//connect.facebook.net/en_UK/all.js', function(){
+		$.getScript('//connect.facebook.net/en_UK/all.js', function() {
 		
 			console.log('fb init');
 			
@@ -51,6 +63,15 @@
 					console.log('user is not logged in');
 				}
 			});
+
+
+
+			FB.api('/me/friends', {fields: 'name,id,location,birthday'}, function(response) {
+				$.each(response.data, function(index, value) {
+					console.log(index, value);
+				});
+			});
+
 
 
 			$('#submit_invite_friends').click(function() {
