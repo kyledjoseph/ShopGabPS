@@ -548,7 +548,7 @@ class Model_User extends \Orm\Model
 			$contacts[] = new Model_Facebook_Friend($info);
 		}
 
-		return $contacts;
+		return array();//$contacts;
 
 
 	}
