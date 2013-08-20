@@ -67,9 +67,10 @@
 
 
 			FB.api('/me/friends', {fields: 'name,id,location,birthday'}, function(response) {
-				$.each(response.data, function(index, value) {
-					console.log(index, value);
-				});
+				console.log(response);
+				// $.each(response.data, function(index, value) {
+				// 	console.log(index, value);
+				// });
 			});
 
 
