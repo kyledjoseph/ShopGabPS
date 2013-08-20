@@ -29,23 +29,12 @@
 										<?php endforeach; ?>
 									</div>
 									<div class="col-12 col-sm-6 invite-friends-container">
-										<?php if ($user->is_authenticated_with('facebook')): ?>
-											<h3>Friends on Facebook</h3>
-											<?php $i = 1; foreach ($user->get_facebook_friends() as $facebook_friend): ?>
-											<div class="media">
-												<label>
-													<div class="inline-block">
-														<input class="select_fb_friend inline-block auto-width" name="fb_friends[]" value="<?= $facebook_friend->identifier ?>" type="checkbox" />
-													</div>
-													<div class="inline-block">
-														<?= Html::img($facebook_friend->photo_url()) ?>
-														<?= $facebook_friend->display_name ?>
-														<!--<?= Html::anchor($facebook_friend->profile_url(), $facebook_friend->identifier) ?>-->
-													</div>
-												</label>
-											</div>
-											<?php if ($i >= 50) break; $i++; endforeach; ?>
-										<?php endif; ?>
+										
+										<h3>Friends on Facebook</h3>
+										<div id="facebook-friends" class="media">
+											
+										</div>
+										
 									</div>
 								</div>
 								<div class="modal-footer">

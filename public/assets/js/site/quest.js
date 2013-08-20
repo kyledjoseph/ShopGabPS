@@ -37,6 +37,33 @@ $(function(){
 	});
 
 
+	facebook.add_callback(function() {
+		FB.api('/me/friends?limit=0', {fields: 'name,id,location,birthday'}, function(response) {
+			//console.log(response);
+
+			c = '';
+
+			$.each(response.data, function(index, friend) {
+
+				c+='<label>';
+				c+='	<div class="inline-block">';
+				c+='		<input class="select_fb_friend inline-block auto-width" name="fb_friends[]" value="'+friend.id+'" type="checkbox" />';
+				c+='	</div>';
+				c+='	<div class="inline-block">';
+				c+='		<img style="width:32px;height:32px" src="https://graph.facebook.com/'+friend.id+'/picture?width=32&height=32">';
+				c+='		'+ friend.name;
+				c+='	</div>';
+				c+='</label>';
+				c+='<br>';
+
+				console.log(friend.name, friend.id);
+			});
+
+			$('#facebook-friends').html(c);
+		});
+	});
+
+
 	// message submit on enter
 	// $('textarea[name=message]').keydown(function(e) {
 	// 	if (e.keyCode == 13)

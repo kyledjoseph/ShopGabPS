@@ -1,16 +1,105 @@
 
+
+	var facebook = {
+
+		status: 'unknown',
+		callbacks: [],
+
+		add_callback: function(callback)
+		{
+			if (this.status !== 'connected')
+			{
+				this.callbacks.push(callback);
+			}
+			else
+			{
+				this.run_callback(callback);
+			}
+		},
+
+		run_registered_callbacks: function()
+		{
+			$.each(this.callbacks, function(index, value) {
+				facebook.run_callback(value);
+			});
+		},
+
+		run_callback: function(callback)
+		{
+			callback();
+		},
+
+
+		update_status: function(response)
+		{
+
+			console.log('facebook.update_status', response);
+
+			this.status = response.status;
+
+
+
+			if (response.status === 'connected')
+			{
+				var uid         = response.authResponse.userID;
+				var accessToken = response.authResponse.accessToken;
+
+				facebook.run_registered_callbacks();
+
+			}
+
+			else if (response.status === 'not_authorized')
+			{
+				console.log('user is logged in, but not authenticated to app');
+			}
+
+			else
+			{
+				console.log('user is not logged in');
+			}
+		},
+
+
+	
+
+
+		init: function()
+		{
+			
+			
+			$.ajaxSetup({
+				cache: true
+			});
+
+			$.getScript('//connect.facebook.net/en_US/all.js', function() {
+			
+				console.log('fb init');
+				
+				// init fb app
+				FB.init({
+					appId:      '168874813262398',                       // App ID from the app dashboard
+					channelUrl: '//' + shopgab.domain + '/channel.html', // Channel file for x-domain comms
+					status:     true,                                    // Check Facebook Login status
+					xfbml:       true                                    // Look for social plugins on the page
+				});
+
+				// check user status
+				//FB.getLoginStatus(facebook.update_status);
+				FB.Event.subscribe('auth.statusChange', facebook.update_status);
+
+			});
+
+
+			
+		}
+
+	};
+
+
+
 	$(document).ready(function() {
 
-
-
-		// function load_friends()
-		// {
-			
-		// }
-
-		
-
-
+		facebook.init();
 
 
 		function selected_friends()
@@ -32,78 +121,19 @@
 
 
 
-
-		$.ajaxSetup({ cache: true });
-		$.getScript('//connect.facebook.net/en_US/all.js', function() {
-		
-			console.log('fb init');
+		// $('#submit_invite_friends').click(function() {
 			
-			FB.init({
-				appId: '168874813262398',                            // App ID from the app dashboard
-				channelUrl: '//' + shopgab.domain + '/channel.html', // Channel file for x-domain comms
-				status     : true,                                   // Check Facebook Login status
-				xfbml      : true                                    // Look for social plugins on the page
-			});
+		// 	var friends = selected_friends();
+		// 	console.log(friends);
 
-
-			FB.getLoginStatus(function(response) {
-				if (response.status === 'connected')
-				{
-					// the user is logged in and has authenticated your
-					// app, and response.authResponse supplies
-					// the user's ID, a valid access token, a signed
-					// request, and the time the access token 
-					// and signed request each expire
-					var uid = response.authResponse.userID;
-					var accessToken = response.authResponse.accessToken;
-					
-					console.log('user is logged in');
-
-					FB.api('/me/friends?limit=0', {fields: 'name,id,location,birthday'}, function(response) {
-						console.log('response', response);
-						$.each(response.data, function(index, value) {
-							console.log(index, value);
-						});
-					});
-
-				}
-
-				else if (response.status === 'not_authorized')
-				{
-					// the user is logged in to Facebook, 
-					// but has not authenticated your app
-					console.log('user is logged in, but not authenticated');
-				}
-
-				else
-				{
-					// the user isn't logged in to Facebook.
-					console.log('user is not logged in');
-				}
-			});
-
-
-
+		// 	FB.ui({method: 'apprequests',
+		// 		to: friends,
+		// 		title: 'ShopGab Invitation',
+		// 		message: 'Check out this Awesome App!',
+		// 	}, callback);
 			
+		// 	return false;
+		// });
 
 
-
-			$('#submit_invite_friends').click(function() {
-				
-				var friends = selected_friends();
-				console.log(friends);
-
-				FB.ui({method: 'apprequests',
-					to: friends,
-					title: 'ShopGab Invitation',
-					message: 'Check out this Awesome App!',
-				}, callback);
-				
-				return false;
-			});
-
-			
-
-
-		});
 	});
