@@ -529,7 +529,7 @@ class Model_User extends \Orm\Model
 
 		try
 		{ 
-			$response = $adapter->api()->api('/me/friends'); 
+			$response = $adapter->api()->api('/me/friends?limit=0'); 
 		}
 		catch (FacebookApiException $e)
 		{
