@@ -54,6 +54,14 @@
 					var uid = response.authResponse.userID;
 					var accessToken = response.authResponse.accessToken;
 					console.log('user is logged in');
+
+					FB.api('/me/friends', {fields: 'name,id,location,birthday'}, function(response) {
+						console.log(response);
+						// $.each(response.data, function(index, value) {
+						// 	console.log(index, value);
+						// });
+					});
+					
 				} else if (response.status === 'not_authorized') {
 					// the user is logged in to Facebook, 
 					// but has not authenticated your app
@@ -66,12 +74,7 @@
 
 
 
-			FB.api('/me/friends', {fields: 'name,id,location,birthday'}, function(response) {
-				console.log(response);
-				// $.each(response.data, function(index, value) {
-				// 	console.log(index, value);
-				// });
-			});
+			
 
 
 
