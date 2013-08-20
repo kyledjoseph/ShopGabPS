@@ -31,8 +31,10 @@
 		}
 
 
+
+
 		$.ajaxSetup({ cache: true });
-		$.getScript('//connect.facebook.net/en_UK/all.js', function() {
+		$.getScript('//connect.facebook.net/en_US/all.js', function() {
 		
 			console.log('fb init');
 			
@@ -45,7 +47,8 @@
 
 
 			FB.getLoginStatus(function(response) {
-				if (response.status === 'connected') {
+				if (response.status === 'connected')
+				{
 					// the user is logged in and has authenticated your
 					// app, and response.authResponse supplies
 					// the user's ID, a valid access token, a signed
@@ -53,20 +56,27 @@
 					// and signed request each expire
 					var uid = response.authResponse.userID;
 					var accessToken = response.authResponse.accessToken;
+					
 					console.log('user is logged in');
 
-					FB.api('/me/friends', {fields: 'name,id,location,birthday'}, function(response) {
-						console.log(response);
-						// $.each(response.data, function(index, value) {
-						// 	console.log(index, value);
-						// });
+					FB.api('/me/friends?limit=0', {fields: 'name,id,location,birthday'}, function(response) {
+						console.log('response', response);
+						$.each(response.data, function(index, value) {
+							console.log(index, value);
+						});
 					});
-					
-				} else if (response.status === 'not_authorized') {
+
+				}
+
+				else if (response.status === 'not_authorized')
+				{
 					// the user is logged in to Facebook, 
 					// but has not authenticated your app
 					console.log('user is logged in, but not authenticated');
-				} else {
+				}
+
+				else
+				{
 					// the user isn't logged in to Facebook.
 					console.log('user is not logged in');
 				}
