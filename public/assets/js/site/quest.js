@@ -92,6 +92,12 @@ $(function(){
 		var friends = selected_friends();
 		console.log(friends);
 
+		if (friends.length < 1)
+		{
+			console.log(friends.length);
+			return true;
+		}
+
 		FB.ui({method: 'apprequests',
 			to: friends,
 			title: 'ShopGab Invitation',

@@ -158,6 +158,51 @@ class Controller_Quests extends Controller_App
 	/**
 	 *
 	 */
+	public function post_invite_friends($quest_url)
+	{
+		$quest = $this->get_quest_by_url($quest_url);
+		$this->require_auth($quest->url());
+
+		$post = $this->post_data('sg_friends', 'fb_friends');
+
+		$total_sg_friends = count($post->sg_friends);
+		$total_fb_friends = count($post->fb_friends);
+
+		if ($total_sg_friends > 0)
+		{
+			foreach ($post->sg_friends as $friend_id)
+			{
+				$friendship = $this->user->get_friendship_by_id($friend_id);
+				if (is_null($friendship))
+				{
+					throw new Exception("Error Processing Request", 1);
+					$quest->invite_friend_to_quest($friendship);
+				}
+			}
+		}
+		
+		// handled client side
+		// if (! empty($post->fb_friends))
+		// {
+		// 	foreach ($post->fb_friends as $friend_id)
+		// 	{
+
+		// 	}
+		// }
+
+		if ($total_sg_friends > 0 or $total_fb_friends > 0)
+		{
+			$this->redirect($quest->url(), 'success', "Invitations sent");
+		}
+
+		$this->redirect($quest->url(), 'error', "No invitations sent");
+
+	}
+
+
+	/**
+	 *
+	 */
 	public function post_invite_email($quest_url)
 	{
 		$quest = $this->get_quest_by_url($quest_url);
@@ -200,33 +245,7 @@ class Controller_Quests extends Controller_App
 		
 	}
 
-	public function post_invite_friends($quest_url)
-	{
-		$quest = $this->get_quest_by_url($quest_url);
-		$this->require_auth($quest->url());
-
-		$post = $this->post_data('sg_friends', 'fb_friends');
-
-		if (! empty($post->sg_friends))
-		{
-			foreach ($post->sg_friends as $friend_id)
-			{
-
-			}
-		}
-		
-		if (! empty($post->fb_friends))
-		{
-			foreach ($post->fb_friends as $friend_id)
-			{
-
-			}
-		}
-
-		$this->redirect($quest->url(), 'success', "Invitations sent");
-		
-
-	}
+	
 
 
 	public function get_access($quest_url, $type)
