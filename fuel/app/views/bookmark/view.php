@@ -7,7 +7,7 @@
 		</div>
 		<br />
 <div class="form-group">
-		<input type="text" class="form-control" placeholder="Product Name" maxlength="50">
+		<input type="text" class="form-control title" placeholder="Product Name" maxlength="50">
 	</div>
 <div class="form-group">
 		<input type="text" class="price form-control" placeholder="Price" maxlength="50">
