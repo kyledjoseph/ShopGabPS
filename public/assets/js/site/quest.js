@@ -49,24 +49,61 @@ $(function(){
 
 					$.each(response, function(index, friend) {
 
-						c = '<label>';
-						c+= '	<div class="inline-block">';
-						c+= '		<input class="select_fb_friend inline-block auto-width" name="fb_friends[]" value="'+friend.uid+'" type="checkbox" />';
-						c+= '	</div>';
-						c+= '	<div class="inline-block">';
-						c+= '		<img style="width:32px;height:32px" src="https://graph.facebook.com/'+friend.uid+'/picture?width=32&height=32">';
-						c+= '		'+ friend.name;
-						c+= '	</div>';
-						c+= '</label>';
-						c+= '<br>';
+						if (friend.name == 'Christian Bundy' || friend.name == 'Kyle Joseph' || friend.name == 'Tyler Matthews' || friend.name == 'Dinko Kecanovic')
+						{
+							c = '<label>';
+							c+= '	<div class="inline-block">';
+							c+= '		<input class="select_fb_friend inline-block auto-width" name="fb_friends[]" value="'+friend.uid+'" type="checkbox" />';
+							c+= '	</div>';
+							c+= '	<div class="inline-block">';
+							c+= '		<img style="width:32px;height:32px" src="https://graph.facebook.com/'+friend.uid+'/picture?width=32&height=32">';
+							c+= '		'+ friend.name;
+							c+= '	</div>';
+							c+= '</label>';
+							c+= '<br>';
 
-						$('#facebook-friends').append(c);
+							$('#facebook-friends').append(c);
+						}
+
+						
 					});
 				}
 			);
 		});
 
 	});
+
+
+
+	function selected_friends()
+	{
+		friends = [];
+		
+		$( ".select_fb_friend:checked" ).each(function(index) {
+			friends.push($(this).val());
+		});
+
+		return friends;
+	}
+
+
+	$('#submit_invite_friends').click(function() {
+		
+		var friends = selected_friends();
+		console.log(friends);
+
+		FB.ui({method: 'apprequests',
+			to: friends,
+			title: 'ShopGab Invitation',
+			message: 'Check out this Awesome App!',
+		}, function(response) {
+			console.log('invites sent', friends, response);
+			//$('#invite_friends').submit();
+		});
+		
+		return false;
+	});
+
 	
 
 	// message submit on enter

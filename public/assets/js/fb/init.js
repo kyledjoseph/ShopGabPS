@@ -102,16 +102,7 @@
 		facebook.init();
 
 
-		function selected_friends()
-		{
-			friends = [];
-			
-			$( ".select_fb_friend:checked" ).each(function(index) {
-				friends.push($(this).val());
-			});
-
-			return friends;
-		}
+		
 
 
 		function callback(response)
@@ -121,19 +112,6 @@
 
 
 
-		// $('#submit_invite_friends').click(function() {
-			
-		// 	var friends = selected_friends();
-		// 	console.log(friends);
-
-		// 	FB.ui({method: 'apprequests',
-		// 		to: friends,
-		// 		title: 'ShopGab Invitation',
-		// 		message: 'Check out this Awesome App!',
-		// 	}, callback);
-			
-		// 	return false;
-		// });
-
+		
 
 	});

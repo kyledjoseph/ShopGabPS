@@ -16,7 +16,7 @@
 
 					<div id="myTabContent" class="tab-content">
 						<div class="tab-pane fade in active" id="friends">
-							<?= Form::open(array('action' => $quest->url('invite/friends'), 'class' => '')) ?>
+							<?= Form::open(array('id' => 'invite_friends', 'action' => $quest->url('invite/friends'), 'class' => '')) ?>
 								<div class="row">
 									<div class="col-12 col-sm-6">
 										<h3>Friends on ShopGab</h3>
