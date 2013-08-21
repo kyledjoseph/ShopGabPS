@@ -44,9 +44,10 @@
 				<?php endif; ?>
 
 				<div class="col-12 col-sm-4 dash-item pad-bottom">
+					<div class="dash-friend-info">
 					<?= Html::img($quest->user->get_avatar_uri()) ?>
 					<?= Html::anchor($user->get_friend_profile_url($quest->user->id), $quest->user->display_name()) ?>
-					
+					</div>
 					<a href="<?= Uri::create($quest->url()) ?>">
 						<img width="100%" src="<?= $quest->default_thumb_url(250,220) ?>">
 						<h3><span><?= $quest->name() ?></span></h3>

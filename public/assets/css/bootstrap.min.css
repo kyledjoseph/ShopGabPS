@@ -38,7 +38,7 @@ a:hover .icon-background-circle{background-color:#f17baf}
 .dash-search-select-small{display:inline-block !important;width:100px !important}
 .nav-image{margin-top:-5px}
 .dash-item img{box-sizing:border-box;border:5px solid #ddd}
-.dash-item h3{position:absolute;bottom:25px;left:25px;padding-top:.5em;box-sizing:border-box;display:block;color:rgba(0,0,0,0.6);margin-right:auto;width:81%;margin-left:-3%;text-align:center;margin-bottom:3%;color:rgba(255,255,255,0.7);padding-bottom:.5em;background-color:rgba(0,0,0,0.8)}
+.dash-item h3{position:absolute;bottom:25px;left:25px;padding-top:.5em;box-sizing:border-box;display:block;color:rgba(0,0,0,0.6);margin-right:auto;width:81%;margin-left:-3%;text-align:center;margin-bottom:3%;color:rgba(255,255,255,0.9);padding-bottom:.5em;background-color:rgba(0,0,0,0.4)}
 .dash-item a:hover img{border-color:#f17baf}
 .box{border-radius:5px;border:1px solid #ddd}
 .box h4{margin-top:0;color:#fafafa;background-color:rgba(0,0,0,0.8);padding:14px;border-top-left-radius:5px;border-top-right-radius:5px;margin-bottom:0}
@@ -110,6 +110,8 @@ a:hover .icon-background-circle{background-color:#f17baf}
 .itemnation-box .gallery img{cursor:pointer;width:30px;height:30px;margin:3px;border:1px solid #cfd9dc;border-radius:2px;overflow:hidden}
 .itemnation-box ul{margin:20px 0}
 .itemnation-box li{overflow:hidden;padding:6px 0}
+.dash-friend-info{top:0;left:10%;position:absolute;top:5px;left:25px;padding:.5em;box-sizing:border-box;display:block;color:rgba(0,0,0,0.6);margin-right:auto;width:80%;margin-left:-2%;margin-bottom:3%;color:rgba(255,255,255,0.9);background-color:rgba(0,0,0,0.4)}.dash-friend-info img{border:0;width:20px;border:5px #fafafa}
+.dash-friend-info a{color:rgba(250,250,250,0.9);float:right}
 article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 audio,canvas,video{display:inline-block}
 audio:not([controls]){display:none;height:0}
