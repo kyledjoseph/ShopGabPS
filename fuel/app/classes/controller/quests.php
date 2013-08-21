@@ -128,7 +128,7 @@ class Controller_Quests extends Controller_App
 
 		$quest->name            = $post->name;
 		$quest->description     = $post->description;
-		$quest->purchase_within = $post->purchase_within;
+		$quest->set_purchase_within($post->purchase_within);
 
 		$quest->save();
 
