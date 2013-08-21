@@ -20,10 +20,11 @@
 								<div class="row">
 									<div class="col-12 col-sm-6">
 										<h3>Friends on ShopGab</h3>
-										<?php foreach ($user->get_friends() as $friend): ?>
+										<?php foreach ($user->get_friendships() as $friendship): ?>
 										<div class="checkbox">
 											<label>
-												<input type="checkbox" class="select_fb_friend" name="sg_friends[]" value="<?= $friend->id ?>"> <?= Html::img($friend->get_avatar_uri()) ?> <?= $friend->display_name() ?>
+												<input type="checkbox" class="select_sg_friend" name="sg_friends[]" value="<?= $friendship->id ?>"> 
+												<?= Html::img($friendship->friend->get_avatar_uri()) ?> <?= $friendship->friend->display_name() ?>
 											</label>
 										</div>
 										<?php endforeach; ?>
