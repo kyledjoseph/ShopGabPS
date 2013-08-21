@@ -33,10 +33,10 @@
   <div class="title">
     <div class="title-inner">
       <div class="title-content container">
-        <div class="col-12 col-sm-5 hidden-sm">
+        <div class="col-12 col-sm-8 hidden-sm">
           <img width="100%" src="/assets/img/girls.png" />
         </div>
-        <div class="col-12 col-sm-7 align-center">
+        <div class="col-12 col-sm-4 align-centergit dfisfkmDFKLMS">
           <h2>Shop Socially!</h2>
           <h3>Because shopping is more fun with friends.</h3>
             <div class="email-form row">
@@ -104,7 +104,7 @@
             <img src="/assets/tmp/img/photostream_1.jpg" />
           </div>
           <div class="col-12 col-sm-4">
-            <img src="/assets/tmp/img/photostream_4.jpg" />
+            <img src="/assets/img/photostream_10.png" />
           </div>
           <div class="col-12 col-sm-4">
             <img src="/assets/tmp/img/photostream_3.jpg" />
@@ -117,7 +117,7 @@
         <h3>What Users Say</h3>
         <hr />
         <div class="testimonial">
-        <p>ShopGab was amazing! I still can't believe how easy it was for me and friends to find and buy the best products for me and my new baby, and at the best prices. Teamwork in shopping!</p>
+        <p>ShopGab was amazing! I still can't believe how easy it was for me and my friends to find and buy the best products for me and my new baby, and at the best prices. Teamwork in shopping!</p>
         </div>
         <div class="testimonial-credit">
         <span>Jill Sandberg</span>
