@@ -7,15 +7,14 @@
 				</div>
 				<div class="modal-body">
 					<ul id="myTab" class="nav nav-tabs">
-						<li class="active"><a href="#friends" data-toggle="tab">Friends</a></li>
 						<?php if (($user->is_authenticated_with('facebook')) || 1==1): ?>
-						<li><a href="#facebook" data-toggle="tab">Facebook</a></li>
+						<li class="active"><a href="#facebook" data-toggle="tab">Facebook</a></li>
 						<?php endif; ?>
 						<li><a href="#email" data-toggle="tab">Email</a></li>
 					</ul>
 
 					<div id="myTabContent" class="tab-content">
-						<div class="tab-pane fade in active" id="friends">
+						<div class="tab-pane fade in" id="friends">
 							<?= Form::open(array('id' => 'invite_friends', 'action' => $quest->url('invite/friends'), 'class' => '')) ?>
 								<div class="row">
 									<div class="col-12 col-sm-6">
@@ -44,17 +43,26 @@
 								</div>
 							<?= Form::close() ?>
 						</div>
-						<div class="tab-pane fade" id="facebook">
-							<a class="" href="#" 
-								onclick="
-								window.open(
-								'https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(location.href), 
-								'facebook-share-dialog', 
-								'width=626,height=436'); 
-								return false;">
-								<img class="push-center" src="/assets/img/share-with-friends.png" />
-							</a>
+
+
+
+						<div class="tab-pane fade in active" id="facebook">
+							
+							<img id="fb_share" class="push-center" src="/assets/img/share-with-friends.png"
+								data-picture="<?= $quest->default_thumb_url() ?>"
+								data-link="<?= $quest->full_url() ?>"
+								data-name="Help me find a <?= $quest->name ?>"
+								data-caption="ShopGab - Shop Socially!"
+								data-description="<?= $user->display_name() ?> is trying to find a <?= $quest->name ?> through ShopGab and has requested your input! Please click on the link below to see their page and join in the search. Thanks!"/>
+							<p>
+								or <a id="fb_invite" href="" 
+									data-link="<?= $quest->full_url() ?>">send a message to one or more friends</a>
+							<p>
+
 						</div>
+
+
+
 						<div class="tab-pane fade invite-friends-container" id="email">
 							<?= Form::open(array('action' => $quest->url('invite/email'), 'class' => '')) ?>
 								<div class="modal-slice">

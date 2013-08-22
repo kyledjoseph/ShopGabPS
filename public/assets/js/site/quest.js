@@ -38,40 +38,40 @@ $(function(){
 
 
 
-	$(".invite-btn").click(function() {
+	// $(".invite-btn").click(function() {
 
-		facebook.add_callback(function() {
+	// 	facebook.add_callback(function() {
 
-			FB.api({ method: 'fql.query', query: 'SELECT uid,name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) ORDER BY name'}, 
-				function(response) {
+	// 		FB.api({ method: 'fql.query', query: 'SELECT uid,name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) ORDER BY name'}, 
+	// 			function(response) {
 
-					$('#facebook-friends').empty();
+	// 				$('#facebook-friends').empty();
 
-					$.each(response, function(index, friend) {
+	// 				$.each(response, function(index, friend) {
 
-						if (friend.name == 'Christian Bundy' || friend.name == 'Kyle Joseph' || friend.name == 'Tyler Matthews' || friend.name == 'Dinko Kecanovic')
-						{
-							c = '<label>';
-							c+= '	<div class="inline-block">';
-							c+= '		<input class="select_fb_friend inline-block auto-width" name="fb_friends[]" value="'+friend.uid+'" type="checkbox" />';
-							c+= '	</div>';
-							c+= '	<div class="inline-block">';
-							c+= '		<img style="width:32px;height:32px" src="https://graph.facebook.com/'+friend.uid+'/picture?width=32&height=32">';
-							c+= '		'+ friend.name;
-							c+= '	</div>';
-							c+= '</label>';
-							c+= '<br>';
+	// 					if (friend.name == 'Christian Bundy' || friend.name == 'Kyle Joseph' || friend.name == 'Tyler Matthews' || friend.name == 'Dinko Kecanovic')
+	// 					{
+	// 						c = '<label>';
+	// 						c+= '	<div class="inline-block">';
+	// 						c+= '		<input class="select_fb_friend inline-block auto-width" name="fb_friends[]" value="'+friend.uid+'" type="checkbox" />';
+	// 						c+= '	</div>';
+	// 						c+= '	<div class="inline-block">';
+	// 						c+= '		<img style="width:32px;height:32px" src="https://graph.facebook.com/'+friend.uid+'/picture?width=32&height=32">';
+	// 						c+= '		'+ friend.name;
+	// 						c+= '	</div>';
+	// 						c+= '</label>';
+	// 						c+= '<br>';
 
-							$('#facebook-friends').append(c);
-						}
+	// 						$('#facebook-friends').append(c);
+	// 					}
 
 						
-					});
-				}
-			);
-		});
+	// 				});
+	// 			}
+	// 		);
+	// 	});
 
-	});
+	// });
 
 
 
@@ -87,26 +87,37 @@ $(function(){
 	}
 
 
-	$('#submit_invite_friends').click(function() {
-		
-		var friends = selected_friends();
-		console.log(friends);
+	function quest_id()
+	{
+		//return $('#');
+	}
 
-		if (friends.length < 1)
-		{
-			console.log(friends.length);
-			return true;
-		}
 
-		FB.ui({method: 'apprequests',
-			to: friends,
-			title: 'ShopGab Invitation',
-			message: 'Check out this Awesome App!',
-		}, function(response) {
-			console.log('invites sent', friends, response);
-			//$('#invite_friends').submit();
-		});
+	$('#fb_invite').click(function() {
+
+		//facebook.add_callback(function() {
+			FB.ui({
+				method: 'send',
+				link: $(this).attr('data-link'),
+				}, function(response) {
+					console.log('invites sent', friends, response);
+				}
+			);
+		//});
 		
+		return false;
+	});
+
+	$('#fb_share').click(function() {
+		FB.ui({
+			method: 'feed',
+			link: $(this).attr('data-link'),
+			picture: $(this).attr('data-picture'), //'http://fbrell.com/f8.jpg',
+			name: $(this).attr('data-name'),
+			caption: $(this).attr('data-caption'),
+			description: $(this).attr('data-description')
+		}, function(response) {})
+
 		return false;
 	});
 
