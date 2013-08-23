@@ -158,46 +158,46 @@ class Controller_Quests extends Controller_App
 	/**
 	 *
 	 */
-	public function post_invite_friends($quest_url)
-	{
-		$quest = $this->get_quest_by_url($quest_url);
-		$this->require_auth($quest->url());
+	// public function post_invite_friends($quest_url)
+	// {
+	// 	$quest = $this->get_quest_by_url($quest_url);
+	// 	$this->require_auth($quest->url());
 
-		$post = $this->post_data('sg_friends', 'fb_friends');
+	// 	$post = $this->post_data('sg_friends', 'fb_friends');
 
-		$total_sg_friends = count($post->sg_friends);
-		$total_fb_friends = count($post->fb_friends);
+	// 	$total_sg_friends = count($post->sg_friends);
+	// 	$total_fb_friends = count($post->fb_friends);
 
-		if ($total_sg_friends > 0)
-		{
-			foreach ($post->sg_friends as $friend_id)
-			{
-				$friendship = $this->user->get_friendship_by_id($friend_id);
-				if (is_null($friendship))
-				{
-					throw new Exception("Error Processing Request", 1);
-					$quest->invite_friend_to_quest($friendship);
-				}
-			}
-		}
+	// 	if ($total_sg_friends > 0)
+	// 	{
+	// 		foreach ($post->sg_friends as $friend_id)
+	// 		{
+	// 			$friendship = $this->user->get_friendship_by_id($friend_id);
+	// 			if (is_null($friendship))
+	// 			{
+	// 				throw new Exception("Error Processing Request", 1);
+	// 				$quest->invite_friend_to_quest($friendship);
+	// 			}
+	// 		}
+	// 	}
 		
-		// handled client side
-		// if (! empty($post->fb_friends))
-		// {
-		// 	foreach ($post->fb_friends as $friend_id)
-		// 	{
+	// 	// handled client side
+	// 	// if (! empty($post->fb_friends))
+	// 	// {
+	// 	// 	foreach ($post->fb_friends as $friend_id)
+	// 	// 	{
 
-		// 	}
-		// }
+	// 	// 	}
+	// 	// }
 
-		if ($total_sg_friends > 0 or $total_fb_friends > 0)
-		{
-			$this->redirect($quest->url(), 'success', "Invitations sent");
-		}
+	// 	if ($total_sg_friends > 0 or $total_fb_friends > 0)
+	// 	{
+	// 		$this->redirect($quest->url(), 'success', "Invitations sent");
+	// 	}
 
-		$this->redirect($quest->url(), 'error', "No invitations sent");
+	// 	$this->redirect($quest->url(), 'error', "No invitations sent");
 
-	}
+	// }
 
 
 	/**
@@ -209,29 +209,22 @@ class Controller_Quests extends Controller_App
 		$this->require_auth($quest->url());
 
 		$post = $this->post_data('to', 'subject', 'description');
+		$recipients = explode(',', $post->to);
 
-		if (! isset($post->to) or empty($post->to))
+		// ensure recipients
+		if (! isset($post->to) or empty($post->to) or empty($recipients))
 		{
 			$this->redirect($quest->url(), 'error', "Enter one or more recipients to invite to this Quest");
 		}
 		
-		$recipients = explode(',', $post->to);
 		foreach ($recipients as $recipient)
 		{
+			// is valid email
+
+
+			// send email invitation
 			$recipient = trim($recipient);
-
-			$body = $post->description;
-			$body.= '<br><br>';
-			$body.= '<a href="http://shopgab.com/'.$quest->url().'">http://shopgab.com/'.$quest->url().'</a>';
-
-			Service_Email::send(array(
-				'type'      => 'quest_invite',
-				'to_addr'   => $recipient,
-				'from_name' => 'ShopGab',
-				'from_addr' => 'info@shopgab.com',
-				'subject'   => $post->subject,
-				'body'      => $body,
-			));
+			$invite = Model_Invite_Email::send_invite($this->user, $quest, $recipient, $post->subject, $post->description);
 		}
 
 		if (count($recipients) > 1)
