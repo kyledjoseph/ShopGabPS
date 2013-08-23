@@ -9,13 +9,18 @@
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="/assets/css/font-awesome.min.css" rel="stylesheet" media="screen">
 	<?= Casset::render_css() ?>
-</head>
-<body>
+	<!-- start Mixpanel --><script type="text/javascript">(function(e,b){if(!b.__SV){var a,f,i,g;window.mixpanel=b;a=e.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===e.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.2.min.js';f=e.getElementsByTagName("script")[0];f.parentNode.insertBefore(a,f);b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==
+		typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.track_charge people.clear_charges people.delete_user".split(" ");for(g=0;g<i.length;g++)f(c,i[g]);
+		b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
+		mixpanel.init("74f31affe2392e03342e76c351d83ce1");</script><!-- end Mixpanel -->
+	</head>
 
-	<!-- Header -->
-	<?= $view->header ?>
+	<body>
 
-	<?php if (isset($notice)): ?>
+		<!-- Header -->
+		<?= $view->header ?>
+
+		<?php if (isset($notice)): ?>
 		<div class="alert alert-<?= $notice->type ?>">
 			<button type="button" class="close" data-dismiss="alert">&times;</button>
 			<?= $notice->message ?>
@@ -23,7 +28,7 @@
 	<?php endif; ?>
 
 	<?= $body ?>
-	</div>
+</div>
 <div class="footer">
 	<div class="footer-white">
 		<div class="container">
@@ -68,13 +73,13 @@
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="/assets/js/script.js"></script>
 	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-		ga('create', 'UA-42842086-1', 'shopgab.com');
-		ga('send', 'pageview');
+	ga('create', 'UA-42842086-1', 'shopgab.com');
+	ga('send', 'pageview');
 
 	</script>
 	<?= Casset::render_js() ?>
