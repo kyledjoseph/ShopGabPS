@@ -651,6 +651,12 @@ class Model_User extends \Orm\Model
 	public function authenticate_with($user_info)
 	{
 		$user_auth = Model_User_Auth::create_user_auth($this, $user_info);
+		
+		if ($user_info['provider'] == 'facebook')
+		{
+			$this->avatar_type = 2;
+			$this->save();
+		}
 	}
 
 	/**
