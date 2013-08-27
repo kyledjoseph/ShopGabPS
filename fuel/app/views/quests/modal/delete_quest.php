@@ -10,7 +10,7 @@
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<a href="/<?= $quest->url('delete') ?>">
+				<a href="<?= Uri::create($quest->url('delete')) ?>">
 					<button type="button" class="btn btn-danger">Delete Quest</button>
 				</a>
 
