@@ -36,20 +36,15 @@
         <div class="col-12 col-sm-8 hidden-sm">
           <img width="100%" src="/assets/img/girls.png" />
         </div>
-        <div class="col-12 col-sm-4 align-centergit dfisfkmDFKLMS">
+        <div class="landing-text col-12 col-sm-4">
           <h2>Shop Socially!</h2>
           <h3>Because shopping is more fun with friends.</h3>
             <div class="email-form row">
               <div class="col-12 col-sm-12">
-                <?= Form::open(array('action' => 'try')) ?>
-                <div class="input-group">
-                  <input name="email" type="text" class="form-control" placeholder="you@email.com">
-                  <span class="input-group-btn">
-                    <button type="submit" class="btn btn-default" type="button">Sign Up Now</button>
-                  </span>
+                <button class="btn btn-primary btn-lg">Start Here</button>
+                <div class="block">
+                  <a class="learn-more block" href="http://youtu.be/rycC_GHBMv0"><i class="icon-facetime-video"></i> Learn more</a>
                 </div>
-                <?= Form::close() ?>
-                <p class="title-soon">Sign up to receive updates.<br />Coming Soon: 09/01/13</p>
               </div>
             </div>
           </div>
@@ -135,7 +130,7 @@
           <p>At ShopGab our mission is to help shoppers confidently purchase the best products for their needs. We provide a fun and simple way to store any product, gather feedback and get product recommendations from trusted friends. No longer does online shopping have to be a lonely, individualized process! Shop together and buy with the confidence and support of your friends and family.</p>
         </div>
         <div class="follow col-12 col-sm-6">
-          <h4>Follow Us</h4>
+          <h4>Join the conversation</h4>
           <hr />
           <div class="social-links">
             <a href="http://facebook.com/shopgab" class="facebook">
@@ -149,6 +144,10 @@
             </a>
             <a href="https://plus.google.com/u/0/113964272651935695754/posts" class="google-plus">
               <i class="icon-google-plus icon-2x icon-light"></i>
+            </a>
+
+            <a href="https://blog.shopgab.com" class="wordpress">
+              <img src="/assets/img/wordpress.png" />
             </a>
           </div>
         </div>

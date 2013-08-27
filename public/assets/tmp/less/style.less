@@ -52,7 +52,6 @@ h1, h2, h3, h4, h5, h6 {
 	a {
 		height: 58px;
 		width: 58px;
-		background-color: black;
 		text-align: center;
 		display: inline-block;
 		margin-right: 5px;
@@ -77,6 +76,10 @@ h1, h2, h3, h4, h5, h6 {
 	.twitter {
 		padding-top: 14px;
 		background-color: #00acee;
+	}
+
+	.wordpress img {
+		margin-top: -10px;
 	}
 
 	.pinterest {
@@ -738,3 +741,41 @@ height: 200px !important;
 width: 32px !important;
 height: 32px !important;
 }
+
+.landing-text {
+	text-align: center;
+	padding-bottom: 50px;
+
+	h2 {
+		font-weight: 700;
+	}
+}
+
+.learn-more {
+	margin-top: 10px;
+	color: #fff;
+
+	&:hover {
+		text-decoration: none;
+		color: @brand-primary;
+	}
+}
+
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: @screen-small) {
+	.landing-text {
+		padding-top: 30px;
+		text-align: left;
+		padding-bottom: 0;
+	}
+}
+
+@media (min-width: @screen-medium) { 
+	.landing-text {
+		padding-top: 100px;
+	}
+}
+
+/* Large devices (large desktops, 1200px and up) 
+@media (min-width: @screen-lg) { }*/

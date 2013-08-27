@@ -1,8 +1,8 @@
 	<div class="container">
-		<div class="col-2 ">
+		<div class="col-12 col-sm-2">
 			<h4><?= $quest->user->display_name() ?></h4>
 		</div>
-		<div class="col-10">
+		<div class="col-12 col-sm-10">
 			<h4 class="help-me">Please help me find a <span class="product-name"><?= $quest->name() ?></span></h4>
 		</div>
 	</div>
@@ -11,7 +11,7 @@
 		<div class="col-2">
 			<?= Html::img($quest->user->get_avatar_uri(200, 200), array('width' => 100, 'height' => 100)) ?>
 		</div>
-		<div class="col-6">
+		<div class="col-10 col-sm-6">
 			<div class="bubble">
 				<p><?= $quest->description() ?></p>
 				<?php if (isset($user) and $quest->belongs_to_user($user->id)): ?>
@@ -31,8 +31,8 @@
 			</div>
 		</div>
 
-		<div class="col-4 align-center">
-			<div class="btn-group pad-bottom">
+		<div class="col-12 col-sm-4 align-center">
+			<div class="btn-group pad-bottom hidden">
 				<?= Html::anchor($quest->url('access/public'), 'Public', array('class' => "btn btn-default " . ($quest->is_public() ? ' active' : null))) ?>
 				<?= Html::anchor($quest->url('access/private'), 'Private', array('class' => "btn btn-default " . (! $quest->is_public() ? ' active' : null))) ?>
 			</div>
@@ -45,7 +45,7 @@
 	</div>
 
 	<div class="container">
-		<div class="col-8">
+		<div class="col-12 col-sm-8">
 			<div class="box marg-top">
 				
 				<h4>Products</h4>
@@ -146,7 +146,11 @@
 				<?php $product_i++; endforeach; ?>
 
 	  			<?php if (isset($user)): ?>
-	  			<button href="#addProductModal" class="corner-button btn btn-medium btn-success" data-toggle="modal">+ Add Product</button>
+		  			<?php if ($quest->belongs_to_user($user->id)) { ?>
+		  			<button href="#addProductModal" class="corner-button btn btn-medium btn-success" data-toggle="modal">+ Add Product</button>
+		  			<?php } else { ?>
+		  			<button href="#addProductModal" class="corner-button btn btn-medium btn-success" data-toggle="modal">+ Recommend Product</button>
+	  				<?php } ?>
 	  			<?php else: ?>
 	  			<button href="#loginModal" class="corner-button btn btn-small btn-success" data-toggle="modal">+ Add Product</button>
 	  			<?php endif; ?>
@@ -154,7 +158,7 @@
 			</div>
 		</div>
 
-		<div class="col-4">
+		<div class="col-12 col-sm-4">
 			<div class="box marg-top">
 				<h4>Chat</h4>
 				<div class="row">
