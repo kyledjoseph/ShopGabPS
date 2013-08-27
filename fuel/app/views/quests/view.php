@@ -30,7 +30,6 @@
 				<span class="faded"><?= $quest->purchase_within !== '0' ? "({$quest->purchase_within()}) days" : '' ?></span>
 			</div>
 		</div>
-
 		<div class="col-12 col-sm-4 align-center">
 			<div class="btn-group pad-bottom hidden">
 				<?= Html::anchor($quest->url('access/public'), 'Public', array('class' => "btn btn-default " . ($quest->is_public() ? ' active' : null))) ?>

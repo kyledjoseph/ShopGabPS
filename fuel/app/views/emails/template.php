@@ -1,5 +1,5 @@
 <html>
-<img src="logo.png" style="width: 100px; margin-left: auto; margin-right: auto" />
+<img src="cid:SHOPGAB_LOGO" style="width: 100px; margin-left: auto; margin-right: auto" />
 <div class="content">
 <?= $content ?>
 </div>
@@ -18,6 +18,6 @@
 	</div>
 </div>
 <div class="unsubscribe">
-	<p style="text-align:center;">You're receving this message because you signed up at ShopGab.com. Unsubscribe only if you hate kittens.</p>
+	<p style="text-align:center;">You're receving this message because you signed up at ShopGab.com. <?= Html::anchor('unsubscribe', 'Unsubscribe by clicking here') ?>.</p>
 </div>
 </html>

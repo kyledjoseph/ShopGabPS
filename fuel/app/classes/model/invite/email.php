@@ -11,6 +11,16 @@ class Model_Invite_Email extends \Orm\Model
 		'updated_at',
 	);
 
+	protected static $_belongs_to = array(
+		'user' => array(
+			'key_from' => 'user_id',
+			'model_to' => 'Model_User',
+			'key_to' => 'id',
+			'cascade_save' => true,
+			'cascade_delete' => false,
+		),
+	);
+
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(
 			'events' => array('before_insert'),
@@ -55,6 +65,13 @@ class Model_Invite_Email extends \Orm\Model
 			), false),
 		));
 
+		return $invite->save() ? $invite : false;
 
+	}
+
+
+	public static function get_by_email($email)
+	{
+		return static::query()->where('email', $email)->get();
 	}
 }
