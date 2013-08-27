@@ -16,12 +16,19 @@ class Service_Email
 			$attr['to_name'] = $attr['to_addr'];
 		}
 
-		// $email = Email::forge();
-		// $email->from($attr['from_addr'], $attr['from_name']);
-		// $email->to($attr['to_addr'], $attr['to_name']);
-		// $email->subject($attr['subject']);
-		// $email->html_body($attr['body']);
-		// $email->send();
+		// render the view
+		if (get_class($attr['body']) == 'Fuel\Core\View')
+		{
+			$attr['body'] = $attr['body']->render();
+		}
+
+
+		// * 	- images array an array of embedded images to add to the message
+		// *         - images[] struct a single embedded image
+		// *             - type string the MIME type of the image - must start with "image/"
+		// *             - name string the Content ID of the image - use <img src="cid:THIS_VALUE"> to reference the image in your HTML content
+		// *             - content string the content of the image as a base64-encoded string
+
 
 		$message = array(
 			'subject'    => $attr['subject'],
@@ -31,6 +38,13 @@ class Service_Email
 				array('email'  => $attr['to_addr'], 'name'   => $attr['to_name'])
 			),
 			'html'       => $attr['body'],
+			'images'     => array(
+				array(
+					'type'    => 'image/png',
+					'name'    => 'SHOPGAB_LOGO',
+					'content' => base64_encode(file_get_contents(DOCROOT . 'assets/img/email/logo.png')),
+				),
+			),
 		);
 
 		$mandrill = new Mandrill('TuKwIsrSRAh7nwWiWVXZyQ');

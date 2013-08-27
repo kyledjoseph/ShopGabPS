@@ -33,8 +33,8 @@
 
 		<div class="col-4 align-center">
 			<div class="btn-group pad-bottom">
-				<?= Html::anchor($quest->url('access/public'), 'Public', array('class' => "btn btn-default " . ($quest->is_public() ? ' active' : null))) ?>
-				<?= Html::anchor($quest->url('access/private'), 'Private', array('class' => "btn btn-default " . (! $quest->is_public() ? ' active' : null))) ?>
+				<?php // Html::anchor($quest->url('access/public'), 'Public', array('class' => "btn btn-default " . ($quest->is_public() ? ' active' : null))) ?>
+				<?php // Html::anchor($quest->url('access/private'), 'Private', array('class' => "btn btn-default " . (! $quest->is_public() ? ' active' : null))) ?>
 			</div>
 
 

@@ -212,6 +212,9 @@ class Controller_User extends Controller_App
 		$user->display_name = $post->name;
 		$user->save();
 
+		// add past invitations as friends
+		$user->add_invitations_as_friends();
+
 		// log user in
 		$this->auth->login($post->email, $post->password);
 

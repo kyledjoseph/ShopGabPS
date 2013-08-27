@@ -72,6 +72,13 @@ class Model_User extends \Orm\Model
 			'cascade_save' => true,
 			'cascade_delete' => true,
 		),
+		'invites' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Invite_Email',
+			'key_to' => 'user_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
 	);
 
 	protected static $_observers = array(
@@ -641,6 +648,19 @@ class Model_User extends \Orm\Model
 			->execute();
 
 		return $result->as_array();
+	}
+
+	public function add_invitations_as_friends()
+	{
+		$invites = Model_Invite_Email::get_by_email($this->email);
+
+		foreach ($invites as $invite)
+		{
+			if (! $this->is_friend($invite->user->id))
+			{
+				$this->add_friend($invite->user);
+			}
+		}
 	}
 
 

@@ -3,6 +3,11 @@
 class Controller_Debug extends Controller_App
 {
 
+	public function get_send()
+	{
+		return base64_encode(file_get_contents(DOCROOT . 'assets/img/email/logo.png'));
+	}
+
 
 	public function get_cloud()
 	{
