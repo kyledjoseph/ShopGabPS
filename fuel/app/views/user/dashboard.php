@@ -11,21 +11,11 @@
 			<div class="row">
 				<div class="col-12 col-sm-8 pad-top">
 					<?php if (Fuel::$env !== 'production'): ?>
-					<select class="dash-search-select form-control hidden">
+					<select class="dash-search-select form-control">
 						<option disabled selected>Sort By Recent Updates</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
 					</select>
 					<select class="dash-search-select-small form-control hidden">
 						<option disabled selected>All</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
 					</select>
 				<?php endif; ?>
 			</div>

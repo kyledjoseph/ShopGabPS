@@ -78,7 +78,7 @@
 			<button href="#inviteFriendsModal" class="corner-button btn btn-medium btn-success" data-toggle="modal">+ Invite</button>
 			<div class="content">
 				<div class="friend-box align-center">
-					<form class="form-search">
+					<form class="form-search hidden">
 						<input type="text" class="input-medium form-control" placeholder="Search">
 					</form>
 				</div>
