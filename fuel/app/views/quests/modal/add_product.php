@@ -9,7 +9,15 @@
 				<div class="col-6">
 					<div class="modal-slice">
 						<h4>Drag this to your bookmarks!</h4>
-						<a class="grab bookmarklet" href="javascript:(function(){var e=document.createElement('script');e.id='itemnation-script';e.src='http://shopgab.com/bookmark.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><img class="grab" src="<?= Uri::create('assets/img/bookmark.png') ?>" alt="Add to ShopGab" /></a>
+<?php if (Fuel::$env !== 'production'): ?>
+<a class="grab bookmarklet" href="javascript:(function(){var e=document.createElement('script');e.id='itemnation-script';e.src='http://shopgab.com/bookmark.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><img class="grab" src="<?= Uri::create('assets/img/bookmark.png') ?>" alt="Add to ShopGab" /></a>
+<?php else ?>
+<a class="grab bookmarklet" href="javascript:(function(){var e=document.createElement('script');e.id='itemnation-script';e.src='http://test.shopgab.com/bookmark.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><img class="grab" src="<?= Uri::create('assets/img/bookmark.png') ?>" alt="Add to ShopGab (test)" /></a>
+<?php endif; ?>
+
+
+
+						
 						<img width="100%" src="/assets/img/drag.png" />
 						<div class="block">
 							<a class="learn-more block" href="http://www.youtube.com/embed/qDf4w9spx5U?showinfo=0"><i class="icon-facetime-video"></i> Learn more</a>
