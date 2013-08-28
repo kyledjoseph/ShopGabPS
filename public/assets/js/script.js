@@ -21,6 +21,11 @@ $(".switch-to-signin").click(function() {
     $("#loginModal").modal('show');
 });
 
+
+$('.btn-google-search').click(function() {
+    $("#addProductModal").modal('hide');
+});
+
 $('.del-add-product-video').click(function() {
     $('.add-product-video').attr('src', '');
 });

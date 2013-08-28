@@ -66,7 +66,7 @@
 						</div>
 
 						<div class="info media-body">
-							<div class="name"><span><?= $product->name() ?></span></div>
+							<div class="name"><a href="<?= $product->product_url() ?>"><?= $product->name() ?></a></span></div>
 							<span class="price"><?= $product->price() ?></span>
 							<span class="description"><?= $product->description() ?></span>
 							<div>
@@ -115,9 +115,9 @@
 						
 							<div class="marg-top">
 								<?php if (isset($user)): ?>
-								<?= Html::anchor($product->product_url(), 'Where can I find this?', array('class' => 'btn btn-warning pull-right', 'target' => '_blank')) ?>
+								<?= Html::anchor($product->product_url(), 'Where can I buy this?', array('class' => 'btn btn-warning pull-right', 'target' => '_blank')) ?>
 								<?php else: ?>
-								<a href="#loginModal" class="btn btn-warning" data-toggle="modal">Where can I find this?</a>
+								<a href="#loginModal" class="btn btn-warning" data-toggle="modal">Where can I buy this?</a>
 								<?php endif; ?>
 							</div>
 						</div>

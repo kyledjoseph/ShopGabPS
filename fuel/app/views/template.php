@@ -29,39 +29,49 @@
 
 	<?= $body ?>
 </div>
-<div class="footer">
-	<div class="footer-white">
-		<div class="container">
-			<div class="about col-12 col-sm-6">
-				<h4>About Us</h4>
-				<hr />
-				<p>At ShopGab our mission is to help shoppers confidently purchase the best products for their needs. We provide a fun and simple way to store any product, gather feedback and get product recommendations from trusted friends. No longer does online shopping have to be a lonely, individualized process! Shop together and buy with the confidence and support of your friends and family.</p>
-			</div>
-			<div class="follow col-12 col-sm-6">
-				<h4>Follow Us</h4>
-				<hr />
-				<div class="social-links">
-					<a href="http://facebook.com/shopgab" class="facebook">
-						<i class="icon-facebook icon-2x icon-light"></i>
-					</a>
-					<a href="http://twitter.com/weshopgab" class="twitter">
-						<i class="icon-twitter icon-2x icon-light"></i>
-					</a>
-					<a href="http://pinterest.com/WeShopGab/boards/" class="pinterest">
-						<i class="icon-pinterest icon-2x icon-light"></i>
-					</a>
-					<a href="https://plus.google.com/u/0/113964272651935695754/posts" class="google-plus">
-						<i class="icon-google-plus icon-2x icon-light"></i>
-					</a>
-				</div>
-			</div>
-		</div>
-		<div class="container">
-			<div class="col-12">
-				<p class="text-muted">&copy; ShopGab 2013, all rights reserved.</p>
-			</div>
-		</div>
-	</div>
+<!-- Footer -->
+  <div class="footer">
+    <div class="footer-white">
+      <div class="container">
+        <div class="about col-12 col-sm-4">
+          <h4>About Us</h4>
+          <hr />
+          <p>At ShopGab our mission is to help shoppers confidently purchase the best products for their needs. We provide a fun and simple way to store any product, gather feedback and get product recommendations from trusted friends. No longer does online shopping have to be a lonely, individualized process! Shop together and buy with the confidence and support of your friends and family.</p>
+        </div>
+        <div class="flickr-widget col-12 col-sm-4">
+          <h4>Photostream</h4>
+          <hr />
+        <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=29609591@N08"></script>
+        </div>
+        <div class="follow col-12 col-sm-4">
+          <h4>Join the conversation</h4>
+          <hr />
+          <div class="social-links">
+            <a href="http://facebook.com/shopgab" class="facebook">
+              <i class="icon-facebook icon-2x icon-light"></i>
+          </a>
+            <a href="http://twitter.com/weshopgab" class="twitter">
+              <i class="icon-twitter icon-2x icon-light"></i>
+            </a>
+            <a href="http://pinterest.com/WeShopGab/boards/" class="pinterest">
+              <i class="icon-pinterest icon-2x icon-light"></i>
+            </a>
+            <a href="https://plus.google.com/u/0/113964272651935695754/posts" class="google-plus">
+              <i class="icon-google-plus icon-2x icon-light"></i>
+            </a>
+            <a href="https://blog.shopgab.com" class="wordpress">
+              <img src="/assets/img/wordpress.png" />
+            </a>
+          </div>
+          <a href="http://rackspace.com/"><img class="rackspace" src="/assets/img/rackspace.png" /></a>
+        </div>
+      </div>
+      <div class="container">
+      <div class="col-12">
+          <p class="text-muted">&copy; ShopGab 2013, all rights reserved.</p>
+          </div>
+      </div>
+    </div>
 
 	<a href="#feedbackModal" class="feedback-button" data-toggle="modal"><img src="/assets/img/feedback.png" /></a>
 

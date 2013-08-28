@@ -15,7 +15,7 @@
   <div class="header container">
     <!-- Logo -->
     <div class="col-4 col-sm-2">
-      <h1><img src="/assets/tmp/img/logo.png" alt="ShopGab" /></h1>
+      <h1><img src="/assets/img/logo.png" alt="ShopGab" /></h1>
     </div>
 
     <!-- Navigation -->
@@ -41,7 +41,7 @@
           <h3>Because shopping is more fun with friends.</h3>
             <div class="email-form row">
               <div class="col-12 col-sm-12">
-                <button class="btn btn-primary btn-lg">Start Here</button>
+                <button class="btn btn-primary btn-lg start-here btn-block">Start Here</button>
                 <div class="block">
                   <a class="learn-more block" href="http://youtu.be/rycC_GHBMv0"><i class="icon-facetime-video"></i> Learn more</a>
                 </div>
@@ -124,12 +124,17 @@
   <div class="footer">
     <div class="footer-white">
       <div class="container">
-        <div class="about col-12 col-sm-6">
+        <div class="about col-12 col-sm-4">
           <h4>About Us</h4>
           <hr />
           <p>At ShopGab our mission is to help shoppers confidently purchase the best products for their needs. We provide a fun and simple way to store any product, gather feedback and get product recommendations from trusted friends. No longer does online shopping have to be a lonely, individualized process! Shop together and buy with the confidence and support of your friends and family.</p>
         </div>
-        <div class="follow col-12 col-sm-6">
+        <div class="flickr-widget col-12 col-sm-4">
+          <h4>Photostream</h4>
+          <hr />
+        <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=29609591@N08"></script>
+        </div>
+        <div class="follow col-12 col-sm-4">
           <h4>Join the conversation</h4>
           <hr />
           <div class="social-links">
@@ -145,11 +150,11 @@
             <a href="https://plus.google.com/u/0/113964272651935695754/posts" class="google-plus">
               <i class="icon-google-plus icon-2x icon-light"></i>
             </a>
-
             <a href="https://blog.shopgab.com" class="wordpress">
               <img src="/assets/img/wordpress.png" />
             </a>
           </div>
+          <a href="http://rackspace.com/"><img class="rackspace" src="/assets/img/rackspace.png" /></a>
         </div>
       </div>
       <div class="container">
