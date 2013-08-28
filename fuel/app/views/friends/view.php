@@ -20,13 +20,8 @@
 			<div class="row">
 				<div class="col-12 col-sm-8">
 					<?php if (Fuel::$env !== 'production'): ?>
-					<select class="dash-search-select form-control hidden">
+					<select class="dash-search-select form-control">
 						<option disabled selected>Sort By Recent Updates</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
 					</select>
 					<select class="dash-search-select-small form-control hidden">
 						<option disabled selected>All</option>
@@ -90,7 +85,7 @@
 		<div class="box help-a-friend">
 			<h4><?= $friendship->friend->display_name() ?></h4>
 			<div class="content">
-				<?= Html::img($friendship->friend->get_avatar_uri(200, 200)) ?>
+				<?= Html::img($friendship->friend->get_avatar_uri(200, 200), array('class' => 'force-200-200')) ?>
 				<p><?= $total_quests . ' ' . Inflector::pluralize('quest', $total_quests) ?>
 			</div>
 		</div>

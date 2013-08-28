@@ -12,21 +12,11 @@
 			<div class="row">
 				<div class="col-12 col-sm-8 pad-top">
 					<?php if (Fuel::$env !== 'production'): ?>
-					<select class="dash-search-select form-control hidden">
+					<select class="dash-search-select form-control">
 						<option disabled selected>Sort By Recent Updates</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
 					</select>
 					<select class="dash-search-select-small form-control hidden">
 						<option disabled selected>All</option>
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
 					</select>
 				<?php endif; ?>
 			</div>
@@ -87,18 +77,16 @@
 			<h4>Friends</h4>
 			<button href="#inviteFriendsModal" class="corner-button btn btn-medium btn-success" data-toggle="modal">+ Invite</button>
 			<div class="content">
-						
 				<div class="friend-box align-center">
 					<form class="form-search">
 						<input type="text" class="input-medium form-control" placeholder="Search">
 					</form>
 				</div>
-
 				<?php foreach ($user->get_friendships() as $friendship): ?>
 				<div class="friend-box">
 					<div class="media">
 						<a class="pull-left" href="#">
-							<img class="media-object" src="<?= $friendship->friend->get_avatar_uri() ?>" />
+							<img class="media-object force-32-32" src="<?= $friendship->friend->get_avatar_uri() ?>" />
 						</a>
 						<div class="media-body">
 							<strong><?= Html::anchor("friends/view/{$friendship->id}", $friendship->friend->display_name()) ?></strong>  - <?= Html::anchor("friends/hide/{$friendship->id}", 'Remove', array('class' => 'remove')) ?>

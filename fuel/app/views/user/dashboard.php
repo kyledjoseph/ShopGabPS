@@ -80,7 +80,7 @@
 					<div class="friend-box">
 						<div class="media">
 							<a class="pull-left" href="<?= Uri::create($quest->url()) ?>">
-								<img class="media-object" style="width:32px;height32px" src="<?= $quest->default_thumb_url(50, 50) ?>" />
+								<img class="media-object force-32-32" src="<?= $quest->default_thumb_url(50, 50) ?>" />
 							</a>
 							<div class="media-body">
 								<strong><?= Html::anchor($user->get_friend_profile_url($quest->user->id), $quest->user->display_name()) ?></strong> - <?= $quest->name() ?> (<?= $quest->purchase_within() ?> days)
