@@ -434,6 +434,7 @@ class Model_User extends \Orm\Model
 			->where('user_id', $this->id)
 			->where('friend_registered', '1')
 			->where('hidden', '0')
+			->order_by('friend_name', 'asc')
 			->get();
 	}
 
