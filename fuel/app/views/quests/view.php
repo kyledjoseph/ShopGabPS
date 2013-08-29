@@ -38,7 +38,7 @@
 
 
 			<?php if (isset($user) and $quest->belongs_to_user($user->id)): ?>
-			<button href="#inviteModal" class="btn btn-success btn-large block push-center invite-btn" data-toggle="modal">Invite friends</button>
+			<button href="#inviteModal" class="btn btn-success btn-large block push-center invite-btn quest-invite" data-toggle="modal">Invite friends</button>
 			<?php endif; ?>
 		</div>
 	</div>

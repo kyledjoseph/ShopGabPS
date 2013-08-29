@@ -125,7 +125,9 @@ a:hover .icon-background-circle{background-color:#f17baf}
 .flickr-widget img{display:block;width:100%}
 .flickr-widget a:hover{border-color:#505050}
 .flickr-widget a{position:relative;min-height:1px;padding-left:15px;padding-right:15px;float:left;width:33.33333333333333%;margin-bottom:15px}
-.rackspace{width:100%}
+.info .name a{color:#56ae3d}
+.rackspace{width:50%}
+.quest-invite{font-size:18px !important;padding:.6em 1.5em !important}
 @media (min-width:768px){.landing-text{padding-top:30px;text-align:left;padding-bottom:0}}@media (min-width:992px){.landing-text{padding-top:100px}}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 audio,canvas,video{display:inline-block}
 audio:not([controls]){display:none;height:0}

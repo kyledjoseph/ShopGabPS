@@ -43,7 +43,7 @@
               <div class="col-12 col-sm-12">
                 <button class="btn btn-primary btn-lg start-here btn-block" href="#registerModal" data-toggle="modal">Start Here</button>
                 <div class="block">
-                  <a class="learn-more block" href="http://youtu.be/rycC_GHBMv0"><i class="icon-facetime-video"></i> Learn more</a>
+                  <a class="learn-more block" href="http://youtu.be/rycC_GHBMv0" target="_blank"><i class="icon-facetime-video"></i> Learn more</a>
                 </div>
               </div>
             </div>
@@ -132,7 +132,7 @@
         <div class="flickr-widget col-12 col-sm-4">
           <h4>Photostream</h4>
           <hr />
-        <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=29609591@N08"></script>
+        <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=99861439@N02"></script>
         </div>
         <div class="follow col-12 col-sm-4">
           <h4>Join the conversation</h4>

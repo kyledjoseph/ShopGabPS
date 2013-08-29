@@ -75,7 +75,7 @@
 	<div class="col-12 col-sm-4 pad-top">
 		<div class="box help-a-friend">
 			<h4>Friends</h4>
-			<button href="#inviteFriendsModal" class="corner-button btn btn-medium btn-success" data-toggle="modal">+ Invite</button>
+			<button href="#inviteFriendsModal" class="corner-button btn btn-medium btn-success hidden" data-toggle="modal">+ Invite</button>
 			<div class="content">
 				<div class="friend-box align-center">
 					<form class="form-search hidden">
