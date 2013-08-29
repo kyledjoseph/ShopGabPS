@@ -66,7 +66,7 @@
 						</div>
 
 						<div class="info media-body">
-							<div class="name"><a href="<?= $product->product_url() ?>"><?= $product->name() ?></a></span></div>
+							<div class="name"><a href="<?= $product->product_url() ?>" target="_blank"><?= $product->name() ?></a></span></div>
 							<span class="price"><?= $product->price() ?></span>
 							<span class="description"><?= $product->description() ?></span>
 							<div>
