@@ -146,7 +146,7 @@
 
 	  			<?php if (isset($user)): ?>
 		  			<?php if ($quest->belongs_to_user($user->id)) { ?>
-		  			<button href="#addProductModal" class="corner-button btn btn-medium btn-success" data-toggle="modal">+ Add Product</button>
+		  			<button href="#addProductModal" class="corner-button btn btn-medium btn-success quest-add-product" data-toggle="modal">+ Add Product</button>
 		  			<?php } else { ?>
 		  			<button href="#addProductModal" class="corner-button btn btn-medium btn-success" data-toggle="modal">+ Recommend Product</button>
 	  				<?php } ?>
