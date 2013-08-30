@@ -27,7 +27,6 @@
 				<div class="col-6">
 					<div class="modal-slice">
 						<h4>Capture from the web!</h4>
-						<img width="100%" src="/assets/img/screenshot.png" />
 						<?= Form::open(array('action' => 'http://google.com/search', 'method' => 'get', 'target' => '_blank')) ?>
 						<h5 class="pad-top">Start shopping now!</h5>
 						<div class="input-group pad-top">
