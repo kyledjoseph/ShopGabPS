@@ -81,3 +81,21 @@
 		</div>
 	</div>
 </div>
+
+<script>
+var dash = new Tour();
+
+dash.addSteps([
+    {
+        element: ".tour-quest-button", // string (jQuery selector) - html element next to which the step popover should be shown
+        title: "Start a new quest", // string - title of the popover
+        content: "Get started looking for your first product." // string - content of the popover
+    }, 
+    {
+        element: ".tour-friends-tab", // string (jQuery selector) - html element next to which the step popover should be shown
+        title: "Friends", // string - title of the popover
+        content: "Check out what your friends are looking for." // string - content of the popover
+    }
+]);
+
+dash.start();</script>

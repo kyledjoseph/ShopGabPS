@@ -202,4 +202,19 @@
 		</div>
 	</div>
 
-	<script>$(".chat").scrollTop($(".chat")[0].scrollHeight);</script>
+	<script>
+
+var quest = new Tour();
+
+quest.addSteps([
+    {
+        element: ".quest-add-product", // string (jQuery selector) - html element next to which the step popover should be shown
+        title: "Add Product", // string - title of the popover
+        content: "Add your first product to your quest." // string - content of the popover
+    }
+]);
+
+quest.start();
+
+
+	$(".chat").scrollTop($(".chat")[0].scrollHeight);</script>

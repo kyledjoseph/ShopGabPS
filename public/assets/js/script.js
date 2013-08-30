@@ -527,36 +527,6 @@
 
 }).call(this);
 
-var dash = new Tour();
-
-dash.addSteps([
-    {
-        element: ".tour-quest-button", // string (jQuery selector) - html element next to which the step popover should be shown
-        title: "Start a new quest", // string - title of the popover
-        content: "Get started looking for your first product." // string - content of the popover
-    }, 
-    {
-        element: ".tour-friends-tab", // string (jQuery selector) - html element next to which the step popover should be shown
-        title: "Friends", // string - title of the popover
-        content: "Check out what your friends are looking for." // string - content of the popover
-    }
-]);
-
-dash.start();
-
-
-var quest = new Tour();
-
-quest.addSteps([
-    {
-        element: ".quest-add-product", // string (jQuery selector) - html element next to which the step popover should be shown
-        title: "Add Product", // string - title of the popover
-        content: "Add your first product to your quest." // string - content of the popover
-    }
-]);
-
-quest.start();
-
 mixpanel.track("Pageload");
 
 $('.product-block .description').expander({
