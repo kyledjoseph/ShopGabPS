@@ -11,7 +11,7 @@
 							<p>We currently only allow logins through Facebook. Click "Sign in with Facebook" to get started.</p>
 						</div>
 						<div class="col-12 col-sm-6 social-login">
-							<a href="http://shopgab.dev/auth/facebook?r="><img src="/assets/img/facebook-login.png" /></a>
+							<a href="<?= Uri::create('auth/facebook?r=') ?>"><img src="/assets/img/facebook-login.png" /></a>
 						</div>
 					</div>
 				<div class="modal-footer in-form">

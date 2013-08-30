@@ -26,7 +26,7 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
     <div class="col-8 col-sm-10">
       <?php if (Fuel::$env !== 'production'): ?>
       <ul class="landing-nav nav nav-pills pull-right">
-        <li><a href="http://shopgab.dev/auth/facebook?r=">Login</a></li>
+        <li><a href="<?= Uri::create('auth/facebook?r=') ?>">Login</a></li>
         <li class="active"><a href="#registerModal" data-toggle="modal">Sign Up</button></a></li>
       </ul>
       <?php endif; ?>
