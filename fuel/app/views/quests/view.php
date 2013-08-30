@@ -201,3 +201,5 @@
 			</div>
 		</div>
 	</div>
+
+	<script>$(".chat").scrollTop($(".chat")[0].scrollHeight);</script>

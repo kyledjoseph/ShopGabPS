@@ -605,7 +605,3 @@ $(".remove").click(function() {
 $(".invite-friend-btn").click(function() {
     $(".invite-friend-btn").html('Pending...');
 });
-
-$(".chat").scrollTop($(".chat")[0].scrollHeight);
-
-
