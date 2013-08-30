@@ -38,7 +38,13 @@
 
 
 		<?php if (isset($user) and $quest->belongs_to_user($user->id)): ?>
-		<button href="#inviteModal" class="btn btn-success btn-large block push-center invite-btn quest-invite" data-toggle="modal">Invite friends</button>
+		<button id="fb_share" class="marg-bottom push-center btn btn-success block push-center quest-invite"
+								data-picture="<?= $quest->default_thumb_url() ?>"
+								data-link="<?= $quest->full_url() ?>"
+								data-name="Help me find a <?= $quest->name ?>"
+								data-caption="ShopGab - Shop Socially!"
+								data-description="<?= $user->display_name() ?> is trying to find a <?= $quest->name ?> through ShopGab and has requested your input! Please click on the link below to see their page and join in the search. Thanks!">Post to Facebook</button>
+		<button id="fb_invite" class="btn btn-primary btn-success block push-center quest-message" href="" data-link="<?= $quest->full_url() ?>">Message friends</button>							
 	<?php endif; ?>
 </div>
 </div>

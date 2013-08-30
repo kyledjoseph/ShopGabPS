@@ -2,6 +2,7 @@
 h1,h2,h3,h4,h5,h6{color:#666}
 .icon-background-circle{background-color:#eee;border-radius:10em;padding:10px;margin-top:50px;position:absolute;top:20px}
 .marg-top{margin-top:25px}
+.marg-bottom{margin-bottom:12px !important}
 .header{margin-bottom:10px}
 .full-width{width:100%}
 .footer{margin-top:50px;background:url(../img/stripes-dark.png);padding-top:50px}.footer .footer-white{background-color:#fff;padding-top:25px;padding-bottom:25px}.footer .footer-white:before,.footer .footer-white:after{content:" ";display:table;}
@@ -141,7 +142,7 @@ textarea.itemnation-box select{height:auto}
 .flickr-widget a{position:relative;min-height:1px;padding-left:15px;padding-right:15px;float:left;width:33.33333333333333%;margin-bottom:15px}
 .info .name a{color:#56ae3d}
 .rackspace{width:50%}
-.quest-invite{font-size:18px !important;padding:.6em 1.5em !important}
+.quest-invite,.quest-message{font-size:18px !important;padding:.6em 1.5em !important}
 @media (min-width:768px){.landing-text{padding-top:30px;text-align:left;padding-bottom:0}}@media (min-width:992px){.landing-text{padding-top:100px}}article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary{display:block}
 audio,canvas,video{display:inline-block}
 audio:not([controls]){display:none;height:0}
