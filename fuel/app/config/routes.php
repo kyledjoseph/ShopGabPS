@@ -30,4 +30,8 @@ return array(
 	'quest/(:segment)/delete'             => 'quests/delete/$1',
 	'quest/(:segment)'                    => 'quests/view/$1',
 	'quest'                               => 'quests/index',
+
+
+	'privacy' => 'legal/privacy',
+	'terms'   => 'legal/terms',
 );
