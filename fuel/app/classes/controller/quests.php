@@ -60,6 +60,7 @@ class Controller_Quests extends Controller_App
 		// Casset::js('lib/jquery.expander.min.js');
 		Casset::js('lib/jquery.tipTip.js');
 		Casset::js('site/quest.js');
+		Casset::js('site/quest/tour.js');
 		Casset::js('fb/init.js');
 
 		Casset::css('lib/tipTip.css');
