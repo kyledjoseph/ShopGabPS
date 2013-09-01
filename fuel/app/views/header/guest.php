@@ -7,7 +7,7 @@
     <!-- Navigation -->
     <div class="col-8 col-sm-10">
       <ul class="landing-nav nav nav-pills pull-right">
-        <li><a href="http://shopgab.dev/auth/facebook?r=">Login</a></li>
+        <li><a href="<?= Uri::create('auth/facebook?r=') ?>">Login</a></li>
         <li class="active"><a href="#registerModal" data-toggle="modal">Sign Up</button></a></li>
       </ul>
     </div>

@@ -79,7 +79,7 @@
 						<?php if (isset($user)): ?>
 						<a href="#" class="comments"><?= $quest_product->total_comments_text() ?></a>
 					<?php else: ?>
-					<a href="#loginModal" data-toggle="modal"><?= $quest_product->total_comments_text() ?></a>
+					<a href="#registerModal" data-toggle="modal"><?= $quest_product->total_comments_text() ?></a>
 				<?php endif; ?>
 			</div>
 
@@ -110,8 +110,8 @@
 		<span class="badge"><?= $quest_product->total_dislikes() ?></span> <?= Html::anchor($quest_product->dislike_url(), '<i class="icon-thumbs-down-alt faded no-dec icon-large"></i>', array('title' => $quest_product->list_user_dislikes(), 'class' => 'user_product_vote')) ?>
 		
 	<?php else: ?>
-	<span class="badge"><?= $quest_product->total_likes() ?></span> <a href="#loginModal" data-toggle="modal"><i class="icon-thumbs-up-alt faded no-dec icon-large"></i></a> &nbsp; 
-	<span class="badge"><?= $quest_product->total_dislikes() ?></span> <a href="#loginModal" data-toggle="modal"><i class="icon-thumbs-down-alt faded no-dec icon-large"></i></a>
+	<span class="badge"><?= $quest_product->total_likes() ?></span> <a href="#registerModal" data-toggle="modal"><i class="icon-thumbs-up-alt faded no-dec icon-large"></i></a> &nbsp; 
+	<span class="badge"><?= $quest_product->total_dislikes() ?></span> <a href="#registerModal" data-toggle="modal"><i class="icon-thumbs-down-alt faded no-dec icon-large"></i></a>
 <?php endif; ?>
 
 <?php if (isset($user) and $quest->belongs_to_user($user->id)): ?>
@@ -123,7 +123,7 @@
 	<?php if (isset($user)): ?>
 	<?= Html::anchor($product->product_url(), 'Where can I buy this?', array('class' => 'btn btn-warning pull-right', 'target' => '_blank')) ?>
 <?php else: ?>
-	<a href="#loginModal" class="btn btn-warning" data-toggle="modal">Where can I buy this?</a>
+	<a href="#registerModal" class="btn btn-warning" data-toggle="modal">Where can I buy this?</a>
 <?php endif; ?>
 </div>
 </div>
@@ -157,7 +157,7 @@
 	  			<button href="#addProductModal" class="corner-button btn btn-medium btn-success" data-toggle="modal">+ Recommend Product</button>
 	  			<?php } ?>
 	  		<?php else: ?>
-	  		<button href="#loginModal" class="corner-button btn btn-small btn-success" data-toggle="modal"> + Add Product</button>
+	  		<button href="#registerModal" class="corner-button btn btn-small btn-success" data-toggle="modal"> + Add Product</button>
 	  	<?php endif; ?>
 
 	  </div>
@@ -197,7 +197,7 @@
 				<?php if (isset($user)): ?>
 				<button class="btn btn-default" type="submit">Send</button>
 			<?php else: ?>
-			<button href="#loginModal" class="btn btn-default" data-toggle="modal">Send</button>
+			<button href="#registerModal" class="btn btn-default" data-toggle="modal">Send</button>
 		<?php endif; ?>
 	</span>
 </div>
