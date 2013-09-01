@@ -2,10 +2,9 @@
 		<div class="col-12">
 			<ul class="nav nav-tabs">
 				<li class="active"><?= Html::anchor('/', 'My Quests') ?></li>
-				<li class="tour-friends-tab"><?= Html::anchor('friends', 'Friends') ?></li>
+				<li class="tour-friends-tab" data-container="body" data-placement="bottom" data-content="Check out what your friends are looking for." data-original-title="" title=""><?= Html::anchor('friends', 'Friends') ?></li>
 			</ul>
 		</div>
-	</div>
 	<div class="container">
 		<div class="col-12 col-sm-8">
 			<div class="row">
@@ -20,7 +19,7 @@
 				<?php endif; ?>
 			</div>
 			<div class="col-12 col-sm-4 pad-top">
-				<button href="#questModal" class="btn btn-success pull-right tour-quest-btn" data-toggle="modal">Start a new quest!</button>
+				<button href="#questModal" class="btn btn-success pull-right tour-quest-btn" data-container="body" data-placement="top" data-content="Get started looking for your first product." data-original-title="" title="" data-toggle="modal">Start a new quest!</button>
 			</div>
 		</div>
 		<div class="row pad-top">

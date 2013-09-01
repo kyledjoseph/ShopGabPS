@@ -152,12 +152,12 @@
 
 	  			<?php if (isset($user)): ?>
 	  			<?php if ($quest->belongs_to_user($user->id)) { ?>
-	  			<button href="#addProductModal" class="corner-button btn btn-medium btn-success quest-add-product" data-toggle="modal">+ Add Product</button>
+	  			<button href="#addProductModal" class="corner-button btn btn-medium btn-success quest-add-product" data-toggle="modal" data-container="body" data-placement="top" data-content="Learn how to add products to your quest with our bookmarklet!" data-original-title="" title="">+ Add Product</button>
 	  			<?php } else { ?>
 	  			<button href="#addProductModal" class="corner-button btn btn-medium btn-success" data-toggle="modal">+ Recommend Product</button>
 	  			<?php } ?>
 	  		<?php else: ?>
-	  		<button href="#loginModal" class="corner-button btn btn-small btn-success" data-toggle="modal">+ Add Product</button>
+	  		<button href="#loginModal" class="corner-button btn btn-small btn-success" data-toggle="modal"> + Add Product</button>
 	  	<?php endif; ?>
 
 	  </div>
