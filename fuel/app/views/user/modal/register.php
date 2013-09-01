@@ -7,11 +7,10 @@
 			</div>
 			<div class="modal-body">
 					<div class="row">
-						<div class="col-12 col-sm-6">
-							<p>We currently only allow logins through Facebook. Click "Sign in with Facebook" to get started.</p>
-						</div>
-						<div class="col-12 col-sm-6 social-login">
+						<div class="col-12 align-center social-login">
+							<h3>Sign up for free!</h3>
 							<a href="<?= Uri::create('auth/facebook?r=') ?>"><img src="/assets/img/facebook-login.png" /></a>
+							<p class="pad-top align-center">By clicking Sign Up, you agree to our <a href="/terms" target="_blank">Terms and Conditions</a> that you have read our <a href="/privacy" target="_blank">Privacy Policy</a></p>
 						</div>
 					</div>
 				<div class="modal-footer in-form">

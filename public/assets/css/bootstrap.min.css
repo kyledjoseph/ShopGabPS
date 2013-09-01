@@ -34,7 +34,8 @@ a:hover .icon-background-circle{background-color:#f17baf}
 .testimonial{padding:25px;background-color:#eee}
 .testimonial-credit{color:#aaa;padding-left:60px;background:url(../img/testimonial-bg.png) 0 -1px no-repeat}
 .in-form{margin-left:-20px !important;margin-right:-20px !important;padding-bottom:0 !important}
-.social-login{margin-top:5px}
+.social-login{margin-top:5px}.social-login h3{margin-top:0}
+.social-login p{font-size:12px}
 .pad-top{padding-top:25px}
 .pad-bottom{padding-bottom:25px}
 .dash-search-select{display:inline-block !important;width:180px !important}

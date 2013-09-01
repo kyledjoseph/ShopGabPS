@@ -43,7 +43,7 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
           <h3>Because shopping is more fun with friends.</h3>
             <div class="email-form row">
               <div class="col-12 col-sm-12">
-                <button class="btn btn-primary btn-lg start-here btn-block" href="#registerModal" data-toggle="modal">Start Here</button>
+                <button class="btn btn-success btn-lg start-here btn-block" href="#registerModal" data-toggle="modal">Start Here</button>
                 <div class="block">
                   <a class="learn-more block" href="http://youtu.be/rycC_GHBMv0" target="_blank"><i class="icon-facetime-video"></i> Learn more</a>
                 </div>

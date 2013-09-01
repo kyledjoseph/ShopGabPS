@@ -28,7 +28,7 @@
 						<div class="input-group pad-top">
 							<input type="text" id="google" name="q" class="form-control" placeholder="Search with Google">
 							<span class="input-group-btn">
-								<button class="btn btn-default btn-primary btn-google-search" type="submit">Search</button>
+								<button class="btn btn-default btn-success btn-google-search" type="submit">Search</button>
 							</span>
 						</div>
 					</form>
