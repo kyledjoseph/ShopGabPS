@@ -9,14 +9,9 @@
 		<div class="col-12 col-sm-8">
 			<div class="row">
 				<div class="col-12 col-sm-8 pad-top">
-					<?php if (Fuel::$env !== 'production'): ?>
 					<select class="dash-search-select form-control">
 						<option disabled selected>Sort By Recent Updates</option>
 					</select>
-					<select class="dash-search-select-small form-control hidden">
-						<option disabled selected>All</option>
-					</select>
-				<?php endif; ?>
 			</div>
 			<div class="col-12 col-sm-4 pad-top">
 				<button href="#questModal" class="btn btn-success pull-right tour-quest-btn" data-container="body" data-placement="top" data-content="Get started looking for your first product." data-original-title="" title="" data-toggle="modal">Start a new quest!</button>

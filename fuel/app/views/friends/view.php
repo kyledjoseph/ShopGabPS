@@ -19,7 +19,6 @@
 
 			<div class="row">
 				<div class="col-12 col-sm-8">
-					<?php if (Fuel::$env !== 'production'): ?>
 					<select class="dash-search-select form-control">
 						<option disabled selected>Sort By Recent Updates</option>
 					</select>
@@ -31,7 +30,6 @@
 						<option>4</option>
 						<option>5</option>
 					</select>
-				<?php endif; ?>
 			</div>
 			<div class="col-12 col-sm-4">
 					<button href="#questModal" class="btn btn-success pull-right" data-toggle="modal">Start a new quest!</button>
