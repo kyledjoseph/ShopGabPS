@@ -156,9 +156,3 @@ $(".invite-friend-btn").click(function() {
     };
 
 }));
-
-window.old_user = false;
-
-if ($.cookie('old_user') == "false") {
-    window.old_user = true;
-}
