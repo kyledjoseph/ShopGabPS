@@ -24,16 +24,23 @@ class Controller_Admin extends Controller_App
 	protected function admin_auth($auth_users = array())
 	{
 		$this->require_auth();
-		
-		$super_admins = array('2', '3', '4', '5', '6');
-		if (in_array($this->user->id, $super_admins))
-		{
-			return true;
-		}
 
-		if (empty($auth_users) or ! in_array($this->user->id, $auth_users))
+		$this->admin = Model_Admin::get_by_user_id($this->user->id);
+
+		if (! isset($this->admin))
 		{
 			$this->redirect('/');
+		}
+	}
+
+	/**
+	 * Require admin permission to perform task
+	 */
+	public function require_permission($type)
+	{
+		if (! $this->admin->has_permission($type))
+		{
+			$this->redirect('admin', 'error', 'You do not have access to do that');
 		}
 	}
 

@@ -22,6 +22,16 @@ class Model_User extends \Orm\Model
 		'updated_at',
 	);
 
+	protected static $_has_one = array(
+		'admin' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Admin',
+			'key_to' => 'user_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		)
+	);
+
 	protected static $_has_many = array(
 		'authentications' => array(
 			'key_from' => 'id',
@@ -143,6 +153,11 @@ class Model_User extends \Orm\Model
 	{
 		$this->welcome_message = 0;
 		return $this->welcome_message->save();
+	}
+
+	public function is_admin()
+	{
+		return isset($this->admin->id);
 	}
 
 	/**

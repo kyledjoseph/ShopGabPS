@@ -124,6 +124,9 @@
 								<?= Html::anchor('admin/logs', 'Logs') ?>
 
 							</li>
+							<li class="<?= (isset($active_nav) and $active_nav == 'admins') ? 'active' : null ?>">
+								<?= Html::anchor('admin/admins', 'Admins') ?>
+							</li>
 							<li class="<?= (isset($active_nav) and $active_nav == 'servers') ? 'active' : null ?>">
 								<?= Html::anchor('admin/servers', 'Servers') ?>
 							</li>
