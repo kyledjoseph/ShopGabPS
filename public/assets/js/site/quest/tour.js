@@ -101,3 +101,5 @@ if ($.cookie('old_user') == 'false' || $.cookie('old_user') == undefined) {
 
 	$.cookie('old_user', 'true')
 }
+
+$(".chat").scrollTop($(".chat")[0].scrollHeight);
