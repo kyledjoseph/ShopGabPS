@@ -59,7 +59,7 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
             <a href="https://plus.google.com/u/0/113964272651935695754/posts" class="google-plus">
               <i class="icon-google-plus icon-2x icon-light"></i>
             </a>
-            <a href="https://blog.shopgab.com" class="wordpress">
+            <a href="https://shopgab.wordpress.com" class="wordpress">
               <img src="/assets/img/wordpress.png" />
             </a>
           </div>
@@ -86,15 +86,15 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
 	<!-- Include all compiled plugins (below), or include individual files as needed -->
 	<script src="/assets/js/script.js"></script>
 	<script>
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-	ga('create', 'UA-42842086-1', 'shopgab.com');
-	ga('send', 'pageview');
+  ga('create', 'UA-42842086-1', 'shopgab.com');
+  ga('send', 'pageview');
 
-	</script>
+</script>
 	<?= Casset::render_js() ?>
 </body>
 </html>

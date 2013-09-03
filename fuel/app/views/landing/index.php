@@ -152,7 +152,7 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
             <a href="https://plus.google.com/u/0/113964272651935695754/posts" class="google-plus">
               <i class="icon-google-plus icon-2x icon-light"></i>
             </a>
-            <a href="https://blog.shopgab.com" class="wordpress">
+            <a href="https://shopgab.wordpress.com" class="wordpress">
               <img src="/assets/img/wordpress.png" />
             </a>
           </div>
@@ -172,6 +172,7 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
     <script src="http://code.jquery.com/jquery.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="/assets/js/script.js"></script>
+     <script src="//cdn.optimizely.com/js/303981027.js"></script>
     <script>
   (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
   (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
