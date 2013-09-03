@@ -6,7 +6,7 @@ class Controller_Friends extends Controller_App
 	{
 		parent::before();
 
-		//$this->require_auth();
+		$this->require_auth();
 	}
 
 
@@ -77,6 +77,17 @@ class Controller_Friends extends Controller_App
 		$friendship->hide();
 
 		$this->redirect('friends', 'info', 'Friend removed');
+	}
+
+
+	/**
+	 *
+	 */
+	public function get_refresh()
+	{
+		$total_added = $this->user->add_registered_facebook_friends();
+
+		$this->redirect('friends', 'info', "$total_added friends have been added");
 	}
 
 }

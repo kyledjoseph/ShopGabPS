@@ -606,18 +606,22 @@ class Model_User extends \Orm\Model
 
 	public function add_registered_facebook_friends()
 	{
+		$total_added = 0;
 		foreach ($this->get_registered_facebook_friends() as $facebook_friend)
 		{
 			$friend = $facebook_friend->get_user();
 
-			if (! $this->is_friend($friend->id))
+			if (isset($friend) and ! $this->is_friend($friend->id))
 			{
 				$this->add_friend($friend);
+				$total_added++;
 			}
 		}
 
 		$this->fb_friends_last_updated = time();
 		$this->save();
+
+		return $total_added;
 	}
 
 
