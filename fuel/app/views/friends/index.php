@@ -75,7 +75,7 @@
 	<div class="col-12 col-sm-4 pad-top">
 		<div class="box help-a-friend">
 			<h4>Friends</h4>
-			<button class="corner-button btn btn-medium btn-success" data-toggle="modal">Refresh</button>
+			<?= Html::anchor('friends/refresh', 'Refresh', array('class' => 'corner-button btn btn-medium btn-success')) ?>
 			<div class="content">
 				<div class="friend-box align-center">
 					<form class="form-search hidden">

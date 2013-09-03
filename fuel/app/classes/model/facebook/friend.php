@@ -35,6 +35,6 @@ class Model_Facebook_Friend extends Model
 	public function get_user()
 	{
 		$user_auth = Model_User_Auth::query()->where('provider', 'facebook')->where('provider_uid', $this->identifier)->get_one();
-		return $user_auth->user;
+		return isset($user_auth) ? $user_auth->user : null;
 	}
 }
