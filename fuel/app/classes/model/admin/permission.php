@@ -42,6 +42,7 @@ class Model_Admin_Permission extends \Orm\Model
 			'view_subscribers' => 'View Subscribers',
 			'view_feedback'    => 'View Feedback',
 			'view_logs'        => 'View Logs',
+			'view_analytics'   => 'View Analytics',
 
 			'manage_admins'    => 'Manage Admins',
 			'manage_servers'   => 'Manage Servers',

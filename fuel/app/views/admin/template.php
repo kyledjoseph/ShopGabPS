@@ -117,6 +117,9 @@
 							<li class="<?= (isset($active_nav) and $active_nav == 'feedback') ? 'active' : null ?>">
 								<?= Html::anchor('admin/feedback', 'Feedback') ?>
 							</li>
+							<li class="<?= (isset($active_nav) and $active_nav == 'analytics') ? 'active' : null ?>">
+								<?= Html::anchor('admin/analytics', 'Analytics') ?>
+							</li>
 							<li class="<?= (isset($active_nav) and $active_nav == 'subscribers') ? 'active' : null ?>">
 								<?= Html::anchor('admin/subscribers', 'Subscribers') ?>
 							</li>
