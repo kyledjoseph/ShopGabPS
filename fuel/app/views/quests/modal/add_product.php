@@ -16,7 +16,7 @@
 <?php endif; ?>		
 						<img width="100%" src="/assets/img/drag.png" />
 						<div class="block">
-							<a class="learn-more block" href="http://www.youtube.com/embed/qDf4w9spx5U?showinfo=0"><i class="icon-facetime-video"></i> Learn more</a>
+							<a class="learn-more block" href="http://youtu.be/NzKArZOkmEk"><i class="icon-facetime-video"></i>Not sure what to do? Click here!</a>
 						</div>
 					</div>
 				</div>
