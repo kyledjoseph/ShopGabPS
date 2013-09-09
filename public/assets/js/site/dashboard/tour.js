@@ -95,7 +95,7 @@
 
 }));
 
-if ($.cookie('old_user') == 'false') {
+if ($.cookie('old_user') == 'false' || $.cookie('old_user') == undefined) {
 	$('.tour-quest-btn').popover('show')
 	$('.tour-friends-tab').popover('show')
 }
