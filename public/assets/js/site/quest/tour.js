@@ -99,7 +99,7 @@ if ($.cookie('old_user') == 'false' || $.cookie('old_user') == undefined) {
 	$('.quest-add-product').popover('show')
 	$('#fb_share').popover('show')
 
-	$.cookie('old_user', 'true')
+	$.cookie('old_user', 'true', { expires: 99999, path: '/' })
 }
 
 $(".chat").scrollTop($(".chat")[0].scrollHeight);
