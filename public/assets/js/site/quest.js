@@ -22,8 +22,8 @@ $(function(){
 	// product comments
 	$('.comments').click(function(){
 		event.preventDefault();
-		var comment = $(this).parent().parent().parent().parent().data('product');
-		$('.product-block[data-product='+comment+'] .comment').toggle(100);
+		var comment = $(this).parent().parent().data('product');
+		$('.quest-item[data-product='+comment+'] .comment').toggle(100);
 	});
 	
 

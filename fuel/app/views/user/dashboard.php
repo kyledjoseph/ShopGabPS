@@ -19,40 +19,23 @@
 		</div>
 		<div class="row pad-top">
 			<div class="col-12">
-
-				<?php $i = 1; foreach ($quests as $quest): ?>
-
-				<?php if ($i == 1): ?>
-				<div class="row">
-				<?php endif; ?>
+<div class="row">
+				<?php foreach ($quests as $quest): ?>
 
 				<div class="col-12 col-sm-4 dash-item pad-bottom">
 					<a href="<?= Uri::create($quest->url()) ?>">
 						<img width="100%" src="<?= $quest->default_thumb_url(250, 220) ?>">
 						<h3><span><?= $quest->name() ?></span></h3>
 					</a>
-								<!-- <div class="btn-group">
-									<button class="btn dropdown-toggle" data-toggle="dropdown">
-										<span class="caret"></span>
-									</button>
-									<ul class="dropdown-menu">
-										<li><a href="#">Option 1</a></li>
-										<li><a href="#">Option 2</a></li>
-										<li><a href="#">Option 3</a></li>
-									</ul>
-								</div> 
-								<a href="#"><img class="lock" src="/assets/img/notification-lock.png" /></a>
-								<a href="#"><img class="friends inactive" src="/assets/img/notification-friends.png" /></a>
-								<a href="#"><img class="basket inactive" src="/assets/img/notification-basket.png" /></a>
-								<a href="#"><img class="chat inactive" src="/assets/img/notification-chat.png" /></a>
-							-->
-						</div>
-
-						<?php $i++ ?>
-						<?php if ($i == 4): ?></div><?php $i = 1; endif; ?>
+				</div>
 
 					<?php endforeach; ?>
-					<?php if ($i != 1): ?></div><?php endif; ?>
+					<div class="col-12 col-sm-4 dash-item dash-new pad-bottom">
+						<a href="#questModal" data-toggle="modal">
+							<img width="100%" src="/assets/img/new-quest.png">
+						</a>
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>
