@@ -24,7 +24,6 @@ $(".switch-to-signin").click(function() {
     $("#loginModal").modal('show');
 });
 
-
 $('.btn-google-search').click(function() {
     $("#addProductModal").modal('hide');
 });

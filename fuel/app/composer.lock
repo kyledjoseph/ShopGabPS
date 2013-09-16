@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cartalyst/sentry.git",
-                "reference": "ce6407573d50cd3f283e9fd53c4e79dd96db0f19"
+                "reference": "7e7a7298b1293034fb531c5dc03cfe25dfdac0b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/ce6407573d50cd3f283e9fd53c4e79dd96db0f19",
-                "reference": "ce6407573d50cd3f283e9fd53c4e79dd96db0f19",
+                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/7e7a7298b1293034fb531c5dc03cfe25dfdac0b1",
+                "reference": "7e7a7298b1293034fb531c5dc03cfe25dfdac0b1",
                 "shasum": ""
             },
             "require": {
@@ -30,6 +30,7 @@
                 "mockery/mockery": "0.7.2"
             },
             "suggest": {
+                "happydemon/txt": "Required Text helpers when using the Kohana implementation",
                 "illuminate/database": "Default sentry user, group and throttling implementations.",
                 "ircmaxell/password-compat": "Default hashing uses PHP 5.5 password_* functions, with forward-compatible support."
             },
@@ -40,7 +41,8 @@
                     "Laravel 3",
                     "Laravel 4",
                     "CodeIgniter 3",
-                    "FuelPHP 1"
+                    "FuelPHP 1",
+                    "Kohana"
                 ],
                 "versions": {
                     "1": "1.1/master",
@@ -96,10 +98,11 @@
                 "auth",
                 "codeigniter",
                 "fuelphp",
+                "kohana",
                 "laravel",
                 "security"
             ],
-            "time": "2013-08-01 01:26:29"
+            "time": "2013-09-09 12:08:22"
         },
         {
             "name": "hybridauth/hybridauth",
@@ -157,12 +160,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/container.git",
-                "reference": "v4.0.6"
+                "reference": "da34bc87ffba84ae1a466cfee78b0b18a9d15a3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/container/zipball/v4.0.6",
-                "reference": "v4.0.6",
+                "url": "https://api.github.com/repos/illuminate/container/zipball/da34bc87ffba84ae1a466cfee78b0b18a9d15a3d",
+                "reference": "da34bc87ffba84ae1a466cfee78b0b18a9d15a3d",
                 "shasum": ""
             },
             "require": {
@@ -189,7 +192,9 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
+                    "email": "taylorotwell@gmail.com",
+                    "homepage": "https://github.com/taylorotwell",
+                    "role": "Developer"
                 }
             ],
             "time": "2013-07-31 14:49:48"
@@ -201,12 +206,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "728750f20311d1021b797cea877a169a9ca0e456"
+                "reference": "dfe8575f331c29e87079963750663026afa3007b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/728750f20311d1021b797cea877a169a9ca0e456",
-                "reference": "728750f20311d1021b797cea877a169a9ca0e456",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/dfe8575f331c29e87079963750663026afa3007b",
+                "reference": "dfe8575f331c29e87079963750663026afa3007b",
                 "shasum": ""
             },
             "require": {
@@ -243,7 +248,9 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
+                    "email": "taylorotwell@gmail.com",
+                    "homepage": "https://github.com/taylorotwell",
+                    "role": "Developer"
                 }
             ],
             "keywords": [
@@ -252,7 +259,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2013-08-05 13:23:52"
+            "time": "2013-09-11 14:49:19"
         },
         {
             "name": "illuminate/events",
@@ -261,12 +268,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/events.git",
-                "reference": "v4.0.6"
+                "reference": "d3b84d3024f3671a33eb9388b3ff58e4b407c6ac"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/events/zipball/v4.0.6",
-                "reference": "v4.0.6",
+                "url": "https://api.github.com/repos/illuminate/events/zipball/d3b84d3024f3671a33eb9388b3ff58e4b407c6ac",
+                "reference": "d3b84d3024f3671a33eb9388b3ff58e4b407c6ac",
                 "shasum": ""
             },
             "require": {
@@ -296,7 +303,9 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
+                    "email": "taylorotwell@gmail.com",
+                    "homepage": "https://github.com/taylorotwell",
+                    "role": "Developer"
                 }
             ],
             "time": "2013-08-01 14:26:36"
@@ -308,12 +317,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/support.git",
-                "reference": "v4.0.6"
+                "reference": "5ba934d9c27b456202f3ae495971e467fb9a3f73"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/support/zipball/v4.0.6",
-                "reference": "v4.0.6",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/5ba934d9c27b456202f3ae495971e467fb9a3f73",
+                "reference": "5ba934d9c27b456202f3ae495971e467fb9a3f73",
                 "shasum": ""
             },
             "require": {
@@ -345,10 +354,12 @@
             "authors": [
                 {
                     "name": "Taylor Otwell",
-                    "email": "taylorotwell@gmail.com"
+                    "email": "taylorotwell@gmail.com",
+                    "homepage": "https://github.com/taylorotwell",
+                    "role": "Developer"
                 }
             ],
-            "time": "2013-08-02 13:31:18"
+            "time": "2013-08-27 16:09:54"
         },
         {
             "name": "ircmaxell/password-compat",
@@ -356,12 +367,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ircmaxell/password_compat.git",
-                "reference": "v1.0.3"
+                "reference": "1fc1521b5e9794ea77e4eca30717be9635f1d4f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/v1.0.3",
-                "reference": "v1.0.3",
+                "url": "https://api.github.com/repos/ircmaxell/password_compat/zipball/1fc1521b5e9794ea77e4eca30717be9635f1d4f4",
+                "reference": "1fc1521b5e9794ea77e4eca30717be9635f1d4f4",
                 "shasum": ""
             },
             "type": "library",
@@ -377,7 +388,7 @@
             "authors": [
                 {
                     "name": "Anthony Ferrara",
-                    "email": "ircmaxell@ircmaxell.com",
+                    "email": "ircmaxell@php.net",
                     "homepage": "http://blog.ircmaxell.com"
                 }
             ],
@@ -395,12 +406,12 @@
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/mailchimp/mandrill-api-php.git",
-                "reference": "1.0.37"
+                "reference": "2071b69e9e7658e47b5d2186f7fbfb513c204889"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/mailchimp/mandrill-api-php/get/1.0.37.zip",
-                "reference": "1.0.37",
+                "url": "https://bitbucket.org/mailchimp/mandrill-api-php/get/2071b69e9e7658e47b5d2186f7fbfb513c204889.zip",
+                "reference": "2071b69e9e7658e47b5d2186f7fbfb513c204889",
                 "shasum": ""
             },
             "require": {
@@ -434,16 +445,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.2.0",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
-                "url": "git://github.com/briannesbitt/Carbon.git",
-                "reference": "1.2.0"
+                "url": "https://github.com/briannesbitt/Carbon.git",
+                "reference": "06f0b8a99a90c5392ceccb09b75b74ff6c08ec07"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://github.com/briannesbitt/Carbon/zipball/1.2.0",
-                "reference": "1.2.0",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/06f0b8a99a90c5392ceccb09b75b74ff6c08ec07",
+                "reference": "06f0b8a99a90c5392ceccb09b75b74ff6c08ec07",
                 "shasum": ""
             },
             "require": {
@@ -452,7 +463,7 @@
             "type": "library",
             "autoload": {
                 "psr-0": {
-                    "Carbon": "."
+                    "Carbon": "src"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -473,20 +484,20 @@
                 "datetime",
                 "time"
             ],
-            "time": "2012-10-14 17:41:18"
+            "time": "2013-09-09 02:39:19"
         },
         {
             "name": "omissis/php-cloudfiles",
             "version": "v1.7.13",
             "source": {
                 "type": "git",
-                "url": "https://github.com/omissis/php-cloudfiles",
-                "reference": "v1.7.13"
+                "url": "https://github.com/omissis/php-cloudfiles.git",
+                "reference": "2cda9efe627615ae92c4798a7fdf6c2706011441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/omissis/php-cloudfiles/zipball/v1.7.13",
-                "reference": "v1.7.13",
+                "url": "https://api.github.com/repos/omissis/php-cloudfiles/zipball/2cda9efe627615ae92c4798a7fdf6c2706011441",
+                "reference": "2cda9efe627615ae92c4798a7fdf6c2706011441",
                 "shasum": ""
             },
             "require": {
