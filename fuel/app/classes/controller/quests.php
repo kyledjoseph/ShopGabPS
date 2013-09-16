@@ -45,6 +45,19 @@ class Controller_Quests extends Controller_App
 		$quest = $this->get_quest_by_url($quest_url);
 		$sort  = Input::get('order');
 
+		// private quest access
+		if ($quest->is_private() and ! $quest->is_participant($this->user->id))
+		{
+			$this->redirect('/');
+		}
+
+		// clear notifications
+		if ($this->user->id == $quest->user_id)
+		{
+			$quest->mark_notifications_seen();
+		}
+
+		// quest product sort
 		if (! empty($sort))
 		{
 			if (! $quest->is_sort_type($sort))
@@ -55,6 +68,7 @@ class Controller_Quests extends Controller_App
 			$quest->set_active_sort($sort);
 		}
 
+		// quest products
 		$quest_products = $quest->get_quest_products_sorted();
 
 		// Casset::js('lib/jquery.expander.min.js');
@@ -80,6 +94,111 @@ class Controller_Quests extends Controller_App
 			'quest_messages'  => $quest->get_messages(),
 		));
 	}
+
+
+
+	/**
+	 * add a message to the quest discussion
+	 */
+	public function post_message($quest_url)
+	{
+		$quest = $this->get_quest_by_url($quest_url);
+		$post  = $this->post_data('message');
+
+		$this->require_auth($quest->url());
+
+		$quest->new_message($this->user->id, $post->message);
+		$this->redirect($quest->url());
+	}
+
+
+	/**
+	 * add a product comment to a quest
+	 */
+	public function post_comment($quest_url, $quest_product_id)
+	{
+		$quest = $this->get_quest_by_url($quest_url);
+		$post  = $this->post_data('comment');
+
+		$this->require_auth($quest->url());
+
+		$quest_product = $quest->get_quest_product($quest_product_id);
+
+		if (! isset($quest_product))
+		{
+			$this->redirect_invalid_quest();
+		}
+
+		$quest_product->add_comment($quest_product->id, $this->user->id, $post->comment);
+		
+		$this->redirect($quest->url());
+	}
+
+
+	/**
+	 * Like a quest product
+	 */
+	public function get_like($quest_url, $quest_product_id)
+	{
+		$quest = $this->get_quest_by_url($quest_url);
+
+		$this->require_auth($quest->url());
+
+		$quest_product = $quest->get_quest_product($quest_product_id);
+		isset($quest_product) or $this->redirect($quest->url(), 'info', 'Invalid product');
+
+		// has the user already voted?
+		if ($quest_product->has_user_voted($this->user->id))
+		{
+			$vote = $quest_product->user_get_vote($this->user->id);
+
+			// change vote
+			if ($vote->is_dislike())
+			{
+				$vote->change_to_like();
+			}
+		}
+		else
+		{
+			$quest_product->like($this->user->id);
+		}
+
+		$this->redirect($quest->url());
+	}
+
+
+	/**
+	 * Like a quest product
+	 */
+	public function get_dislike($quest_url, $quest_product_id)
+	{
+		$quest = $this->get_quest_by_url($quest_url);
+
+		$this->require_auth($quest->url());
+
+		$quest_product = $quest->get_quest_product($quest_product_id);
+		isset($quest_product) or $this->redirect($quest->url(), 'info', 'Invalid product');
+
+		// has the user already voted?
+		if ($quest_product->has_user_voted($this->user->id))
+		{
+			$vote = $quest_product->user_get_vote($this->user->id);
+
+			// change vote
+			if ($vote->is_like())
+			{
+				$vote->change_to_dislike();
+			}
+		}
+		else
+		{
+			$quest_product->dislike($this->user->id);
+		}
+
+		$this->redirect($quest->url());
+	}
+
+
 
 
 	/**
@@ -202,7 +321,7 @@ class Controller_Quests extends Controller_App
 
 
 	/**
-	 *
+	 * Invite a friend
 	 */
 	public function post_invite_email($quest_url)
 	{
@@ -240,8 +359,9 @@ class Controller_Quests extends Controller_App
 	}
 
 	
-
-
+	/**
+	 * Change public/private setting
+	 */
 	public function get_access($quest_url, $type)
 	{
 		$quest = $this->get_quest_by_url($quest_url);
@@ -289,21 +409,6 @@ class Controller_Quests extends Controller_App
 
 
 	/**
-	 * add a message to the quest discussion
-	 */
-	public function post_message($quest_url)
-	{
-		$quest = $this->get_quest_by_url($quest_url);
-		$post  = $this->post_data('message');
-
-		$this->require_auth($quest->url());
-
-		$quest->new_message($this->user->id, $post->message);
-		$this->redirect($quest->url());
-	}
-
-
-	/**
 	 * 
 	 */
 	public function get_remove($quest_url, $quest_product_id)
@@ -327,91 +432,5 @@ class Controller_Quests extends Controller_App
 		$this->redirect($quest->url(), 'success', 'Product recomendation deleted');
 	}
 
-
-	/**
-	 * add a product comment to a quest
-	 */
-	public function post_comment($quest_url, $quest_product_id)
-	{
-		$quest = $this->get_quest_by_url($quest_url);
-		$post  = $this->post_data('comment');
-
-		$this->require_auth($quest->url());
-
-		$quest_product = $quest->get_quest_product($quest_product_id);
-
-		if (! isset($quest_product))
-		{
-			$this->redirect_invalid_quest();
-		}
-
-		$quest_product->add_comment($quest_product->id, $this->user->id, $post->comment);
-		
-		$this->redirect($quest->url());
-	}
-
-
-	/**
-	 * Like a quest product
-	 */
-	public function get_like($quest_url, $quest_product_id)
-	{
-		$quest = $this->get_quest_by_url($quest_url);
-
-		$this->require_auth($quest->url());
-
-		$quest_product = $quest->get_quest_product($quest_product_id);
-		isset($quest_product) or $this->redirect($quest->url(), 'info', 'Invalid product');
-
-		// has the user already voted?
-		if ($quest_product->has_user_voted($this->user->id))
-		{
-			$vote = $quest_product->user_get_vote($this->user->id);
-
-			// change vote
-			if ($vote->is_dislike())
-			{
-				$vote->change_to_like();
-			}
-
-			$this->redirect($quest->url());
-		}
-		
-		// like the quest product
-		$quest_product->like($this->user->id);
-		$this->redirect($quest->url());
-	}
-
-
-	/**
-	 * Like a quest product
-	 */
-	public function get_dislike($quest_url, $quest_product_id)
-	{
-		$quest = $this->get_quest_by_url($quest_url);
-
-		$this->require_auth($quest->url());
-
-		$quest_product = $quest->get_quest_product($quest_product_id);
-		isset($quest_product) or $this->redirect($quest->url(), 'info', 'Invalid product');
-
-		// has the user already voted?
-		if ($quest_product->has_user_voted($this->user->id))
-		{
-			$vote = $quest_product->user_get_vote($this->user->id);
-
-			// change vote
-			if ($vote->is_like())
-			{
-				$vote->change_to_dislike();
-			}
-
-			$this->redirect($quest->url());
-		}
-		
-		// dislike the quest product
-		$quest_product->dislike($this->user->id);
-		$this->redirect($quest->url());
-	}
 
 }

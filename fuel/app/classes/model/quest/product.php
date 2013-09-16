@@ -157,14 +157,22 @@ class Model_Quest_Product extends \Orm\Model
 
 	public function like($user_id)
 	{
-		$success = Model_Quest_Product_Vote::create_like($this->id, $user_id);
-		return $success and $this->cache_votes();
+		$vote   = Model_Quest_Product_Vote::create_like($this->id, $user_id);
+		$notice = Model_Notification::new_like($this->quest->user_id, $this->quest, $vote->id);
+
+		$this->quest->add_participant($user_id);
+		
+		return $vote and $this->cache_votes();
 	}
 
 	public function dislike($user_id)
 	{
-		$success = Model_Quest_Product_Vote::create_dislike($this->id, $user_id);
-		return $success and $this->cache_votes();
+		$vote   = Model_Quest_Product_Vote::create_dislike($this->id, $user_id);
+		$notice = Model_Notification::new_dislike($this->quest->user_id, $this->quest, $vote->id);
+
+		$this->quest->add_participant($user_id);
+
+		return $vote and $this->cache_votes();
 	}
 
 	public function like_url()
@@ -207,9 +215,14 @@ class Model_Quest_Product extends \Orm\Model
 		return Model_Quest_Product_Comment::query()->where('quest_product_id', $this->id)->order_by('created_at', 'desc')->get();
 	}
 
-	public function add_comment($quest_product_id, $user_id, $comment)
+	public function add_comment($quest_product_id, $user_id, $text)
 	{
-		return Model_Quest_Product_Comment::create_comment($quest_product_id, $user_id, $comment);
+		$comment = Model_Quest_Product_Comment::create_comment($quest_product_id, $user_id, $text);
+		$notice  = Model_Notification::new_comment($this->quest->user_id, $this->quest, $comment->id);
+
+		$this->quest->add_participant($user_id);
+
+		return $comment;
 	}
 
 
@@ -223,5 +236,8 @@ class Model_Quest_Product extends \Orm\Model
 		$this->delete();
 	}
 
-
+	public static function get_by_id($id)
+	{
+		return static::query()->where('id', $id)->get_one();
+	}
 }

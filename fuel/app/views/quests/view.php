@@ -165,6 +165,27 @@
 
 	<div class="col-12 col-sm-4">
 		<div class="box marg-top">
+			<h4>Participants</h4>
+			<?= Html::anchor('friends/refresh', '+ Invite', array('class' => 'corner-button btn btn-medium btn-success')) ?>
+			<div class="content">
+
+				<?php foreach ($quest->get_participants() as $participant): ?>
+				<div class="friend-box">
+					<div class="media">
+						<a class="pull-left" href="#">
+							<img class="media-object force-32-32" src="<?= $participant->user->get_avatar_uri() ?>" />
+						</a>
+						<div class="media-body">
+							<strong><?= $participant->user->display_name() ?></strong>  - <?php // Html::anchor("friends/hide/{$friendship->id}", 'Remove', array('class' => 'remove')) ?>
+						</div>
+					</div>
+				</div>
+				<?php endforeach; ?>
+
+			</div>
+		</div>
+
+		<div class="box marg-top">
 			<h4>Chat</h4>
 			<div class="row">
 				<div class="col-12">

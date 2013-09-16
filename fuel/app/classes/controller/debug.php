@@ -3,6 +3,24 @@
 class Controller_Debug extends Controller_App
 {
 
+	public function get_events()
+	{
+		$quest         = Model_Quest::get_by_url('4aftjv');
+		$notifications = $quest->get_notifications_on_date('2013-09-10');
+		$total         = count($notifications);
+
+		foreach ($notifications as $notification)
+		{
+			$event = $notification->get_event();
+
+			echo '<li>';
+			echo $notification->event;
+			echo '</li>';
+		}
+
+		return $total;
+	}
+
 	public function get_send()
 	{
 		return base64_encode(file_get_contents(DOCROOT . 'assets/img/email/logo.png'));

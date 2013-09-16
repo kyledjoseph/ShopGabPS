@@ -47,6 +47,13 @@ class Model_User extends \Orm\Model
 			'cascade_save' => true,
 			'cascade_delete' => true,
 		),
+		'quest_participations' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Quest_Participant',
+			'key_to' => 'user_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
 		'quest_product_comments' => array(
 			'key_from' => 'id',
 			'model_to' => 'Model_Quest_Product_Comment',

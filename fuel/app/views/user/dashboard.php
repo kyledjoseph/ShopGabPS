@@ -29,7 +29,7 @@
 				<div class="col-12 col-sm-4 dash-item pad-bottom">
 					<a href="<?= Uri::create($quest->url()) ?>">
 						<img width="100%" src="<?= $quest->default_thumb_url(250, 220) ?>">
-						<h3><span><?= $quest->name() ?></span></h3>
+						<h3><span><?= $quest->name() ?> (<?= $quest->total_unseen_notifications() ?>)</span></h3>
 					</a>
 								<!-- <div class="btn-group">
 									<button class="btn dropdown-toggle" data-toggle="dropdown">

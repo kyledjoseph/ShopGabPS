@@ -62,4 +62,8 @@ class Model_Quest_Product_Comment extends \Orm\Model
 		return $comment->save() ? $comment : null;
 	}
 
+	public static function get_by_id($id)
+	{
+		return static::query()->where('id', $id)->get_one();
+	}
 }

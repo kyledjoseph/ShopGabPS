@@ -35,6 +35,13 @@ class Model_Quest extends \Orm\Model
 			'cascade_save' => true,
 			'cascade_delete' => true,
 		),
+		'participants' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_Quest_Participant',
+			'key_to' => 'quest_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
 		'messages' => array(
 			'key_from' => 'id',
 			'model_to' => 'Model_Quest_Message',
@@ -89,7 +96,15 @@ class Model_Quest extends \Orm\Model
 		return date($format, $this->created_at);
 	}
 
+	public function is_public()
+	{
+		return $this->is_public == '1';
+	}
 
+	public function is_private()
+	{
+		return $this->is_public == '0';
+	}
 
 
 
@@ -168,13 +183,6 @@ class Model_Quest extends \Orm\Model
 		return "//placehold.it/{$width}x{$height}/fff";
 	}
 
-
-
-
-	public function is_public()
-	{
-		return ($this->is_public == 1);
-	}
 
 
 	/**
@@ -269,27 +277,112 @@ class Model_Quest extends \Orm\Model
 	 */
 	public function add_product($product_id, $added_by = 0)
 	{
+		$added_by = ($added_by == 0) ? $this->user_id : $added_by;
 
-		$product = Model_Quest_Product::forge(array(
+		$quest_product = Model_Quest_Product::forge(array(
 			'quest_id' => $this->id,
 			'product_id' => $product_id,
-			'added_by' => ($added_by == 0) ? $this->user_id : $added_by,
+			'added_by' => $added_by,
 		));
-		return $product->save() ? $product : null;
+
+		$notice = Model_Notification::new_product($this->user_id, $this, $quest_product->id);
+
+		$this->add_participant($added_by);
+
+		return $quest_product->save() ? $quest_product : null;
 	}
+
+	
 
 	/**
 	 * 
 	 */
 	public function new_message($user_id, $message)
 	{
-		return Model_Quest_Message::create_message($this->id, $user_id, $message);
+		$message = Model_Quest_Message::create_message($this->id, $user_id, $message);
+		$this->add_participant($user_id);
+
+		Model_Notification::new_message($this->user_id, $this, $message->id);
+
+		return $message;
 	}
 
 	public function get_messages()
 	{
 		return Model_Quest_Message::query()->where('quest_id', $this->id)->order_by('created_at', 'asc')->get();
 	}
+
+
+	/**
+	 * Quest Participants
+	 */
+	public function get_participants()
+	{
+		return Model_Quest_Participant::query()->where('quest_id', $this->id)->get();
+	}
+
+	public function get_participant($user_id)
+	{
+		return Model_Quest_Participant::query()->where('quest_id', $this->id)->where('user_id', $user_id)->get_one();
+	}
+
+	public function total_participants()
+	{
+		return Model_Quest_Participant::query()->where('quest_id', $this->id)->count();
+	}
+
+	public function is_participant($user_id)
+	{
+		return Model_Quest_Participant::query()->where('quest_id', $this->id)->where('user_id', $user_id)->count() > 0;
+	}
+
+	public function add_participant($user_id)
+	{
+		if ($user_id == $this->user_id)
+		{
+			return true;
+		}
+		if ($this->is_participant($user_id))
+		{
+			return true;
+		}
+
+		return Model_Quest_Participant::add_participant($this->id, $user_id);
+	}
+
+
+
+	/**
+	 * Quest Notifications
+	 */
+	public function get_unseen_notifications()
+	{
+		return Model_Notification::query()->where('quest_id', $this->id)->where('seen_at', null)->get();
+	}
+
+	public function total_unseen_notifications()
+	{
+		return Model_Notification::query()->where('quest_id', $this->id)->where('seen_at', null)->count();
+	}
+
+	public function mark_notifications_seen()
+	{
+		foreach ($this->get_unseen_notifications() as $notification)
+		{
+			$notification->mark_seen();
+		}
+	}
+
+	public function get_notifications_on_date($date)
+	{
+		list($y, $m, $d) = explode('-', $date);
+		$start = mktime(0, 0, 0, $m, $d, $y);
+		$end   = mktime(0, 0, 0, $m, $d+1, $y);
+		return Model_Notification::query()->where('quest_id', $this->id)->where('created_at', '>=', $start)->where('created_at', '<', $end)->get();
+	}
+
+
+
 
 	public function remove()
 	{

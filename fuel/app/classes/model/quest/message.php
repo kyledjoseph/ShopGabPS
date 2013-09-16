@@ -88,4 +88,8 @@ class Model_Quest_Message extends \Orm\Model
 		return $message->save() ? $message : null;
 	}
 
+	public static function get_by_id($id)
+	{
+		return static::query()->where('id', $id)->get_one();
+	}
 }
