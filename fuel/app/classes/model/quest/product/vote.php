@@ -55,14 +55,14 @@ class Model_Quest_Product_Vote extends \Orm\Model
 	public function change_to_like()
 	{
 		$this->vote = '1';
-		$notice = Model_Notification::new_like($this->quest_product->quest->user_id, $this->quest_product->quest, $this->id);
+		$notice = Model_Notification::new_like($this->user_id, $this->quest_product->quest, $this->id);
 		return $this->save() and $this->quest_product->cache_votes();
 	}
 
 	public function change_to_dislike()
 	{
 		$this->vote = '0';
-		$notice = Model_Notification::new_dislike($this->quest_product->quest->user_id, $this->quest_product->quest, $this->id);
+		$notice = Model_Notification::new_dislike($this->user_id, $this->quest_product->quest, $this->id);
 		return $this->save() and $this->quest_product->cache_votes();
 	}
 
