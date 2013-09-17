@@ -10,6 +10,35 @@
 
 mixpanel.track("Pageload");
 
+$(".start-here").click(function() {
+    mixpanel.track("Start here (Landing)");
+});
+
+$(".header-log-in").click(function() {
+    mixpanel.track("Login (Header)");
+});
+
+$(".header-sign-up").click(function() {
+    mixpanel.track("Sign up (Header)");
+});
+
+$(".landing-sign-up").click(function() {
+    mixpanel.track("Sign up (Header)");
+});
+
+$(".landing-sign-up").click(function() {
+    mixpanel.track("Sign up (Header)");
+});
+
+
+
+
+
+
+
+
+// ********************************************
+
 $('.product-block .description').expander({
   slicePoint: 40
 });
