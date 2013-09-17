@@ -13,7 +13,7 @@ console.log('ok')
 
 $(".start-here").click(function() {
     console.log('woo')
-    mixpanel.track("Start here (Landing)");
+    console.log(mixpanel.track("Start here"));
 });
 
 $(".header-log-in").click(function() {
