@@ -23,3 +23,5 @@
 		</ul>
 	</div>
 </div>
+
+<script>mixpanel.identify("<?= $user->email ?>")</script>
