@@ -113,12 +113,11 @@
 								</span>
 							</div>
 							<?= Form::close() ?>
-							
+							<?php if (! $quest_product->was_added_by_owner()): ?>
+								<h5>Added by <?= $quest_product->user->display_name() ?></h5>
+							<?php endif; ?>
 						</div>
 
-						<?php if (! $quest_product->was_added_by_owner()): ?>
-							<h5>Added by <?= $quest_product->user->display_name() ?></h5>
-						<?php endif; ?>
 					</div>
 
 					<?php $product_i++; endforeach; ?>
