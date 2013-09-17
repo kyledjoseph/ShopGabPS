@@ -302,7 +302,7 @@ class Model_Quest extends \Orm\Model
 		$message = Model_Quest_Message::create_message($this->id, $user_id, $message);
 		$this->add_participant($user_id);
 
-		Model_Notification::new_message($this->user_id, $this, $message->id);
+		Model_Notification::new_message($user_id, $this, $message->id);
 
 		return $message;
 	}

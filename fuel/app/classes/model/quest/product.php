@@ -158,7 +158,7 @@ class Model_Quest_Product extends \Orm\Model
 	public function like($user_id)
 	{
 		$vote   = Model_Quest_Product_Vote::create_like($this->id, $user_id);
-		$notice = Model_Notification::new_like($this->quest->user_id, $this->quest, $vote->id);
+		$notice = Model_Notification::new_like($user_id, $this->quest, $vote->id);
 
 		$this->quest->add_participant($user_id);
 		
@@ -168,7 +168,7 @@ class Model_Quest_Product extends \Orm\Model
 	public function dislike($user_id)
 	{
 		$vote   = Model_Quest_Product_Vote::create_dislike($this->id, $user_id);
-		$notice = Model_Notification::new_dislike($this->quest->user_id, $this->quest, $vote->id);
+		$notice = Model_Notification::new_dislike($user_id, $this->quest, $vote->id);
 
 		$this->quest->add_participant($user_id);
 
@@ -218,7 +218,7 @@ class Model_Quest_Product extends \Orm\Model
 	public function add_comment($quest_product_id, $user_id, $text)
 	{
 		$comment = Model_Quest_Product_Comment::create_comment($quest_product_id, $user_id, $text);
-		$notice  = Model_Notification::new_comment($this->quest->user_id, $this->quest, $comment->id);
+		$notice  = Model_Notification::new_comment($user_id, $this->quest, $comment->id);
 
 		$this->quest->add_participant($user_id);
 

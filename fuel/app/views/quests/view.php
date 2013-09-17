@@ -123,7 +123,7 @@
 
 					<?php $product_i++; endforeach; ?>
 
-					<div class="col-12 col-sm-4">
+					<div class="col-12 col-sm-6 col-lg-4">
 						<?php if (isset($user)): ?>
 						<?php if ($quest->belongs_to_user($user->id)): ?>
 							<a href="#addProductModal" class="quest-add-product" data-toggle="modal" data-container="body" data-placement="top" data-content="Learn how to add products to your quest with our bookmarklet!" data-original-title="" title="">

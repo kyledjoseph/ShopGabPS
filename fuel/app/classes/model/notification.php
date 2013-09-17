@@ -70,7 +70,7 @@ class Model_Notification extends \Orm\Model
 		$notice->event    = $event;
 		$notice->user_id  = $user_id;
 		$notice->quest_id = $quest->id;
-		$notice->event_id = $message_id;
+		$notice->event_id = $event_id;
 
 		return $notice->save() ? $notice : null;
 	}
@@ -78,31 +78,46 @@ class Model_Notification extends \Orm\Model
 
 	public static function new_message($user_id, $quest, $message_id)
 	{
-		if ($user_id == $quest->user_id) return;
+		if ($user_id == $quest->user_id)
+		{
+			return;
+		}
 		return static::new_notice('message', $user_id, $quest, $message_id);
 	}
 
 	public static function new_like($user_id, $quest, $vote_id)
 	{
-		if ($user_id == $quest->user_id) return;
+		if ($user_id == $quest->user_id)
+		{
+			return;
+		}
 		return static::new_notice('like', $user_id, $quest, $vote_id);
 	}
 
 	public static function new_dislike($user_id, $quest, $vote_id)
 	{
-		if ($user_id == $quest->user_id) return;
+		if ($user_id == $quest->user_id)
+		{
+			return;
+		}
 		return static::new_notice('dislike', $user_id, $quest, $vote_id);
 	}
 
 	public static function new_comment($user_id, $quest, $comment_id)
 	{
-		if ($user_id == $quest->user_id) return;
+		if ($user_id == $quest->user_id)
+		{
+			return;
+		}
 		return static::new_notice('comment', $user_id, $quest, $comment_id);
 	}
 
 	public static function new_product($user_id, $quest, $product_id)
 	{
-		if ($user_id == $quest->user_id) return;
+		if ($user_id == $quest->user_id)
+		{
+			return;
+		}
 		return static::new_notice('product', $user_id, $quest, $product_id);
 	}
 
