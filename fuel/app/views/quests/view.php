@@ -190,7 +190,7 @@
 								<input name="message" type="text" class="form-control">
 								<span class="input-group-btn">
 									<?php if (isset($user)): ?>
-									<button class="btn btn-default" type="submit">Send</button>
+									<button class="chat-button btn btn-default" type="submit">Send</button>
 									<?php else: ?>
 									<button href="#registerModal" class="btn btn-default" data-toggle="modal">Send</button>
 									<?php endif; ?>

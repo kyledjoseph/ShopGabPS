@@ -31,7 +31,7 @@
 
 					<?php endforeach; ?>
 					<div class="col-12 col-sm-4 dash-item dash-new pad-bottom">
-						<a href="#questModal" data-toggle="modal">
+						<a class="new-quest-dotted" href="#questModal" data-toggle="modal">
 							<img width="100%" src="/assets/img/new-quest.png">
 						</a>
 					</div>
