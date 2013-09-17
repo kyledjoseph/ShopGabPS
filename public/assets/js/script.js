@@ -9,11 +9,9 @@
 
 
 mixpanel.track("Pageload");
-console.log('ok')
 
 $(".start-here").click(function() {
-    console.log('woo')
-    console.log(mixpanel.track("Start here"));
+    mixpanel.track("Start here (Landing)");
 });
 
 $(".header-log-in").click(function() {
@@ -24,12 +22,12 @@ $(".header-sign-up").click(function() {
     mixpanel.track("Sign up (Header)");
 });
 
-$(".landing-sign-up").click(function() {
-    mixpanel.track("Sign up (Header)");
+$(".landing-log-in").click(function() {
+    mixpanel.track("Log In (Landing)");
 });
 
 $(".landing-sign-up").click(function() {
-    mixpanel.track("Sign up (Header)");
+    mixpanel.track("Sign up (Landing)");
 });
 
 
