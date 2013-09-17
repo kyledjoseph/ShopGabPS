@@ -66,7 +66,7 @@
 					<?php $product_i = 1; foreach ($quest_products as $quest_product): ?>
 					<?php $product = $quest_product->product ?>
 
-					<div class="col-12 col-sm-6 col-lg-4 quest-item no<?= ! $quest_product->was_added_by_owner() ? 'from-tab' : null ?>" data-product="<?= $product_i ?>">
+					<div class="col-12 col-sm-6 pull-left col-lg-4 quest-item no<?= ! $quest_product->was_added_by_owner() ? 'from-tab' : null ?>" data-product="<?= $product_i ?>">
 						<div class="quest-box">
 							<a href="<?= $product->product_url() ?>" target="_blank">
 								<img src="<?= $product->image_url(250, 220) ?>" width="100%" alt="<?= $product->name() ?>" />
@@ -113,17 +113,16 @@
 								</span>
 							</div>
 							<?= Form::close() ?>
-							
+							<?php if (! $quest_product->was_added_by_owner()): ?>
+								<h5>Added by <?= $quest_product->user->display_name() ?></h5>
+							<?php endif; ?>
 						</div>
 
-						<?php if (! $quest_product->was_added_by_owner()): ?>
-							<h5>Added by <?= $quest_product->user->display_name() ?></h5>
-						<?php endif; ?>
 					</div>
 
 					<?php $product_i++; endforeach; ?>
 
-					<div class="col-12 col-sm-4">
+					<div class="pull-left col-12 col-sm-6 col-lg-4">
 						<?php if (isset($user)): ?>
 						<?php if ($quest->belongs_to_user($user->id)): ?>
 							<a href="#addProductModal" class="quest-add-product" data-toggle="modal" data-container="body" data-placement="top" data-content="Learn how to add products to your quest with our bookmarklet!" data-original-title="" title="">
@@ -190,7 +189,7 @@
 								<input name="message" type="text" class="form-control">
 								<span class="input-group-btn">
 									<?php if (isset($user)): ?>
-									<button class="btn btn-default" type="submit">Send</button>
+									<button class="chat-button btn btn-default" type="submit">Send</button>
 									<?php else: ?>
 									<button href="#registerModal" class="btn btn-default" data-toggle="modal">Send</button>
 									<?php endif; ?>
