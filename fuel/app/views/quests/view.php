@@ -6,7 +6,7 @@
 			<h4 class="help-me">Please help me find a <span class="product-name"><?= $quest->name() ?></span></h4>
 		</div>
 		<div class="col-12 col-sm-5 col-lg-4">
-			<button id="private-public" class="btn btn-primary btn-block marg-bottom quest-private"><i class="icon-lock icon-large"></i>&nbsp;&nbsp;&nbsp;Private</button>
+			<button id="private-public" class="hidden btn btn-primary btn-block marg-bottom quest-private"><i class="icon-lock icon-large"></i>&nbsp;&nbsp;&nbsp;Private</button>
 		</div>
 	</div>
 
