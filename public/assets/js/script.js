@@ -9,8 +9,10 @@
 
 
 mixpanel.track("Pageload");
+console.log('ok')
 
 $(".start-here").click(function() {
+    console.log('woo')
     mixpanel.track("Start here (Landing)");
 });
 
