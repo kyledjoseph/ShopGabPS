@@ -66,7 +66,7 @@
 					<?php $product_i = 1; foreach ($quest_products as $quest_product): ?>
 					<?php $product = $quest_product->product ?>
 
-					<div class="col-12 col-sm-6 col-lg-4 quest-item no<?= ! $quest_product->was_added_by_owner() ? 'from-tab' : null ?>" data-product="<?= $product_i ?>">
+					<div class="col-12 col-sm-6 pull-left col-lg-4 quest-item no<?= ! $quest_product->was_added_by_owner() ? 'from-tab' : null ?>" data-product="<?= $product_i ?>">
 						<div class="quest-box">
 							<a href="<?= $product->product_url() ?>" target="_blank">
 								<img src="<?= $product->image_url(250, 220) ?>" width="100%" alt="<?= $product->name() ?>" />
