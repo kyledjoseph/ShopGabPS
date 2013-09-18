@@ -1,4 +1,4 @@
-	<div class="container">
+	<div class="row">
 		<div class="col-12 col-sm-2">
 			<h4><?= $quest->user->display_name() ?></h4>
 		</div>
@@ -10,7 +10,7 @@
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="row">
 		<div class="col-2">
 			<img src="<?= $quest->user->get_avatar_uri(200, 200) ?>" width="100%" />
 		</div>
@@ -50,7 +50,7 @@
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="row">
 		<div class="col-12 col-sm-8">
 			<div class="box marg-top">
 				<h4>Products</h4>
@@ -67,6 +67,9 @@
 					<?php $product = $quest_product->product ?>
 
 					<div class="col-12 col-sm-6 pull-left col-lg-4 quest-item no<?= ! $quest_product->was_added_by_owner() ? 'from-tab' : null ?>" data-product="<?= $product_i ?>">
+						<?php if (! $quest_product->was_added_by_owner()): ?>
+								<h5>Added by <?= $quest_product->user->display_name() ?></h5>
+						<?php endif; ?>
 						<div class="quest-box">
 							<a href="<?= $product->product_url() ?>" target="_blank">
 								<img src="<?= $product->image_url(250, 220) ?>" width="100%" alt="<?= $product->name() ?>" />
@@ -103,8 +106,6 @@
 							</div>
 							<?php endforeach; ?>
 
-
-
 							<?= Form::open(array('action' => $quest_product->comment_url(), 'class' => 'comment', 'style' => 'display:none')) ?>
 							<div class="input-group">
 								<input name="comment" type="text" class="form-control" placeholder="What do you think?">
@@ -113,9 +114,6 @@
 								</span>
 							</div>
 							<?= Form::close() ?>
-							<?php if (! $quest_product->was_added_by_owner()): ?>
-								<h5>Added by <?= $quest_product->user->display_name() ?></h5>
-							<?php endif; ?>
 						</div>
 
 					</div>
