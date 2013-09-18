@@ -212,7 +212,7 @@ class Model_Quest_Product extends \Orm\Model
 
 	public function get_comments()
 	{
-		return Model_Quest_Product_Comment::query()->where('quest_product_id', $this->id)->order_by('created_at', 'desc')->get();
+		return Model_Quest_Product_Comment::query()->where('quest_product_id', $this->id)->order_by('created_at', 'asc')->get();
 	}
 
 	public function add_comment($quest_product_id, $user_id, $text)
