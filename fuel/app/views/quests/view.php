@@ -1,4 +1,4 @@
-	<div class="row">
+	<div class="container">
 		<div class="col-12 col-sm-2">
 			<h4><?= $quest->user->display_name() ?></h4>
 		</div>
@@ -10,7 +10,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="container">
 		<div class="col-2">
 			<img src="<?= $quest->user->get_avatar_uri(200, 200) ?>" width="100%" />
 		</div>
@@ -50,7 +50,7 @@
 		</div>
 	</div>
 
-	<div class="row">
+	<div class="container">
 		<div class="col-12 col-sm-8">
 			<div class="box marg-top">
 				<h4>Products</h4>
