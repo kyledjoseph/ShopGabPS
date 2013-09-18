@@ -1,11 +1,11 @@
-	<div class="container">
+	<div class="row">
 		<div class="col-12">
 			<ul class="nav nav-tabs">
 				<li class="active"><?= Html::anchor('/', 'My Quests') ?></li>
 				<li class="tour-friends-tab" data-container="body" data-placement="bottom" data-content="Check out what your friends are looking for." data-original-title="" title=""><?= Html::anchor('friends', 'Friends') ?></li>
 			</ul>
 		</div>
-	<div class="container">
+	<div class="row">
 		<div class="col-12 col-sm-8">
 			<div class="row">
 				<div class="col-12 col-sm-8 pad-top">

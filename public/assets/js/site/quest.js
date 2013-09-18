@@ -25,6 +25,12 @@ $(function(){
 		var comment = $(this).parent().parent().data('product');
 		$('.quest-item[data-product='+comment+'] .comment').toggle(100);
 	});
+
+	$('.quest-product-image-div').css('height', $('.quest-product-image-div').width());
+
+	$( window ).resize(function() {
+		$('.quest-product-image-div').css('height', $('.quest-product-image-div').width());
+	});
 	
 
 	// init tooltip for product votes
@@ -65,7 +71,7 @@ $(function(){
 	// 						$('#facebook-friends').append(c);
 	// 					}
 
-						
+
 	// 				});
 	// 			}
 	// 		);
@@ -75,20 +81,20 @@ $(function(){
 
 
 
-	function selected_friends()
-	{
-		friends = [];
-		
-		$( ".select_fb_friend:checked" ).each(function(index) {
-			friends.push($(this).val());
-		});
+function selected_friends()
+{
+	friends = [];
 
-		return friends;
-	}
+	$( ".select_fb_friend:checked" ).each(function(index) {
+		friends.push($(this).val());
+	});
+
+	return friends;
+}
 
 
-	function quest_id()
-	{
+function quest_id()
+{
 		//return $('#');
 	}
 
@@ -99,14 +105,14 @@ $(function(){
 			FB.ui({
 				method: 'send',
 				link: $(this).attr('data-link'),
-				}, function(response) {
-					console.log('invites sent', friends, response);
-				}
+			}, function(response) {
+				console.log('invites sent', friends, response);
+			}
 			);
 		//});
-		
-		return false;
-	});
+
+	return false;
+});
 
 	$('#fb_share').click(function() {
 		FB.ui({
