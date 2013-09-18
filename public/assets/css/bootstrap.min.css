@@ -699,8 +699,10 @@ textarea.itemnation-box select{height:auto}
 .quest-product-square .product-name{position:absolute;bottom:0;left:0;display:none;width:100%;padding:.5em;color:#fff;display:block;background-color:rgba(0,0,0,0.6)}
 .quest-product-square .close{font-size:30px;position:absolute;top:24px;right:22px;display:none;opacity:.6;color:#f00}.quest-product-square .close:hover{opacity:.7}
 .quest-product-square:hover .close{display:block}
+.dash-close{position:absolute;top:8px !important;right:12px !important;display:block !important;opacity:.8;color:#f00}.dash-close:hover{opacity:.7}
+.dash-close .badge{font-size:20px;padding:5px 8px}
 .pushups{padding-top:1em}
-.added-by{opacity:.4;padding-bottom:.2em;height:20px}
+.added-by{opacity:.4;padding-bottom:.2em;color:#fff;padding:.2em;height:20px;padding-left:.6em;font-size:12px}.added-by.dark-grey{background-color:#242323}
 .product-info{margin-top:4px}
 body>.row{margin-left:15px;margin-right:15px}
 .row{margin-left:0;margin-right:0}

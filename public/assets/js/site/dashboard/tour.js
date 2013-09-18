@@ -99,3 +99,9 @@ if ($.cookie('old_user') == 'false' || $.cookie('old_user') == undefined) {
 	$('.tour-quest-btn').popover('show')
 	$('.tour-friends-tab').popover('show')
 }
+
+    $('.quest-product-image-div').css('height', $('.quest-product-image-div').width());
+
+    $( window ).resize(function() {
+        $('.quest-product-image-div').css('height', $('.quest-product-image-div').width());
+    });
