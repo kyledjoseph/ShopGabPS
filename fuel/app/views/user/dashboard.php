@@ -18,26 +18,24 @@
 					</div>
 				</div>
 				<div class="row pad-top">
-					<div class="col-12">
 						<div class="row product-rows">
 							<?php foreach ($quests as $quest): ?>
-							<div class="col-12 col-sm-4 col-lg-3 dash-product-square">
-								<div class="added-by">&nbsp;</div>
-								<a href="<?= Uri::create($quest->url()) ?>" class="dash-product-image-div" style="background-image:url(<?= $quest->default_thumb_url(250, 220) ?>)">
-									<div class="product-name"><?= $quest->name() ?></div>
-									<span class="close dash-close"><span class="badge"><?= $quest->total_unseen_notifications() ?></span></a>
+								<div class="col-12 col-sm-4 col-lg-3 dash-product-square">
+									<div class="added-by">&nbsp;</div>
+									<a href="<?= Uri::create($quest->url()) ?>" class="dash-product-image-div" style="background-image:url(<?= $quest->default_thumb_url(250, 220) ?>)">
+										<div class="product-name"><?= $quest->name() ?></div>
+										<span class="close dash-close"><span class="badge"><?= $quest->total_unseen_notifications() ?></span>
+									</a>
+								</div>
+							<?php endforeach; ?>
+							<div class="col-12 col-sm-4 col-lg-3 dash-product-square no">
+								<div class="added-by">
+									&nbsp;
+								</div>
+								<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#addProductModal" class="dash-product-image-div" data-toggle="modal">
 								</a>
 							</div>
-						<?php endforeach; ?>
-						<div class="col-12 col-sm-4 col-lg-3 dash-product-square no">
-							<div class="added-by">
-								&nbsp;
-							</div>
-							<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#addProductModal" class="dash-product-image-div" data-toggle="modal">
-							</a>
-						</div>
 					</div>
-				</div>
 			</div>
 		</div>
 		<div class="col-12 col-sm-4 pad-top">
@@ -56,6 +54,7 @@
 						</div>
 					</div>
 				<?php endforeach; ?>
+				</div>
 			</div>
 		</div>
 	</div>
