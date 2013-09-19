@@ -105,9 +105,9 @@
 			</div>
 			<div class="modal-body">
 				<div class="row">
-					<div class="col-12 col-sm-6">
+					<div class="col-12 col-sm-6 clearfix">
 						<a href="<?= $product->product_url() ?>" class="quest-product-image-div" target="_blank">
-							<img src="<?= $product->image_url(250, 220) ?>" />
+							<img class="max-height-half" src="<?= $product->image_url(250, 220) ?>" />
 							<br />
 							<br />
 							<?= $product->name() ?><br />
