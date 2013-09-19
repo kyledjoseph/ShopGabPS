@@ -68,7 +68,7 @@
 					<?php endif; ?>
 					&nbsp;
 				</div>
-				<a href="#commentsFor<?= $product_i ?>" class="quest-product-image-div" data-toggle="modal" style="background-image:url(<?= $product->image_url(250, 220) ?>)">
+				<a href="<?= $product->product_url() ?>" class="quest-product-image-div" style="background-image:url(<?= $product->image_url(250, 220) ?>)">
 					<div class="product-name">
 						<div class="title-box"><?= $product->name() ?></div>
 						<span class="faded"><?= $product->price() ?>
