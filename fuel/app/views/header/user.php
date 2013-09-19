@@ -27,8 +27,9 @@
 <script type="text/javascript">
 mixpanel.identify("<?= $user->email ?>");
 mixpanel.people.set({
-    "$email": "me@christianbundy.com",
-    "$last_login": new Date(),
+    "$email": "<?= $user->email ?>",
+    "$last_login": new Date()
 });
 </script>
+
 

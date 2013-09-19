@@ -19,46 +19,43 @@
 				</div>
 				<div class="row pad-top">
 					<div class="col-12">
-						<div class="row">
+						<div class="row product-rows">
 							<?php foreach ($quests as $quest): ?>
-							<div class="col-12 col-sm-4 col-lg-3 quest-product-square">
+							<div class="col-12 col-sm-4 col-lg-3 dash-product-square">
 								<div class="added-by">&nbsp;</div>
-								<a href="<?= Uri::create($quest->url()) ?>" class="quest-product-image-div" style="background-image:url(<?= $quest->default_thumb_url(250, 220) ?>)">
+								<a href="<?= Uri::create($quest->url()) ?>" class="dash-product-image-div" style="background-image:url(<?= $quest->default_thumb_url(250, 220) ?>)">
 									<div class="product-name"><?= $quest->name() ?></div>
 									<span class="close dash-close"><span class="badge"><?= $quest->total_unseen_notifications() ?></span></a>
 								</a>
-
-
-
-								</div>
-							<?php endforeach; ?>
-							<div class="col-12 col-sm-4 col-lg-3 quest-product-square no">
-								<div class="added-by">
-									&nbsp;
-								</div>
-								<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#addProductModal" class="quest-product-image-div" data-toggle="modal">
-								</a>
 							</div>
+						<?php endforeach; ?>
+						<div class="col-12 col-sm-4 col-lg-3 dash-product-square no">
+							<div class="added-by">
+								&nbsp;
+							</div>
+							<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#addProductModal" class="dash-product-image-div" data-toggle="modal">
+							</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="col-12 col-sm-4 pad-top">
-				<div class="box help-a-friend">
-					<h4>Help A Friend</h4>
-					<div class="content">
-						<?php foreach ($user->get_friends_upcoming_quests() as $quest): ?>
-						<div class="friend-box">
-							<div class="media">
-								<a class="pull-left" href="<?= Uri::create($quest->url()) ?>">
-									<img class="media-object force-32-32" src="<?= $quest->default_thumb_url(50, 50) ?>" />
-								</a>
-								<div class="media-body">
-									<strong><?= Html::anchor($user->get_friend_profile_url($quest->user->id), $quest->user->display_name()) ?></strong> - <?= $quest->name() ?> (<?= $quest->purchase_within() ?> days)
-								</div>
+		</div>
+		<div class="col-12 col-sm-4 pad-top">
+			<div class="box help-a-friend">
+				<h4>Help A Friend</h4>
+				<div class="content">
+					<?php foreach ($user->get_friends_upcoming_quests() as $quest): ?>
+					<div class="friend-box">
+						<div class="media">
+							<a class="pull-left" href="<?= Uri::create($quest->url()) ?>">
+								<img class="media-object force-32-32" src="<?= $quest->default_thumb_url(50, 50) ?>" />
+							</a>
+							<div class="media-body">
+								<strong><?= Html::anchor($user->get_friend_profile_url($quest->user->id), $quest->user->display_name()) ?></strong> - <?= $quest->name() ?> (<?= $quest->purchase_within() ?> days)
 							</div>
 						</div>
-					<?php endforeach; ?>
-				</div>
+					</div>
+				<?php endforeach; ?>
 			</div>
 		</div>
+	</div>
