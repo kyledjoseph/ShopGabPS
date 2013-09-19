@@ -18,6 +18,7 @@
 					</div>
 				</div>
 				<div class="row pad-top">
+					<div class="col-12"
 						<div class="row product-rows">
 							<?php foreach ($quests as $quest): ?>
 								<div class="col-12 col-sm-4 col-lg-3 dash-product-square">
@@ -32,7 +33,7 @@
 								<div class="added-by">
 									&nbsp;
 								</div>
-								<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#addProductModal" class="dash-product-image-div" data-toggle="modal">
+								<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-quest.png)" href="#addProductModal" class="dash-product-image-div" data-toggle="modal">
 								</a>
 							</div>
 					</div>
