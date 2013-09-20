@@ -9,7 +9,7 @@
 		<ul class="landing-nav nav nav-pills pull-right">
 			<li><?= Html::anchor('/', 'My Quests') ?></li>
 			<li class="nav-image hide-overflow">
-				<?= Html::anchor('account', Html::img($user->get_avatar_uri()) . ' ' . $user->display_name()) ?>
+				<a href="/account"><img class="force-32-32" src="<?= $user->get_avatar_uri() ?>" /> <?= $user->display_name() ?></a>
 			</li>
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
