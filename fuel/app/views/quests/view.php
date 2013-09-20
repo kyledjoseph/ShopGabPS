@@ -148,7 +148,7 @@
 
 <?php $product_i++; endforeach; ?>
 
-<div class="col-12 col-sm-4 col-lg-3 quest-product-square no<?= ! $quest_product->was_added_by_owner() ? 'from-tab' : null ?>" data-product="<?= $product_i ?>">
+<div class="col-12 col-sm-4 col-lg-3 quest-product-square no" data-product="<?= $product_i ?>">
 	<div class="quest-border">
 		<div class="added-by">
 			&nbsp;
@@ -217,7 +217,6 @@
 	</span>
 </div>
 </form>
-</div>
 </div>
 </div>
 </div>
