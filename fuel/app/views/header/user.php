@@ -1,14 +1,14 @@
 <div class="header row">
 	<!-- Logo -->
 	<div class="col-4 col-sm-2">
-		<h1><a href="/"><img src="/assets/img/logo.png" alt="ShopGab" /></a></h1>
+		<h1><a href="/"><img class="logo-img" src="/assets/img/logo.png" alt="ShopGab" /></a></h1>
 	</div>
 
 	<!-- Navigation -->
 	<div class="col-8 col-sm-10">
 		<ul class="landing-nav nav nav-pills pull-right">
 			<li><?= Html::anchor('/', 'My Quests') ?></li>
-			<li class="nav-image">
+			<li class="nav-image hide-overflow">
 				<?= Html::anchor('account', Html::img($user->get_avatar_uri()) . ' ' . $user->display_name()) ?>
 			</li>
 			<li class="dropdown">
