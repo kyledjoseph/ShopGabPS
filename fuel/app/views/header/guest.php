@@ -1,4 +1,4 @@
-  <div class="header container">
+  <div class="header row">
     <!-- Logo -->
     <div class="col-4 col-sm-2">
       <h1><a href="/"><img src="/assets/img/logo.png" alt="ShopGab" /></a></h1>

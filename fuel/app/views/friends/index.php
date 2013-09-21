@@ -1,4 +1,4 @@
-	<div class="container">
+	<div class="row">
 		<div class="col-12">
 			<ul class="nav nav-tabs">
 				<li><?= Html::anchor('/', 'My Quests') ?></li>
@@ -7,7 +7,7 @@
 		</div>
 	</div>
 
-	<div class="container">
+	<div class="row">
 		<div class="col-12 col-sm-8">
 			<div class="row">
 				<div class="col-12 col-sm-8 pad-top">

@@ -32,7 +32,7 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
 <!-- Footer -->
   <div class="footer">
     <div class="footer-white">
-      <div class="container">
+      <div class="footer">
         <div class="about col-12 col-sm-4">
           <h4>About Us</h4>
           <hr />
@@ -66,7 +66,7 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
           <a href="http://rackspace.com/"><img class="rackspace" src="/assets/img/rackspace.png" /></a>
         </div>
       </div>
-      <div class="container">
+      <div class="footer">
       <div class="col-12">
           <p class="text-muted">&copy; ShopGab 2013, all rights reserved.</p>
           </div>
