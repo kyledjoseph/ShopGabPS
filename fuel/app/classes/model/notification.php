@@ -28,36 +28,88 @@ class Model_Notification extends \Orm\Model
 		),
 	);
 
+
+	public function text()
+	{
+		return $this->sender_name() . ' ' . $this->action();
+	}
+
+	public function sender_name()
+	{
+		return $this->get_event()->user->display_name();
+	}
+
 	public function mark_seen()
 	{
 		$this->seen_at = time();
 		return $this->save();
 	}
 
-	public function get_event()
+	public function action()
 	{
 		switch ($this->event)
 		{
 			case 'like':
-				return Model_Quest_Product_Vote::get_by_id($this->event_id);
+				return 'liked a product';
 
 			case 'dislike':
-				return Model_Quest_Product_Vote::get_by_id($this->event_id);
+				return 'disliked a product';
 
 			case 'comment':
-				return Model_Quest_Product_Comment::get_by_id($this->event_id);
+				return 'commented on a product';
 
 			case 'message':
-				return Model_Quest_Message::get_by_id($this->event_id);
+				return 'wrote a message';
 
 			case 'product':
-				return Model_Quest_Product::get_by_id($this->event_id);
+				return 'recommended a product';
 
 			default:
 				throw new Exception("unknown event type '{$this->event}'");
 				break;
 
 		}
+	}
+
+
+	protected $event_instance;
+
+	public function get_event()
+	{
+		if (isset($this->event_instance))
+		{
+			return $event_instance;
+		}
+
+		switch ($this->event)
+		{
+			case 'like':
+				$event_instance = Model_Quest_Product_Vote::get_by_id($this->event_id);
+				break;
+
+			case 'dislike':
+				$event_instance = Model_Quest_Product_Vote::get_by_id($this->event_id);
+				break;
+
+			case 'comment':
+				$event_instance = Model_Quest_Product_Comment::get_by_id($this->event_id);
+				break;
+
+			case 'message':
+				$event_instance = Model_Quest_Message::get_by_id($this->event_id);
+				break;
+
+			case 'product':
+				$event_instance = Model_Quest_Product::get_by_id($this->event_id);
+				break;
+
+			default:
+				throw new Exception("unknown event type '{$this->event}'");
+				break;
+
+		}
+
+		return $event_instance;
 	}
 
 
