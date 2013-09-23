@@ -5,62 +5,22 @@ class Controller_Debug extends Controller_App
 
 	public function get_events()
 	{
-		$date  = '2013-09-21';
-		$users = Model_User::query()->get();
+		$date     = '2013-09-21';
+		$users    = Model_User::query()->get();
+		$total = 0;
 
 		foreach ($users as $user)
 		{
-			echo $user->email;
-			echo '<br>';
-
-			$quests = $user->get_quests();
-
-			foreach ($quests as $quest)
+			$message = new Notification_Digest($user, $date);
+			
+			if ($message->has_notifications())
 			{
-				$notifications = $quest->get_notifications_on_date($date);
-				$total         = count($notifications);
-
-
-				if ($total == 0)
-				{
-					continue;
-				}
-
-				echo $quest->name();
-
-
-				foreach ($notifications as $notification)
-				{
-					$event = $notification->get_event();
-
-					echo '<li>';
-					echo $notification->text();
-					echo '</li>';
-				}
+				$message->send();
+				$total++;
 			}
-
-			echo '<hr>';
 		}
 
-
-
-
-
-
-		// $quest         = Model_Quest::get_by_url('4aftjv');
-		// $notifications = $quest->get_notifications_on_date('2013-09-10');
-		// $total         = count($notifications);
-
-		// foreach ($notifications as $notification)
-		// {
-		// 	$event = $notification->get_event();
-
-		// 	echo '<li>';
-		// 	echo $notification->event;
-		// 	echo '</li>';
-		// }
-
-		return true;
+		return 'total: ' . $total;
 	}
 
 	public function get_send()
