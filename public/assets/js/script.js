@@ -24,7 +24,7 @@ $(".header-log-in, .landing-log-in, .social-login a").click(function() {
     newURL = $(this).attr('href');
     mixpanel.track("Login", null, function() {
         console.log(newURL);
-        window.location = newURL;
+        //window.location = newURL;
     });
 });
 
