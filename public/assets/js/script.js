@@ -19,7 +19,7 @@ $(".header-sign-up, .landing-sign-up").click(function() {
 });
 
 // Login
-$(".header-log-in, .landing-log-in, social-login a").click(function() {
+$(".header-log-in, .landing-log-in, .social-login a").click(function() {
     event.preventDefault();
     newURL = $(this).attr('href');
     mixpanel.track("Login", null, function() {
