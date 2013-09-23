@@ -23,7 +23,7 @@ $(".header-log-in, .landing-log-in, .social-login a").click(function() {
     event.preventDefault();
     newURL = $(this).attr('href');
     mixpanel.track("Login", null, function() {
-        window.location = newURL;
+//        window.location = newURL;
     });
 });
 
