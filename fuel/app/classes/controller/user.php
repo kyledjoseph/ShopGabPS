@@ -117,6 +117,7 @@ class Controller_User extends Controller_App
 	public function get_process()
 	{
 		Hybrid_Endpoint::process();
+		$this->redirect('/');
 	}
 
 
