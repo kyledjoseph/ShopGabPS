@@ -5,9 +5,9 @@
 </div>
 <div class="footer">
 	<div style="width: 50%;">
-		1234 ASDF St.
-		Chicago, IL, 12345
-		(911) 911 - 9111
+		1871: Shopgab
+		222 Merchandise Mart Plaza Suite #1212
+		Chicago, IL  60654
 	</div>
 	<div style="width: 50%;">
 		Contact us with
