@@ -126,7 +126,7 @@ class Controller_Quests extends Controller_App
 
 		if (! isset($quest_product))
 		{
-			$this->redirect_invalid_quest();
+			$this->redirect($quest->url());
 		}
 
 		$quest_product->add_comment($quest_product->id, $this->user->id, $post->comment);
@@ -225,7 +225,7 @@ class Controller_Quests extends Controller_App
 
 		if ($quest->user_id !== $this->user->id)
 		{
-			$this->redirect_invalid_quest();
+			$this->redirect($quest->url());
 		}
 
 		$this->template->body = View::forge('quests/edit', array(
@@ -241,7 +241,7 @@ class Controller_Quests extends Controller_App
 
 		if ($quest->user_id !== $this->user->id)
 		{
-			$this->redirect_invalid_quest();
+			$this->redirect($quest->url());
 		}
 
 		$post = $this->post_data('name', 'description', 'purchase_within');
@@ -425,7 +425,7 @@ class Controller_Quests extends Controller_App
 
 		if (! isset($quest_product))
 		{
-			$this->redirect_invalid_quest();
+			$this->redirect($quest->url());
 		}
 
 		$quest_product->remove();
