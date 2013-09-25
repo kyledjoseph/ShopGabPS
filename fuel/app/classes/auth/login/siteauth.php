@@ -66,6 +66,12 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 	 */
 	protected function perform_check()
 	{
+		// $hybridauth = $this->hybridauth_instance();
+		// if (! Hybrid_Auth::isConnectedWith('facebook'))
+		// {
+		// 	return false;
+		// }
+
 		$username    = \Session::get('username');
 		$login_hash  = \Session::get('login_hash');
 
@@ -87,10 +93,8 @@ class Auth_Login_SiteAuth extends \Auth_Login_Driver
 			}
 		}
 
-		if (! Hybrid_Auth::isConnectedWith('facebook'))
-		{
-			return false;
-		}
+
+		
 
 		// no valid login when still here, ensure empty session and optionally set guest_login
 		$this->user = \Config::get('siteauth.guest_login', true) ? static::$guest_login : false;
