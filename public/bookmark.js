@@ -206,4 +206,4 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");
     inline.observe();
 });
 
-mixpanel_track('Activate extension')
+mixpanel.track('Activate extension')
