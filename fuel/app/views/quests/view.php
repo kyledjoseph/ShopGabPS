@@ -129,7 +129,7 @@
 						</div>
 					<?php endforeach; ?>
 
-					<?= Form::open(array('action' => $quest_product->comment_url(), 'class' => 'comment',)) ?>
+					<?= Form::open(array('action' => $quest_product->comment_url(), 'class' => 'comment mx-comment-form',)) ?>
 					<div class="input-group">
 						<input name="comment" type="text" class="form-control" placeholder="What do you think?">
 						<span class="input-group-btn">
@@ -208,7 +208,7 @@
 
 <div class="row">
 	<div class="col-12">
-		<?= Form::open(array('action' => $quest->url('message'))) ?>
+		<?= Form::open(array('action' => $quest->url('message'), 'class' => 'mx-chat-form')) ?>
 		<div class="input-group">
 			<input name="message" type="text" class="form-control">
 			<span class="input-group-btn">

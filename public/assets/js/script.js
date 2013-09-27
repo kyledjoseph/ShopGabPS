@@ -41,7 +41,7 @@ $("#fb_share").click(function() {
     mixpanel.track("Facebook post");
 });
 
-$("#fb_share").click(function() {
+$("#fb_invite").click(function() {
     mixpanel.track("Facebook message");
 });
 
@@ -49,16 +49,18 @@ $(".mx-install-extension").click(function() {
     mixpanel.track("Install extension");
 });
 
-$(".chat-button").click(function() {
-    mixpanel.track("Chat");
-});
+mixpanel.track_forms(".mx-chat-form", "Chat");
 
-$(".mx-comment-button").click(function() {
-    mixpanel.track("Comment");
-});
+mixpanel.track_forms(".mx-comment-form", "Comment");
+
 
 $(".mx-rate").click(function() {
-    mixpanel.track("Rate");
+    event.preventDefault();
+    newURL = $(this).attr('href');
+    mixpanel.track("Rate", null, function() {
+        console.log(newURL);
+        window.location = newURL;
+    });
 });
 
 
