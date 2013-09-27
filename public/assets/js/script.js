@@ -15,7 +15,7 @@ $(".start-here").click(function() {
 
 // Sign up
 $(".header-sign-up, .landing-sign-up").click(function() {
-    mixpanel.track("Sign up");
+    mixpanel.track("Sign Up");
 });
 
 // Login
@@ -28,6 +28,7 @@ $(".header-log-in, .landing-log-in, .social-login a").click(function(event) {
     });
 });
 
+// New Quest
 $(".tour-quest-btn, .new-quest-dotted").click(function() {
     mixpanel.track("New Quest");
 });
@@ -37,20 +38,29 @@ $(".dash-search-select").click(function() {
 });
 
 $("#fb_share").click(function() {
-    mixpanel.track("Facebook post (Quest)");
+    mixpanel.track("Facebook post");
 });
 
 $("#fb_share").click(function() {
-    mixpanel.track("Facebook invite (Quest)");
+    mixpanel.track("Facebook message");
 });
 
-$(".quest-add-product").click(function() {
-    mixpanel.track("Add product");
+$(".mx-install-extension").click(function() {
+    mixpanel.track("Install extension");
 });
 
 $(".chat-button").click(function() {
-    mixpanel.track("Chat (Quest)");
+    mixpanel.track("Chat");
 });
+
+$(".mx-comment-button").click(function() {
+    mixpanel.track("Comment");
+});
+
+$(".mx-rate").click(function() {
+    mixpanel.track("Rate");
+});
+
 
 // ********************************************
 
