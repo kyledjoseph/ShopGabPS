@@ -174,6 +174,11 @@ class Model_User extends \Orm\Model
 		return isset($this->admin->id);
 	}
 
+	public function admin_url($action = 'view')
+	{
+		return "admin/accounts/{$action}/{$this->id}";
+	}
+
 	/**
 	 * User's name
 	 */
@@ -361,6 +366,42 @@ class Model_User extends \Orm\Model
 		$notice->user_id = $this->id;
 		$notice->type    = $type;
 		return $notice->save();
+	}
+
+	/**
+	 *
+	 */
+	public function set_notification($type, $send)
+	{
+		if (! $notification = $this->get_notification($type))
+		{
+			$notification = new Model_User_Notification;
+			$notification->user_id = $this->id;
+			$notification->type    = $type;
+		}
+
+		$notification->send = ($send ? '1' : '0');
+		$notification->save();
+
+		return true;
+	}
+
+	/**
+	 *
+	 */
+	public function get_notification($type)
+	{
+		return Model_User_Notification::query()->where('user_id', $this->id)->where('type', $type)->get_one();
+	}
+
+	/**
+	 *
+	 */
+	public function receives_notification($type)
+	{
+		$notification = Model_User_Notification::query()->where('user_id', $this->id)->get_one();
+
+		return (! isset($notification) or $notification->send !== '0');
 	}
 
 	/**
