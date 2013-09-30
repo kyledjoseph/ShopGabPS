@@ -88,8 +88,10 @@ Merge `test` into your issue resolution branch.
 
 ```
 git fetch origin   # fetch new changes
+# WEEKLY ISSUES ONLY
 git checkout 12345 # checkout issue branch
 git merge test     # make sure your branch is up to date
+# /WEEKLY ISSUES ONLY
 git checkout test  # checkout test branch
 git merge 12345    # merge changes
 ```
