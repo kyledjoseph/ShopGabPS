@@ -32,6 +32,11 @@ class Model_Analytics extends \Model
 		return Model_User::query()->where('created_at', 'between', array($this->start_timestamp, $this->until_timestamp))->count();
 	}
 
+	public function get_signups()
+	{
+		return Model_User::query()->where('created_at', 'between', array($this->start_timestamp, $this->until_timestamp))->get();
+	}
+
 	public function total_quests_created()
 	{
 		return Model_Quest::query()->where('created_at', 'between', array($this->start_timestamp, $this->until_timestamp))->count();
@@ -94,6 +99,11 @@ class Model_Analytics extends \Model
 	{
 		$d = explode('-', $datestamp);
 		$this->until_timestamp = mktime(23, 59, 59, $d[1], $d[2], $d[0]);
+	}
+
+	public function start_date()
+	{
+		return $this->start_date;
 	}
 
 	public function start_date_formatted($format = "r")
@@ -161,6 +171,73 @@ class Model_Analytics extends \Model
 	{
 		$date = new DateTime();
 		return $date->format("d");
+	}
+
+	public function get_csv($type)
+	{
+		if ($type == 'stats')
+		{
+			$csv = 'date | total_signups | total_quests_created | total_emails_sent | total_product_comments | total_quest_messages | total_comments_added' . "\n";
+			$csv.= $this->start_date . ' | ';
+			$csv.= $this->total_signups() . ' | ';
+			$csv.= $this->total_quests_created() . ' | ';
+			$csv.= $this->total_emails_sent() . ' | ';
+			$csv.= $this->total_product_comments() . ' | ';
+			$csv.= $this->total_quest_messages() . ' | ';
+			$csv.= $this->total_comments_added();
+			$csv.= "\n";
+			return $csv;
+		}
+		
+		if ($type == 'users')
+		{
+			$csv = 'name | email | signup_date' . "\n";
+			foreach ($this->get_signups() as $user)
+			{
+				$csv.= "{$user->display_name()} | {$user->email} | {$user->member_since("Y-m-d")}";
+			}
+			return $csv;
+		}
+
+		if ($type == 'quests')
+		{
+			$csv = '' . "\n";
+			foreach ($this->get_quests() as $quest)
+			{
+				$csv.= "";
+			}
+			return $csv;
+		}
+
+		if ($type == 'products')
+		{
+			$csv = '' . "\n";
+			foreach ($this->get_products() as $product)
+			{
+				$csv.= "";
+			}
+			return $csv;
+		}
+	
+		if ($type == 'comments')
+		{
+			$csv = '' . "\n";
+			foreach ($this->get_comments() as $comment)
+			{
+				$csv.= "";
+			}
+			return $csv;
+		}
+
+		if ($type == 'messages')
+		{
+			$csv = '' . "\n";
+			foreach ($this->get_messages() as $message)
+			{
+				$csv.= "";
+			}
+			return $csv;
+		}
 	}
 
 }
