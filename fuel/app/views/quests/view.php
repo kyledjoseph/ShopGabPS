@@ -34,20 +34,20 @@
 		<?php if (isset($user) and $quest->belongs_to_user($user->id)): ?>
 		<div class="pushups">
 			
-		<div class="btn-group marg-bottom full-width" data-toggle="buttons">
+		<div class="btn-group marg-bottom full-width public-private-radios" data-toggle="buttons">
 			<?php if ($quest->is_public): ?>
 				<label class="btn btn-primary active" style="width:50%">
-					<input type="radio" id="private-public" class="" href="<?= Uri::create($quest->url("access/private")) ?>"><i class="icon-unlock icon-large"></i>&nbsp;&nbsp;&nbsp;Public</input>
+					<input type="radio" id="private-public" class="" href="<?= Uri::create($quest->url("access/public")) ?>"><i class="icon-unlock icon-large"></i>&nbsp;&nbsp;&nbsp;Public</input>
 				</label>
 				<label class="btn btn-primary" style="width:50%">
-					<input type="radio" id="private-public" class="" href="<?= Uri::create($quest->url("access/public")) ?>"><i class="icon-lock icon-large"></i>&nbsp;&nbsp;&nbsp;Private</input>
+					<input type="radio" id="private-public" class="" href="<?= Uri::create($quest->url("access/private")) ?>"><i class="icon-lock icon-large"></i>&nbsp;&nbsp;&nbsp;Private</input>
 				</label>
 			<?php else: ?>
 				<label class="btn btn-primary" style="width:50%">
-					<input type="radio" id="private-public" class="" href="<?= Uri::create($quest->url("access/private")) ?>"><i class="icon-unlock icon-large"></i>&nbsp;&nbsp;&nbsp;Public</input>
+					<input type="radio" id="private-public" class="" href="<?= Uri::create($quest->url("access/public")) ?>"><i class="icon-unlock icon-large"></i>&nbsp;&nbsp;&nbsp;Public</input>
 				</label>
 				<label class="btn btn-primary active" style="width:50%">
-					<input type="radio" id="private-public" class="" href="<?= Uri::create($quest->url("access/public")) ?>"><i class="icon-lock icon-large"></i>&nbsp;&nbsp;&nbsp;Private</input>
+					<input type="radio" id="private-public" class="" href="<?= Uri::create($quest->url("access/private")) ?>"><i class="icon-lock icon-large"></i>&nbsp;&nbsp;&nbsp;Private</input>
 				</label>
 			<?php endif; ?>
 		</div>
