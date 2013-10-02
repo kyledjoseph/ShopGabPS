@@ -84,7 +84,13 @@
 			<?php endif; ?>
 			<div class="row product-info">
 				<div class="pull-left fix-pull-left">
-					<a class="no-dec" href="#commentsFor<?= $product_i ?>" data-toggle="modal"><span class="badge"><?= $quest_product->total_comments() ?></span> <i class="icon-comments-alt faded icon-large"></i><a>
+					<?php if (isset($user)): ?>
+						<a class="no-dec" href="#commentsFor<?= $product_i ?>" data-toggle="modal"><span class="badge"><?= $quest_product->total_comments() ?></span> <i class="icon-comments-alt faded icon-large"></i><a>
+					<?php else: ?>
+						<a class="no-dec" href="#registerModal" data-toggle="modal"><span class="badge"><?= $quest_product->total_comments() ?></span> <i class="icon-comments-alt faded icon-large"></i><a>
+					<?php endif; ?>
+
+					
 					</div>
 					<div class="pull-right fix-pull-right">
 						<?php if (isset($user)): ?>
@@ -160,7 +166,7 @@
 		<?php if (isset($user)): ?>
 			<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#addProductModal" class="quest-product-image-div" data-toggle="modal">
 		<?php else: ?>
-			<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#registerModal" class="quest-product-image-div" data-toggle="modal">	<?php endif; ?>
+			<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#registerModal" class="quest-product-image-div" data-toggle="modal">
 		<?php endif; ?>
 		</a>
 	</div>
