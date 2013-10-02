@@ -54,8 +54,11 @@
 			<?= Form::select('order', $quest->active_sort(), $quest->sort_options(), array('class' => 'form-control')) ?>
 			<?= Form::close() ?>
 		<?php endif; ?>
-		<button style="position: relative; top: -58px;" href="#addProductModal" data-toggle="modal" class="btn btn-primary pull-right">Add Product</button>
-
+		<?php if (isset($user)): ?>
+			<button style="position: relative; top: -58px;" href="#addProductModal" data-toggle="modal" class="btn btn-primary pull-right">Add Product</button>
+		<?php else: ?>
+			<button style="position: relative; top: -58px;" href="#registerModal" data-toggle="modal" class="btn btn-primary pull-right">Add Product</button>
+		<?php endif; ?>
 		<div class="clear pad-bottom"></div>
 		<div class="row product-rows">
 			<?php $product_i = 1; foreach ($quest_products as $quest_product): ?>
@@ -153,7 +156,12 @@
 		<div class="added-by">
 			&nbsp;
 		</div>
-		<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#addProductModal" class="quest-product-image-div" data-toggle="modal">
+
+		<?php if (isset($user)): ?>
+			<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#addProductModal" class="quest-product-image-div" data-toggle="modal">
+		<?php else: ?>
+			<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#registerModal" class="quest-product-image-div" data-toggle="modal">	<?php endif; ?>
+		<?php endif; ?>
 		</a>
 	</div>
 </div>
