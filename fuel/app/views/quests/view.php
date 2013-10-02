@@ -34,11 +34,23 @@
 		<?php if (isset($user) and $quest->belongs_to_user($user->id)): ?>
 		<div class="pushups">
 			
+		<div class="btn-group marg-bottom full-width" data-toggle="buttons">
 			<?php if ($quest->is_public): ?>
-				<a id="private-public" class="btn btn-primary btn-block marg-bottom quest-private" href="<?= Uri::create($quest->url("access/private")) ?>"><i class="icon-lock icon-large"></i>&nbsp;&nbsp;&nbsp;Public</a>
+				<label class="btn btn-primary active" style="width:50%">
+					<input type="radio" id="private-public" class="" href="<?= Uri::create($quest->url("access/private")) ?>"><i class="icon-unlock icon-large"></i>&nbsp;&nbsp;&nbsp;Public</input>
+				</label>
+				<label class="btn btn-primary" style="width:50%">
+					<input type="radio" id="private-public" class="" href="<?= Uri::create($quest->url("access/public")) ?>"><i class="icon-lock icon-large"></i>&nbsp;&nbsp;&nbsp;Private</input>
+				</label>
 			<?php else: ?>
-				<a id="private-public" class="btn btn-primary btn-block marg-bottom quest-private" href="<?= Uri::create($quest->url("access/public")) ?>"><i class="icon-lock icon-large"></i>&nbsp;&nbsp;&nbsp;Private</a>
+				<label class="btn btn-primary" style="width:50%">
+					<input type="radio" id="private-public" class="" href="<?= Uri::create($quest->url("access/private")) ?>"><i class="icon-unlock icon-large"></i>&nbsp;&nbsp;&nbsp;Public</input>
+				</label>
+				<label class="btn btn-primary active" style="width:50%">
+					<input type="radio" id="private-public" class="" href="<?= Uri::create($quest->url("access/public")) ?>"><i class="icon-lock icon-large"></i>&nbsp;&nbsp;&nbsp;Private</input>
+				</label>
 			<?php endif; ?>
+		</div>
 
 			<button id="fb_share" class="marg-bottom push-center btn btn-fb btn-block push-center quest-invite"
 			data-picture="<?= $quest->default_thumb_url() ?>"
