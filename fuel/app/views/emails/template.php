@@ -11,7 +11,11 @@
 	</div>
 	<div style="width: 50%;">
 		Contact us with
-		<a href="#"><img src="social.png"></a>
+		<a href="http://facebook.com/shopgab"><img src="http://shopgab.com/email/facebook.png"></a>
+		<a href="http://twitter.com/weshopgab"><img src="http://shopgab.com/email/twitter.png"></a>
+		<a href="http://pinterest.com/WeShopGab/boards/"><img src="http://shopgab.com/email/pinterest.png"></a>
+		<a href="https://plus.google.com/u/0/113964272651935695754/posts"><img src="http://shopgab.com/email/gplus.png"></a>
+		<a href="https://shopgab.wordpress.com/"><img src="http://shopgab.com/email/wordpress.png"></a>
 		<a href="#"><img src="social.png"></a>
 		<a href="#"><img src="social.png"></a>
 		<a href="#"><img src="social.png"></a>
