@@ -1,0 +1,32 @@
+#!/bin/bash
+set -e
+branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
+branch_name="(unnamed branch)"     # detached HEAD
+branch_name=${branch_name##refs/heads/}
+
+if [ "$1" == "start" ]; then
+	git checkout master
+	git pull origin master
+	git checkout -b $2
+	git push -u origin $2
+elif [ "$1" == "test" ]; then
+	git push origin $branch_name
+	git checkout test
+	git merge $branch_name
+	git push origin test
+	git push test test
+	git checkout $branch_name
+elif [ "$1" == "update" ]; then
+	git checkout master
+	git pull origin master
+	git checkout $branch_name
+	git pull origin $branch_name
+	git merge master
+	git push origin $branch_name
+elif [ "$1" == "pull-request" ]; then
+	hub pull-request -i $branch_name -b kyledjoseph:master -h kyledjoseph:$branch_name
+elif [ "$1" == "deploy" ]; then
+	git checkout master
+	git pull origin master
+	git push deploy master
+fi
