@@ -29,6 +29,11 @@ elif [ "$1" == "deploy" ]; then
 	git checkout master
 	git pull origin master
 	git push deploy master
+	git checkout test
+	git pull origin master
+	git merge master
+	git push origin test
+	git push test test
 else
 	echo "Available commands"
 	echo "------------------"
