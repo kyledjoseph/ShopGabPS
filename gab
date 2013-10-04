@@ -5,15 +5,19 @@ branch_name="(unnamed branch)"     # detached HEAD
 branch_name=${branch_name##refs/heads/}
 
 if [ "$1" == "branch" ]; then
-	branch_exists=$(git show-ref --verify --quiet refs/heads/$2; echo $?)
+	exists_locally=$(git show-ref --verify --quiet refs/heads/$2; echo $?)
+	exists_remotely=$(git ls-remote --quiet origin $2; echo $?)
 	git checkout master
 	git pull origin master
-	if [ "$branch_exists" == "0" ]; then
+	if [ "$exists_locally" == "0" ]; then
 		git checkout -b $2
-		git push -u origin $2
 	else
 		git checkout $2
+	fi
+	if [ "$exists_remotely" == "0" ]; then
 		git pull origin $2
+	else
+		git push -u origin $2
 	fi
 elif [ "$1" == "test" ]; then
 	git push origin $branch_name
