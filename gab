@@ -4,7 +4,7 @@ branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
 branch_name="(unnamed branch)"     # detached HEAD
 branch_name=${branch_name##refs/heads/}
 
-if [ "$1" == "branch" ]; then
+if [ "$@1" == "branch" ]; then
 	exists_locally=$(git show-ref --verify --quiet refs/heads/$2; echo $?)
 	exists_remotely=$(git ls-remote --quiet origin $2; echo $?)
 	git checkout master
@@ -46,9 +46,9 @@ elif [ "$1" == "deploy" ]; then
 	git push test test
 elif [ "$1" == "commit" ]; then
 	git add -A
-	git commit -m "Add commit command"
-	git pull origin $2
-	git push origin $2
+	git commit
+	git pull origin $branch_name
+	git push origin $branch_name
 else
 	echo "Available commands"
 	echo "------------------"
