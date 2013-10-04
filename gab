@@ -27,7 +27,7 @@ elif [ "$1" == "test" ]; then
 	git push origin test
 	git push test test
 	git checkout $branch_name
-	echo "Deploy to test"
+	echo "Deployed to test server"
 elif [ "$1" == "update" ]; then
 	git checkout master
 	git pull origin master
@@ -48,14 +48,14 @@ elif [ "$1" == "deploy" ]; then
 	git merge master
 	git push origin test
 	git push test test
-	echo "Deployed to test and live!"
+	echo "Deployed to test and live servers"
 elif [ "$1" == "commit" ]; then
 	git add -A
 	git commit -q
 	git pull origin $branch_name
 	git push origin $branch_name
 	git checkout $branch_name
-	echo "Added changes, committed, and pushed!"
+	echo "Added changes, committed, and pushed"
 else
 	echo "Available commands"
 	echo "------------------"
