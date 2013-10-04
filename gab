@@ -44,12 +44,17 @@ elif [ "$1" == "deploy" ]; then
 	git merge master
 	git push origin test
 	git push test test
+elif [ "$1" == "commit" ]; then
+	git add -A
+	git commit -m "Add commit command"
+	git pull origin $2
+	git push origin $2
 else
 	echo "Available commands"
 	echo "------------------"
-	echo "gab start 12345  # start a new branch"
-	echo "gab test         # merge into test"
-	echo "gab pull-request # pull request into master"
-	echo "gab update       # merge master into branch"
-	echo "gab deploy       # deploy master"
+	echo "gab branch 12345"
+	echo "gab test"
+	echo "gab commit \"Delete everything\""
+	echo "gab update"
+	echo "gab deploy"
 fi

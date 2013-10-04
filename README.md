@@ -77,9 +77,7 @@ Always have an issue for what you're working on. Issue titles should be actionab
 Always have an branch for the issue you're working on. For example, to work on issue #12345 you'd use the following:
 
 ```
-git checkout master
-git checkout -b 12345
-git push -u origin 12345
+./gab branch 12345
 ```
 
 #### 4. Commit
@@ -96,10 +94,7 @@ git push
 When you're ready to test your code, merge your branch into `test` and push.
 
 ```
-git checkout test
-git merge 12345
-git push
-git push test test
+./gab branch test
 ```
 
 #### 6. Pull request
@@ -107,7 +102,7 @@ git push test test
 Create a pull request from your branch into `master`.
 
 ```
-hub pull-request -i 12345 -b kyledjoseph:master -h kyledjoseph:12345
+./gab pull-request 12345
 ```
 
 If your pull request can't be merged automatically, update you branch with changes from `master`.
