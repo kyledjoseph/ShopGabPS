@@ -4,52 +4,63 @@ branch_name="$(git symbolic-ref HEAD 2>/dev/null)" ||
 branch_name="(unnamed branch)"     # detached HEAD
 branch_name=${branch_name##refs/heads/}
 
-if [ "$1" == "branch" ]; then
+if [ "$@1" == "branch" ]; then
 	exists_locally=$(git show-ref --verify --quiet refs/heads/$2; echo $?)
 	exists_remotely=$(git ls-remote --quiet origin $2; echo $?)
-	git checkout master
-	git pull origin master
+	git checkout --quiet master
+	git pull --quiet origin master
 	if [ "$exists_locally" == "0" ]; then
-		git checkout -b $2
+		git checkout --quiet -b $2
 	else
-		git checkout $2
+		git checkout --quiet $2
 	fi
 	if [ "$exists_remotely" == "0" ]; then
-		git pull origin $2
+		git pull --quiet origin $2
 	else
-		git push -u origin $2
+		git push --quiet -u origin $2
 	fi
+	echo "Checkout "$2
 elif [ "$1" == "test" ]; then
-	git push origin $branch_name
-	git checkout test
-	git merge $branch_name
-	git push origin test
-	git push test test
-	git checkout $branch_name
+	git push --quiet origin $branch_name
+	git checkout --quiet test
+	git merge --quiet $branch_name
+	git push --quiet origin test
+	git push --quiet test test
+	git checkout --quiet $branch_name
+	echo "Deploy to test"
 elif [ "$1" == "update" ]; then
-	git checkout master
-	git pull origin master
-	git checkout $branch_name
-	git pull origin $branch_name
-	git merge master
-	git push origin $branch_name
+	git checkout --quiet master
+	git pull --quiet origin master
+	git checkout --quiet $branch_name
+	git pull --quiet origin $branch_name
+	git merge --quiet master
+	git push --quiet origin $branch_name
+	echo "Updated "$branch_name
 elif [ "$1" == "pull-request" ]; then
-	hub pull-request -i $branch_name -b kyledjoseph:master -h kyledjoseph:$branch_name
+	hub pull-request --quiet -i $branch_name -b kyledjoseph:master -h kyledjoseph:$branch_name
+	echo "Created pull-request at https://github.com/kyledjoseph/shopgab/pull/"$branch_name
 elif [ "$1" == "deploy" ]; then
-	git checkout master
-	git pull origin master
-	git push deploy master
-	git checkout test
-	git pull origin master
-	git merge master
-	git push origin test
-	git push test test
+	git checkout --quiet master
+	git pull --quiet origin master
+	git push --quiet deploy master
+	git checkout --quiet test
+	git pull --quiet origin master
+	git merge --quiet master
+	git push --quiet origin test
+	git push --quiet test test
+	echo "Deployed to test and live!"
+elif [ "$1" == "commit" ]; then
+	git add -A
+	git commit -q
+	git pull --quiet origin $branch_name
+	git push --quiet origin $branch_name
+	echo "Added changes, committed, and pushed!"
 else
 	echo "Available commands"
 	echo "------------------"
-	echo "gab start 12345  # start a new branch"
-	echo "gab test         # merge into test"
-	echo "gab pull-request # pull request into master"
-	echo "gab update       # merge master into branch"
-	echo "gab deploy       # deploy master"
+	echo "gab branch 12345"
+	echo "gab commit \"Delete everything\""
+	echo "gab test"
+	echo "gab pull-request"
+	echo "gab update"
 fi
