@@ -54,6 +54,7 @@ elif [ "$1" == "commit" ]; then
 	git commit -q
 	git pull origin $branch_name
 	git push origin $branch_name
+	git checkout $branch_name
 	echo "Added changes, committed, and pushed!"
 else
 	echo "Available commands"
