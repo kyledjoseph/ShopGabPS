@@ -19,9 +19,15 @@ class Deployment_Payload extends \Orm\Model
 
 
 
-	public static function valid_github_ip($ip)
+	public function request_ip()
 	{
+		return Input::ip();
+	}
+
+	public function valid_github_ip($ip)
+	{
+		// https://help.github.com/articles/what-ip-addresses-does-github-use-that-i-should-whitelist
 		$valid_github_ips = array('204.232.175.64', '204.232.175.27', '192.30.252.0', '192.30.252.22');
-		return in_array($ip, $valid_github_ips);
+		return in_array($this->request_ip(), $valid_github_ips);
 	}
 }
