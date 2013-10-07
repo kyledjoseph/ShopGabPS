@@ -6,6 +6,7 @@ class Deployment_Payload extends \Orm\Model
 	protected static $_properties = array(
 		'id',
 		'data',
+		'ip',
 		'created_at',
 	);
 
