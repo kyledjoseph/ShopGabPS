@@ -96,6 +96,13 @@ class Model_User extends \Orm\Model
 			'cascade_save' => true,
 			'cascade_delete' => true,
 		),
+		'notices' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_User_Notice',
+			'key_to' => 'user_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
 	);
 
 	protected static $_observers = array(
@@ -165,6 +172,11 @@ class Model_User extends \Orm\Model
 	public function is_admin()
 	{
 		return isset($this->admin->id);
+	}
+
+	public function admin_url($action = 'view')
+	{
+		return "admin/accounts/{$action}/{$this->id}";
 	}
 
 	/**
@@ -330,6 +342,66 @@ class Model_User extends \Orm\Model
 	public function has_password()
 	{
 		return ! empty($this->password);
+	}
+
+	/**
+	 *
+	 */
+	public function has_seen_notice($type)
+	{
+		return Model_User_Notice::query()->where('user_id', $this->id)->where('type', $type)->count() > 0;
+	}
+
+	/**
+	 *
+	 */
+	public function mark_notice_seen($type)
+	{
+		if ($this->has_seen_notice($type))
+		{
+			return true;
+		}
+
+		$notice = new Model_User_Notice;
+		$notice->user_id = $this->id;
+		$notice->type    = $type;
+		return $notice->save();
+	}
+
+	/**
+	 *
+	 */
+	public function set_notification($type, $send)
+	{
+		if (! $notification = $this->get_notification($type))
+		{
+			$notification = new Model_User_Notification;
+			$notification->user_id = $this->id;
+			$notification->type    = $type;
+		}
+
+		$notification->send = ($send ? '1' : '0');
+		$notification->save();
+
+		return true;
+	}
+
+	/**
+	 *
+	 */
+	public function get_notification($type)
+	{
+		return Model_User_Notification::query()->where('user_id', $this->id)->where('type', $type)->get_one();
+	}
+
+	/**
+	 *
+	 */
+	public function receives_notification($type)
+	{
+		$notification = Model_User_Notification::query()->where('user_id', $this->id)->get_one();
+
+		return (! isset($notification) or $notification->send !== '0');
 	}
 
 	/**
@@ -654,11 +726,21 @@ class Model_User extends \Orm\Model
 		$result = DB::select()
 			->from(Model_Quest::table())
 			->where('user_id', 'in', $this->get_friend_ids())
-			->where('is_public', '1')
+			//->where('is_public', '1')
 			->as_object('Model_Quest')
 			->execute();
 
-		return $result->as_array();
+		$friends_quests = array();
+
+		foreach ($result->as_array() as $quest)
+		{
+			if ($quest->is_public() or $quest->is_participant($this->id))
+			{
+				array_push($friends_quests, $quest);
+			}
+		}
+
+		return $friends_quests;
 	}
 
 	public function get_friends_upcoming_quests()
