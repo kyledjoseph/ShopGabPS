@@ -28,7 +28,8 @@ class Deployment_Payload extends \Orm\Model
 
 	public function branch()
 	{
-		return $this->ref_segment(3);
+		return $this->_data->ref;
+		//return $this->ref_segment(3);
 	}
 
 	public function ref_segment($number)
