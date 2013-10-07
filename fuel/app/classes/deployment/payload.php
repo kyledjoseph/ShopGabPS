@@ -18,23 +18,23 @@ class Deployment_Payload extends \Orm\Model
 	);
 
 
-	protected $_data = null;
+	protected $_response = null;
 
 	public function set_data($data)
 	{
-		$this->_data = json_decode($data);
-		$this->data  = $data;
+		$this->_response = json_decode($data);
+		$this->data = $data;
 	}
 
 	public function branch()
 	{
-		return $this->_data->ref;
-		//return $this->ref_segment(3);
+		//return $this->_response->ref;
+		return $this->ref_segment(3);
 	}
 
 	public function ref_segment($number)
 	{
-		return explode('/', $this->_data->ref)[$number - 1];
+		return explode('/', $this->_response->ref)[$number - 1];
 		//$parts = explode('/', $this->_data->ref);
 		//return isset($parts[$number]) ? $parts[$number] : false;
 	}
