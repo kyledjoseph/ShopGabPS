@@ -9,7 +9,9 @@
         "illuminate/database": "4.0.*",
         "ircmaxell/password-compat": "1.0.*",
         "mandrill/mandrill": "1.0.37",
-        "omissis/php-cloudfiles": "v1.7.13"
+        "omissis/php-cloudfiles": "v1.7.13",
+        "hipchat/hipchat-php": "v1.2",
+        "sebastian/git": "1.2.0"
     },
     "minimum-stability": "dev"
 }
