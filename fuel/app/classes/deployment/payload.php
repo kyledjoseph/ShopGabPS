@@ -26,6 +26,15 @@ class Deployment_Payload extends \Orm\Model
 		$this->data = $data;
 	}
 
+	public function log($type, $text)
+	{
+		$notice = new Deployment_Payload_Log;
+		$notice->deployment_payload_id = $this->id;
+		$notice->type = $type;
+		$notice->text = $text;
+		return $notice->save() ? $notice : false;
+	}
+
 	public function branch()
 	{
 		return $this->ref_segment(3);
