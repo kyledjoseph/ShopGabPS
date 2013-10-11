@@ -17,3 +17,4 @@ class Deployment_Payload_Log extends \Orm\Model
 			'mysql_timestamp' => false,
 		),
 	);
+}
