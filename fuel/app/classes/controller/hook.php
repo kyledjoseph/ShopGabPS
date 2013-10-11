@@ -19,7 +19,7 @@ class Controller_Hook extends Controller_App
 			{
 				$payload->log('notice', 'Deploying to branch test.');
 
-				$repo = new PHPGit_Repository('/var/www/shopgab');
+				$repo = new PHPGit_Repository('/var/www/test');
 
 				if (! $repo->hasBranch('test'))
 				{
