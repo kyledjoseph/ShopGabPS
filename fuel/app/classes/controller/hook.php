@@ -15,6 +15,10 @@ class Controller_Hook extends Controller_App
 
 		try
 		{
+			// 
+			$user = shell_exec('whoami');
+			$payload->log('notice', "Running as user '$user'");
+
 			if ($payload->branch() == 'test')
 			{
 				$payload->log('notice', 'Deploying to branch test.');
