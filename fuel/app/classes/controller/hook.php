@@ -15,30 +15,16 @@ class Controller_Hook extends Controller_App
 
 		try
 		{
-			// 
-			$user = shell_exec('whoami');
-			$payload->log('notice', "Running as user '$user'");
-
 			if ($payload->branch() == 'test')
 			{
-				$payload->log('notice', 'Deploying to branch test.');
-
-				$repo = new PHPGit_Repository('/var/www/test');
-
-				if (! $repo->hasBranch('test'))
-				{
-					throw new Deployment_Exception("Branch 'test' does not exist on repository ");
-				}
-
-				$payload->log('input', 'pull origin test');
-				$output = $repo->git('pull origin test');
-				$payload->log('output', $output);
+				$this->deploy_to_test();
 			}
 
 			if ($payload->branch() == 'master')
 			{
 				$payload->log('notice', 'Deploying to branch master.');
 			}
+			
 		}
 
 		catch (Exception $e)
@@ -47,9 +33,27 @@ class Controller_Hook extends Controller_App
 			throw $e;
 		}
 
-		
-			
-
 		return true;
+	}
+
+
+	protected function deploy_to_test()
+	{
+		$repo = new PHPGit_Repository('/var/www/test');
+
+		$payload->log('notice', 'Deploying to branch test.');
+
+		if (! $repo->hasBranch('test'))
+		{
+			throw new Deployment_Exception("Branch 'test' does not exist on repository ");
+		}
+
+		// reset head
+		$payload->log('input', '/var/www/test > git reset --hard');
+		$payload->log('output', $repo->git('pull reset --hard'));
+
+		// git pull
+		$payload->log('input', '/var/www/test > git pull origin test');
+		$payload->log('output', $repo->git('pull origin test'));
 	}
 }
