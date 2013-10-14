@@ -28,7 +28,7 @@ class Controller_Hook extends Controller_App
 
 				// reset head
 				$payload->log('input', '/var/www/test > git reset --hard');
-				$payload->log('output', $repo->git('pull reset --hard 2>&1'));
+				$payload->log('output', $repo->git('reset --hard 2>&1'));
 
 				// git pull
 				$payload->log('input', '/var/www/test > git pull origin test');
