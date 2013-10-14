@@ -5,14 +5,16 @@ class Controller_Debug extends Controller_App
 
 	public function get_git()
 	{
-		$repo = new PHPGit_Repository('/var/www/test');
+		echo shell_exec("cd /var/www/test && git pull origin test 2>&1");
 
-		if (! $repo->hasBranch('test'))
-		{
-			throw new Deployment_Exception("Branch 'test' does not exist on repository ");
-		}
+		// $repo = new PHPGit_Repository('/var/www/test');
 
-		echo $repo->git('pull origin test');
+		// if (! $repo->hasBranch('test'))
+		// {
+		// 	throw new Deployment_Exception("Branch 'test' does not exist on repository ");
+		// }
+
+		// echo $repo->git('pull origin test');
 
 		return true;
 	}
