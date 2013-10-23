@@ -35,6 +35,11 @@ class Controller_App extends Controller_Base
 		}
 	}
 
+	public function is_ajax_request()
+	{
+		return Input::is_ajax();
+	}
+
 	public function add_modal($content)
 	{
 		$this->template->modal.= $content;

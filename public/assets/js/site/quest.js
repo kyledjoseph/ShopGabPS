@@ -1,9 +1,451 @@
+
+	/**
+	 * Shopgab Quest
+	 */
+	shopgab.quest = {
+
+		/**
+		 *
+		 */
+		url: function()
+		{
+			return $("#quest").attr('data-quest-url');
+		},
+
+		/**
+		 *
+		 */
+		_init_interface: function()
+		{
+			shopgab.log('shopgab.quest._init_interface');
+
+			shopgab.quest.purchase_within.init();
+			//shopgab.quest.access.init();
+			shopgab.quest.chat.init();
+
+			
+		},
+
+		/**
+		 *
+		 */
+		init: function()
+		{
+			shopgab.log('shopgab.quest.init');
+
+			this._init_interface();
+			shopgab.quest.facebook.init();
+		}
+
+	};
+
+
+
+	/**
+	 * Quest Facebook Actions
+	 */
+	 shopgab.quest.facebook = {
+
+		init: function()
+		{
+			shopgab.log('shopgab.quest.facebook.init');
+
+			$('#fb_invite').click(function() {
+
+				FB.ui({
+					method: 'send',
+					link: $(this).attr('data-link'),
+					}, function(response) {
+					console.log('invites sent', friends, response);
+				});
+
+				return false;
+			});
+
+
+			$('#fb_share').click(function() {
+				FB.ui({
+					method: 'feed',
+					link: $(this).attr('data-link'),
+					picture: $(this).attr('data-picture'), //'http://fbrell.com/f8.jpg',
+					name: $(this).attr('data-name'),
+					caption: $(this).attr('data-caption'),
+					description: $(this).attr('data-description')
+				}, function(response) {})
+
+				return false;
+			});
+		}
+	};
+
+
+
+	/**
+	 *	
+	 */
+	shopgab.quest.purchase_within = {
+
+		/**
+		 *
+		 */
+		update: function()
+		{
+			shopgab.log('shopgab.quest.purchase_within.update');
+
+			this.disable();
+			this.text('');
+
+			$.ajax({
+				url: shopgab.quest.purchase_within.update_url(),
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					purchase_within: shopgab.quest.purchase_within.value()
+				},
+				success: function(response) {
+					if (response.success)
+					{
+						shopgab.quest.purchase_within.enable();
+						shopgab.quest.purchase_within.text(response.text);
+					}
+				},
+				error: function() {
+					shopgab.log('ajax_error');
+				}
+			});
+		},
+
+		/**
+		 *
+		 */
+		update_url: function()
+		{
+			return shopgab.url('quest/' + shopgab.quest.url() + '/within');
+		},
+
+		/**
+		 *
+		 */
+		text: function(text)
+		{
+			return this.html.text.html(text);
+		},
+
+		/**
+		 *
+		 */
+		value: function()
+		{
+			return this.html.select.val();
+		},
+
+		/**
+		 *
+		 */
+		disable: function()
+		{
+			return this.html.form.prop('disabled', true);
+		},
+
+		/**
+		 *
+		 */
+		enable: function()
+		{
+			return this.html.form.prop('disabled', false);
+		},
+
+		html: {
+			form:   null,
+			select: null,
+			text:   null
+		},
+
+		/**
+		 *
+		 */
+		_init_html: function()
+		{
+			this.html.form   = $("#purchase_within_form");
+			this.html.select = $("#purchase_within_value");
+			this.html.text   = $("#purchase_within_text");
+		},
+
+		/**
+		 *
+		 */
+		_init_events: function()
+		{
+			this.html.form.change(function() {
+				shopgab.quest.purchase_within.update();
+			});
+		},
+
+		/**
+		 *
+		 */
+		init: function()
+		{
+			shopgab.log('shopgab.quest.purchase_within.init');
+
+			this._init_html();
+			this._init_events();
+		}
+
+	};
+
+
+
+
+	/**
+	 *
+	 */
+	shopgab.quest.access = {
+
+		/**
+		 *
+		 */
+		update: function(access_type)
+		{
+			//shopgab.log('shopgab.quest.access.update', this.value());
+
+			// 	this.disable();
+
+			// 	$.ajax({
+			// 		url: shopgab.quest.access.update_url(),
+			// 		type: 'POST',
+			// 		dataType: 'json',
+			// 		success: function(response) {
+			// 			if (response.success)
+			// 			{
+			// 				shopgab.quest.access.enable();
+			// 			}
+			// 		},
+			// 		error: function() {
+			// 			shopgab.log('ajax_error');
+			// 		}
+			// 	});
+		},
+
+		/**
+		 *
+		 */
+		update_url: function()
+		{
+			return shopgab.url('quest/' + shopgab.quest.url() + '/acess/' + this.value());
+		},
+
+		/**
+		 *
+		 */
+		value: function()
+		{
+			return $('input[name=access]:checked').val();
+		},
+
+		/**
+		 *
+		 */
+		disable: function()
+		{
+			//return this.html.form.prop('disabled', true);
+		},
+
+		/**
+		 *
+		 */
+		enable: function()
+		{
+			//return this.html.form.prop('disabled', false);
+		},
+
+		html: {
+			access_public:  null,
+			access_private: null
+		},
+
+		/**
+		 *
+		 */
+		_init_html: function()
+		{
+			this.html.set_access_public  = $("#set_access_public");
+			this.html.set_access_private = $("#set_access_private");
+		},
+
+		/**
+		 *
+		 */
+		_init_events: function()
+		{
+			$("#quest_access").change(function() {
+				return shopgab.quest.access.update() || false;
+			});
+		},
+
+		/**
+		 *
+		 */
+		init: function()
+		{
+			shopgab.log('shopgab.quest.access.init');
+
+			this._init_html();
+			this._init_events();
+		}
+
+	};
+
+
+
+
+
+
+
+	/**
+	 *
+	 */
+	shopgab.quest.chat = {
+
+		/**
+		 *
+		 */
+		update: function()
+		{
+			shopgab.log('shopgab.quest.chat.update');
+			
+			$.ajax({
+				url: shopgab.url('quest/' + shopgab.quest.url() + '/message'),
+				type: 'POST',
+				dataType: 'json',
+				data: {
+					message: shopgab.quest.chat.html.text
+				},
+				success: function(response) {
+					if (response.success)
+					{
+						shopgab.quest.chat.append_message(response.display_name, response.body);
+					}
+				},
+				error: function() {
+					shopgab.log('ajax_error');
+				}
+			});
+		},
+
+		/**
+		 *
+		 */
+		append_message: function(display_name, body)
+		{
+			//
+		},
+
+		/**
+		 *
+		 */
+		update_url: function()
+		{
+			// return shopgab.url('quest/' + shopgab.quest.url() + '/within');
+		},
+
+		/**
+		 *
+		 */
+		disable: function()
+		{
+			// return this.html.form.prop('disabled', true);
+		},
+
+		/**
+		 *
+		 */
+		enable: function()
+		{
+			// return this.html.form.prop('disabled', false);
+		},
+
+		html: {
+			form: null,
+			text: null,
+		},
+
+		/**
+		 *
+		 */
+		_init_html: function()
+		{
+			this.html.form = $("#quest_message_form");
+			this.html.text = $("#quest_message_text");
+		},
+
+		/**
+		 *
+		 */
+		_init_events: function()
+		{
+			this.html.form.submit(function() {
+				return shopgab.quest.chat.update() || false;
+			});
+		},
+
+		/**
+		 *
+		 */
+		init: function()
+		{
+			shopgab.log('shopgab.quest.chat.init');
+
+			this._init_html();
+			this._init_events();
+		}
+
+	};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	$(document).ready(function() {
+
+		shopgab.quest.init();
+
+	});
+
+
+
+
+
 $(function(){
 
 	// change purchase_within time
-	$(".submit-on-change").bind("change", function() {
-		$(this).submit();
-	});
+	// $(".submit-on-change").bind("change", function() {
+	// 	$(this).submit();
+	// });
 
 	// 
 	$('#open_url').click(function(){
@@ -81,51 +523,21 @@ $(function(){
 
 
 
-function selected_friends()
-{
-	friends = [];
+	// function selected_friends()
+	// {
+	// 	friends = [];
 
-	$( ".select_fb_friend:checked" ).each(function(index) {
-		friends.push($(this).val());
-	});
+	// 	$( ".select_fb_friend:checked" ).each(function(index) {
+	// 		friends.push($(this).val());
+	// 	});
 
-	return friends;
-}
-
-
-function quest_id()
-{
-		//return $('#');
-	}
+	// 	return friends;
+	// }
 
 
-	$('#fb_invite').click(function() {
 
-		//facebook.add_callback(function() {
-			FB.ui({
-				method: 'send',
-				link: $(this).attr('data-link'),
-			}, function(response) {
-				console.log('invites sent', friends, response);
-			}
-			);
-		//});
 
-	return false;
-});
-
-	$('#fb_share').click(function() {
-		FB.ui({
-			method: 'feed',
-			link: $(this).attr('data-link'),
-			picture: $(this).attr('data-picture'), //'http://fbrell.com/f8.jpg',
-			name: $(this).attr('data-name'),
-			caption: $(this).attr('data-caption'),
-			description: $(this).attr('data-description')
-		}, function(response) {})
-
-		return false;
-	});
+	
 
 	
 

@@ -5,8 +5,6 @@ class Controller_Quests extends Controller_App
 	public function before()
 	{
 		parent::before();
-
-		//$this->require_auth();
 	}
 
 
@@ -15,9 +13,7 @@ class Controller_Quests extends Controller_App
 	 */
 	private function get_quest_by_url($quest_url)
 	{
-		$quest = Model_Quest::get_by_url($quest_url);
-
-		if (! isset($quest))
+		if (! $quest = Model_Quest::get_by_url($quest_url) and ! $this->is_ajax_request())
 		{
 			$this->redirect('/');
 		}
@@ -43,12 +39,11 @@ class Controller_Quests extends Controller_App
 	public function get_view($quest_url)
 	{
 		$quest = $this->get_quest_by_url($quest_url);
-		$sort  = Input::get('order');
 
 		if ($this->user_logged_in())
 		{
-			// clear notifications
-			if ($this->user->id == $quest->user_id)
+			// clear user quest notifications
+			if ($quest->belongs_to_user($this->user))
 			{
 				$quest->mark_notifications_seen();
 			}
@@ -61,7 +56,7 @@ class Controller_Quests extends Controller_App
 		}
 
 		// quest product sort
-		if (! empty($sort))
+		if ($sort = Input::get('order'))
 		{
 			if (! $quest->is_sort_type($sort))
 			{
@@ -74,26 +69,12 @@ class Controller_Quests extends Controller_App
 		// quest products
 		$quest_products = $quest->get_quest_products_sorted();
 
-		// Casset::js('lib/jquery.expander.min.js');
-		Casset::js('lib/jquery.tipTip.js');
-		Casset::js('site/quest.js');
-		Casset::js('site/quest/tour.js');
-		Casset::js('fb/init.js');
-
-		Casset::css('lib/tipTip.css');
-
-		if ($this->user_logged_in())
-		{
-			$this->add_modal(View::forge('quests/modal/invite', array('quest' => $quest)));
-			$this->add_modal(View::forge('quests/modal/add_product'));
-			$this->add_modal(View::forge('quests/modal/edit_quest', array('quest' => $quest)));
-			$this->add_modal(View::forge('quests/modal/delete_quest', array('quest' => $quest)));
-		}
+		$this->_init_assets();
+		$this->_init_modals($quest);
 
 		$this->template->body = View::forge('quests/view', array(
 			'quest'           => $quest,
 			'quest_products'  => $quest_products,
-			'total_products'  => count($quest_products),
 			'quest_messages'  => $quest->get_messages(),
 		));
 	}
@@ -105,14 +86,105 @@ class Controller_Quests extends Controller_App
 	 */
 	public function post_message($quest_url)
 	{
-		$quest = $this->get_quest_by_url($quest_url);
-		$post  = $this->post_data('message');
+		if (! $quest = $this->get_quest_by_url($quest_url))
+		{
+			return array('success' => false, 'message' => 'invalid_quest');
+		}
 
-		$this->require_auth($quest->url());
+		if (! $this->user_logged_in())
+		{
+			return $this->is_ajax_request()
+				? array('success' => false, 'message' => 'auth')
+				: $this->redirect($quest->url());
+		}
 
-		$quest->new_message($this->user->id, $post->message);
-		$this->redirect($quest->url());
+		$post = $this->post_data('message');
+
+		if (! $message = $quest->new_message($this->user->id, $post->message))
+		{
+			return $this->is_ajax_request()
+				? array('success' => false, 'message' => 'error')
+				: $this->redirect($quest->url());
+		}
+		
+		return $this->is_ajax_request()
+			? array('success' => false, 'message' => 'message_sent', 'view' => View::forge('quests/message', array('message' => $message), false))
+			: $this->redirect($quest->url());
 	}
+
+
+	/**
+	 * Change public/private setting
+	 */
+	public function get_access($quest_url, $type)
+	{
+		if (! $quest = $this->get_quest_by_url($quest_url))
+		{
+			return array('success' => false, 'message' => 'invalid_quest');
+		}
+
+		if (! $this->user_logged_in() or ! $quest->belongs_to_user($this->user))
+		{
+			return $this->is_ajax_request()
+				? array('success' => false, 'message' => 'auth')
+				: $this->redirect($quest->url());
+		}
+
+		if (! $quest->is_valid_access_type($type))
+		{
+			return $this->is_ajax_request()
+				? array('success' => false, 'message' => 'invalid_access_type')
+				: $this->redirect($quest->url());
+		}
+
+		if (! $quest->update_access($type))
+		{
+			return $this->is_ajax_request()
+				? array('success' => false, 'message' => 'error')
+				: $this->redirect($quest->url());
+		}
+
+		return $this->is_ajax_request()
+			? array('success' => false, 'message' => 'access_updated', 'access' => $quest->access_type())
+			: $this->redirect($quest->url());
+	}
+
+
+	/**
+	 * update purhase within time
+	 */
+	public function post_within($quest_url)
+	{
+		$post = $this->post_data('purchase_within');
+		
+		if (! $quest = $this->get_quest_by_url($quest_url))
+		{
+			return array('success' => false, 'message' => 'invalid_quest');
+		}
+
+		if (! $this->user_logged_in() or ! $quest->belongs_to_user($this->user))
+		{
+			return $this->is_ajax_request()
+				? array('success' => false, 'message' => 'auth')
+				: $this->redirect($quest->url());
+		}
+
+		$quest->update_purchase_within($post->purchase_within);
+		
+		return $this->is_ajax_request()
+			? array('success' => true, 'message' => 'purchase_within_updated', 'text' => $quest->purchase_within_text())
+			: $this->redirect($quest->url());
+
+	}
+
+
+
+
+
+
+
+
+
 
 
 	/**
@@ -364,55 +436,6 @@ class Controller_Quests extends Controller_App
 
 
 	/**
-	 * Change public/private setting
-	 */
-	public function get_access($quest_url, $type)
-	{
-		$quest = $this->get_quest_by_url($quest_url);
-
-		$this->require_auth($quest->url());
-
-		if ($quest->user_id !== $this->user->id)
-		{
-			$this->redirect($quest->url());
-		}
-
-		if (! in_array($type, array('public', 'private')))
-		{
-			$this->redirect($quest->url());
-		}
-
-		$quest->is_public = ($type == 'public' ? 1 : 0);
-		$quest->save();
-
-		$this->redirect($quest->url());
-	}
-
-
-	/**
-	 * update purhase within time
-	 */
-	public function post_within($quest_url)
-	{
-		$quest = $this->get_quest_by_url($quest_url);
-
-		$this->require_auth($quest->url());
-
-		if ($quest->user_id !== $this->user->id)
-		{
-			$this->redirect($quest->url());
-		}
-
-		$post = $this->post_data('purchase_within');
-
-		$quest->set_purchase_within($post->purchase_within);
-		$quest->save();
-
-		$this->redirect($quest->url());
-	}
-
-
-	/**
 	 *
 	 */
 	public function get_remove($quest_url, $quest_product_id)
@@ -437,4 +460,27 @@ class Controller_Quests extends Controller_App
 	}
 
 
+
+	protected function _init_assets()
+	{
+		// Casset::js('lib/jquery.expander.min.js');
+		Casset::js('lib/jquery.tipTip.js');
+		Casset::js('site/quest.js');
+		Casset::js('site/quest/tour.js');
+		Casset::js('fb/init.js');
+
+		Casset::css('lib/tipTip.css');
+	}
+
+
+	protected function _init_modals($quest)
+	{
+		if ($this->user_logged_in())
+		{
+			$this->add_modal(View::forge('quests/modal/invite', array('quest' => $quest)));
+			$this->add_modal(View::forge('quests/modal/add_product'));
+			$this->add_modal(View::forge('quests/modal/edit_quest', array('quest' => $quest)));
+			$this->add_modal(View::forge('quests/modal/delete_quest', array('quest' => $quest)));
+		}
+	}
 }

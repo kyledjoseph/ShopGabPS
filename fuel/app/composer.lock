@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/cartalyst/sentry.git",
-                "reference": "a06bc3202d8001636152c9fe006383f53a692a99"
+                "reference": "97729ca6aa8b93ba4fcdfc91d7c4c04d9879e659"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/a06bc3202d8001636152c9fe006383f53a692a99",
-                "reference": "a06bc3202d8001636152c9fe006383f53a692a99",
+                "url": "https://api.github.com/repos/cartalyst/sentry/zipball/97729ca6aa8b93ba4fcdfc91d7c4c04d9879e659",
+                "reference": "97729ca6aa8b93ba4fcdfc91d7c4c04d9879e659",
                 "shasum": ""
             },
             "require": {
@@ -102,7 +102,7 @@
                 "laravel",
                 "security"
             ],
-            "time": "2013-10-09 09:17:12"
+            "time": "2013-10-16 15:42:16"
         },
         {
             "name": "hipchat/hipchat-php",
@@ -248,12 +248,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/illuminate/database.git",
-                "reference": "e1dfe0248b488af58fa2d011d88b8b67a87105bd"
+                "reference": "9fb935eef6f12594d58824fd28558e393aee3837"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/illuminate/database/zipball/e1dfe0248b488af58fa2d011d88b8b67a87105bd",
-                "reference": "e1dfe0248b488af58fa2d011d88b8b67a87105bd",
+                "url": "https://api.github.com/repos/illuminate/database/zipball/9fb935eef6f12594d58824fd28558e393aee3837",
+                "reference": "9fb935eef6f12594d58824fd28558e393aee3837",
                 "shasum": ""
             },
             "require": {
@@ -301,7 +301,7 @@
                 "orm",
                 "sql"
             ],
-            "time": "2013-10-08 02:11:25"
+            "time": "2013-10-14 06:36:05"
         },
         {
             "name": "illuminate/events",
@@ -551,12 +551,12 @@
             "source": {
                 "type": "git",
                 "url": "https://bitbucket.org/mailchimp/mandrill-api-php.git",
-                "reference": "1.0.37"
+                "reference": "2071b69e9e7658e47b5d2186f7fbfb513c204889"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://bitbucket.org/mailchimp/mandrill-api-php/get/1.0.37.zip",
-                "reference": "1.0.37",
+                "url": "https://bitbucket.org/mailchimp/mandrill-api-php/get/2071b69e9e7658e47b5d2186f7fbfb513c204889.zip",
+                "reference": "2071b69e9e7658e47b5d2186f7fbfb513c204889",
                 "shasum": ""
             },
             "require": {
@@ -636,13 +636,13 @@
             "version": "v1.7.13",
             "source": {
                 "type": "git",
-                "url": "https://github.com/omissis/php-cloudfiles",
-                "reference": "v1.7.13"
+                "url": "https://github.com/omissis/php-cloudfiles.git",
+                "reference": "2cda9efe627615ae92c4798a7fdf6c2706011441"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/omissis/php-cloudfiles/zipball/v1.7.13",
-                "reference": "v1.7.13",
+                "url": "https://api.github.com/repos/omissis/php-cloudfiles/zipball/2cda9efe627615ae92c4798a7fdf6c2706011441",
+                "reference": "2cda9efe627615ae92c4798a7fdf6c2706011441",
                 "shasum": ""
             },
             "require": {
@@ -724,13 +724,13 @@
             "version": "v2.0.2",
             "source": {
                 "type": "git",
-                "url": "git://github.com/videlalvaro/php-amqplib.git",
-                "reference": "v2.0.2"
+                "url": "https://github.com/videlalvaro/php-amqplib.git",
+                "reference": "682e3365f51c455f7a0bd32173d79922416fe9f0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/videlalvaro/php-amqplib/zipball/v2.0.2",
-                "reference": "v2.0.2",
+                "url": "https://api.github.com/repos/videlalvaro/php-amqplib/zipball/682e3365f51c455f7a0bd32173d79922416fe9f0",
+                "reference": "682e3365f51c455f7a0bd32173d79922416fe9f0",
                 "shasum": ""
             },
             "require": {
