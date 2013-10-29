@@ -25,11 +25,7 @@
 				<?php endif; ?>
 			</div>
 			<div class="purchase-within">
-				Purchase within:
-				<?= Form::open(array('id' => 'purchase_within_form', 'class' => 'inline-block submit-on-change', 'action' => $quest->url('within'))) ?>
-				<?= Form::select('purchase_within', $quest->purchase_within_option(), Model_Quest::purchase_within_fields(), array('id' => 'purchase_within_value', 'class' => 'form-control')) ?>
-				<?= Form::close() ?>
-				<span id="purchase_within_text" class="faded"><?= $quest->purchase_within !== '0' ? $quest->purchase_within_text() : null ?></span>
+				<?= View::forge('quests/within', array('quest' => $quest)) ?>
 			</div>
 		</div>
 
@@ -37,16 +33,7 @@
 			<?php if (isset($user) and $quest->belongs_to_user($user, false)): ?>
 			<div class="pushups">
 
-				<form action="#" id="quest_access" class="btn-group marg-bottom full-width public-private-radios" data-toggle="buttons">
-				
-					<label id="set_access_public" class="btn btn-primary <?= $quest->is_public() ? 'active' : null ?>" style="width:50%">
-						<input name="access" type="radio" value="public" data-access-type="public" class="" ><i class="icon-unlock icon-large"></i>&nbsp;&nbsp;&nbsp;Public</input>
-					</label>
-					<label id="set_access_private" class="btn btn-primary <?= $quest->is_private() ? 'active' : null ?>" style="width:50%">
-						<input name="access" type="radio" value="private" data-access-type="private" class="" ><i class="icon-lock icon-large"></i>&nbsp;&nbsp;&nbsp;Private</input>
-					</label>
-					
-				</form>
+				<?= View::forge('quests/access', array('quest' => $quest)) ?>
 
 				<button id="fb_share" class="marg-bottom push-center btn btn-fb btn-block push-center quest-invite"
 					data-picture="<?= $quest->default_thumb_url() ?>"
@@ -55,11 +42,7 @@
 					data-caption="ShopGab - Shop Socially!"
 					data-description="<?= $user->display_name() ?> is trying to find a <?= $quest->name ?> through ShopGab and has requested your input! Please click on the link below to see their page and join in the search. Thanks!"><i class="icon-facebook icon-large"></i>&nbsp;&nbsp;&nbsp;Post to timeline</button>
 				
-				<?php if (Fuel::$env == 'production'): ?>
 				<button id="fb_invite" class="btn btn-primary btn-fb btn-block push-center quest-message" href="" data-link="<?= $quest->full_url() ?>"><i class="icon-facebook icon-large"></i>&nbsp;&nbsp;&nbsp;Message friends</button>
-				<?php else: ?>
-				<button id="fb_invite" class="btn btn-primary btn-fb btn-block push-center quest-message" href="" data-link="http://test.shopgab.com/<?= Uri::string(); ?>"><i class="icon-facebook icon-large"></i>&nbsp;&nbsp;&nbsp;Message friends</button>
-				<?php endif; ?>
 			</div>
 			<?php endif; ?>
 		</div>

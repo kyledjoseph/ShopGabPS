@@ -14,9 +14,11 @@
 		
 				<div class="clear pad-bottom"></div>
 				<div class="row product-rows">
+					
 					<?php $product_i = 1; foreach ($quest_products as $quest_product): ?>
 					<?php $product = $quest_product->product ?>
-					<div class="col-12 col-sm-4 col-lg-3 quest-product-square no<?= ! $quest_product->was_added_by_owner() ? 'from-tab' : null ?>" data-product="<?= $product_i ?>">
+					
+					<div class="col-12 col-sm-4 col-lg-3 quest-product-square no<?= ! $quest_product->was_added_by_owner() ? 'from-tab' : null ?>" data-product="<?= $product_i ?>" data-product-id="<?= $quest_product->id ?>">
 						<div class="quest-border">
 							<div class="added-by<?php if (! $quest_product->was_added_by_owner()): ?> dark-grey<?php endif; ?>">
 								<?php if (! $quest_product->was_added_by_owner()): ?>
@@ -52,33 +54,8 @@
 									<?php endif; ?>
 								</div>
 								
-								<div class="pull-right fix-pull-right">
-									<?php if (isset($user)): ?>
-									<span class="badge">
-										<?= $quest_product->total_likes() ?>
-									</span>
-									<?= Html::anchor($quest_product->like_url(), '<i class="icon-thumbs-up-alt faded no-dec icon-large mx-rate"></i>', array('title' => $quest_product->list_user_likes(), 'class' => 'user_product_vote')) ?> &nbsp;
-									<span class="badge">
-										<?= $quest_product->total_dislikes() ?>
-									</span>
-									<?= Html::anchor($quest_product->dislike_url(), '<i class="icon-thumbs-down-alt faded no-dec icon-large mx-rate"></i>', array('title' => $quest_product->list_user_dislikes(), 'class' => 'user_product_vote')) ?>
-									
-									<?php else: ?>
-									<span class="badge">
-										<?= $quest_product->total_likes() ?>
-									</span>
-									
-									<a href="#registerModal" data-toggle="modal">
-										<i class="icon-thumbs-up-alt faded no-dec icon-large mx-rate"></i>
-									</a> &nbsp;
-									
-									<span class="badge">
-										<?= $quest_product->total_dislikes() ?>
-									</span>
-									<a href="#registerModal" data-toggle="modal">
-										<i class="icon-thumbs-down-alt faded no-dec icon-large mx-rate"></i>
-									</a>
-									<?php endif; ?>
+								<div class="quest-product-votes pull-right fix-pull-right">
+									<?= View::forge('quests/votes', array('quest_product' => $quest_product)) ?>
 								</div>
 							</div>
 						</div>
@@ -104,21 +81,17 @@
 										</div>
 
 										<div class="col-12 col-sm-6">
-											<?php foreach ($quest_product->get_comments() as $comment): ?>
-											<div class="comment text">
-												<div class="name"><?= $comment->user->display_name() ?></div>
-												<div class="content">
-													<div class="message"><?= $comment->comment ?></div>
-													<div class="time"><?= $comment->time_ago() ?></div>
-												</div>
+											<div class="product-comments">
+												<?php foreach ($quest_product->get_comments() as $comment): ?>
+												<?= View::forge('quests/comment', array('comment' => $comment)) ?>
+												<?php endforeach; ?>
 											</div>
-											<?php endforeach; ?>
 
-											<?= Form::open(array('action' => $quest_product->comment_url(), 'class' => 'comment mx-comment-form',)) ?>
+											<?= Form::open(array('action' => $quest_product->comment_url(), 'class' => 'comment', 'data-product-id' => $quest_product->id)) ?>
 												<div class="input-group">
 													<input name="comment" type="text" class="form-control" placeholder="What do you think?">
 													<span class="input-group-btn">
-														<button class="mx-comment-button btn btn-default" type="submit">Comment</button>
+														<button class="btn btn-default" type="submit">Comment</button>
 													</span>
 												</div>
 											<?= Form::close() ?>

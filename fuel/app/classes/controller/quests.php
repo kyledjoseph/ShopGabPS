@@ -108,7 +108,7 @@ class Controller_Quests extends Controller_App
 		}
 		
 		return $this->is_ajax_request()
-			? array('success' => false, 'message' => 'message_sent', 'view' => View::forge('quests/message', array('message' => $message), false))
+			? array('success' => true, 'message' => 'message_sent', 'view' => View::forge('quests/message', array('message' => $message), false)->render())
 			: $this->redirect($quest->url());
 	}
 
@@ -192,21 +192,32 @@ class Controller_Quests extends Controller_App
 	 */
 	public function post_comment($quest_url, $quest_product_id)
 	{
-		$quest = $this->get_quest_by_url($quest_url);
-		$post  = $this->post_data('comment');
-
-		$this->require_auth($quest->url());
-
-		$quest_product = $quest->get_quest_product($quest_product_id);
-
-		if (! isset($quest_product))
+		if (! $quest = $this->get_quest_by_url($quest_url))
 		{
-			$this->redirect($quest->url());
+			return array('success' => false, 'message' => 'invalid_quest');
 		}
 
-		$quest_product->add_comment($quest_product->id, $this->user->id, $post->comment);
+		if (! $this->user_logged_in())
+		{
+			return $this->is_ajax_request()
+				? array('success' => false, 'message' => 'auth')
+				: $this->redirect($quest->url());
+		}
 
-		$this->redirect($quest->url());
+		if (! $quest_product = $quest->get_quest_product($quest_product_id))
+		{
+			return $this->is_ajax_request()
+				? array('success' => false, 'message' => 'invalid_quest_product')
+				: $this->redirect($quest->url(), 'info', 'Invalid product');
+		}
+
+
+		$post    = $this->post_data('comment');
+		$comment = $quest_product->add_comment($this->user->id, $post->comment);
+
+		return $this->is_ajax_request()
+			? array('success' => true, 'message' => 'quest_product_commented', 'view' => View::forge('quests/comment', array('comment' => $comment))->render())
+			: $this->redirect($quest->url());
 	}
 
 
@@ -215,30 +226,42 @@ class Controller_Quests extends Controller_App
 	 */
 	public function get_like($quest_url, $quest_product_id)
 	{
-		$quest = $this->get_quest_by_url($quest_url);
+		if (! $quest = $this->get_quest_by_url($quest_url))
+		{
+			return array('success' => false, 'message' => 'invalid_quest');
+		}
 
-		$this->require_auth($quest->url());
+		if (! $this->user_logged_in())
+		{
+			return $this->is_ajax_request()
+				? array('success' => false, 'message' => 'auth')
+				: $this->redirect($quest->url());
+		}
 
-		$quest_product = $quest->get_quest_product($quest_product_id);
-		isset($quest_product) or $this->redirect($quest->url(), 'info', 'Invalid product');
+		if (! $quest_product = $quest->get_quest_product($quest_product_id))
+		{
+			return $this->is_ajax_request()
+				? array('success' => false, 'message' => 'invalid_quest_product')
+				: $this->redirect($quest->url(), 'info', 'Invalid product');
+		}
 
 		// has the user already voted?
-		if ($quest_product->has_user_voted($this->user->id))
+		if (! $quest_product->has_user_voted($this->user->id))
 		{
-			$vote = $quest_product->user_get_vote($this->user->id);
-
-			// change vote
-			if ($vote->is_dislike())
+			$quest_product->like($this->user->id);
+		}
+		else
+		{
+			if ($vote = $quest_product->user_get_vote($this->user->id) and $vote->is_dislike())
 			{
 				$vote->change_to_like();
 			}
 		}
-		else
-		{
-			$quest_product->like($this->user->id);
-		}
 
-		$this->redirect($quest->url());
+		return $this->is_ajax_request()
+			? array('success' => true, 'message' => 'quest_product_liked', 'view' => View::forge('quests/votes', array('quest_product' => $quest_product, 'user' => $this->user))->render())
+			: $this->redirect($quest->url());
+
 	}
 
 
@@ -247,30 +270,42 @@ class Controller_Quests extends Controller_App
 	 */
 	public function get_dislike($quest_url, $quest_product_id)
 	{
-		$quest = $this->get_quest_by_url($quest_url);
+		if (! $quest = $this->get_quest_by_url($quest_url))
+		{
+			return array('success' => false, 'message' => 'invalid_quest');
+		}
 
-		$this->require_auth($quest->url());
+		if (! $this->user_logged_in())
+		{
+			return $this->is_ajax_request()
+				? array('success' => false, 'message' => 'auth')
+				: $this->redirect($quest->url());
+		}
 
-		$quest_product = $quest->get_quest_product($quest_product_id);
-		isset($quest_product) or $this->redirect($quest->url(), 'info', 'Invalid product');
+		if (! $quest_product = $quest->get_quest_product($quest_product_id))
+		{
+			return $this->is_ajax_request()
+				? array('success' => false, 'message' => 'invalid_quest_product')
+				: $this->redirect($quest->url(), 'info', 'Invalid product');
+		}
 
 		// has the user already voted?
-		if ($quest_product->has_user_voted($this->user->id))
+		if (! $quest_product->has_user_voted($this->user->id))
 		{
-			$vote = $quest_product->user_get_vote($this->user->id);
-
-			// change vote
-			if ($vote->is_like())
+			$quest_product->dislike($this->user->id);
+		}
+		else
+		{
+			if ($vote = $quest_product->user_get_vote($this->user->id) and $vote->is_like())
 			{
 				$vote->change_to_dislike();
 			}
 		}
-		else
-		{
-			$quest_product->dislike($this->user->id);
-		}
 
-		$this->redirect($quest->url());
+		return $this->is_ajax_request()
+			? array('success' => true, 'message' => 'quest_product_liked', 'view' => View::forge('quests/votes', array('quest_product' => $quest_product, 'user' => $this->user))->render())
+			: $this->redirect($quest->url());
+
 	}
 
 
