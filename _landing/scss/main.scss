@@ -1,0 +1,228 @@
+/* wow */
+@import 'bootstrap';
+
+$primary-color: #DF4892;
+$secondary-color: #2DBDCF;
+
+body {
+	font-family: museo-sans;
+}
+
+.background {
+	border-top: 10px solid rgba(255,255,255,.5);
+	border-bottom: 10px solid rgba(255,255,255,.5);
+	background-image: url(../img/claire.jpg);
+	background-size: cover;
+	background-position: center center;
+	padding-top: 10em;
+	color: #fff;
+	text-align: center;
+	text-shadow: 2px 2px 1px rgba(0,0,0,0.1);
+	h1 {
+		font-family: adelle;
+		font-size: 4em;
+	}
+}
+
+.align-right {
+	text-align: right;
+}
+
+.header {
+	padding-top: 1.5em;
+	padding-bottom: 1.5em;
+	margin-right: 0;
+}
+
+.sg-button-primary {
+	font-family: lobster;
+	font-size: 2em;
+	margin: 0;
+	font-weight: 100;
+	text-shadow: 0.05em 0.05em 0 #9a3131;
+	background-color: $primary-color;
+	padding: 0.4em;
+	padding-top: .1em;
+	padding-bottom: .25em;
+	-webkit-font-smoothing: antialiased;
+	border-radius: .1em;
+	display: inline-block;
+	box-shadow: 0.08em 0.08em 0 #9c4040;
+	color: rgba(255, 255, 255, 0.95);
+	text-decoration: none;
+	&:hover {
+		color: rgba(255,255,255,1);
+		text-decoration: none;
+		background-color: saturate($primary-color, 30%);
+	}
+}
+
+.sg-button-secondary {
+	@extend .sg-button-primary;
+	font-family: museo-sans;
+	text-shadow: 0.05em 0.05em 0 darken($secondary-color, 20%);
+	background-color: $secondary-color;
+	font-size: 1.5em;
+	padding: 0.8em;
+	padding-top: .5em;
+	padding-bottom: .45em;
+	box-shadow: 0.1em 0.1em 0 darken($secondary-color, 10%);
+	&:hover {
+		background-color: saturate($secondary-color, 30%);
+	}
+}
+
+.sg-button-tertiary {
+	@extend .sg-button-secondary;
+	color: #000;
+	text-transform: lowercase;
+	background-color: white;
+	text-shadow: 0.05em 0.05em 0 darken(white, 20%);
+	box-shadow: 2px 2px 1px rgba(0,0,0,0.1);
+}
+
+.call-to-action {
+	margin-top: 1em;
+
+}
+.cta-assist {
+	margin-top: 1.5em;
+	opacity: .9;
+	font-size: 1.5em;
+}
+.steps {
+	margin-top: -10px;
+	background-color: #fff;
+	box-shadow: 0px -10px 10px rgba(0,0,0,0.1);
+	div {
+		background-color: #fff;
+	}
+}
+
+.step {
+	padding: 2em;
+	h2 {
+		font-family: Adelle;
+		color: #33312E;
+		span {
+			font-size: .8em;
+		}
+	}
+	p {
+		font-size: 1.2em;
+		color: #7D7870;
+	}
+}
+
+.quote {
+	text-align: center;
+	color: rgba(0,0,0,.6);
+	font-family: adelle;
+	font-size: 2.2em;
+	margin-top: 30px;
+	p {
+		margin-bottom: 0px;
+	}
+}
+
+.author {
+	text-align: center;
+	color: rgba(0,0,0,.3);
+	font-size: 1.8em;
+	font-style: italic;
+	margin-bottom: 30px;
+}
+
+.featured {
+	margin-top: 30px;
+	margin-bottom: 15px;
+	text-align: center;
+	font-size: 2em;
+	font-family: Adelle;
+	color: darken(#F1F0EF, 30%);
+	text-shadow: 1px 1px 0 #fff;
+	span {
+		font-size: .8em;
+	}
+}
+
+.clear {
+	clear: both;
+}
+
+.title {
+	padding-left: 45px;
+}
+
+.authentication {
+	padding-right: 30px;
+	text-align: right;
+}
+
+.products {
+	background-color: #F4F3F2;
+	border-top: 5px solid darken(#F4F3F2, 2%);
+	border-bottom: 5px solid darken(#F4F3F2, 2%);
+	padding-bottom: 15px;
+	@extend .clearfix;
+	box-sizing: content-box;
+}
+
+.product {
+	@extend .col-xs-4;
+	@extend .col-md-2;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	.box {
+		border-radius: 5px;
+		background-color: #fff;
+		border: 1px solid darken(#f4f3f2, 10%);
+		box-shadow: 0px 0px 10px darken(#f4f3f2, 5%);
+		overflow: hidden;
+		img {
+			width: 100%;
+		}
+		&:hover {
+			border: 1px solid darken(#f4f3f2, 10%);
+			box-shadow: 0px 0px 20px darken(#f4f3f2, 10%);
+			cursor: pointer;
+		}
+	}
+}
+
+.second-cta {
+	margin-top: 30px;
+	text-align: center;
+	color: rgba(0,0,0,.6);
+	h2 {
+		font-family: adelle;
+	}
+	.sg-button-primary {
+		margin-top: 15px;
+		font-family: museo-sans;
+		font-size: 2.5em;
+		margin-bottom: 30px;
+	}
+}
+.login {
+	display: inline-block;
+	color: #1679B1;
+	text-decoration: none;
+	padding-right: 2em;
+}
+
+.footer {
+	background-color: #F4F3F2;
+	border-top: 5px solid darken(#F4F3F2, 2%);
+	padding-top: 15px;
+	padding-bottom: 15px;
+	@extend .clearfix;
+	box-sizing: content-box;
+}
+
+.pages {
+	color: darken(#F4F3F2, 20%);
+	a {
+		color: darken(#F4F3F2, 40%);
+	}
+}
