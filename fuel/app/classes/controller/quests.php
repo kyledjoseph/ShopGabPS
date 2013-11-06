@@ -69,7 +69,7 @@ class Controller_Quests extends Controller_App
 		// quest products
 		$quest_products = $quest->get_quest_products_sorted();
 
-		$this->_init_assets();
+		$this->_init_quest_assets();
 		$this->_init_modals($quest);
 
 		$this->template->body = View::forge('quests/view', array(
@@ -496,7 +496,7 @@ class Controller_Quests extends Controller_App
 
 
 
-	protected function _init_assets()
+	protected function _init_quest_assets()
 	{
 		// Casset::js('lib/jquery.expander.min.js');
 		Casset::js('lib/jquery.tipTip.js');
