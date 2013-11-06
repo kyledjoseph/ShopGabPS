@@ -13,6 +13,12 @@ class Model_User extends Auth\Model\Auth_User
 		'previous_login',
 		'login_hash',
 		'user_id',
+
+		'display_name',
+		'reset_code',
+		'reset_created_at',
+		'fb_friends_last_updated',
+
 		'created_at',
 		'updated_at',
 	);
