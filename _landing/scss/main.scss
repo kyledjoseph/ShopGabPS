@@ -13,8 +13,8 @@ body {
 	border-bottom: 10px solid rgba(255,255,255,.5);
 	background-image: url(../img/claire.jpg);
 	background-size: cover;
-	background-position: center center;
-	padding-top: 10em;
+	background-position: bottom center;
+	padding-top: 2em;
 	color: #fff;
 	text-align: center;
 	text-shadow: 2px 2px 1px rgba(0,0,0,0.1);
@@ -22,6 +22,7 @@ body {
 		font-family: adelle;
 		font-size: 4em;
 	}
+	cursor: pointer;
 }
 
 .align-right {
