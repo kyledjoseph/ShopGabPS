@@ -17,7 +17,6 @@ class Controller_Bookmark extends Controller_App
 		//Config::set('profiling', false); // not working
 	}
 
-
 	/**
 	 * Bookmark
 	 */
@@ -31,11 +30,17 @@ class Controller_Bookmark extends Controller_App
 		$this->template->body = View::forge('bookmark/view', array());
 	}
 
+	/**
+	 * 
+	 */
 	public function get_test()
 	{
 		return View::forge('bookmark/test');
 	}
 
+	/**
+	 * 
+	 */
 	public function get_iframe()
 	{
 		return View::forge('bookmark/iframe');
@@ -127,7 +132,6 @@ class Controller_Bookmark extends Controller_App
 		);
 	}
 
-
 	/**
 	 * Bookmark Install
 	 */
@@ -135,7 +139,6 @@ class Controller_Bookmark extends Controller_App
 	{
 		return Response::forge(View::forge('bookmark/install'));
 	}
-
 
 	/**
 	 * Bookmark User Login
@@ -150,90 +153,16 @@ class Controller_Bookmark extends Controller_App
 		$this->template->body = View::forge('bookmark/login');
 	}
 
-	// public function post_login()
-	// {
-	// 	$post    = $this->post_data('email', 'password');
-	// 	$success = $this->auth->login($post->email, $post->password);
-
-	// 	if (! $success)
-	// 	{
-	// 		$this->redirect('bookmark/login', 'error', 'Invalid login.');
-	// 	}
-
-	// 	$this->redirect('bookmark/view');
-	// }
-
-	public function get_auth($provider)
-	{
-		$provider = strtolower($provider);
-
-		if (! in_array($provider, ['facebook', 'twitter', 'google']))
-		{
-			$this->redirect('bookmark/login', 'info', 'Invalid service provider');
-		}
-
-		$login_success = $this->auth->social_auth($provider);
-
-		if (! $login_success)
-		{
-			$this->redirect('bookmark/login', 'error', 'An error has occurred');
-		}
-
-		$this->redirect('bookmark/view');
-
-	}
-
-
 	/**
-	 * Bookmark User Register
+	 * 
 	 */
-	// public function get_register()
-	// {
-	// 	if ($this->user_logged_in())
-	// 	{
-	// 		$this->redirect('bookmark/view');
-	// 	}
-		
-	// 	$this->template->body = View::forge('bookmark/register');
-	// }
-
-	// public function post_register()
-	// {
-	// 	$post = $this->post_data('email', 'password');
-	// 	$user = $this->auth->create_user($post->email, $post->password);
-
-	// 	if (! isset($user))
-	// 	{
-	// 		$this->redirect('user/register', 'error', 'Invalid email or password.');
-	// 	}
-
-	// 	$this->auth->login($post->email, $post->password);
-	// 	$this->redirect('/', 'info', 'You are now registered.');
-	// }
-
-
-	public function post_log()
+	public function get_auth()
 	{
-		$post = $this->post_data('url', 'error');
-		$success = Model_Log_Bookmark_Error::log_error($post->url, $post->error);
-		return Response::forge(array('success' => $success));
+		$this->opauth = Auth_Opauth::forge([
+			'callback_url' => Uri::create('authenticate/bookmark'),
+			'provider'     => 'facebook',
+		]);
 	}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	/**
 	 * 
@@ -243,6 +172,15 @@ class Controller_Bookmark extends Controller_App
 		return array('logged_in' => $this->user_logged_in());
 	}
 
+	/**
+	 * 
+	 */
+	public function post_log()
+	{
+		$post = $this->post_data('url', 'error');
+		$success = Model_Log_Bookmark_Error::log_error($post->url, $post->error);
+		return Response::forge(array('success' => $success));
+	}
 
 	/**
 	 * 
@@ -266,8 +204,6 @@ class Controller_Bookmark extends Controller_App
 		return array('success' => true, 'quests' => $friend->select_quest());
 	}
 	
-
-
 	/**
 	 * 
 	 */
@@ -294,7 +230,6 @@ class Controller_Bookmark extends Controller_App
 			'forums'  => $output,
 		);
 	}
-
 
 	/**
 	 *
