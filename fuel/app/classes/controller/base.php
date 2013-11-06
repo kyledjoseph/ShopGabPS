@@ -24,6 +24,7 @@ class Controller_Base extends Controller_Template
 
 		return parent::after($response);
 	}
+
 	
 	#
 	#

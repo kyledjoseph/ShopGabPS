@@ -10,7 +10,7 @@ class Controller_User_Auth extends Controller_App
 	{
 		$this->opauth = Auth_Opauth::forge([
 			//'path'         => '',
-			'callback_url' => 'http://shopgab.dev/authenticate',
+			'callback_url' => Uri::create('authenticate'),
 			'provider'     => $provider,
 		]);
 	}
@@ -18,7 +18,7 @@ class Controller_User_Auth extends Controller_App
 	/**
 	 * undefined_method
 	 */
-	public function get_authenticate()
+	public function get_authenticate($action = null)
 	{
 		try
 		{
@@ -67,15 +67,23 @@ class Controller_User_Auth extends Controller_App
 				break;
 
 				default:
-					throw new \FuelException('Auth_Opauth::login_or_register() has come up with a result that we dont know how to handle.');
+					throw new \FuelException("Auth_Opauth::login_or_register() has come up with a result that we dont know how to handle. status: '{$status}'");
 			}
 
 			$this->_init_user();
 
 			$this->user->add_invitations_as_friends();
 
-			// redirect to the url set
-			\Response::redirect(''); // $url);
+
+			if ($action and $action == 'bookmark')
+			{
+				\Response::redirect('bookmark');
+			}
+			else
+			{
+				\Response::redirect('');
+			}
+			
 		}
 
 		// deal with Opauth exceptions

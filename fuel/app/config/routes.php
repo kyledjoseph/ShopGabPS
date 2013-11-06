@@ -7,6 +7,7 @@ return array(
 
 	'login'                    => 'user/auth/login',
 	'logout'                   => 'user/auth/logout',
+	'authenticate/(:any)'      => 'user/auth/authenticate/$1',
 	'authenticate'             => 'user/auth/authenticate',
 	
 	// 'register'              => 'user/register',
