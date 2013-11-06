@@ -1,25 +1,29 @@
 <?php
 
-class Model_User extends \Orm\Model
+class Model_User extends Auth\Model\Auth_User
 {
 	protected static $_table_name = 'users';
 	protected static $_properties = array(
 		'id',
 		'username',
 		'password',
-		'group',
+		'group_id',
 		'email',
-		'display_name',
-		'avatar_type',
 		'last_login',
+		'previous_login',
 		'login_hash',
-		'profile_fields',
-		'reset_code',
-		'reset_created_at',
-		'fb_friends_last_updated',
-		'welcome_message',
+		'user_id',
 		'created_at',
 		'updated_at',
+	);
+
+	protected static $_belongs_to = array(
+		'group' => array(
+			'model_to' => 'Model\\Auth_Group',
+			'key_from' => 'group_id',
+			'key_to'   => 'id',
+			'cascade_delete' => false,
+		),
 	);
 
 	protected static $_has_one = array(
@@ -37,6 +41,13 @@ class Model_User extends \Orm\Model
 			'key_from' => 'id',
 			'model_to' => 'Model_User_Auth',
 			'key_to' => 'user_id',
+			'cascade_save' => true,
+			'cascade_delete' => true,
+		),
+		'providers' => array(
+			'key_from' => 'id',
+			'model_to' => 'Model_User_Provider',
+			'key_to' => 'parent_id',
 			'cascade_save' => true,
 			'cascade_delete' => true,
 		),
@@ -103,6 +114,18 @@ class Model_User extends \Orm\Model
 			'cascade_save' => true,
 			'cascade_delete' => true,
 		),
+		'metadata' => array(
+			'model_to' => 'Model\\Auth_Metadata',
+			'key_from' => 'id',
+			'key_to'   => 'parent_id',
+			'cascade_delete' => true,
+		),
+		'userpermission' => array(
+			'model_to' => 'Model\\Auth_Userpermission',
+			'key_from' => 'id',
+			'key_to'   => 'user_id',
+			'cascade_delete' => false,
+		),
 	);
 
 	protected static $_observers = array(
@@ -119,8 +142,6 @@ class Model_User extends \Orm\Model
 		),
 	);
 
-	protected $avatar_sizes = array('200' => '200', '32' => '32');
-
 	public function _event_after_insert()
 	{
 		$this->_update_friendships();
@@ -136,17 +157,16 @@ class Model_User extends \Orm\Model
 
 	private function _update_friendships()
 	{
-		$friendships = Model_Friend::query()
-			->where('friend_id', $this->id)
-			->get();
+		$friendships = Model_Friend::query()->where('friend_id', $this->id)->get();
 
 		foreach ($friendships as $friendship)
 		{
-			$friendship->friend_name       = $this->display_name;
+			$friendship->friend_name       = $this->display_name();
 			$friendship->friend_registered = '1';
 			$friendship->save();
 		}
 	}
+
 
 
 	/**
@@ -154,46 +174,55 @@ class Model_User extends \Orm\Model
 	 */
 	public function display_name()
 	{
-
-		return (isset($this->display_name) and ! empty($this->display_name)) ? $this->display_name : $this->email;
+		return (isset($this->fullname) and ! empty($this->fullname)) ? $this->fullname : $this->email;
 	}
 
-	public function show_welcome_message()
-	{
-		return $this->welcome_message == 1;
-	}
-
-	public function hide_welcome_message()
-	{
-		$this->welcome_message = 0;
-		return $this->welcome_message->save();
-	}
-
+	/**
+	 * undefined_method
+	 */
 	public function is_admin()
 	{
 		return isset($this->admin->id);
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function admin_url($action = 'view')
 	{
 		return "admin/accounts/{$action}/{$this->id}";
 	}
 
 	/**
-	 * User's name
+	 * User registration date
 	 */
-	// public function name()
-	// {
-	// 	return (! empty($this->first_name) and ! empty($this->last_name))
-	// 		? "{$this->first_name} {$this->last_name}"
-	// 		: null;
-	// }
+	public function member_since($format = "d M Y")
+	{
+		return date($format, $this->created_at);
+	}
+
+	/**
+	 * Users last login
+	 */
+	public function last_login($format = "d M Y")
+	{
+		return date($format, $this->last_login);
+	}
+
+	/**
+	 * Does the user have a password set
+	 */
+	public function has_password()
+	{
+		return ! empty($this->password);
+	}
 
 
 
 	/**
-	 * Avatar
+	 * Avatars
 	 */
+	protected $avatar_sizes = array('200' => '200', '32' => '32');
 
 	public function add_avatar($file)
 	{
@@ -228,88 +257,12 @@ class Model_User extends \Orm\Model
 			File::delete($tmp_resize_path);
 		}
 
-		$this->set_avatar_type('custom');
-
 		File::delete($tmp_path);
-
 	}
 
-	public function has_avatars()
-	{
-		return Model_User_Avatar::query()->where('user_id', $this->id)->count() > 0;
-	}
-
-	public function get_avatar($width = 32, $height = 32)
-	{
-		return Model_User_Avatar::query()
-			->where('user_id', $this->id)
-			->where('width', $width)
-			->where('height', $height)
-			->get_one();
-	}
-
-	public function get_avatars()
-	{
-		return Model_User_Avatar::query()
-			->where('user_id', $this->id)
-			->get();
-	}
-
-	public function set_avatar_type($type)
-	{
-		if ($type == 'facebook')
-		{
-			if ($this->has_avatars())
-			{
-				$this->delete_avatars();
-			}
-
-			$this->avatar_type = 2;
-			return $this->save();
-		}
-		if ($type == 'custom')
-		{
-			$this->avatar_type = 1;
-			return $this->save();
-		}
-
-		return false;
-	}
-
-	public function avatar_type()
-	{
-		if ($this->avatar_type == 2)
-		{
-			return 'facebook';
-		}
-		if ($this->avatar_type == 1)
-		{
-			return 'custom';
-		}
-
-		return false;
-	}
-
-	public function get_avatar_uri($width = 32, $height = 32)
-	{
-		if ($this->avatar_type == 2)
-		{
-			return $this->facebook_profile_pic($width, $height);
-		}
-
-		if ($this->avatar_type == 1)
-		{
-			$avatar = $this->get_avatar($width, $height);
-		}
-
-		return isset($avatar) ? $avatar->public_uri : $this->default_avatar_uri($width, $height);
-	}
-
-	public function default_avatar_uri($width = 32, $height = 32)
-	{
-		return Uri::create("assets/img/avatar/default_{$width}x{$height}.png");
-	}
-
+	/**
+	 * undefined_method
+	 */
 	public function delete_avatars()
 	{
 		$connection = Service_Cloudfiles::get_connection();
@@ -322,39 +275,70 @@ class Model_User extends \Orm\Model
 		}
 	}
 
-	public function facebook_profile_pic($width = 32, $height = 32)
+	/**
+	 * undefined_method
+	 */
+	public function has_avatars()
 	{
-		$fb_auth = $this->user_authentication('facebook');
+		return Model_User_Avatar::query()->where('user_id', $this->id)->count() > 0;
+	}
 
-		if (isset($fb_auth->id))
+	/**
+	 * undefined_method
+	 */
+	public function get_avatar($width = 32, $height = 32)
+	{
+		return Model_User_Avatar::query()
+			->where('user_id', $this->id)
+			->where('width', $width)
+			->where('height', $height)
+			->get_one();
+	}
+
+	/**
+	 * undefined_method
+	 */
+	public function get_avatars()
+	{
+		return Model_User_Avatar::query()->where('user_id', $this->id)->get();
+	}
+
+	/**
+	 * undefined_method
+	 */
+	public function get_avatar_uri($width = 32, $height = 32)
+	{
+		if ($avatar = $this->get_avatar($width, $height))
 		{
-			return "https://graph.facebook.com/{$fb_auth->provider_uid}/picture?width={$width}&height={$height}";
+			return $avatar->public_uri;
 		}
 
-		return $this->default_avatar_uri($width, $height);
+		if ($provider = $this->user_authentication('facebook'))
+		{
+			return "https://graph.facebook.com/{$provider->uid}/picture?width={$width}&height={$height}";
+		}
+
+		$this->default_avatar_uri($width, $height);
 	}
 
-
-
 	/**
-	 * Does the user have a password set
+	 * undefined_method
 	 */
-	public function has_password()
+	public function default_avatar_uri($width = 32, $height = 32)
 	{
-		return ! empty($this->password);
+		return Uri::create("assets/img/avatar/default_{$width}x{$height}.png");
 	}
 
+
+
 	/**
-	 *
+	 * Notices
 	 */
 	public function has_seen_notice($type)
 	{
 		return Model_User_Notice::query()->where('user_id', $this->id)->where('type', $type)->count() > 0;
 	}
 
-	/**
-	 *
-	 */
 	public function mark_notice_seen($type)
 	{
 		if ($this->has_seen_notice($type))
@@ -368,8 +352,10 @@ class Model_User extends \Orm\Model
 		return $notice->save();
 	}
 
+
+
 	/**
-	 *
+	 * Notifications
 	 */
 	public function set_notification($type, $send)
 	{
@@ -381,22 +367,14 @@ class Model_User extends \Orm\Model
 		}
 
 		$notification->send = ($send ? '1' : '0');
-		$notification->save();
-
-		return true;
+		return $notification->save();
 	}
 
-	/**
-	 *
-	 */
 	public function get_notification($type)
 	{
 		return Model_User_Notification::query()->where('user_id', $this->id)->where('type', $type)->get_one();
 	}
 
-	/**
-	 *
-	 */
 	public function receives_notification($type)
 	{
 		$notification = Model_User_Notification::query()->where('user_id', $this->id)->get_one();
@@ -404,21 +382,7 @@ class Model_User extends \Orm\Model
 		return (! isset($notification) or $notification->send !== '0');
 	}
 
-	/**
-	 * User registration date
-	 */
-	public function member_since($format = "d M Y")
-	{
-		return date($format, $this->created_at);
-	}
 
-	/**
-	 * Users last login
-	 */
-	public function last_login($format = "d M Y")
-	{
-		return date($format, $this->last_login);
-	}
 
 	/**
 	 * Get all user quests
@@ -482,37 +446,17 @@ class Model_User extends \Orm\Model
 
 
 
-
-
-
-
-
-	//TMP
-	public function get_all_users()
-	{
-		return Model_User::query()->order_by('display_name', 'asc')->get();
-	}
-	public function select_all_users()
-	{
-		$options = array();
-		$options['select'] = 'Select';
-		foreach ($this->get_friends() as $friend)
-		{
-			$options[$friend->id] = $friend->display_name();
-		}
-		return empty($options) ? array('none' => 'No Friends Available') : $options;
-	}
-
-
-
 	/**
-	 * undocumented class variable
+	 * undefined_method
 	 */
 	public function has_friends()
 	{
 		return $this->total_friends() > 0;
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function total_friends()
 	{
 		return Model_Friend::query()
@@ -522,6 +466,9 @@ class Model_User extends \Orm\Model
 			->count();
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function get_friendships()
 	{
 		return Model_Friend::query()
@@ -532,6 +479,9 @@ class Model_User extends \Orm\Model
 			->get();
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function get_friends()
 	{
 		$users = array();
@@ -542,6 +492,9 @@ class Model_User extends \Orm\Model
 		return $users;
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function select_friends()
 	{
 		$options = array();
@@ -553,6 +506,9 @@ class Model_User extends \Orm\Model
 		return (count($options) < 1) ? array('none' => 'No Friends Available') : $options;
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function get_friend_ids()
 	{
 		$ids = array();
@@ -563,39 +519,60 @@ class Model_User extends \Orm\Model
 		return $ids;
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function get_friend_ids_csv()
 	{
 		return join(',', $this->get_friend_ids());
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function get_friendship_by_id($id)
 	{
 		return Model_Friend::query()->where('user_id', $this->id)->where('id', $id)->get_one();
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function get_friendship_by_user_id($friend_id)
 	{
 		return Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->get_one();
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function get_friend_by_id($friend_id)
 	{
 		$friendship = Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->get_one();
 		return isset($friendship) ? $friendship->friend : null;
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function get_friend_profile_url($friend_id)
 	{
 		$friendship = $this->get_friendship_by_user_id($friend_id);
 		return isset($friendship) ? $friendship->profile_url() : false;
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function is_friend($friend_id)
 	{
 		$count = Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->count();
 		return $count > 0;
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function add_friend($user)
 	{
 		if ($this->is_friend($user->id))
@@ -606,55 +583,23 @@ class Model_User extends \Orm\Model
 		$self = new Model_Friend;
 		$self->user_id           = $this->id;
 		$self->friend_id         = $user->id;
-		$self->friend_name       = $user->display_name;
+		$self->friend_name       = $user->display_name();
 		$self->hidden            = '0';
 		$self->friend_registered = '1';
 
 		$friend = new Model_Friend;
 		$friend->user_id           = $user->id;
 		$friend->friend_id         = $this->id;
-		$friend->friend_name       = $this->display_name;
+		$friend->friend_name       = $this->display_name();
 		$friend->hidden            = '0';
 		$friend->friend_registered = '1';
 
 		return $self->save() and $friend->save();
 	}
 
-
-
-	public function get_facebook_friends()
-	{
-		$auth       = Auth::instance();
-		$hybridauth = $auth->hybridauth_instance();
-		$adapter    = $hybridauth->authenticate('facebook');
-		// return $adapter->getUserContacts();
-
-		try
-		{
-			$response = $adapter->api()->api('/me/friends?limit=0');
-		}
-		catch (FacebookApiException $e)
-		{
-			throw new Exception( "User contacts request failed! {$this->providerId} returned an error: $e" );
-		}
-
-		if (! $response || ! count( $response["data"]))
-		{
-			return array();
-		}
-
-		$contacts = array();
-
-		foreach ($response["data"] as $info)
-		{
-			$contacts[] = new Model_Facebook_Friend($info);
-		}
-
-		return $contacts;
-
-
-	}
-
+	/**
+	 * undefined_method
+	 */
 	public function get_registered_facebook_friends()
 	{
 		$auth       = Auth::instance();
@@ -686,18 +631,11 @@ class Model_User extends \Orm\Model
 		}
 
 		return $contacts;
-
-		// foreach ($this->get_facebook_friends() as $friend)
-		// {
-		// 	if ($friend->is_registered())
-		// 	{
-		// 		$friends[] = $friend;
-		// 	}
-		// }
-		// return ! empty($friends) ? $friends : array();
 	}
 
-
+	/**
+	 * undefined_method
+	 */
 	public function add_registered_facebook_friends()
 	{
 		$total_added = 0;
@@ -718,7 +656,9 @@ class Model_User extends \Orm\Model
 		return $total_added;
 	}
 
-
+	/**
+	 * undefined_method
+	 */
 	public function get_friends_quests()
 	{
 		if (! $this->has_friends()) return array();
@@ -726,7 +666,6 @@ class Model_User extends \Orm\Model
 		$result = DB::select()
 			->from(Model_Quest::table())
 			->where('user_id', 'in', $this->get_friend_ids())
-			//->where('is_public', '1')
 			->as_object('Model_Quest')
 			->execute();
 
@@ -743,6 +682,9 @@ class Model_User extends \Orm\Model
 		return $friends_quests;
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function get_friends_upcoming_quests()
 	{
 		if (! $this->has_friends()) return array();
@@ -759,6 +701,9 @@ class Model_User extends \Orm\Model
 		return $result->as_array();
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public function add_invitations_as_friends()
 	{
 		$invites = Model_Invite_Email::get_by_email($this->email);
@@ -769,22 +714,6 @@ class Model_User extends \Orm\Model
 			{
 				$this->add_friend($invite->user);
 			}
-		}
-	}
-
-
-
-	/**
-	 * Authenticate a user with a provider
-	 */
-	public function authenticate_with($user_info)
-	{
-		$user_auth = Model_User_Auth::create_user_auth($this, $user_info);
-
-		if ($user_info['provider'] == 'facebook')
-		{
-			$this->avatar_type = 2;
-			$this->save();
 		}
 	}
 
@@ -801,7 +730,7 @@ class Model_User extends \Orm\Model
 	 */
 	public function user_authentication($provider)
 	{
-		return Model_User_Auth::get_by_user_and_provider($this->id, $provider);
+		return Model_User_Provider::get_by_user_and_provider($this->id, $provider);
 	}
 
 	/**
@@ -812,8 +741,6 @@ class Model_User extends \Orm\Model
 		$auth = Model_User_Auth::get_by_user_and_provider($this->id, $provider);
 		return isset($auth->id);
 	}
-
-
 
 	/**
 	 * Generate a new password reset
@@ -867,13 +794,13 @@ class Model_User extends \Orm\Model
 		$this->save();
 	}
 
-
+	/**
+	 * undefined_method
+	 */
 	public function remove()
 	{
 		return $this->delete();
 	}
-
-
 
 
 
@@ -883,24 +810,32 @@ class Model_User extends \Orm\Model
 	public static function create_user($email, $password, $display_name = null)
 	{
 		$user = static::forge([
-			'email'           => $email,
-			'password'        => $password,
-			'display_name'    => $display_name,
-			'welcome_message' => 1,
+			'email'    => $email,
+			'password' => $password,
+			'fullname' => $display_name,
 		]);
 		return $user->save() ? $user : false;
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public static function get_by_id($id)
 	{
 		return static::query()->where('id', $id)->get_one();
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public static function get_by_email($email)
 	{
 		return static::query()->where('email', $email)->get_one();
 	}
 
+	/**
+	 * undefined_method
+	 */
 	public static function get_by_rest_code($reset_code)
 	{
 		return static::query()->where('reset_code', $reset_code)->get_one();
