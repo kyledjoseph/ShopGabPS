@@ -25,7 +25,7 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
     <!-- Navigation -->
     <div class="col-8 col-sm-10">
       <ul class="landing-nav nav nav-pills pull-right">
-        <li><a class="landing-log-in" href="<?= Uri::create('auth/facebook?r=') ?>">Login</a></li>
+        <li><a class="landing-log-in" href="<?= Uri::create('user/auth/login/facebook') ?>">Login</a></li>
         <li class="active landing-sign-up"><a href="#registerModal" data-toggle="modal">Sign Up</button></a></li>
       </ul>
     </div>

@@ -5,13 +5,15 @@ return array(
 
 	'bookmark'                 => 'bookmark/view',
 
+	'login'                    => 'user/auth/login',
+	'logout'                   => 'user/auth/logout',
+	'authenticate'             => 'user/auth/authenticate',
+	
+	// 'register'              => 'user/register',
+	// 'forgot'                => 'user/forgot',
+	// 'reset/(:segment)'      => 'user/reset/$1',
+
 	'try'                      => 'home/try',
-	'login'                    => 'user/login',
-	'auth/(:any)'              => 'user/auth/$1',
-	'logout'                   => 'user/logout',
-	'register'                 => 'user/register',
-	'forgot'                   => 'user/forgot',
-	'reset/(:segment)'         => 'user/reset/$1',
 	'account/(:any)'           => 'user/$1',
 	'account'                  => 'user/account',
 
@@ -29,7 +31,6 @@ return array(
 	'quest/(:segment)/delete'             => 'quests/delete/$1',
 	'quest/(:segment)'                    => 'quests/view/$1',
 	'quest'                               => 'quests/index',
-
 
 	'privacy' => 'legal/privacy',
 	'terms'   => 'legal/terms',

@@ -20,8 +20,6 @@ class Controller_App extends Controller_Base
 		}
 	}
 
-
-
 	public function user_logged_in()
 	{
 		return isset($this->user);
@@ -40,30 +38,16 @@ class Controller_App extends Controller_Base
 		$this->template->modal.= $content;
 	}
 
-
-
-
-	private function _init_auth()
+	protected function _init_auth()
 	{
 		$this->auth = Auth::instance();
 	}
 
-	private function _init_user()
+	protected function _init_user()
 	{
-
-		// $p = Hybrid_Auth::getConnectedProviders();
-		// $c = count($p);
-		// throw new Exception("Error Processing Request $c", 1);
-		
-		// if (! Hybrid_Auth::isConnectedWith('facebook'))
-		// {
-		// 	throw new Exception("Error Processing Request", 1);
-		// }
-
-
 		if ($this->auth->check())
 		{
-			$user_id = $this->auth->get_user_id();
+			$user_id = $this->auth->get_user_id()[1];
 			$this->user = Model_User::get_by_id($user_id);
 		}
 		else
@@ -72,7 +56,7 @@ class Controller_App extends Controller_Base
 		}
 	}
 
-	private function _init_notice()
+	protected function _init_notice()
 	{
 		foreach (array('error', 'success', 'info') as $type)
 		{
@@ -86,7 +70,7 @@ class Controller_App extends Controller_Base
 		}
 	}
 
-	private function _init_template()
+	protected function _init_template()
 	{
 		// set global template variables
 		$this->template->set_global('user', $this->user, false);
@@ -126,7 +110,7 @@ class Controller_App extends Controller_Base
 		}
 	}
 
-	private function _init_assets()
+	protected function _init_assets()
 	{
 		$env = strtolower(\Fuel::$env);
 

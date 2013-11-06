@@ -60,11 +60,10 @@ class Opauth
 			// move user properties to users_metadata
 			$properties = array(
 				'display_name' => 'fullname',
-				'avatar_type' => 'avatar_type',
+				//'avatar_type' => 'avatar_type',
 				'reset_code' => 'reset_code',
 				'reset_created_at' => 'reset_created_at',
 				'fb_friends_last_updated' => 'fb_friends_last_updated',
-				'welcome_message' => 'welcome_message',
 			);
 
 			foreach ($properties as $property => $new_key)
