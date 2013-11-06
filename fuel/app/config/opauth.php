@@ -74,7 +74,7 @@ return array(
 	 * Refer to individual strategy's documentation on configuration requirements.
 	 */
 	'Strategy' => array(
-		'facebook' => array(
+		'Facebook' => array(
 			'app_id'     => '168874813262398',
 			'app_secret' => '5aa0c283019c1f03cc5430559d80c0de',
 			'scope'      => array('email', 'user_friends'),
