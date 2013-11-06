@@ -67,7 +67,7 @@ class Controller_User_Auth extends Controller_App
 				break;
 
 				default:
-					throw new \FuelException('Auth_Opauth::login_or_register() has come up with a result that we dont know how to handle.');
+					throw new \FuelException("Auth_Opauth::login_or_register() has come up with a result that we dont know how to handle. status: '{$status}'");
 			}
 
 			$this->_init_user();
