@@ -1,22 +1,21 @@
 <?php
 return array(
-	'_root_'                   => 'home/index',
-	'_404_'                    => 'error/404',
+	'_root_'                              => 'home/index',
+	'_404_'                               => 'error/404',
 
-	'bookmark'                 => 'bookmark/view',
+	'bookmark'                            => 'bookmark/view',
 
-	'login'                    => 'user/auth/login',
-	'logout'                   => 'user/auth/logout',
-	'authenticate/(:any)'      => 'user/auth/authenticate/$1',
-	'authenticate'             => 'user/auth/authenticate',
-	
-	// 'register'              => 'user/register',
-	// 'forgot'                => 'user/forgot',
-	// 'reset/(:segment)'      => 'user/reset/$1',
+	'login/(:any)'                        => 'user/auth/login/$1',
+	'authenticate/(:any)'                 => 'user/auth/authenticate/$1',
+	'logout'                              => 'user/auth/logout',
+	'authenticate'                        => 'user/auth/authenticate',
+	// 'register'                         => 'user/register',
+	// 'forgot'                           => 'user/forgot',
+	// 'reset/(:segment)'                 => 'user/reset/$1',
 
-	'try'                      => 'home/try',
-	'account/(:any)'           => 'user/$1',
-	'account'                  => 'user/account',
+	'try'                                 => 'home/try',
+	'account/(:any)'                      => 'user/$1',
+	'account'                             => 'user/account',
 
 	'quest/create'                        => 'quests/create',
 	'quest/(:segment)/remove/(:segment)'  => 'quests/remove/$1/$2',

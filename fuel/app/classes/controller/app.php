@@ -52,8 +52,17 @@ class Controller_App extends Controller_Base
 	{
 		if ($this->auth->check())
 		{
-			$user_id = $this->auth->get_user_id()[1];
+			$user_id    = $this->auth->get_user_id()[1];
 			$this->user = Model_User::get_by_id($user_id);
+
+			if ($provider = $this->user->get_provider('facebook'))
+			{
+				$uri = Uri::segment(1);
+				if (! $provider->access_token_set() and $uri !== 'login' and $uri !== 'authenticate')
+				{
+					$this->redirect('login/facebook');
+				}
+			}
 		}
 		else
 		{

@@ -319,7 +319,7 @@ class Model_User extends Auth\Model\Auth_User
 			return $avatar->public_uri;
 		}
 
-		if ($provider = $this->user_authentication('facebook'))
+		if ($provider = $this->get_provider('facebook'))
 		{
 			return "https://graph.facebook.com/{$provider->uid}/picture?width={$width}&height={$height}";
 		}
@@ -611,7 +611,7 @@ class Model_User extends Auth\Model\Auth_User
 		$auth       = Auth::instance();
 		$hybridauth = $auth->hybridauth_instance();
 		$adapter    = $hybridauth->authenticate('facebook');
-		$fb_uid     = $this->user_authentication('facebook')->provider_uid;
+		$fb_uid     = $this->get_provider('facebook')->provider_uid;
 		// return $adapter->getUserContacts();
 
 		try
@@ -723,30 +723,45 @@ class Model_User extends Auth\Model\Auth_User
 		}
 	}
 
-	/**
-	 * Get all user authentications
-	 */
-	public function user_authentications()
-	{
-		return $this->authentications;
-	}
+
+
+
+
 
 	/**
-	 * Get the user authentication for a specific provider
+	 * undefined_method
 	 */
-	public function user_authentication($provider)
+	public function get_provider($provider)
 	{
 		return Model_User_Provider::get_by_user_and_provider($this->id, $provider);
 	}
 
-	/**
-	 * Is user authenticated with auth provider
-	 */
-	public function is_authenticated_with($provider)
-	{
-		$auth = Model_User_Auth::get_by_user_and_provider($this->id, $provider);
-		return isset($auth->id);
-	}
+
+
+	// /**
+	//  * Get all user authentications
+	//  */
+	// public function user_authentications()
+	// {
+	// 	return $this->authentications;
+	// }
+
+	// /**
+	//  * Get the user authentication for a specific provider
+	//  */
+	// public function user_authentication($provider)
+	// {
+	// 	return Model_User_Provider::get_by_user_and_provider($this->id, $provider);
+	// }
+
+	// /**
+	//  * Is user authenticated with auth provider
+	//  */
+	// public function is_authenticated_with($provider)
+	// {
+	// 	$auth = Model_User_Auth::get_by_user_and_provider($this->id, $provider);
+	// 	return isset($auth->id);
+	// }
 
 	/**
 	 * Generate a new password reset

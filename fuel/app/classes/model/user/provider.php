@@ -38,6 +38,11 @@ class Model_User_Provider extends \Orm\Model
 		),
 	);
 
+	public function access_token_set()
+	{
+		return isset($this->access_token) and ! empty($this->access_token);
+	}
+
 	public static function get_by_id($id)
 	{
 		return static::query()->where('id', $id)->get_one();

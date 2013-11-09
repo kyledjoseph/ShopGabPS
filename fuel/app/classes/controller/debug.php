@@ -3,6 +3,29 @@
 class Controller_Debug extends Controller_App
 {
 
+	public function get_fbfriends()
+	{
+		$facebook = new Facebook(array(
+			'appId'  => '168874813262398',
+			'secret' => '5aa0c283019c1f03cc5430559d80c0de',
+		));
+
+		$facebook->setAccessToken('CAACZAlztBij4BAFlgDtZCCK0rb1Prbj1ZCa5LT885rI0y6UAfiA1YlA64cwnV9pXn4VVGG9Q0ZAJstEf3pqpEA60cOc3zQwSxQgoVI0MSsIX24Sc7Ja7qK1XShupD4mgSZAvdK78tYgRsiTNszZAmEe6I8U4VoO1UXRDsWyW2ZAUUNpN8ZCFqJZB7');
+
+		$fb_uid = $facebook->getUser();
+		$query  = "SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$fb_uid}) AND is_app_user = 1";
+
+		$params = array(
+			'method' => 'fql.query',
+			'query'  => $query,
+		);
+
+		//Run Query
+		$result = $facebook->api($params);
+
+		return array('fb_uid' => $fb_uid, 'result' => $result);
+	}
+
 	public function get_git()
 	{
 		echo shell_exec("cd /var/www/test && git pull origin test 2>&1");
