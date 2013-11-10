@@ -608,21 +608,23 @@ class Model_User extends Auth\Model\Auth_User
 	 */
 	public function get_registered_facebook_friends()
 	{
-		$auth       = Auth::instance();
-		$hybridauth = $auth->hybridauth_instance();
-		$adapter    = $hybridauth->authenticate('facebook');
-		$fb_uid     = $this->get_provider('facebook')->provider_uid;
-		// return $adapter->getUserContacts();
+		$facebook = new Facebook(array(
+			'appId'  => '168874813262398',
+			'secret' => '5aa0c283019c1f03cc5430559d80c0de',
+		));
 
-		try
-		{
-			$query = urlencode("SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$fb_uid}) AND is_app_user = 1");
-			$response = $adapter->api()->api('fql?q='.$query);
-		}
-		catch (FacebookApiException $e)
-		{
-			throw new Exception( "User contacts request failed! {$fb_uid} returned an error: $e" );
-		}
+		$facebook->setAccessToken('CAACZAlztBij4BAFlgDtZCCK0rb1Prbj1ZCa5LT885rI0y6UAfiA1YlA64cwnV9pXn4VVGG9Q0ZAJstEf3pqpEA60cOc3zQwSxQgoVI0MSsIX24Sc7Ja7qK1XShupD4mgSZAvdK78tYgRsiTNszZAmEe6I8U4VoO1UXRDsWyW2ZAUUNpN8ZCFqJZB7');
+
+		$fb_uid = $facebook->getUser();
+		$query  = "SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$fb_uid}) AND is_app_user = 1";
+
+		$params = array(
+			'method' => 'fql.query',
+			'query'  => $query,
+		);
+
+		//Run Query
+		$response = $facebook->api($params);
 
 		if (! $response || ! count( $response["data"]))
 		{
@@ -637,6 +639,7 @@ class Model_User extends Auth\Model\Auth_User
 		}
 
 		return $contacts;
+
 	}
 
 	/**
