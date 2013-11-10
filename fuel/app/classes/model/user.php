@@ -739,32 +739,13 @@ class Model_User extends Auth\Model\Auth_User
 		return Model_User_Provider::get_by_user_and_provider($this->id, $provider);
 	}
 
+	public function is_authenticated_with($provider)
+	{
+		$auth = Model_User_Provider::get_by_user_and_provider($this->id, $provider);
+		return isset($auth->id);
+	}
 
 
-	// /**
-	//  * Get all user authentications
-	//  */
-	// public function user_authentications()
-	// {
-	// 	return $this->authentications;
-	// }
-
-	// /**
-	//  * Get the user authentication for a specific provider
-	//  */
-	// public function user_authentication($provider)
-	// {
-	// 	return Model_User_Provider::get_by_user_and_provider($this->id, $provider);
-	// }
-
-	// /**
-	//  * Is user authenticated with auth provider
-	//  */
-	// public function is_authenticated_with($provider)
-	// {
-	// 	$auth = Model_User_Auth::get_by_user_and_provider($this->id, $provider);
-	// 	return isset($auth->id);
-	// }
 
 	/**
 	 * Generate a new password reset
