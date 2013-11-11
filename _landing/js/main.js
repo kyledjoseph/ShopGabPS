@@ -1,5 +1,5 @@
 function resizeBackground () {
-	var newHeight = $(window).height() - $('.header').outerHeight() + 10;
+	var newHeight = $(window).height();
 	$('.background').css('height', newHeight);
 
 	var productWidth = $('.product .box').first().width();

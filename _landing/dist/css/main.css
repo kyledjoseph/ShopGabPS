@@ -4948,12 +4948,9 @@ body {
   font-family: museo-sans; }
 
 .background {
-  border-top: 10px solid rgba(255, 255, 255, 0.5);
-  border-bottom: 10px solid rgba(255, 255, 255, 0.5);
   background-image: url(../img/claire.jpg);
   background-size: cover;
   background-position: bottom center;
-  padding-top: 2em;
   color: #fff;
   text-align: center;
   text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1);
@@ -5019,7 +5016,6 @@ body {
   font-size: 1.5em; }
 
 .steps {
-  margin-top: -10px;
   background-color: #fff;
   box-shadow: 0px -10px 10px rgba(0, 0, 0, 0.1); }
   .steps div {
