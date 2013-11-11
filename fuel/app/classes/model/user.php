@@ -13,12 +13,6 @@ class Model_User extends Auth\Model\Auth_User
 		'previous_login',
 		'login_hash',
 		'user_id',
-
-		'display_name',
-		'reset_code',
-		'reset_created_at',
-		'fb_friends_last_updated',
-
 		'created_at',
 		'updated_at',
 	);
@@ -43,13 +37,13 @@ class Model_User extends Auth\Model\Auth_User
 	);
 
 	protected static $_has_many = array(
-		'authentications' => array(
-			'key_from' => 'id',
-			'model_to' => 'Model_User_Auth',
-			'key_to' => 'user_id',
-			'cascade_save' => true,
-			'cascade_delete' => true,
-		),
+		// 'authentications' => array(
+		// 	'key_from' => 'id',
+		// 	'model_to' => 'Model_User_Auth',
+		// 	'key_to' => 'user_id',
+		// 	'cascade_save' => true,
+		// 	'cascade_delete' => true,
+		// ),
 		'providers' => array(
 			'key_from' => 'id',
 			'model_to' => 'Model_User_Provider',
@@ -121,9 +115,9 @@ class Model_User extends Auth\Model\Auth_User
 			'cascade_delete' => true,
 		),
 		'metadata' => array(
-			'model_to' => 'Model\\Auth_Metadata',
+			'model_to' => 'Model_User_Metadata',
 			'key_from' => 'id',
-			'key_to'   => 'parent_id',
+			'key_to'   => 'user_id',
 			'cascade_delete' => true,
 		),
 		'userpermission' => array(
@@ -131,6 +125,13 @@ class Model_User extends Auth\Model\Auth_User
 			'key_from' => 'id',
 			'key_to'   => 'user_id',
 			'cascade_delete' => false,
+		),
+	);
+
+	protected static $_eav = array(
+		'metadata' => array(
+			'attribute' => 'key',
+			'value' => 'value',
 		),
 	);
 
@@ -155,10 +156,10 @@ class Model_User extends Auth\Model\Auth_User
 
 	public function _event_before_save()
 	{
-		if ($this->is_changed('display_name'))
-		{
-			$this->_update_friendships();
-		}
+		// if (isset($this->fullname) and $this->is_changed('fullname'))
+		// {
+		// 	$this->_update_friendships();
+		// }
 	}
 
 	private function _update_friendships()
@@ -180,7 +181,17 @@ class Model_User extends Auth\Model\Auth_User
 	 */
 	public function display_name()
 	{
-		return (isset($this->fullname) and ! empty($this->fullname)) ? $this->fullname : $this->email;
+		if (isset($this->fullname) and ! empty($this->fullname))
+		{
+			return $this->fullname;
+		}
+
+		if ($username = $this->username and ! empty($username))
+		{
+			return $username;
+		}
+		
+		return $this->email;
 	}
 
 	/**
@@ -222,6 +233,36 @@ class Model_User extends Auth\Model\Auth_User
 	{
 		return ! empty($this->password);
 	}
+
+
+
+	// /**
+	//  * undefined_method
+	//  */
+	// public function metadata($key, $value = null)
+	// {
+	// 	if (! $key or empty($key))
+	// 	{
+	// 		throw new Exception("undefined metadata key '{$key}'");
+	// 	}
+
+	// 	if (! $value)
+	// 	{
+	// 		return $this->$key ?: false;
+	// 	}
+
+	// 	if (isset($this->$key))
+	// 	{
+	// 		return $this->$key = $value and $this->save();
+	// 	}
+
+	// 	$this->metadata[] = \Auth\Model\Auth_Metadata::forge([
+	// 		'parent_id' => $this->get_provider('facebook')->id,
+	// 		'key'       => $key,
+	// 		'value'     => $value,
+	// 		'user_id'   => $this->id,
+	// 	])->save();
+	// }
 
 
 
@@ -745,6 +786,20 @@ class Model_User extends Auth\Model\Auth_User
 		return isset($auth->id);
 	}
 
+	public function link_provider(array $data)
+	{
+		if ($this->is_authenticated_with($data['provider']))
+		{
+			throw new Exception("User id:{$this->iid} already linked with provider '{$provider}");
+		}
+
+		$provider = Model_User_Provider::forge($data);
+
+		return $provider->save() ? $provider : false;
+	}
+
+	
+
 
 
 	/**
@@ -812,12 +867,12 @@ class Model_User extends Auth\Model\Auth_User
 	/**
 	 *
 	 */
-	public static function create_user($email, $password, $display_name = null)
+	public static function create_user($info)
 	{
 		$user = static::forge([
-			'email'    => $email,
-			'password' => $password,
-			'fullname' => $display_name,
+			'username' => isset($info['nickname']) ? $info['nickname'] : null,
+			'email'    => isset($info['email'])    ? $info['email']    : null,
+			'password' => isset($info['password']) ? $info['password'] : null,
 		]);
 		return $user->save() ? $user : false;
 	}

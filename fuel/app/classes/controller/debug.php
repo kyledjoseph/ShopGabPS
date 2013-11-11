@@ -3,27 +3,69 @@
 class Controller_Debug extends Controller_App
 {
 
-	public function get_fbfriends()
+	public function get_set()
 	{
+		if (! $user = Model_User::get_by_email('tmatthewsdev@gmail.com'))
+		{
+			throw new Exception("User");
+		}
+
+		if (! $provider = $user->get_provider('facebook'))
+		{
+			throw new Exception("Provider");
+		}
+		
+
+		$provider->next = 'bar';
+		$provider->save();
+
+		return "test = " . $provider->next;
+
+		return "resp " . $user->get_provider('facebook')->test; //, 'one');
+
+	}
+
+	public function get_fb()
+	{
+		if (! $user = Model_User::get_by_email('tmatthewsdev@gmail.com'))
+		{
+			throw new Exception("User");
+		}
+
+		if (! $provider = $user->get_provider('facebook'))
+		{
+			throw new Exception("Provider");
+		}
+
 		$facebook = new Facebook(array(
 			'appId'  => '168874813262398',
 			'secret' => '5aa0c283019c1f03cc5430559d80c0de',
 		));
 
-		$facebook->setAccessToken('CAACZAlztBij4BAFlgDtZCCK0rb1Prbj1ZCa5LT885rI0y6UAfiA1YlA64cwnV9pXn4VVGG9Q0ZAJstEf3pqpEA60cOc3zQwSxQgoVI0MSsIX24Sc7Ja7qK1XShupD4mgSZAvdK78tYgRsiTNszZAmEe6I8U4VoO1UXRDsWyW2ZAUUNpN8ZCFqJZB7');
+		$facebook->setAccessToken($provider->access_token);
 
-		$fb_uid = $facebook->getUser();
-		$query  = "SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$fb_uid}) AND is_app_user = 1";
-
+		//$fb_uid = $facebook->getUser();
+		$query  = "SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$provider->uid}) AND is_app_user = 1";
 		$params = array(
 			'method' => 'fql.query',
 			'query'  => $query,
 		);
 
-		//Run Query
-		$result = $facebook->api($params);
+		if (! $result = $facebook->api($params))
+		{
+			throw new Exception("Error Processing Request", 1);
+		}
 
-		return array('fb_uid' => $fb_uid, 'result' => $result);
+		$contacts = array();
+
+		foreach ($result as $info)
+		{
+			$contacts[] = new Model_Facebook_Friend($info);
+		}
+
+		return $contacts;
+
+		return array('result' => $result);
 	}
 
 	public function get_git()
@@ -178,13 +220,6 @@ class Controller_Debug extends Controller_App
 		return Response::forge('sent');
 	}
 
-	public function get_fb()
-	{
-		$friends = $this->user->get_registered_facebook_friends();
-		echo '<pre>';
-		echo var_dump($friends[1]['data']);
-		echo '</pre>';
-	}
 
 	public function get_friends()
 	{

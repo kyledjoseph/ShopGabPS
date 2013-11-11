@@ -1,6 +1,6 @@
 <?php
 
-class Model_User_Provider extends \Orm\Model
+class Model_User_Provider extends \Orm\Model // implements \Auth\UserProviderInterface
 {
 	protected static $_table_name = 'users_providers';
 	protected static $_properties = array(
@@ -27,6 +27,22 @@ class Model_User_Provider extends \Orm\Model
 		)
 	);
 
+	protected static $_has_many = array(
+		'metadata' => array(
+			'model_to' => 'Model_User_Metadata',
+			'key_from' => 'id',
+			'key_to'   => 'parent_id',
+			'cascade_delete' => true,
+		),
+	);
+
+	protected static $_eav = array(
+		'metadata' => array(
+			'attribute' => 'key',
+			'value' => 'value',
+		),
+	);
+
 	protected static $_observers = array(
 		'Orm\Observer_CreatedAt' => array(
 			'events' => array('before_insert'),
@@ -36,12 +52,50 @@ class Model_User_Provider extends \Orm\Model
 			'events' => array('before_save'),
 			'mysql_timestamp' => false,
 		),
+		'Orm\\Observer_Self' => array(
+			'events' => array('before_save'),
+			'property' => 'user_id',
+		),
 	);
+
+	public function _event_before_save()
+	{
+
+		foreach ($this->metadata as $metadata)
+		{
+			if ($metadata->user_id !== $this->user_id)
+			{
+				$metadata->user_id = $this->user_id;
+			}
+		}
+	}
+
+
+	public function update_access_token($access_token, $expires)
+	{
+		$this->access_token = $access_token;
+		$this->expires      = $expires;
+
+		return $this->save();
+	}
 
 	public function access_token_set()
 	{
 		return isset($this->access_token) and ! empty($this->access_token);
 	}
+
+	public function access_token_expired()
+	{
+		return empty($this->expires) or $this->expires < time();
+	}
+
+	public function access_token_valid()
+	{
+		return $this->access_token_set() and ! $this->access_token_expired();
+	}
+
+
+
 
 	public static function get_by_id($id)
 	{
@@ -60,6 +114,6 @@ class Model_User_Provider extends \Orm\Model
 
 	public static function get_by_provider_uid($provider, $uid)
 	{
-		return static::query()->where('provider', $provider)->where('provider_uid', $uid)->get_one();
+		return static::query()->where('provider', $provider)->where('uid', $uid)->get_one();
 	}
 }

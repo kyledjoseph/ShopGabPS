@@ -22,6 +22,21 @@
 return array(
 
 	/**
+	 * undefined_method
+	 */
+	'path' => '/user/auth/login/',
+
+	/**
+	 * undefined_method
+	 */
+    'callback_url' => Uri::create('authenticate'),
+    
+    /**
+     * undefined_method
+     */
+    'callback_transport' => 'get',
+
+	/**
 	 * link_multiple_providers
 	 *
 	 * Can multiple providers be attached to one user account

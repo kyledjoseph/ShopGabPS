@@ -169,7 +169,7 @@ class Controller_User extends Controller_App
 
 		$post = $this->post_data('name', 'email');
 
-		$this->user->display_name = $post->name;
+		$this->user->fullname = $post->name;
 		//$this->user->email        = $post->email;
 		$this->user->save();
 

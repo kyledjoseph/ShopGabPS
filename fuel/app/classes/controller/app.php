@@ -52,16 +52,13 @@ class Controller_App extends Controller_Base
 	{
 		if ($this->auth->check())
 		{
-			$user_id    = $this->auth->get_user_id()[1];
+			list($driver, $user_id) = $this->auth->get_user_id();
+
 			$this->user = Model_User::get_by_id($user_id);
 
-			if ($provider = $this->user->get_provider('facebook'))
+			if (! $provider = $this->user->get_provider('facebook') or ! $provider->access_token_valid())
 			{
-				$uri = Uri::segment(1);
-				if (! $provider->access_token_set() and $uri !== 'login' and $uri !== 'authenticate')
-				{
-					$this->redirect('login/facebook');
-				}
+				$this->auth->logout() and $this->redirect('user/auth/login/facebook');
 			}
 		}
 		else
@@ -74,9 +71,7 @@ class Controller_App extends Controller_Base
 	{
 		foreach (array('error', 'success', 'info') as $type)
 		{
-			$notice = Session::get_flash($type);
-
-			if (isset($notice))
+			if ($notice = Session::get_flash($type))
 			{
 				$this->template->notice = (object) array('type' => $type, 'message' => $notice);
 				break;
