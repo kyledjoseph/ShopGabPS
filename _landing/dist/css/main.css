@@ -4958,6 +4958,19 @@ body {
     font-size: 3em;
     margin-top: 0; }
 
+.foreground {
+  background-image: url(../img/foreground.png);
+  background-size: cover;
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  color: #fff;
+  text-align: center;
+  text-shadow: 2px 2px 1px rgba(0, 0, 0, 0.1); }
+  .foreground h1 {
+    font-family: adelle;
+    font-size: 3em;
+    margin-top: 0; }
+
 .align-right {
   text-align: right; }
 
