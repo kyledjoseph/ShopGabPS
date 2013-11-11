@@ -101,7 +101,7 @@ class Model_User_Provider extends \Orm\Model // implements \Auth\UserProviderInt
 		$this->access_token = $access_token;
 		$this->expires      = $expires;
 
-		return $this->save();
+		return true;
 	}
 
 
