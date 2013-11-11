@@ -4,11 +4,11 @@ $primary-color: #DF4892;
 $secondary-color: #2DBDCF;
 
 body {
-	font-family: museo-sans;
+	font-family: proxima-nova;
 }
 
 .background {
-	background-image: url(../img/claire.jpg);
+	background-image: url(../img/background.png);
 	background-size: cover;
 	background-position: bottom center;
 	color: #fff;
@@ -17,8 +17,8 @@ body {
 	h1 {
 		font-family: adelle;
 		font-size: 3em;
+		margin-top: 0;
 	}
-	cursor: pointer;
 }
 
 .align-right {
@@ -33,7 +33,7 @@ body {
 
 .sg-button-primary {
 	font-family: lobster;
-	font-size: 2em;
+	font-size: 1.4em;
 	margin: 0;
 	font-weight: 100;
 	text-shadow: 0.05em 0.05em 0 #9a3131;
@@ -42,7 +42,7 @@ body {
 	padding-top: .1em;
 	padding-bottom: .25em;
 	-webkit-font-smoothing: antialiased;
-	border-radius: .1em;
+	border-radius: .3em;
 	display: inline-block;
 	box-shadow: 0.08em 0.08em 0 #9c4040;
 	color: rgba(255, 255, 255, 0.95);
@@ -52,18 +52,19 @@ body {
 		text-decoration: none;
 		background-color: saturate($primary-color, 30%);
 	}
+	text-transform:uppercase;
 }
 
 .sg-button-secondary {
 	@extend .sg-button-primary;
-	font-family: museo-sans;
-	text-shadow: 0.05em 0.05em 0 darken($secondary-color, 20%);
+	font-family: proxima-nova;
+	text-shadow: 0.1em 0.1em 0 darken($secondary-color, 10%);
 	background-color: $secondary-color;
-	font-size: 1.5em;
+	font-size: 1.4em;
 	padding: 0.8em;
 	padding-top: .5em;
 	padding-bottom: .45em;
-	box-shadow: 0.1em 0.1em 0 darken($secondary-color, 10%);
+	box-shadow: 0.15em 0.15em 0 darken($secondary-color, 10%);
 	&:hover {
 		background-color: saturate($secondary-color, 30%);
 	}
@@ -79,16 +80,15 @@ body {
 }
 
 .call-to-action {
-	margin-top: 1em;
-
+	margin-top: .8em;
 }
+
 .cta-assist {
 	margin-top: 1.5em;
 	opacity: .9;
 	font-size: 1.5em;
 }
 .steps {
-	//margin-top: -10px;
 	background-color: #fff;
 	box-shadow: 0px -10px 10px rgba(0,0,0,0.1);
 	div {
@@ -149,6 +149,10 @@ body {
 
 .title {
 	padding-left: 45px;
+	img {
+		float: left;
+		margin-top: -10px;
+	}
 }
 
 .authentication {
@@ -196,7 +200,7 @@ body {
 	}
 	.sg-button-primary {
 		margin-top: 15px;
-		font-family: museo-sans;
+		font-family: proxima-nova;
 		font-size: 2.5em;
 		margin-bottom: 30px;
 	}
@@ -222,4 +226,24 @@ body {
 	a {
 		color: darken(#F4F3F2, 40%);
 	}
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+
+}
+
+/* Portrait tablet to landscape and desktop */
+@media (min-width: 768px) and (max-width: 979px) {
+
+}
+
+/* Landscape phone to portrait tablet */
+@media (max-width: 767px) {
+
+}
+
+/* Landscape phones and down */
+@media (max-width: 480px) {
+
 }
