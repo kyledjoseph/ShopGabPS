@@ -79,16 +79,8 @@ class Model_User_Metadata extends \Orm\Model
 	 */
 	public function _event_before_save()
 	{
-		if ($this->provider->frozen())
-		{
-			throw new Exception("Error Processing Request", 1);
-			
-		}
-		// throw new Exception("Error Processing Request {}", 1);
-		
 		// assign the user id that lasted updated this record
-		$this->user_id   = $this->user->id; // ($this->user_id = \Auth::get_user_id()) ? $this->user_id[1] : 0;
-		$this->parent_id = $this->provider->id;
+		
 	}
 
 	/**

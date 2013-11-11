@@ -158,10 +158,22 @@ class Controller_Bookmark extends Controller_App
 	 */
 	public function get_auth()
 	{
-		$this->opauth = Auth_Opauth::forge([
-			'callback_url' => Uri::create('authenticate/bookmark'),
-			'provider'     => 'facebook',
+		$opauth = Auth_Social::forge([
+			'provider'     => 'Facebook',
+			'callback_url' => Uri::create('bookmark/callback'),
 		]);
+	}
+
+	public function get_callback()
+	{
+		$opauth = Auth_Social::forge(false);
+
+		if (! $user = $opauth->login())
+		{
+			throw new Exception("Error Processing Request", 1);
+		}
+
+		$this->redirect('bookmark/view');
 	}
 
 	/**

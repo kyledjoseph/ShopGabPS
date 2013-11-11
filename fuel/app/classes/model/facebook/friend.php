@@ -35,9 +35,9 @@ class Model_Facebook_Friend extends Model
 	{
 		if (! $provider = Model_User_Provider::get_by_provider_uid('facebook', $this->identifier))
 		{
-			return false;
+			return null;
 		}
 
-		return isset($provider->user) ?: null;
+		return $provider->user ?: null;
 	}
 }

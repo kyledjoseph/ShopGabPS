@@ -181,16 +181,25 @@ class Model_User extends Auth\Model\Auth_User
 	 */
 	public function display_name()
 	{
+		// user metadata
 		if (isset($this->fullname) and ! empty($this->fullname))
 		{
 			return $this->fullname;
 		}
 
+		// facebook metadata
+		if ($provider = $this->get_provider('facebook') and ! empty($provider->fullname))
+		{
+			return $provider->fullname;
+		}
+
+		// username
 		if ($username = $this->username and ! empty($username))
 		{
 			return $username;
 		}
 		
+		// fallback to email
 		return $this->email;
 	}
 
@@ -595,8 +604,7 @@ class Model_User extends Auth\Model\Auth_User
 	 */
 	public function get_friend_by_id($friend_id)
 	{
-		$friendship = Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->get_one();
-		return isset($friendship) ? $friendship->friend : null;
+		return ($friendship = $this->get_friendship_by_user_id($friend_id)) ? $friendship->friend : null;
 	}
 
 	/**
@@ -613,24 +621,24 @@ class Model_User extends Auth\Model\Auth_User
 	 */
 	public function is_friend($friend_id)
 	{
-		$count = Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->count();
-		return $count > 0;
+		return Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->count() > 0;
 	}
 
 	/**
 	 * undefined_method
 	 */
-	public function add_friend($user)
+	public function add_friend(Model_User $user)
 	{
-		if ($this->is_friend($user->id))
+		if ($friend = $this->get_friend_by_id($user->id))
 		{
-			throw new Exception("user '{$this->id}' is already friends with '{$user_id}'");
+			return null;
 		}
 
 		$self = new Model_Friend;
 		$self->user_id           = $this->id;
 		$self->friend_id         = $user->id;
 		$self->friend_name       = $user->display_name();
+		$self->friend_email      = $user->email;
 		$self->hidden            = '0';
 		$self->friend_registered = '1';
 
@@ -638,72 +646,36 @@ class Model_User extends Auth\Model\Auth_User
 		$friend->user_id           = $user->id;
 		$friend->friend_id         = $this->id;
 		$friend->friend_name       = $this->display_name();
+		$friend->friend_email      = $this->email;
 		$friend->hidden            = '0';
 		$friend->friend_registered = '1';
 
-		return $self->save() and $friend->save();
+		return ($self->save() and $friend->save()) ? $friend : null;
 	}
+
 
 	/**
 	 * undefined_method
 	 */
-	public function get_registered_facebook_friends()
+	public function update_facebook_friends()
 	{
-		$facebook = new Facebook(array(
-			'appId'  => '168874813262398',
-			'secret' => '5aa0c283019c1f03cc5430559d80c0de',
-		));
+		$new_friends = array();
+		$provider    = $this->get_provider('facebook');
 
-		$facebook->setAccessToken('CAACZAlztBij4BAFlgDtZCCK0rb1Prbj1ZCa5LT885rI0y6UAfiA1YlA64cwnV9pXn4VVGG9Q0ZAJstEf3pqpEA60cOc3zQwSxQgoVI0MSsIX24Sc7Ja7qK1XShupD4mgSZAvdK78tYgRsiTNszZAmEe6I8U4VoO1UXRDsWyW2ZAUUNpN8ZCFqJZB7');
-
-		$fb_uid = $facebook->getUser();
-		$query  = "SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$fb_uid}) AND is_app_user = 1";
-
-		$params = array(
-			'method' => 'fql.query',
-			'query'  => $query,
-		);
-
-		//Run Query
-		$response = $facebook->api($params);
-
-		if (! $response || ! count( $response["data"]))
+		foreach ($provider->fb_get_app_friends() as $facebook_friend)
 		{
-			return array();
-		}
-
-		$contacts = array();
-
-		foreach ($response["data"] as $info)
-		{
-			$contacts[] = new Model_Facebook_Friend($info);
-		}
-
-		return $contacts;
-
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function add_registered_facebook_friends()
-	{
-		$total_added = 0;
-		foreach ($this->get_registered_facebook_friends() as $facebook_friend)
-		{
-			$friend = $facebook_friend->get_user();
-
-			if (isset($friend) and ! $this->is_friend($friend->id))
-			{
-				$this->add_friend($friend);
-				$total_added++;
+			if ($user = $facebook_friend->get_user() and ! $this->is_friend($user->id))
+			{	
+				if ($new_friend = $this->add_friend($user))
+				{
+					array_push($new_friends, $new_friend);
+				}
 			}
 		}
 
-		$this->fb_friends_last_updated = time();
-		$this->save();
+		$provider->fb_friends_last_updated = time();
 
-		return $total_added;
+		return $new_friends;
 	}
 
 	/**
@@ -794,8 +766,10 @@ class Model_User extends Auth\Model\Auth_User
 		}
 
 		$provider = Model_User_Provider::forge($data);
+		
+		$provider->save() and $this->update_facebook_friends();
 
-		return $provider->save() ? $provider : false;
+		return $provider ?: false;
 	}
 
 	

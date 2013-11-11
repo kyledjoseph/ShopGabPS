@@ -285,7 +285,7 @@ class Auth_Social
 		$provider->save();
 
 		// save the user data, verify the provider, and authenticate the user
-		if ($provider->save() and $user->save() and Auth::instance()->force_login((int) $user->id))
+		if ($user->save() and Auth::instance()->force_login((int) $user->id))
 		{
 		    return $user ?: false;
 		}

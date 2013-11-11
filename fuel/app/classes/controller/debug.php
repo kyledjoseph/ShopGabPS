@@ -37,35 +37,37 @@ class Controller_Debug extends Controller_App
 			throw new Exception("Provider");
 		}
 
-		$facebook = new Facebook(array(
-			'appId'  => '168874813262398',
-			'secret' => '5aa0c283019c1f03cc5430559d80c0de',
-		));
+		return $provider->fb_get_app_friends();
 
-		$facebook->setAccessToken($provider->access_token);
+		// $facebook = new Facebook(array(
+		// 	'appId'  => '168874813262398',
+		// 	'secret' => '5aa0c283019c1f03cc5430559d80c0de',
+		// ));
 
-		//$fb_uid = $facebook->getUser();
-		$query  = "SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$provider->uid}) AND is_app_user = 1";
-		$params = array(
-			'method' => 'fql.query',
-			'query'  => $query,
-		);
+		// $facebook->setAccessToken($provider->access_token);
 
-		if (! $result = $facebook->api($params))
-		{
-			throw new Exception("Error Processing Request", 1);
-		}
+		// //$fb_uid = $facebook->getUser();
+		// $query  = "SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$provider->uid}) AND is_app_user = 1";
+		// $params = array(
+		// 	'method' => 'fql.query',
+		// 	'query'  => $query,
+		// );
 
-		$contacts = array();
+		// if (! $result = $facebook->api($params))
+		// {
+		// 	throw new Exception("Error Processing Request", 1);
+		// }
 
-		foreach ($result as $info)
-		{
-			$contacts[] = new Model_Facebook_Friend($info);
-		}
+		// $contacts = array();
 
-		return $contacts;
+		// foreach ($result as $info)
+		// {
+		// 	$contacts[] = new Model_Facebook_Friend($info);
+		// }
 
-		return array('result' => $result);
+		// return $contacts;
+
+		// return array('result' => $result);
 	}
 
 	public function get_git()

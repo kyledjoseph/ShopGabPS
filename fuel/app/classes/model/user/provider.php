@@ -58,12 +58,14 @@ class Model_User_Provider extends \Orm\Model // implements \Auth\UserProviderInt
 		),
 	);
 
+	/**
+	 * undefined_method
+	 */
 	public function _event_before_save()
 	{
-
 		foreach ($this->metadata as $metadata)
 		{
-			if ($metadata->user_id !== $this->user_id)
+			if (! isset($metadata->user_id) or $metadata->user_id !== $this->user_id)
 			{
 				$metadata->user_id = $this->user_id;
 			}
@@ -71,12 +73,12 @@ class Model_User_Provider extends \Orm\Model // implements \Auth\UserProviderInt
 	}
 
 
-	public function update_access_token($access_token, $expires)
+	/**
+	 * provider access tokens
+	 */
+	public function access_token()
 	{
-		$this->access_token = $access_token;
-		$this->expires      = $expires;
-
-		return $this->save();
+		return $this->access_token;
 	}
 
 	public function access_token_set()
@@ -94,9 +96,66 @@ class Model_User_Provider extends \Orm\Model // implements \Auth\UserProviderInt
 		return $this->access_token_set() and ! $this->access_token_expired();
 	}
 
+	public function update_access_token($access_token, $expires)
+	{
+		$this->access_token = $access_token;
+		$this->expires      = $expires;
+
+		return $this->save();
+	}
 
 
 
+	/**
+	 * facebook specific methods, need to make a better place for these
+	 */
+	protected $_provider_libraries = null;
+
+	protected $_facebook = null;
+
+	public function provider_library($provider)
+	{
+		if (! $this->_facebook)
+		{
+			$this->_facebook = new Facebook(array(
+				'appId'  => '168874813262398',
+				'secret' => '5aa0c283019c1f03cc5430559d80c0de',
+			));
+
+			$this->_facebook->setAccessToken($this->access_token);
+		}
+
+		return $this->_facebook;
+	}
+
+	/**
+	 * get facebook friends
+	 */
+	public function fb_get_app_friends()
+	{
+		$facebook = $this->provider_library('facebook');
+		$query    = "SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$this->uid}) AND is_app_user = 1";
+		
+		if (! $result = $facebook->api(array('method' => 'fql.query', 'query'  => $query)))
+		{
+			throw new Exception("Could not retrieve Facebook friends");
+		}
+
+		$contacts = array();
+
+		foreach ($result as $info)
+		{
+			$contacts[] = new Model_Facebook_Friend($info);
+		}
+
+		return $contacts;
+	}
+
+
+
+	/**
+	 * static
+	 */
 	public static function get_by_id($id)
 	{
 		return static::query()->where('id', $id)->get_one();
