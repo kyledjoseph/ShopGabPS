@@ -49,15 +49,6 @@ body {
 	background-image: url(../img/table.png);
 	background-size: 100% 100%;
 	background-position: bottom center;
-	background-repeat: no-repeat;
-	color: #fff;
-	text-align: center;
-	text-shadow: 2px 2px 1px rgssh-add id_rsaba(0,0,0,0.1);
-	h1 {
-		font-family: adelle;
-		font-size: 3em;
-		margin-top: 0;
-	}
 }
 
 .align-right {
@@ -68,6 +59,11 @@ body {
 	padding-top: 1.5em;
 	padding-bottom: 1.5em;
 	margin-right: 0;
+}
+
+.strong-text {
+	position: relative;
+	top: 30px;
 }
 
 .sg-button-primary {
@@ -278,7 +274,12 @@ body {
 
 /* Landscape phones and down */
 @media (max-width: 480px) {
-
+	.strong-text {
+		top: 3em;
+		h1 {
+			font-size: 2em;
+		}
+	}
 }
 
 .clickthrough {
