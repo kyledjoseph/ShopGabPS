@@ -316,8 +316,9 @@ function resizeBackground () {
 
 	// Foreground should stretch to either half height or 120% width, whichever is larger.
 	var newHeight = Math.min(size.window.height*0.5, size.window.width * 1.2 / size.foreground.scale);
-	console.log(newHeight);
+	//$('.video').css('height', newHeight-(newHeight*.9));
 	$('.foreground').css('height', newHeight);
+	$('.video').css('width', (newHeight * size.foreground.scale)*0.82);
 	$('.product .box').height(size.product.width);
 }
 

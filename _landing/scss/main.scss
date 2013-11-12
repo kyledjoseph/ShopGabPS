@@ -33,6 +33,7 @@ body {
 	color: #fff;
 	text-align: center;
 	text-shadow: 2px 2px 1px rgba(0,0,0,0.1);
+	marg9n
 	h1 {
 		font-family: adelle;
 		font-size: 3em;
@@ -53,6 +54,15 @@ body {
 
 .align-right {
 	text-align: right;
+}
+
+.align-center {
+	text-align: center;
+}
+
+.faded {
+	opacity: .7;
+	font-size: .8em;
 }
 
 .header {
@@ -310,4 +320,15 @@ body {
 
 .clickthrough {
 	pointer-events:none;
+}
+
+.video {
+  margin: auto;
+  position: absolute;
+  top: 0; left: 0; bottom: 0; right: 0;
+}
+
+
+#signup .modal-body {
+	color: #444;
 }
