@@ -292,13 +292,33 @@ if(!jQuery)throw new Error("Bootstrap requires jQuery");+function(a){"use strict
 })(this, jQuery);
 
 function resizeBackground () {
-	var newHeight = $(window).height();
-	var headerHeight = $('.header').height();
-	$('.background').css('height', newHeight);
-	$('.foreground').css('height', newHeight*2/3);
+	var size = {
+		window: {
+			width: $(window).width(),
+			height: $(window).height()
+		},
+		header: {
+			width: $('.header').width(),
+			height: $('.header').height()
+		},
+		foreground: {
+			width: $('.foreground').width(),
+			height: $('.foreground').height(),
+			scale: 1.76
+		},
+		product: {
+			width: $('.product .box').first().width()
+		}
+	};
 
-	var productWidth = $('.product .box').first().width();
-	$('.product .box').height(productWidth);
+	// Background should stretch to entire window height
+	$('.background').css('height', size.window.height);
+
+	// Foreground should stretch to either half height or 110% width, whichever is larger.
+	var newHeight = Math.min(size.window.height*0.6, size.window.width * 1.2 / size.foreground.scale);
+	console.log(newHeight);
+	$('.foreground').css('height', newHeight);
+	$('.product .box').height(size.product.width);
 }
 
 $(document).ready(function () {
@@ -306,5 +326,5 @@ $(document).ready(function () {
 });
 
 $(window).resize(function() {
-  resizeBackground();
+	resizeBackground();
 });
