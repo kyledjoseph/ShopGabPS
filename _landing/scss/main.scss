@@ -250,6 +250,17 @@ body {
 	box-sizing: content-box;
 }
 
+.login-link {
+	color: rgba(255,255,255,.8);
+	top: 14px;
+	right: 14px;
+	position: relative;
+	&:hover {
+		text-decoration: none;
+		color: rgba(255,255,255,1)
+	}
+}
+
 .pages {
 	color: darken(#F4F3F2, 20%);
 	a {
@@ -279,6 +290,21 @@ body {
 		h1 {
 			font-size: 2em;
 		}
+	}
+}
+
+@media (max-width: 380px) {
+
+	.login-link {
+		top: 7px;
+	}
+
+	.title img {
+		width: 100%;
+	}
+
+	.authentication .sg-button-primary {
+		font-size: 1em;
 	}
 }
 
