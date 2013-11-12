@@ -26,7 +26,7 @@ grunt.initConfig({
     },
     watch: {
         scripts: {
-            files: ['js/*.js', 'scss/*.scss', 'html/*.html', 'img/*'],
+            files: ['js/*.js', 'scss/*.scss', 'html/*.html', 'img/*', 'vid/*'],
             tasks: ['default'],
             options: {
                 spawn: false,
@@ -67,6 +67,14 @@ grunt.initConfig({
                     filter: 'isFile'
                 } // includes files in path
             ]
+        },
+        videos : {
+            files : [
+            {
+                src: ['vid/*'],
+                dest: 'dist/vid/',
+                filter: 'isFile'
+            }]
         }
 }
 });
