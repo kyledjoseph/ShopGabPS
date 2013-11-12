@@ -73,6 +73,7 @@ grunt.initConfig({
             {
                 src: ['vid/*'],
                 dest: 'dist/vid/',
+                flatten: true,
                 filter: 'isFile'
             }]
         }
