@@ -16,7 +16,7 @@ class Controller_User_Auth extends Controller_App
 		$r = Input::get('r');
 
 		$this->opauth = Auth_Social::forge([
-			'provider' => $provider,
+			'provider' => 'Facebook',
 			// 'path'         => '/user/auth/login/',
 			// 'callback_url' => Uri::create('authenticate'),
 		]);
