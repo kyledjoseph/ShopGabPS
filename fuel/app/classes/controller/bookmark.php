@@ -161,6 +161,7 @@ class Controller_Bookmark extends Controller_App
 		$opauth = Auth_Social::forge([
 			'provider'     => 'Facebook',
 			'callback_url' => Uri::create('bookmark/callback'),
+			'path'         => '/bookmark/auth/',
 		]);
 	}
 
