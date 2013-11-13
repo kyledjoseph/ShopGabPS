@@ -264,8 +264,16 @@ class Auth_Social
 				'email'    => $this->get('auth.info.email', null),
 				'password' => $this->get('auth.info.password', null),
 			));
-			$user->save();
 		}
+		else
+		{
+			if (empty($user->username))
+			{
+				$user->username = $this->get('auth.info.nickname', $this->get('auth.info.email', Str::random('alnum', 16)));
+			}
+		}
+
+		$user->save();
 
 		// attach this authentication to the new user
 		$provider = $user->link_provider(array(
