@@ -218,7 +218,7 @@ class Auth_Social
 		// the user exists and is linked, log them in
 		if ($provider = Model_User_Provider::get_by_provider_uid($this->get('auth.provider'), $this->get('auth.uid')))
 		{
-			if (! isset($provider->user))
+			if (! isset($provider->user->id))
 			{
 				throw new OpauthException("Model_User_Provider found but missing Mosel_User id:{$provider->user_id}");
 			}
