@@ -324,8 +324,15 @@ function resizeBackground () {
 
 $(document).ready(function () {
 	resizeBackground();
+    mixpanel.track("Land");
 });
 
 $(window).resize(function() {
 	resizeBackground();
 });
+
+$('a[href="#signup"]').click(function() {
+    mixpanel.track("Sign Up"); 
+});
+
+mixpanel.track_links('a[href="/user/auth/login/facebook"]',"Login");
