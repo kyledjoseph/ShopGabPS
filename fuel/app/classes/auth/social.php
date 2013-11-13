@@ -223,6 +223,12 @@ class Auth_Social
 				throw new OpauthException("Model_User_Provider found but missing Mosel_User id:{$provider->user_id}");
 			}
 
+			if (empty($provider->user->username))
+			{
+				$provider->user->username = $this->get('auth.info.nickname', $this->get('auth.info.email', Str::random('alnum', 16)));
+				$provider->user->save();
+			}
+
 			// force a login with this user
 			if (! Auth::instance()->force_login($provider->user->id))
 			{
