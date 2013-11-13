@@ -27,30 +27,37 @@ class Controller_User_Auth extends Controller_App
 	 */
 	public function get_authenticate($action = null)
 	{
-		try
+		// try
+		// {
+		// get the Opauth object
+		$opauth = Auth_Social::forge(false);
+
+		if (! $user = $opauth->login())
 		{
-			// get the Opauth object
-			$opauth = Auth_Social::forge(false);
+			// check session for registration
+			// Session::get('auth-strategy')
+		}
 
-			if (! $user = $opauth->login())
-			{
-				// check session for registration
-				// Session::get('auth-strategy')
-			}
+		if (! Auth::check())
+		{
+			// throw new Exception("Error Processing Request", 1);
+		}
 
-			$user->add_invitations_as_friends();
+		Response::redirect('');
+
+		//$user->add_invitations_as_friends();
 
 
-			if ($action and $action == 'bookmark')
-			{
-				Response::redirect('bookmark');
-			}
-			else
-			{
-				Response::redirect('');
-			}
+		if ($action and $action == 'bookmark')
+		{
+			Response::redirect('bookmark');
+		}
+		else
+		{
 			
 		}
+			
+		// }
 
 		// deal with Opauth exceptions
 		// catch (OpauthException $e)
@@ -59,10 +66,10 @@ class Controller_User_Auth extends Controller_App
 		// }
 
 		// catch a user cancelling the authentication attempt
-		catch (OpauthCancelException $e)
-		{
-			$this->redirect('user/auth/login/facebook', 'error', '');
-		}
+		// catch (OpauthCancelException $e)
+		// {
+		// 	$this->redirect('user/auth/login/facebook', 'error', '');
+		// }
 	}
 
 	/**

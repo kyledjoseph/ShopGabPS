@@ -228,9 +228,7 @@ class Auth_Social
 			{
 			    throw new OpauthException('This user could not be logged in.');
 			}
-
-			//throw new Exception("Error Processing Request {$this->get('auth.credentials.secret', null)}", 1);
-
+			
 			// update provider access token
 			$provider->update_access_token(
 				$this->get('auth.credentials.token', null), 
@@ -261,11 +259,12 @@ class Auth_Social
 		// get the user by email, or create a one
 		if (! $user = Model_User::get_by_email($this->get('auth.info.email')))
 		{
-			$user = Model_User::create_user(array(
-				'username' => $this->get('auth.info.nickname'),
-				'email'    => $this->get('auth.info.email'),
-				'password' => $this->get('auth.info.password'),
+			$user = Model_User::forge(array(
+				'username' => $this->get('auth.info.nickname', $this->get('auth.info.email', Str::random('alnum', 16))),
+				'email'    => $this->get('auth.info.email', null),
+				'password' => $this->get('auth.info.password', null),
 			));
+			$user->save();
 		}
 
 		// attach this authentication to the new user
@@ -282,10 +281,14 @@ class Auth_Social
 
 		// set additional provider data
 		$provider->fullname = $this->get_user_fullname();
-		$provider->save();
+
+		if (! Auth::instance()->force_login((int) $user->id))
+		{
+			throw new Exception("Error Processing Request", 1);
+		}
 
 		// save the user data, verify the provider, and authenticate the user
-		if ($user->save() and Auth::instance()->force_login((int) $user->id))
+		if ($provider->save())
 		{
 		    return $user ?: false;
 		}
@@ -304,7 +307,7 @@ class Auth_Social
 			return $fullname;
 		}
 		
-		if ($first = $this->get('auth.info.full_name', null) and $last = $this->get('auth.info.last_name', null))
+		if ($first = $this->get('auth.info.first_name', null) and $last = $this->get('auth.info.last_name', null))
 		{
 			return $first . ' ' . $last;
 		}

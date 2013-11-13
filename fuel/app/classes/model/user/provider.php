@@ -136,9 +136,11 @@ class Model_User_Provider extends \Orm\Model // implements \Auth\UserProviderInt
 		$facebook = $this->provider_library('facebook');
 		$query    = "SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = {$this->uid}) AND is_app_user = 1";
 		
-		if (! $result = $facebook->api(array('method' => 'fql.query', 'query'  => $query)))
+		$result = $facebook->api(array('method' => 'fql.query', 'query'  => $query));
+
+		if (! $result)
 		{
-			throw new Exception("Could not retrieve Facebook friends");
+			return array();
 		}
 
 		$contacts = array();
