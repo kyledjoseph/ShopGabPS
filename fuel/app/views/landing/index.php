@@ -32,7 +32,7 @@
           </div>
           <div class="col-xs-6 authentication">
             <a class="pull-right align-center sg-button-primary" data-toggle="modal" href="#signup">Sign&nbsp;up</a>
-            <a class="pull-right login-link" href="/auth/facebook?r=">Log in</a>
+            <a class="pull-right login-link" href="/user/auth/login/facebook">Log in</a>
           </div>
           <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 strong-text">
             <h1 class="clickthrough">Shop&nbsp;the&nbsp;web with&nbsp;your&nbsp;friends</h1>
@@ -139,7 +139,7 @@
                   </div>
                   <div class="modal-body align-center">
                     <p>We're excited to have you join our growing network of social shoppers!<p>
-                      <a href="/auth/facebook?r="><img src="/landing/img/facebook-login-smaller.png"></a>
+                      <a href="/user/auth/login/facebook"><img src="/landing/img/facebook-login-smaller.png"></a>
                       <p class="faded">We promise your personal information will not be shared.<br>We promise we will <em>never</em> post to your Facebook timeline without your permission.</p>
                     </div>
 
