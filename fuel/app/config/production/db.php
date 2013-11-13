@@ -6,7 +6,7 @@
 return array(
 	'default' => array(
 		'connection'  => array(
-			'dsn'        => 'mysql:host=localhost;dbname=shopgab',
+			'dsn'        => 'mysql:host=localhost;dbname=shopgab_production',
 			'username'   => 'root',
 			'password'   => 'RLJGwdbsEQ6pbJ6',
 		),
