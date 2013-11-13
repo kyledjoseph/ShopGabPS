@@ -4,17 +4,39 @@ class Model_User extends Auth\Model\Auth_User
 {
 	protected static $_table_name = 'users';
 	protected static $_properties = array(
+		// 'id',
+		// 'username',
+		// 'password',
+		// 'group_id',
+		// 'email',
+		// 'last_login',
+		// 'previous_login',
+		// 'login_hash',
+		// 'user_id',
+		// 'created_at',
+		// 'updated_at',
+
+
 		'id',
 		'username',
 		'password',
+		'group',
 		'group_id',
 		'email',
+		'display_name',
+		'avatar_type',
 		'last_login',
 		'previous_login',
 		'login_hash',
+		'profile_fields',
+		'reset_code',
+		'reset_created_at',
+		'fb_friends_last_updated',
+		'welcome_message',
 		'user_id',
 		'created_at',
 		'updated_at',
+
 	);
 
 	protected static $_belongs_to = array(
