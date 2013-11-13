@@ -21,7 +21,7 @@ class Opauth
 
 
 			// move row from user_auths to users_providers
-			list($insert_id, $rows_affected) = \DB::insert('users_providers')->set(array(
+			list($provider_insert_id, $provider_rows_affected) = \DB::insert('users_providers')->set(array(
 				'id'            => $user_auth->id,
 				'parent_id'     => $user_auth->user_id,
 				'provider'      => $user_auth->provider,
@@ -37,8 +37,8 @@ class Opauth
 
 
 			// move row from user_auths to users_metadata
-			list($insert_id, $rows_affected) = \DB::insert('users_metadata')->set(array(
-				'parent_id' => $user_auth->user_id,
+			list($metadata_insert_id, $metadata_rows_affected) = \DB::insert('users_metadata')->set(array(
+				'parent_id' => $provider_insert_id,
 				'key'       => 'website',
 				'value'     => $user_auth->website_url,
 				'user_id'   => $user_auth->user_id,

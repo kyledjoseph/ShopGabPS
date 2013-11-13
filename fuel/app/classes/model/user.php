@@ -37,13 +37,6 @@ class Model_User extends Auth\Model\Auth_User
 	);
 
 	protected static $_has_many = array(
-		// 'authentications' => array(
-		// 	'key_from' => 'id',
-		// 	'model_to' => 'Model_User_Auth',
-		// 	'key_to' => 'user_id',
-		// 	'cascade_save' => true,
-		// 	'cascade_delete' => true,
-		// ),
 		'providers' => array(
 			'key_from' => 'id',
 			'model_to' => 'Model_User_Provider',
@@ -148,6 +141,11 @@ class Model_User extends Auth\Model\Auth_User
 			'events' => array('before_save', 'after_insert')
 		),
 	);
+
+	public static function _init()
+	{
+		// throw new Exception("Error Processing Request", 1);
+	}
 
 	public function _event_after_insert()
 	{
@@ -843,11 +841,7 @@ class Model_User extends Auth\Model\Auth_User
 	 */
 	public static function create_user($info)
 	{
-		$user = static::forge([
-			'username' => isset($info['nickname']) ? $info['nickname'] : null,
-			'email'    => isset($info['email'])    ? $info['email']    : null,
-			'password' => isset($info['password']) ? $info['password'] : null,
-		]);
+		$user = static::forge($info);
 		return $user->save() ? $user : false;
 	}
 

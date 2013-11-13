@@ -50,20 +50,18 @@ class Controller_App extends Controller_Base
 
 	protected function _init_user()
 	{
-		if ($this->auth->check())
+		if (! $this->auth->check())
 		{
-			list($driver, $user_id) = $this->auth->get_user_id();
-
-			$this->user = Model_User::get_by_id($user_id);
-
-			if (! $provider = $this->user->get_provider('facebook') or ! $provider->access_token_valid())
-			{
-				$this->auth->logout() and $this->redirect('user/auth/login/facebook');
-			}
+			return $this->user = null;
 		}
-		else
+		
+		list($driver, $user_id) = $this->auth->get_user_id();
+
+		if (! $this->user = Model_User::get_by_id($user_id) or 
+			! $provider = $this->user->get_provider('facebook') or 
+			! $provider->access_token_valid())
 		{
-			$this->user = null;
+			$this->auth->logout() and $this->redirect('user/auth/login/facebook');
 		}
 	}
 
