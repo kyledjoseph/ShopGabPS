@@ -318,7 +318,10 @@ function resizeBackground () {
 	var newHeight = Math.min(size.window.height*0.5, size.window.width * 1.1 / size.foreground.scale);
 	//$('.video').css('height', newHeight-(newHeight*.9));
 	$('.foreground').css('height', newHeight);
-	$('.video').css('width', (newHeight * size.foreground.scale)*0.82);
+	var videoWidth = (newHeight * size.foreground.scale)*0.82;
+	var videoHeight = videoWidth*0.56;
+	$('.video').css('width', videoWidth);
+	$('.video').css('height', videoHeight);
 	$('.product .box').height(size.product.width);
 }
 
