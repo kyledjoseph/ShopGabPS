@@ -22,19 +22,8 @@ The latest SQL dump can be found in the _db folder in the root of the repository
 
 #### 4. Set up Local Domain
 
-Edit your hosts file at `/private/etc/hosts`.
-
-    sudo nano /private/etc/hosts
-
-Point `127.0.0.1` to `shopgab.dev` in your hosts file.
-
-    127.0.0.1 shopgab.dev
-    
-#### 5. Set up remotes
-
 ```
-git remote add deploy root@shopgab.com:/opt/git/shopgab.git
-git remote add test root@shopgab.com:/opt/git/test.git
+sudo echo "127.0.0.1 shopgab.dev" >> /etc/hosts
 ```
 
 ## Development
