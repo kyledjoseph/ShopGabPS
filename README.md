@@ -13,7 +13,7 @@ Social shopping, powered by Bootstrap & FuelPHP.
 #### 2. Clone Github Repository
 
 ```
-git clone git@github.com:kyledjoseph/shopgab.git && cd shopgab && bin/install
+git clone https://github.com/kyledjoseph/shopgab.git && cd shopgab && bin/install
 ```
 
 #### 3. Import MySQL dump
