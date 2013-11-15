@@ -1,0 +1,8 @@
+#!/bin/sh
+git submodule init
+git submodule update
+php composer.phar self-update
+php composer.phar update
+curl get.fuelphp.com/oil | sh
+oil r install
+
