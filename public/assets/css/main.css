@@ -2587,6 +2587,15 @@ footer .footer-bottom .footer-logo {
 	display: none;
 }
 
+.dropdown-menu.dropdown-left {
+	left: -115px;
+	text-align: right;
+	color: white;
+}
+
+.dropdown-menu.dropdown-left a:link {
+	color: white;
+}
 
 
 
