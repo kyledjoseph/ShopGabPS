@@ -15,7 +15,7 @@
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 					<i class="icon-wrench faded"></i>
 				</a>
-				<ul class="dropdown-menu">
+				<ul class="dropdown-menu dropdown-left">
 					<li><?= Html::anchor('account', 'Account') ?></li>
 					<li><?= Html::anchor('logout', 'Logout') ?></li>
 				</ul>

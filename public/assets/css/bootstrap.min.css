@@ -729,3 +729,14 @@ body>.row{margin-left:15px;margin-right:15px}
 .icon-comments-alt{color:#283a77}
 .col-sort-by{padding-top:1em}
 @media (min-width:768px){.landing-text{padding-top:30px;text-align:left;padding-bottom:0} .col-sort-by{padding-top:0} .pushups{padding-top:0}}@media (min-width:992px){.landing-text{padding-top:100px}}
+
+
+.dropdown-menu.dropdown-left {
+	left: -115px;
+	text-align: right;
+	color: white;
+}
+
+.dropdown-menu.dropdown-left a:hover {
+	color: white;
+}
