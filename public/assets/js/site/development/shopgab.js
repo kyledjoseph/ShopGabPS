@@ -4,7 +4,7 @@
 	 */
 	var shopgab = {
 
-		domain:   'shopgab.dev',
+		domain:   document.domain,
 		protocol: 'http',
 
 		/**
