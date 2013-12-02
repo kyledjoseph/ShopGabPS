@@ -491,7 +491,8 @@
 		 */
 		comment: function()
 		{
-			var product_id = $(this).attr('data-product-id');
+			var product_id = $(this).attr('data-product-id'),
+				comment    = $(this).find("input[name=comment]").val();
 
 			shopgab.log('shopgab.quest.product.comment(' + product_id + ')');
 
@@ -500,7 +501,7 @@
 				type: 'POST',
 				dataType: 'json',
 				data: {
-					comment: shopgab.quest.product.comment_value(),
+					comment: comment,
 				},
 				success: function(response) {
 					if (response.success)
@@ -524,10 +525,10 @@
 			return false;
 		},
 
-		comment_value: function()
-		{
-			return $(".comment input[name=comment]").val();
-		},
+		// comment_value: function()
+		// {
+		// 	return $(".comment input[name=comment]").val();
+		// },
 
 		append_comment: function(view)
 		{
