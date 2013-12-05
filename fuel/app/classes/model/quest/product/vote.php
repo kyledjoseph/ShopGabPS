@@ -41,6 +41,10 @@ class Model_Quest_Product_Vote extends \Orm\Model
 		),
 	);
 
+	public function get_quest()
+	{
+		return $this->quest_product->quest;
+	}
 
 	public function is_like()
 	{
@@ -55,15 +59,21 @@ class Model_Quest_Product_Vote extends \Orm\Model
 	public function change_to_like()
 	{
 		$this->vote = '1';
-		$notice = Model_Notification::new_like($this->user_id, $this->quest_product->quest, $this->id);
-		return $this->save() and $this->quest_product->cache_votes();
+		$this->save();
+		$this->quest_product->cache_votes();
+		$this->quest_product->quest->trigger('like', [$this]);
+
+		return true;
 	}
 
 	public function change_to_dislike()
 	{
 		$this->vote = '0';
-		$notice = Model_Notification::new_dislike($this->user_id, $this->quest_product->quest, $this->id);
-		return $this->save() and $this->quest_product->cache_votes();
+		$this->save();
+		$this->quest_product->cache_votes();
+		$this->quest_product->quest->trigger('dislike', [$this]);
+
+		return true;
 	}
 
 

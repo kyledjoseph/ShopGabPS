@@ -93,7 +93,7 @@ class Controller_Bookmark extends Controller_App
 					return array('success' => true, 'message' => 'invalid_quest_id');
 				}
 
-				$quest->add_product($product->id);
+				$quest->add_product($product);
 				break;
 
 			case 'friend':
@@ -110,14 +110,14 @@ class Controller_Bookmark extends Controller_App
 					return array('success' => true, 'message' => 'invalid_friend_quest_id');
 				}
 
-				$quest->add_product($product->id, $this->user->id);
+				$quest->recommend_product($product, $this->user);
 
 				break;
 
 			case 'new':
 
 				$quest = $this->user->create_quest($post->new_quest_name, '', '0');
-				$quest->add_product($product->id);
+				$quest->add_product($product);
 				break;
 				
 			default:

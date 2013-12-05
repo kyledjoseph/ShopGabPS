@@ -246,17 +246,21 @@ class Controller_Quests extends Controller_App
 		}
 
 		// has the user already voted?
-		if (! $quest_product->has_user_voted($this->user->id))
-		{
-			$quest_product->like($this->user->id);
-		}
-		else
-		{
-			if ($vote = $quest_product->user_get_vote($this->user->id) and $vote->is_dislike())
-			{
-				$vote->change_to_like();
-			}
-		}
+		// if (! $quest_product->has_user_voted($this->user->id))
+		// {
+		// 	$quest_product->like($this->user->id);
+		// }
+		// else
+		// {
+		// 	if ($vote = $quest_product->user_get_vote($this->user->id) and $vote->is_dislike())
+		// 	{
+		// 		$vote->change_to_like();
+		// 	}
+		// }
+
+
+		$quest_product->like($this->user);
+
 
 		return $this->is_ajax_request()
 			? array('success' => true, 'message' => 'quest_product_liked', 'view' => View::forge('quests/votes', array('quest_product' => $quest_product, 'user' => $this->user))->render())
@@ -290,17 +294,19 @@ class Controller_Quests extends Controller_App
 		}
 
 		// has the user already voted?
-		if (! $quest_product->has_user_voted($this->user->id))
-		{
-			$quest_product->dislike($this->user->id);
-		}
-		else
-		{
-			if ($vote = $quest_product->user_get_vote($this->user->id) and $vote->is_like())
-			{
-				$vote->change_to_dislike();
-			}
-		}
+		// if (! $quest_product->has_user_voted($this->user->id))
+		// {
+		// 	$quest_product->dislike($this->user->id);
+		// }
+		// else
+		// {
+		// 	if ($vote = $quest_product->user_get_vote($this->user->id) and $vote->is_like())
+		// 	{
+		// 		$vote->change_to_dislike();
+		// 	}
+		// }
+
+		$quest_product->dislike($this->user);
 
 		return $this->is_ajax_request()
 			? array('success' => true, 'message' => 'quest_product_liked', 'view' => View::forge('quests/votes', array('quest_product' => $quest_product, 'user' => $this->user))->render())

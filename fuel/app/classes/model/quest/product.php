@@ -73,6 +73,12 @@ class Model_Quest_Product extends \Orm\Model
 		),
 	);
 
+
+	public function event_type()
+	{
+		return 'product';
+	}
+
 	public function was_added_by_owner()
 	{
 		if (empty($this->added_by))
@@ -155,25 +161,48 @@ class Model_Quest_Product extends \Orm\Model
 		return Model_Quest_Product_Vote::query()->where('quest_product_id', $this->id)->where('user_id', $user_id)->get_one();
 	}
 
-	public function like($user_id)
-	{
-		$vote   = Model_Quest_Product_Vote::create_like($this->id, $user_id);
-		$notice = Model_Notification::new_like($user_id, $this->quest, $vote->id);
 
-		$this->quest->add_participant($user_id);
+
+
+	public function like(Model_User $user)
+	{
+		if ($vote = $this->user_get_vote($this->user->id) and $vote->is_dislike())
+		{
+			$vote->change_to_like();
+		}
+		else
+		{
+			$vote = Model_Quest_Product_Vote::create_like($this->id, $user->id);
+			$this->quest->add_participant($user->id);
+		}
 		
+		//old $notice = Model_Quest_Notification::new_like($user->id, $this->quest, $vote->id);
+		$this->quest->trigger('like', [$vote]);
+
 		return $vote and $this->cache_votes();
 	}
 
-	public function dislike($user_id)
+	public function dislike(Model_User $user)
 	{
-		$vote   = Model_Quest_Product_Vote::create_dislike($this->id, $user_id);
-		$notice = Model_Notification::new_dislike($user_id, $this->quest, $vote->id);
+		// has the user already voted?
+		if ($vote = $this->user_get_vote($user->id) and $vote->is_like())
+		{
+			$vote->change_to_dislike();
+		}
+		else
+		{
+			$vote = Model_Quest_Product_Vote::create_dislike($this->id, $user->id);
+			$this->quest->add_participant($user->id);
+		}
 
-		$this->quest->add_participant($user_id);
+		//old $notice = Model_Quest_Notification::new_dislike($user->id, $this->quest, $vote->id);
+		$this->quest->trigger('dislike', [$vote]);
 
 		return $vote and $this->cache_votes();
 	}
+
+
+
 
 	public function like_url()
 	{
@@ -218,8 +247,9 @@ class Model_Quest_Product extends \Orm\Model
 	public function add_comment($user_id, $text)
 	{
 		$comment = Model_Quest_Product_Comment::create_comment($this->id, $user_id, $text);
-		$notice  = Model_Notification::new_comment($user_id, $this->quest, $comment->id);
+		//$notice  = Model_Quest_Notification::new_comment($user_id, $this->quest, $comment->id);
 
+		$this->quest->trigger('comment', [$comment]);
 		$this->quest->add_participant($user_id);
 
 		return $comment;
@@ -234,6 +264,23 @@ class Model_Quest_Product extends \Orm\Model
 	public function remove()
 	{
 		$this->delete();
+	}
+
+
+
+
+
+
+
+	public static function add_quest_product($quest, $attr)
+	{
+		$product = static::forge($attr);
+		$product->quest = $quest;
+		$product->save();
+
+		$this->quest->trigger('product', [$product]);
+
+		return $product;
 	}
 
 	public static function get_by_id($id)

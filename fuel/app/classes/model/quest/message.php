@@ -61,6 +61,11 @@ class Model_Quest_Message extends \Orm\Model
 	);
 
 
+	public function get_quest()
+	{
+		return $this->quest;
+	}
+
 	public function user_is_owner($user_id)
 	{
 		return ($this->user_id == $user_id);

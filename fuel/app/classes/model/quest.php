@@ -2,6 +2,8 @@
 
 class Model_Quest extends \Orm\Model
 {
+	use \Fuel\Event\EventTrait;
+
 	protected static $_properties = array(
 		'id',
 		'url',
@@ -55,6 +57,9 @@ class Model_Quest extends \Orm\Model
 		'Observer_Quest_Url' => array(
 			'events' => array('before_insert'),
 		),
+		'Orm\\Observer_Self' => array(
+			'events' => array('after_create', 'after_load', 'before_insert'),
+		),
 		'Orm\Observer_CreatedAt' => array(
 			'events' => array('before_insert'),
 			'mysql_timestamp' => false,
@@ -65,6 +70,41 @@ class Model_Quest extends \Orm\Model
 		),
 	);
 
+
+	/**
+	 * Quest Events
+	 */
+	public function _event_after_create()
+	{
+		$this->_init_events();
+	}
+	public function _event_after_load()
+	{
+		$this->_init_events();
+	}
+
+	public function _init_events()
+	{
+		$event_types = [
+			'like',    // Model_Quest_Product_Vote
+			'dislike', // Model_Quest_Product_Vote
+			'comment', // Model_Quest_Product_Comment
+			'message', // Model_Quest_Message
+			'product', // Model_Quest_Product
+		//	'expired', // Model_Quest
+		];
+
+		foreach ($event_types as $event_type)
+		{
+			// $this->on($event_type, array($this, "on_event_{$event_type}"));
+			$this->on($event_type, function($event, $model) {
+				return Model_Quest_Notification::new_notification($model, $event);
+			}, $this);
+		}
+	}
+
+
+	
 	
 
 	public function name()
@@ -341,21 +381,34 @@ class Model_Quest extends \Orm\Model
 	/**
 	 *
 	 */
-	public function add_product($product_id, $added_by = 0)
+	public function add_product(Model_Product $product)
 	{
-		$added_by = ($added_by == 0) ? $this->user_id : $added_by;
-
-		$quest_product = Model_Quest_Product::forge(array(
-			'quest_id' => $this->id,
+		$product = Model_Quest_Product::add_quest_product($this, array(
 			'product_id' => $product_id,
-			'added_by' => $added_by,
+			'added_by'   => $this->user->id,
 		));
 
-		$notice = Model_Notification::new_product($this->user_id, $this, $quest_product->id);
+		$this->trigger('product', [$product]);
 
-		$this->add_participant($added_by);
+		return $product ?: false;
+	}
 
-		return $quest_product->save() ? $quest_product : null;
+	/**
+	 *
+	 */
+	public function recommend_product(Model_Product $product, Model_User $added_by)
+	{
+		$product = Model_Quest_Product::add_quest_product($this, array(
+			'product_id' => $product->id,
+			'added_by'   => $added_by->id,
+		));
+
+		if (! $this->is_participant())
+		{
+			$this->add_participant($added_by);
+		}
+
+		return $product ?: false;
 	}
 
 
@@ -365,11 +418,14 @@ class Model_Quest extends \Orm\Model
 	 */
 	public function new_message($user_id, $message)
 	{
-		$message = Model_Quest_Message::create_message($this->id, $user_id, $message);
-		$this->add_participant($user_id);
-
-		Model_Notification::new_message($user_id, $this, $message->id);
-
+		if ($message = Model_Quest_Message::create_message($this->id, $user_id, $message))
+		{
+			$this->add_participant($user_id);
+			$this->trigger('message', [$message]);
+		}
+		
+		// Model_Quest_Notification::new_message($user_id, $this, $message->id);
+		
 		return $message;
 	}
 
@@ -413,7 +469,13 @@ class Model_Quest extends \Orm\Model
 			return true;
 		}
 
-		return Model_Quest_Participant::add_participant($this->id, $user_id);
+		if ($participant = Model_Quest_Participant::add_participant($this->id, $user_id))
+		{
+			$this->trigger('participant', $participant);
+			return true;
+		}
+
+		return false;
 	}
 
 
@@ -423,19 +485,19 @@ class Model_Quest extends \Orm\Model
 	 */
 	public function get_unseen_notifications()
 	{
-		return Model_Notification::query()->where('quest_id', $this->id)->where('seen_at', null)->get();
+		return Model_Quest_Notification::query()->where('quest_id', $this->id)->where('viewed_at', null)->get();
 	}
 
 	public function total_unseen_notifications()
 	{
-		return Model_Notification::query()->where('quest_id', $this->id)->where('seen_at', null)->count();
+		return Model_Quest_Notification::query()->where('quest_id', $this->id)->where('viewed_at', null)->count();
 	}
 
 	public function mark_notifications_seen()
 	{
 		foreach ($this->get_unseen_notifications() as $notification)
 		{
-			$notification->mark_seen();
+			$notification->mark_viewed();
 		}
 	}
 
@@ -444,7 +506,7 @@ class Model_Quest extends \Orm\Model
 		list($y, $m, $d) = explode('-', $date);
 		$start = mktime(0, 0, 0, $m, $d, $y);
 		$end   = mktime(0, 0, 0, $m, $d+1, $y);
-		return Model_Notification::query()->where('quest_id', $this->id)->where('created_at', '>=', $start)->where('created_at', '<', $end)->get();
+		return Model_Quest_Notification::query()->where('quest_id', $this->id)->where('created_at', '>=', $start)->where('created_at', '<', $end)->get();
 	}
 
 

@@ -41,6 +41,11 @@ class Model_Quest_Product_Comment extends \Orm\Model
 		),
 	);
 
+	public function get_quest()
+	{
+		return $this->quest_product->quest;
+	}
+
 	public function time_ago()
 	{
 		$now = time();
@@ -59,7 +64,10 @@ class Model_Quest_Product_Comment extends \Orm\Model
 			'user_id' => $user_id,
 			'comment' => $comment,
 		));
-		return $comment->save() ? $comment : null;
+		
+		$comment->save() and $comment->quest_product->quest->trigger('comment', [$comment]);
+
+		return $comment;
 	}
 
 	public static function get_by_id($id)

@@ -63,10 +63,17 @@ class Model_Product extends \Orm\Model
 	);
 
 
+	public function get_quest()
+	{
+		return $this->quest;
+	}
+
 	public function name()
 	{
 		return $this->name;
 	}
+
+
 
 	public function description()
 	{

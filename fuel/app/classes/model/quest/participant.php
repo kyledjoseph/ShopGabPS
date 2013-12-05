@@ -18,6 +18,13 @@ class Model_Quest_Participant extends \Orm\Model
 			'cascade_save' => true,
 			'cascade_delete' => false,
 		),
+		'quest' => array(
+			'key_from' => 'quest_id',
+			'model_to' => 'Model_User',
+			'key_to' => 'id',
+			'cascade_save' => true,
+			'cascade_delete' => false,
+		),
 	);
 
 	protected static $_observers = array(
@@ -30,6 +37,11 @@ class Model_Quest_Participant extends \Orm\Model
 			'mysql_timestamp' => false,
 		),
 	);
+
+	public function get_quest()
+	{
+		return $this->quest;
+	}
 
 	public static function add_participant($quest_id, $user_id)
 	{
