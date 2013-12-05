@@ -18,3 +18,5 @@ nbproject/
 
 /public/assets/img/products/
 .pr
+public/access.log
+public/error.log
