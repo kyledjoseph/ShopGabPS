@@ -292,11 +292,17 @@ class Controller_User extends Controller_App
     $val->add_field('password', 'Password', 'required|min_length[6]|max_length[10]');
     $val->add_field('confirm', 'Confirm password', 'match_field[password]');
 
+    $group_id = \Fuel\Core\Input::post('login_type') == 'professional' ? Model_User::PROFESSIONAL_GROUP_ID : Model_User::CLIENT_GROUP_ID;
+    if ($group_id == Model_User::CLIENT_GROUP_ID) {
+      // if client register check parent existence
+      $val->add_field('psid', 'Confirm password', 'required|user_id_exist');
+    } // if
+
     if ($val->run()) {
       // validation passed - create user
       $email = \Fuel\Core\Input::post('email');
       $username = substr($email, 0, strpos($email, '@'));
-      $group_id = \Fuel\Core\Input::post('login_type') == 'professional' ? Model_User::PROFESSIONAL_GROUP_ID : Model_User::CLIENT_GROUP_ID;
+
 
       $user_id = Auth::create_user($username,\Fuel\Core\Input::post('password'),$email,$group_id);
 
@@ -308,11 +314,13 @@ class Controller_User extends Controller_App
           'pricing_plan_started_on' => time()
         ]);
 
-        $this->redirect('/', 'info', 'You have successfully registered to ShopGap. Please login');
+        $professional->save();
       } else {
         // create client user model
-
+        
       } // if
+
+      $this->redirect('/', 'info', 'You have successfully registered to ShopGap. Please login');
     } else {
       var_dump($val->error_message());die();
     } // if
