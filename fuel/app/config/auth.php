@@ -11,7 +11,7 @@
  */
 
 return array(
-	'driver' => 'Ormauth',
+	'driver' => 'Simpleauth',
 	'verify_multiple_logins' => false,
 	'salt' => 'RVkNHuwhz7Ru842',
 );

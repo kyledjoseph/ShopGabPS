@@ -280,5 +280,40 @@ class Controller_User extends Controller_App
 
 		$this->redirect('user/account', 'success', 'Password changed');
 	}
-	
+
+  /**
+   * Post to register
+   */
+  public function post_register() {
+    $val = \Fuel\Core\Validation::forge();
+    $val->add_callable('MyRules');
+
+    $val->add_field('email', 'Email address', 'required|valid_email|unique[users.email]');
+    $val->add_field('password', 'Password', 'required|min_length[6]|max_length[10]');
+    $val->add_field('confirm', 'Confirm password', 'match_field[password]');
+
+    if ($val->run()) {
+      // validation passed - create user
+      $email = \Fuel\Core\Input::post('email');
+      $username = substr($email, 0, strpos($email, '@'));
+      $group_id = \Fuel\Core\Input::post('login_type') == 'professional' ? Model_User::PROFESSIONAL_GROUP_ID : Model_User::CLIENT_GROUP_ID;
+
+      $user_id = Auth::create_user($username,\Fuel\Core\Input::post('password'),$email,$group_id);
+
+      if ($group_id == Model_User::PROFESSIONAL_GROUP_ID) {
+        // create professional user model
+        $professional = new Model_Professional([
+          'user_id' => $user_id,
+          'pricing_plan_type' => Model_Professional::TRIAL_PRICING_PLAN,
+          'pricing_plan_started_on' => time()
+        ]);
+        $professional->save();
+      } else {
+        // create client user model
+
+      } // if
+    } else {
+      var_dump($val->error_message());die();
+    }
+  } // post_register
 }

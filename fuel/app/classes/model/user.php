@@ -1,61 +1,26 @@
 <?php
 
-class Model_User extends Auth\Model\Auth_User
-{
+class Model_User extends Auth\Model\Auth_User {
+
+  const CLIENT_GROUP_ID = 1;
+  const PROFESSIONAL_GROUP_ID = 50;
+  const ADMIN_GROUP_ID = 100;
+
 	protected static $_table_name = 'users';
 	protected static $_properties = array(
-		// 'id',
-		// 'username',
-		// 'password',
-		// 'group_id',
-		// 'email',
-		// 'last_login',
-		// 'previous_login',
-		// 'login_hash',
-		// 'user_id',
-		// 'created_at',
-		// 'updated_at',
-
-
 		'id',
 		'username',
 		'password',
 		'group',
-		'group_id',
 		'email',
 		'display_name',
-		'avatar_type',
 		'last_login',
-		'previous_login',
 		'login_hash',
 		'profile_fields',
 		'reset_code',
-		'reset_created_at',
-		'fb_friends_last_updated',
 		'welcome_message',
-		'user_id',
 		'created_at',
-		'updated_at',
-
-	);
-
-	protected static $_belongs_to = array(
-		'group' => array(
-			'model_to' => 'Model\\Auth_Group',
-			'key_from' => 'group_id',
-			'key_to'   => 'id',
-			'cascade_delete' => false,
-		),
-	);
-
-	protected static $_has_one = array(
-		'admin' => array(
-			'key_from' => 'id',
-			'model_to' => 'Model_Admin',
-			'key_to' => 'user_id',
-			'cascade_save' => true,
-			'cascade_delete' => true,
-		)
+		'updated_at'
 	);
 
 	protected static $_has_many = array(
@@ -135,12 +100,6 @@ class Model_User extends Auth\Model\Auth_User
 			'key_to'   => 'user_id',
 			'cascade_delete' => true,
 		),
-		'userpermission' => array(
-			'model_to' => 'Model\\Auth_Userpermission',
-			'key_from' => 'id',
-			'key_to'   => 'user_id',
-			'cascade_delete' => false,
-		),
 	);
 
 	protected static $_eav = array(
@@ -207,12 +166,6 @@ class Model_User extends Auth\Model\Auth_User
 			return $this->fullname;
 		}
 
-		// facebook metadata
-		if ($provider = $this->get_provider('facebook') and ! empty($provider->fullname))
-		{
-			return $provider->fullname;
-		}
-
 		// username
 		if ($username = $this->username and ! empty($username))
 		{
@@ -228,7 +181,8 @@ class Model_User extends Auth\Model\Auth_User
 	 */
 	public function is_admin()
 	{
-		return isset($this->admin->id);
+    // @TODO is admin
+		return false;
 	}
 
 	/**
@@ -254,16 +208,6 @@ class Model_User extends Auth\Model\Auth_User
 	{
 		return date($format, $this->last_login);
 	}
-
-	/**
-	 * Does the user have a password set
-	 */
-	public function has_password()
-	{
-		return ! empty($this->password);
-	}
-
-
 
 	// /**
 	//  * undefined_method

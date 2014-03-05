@@ -5153,14 +5153,12 @@ body {
   padding-bottom: 15px;
   box-sizing: content-box; }
 
-.login-link {
+.new_user {
   color: rgba(255, 255, 255, 0.8);
-  top: 14px;
-  right: 14px;
-  position: relative; }
-  .login-link:hover {
-    text-decoration: none;
-    color: white; }
+  top: 5px;
+  right: 10px;
+  position: relative;
+}
 
 .pages {
   color: #c5c0bb; }
@@ -5198,3 +5196,25 @@ body {
 
 #signup .modal-body {
   color: #444; }
+
+#signup div.sign_up_type_wrapper label {
+  font-weight: normal;
+}
+
+#signup div.sign_up_type_wrapper label input[type="radio"] {
+  display: inline;
+  margin: 0 35px 0 5px;
+}
+
+#signup div.register_wrapper input {
+  width: 200px;
+}
+
+#signup div.register_wrapper label input[type="checkbox"] {
+  display: inline;
+  width: 20px;
+}
+
+#signup div#client_register_wrapper {
+  display: none;
+}

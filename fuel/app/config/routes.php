@@ -5,11 +5,11 @@ return array(
 
 	'bookmark'                            => 'bookmark/view',
 
-	'login/(:any)'                        => 'user/auth/login/$1',
+	'login/(:any)'                        => 'user/auth/login',
 	'authenticate/(:any)'                 => 'user/auth/authenticate/$1',
 	'logout'                              => 'user/auth/logout',
 	'authenticate'                        => 'user/auth/authenticate',
-	// 'register'                         => 'user/register',
+	'register'                            => 'user/register',
 	// 'forgot'                           => 'user/forgot',
 	// 'reset/(:segment)'                 => 'user/reset/$1',
 

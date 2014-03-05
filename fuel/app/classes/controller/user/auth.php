@@ -6,20 +6,9 @@ class Controller_User_Auth extends Controller_App
 	/**
 	 * undefined_method
 	 */
-	public function get_login($provider = null)
+	public function action_login()
 	{
-		if (! in_array($provider, ['facebook']))
-		{
-			$this->redirect('/');
-		}
 
-		$r = Input::get('r');
-
-		$this->opauth = Auth_Social::forge([
-			'provider' => 'Facebook',
-			// 'path'         => '/user/auth/login/',
-			// 'callback_url' => Uri::create('authenticate'),
-		]);
 	}
 
 	/**
