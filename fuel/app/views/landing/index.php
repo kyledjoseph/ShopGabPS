@@ -76,7 +76,7 @@
     </div>
     <div class="col-xs-12 col-sm-10 col-sm-offset-1 col-md-10 col-md-offset-1 strong-text">
       <h1 class="clickthrough">Smart&nbsp;personal&nbsp;shopping</h1>
-      <a class="align-center register call-to-action sg-button-secondary" data-toggle="modal" href="#signup">Login</a>
+      <a class="align-center register call-to-action sg-button-secondary" data-toggle="modal" href="#login">Login</a>
     </div>
   </div>
   <div class="table">
@@ -183,11 +183,11 @@
       </div>
       <div class="modal-body">
         <form id="register_form" action="/user/register" method="post">
-          <div class="sign_up_type_wrapper">
-            <label>Professional <input type="radio" class="radio" id="professional_radio_button" name="login_type" checked="checked" value="professional"/></label>
-            <label>Client <input type="radio" class="radio" id="client_radio_button" name="login_type" value="client" /></label>
+          <div class="type_wrapper">
+            <label>Professional <input type="radio" class="radio professional_radio_button" name="login_type" checked="checked" value="professional"/></label>
+            <label>Client <input type="radio" class="radio client_radio_button" name="login_type" value="client" /></label>
           </div>
-          <div class="register_wrapper">
+          <div class="register_wrapper form_wrapper">
             <div class="textlike_wrapper">
               <label>
                 E-mail: <input type="email" name="email" required="true" />
@@ -220,7 +220,7 @@
                 <label>Privacy policy <input type="checkbox" value="1" name="privacy_policy" class="checkbox" checked="checked" /></label>
               </div>
             </div>
-            <div id="client_register_wrapper" class="register_wrapper">
+            <div id="client_register_wrapper">
               <div class="textlike_wrapper">
                 <label>
                   PSID: <input type="text" name="psid" />
@@ -242,12 +242,57 @@
 </div>
 <!-- /.modal -->
 
+<!-- Modal -->
+<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header align-center">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" class="align-center" id="myModalLabel">Login</h4>
+      </div>
+      <div class="modal-body">
+        <form id="login_form" action="/login" method="post">
+          <div class="type_wrapper">
+            <label>Professional <input type="radio" class="radio professional_radio_button" name="login_type" checked="checked" value="professional"/></label>
+            <label>Client <input type="radio" class="radio client_radio_button" name="login_type" value="client" /></label>
+          </div>
+          <div class="login_wrapper form_wrapper">
+            <div class="textlike_wrapper">
+              <label>
+                E-mail: <input type="email" name="email" required="true" />
+              </label>
+            </div>
+            <div class="textlike_wrapper">
+              <label>
+                Password: <input type="password" name="password" required="true" />
+              </label>
+            </div>
+            <div id="client_login_wrapper">
+              <div class="textlike_wrapper">
+                <label>
+                  PSID: <input type="text" name="psid" />
+                </label>
+                <p>(Provided by your Personal Shopper)</p>
+              </div>
+            </div>
+            <div class="submit_wrapper">
+              <input type="submit" value="Login" class="sg-button-secondary">
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="//code.jquery.com/jquery.js"></script>
 <script src="/landing/js/main.js"></script>
 <script type="text/javascript">
-  $('input[name=login_type]').change(function() {
+
+  // register professional/client
+  $('form#register_form input[name=login_type]').change(function() {
     checked_radio = $(this);
     if (checked_radio.val() == 'client') {
       $('#professional_register_wrapper').hide();
@@ -259,6 +304,19 @@
       $('#client_register_wrapper input').removeAttr('required');
     } // if
   });
+
+  // login professional/client
+  $('form#login_form input[name=login_type]').change(function() {
+    checked_radio = $(this);
+    if (checked_radio.val() == 'client') {
+      $('#client_login_wrapper').show();
+      $('#client_login_wrapper input').attr('required', true);
+    } else {
+      $('#client_login_wrapper').hide();
+      $('#client_login_wrapper input').removeAttr('required');
+    } // if
+  });
+
 </script>
 </body>
 </html>

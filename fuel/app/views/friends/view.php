@@ -80,7 +80,7 @@
 	</div>
 
 	<div class="col-12 col-sm-4 pad-top">
-		<div class="box help-a-friend">
+		<div class="box my_clients">
 			<h4><?= $friendship->friend->display_name() ?></h4>
 			<div class="content">
 				<?= Html::img($friendship->friend->get_avatar_uri(200, 200), array('class' => 'force-200-200')) ?>

@@ -307,13 +307,14 @@ class Controller_User extends Controller_App
           'pricing_plan_type' => Model_Professional::TRIAL_PRICING_PLAN,
           'pricing_plan_started_on' => time()
         ]);
-        $professional->save();
+
+        $this->redirect('/', 'info', 'You have successfully registered to ShopGap. Please login');
       } else {
         // create client user model
 
       } // if
     } else {
       var_dump($val->error_message());die();
-    }
+    } // if
   } // post_register
 }

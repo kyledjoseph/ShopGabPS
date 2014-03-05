@@ -2,10 +2,8 @@
 
 class Controller_Home extends Controller_App
 {
-	public function get_index()
-	{
-		if (! $this->user_logged_in())
-		{
+	public function get_index() {
+		if (! $this->user_logged_in()) {
 			Casset::css('landing/bootstrap.css');
 			Casset::css('landing/bootstrap-responsive.css');
 			Casset::css('landing/style.css');
@@ -17,10 +15,7 @@ class Controller_Home extends Controller_App
 			return Response::forge(View::forge('landing/index', array(
 				'modal' => $modal,
 			)));
-		}
-
-		else
-		{
+		} else {
 			Casset::js('site/dashboard/tour.js');
 			Casset::js('site/dashboard.js');
 			$this->add_modal(View::forge('user/modal/start_quest'));
@@ -28,9 +23,8 @@ class Controller_Home extends Controller_App
 			$this->template->body = View::forge('user/dashboard', array(
 				'quests' => $this->user->get_quests(),
 			));
-		}
-
-	}
+		} // if
+	} // get_index
 
 	public function post_try()
 	{

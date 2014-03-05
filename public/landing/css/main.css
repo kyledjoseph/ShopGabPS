@@ -5194,27 +5194,27 @@ body {
   bottom: 0;
   right: 0; }
 
-#signup .modal-body {
+div.modal-body {
   color: #444; }
 
-#signup div.sign_up_type_wrapper label {
+div.modal-body div.type_wrapper label {
   font-weight: normal;
 }
 
-#signup div.sign_up_type_wrapper label input[type="radio"] {
+div.modal-body div.type_wrapper label input[type="radio"] {
   display: inline;
   margin: 0 35px 0 5px;
 }
 
-#signup div.register_wrapper input {
+div.modal-body div.form_wrapper input {
   width: 200px;
 }
 
-#signup div.register_wrapper label input[type="checkbox"] {
+div.modal-body div.form_wrapper label input[type="checkbox"] {
   display: inline;
   width: 20px;
 }
 
-#signup div#client_register_wrapper {
+div#client_register_wrapper, div#client_login_wrapper {
   display: none;
 }

@@ -130,30 +130,11 @@ class Model_User extends Auth\Model\Auth_User {
 
 	public function _event_after_insert()
 	{
-		$this->_update_friendships();
 	}
 
 	public function _event_before_save()
 	{
-		// if (isset($this->fullname) and $this->is_changed('fullname'))
-		// {
-		// 	$this->_update_friendships();
-		// }
 	}
-
-	private function _update_friendships()
-	{
-		$friendships = Model_Friend::query()->where('friend_id', $this->id)->get();
-
-		foreach ($friendships as $friendship)
-		{
-			$friendship->friend_name       = $this->display_name();
-			$friendship->friend_registered = '1';
-			$friendship->save();
-		}
-	}
-
-
 
 	/**
 	 * User's display name
@@ -181,8 +162,7 @@ class Model_User extends Auth\Model\Auth_User {
 	 */
 	public function is_admin()
 	{
-    // @TODO is admin
-		return false;
+		return $this->property('group') == self::ADMIN_GROUP_ID;
 	}
 
 	/**
@@ -328,14 +308,8 @@ class Model_User extends Auth\Model\Auth_User {
 	 */
 	public function get_avatar_uri($width = 32, $height = 32)
 	{
-		if ($avatar = $this->get_avatar($width, $height))
-		{
+		if ($avatar = $this->get_avatar($width, $height)) {
 			return $avatar->public_uri;
-		}
-
-		if ($provider = $this->get_provider('facebook'))
-		{
-			return "https://graph.facebook.com/{$provider->uid}/picture?width={$width}&height={$height}";
 		}
 
 		$this->default_avatar_uri($width, $height);
@@ -464,282 +438,6 @@ class Model_User extends Auth\Model\Auth_User {
 		return $quest->remove();
 	}
 
-
-
-	/**
-	 * undefined_method
-	 */
-	public function has_friends()
-	{
-		return $this->total_friends() > 0;
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function total_friends()
-	{
-		return Model_Friend::query()
-			->where('user_id', $this->id)
-			->where('friend_registered', '1')
-			->where('hidden', '0')
-			->count();
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function get_friendships()
-	{
-		return Model_Friend::query()
-			->where('user_id', $this->id)
-			->where('friend_registered', '1')
-			->where('hidden', '0')
-			->order_by('friend_name', 'asc')
-			->get();
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function get_friends()
-	{
-		$users = array();
-		foreach ($this->get_friendships() as $friendship)
-		{
-			$users[] = $friendship->get_friend();
-		}
-		return $users;
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function select_friends()
-	{
-		$options = array();
-		$options['select'] = 'Select';
-		foreach ($this->get_friends() as $friend)
-		{
-			$options[$friend->id] = $friend->display_name();
-		}
-		return (count($options) < 1) ? array('none' => 'No Friends Available') : $options;
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function get_friend_ids()
-	{
-		$ids = array();
-		foreach ($this->get_friendships() as $friendship)
-		{
-			array_push($ids, $friendship->friend_id);
-		}
-		return $ids;
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function get_friend_ids_csv()
-	{
-		return join(',', $this->get_friend_ids());
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function get_friendship_by_id($id)
-	{
-		return Model_Friend::query()->where('user_id', $this->id)->where('id', $id)->get_one();
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function get_friendship_by_user_id($friend_id)
-	{
-		return Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->get_one();
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function get_friend_by_id($friend_id)
-	{
-		return ($friendship = $this->get_friendship_by_user_id($friend_id)) ? $friendship->friend : null;
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function get_friend_profile_url($friend_id)
-	{
-		$friendship = $this->get_friendship_by_user_id($friend_id);
-		return isset($friendship) ? $friendship->profile_url() : false;
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function is_friend($friend_id)
-	{
-		return Model_Friend::query()->where('user_id', $this->id)->where('friend_id', $friend_id)->count() > 0;
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function add_friend(Model_User $user)
-	{
-		if ($friend = $this->get_friend_by_id($user->id))
-		{
-			return null;
-		}
-
-		$self = new Model_Friend;
-		$self->user_id           = $this->id;
-		$self->friend_id         = $user->id;
-		$self->friend_name       = $user->display_name();
-		$self->friend_email      = $user->email;
-		$self->hidden            = '0';
-		$self->friend_registered = '1';
-
-		$friend = new Model_Friend;
-		$friend->user_id           = $user->id;
-		$friend->friend_id         = $this->id;
-		$friend->friend_name       = $this->display_name();
-		$friend->friend_email      = $this->email;
-		$friend->hidden            = '0';
-		$friend->friend_registered = '1';
-
-		return ($self->save() and $friend->save()) ? $friend : null;
-	}
-
-
-	/**
-	 * undefined_method
-	 */
-	public function update_facebook_friends()
-	{
-		$new_friends = array();
-		$provider    = $this->get_provider('facebook');
-
-		foreach ($provider->fb_get_app_friends() as $facebook_friend)
-		{
-			if ($user = $facebook_friend->get_user() and ! $this->is_friend($user->id))
-			{	
-				if ($new_friend = $this->add_friend($user))
-				{
-					array_push($new_friends, $new_friend);
-				}
-			}
-		}
-
-		$provider->fb_friends_last_updated = time();
-
-		return $new_friends;
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function get_friends_quests()
-	{
-		if (! $this->has_friends()) return array();
-
-		$result = DB::select()
-			->from(Model_Quest::table())
-			->where('user_id', 'in', $this->get_friend_ids())
-			->as_object('Model_Quest')
-			->execute();
-
-		$friends_quests = array();
-
-		foreach ($result->as_array() as $quest)
-		{
-			if ($quest->is_public() or $quest->is_participant($this->id))
-			{
-				array_push($friends_quests, $quest);
-			}
-		}
-
-		return $friends_quests;
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function get_friends_upcoming_quests()
-	{
-		if (! $this->has_friends()) return array();
-
-		$result = DB::select()
-			->from(Model_Quest::table())
-			->where('user_id', 'in', $this->get_friend_ids())
-			->where('purchase_by', '>', time())
-			->where('is_public', '1')
-			->order_by('purchase_by', 'asc')
-			->as_object('Model_Quest')
-			->execute();
-
-		return $result->as_array();
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function add_invitations_as_friends()
-	{
-		$invites = Model_Invite_Email::get_by_email($this->email);
-
-		foreach ($invites as $invite)
-		{
-			if (! $this->is_friend($invite->user->id))
-			{
-				$this->add_friend($invite->user);
-			}
-		}
-	}
-
-
-
-
-
-
-	/**
-	 * undefined_method
-	 */
-	public function get_provider($provider)
-	{
-		return Model_User_Provider::get_by_user_and_provider($this->id, $provider);
-	}
-
-	public function is_authenticated_with($provider)
-	{
-		$auth = Model_User_Provider::get_by_user_and_provider($this->id, $provider);
-		return isset($auth->id);
-	}
-
-	public function link_provider(array $data)
-	{
-		if ($this->is_authenticated_with($data['provider']))
-		{
-			throw new Exception("User id:{$this->iid} already linked with provider '{$provider}");
-		}
-
-		$provider = Model_User_Provider::forge($data);
-		
-		$provider->save() and $this->update_facebook_friends();
-
-		return $provider ?: false;
-	}
-
-	
-
-
-
 	/**
 	 * Generate a new password reset
 	 */
@@ -799,7 +497,6 @@ class Model_User extends Auth\Model\Auth_User {
 	{
 		return $this->delete();
 	}
-
 
 
 	/**

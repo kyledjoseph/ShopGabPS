@@ -6,10 +6,15 @@ class Controller_User_Auth extends Controller_App
 	/**
 	 * undefined_method
 	 */
-	public function action_login()
-	{
-
-	}
+	public function post_login() {
+    // try logging in
+    if (Auth::login()) {
+      // Credentials ok, go right in.
+      $this->redirect('/');
+    } else {
+      $this->redirect('/', 'error', 'Wrong username/password combo. Try again');
+    } // if
+	} // post_login
 
 	/**
 	 * undefined_method

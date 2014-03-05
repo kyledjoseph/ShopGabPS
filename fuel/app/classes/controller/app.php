@@ -48,8 +48,7 @@ class Controller_App extends Controller_Base
 		$this->auth = Auth::instance();
 	}
 
-	protected function _init_user()
-	{
+	protected function _init_user() {
 		if (! $this->auth->check())
 		{
 			return $this->user = null;
@@ -57,16 +56,12 @@ class Controller_App extends Controller_Base
 		
 		list($driver, $user_id) = $this->auth->get_user_id();
 
-		if (! $this->user = Model_User::get_by_id($user_id) or 
-			! $provider = $this->user->get_provider('facebook') or 
-			! $provider->access_token_valid())
-		{
-			$this->auth->logout() and $this->redirect('user/auth/login/facebook');
-		}
+		if (! ($this->user = Model_User::get_by_id($user_id))) {
+			$this->auth->logout() and $this->redirect('/');
+		} // if
 	}
 
-	protected function _init_notice()
-	{
+	protected function _init_notice()	{
 		foreach (array('error', 'success', 'info') as $type)
 		{
 			if ($notice = Session::get_flash($type))

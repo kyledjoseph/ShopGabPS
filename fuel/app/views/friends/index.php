@@ -73,7 +73,7 @@
 	</div>
 
 	<div class="col-12 col-sm-4 pad-top">
-		<div class="box help-a-friend">
+		<div class="box my_clients">
 			<h4>Friends</h4>
 			<?= Html::anchor('friends/refresh', 'Refresh', array('class' => 'corner-button btn btn-medium btn-success')) ?>
 			<div class="content">
