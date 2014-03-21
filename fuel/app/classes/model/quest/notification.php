@@ -6,14 +6,12 @@ class Model_Quest_Notification extends \Orm\Model
 	
 	protected static $_properties = array(
 		'id',
-		'quest_id',
 		'user_id',
-		'model_id',
-		'model',
-		'type',
-		'viewed_at',
+		'quest_id',
+		'event_id',
+		'event',
 		'created_at',
-		'updated_at',
+		'seen_at',
 	);
 
 	protected static $_belongs_to = array(
@@ -57,7 +55,7 @@ class Model_Quest_Notification extends \Orm\Model
 
 	public function mark_viewed()
 	{
-		$this->viewed_at = time();
+		$this->seen_at = time();
 		$this->save();
 	}
 

@@ -43,51 +43,43 @@ class Controller_User extends Controller_App
 	/**
 	 * Reset password
 	 */
-	public function get_reset($reset_code)
-	{
-		$user = Model_User::get_by_rest_code($reset_code);
+	public function get_reset($reset_code) {
+		$user = Model_User::get_by_reset_code($reset_code);
 
-		if (! isset($user))
-		{
-			$this->redirect('forgot', 'error', 'Invalid password reset');
-		}
+		if (! isset($user)) {
+			$this->redirect('forgot', 'error', 'Invalid password reset code');
+		} // if
 
-		$this->template->body = View::forge('user/reset');
+    // reset password
+    $new_password = \Str::random('alnum', 8);
+    $password_hash = $this->auth->hash_password($new_password);
+
+    $affected_rows = \DB::update(\Config::get('simpleauth.table_name'))
+      ->set(array('password' => $password_hash))
+      ->where('email', '=', $user->email)
+      ->execute(\Config::get('simpleauth.db_connection'));
+
+    if ( ! $affected_rows) {
+      throw new \SimpleUserUpdateException('Failed to reset password, user was invalid.', 8);
+    } // if
+
+    // send new password
+
+    Service_Email::send(array(
+      'type'      => 'password_reset',
+      'to_addr'   => $user->email,
+      'from_name' => 'ShopGab',
+      'from_addr' => 'info@shopgab.com',
+      'subject'   => 'Your new ShopGab password',
+      'body'      => View::forge('emails/reset_send', array(
+          'new_password' => $new_password,
+        )),
+    ));
+
+    $user->empty_reset_code();
+    $this->redirect('login', 'success', 'Your new password has been emailed to you.');
 	}
 	
-	/**
-	 * undefined_method
-	 */
-	public function post_reset($reset_code)
-	{
-		$user = Model_User::get_by_rest_code($reset_code);
-
-		if (! isset($user) or ! $user->is_reset_code_valid())
-		{
-			$this->redirect('forgot', 'error', 'Invalid password reset');
-		}
-
-		$post = $this->post_data('password', 'confirm_password');
-
-		// password match
-		if ($post->password !== $post->confirm_password)
-		{
-			$this->redirect('user/register', 'error', 'Your password does not match the password confirmation');
-		}
-
-		$this->auth->reset_password($user->email, $post->password);
-		$user->empty_reset_code();
-		$this->redirect('login', 'success', 'Your password has been changed.');
-	}
-
-	/**
-	 * Verify email address
-	 */
-	public function get_verify($user_hash)
-	{
-
-	}
-
 	/**
 	 * 
 	 */
@@ -192,22 +184,7 @@ class Controller_User extends Controller_App
 	/**
 	 * undefined_method
 	 */
-	public function get_avatar($action, $network)
-	{
-		if ($network == 'facebook')
-		{
-			$this->user->delete_avatars();
-			$this->redirect('user/account', 'success', 'Account information updated');
-		}
-
-		$this->redirect('user/account', 'error', 'Invalid avatar type');
-	}
-
-	/**
-	 * undefined_method
-	 */
-	public function post_avatar()
-	{
+	public function post_avatar() {
 		$this->require_auth();
 
 		Upload::process(array(
@@ -216,34 +193,30 @@ class Controller_User extends Controller_App
 			'ext_whitelist' => array('jpg', 'jpeg', 'gif', 'png', 'bmp'),
 		));
 
-		if (Upload::is_valid())
-		{
+		if (Upload::is_valid()) {
 			Upload::save();
 
-			if ($this->user->has_avatars())
-			{
+			if ($this->user->has_avatars()) {
 				$this->user->delete_avatars();
-			}
+			} // if
 
-			foreach (Upload::get_files() as $file)
-			{
+			foreach (Upload::get_files() as $file) {
 				// return Response::forge(var_export($file));
 				// $file = array ( 'name' => 'computech.jpg', 'type' => 'image/jpeg', 'error' => false, 'size' => 550696, 'field' => 'avatar', 'file' => '/Applications/MAMP/tmp/php/phpum5qaT', 'errors' => array ( ), 'extension' => 'jpg', 'filename' => 'computech', 'mimetype' => 'image/jpeg', 'saved_to' => '/Users/tmatthews/Sites/shopgab/fuel/app/tmp/', 'saved_as' => 'b30b61736b21b15b59a78fe16742c0c4.jpg', )
 
 				$this->user->add_avatar($file);
 				break;
-			}
-		}
+			} // foreach
+		} // if
 
-		foreach (Upload::get_errors() as $file)
-		{
+		foreach (Upload::get_errors() as $file) {
 			// $file is an array with all file information,
 			// $file['errors'] contains an array of all error occurred
 			// each array element is an an array containing 'error' and 'message'
-		}
+		} // foreach
 
 		$this->redirect('user/account', 'success', 'Avatar Uploaded');
-	}
+	} // post_avatar
 
 	/**
 	 * Change Password
@@ -262,24 +235,32 @@ class Controller_User extends Controller_App
 
 		$post = $this->post_data('current', 'new', 'confirm');
 
-		if ($post->new !== $post->confirm)
-		{
+		if ($post->new !== $post->confirm) {
 			$this->redirect('user/password', 'error', 'Your new password did not match the password confirmation');
-		}
+		} // if
 
-		// set initial user password (for account using social auth)
-		if (! $this->user->has_password() and $this->auth->set_password($post->new))
-		{
-			$this->redirect('user/account', 'success', 'Password set');
-		}
-
-		if (! $this->auth->change_password($post->current, $post->new))
-		{
+		if (! $this->auth->change_password($post->current, $post->new)) {
 			$this->redirect('user/password', 'error', 'Your current password is incorrect');
-		}
+		} // if
 
 		$this->redirect('user/account', 'success', 'Password changed');
 	}
+
+  public function get_register() {
+    if ($this->user_logged_in()) {
+      $this->redirect('/');
+    } // if
+
+    $this->template->body = View::forge('user/register', array(
+      'client' => false,
+      'data' => [
+        'email' => '',
+        'password' => '',
+        'confirm' => '',
+        'psid' => '',
+      ]
+    ));
+  } //get_register
 
   /**
    * Post to register
@@ -295,14 +276,13 @@ class Controller_User extends Controller_App
     $group_id = \Fuel\Core\Input::post('login_type') == 'professional' ? Model_User::PROFESSIONAL_GROUP_ID : Model_User::CLIENT_GROUP_ID;
     if ($group_id == Model_User::CLIENT_GROUP_ID) {
       // if client register check parent existence
-      $val->add_field('psid', 'Confirm password', 'required|user_id_exist');
+      $val->add_field('psid', "We're sorry the PSID you entered is not valid, please try again or contact your Personal Shopper", 'required|pro_user_id_exist');
     } // if
 
     if ($val->run()) {
       // validation passed - create user
       $email = \Fuel\Core\Input::post('email');
       $username = substr($email, 0, strpos($email, '@'));
-
 
       $user_id = Auth::create_user($username,\Fuel\Core\Input::post('password'),$email,$group_id);
 
@@ -320,9 +300,43 @@ class Controller_User extends Controller_App
         
       } // if
 
-      $this->redirect('/', 'info', 'You have successfully registered to ShopGap. Please login');
+      $user = Model_User::get_by_id($user_id);
+      $user->send_confirmation_code();
+
+      $this->redirect('/login', 'success', 'You have successfully registered to ShopGap. Please login');
     } else {
-      var_dump($val->error_message());die();
+
+      $this->template->body = View::forge('user/register', array(
+        'errors' => $val->error_message(),
+        'client' => $group_id == Model_User::CLIENT_GROUP_ID,
+        'data' => $_POST
+      ));
     } // if
   } // post_register
+
+  /**
+   * Resend confirmation code for email
+   */
+  public function get_confirm_resend() {
+    if ($this->user_logged_in()) {
+      $this->user->send_confirmation_code();
+      $this->redirect('/', 'success', 'Email confirmation code successfully sent');
+    } else {
+      $this->redirect('/');
+    } // if
+  } // confirm_resend
+
+  public function get_confirm($confirmation_code) {
+    $user = Model_User::get_by_confirmation_code($confirmation_code);
+    if ($user) {
+      $user->status = Model_User::STATUS_EMAIL_CONFIRMED;
+      $user->save();
+      if (!$this->user_logged_in()) {
+        $this->auth->force_login($user->id);
+      } // if
+      $this->redirect('/', 'success', 'Email successfully confirmed');
+    } else {
+      $this->redirect('/', 'error', 'Email confirmation code not correct. Please resend and try again');
+    } // if
+  }
 }

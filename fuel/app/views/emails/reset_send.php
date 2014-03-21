@@ -1,0 +1,1 @@
+<p>Your new ShopGab password is: <?= $new_password ?></p>

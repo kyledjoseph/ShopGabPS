@@ -9,8 +9,10 @@ return array(
 	'authenticate'                        => 'user/auth/authenticate',
 	'logout'                              => 'user/auth/logout',
 	'register'                            => 'user/register',
-	// 'forgot'                           => 'user/forgot',
-	// 'reset/(:segment)'                 => 'user/reset/$1',
+	'forgot'                              => 'user/forgot',
+	'reset/(:segment)'                    => 'user/reset/$1',
+  'confirm-resend'                      => 'user/confirm_resend',
+  'confirm/(:segment)'                  => 'user/confirm/$1',
 
 	'try'                                 => 'home/try',
 	'account/(:any)'                      => 'user/$1',

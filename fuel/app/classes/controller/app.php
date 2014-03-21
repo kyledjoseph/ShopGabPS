@@ -2,8 +2,13 @@
 
 class Controller_App extends Controller_Base
 {
-	public $auth = null;
-	public $user = null;
+
+  public $auth = null;
+
+  /**
+   * @var null|Model_User
+   */
+  public $user = null;
 
 	public function before()
 	{
@@ -59,6 +64,15 @@ class Controller_App extends Controller_Base
 		if (! ($this->user = Model_User::get_by_id($user_id))) {
 			$this->auth->logout() and $this->redirect('/');
 		} // if
+
+    if ($this->user->status == Model_User::STATUS_PENDING_EMAIL_CONFIRM) {
+      // if email is not confirmed put info
+      $resend_confirm_url = Uri::create('confirm-resend');
+      $this->template->notice = (object) array(
+        'type' => 'info',
+        'message' => "Email not confirmed. Please click <a href='$resend_confirm_url'>here</a> to resend email confirmation code"
+      );
+    } // if
 	}
 
 	protected function _init_notice()	{

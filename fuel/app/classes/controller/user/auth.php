@@ -8,13 +8,63 @@ class Controller_User_Auth extends Controller_App
 	 */
 	public function post_login() {
     // try logging in
+    $login = false;
     if (Auth::login()) {
-      // Credentials ok, go right in.
+      //successful login
+      $auth = \Auth\Auth::instance();
+
+      // check if remember me turned on
+      if (isset($_POST['remember_me']) && $_POST['remember_me']) {
+        $auth->remember_me();
+      } else {
+        $auth->dont_remember_me();
+      } // if
+
+      // check if right role
+
+      $user = Model_User::get_by_id($auth->get_user_id()[1]);
+      if (($_POST['login_type'] == 'professional' && $user->group == Model_User::PROFESSIONAL_GROUP_ID) ||
+        ($_POST['login_type'] == 'client' && $user->group == Model_User::CLIENT_GROUP_ID)
+      ) {
+        // if correct login type then let login
+        $login = true;
+      } else {
+        $auth->dont_remember_me();
+        $auth->logout();
+        $message = 'Wrong login role, please try again';
+      } // if
+    } else {
+      $message = 'Wrong email/password combination, please try again';
+    } // if
+
+    if ($login) {
       $this->redirect('/');
     } else {
-      $this->redirect('/', 'error', 'Wrong username/password combo. Try again');
+      $this->template->notice = (object) array(
+        'type' => 'error',
+        'message' => $message
+      );
+
+      $this->template->body = View::forge('user/login', array(
+        'client' => $_POST['login_type'] == 'client',
+        'data' => $_POST
+      ));
     } // if
 	} // post_login
+
+  public function get_login() {
+    if ($this->user_logged_in()) {
+      $this->redirect('/');
+    } // if
+
+    $this->template->body = View::forge('user/login', array(
+      'client' => false,
+      'data' => [
+        'email' => '',
+        'password' => '',
+      ]
+    ));
+  } // get_login
 
 	/**
 	 * undefined_method
@@ -71,6 +121,7 @@ class Controller_User_Auth extends Controller_App
 	 */
 	public function get_logout()
 	{
+    $this->auth->dont_remember_me();
 		$this->auth->logout() and $this->redirect('/');
 	}
 

@@ -3,32 +3,38 @@
 
 		<h1>Login</h1>
 
-		<?= Form::open(array('class' => 'form-horizontal')) ?>
-			<ul>
-				<li>
-					<label for="email">Email</label>
-					<input type="email" name="email" placeholder="Email">
-				</li>
-
-				<li>
-					<label for="password">Password</label>
-					<input type="password" name="password" placeholder="Password">
-				</li>
-
-				<li class="padded">
-					<label class="checkbox">
-						<input type="checkbox" name="remember" value="true"> Remember me
-					</label>
-				</li>
-
-			</ul>
-
-			<button type="submit" class="btn green2">Sign in</button>
-			<?= Html::anchor('forgot', 'Forgot your password?') ?>
-	
-
-			<?= Html::anchor('user/auth/facebook', '<i class="sprites login-facebook"></i>') ?>
-
-		</form>
-
+    <form id="login_form" action="/login" method="post">
+      <div class="type_wrapper">
+        <label>Professional <input type="radio" class="radio professional_radio_button" name="login_type" checked="checked" value="professional"/></label>
+        <label>Client <input type="radio" class="radio client_radio_button" name="login_type" value="client" id="client_radio"/></label>
+      </div>
+      <div class="login_wrapper form_wrapper">
+        <div class="textlike_wrapper">
+          <label>
+            E-mail: <input type="email" name="email" required="true" value="<?php echo $data['email'] ?>" />
+          </label>
+        </div>
+        <div class="textlike_wrapper">
+          <label>
+            Password: <input type="password" name="password" required="true" value="<?php echo $data['password'] ?>" />
+          </label>
+        </div>
+        <div class="checkbox_wrapper">
+          <label>Remember me <input type="checkbox" value="1" name="remember_me" class="checkbox" /></label>
+        </div>
+        <div class="link_wrapper">
+          <a href="<?= Uri::create('forgot') ?>">Forgot password</a>
+        </div>
+        <div class="submit_wrapper">
+          <input type="submit" value="Login" class="btn green2">
+        </div>
+      </div>
+    </form>
 	</section>
+
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script type="text/javascript">
+    <?php if ($client) { ?>
+    $('#client_radio').click();
+    <?php } ?>
+  </script>

@@ -485,12 +485,12 @@ class Model_Quest extends \Orm\Model
 	 */
 	public function get_unseen_notifications()
 	{
-		return Model_Quest_Notification::query()->where('quest_id', $this->id)->where('viewed_at', null)->get();
+		return Model_Quest_Notification::query()->where('quest_id', $this->id)->where('seen_at', null)->get();
 	}
 
 	public function total_unseen_notifications()
 	{
-		return Model_Quest_Notification::query()->where('quest_id', $this->id)->where('viewed_at', null)->count();
+		return Model_Quest_Notification::query()->where('quest_id', $this->id)->where('seen_at', null)->count();
 	}
 
 	public function mark_notifications_seen()

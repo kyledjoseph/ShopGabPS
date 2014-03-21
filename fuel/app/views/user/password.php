@@ -1,6 +1,6 @@
 <div class="container">
 <div class="col-12 col-sm-4">
-		<h2 class="header-underline"><?= $user->has_password() ? 'Change Password' : 'Choose Password' ?></h2>
+		<h2 class="header-underline">Change Password</h2>
 		
 		<?= Form::open(array('class' => 'form-horizontal')) ?>
 			<div class="control-group">
@@ -9,8 +9,6 @@
 				</div>
 			</div>
 
-			<?php if ($user->has_password()): ?>
-
 			<div class="control-group">
 				<label class="control-label" for="inputPassword">Current Password:</label>
 				<div class="controls">
@@ -18,8 +16,6 @@
 				</div>
 			</div>
 
-			<?php endif; ?>
-			
 			<div class="control-group">
 				<label class="control-label" for="inputPassword">New Password:</label>
 				<div class="controls">

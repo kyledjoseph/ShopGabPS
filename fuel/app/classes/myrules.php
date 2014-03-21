@@ -16,16 +16,20 @@ class MyRules
     return ! ($result->count() > 0);
   }
 
-  public static function _validation_user_id_exist($val) {
-    Validation::active()->set_message('user_id_exist', 'There is no professional with :value PSID');
+  /**
+   * Validate if pro user exists
+   * @param $val
+   * @return bool
+   */
+  public static function _validation_pro_user_id_exist($val) {
+    Validation::active()->set_message('pro_user_id_exist', "We're sorry the PSID you entered is not valid, please try again or contact your Personal Shopper");
 
     $result = Model_User::query()->where('id', $val)->where('group', Model_User::PROFESSIONAL_GROUP_ID);
     return ($result->count() > 0);
-  } // _validation_user_id_exist
+  } // _validation_pro_user_id_exist
 
   // note this is a non-static method
-  public function _validation_is_upper($val)
-  {
+  public function _validation_is_upper($val) {
     return $val === strtoupper($val);
   }
 

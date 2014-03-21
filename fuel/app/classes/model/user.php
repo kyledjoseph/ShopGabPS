@@ -6,6 +6,10 @@ class Model_User extends Auth\Model\Auth_User {
   const PROFESSIONAL_GROUP_ID = 50;
   const ADMIN_GROUP_ID = 100;
 
+  const STATUS_BANNED = 0;
+  const STATUS_PENDING_EMAIL_CONFIRM = 1;
+  const STATUS_EMAIL_CONFIRMED = 2;
+
 	protected static $_table_name = 'users';
 	protected static $_properties = array(
 		'id',
@@ -13,11 +17,14 @@ class Model_User extends Auth\Model\Auth_User {
 		'password',
 		'group',
 		'email',
-		'display_name',
+    'confirmation_code',
+		'status',
+    'display_name',
 		'last_login',
 		'login_hash',
 		'profile_fields',
 		'reset_code',
+    'reset_created_at',
 		'welcome_message',
 		'created_at',
 		'updated_at'
@@ -312,7 +319,7 @@ class Model_User extends Auth\Model\Auth_User {
 			return $avatar->public_uri;
 		}
 
-		$this->default_avatar_uri($width, $height);
+		return $this->default_avatar_uri($width, $height);
 	}
 
 	/**
@@ -508,28 +515,70 @@ class Model_User extends Auth\Model\Auth_User {
 		return $user->save() ? $user : false;
 	}
 
-	/**
-	 * undefined_method
-	 */
-	public static function get_by_id($id)
+  /**
+   * Get user object by id
+   * @param $id
+   * @return Model_user
+   */
+  public static function get_by_id($id)
 	{
 		return static::query()->where('id', $id)->get_one();
 	}
 
-	/**
-	 * undefined_method
-	 */
+  /**
+   * Get user object by email
+   * @param $email
+   * @return Model_user
+   */
 	public static function get_by_email($email)
 	{
 		return static::query()->where('email', $email)->get_one();
 	}
 
-	/**
-	 * undefined_method
-	 */
-	public static function get_by_rest_code($reset_code)
+  /**
+   * Get user object by reset_code
+   * @param $reset_code
+   * @return Model_user
+   */
+	public static function get_by_reset_code($reset_code)
 	{
 		return static::query()->where('reset_code', $reset_code)->get_one();
 	}
+
+  /**
+   * Get user object by confirmation_code
+   * @param $confirmation_code
+   * @return Model_user
+   */
+  public static function get_by_confirmation_code($confirmation_code)
+  {
+    return static::query()->where('confirmation_code', $confirmation_code)->get_one();
+  }
+
+  /**
+   * Send confirmation code by email
+   */
+  public function send_confirmation_code() {
+    $unique = false;
+    while (! $unique) {
+      $rand   = md5(uniqid(rand(), true));
+      $total  = static::query()->where('confirmation_code', $rand)->count();
+      $unique = $total == 0;
+    } // while
+
+    $this->confirmation_code = $rand;
+    $this->save();
+
+    Service_Email::send(array(
+      'type'      => 'confirmation_code',
+      'to_addr'   => $this->email,
+      'from_name' => 'ShopGab',
+      'from_addr' => 'info@shopgab.com',
+      'subject'   => 'Confirm your ShopGab email',
+      'body'      => View::forge('emails/confirm_email', array(
+          'confirmation_url' => Uri::create('confirm/'.$this->confirmation_code),
+        )),
+    ));
+  } // send_confirmation_code
 
 }

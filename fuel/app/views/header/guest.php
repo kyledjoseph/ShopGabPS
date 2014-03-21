@@ -7,8 +7,8 @@
     <!-- Navigation -->
     <div class="col-8 col-sm-10">
       <ul class="landing-nav nav nav-pills pull-right">
-        <li><a class="header-log-in" href="<?= Uri::create('user/auth/login/facebook') ?>">Login</a></li>
-        <li class="active header-sign-up"><a href="#registerModal" data-toggle="modal">Sign Up</button></a></li>
+        <li><a class="header-log-in" href="<?= Uri::create('login') ?>">Login</a></li>
+        <li class="active header-sign-up"><a href="<?= Uri::create('register') ?>">Sign Up</button></a></li>
       </ul>
     </div>
   </div>

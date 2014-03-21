@@ -267,13 +267,11 @@
                 Password: <input type="password" name="password" required="true" />
               </label>
             </div>
-            <div id="client_login_wrapper">
-              <div class="textlike_wrapper">
-                <label>
-                  PSID: <input type="text" name="psid" />
-                </label>
-                <p>(Provided by your Personal Shopper)</p>
-              </div>
+            <div class="checkbox_wrapper">
+              <label>Remember me <input type="checkbox" value="1" name="remember_me" class="checkbox" /></label>
+            </div>
+            <div class="link_wrapper">
+              <a href="<?= Uri::create('forgot') ?>">Forgot password</a>
             </div>
             <div class="submit_wrapper">
               <input type="submit" value="Login" class="sg-button-secondary">
@@ -304,19 +302,6 @@
       $('#client_register_wrapper input').removeAttr('required');
     } // if
   });
-
-  // login professional/client
-  $('form#login_form input[name=login_type]').change(function() {
-    checked_radio = $(this);
-    if (checked_radio.val() == 'client') {
-      $('#client_login_wrapper').show();
-      $('#client_login_wrapper input').attr('required', true);
-    } else {
-      $('#client_login_wrapper').hide();
-      $('#client_login_wrapper input').removeAttr('required');
-    } // if
-  });
-
 </script>
 </body>
 </html>
