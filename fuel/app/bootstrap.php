@@ -26,5 +26,11 @@ Autoloader::register();
  */
 Fuel::$env = (isset($_SERVER['FUEL_ENV']) ? $_SERVER['FUEL_ENV'] : Fuel::DEVELOPMENT);
 
+function pre_var_dump($data) {
+  echo "<pre>";
+  var_dump($data);
+  echo "</pre>";
+}
+
 // Initialize the framework with the config file.
 Fuel::init('config.php');

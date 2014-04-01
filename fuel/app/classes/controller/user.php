@@ -145,11 +145,14 @@ class Controller_User extends Controller_App
 	/**
 	 * Edit account settings
 	 */
-	public function get_account()
-	{
+	public function get_account()	{
 		$this->require_auth();
+    $paypal = Model_Paypal::getByUserId($this->user->id);
 
-		$this->template->body = View::forge('user/account');
+		$this->template->body = View::forge('user/account',[
+      'paypal' => $paypal ? $paypal : new Model_Paypal(),
+      'professional' => $this->user->group == Model_User::PROFESSIONAL_GROUP_ID ? Model_Professional::getByUserId($this->user->id) : null
+    ]);
 	}
 
 	/**
@@ -339,4 +342,43 @@ class Controller_User extends Controller_App
       $this->redirect('/', 'error', 'Email confirmation code not correct. Please resend and try again');
     } // if
   }
+
+  /**
+   * Submit paypal information
+   */
+  public function post_paypal() {
+    $paypal_account = Model_Paypal::getByUserId($this->user->id);
+
+    if (!$paypal_account) {
+      $_POST['paypal']['parent_id'] = $this->user->id;
+      $paypal_account = new Model_Paypal();
+    } // if
+
+    $paypal_account->set($_POST['paypal']);
+    $paypal_account->save();
+
+
+    $professional = Model_Professional::getByUserId($this->user->id);
+
+    // check if renewal if needed
+    if ($professional->getSubscriptionDaysLeft() < 0 || $professional->pricing_plan_type != Model_Professional::PAID_PRICING_PLAN) {
+      $payment_info = $paypal_account->makePayment();
+      if ($payment_info === true) {
+        // payment successful
+
+        $professional->set([
+          'pricing_plan_type' => Model_Professional::PAID_PRICING_PLAN,
+          'pricing_plan_started_on' => time()
+        ]);
+        $professional->save();
+        $this->redirect('/account', 'success', 'Payment successful, subscription renewed');
+      } else {
+        // payment failed
+        // @TODO notify pro user
+        $this->redirect('/account', 'error', "Payment failed: $payment_info");
+      } // if
+    } // if
+
+    $this->redirect('/account', 'info', "Paypal info updated, renewal not needed");
+  } // post_paypal
 }

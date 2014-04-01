@@ -581,4 +581,24 @@ class Model_User extends Auth\Model\Auth_User {
     ));
   } // send_confirmation_code
 
+  /**
+   * Return verbose name of the account
+   * @return string
+   */
+  public function getVerboseAccountType() {
+    switch ($this->group) {
+      case self::ADMIN_GROUP_ID:
+        return 'Administrator';
+        break;
+      case self::PROFESSIONAL_GROUP_ID:
+        return 'Professional';
+        break;
+      case self::CLIENT_GROUP_ID:
+        return 'Client';
+        break;
+      default:
+        return 'Unknown';
+    } // switch
+  } // getVerboseAccountType
+
 }

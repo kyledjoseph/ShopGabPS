@@ -29,7 +29,10 @@
         "omissis/php-cloudfiles": "v1.7.13",
         "hipchat/hipchat-php": "v1.2",
         "knplabs/github-api": "1.1.4",
-        "ornicar/php-git-repo": "dev-master"
+        "ornicar/php-git-repo": "dev-master",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "paypal/rest-api-sdk-php" : "0.7.*"
     },
     "suggest": {
         "mustache/mustache": "Allow Mustache templating with the Parser package",

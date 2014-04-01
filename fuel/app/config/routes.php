@@ -35,4 +35,6 @@ return array(
 
 	'privacy' => 'legal/privacy',
 	'terms'   => 'legal/terms',
+
+  'cron/(:any)'                         => 'cron/$1'
 );

@@ -10,20 +10,28 @@ class Controller_App extends Controller_Base
    */
   public $user = null;
 
-	public function before()
-	{
+  public $suspended_professional_can_access = false;
+
+	public function before() {
 		parent::before();
 
 		$this->_init_auth();
 		$this->_init_user();
 
-		if (! Input::is_ajax())
-		{
+		if (! Input::is_ajax()) {
 			$this->_init_notice();
 			$this->_init_template();
 			$this->_init_assets();
 		}
-	}
+
+    // if professional user is suspended
+    if ($this->user_logged_in() && $this->user->group == Model_User::PROFESSIONAL_GROUP_ID) {
+      $professional = Model_Professional::getByUserId($this->user->id);
+      if ($professional->pricing_plan_type == Model_Professional::SUSPENDED_PRICING_PLAN && Uri::segment(1) !== 'account' && Uri::segment(1) !== 'logout') {
+        $this->redirect('/account', 'danger', 'Your account has expired. Please renew your subscription, balance due is 30$');
+      } // if
+    } // if
+	} // before
 
 	public function user_logged_in()
 	{
@@ -76,7 +84,7 @@ class Controller_App extends Controller_Base
 	}
 
 	protected function _init_notice()	{
-		foreach (array('error', 'success', 'info') as $type)
+		foreach (array('error', 'success', 'info', 'danger', 'warning') as $type)
 		{
 			if ($notice = Session::get_flash($type))
 			{
