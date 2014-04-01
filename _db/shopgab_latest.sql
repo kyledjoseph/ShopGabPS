@@ -1,9 +1,22 @@
 /*
 SQLyog Community v11.31 (64 bit)
-MySQL - 5.6.16 : Database - shopgab
+MySQL - 5.6.14 : Database - shopgab
 *********************************************************************
-*/
+*/
 
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`shopgab` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `shopgab`;
+
+/*Table structure for table `admin_permissions` */
 
 DROP TABLE IF EXISTS `admin_permissions`;
 
@@ -194,6 +207,36 @@ CREATE TABLE `migration` (
 
 insert  into `migration`(`type`,`name`,`migration`) values ('app','default','001_auth_create_siteauth_users');
 
+/*Table structure for table `paypals` */
+
+DROP TABLE IF EXISTS `paypals`;
+
+CREATE TABLE `paypals` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(250) NOT NULL,
+  `last_name` varchar(250) NOT NULL,
+  `company` varchar(250) DEFAULT NULL,
+  `address` varchar(250) NOT NULL,
+  `email` varchar(250) NOT NULL,
+  `city` varchar(250) NOT NULL,
+  `state_province` varchar(250) NOT NULL,
+  `zip_postal_code` varchar(250) NOT NULL,
+  `country` varchar(250) NOT NULL,
+  `telephone` varbinary(250) NOT NULL,
+  `card_number` varchar(250) NOT NULL,
+  `card_type` varchar(250) NOT NULL,
+  `expire_month` int(11) NOT NULL,
+  `expire_year` int(11) NOT NULL,
+  `cvv2` varchar(4) NOT NULL,
+  `payer_id` varchar(250) DEFAULT NULL,
+  `parent_id` int(11) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+/*Data for the table `paypals` */
+
+insert  into `paypals`(`id`,`first_name`,`last_name`,`company`,`address`,`email`,`city`,`state_province`,`zip_postal_code`,`country`,`telephone`,`card_number`,`card_type`,`expire_month`,`expire_year`,`cvv2`,`payer_id`,`parent_id`) values (3,'Goran','Blazin','none','Test address 12','goran.blazin@gmail.com','Test city','AL','112334','US','+123123243421','5450960277411202','mastercard',2,2019,'202','',12);
+
 /*Table structure for table `product_images` */
 
 DROP TABLE IF EXISTS `product_images`;
@@ -255,14 +298,14 @@ DROP TABLE IF EXISTS `professionals`;
 CREATE TABLE `professionals` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `pricing_plan_type` int(1) NOT NULL DEFAULT '0',
+  `pricing_plan_type` int(1) NOT NULL DEFAULT '1',
   `pricing_plan_started_on` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 
 /*Data for the table `professionals` */
 
-insert  into `professionals`(`id`,`user_id`,`pricing_plan_type`,`pricing_plan_started_on`) values (1,5,0,1395193203),(2,7,0,1395208289),(3,8,0,1395208599),(4,9,0,1395208725),(5,10,0,1395209022),(6,11,0,1395209125),(7,12,0,1395209584),(8,13,0,1395258728);
+insert  into `professionals`(`id`,`user_id`,`pricing_plan_type`,`pricing_plan_started_on`) values (1,5,0,1395193203),(2,7,0,1395208289),(3,8,0,1395208599),(4,9,0,1393208725),(5,10,1,1396265071),(6,11,0,1396265220),(7,12,2,1396289824),(8,13,1,1396265071);
 
 /*Table structure for table `quest_messages` */
 
@@ -474,11 +517,11 @@ CREATE TABLE `user_avatars` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_avatars` */
 
-insert  into `user_avatars`(`id`,`user_id`,`name`,`public_uri`,`public_ssl_uri`,`public_streaming_uri`,`width`,`height`,`content_length`,`created_at`,`updated_at`) values (29,12,'5bf1f28b7d7bd3600ea1f507b4b1c9d8.png','http://10b2369fd88484cb1829-301bfc721f36f2495d8a276d7e2b76e2.r18.cf1.rackcdn.com/5bf1f28b7d7bd3600ea1f507b4b1c9d8.png','https://e78f294bdb0a87abf91c-301bfc721f36f2495d8a276d7e2b76e2.ssl.cf1.rackcdn.com/5bf1f28b7d7bd3600ea1f507b4b1c9d8.png','http://d2725e9e7870c0e896db-301bfc721f36f2495d8a276d7e2b76e2.r18.stream.cf1.rackcdn.com/5bf1f28b7d7bd3600ea1f507b4b1c9d8.png',200,200,10895,1395264566,1395264566),(30,12,'5bf1f28b7d7bd3600ea1f507b4b1c9d8.png','http://7675188bf9e8133792bf-da4dce5cb75456dd15c437d9fff43577.r87.cf1.rackcdn.com/5bf1f28b7d7bd3600ea1f507b4b1c9d8.png','https://90790433881f76b3a12e-da4dce5cb75456dd15c437d9fff43577.ssl.cf1.rackcdn.com/5bf1f28b7d7bd3600ea1f507b4b1c9d8.png','http://591128c6a485981a6645-da4dce5cb75456dd15c437d9fff43577.r87.stream.cf1.rackcdn.com/5bf1f28b7d7bd3600ea1f507b4b1c9d8.png',32,32,436,1395264568,1395264568);
+insert  into `user_avatars`(`id`,`user_id`,`name`,`public_uri`,`public_ssl_uri`,`public_streaming_uri`,`width`,`height`,`content_length`,`created_at`,`updated_at`) values (31,12,'ff5e6a5fbdabcf58e4817c892f1bf5ea.png','http://10b2369fd88484cb1829-301bfc721f36f2495d8a276d7e2b76e2.r18.cf1.rackcdn.com/ff5e6a5fbdabcf58e4817c892f1bf5ea.png','https://e78f294bdb0a87abf91c-301bfc721f36f2495d8a276d7e2b76e2.ssl.cf1.rackcdn.com/ff5e6a5fbdabcf58e4817c892f1bf5ea.png','http://d2725e9e7870c0e896db-301bfc721f36f2495d8a276d7e2b76e2.r18.stream.cf1.rackcdn.com/ff5e6a5fbdabcf58e4817c892f1bf5ea.png',200,200,34986,1395951732,1395951732),(32,12,'ff5e6a5fbdabcf58e4817c892f1bf5ea.png','http://7675188bf9e8133792bf-da4dce5cb75456dd15c437d9fff43577.r87.cf1.rackcdn.com/ff5e6a5fbdabcf58e4817c892f1bf5ea.png','https://90790433881f76b3a12e-da4dce5cb75456dd15c437d9fff43577.ssl.cf1.rackcdn.com/ff5e6a5fbdabcf58e4817c892f1bf5ea.png','http://591128c6a485981a6645-da4dce5cb75456dd15c437d9fff43577.r87.stream.cf1.rackcdn.com/ff5e6a5fbdabcf58e4817c892f1bf5ea.png',32,32,1900,1395951735,1395951735);
 
 /*Table structure for table `user_notices` */
 
@@ -543,7 +586,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`username`,`password`,`group`,`email`,`confirmation_code`,`status`,`display_name`,`last_login`,`login_hash`,`profile_fields`,`reset_code`,`reset_created_at`,`welcome_message`,`created_at`,`updated_at`) values (5,'g','dxgBabQES3qrYlj02hazPd6c7CX8vMMnRu5wDl6Maag=',50,'g@g.com',NULL,1,NULL,1395193215,'4204c784ff24339fd3cb087a2856f9bc804bc1cf','a:0:{}',NULL,NULL,1,1395193203,NULL),(6,'slypsy','dxgBabQES3qrYlj02hazPd6c7CX8vMMnRu5wDl6Maag=',1,'slypsy@yahoo.com',NULL,1,NULL,1395193268,'826dc7fa4e1ec9547c08d9421e8d91327b0285ea','a:0:{}',NULL,NULL,1,1395193261,NULL),(12,'goran.blazin','HK18N8vaKlGpGIF8rdIwwOfMysC40+ePiDm+ZVbXrvA=',50,'goran.blazin@gmail.com','684d75bdaac64961266a06018b891a2d',2,NULL,1395275227,'b1a0cef14775524acbb22b245000a1f6af7f9f2b','a:0:{}',NULL,NULL,1,1395209584,1395262510),(13,'test','dxgBabQES3qrYlj02hazPd6c7CX8vMMnRu5wDl6Maag=',50,'test@test.com','f1652299dec411451012ce236cc12b03',1,NULL,1395258740,'3d43f524a492191997f6808b864bfcbbf2992647','a:0:{}',NULL,NULL,1,1395258727,1395258728),(14,'testt','dxgBabQES3qrYlj02hazPd6c7CX8vMMnRu5wDl6Maag=',1,'testt@testt.com','6c60e4a3fc0d78048769021a52c77996',1,NULL,1395275250,'27985724fe2a39931849c5e67de0144a97b526c1','a:0:{}',NULL,NULL,1,1395275034,1395275256),(15,'','',1,'',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,1,0,NULL);
+insert  into `users`(`id`,`username`,`password`,`group`,`email`,`confirmation_code`,`status`,`display_name`,`last_login`,`login_hash`,`profile_fields`,`reset_code`,`reset_created_at`,`welcome_message`,`created_at`,`updated_at`) values (5,'g','dxgBabQES3qrYlj02hazPd6c7CX8vMMnRu5wDl6Maag=',50,'g@g.com',NULL,1,NULL,1395193215,'4204c784ff24339fd3cb087a2856f9bc804bc1cf','a:0:{}',NULL,NULL,1,1395193203,NULL),(6,'slypsy','dxgBabQES3qrYlj02hazPd6c7CX8vMMnRu5wDl6Maag=',1,'slypsy@yahoo.com',NULL,1,NULL,1395193268,'826dc7fa4e1ec9547c08d9421e8d91327b0285ea','a:0:{}',NULL,NULL,1,1395193261,NULL),(12,'goran.blazin','HK18N8vaKlGpGIF8rdIwwOfMysC40+ePiDm+ZVbXrvA=',50,'goran.blazin@gmail.com','684d75bdaac64961266a06018b891a2d',2,NULL,1396289322,'4367276f2545b55d36961dbc844860f589446ef9','a:0:{}',NULL,NULL,1,1395209584,1396196348),(13,'test','HK18N8vaKlGpGIF8rdIwwOfMysC40+ePiDm+ZVbXrvA=',50,'test@test.com','f1652299dec411451012ce236cc12b03',1,NULL,1396278365,'91e90a4ba6b196c189650fed51071959fa7104b9','a:0:{}',NULL,NULL,1,1395258727,1395258728),(14,'testt','dxgBabQES3qrYlj02hazPd6c7CX8vMMnRu5wDl6Maag=',1,'testt@testt.com','6c60e4a3fc0d78048769021a52c77996',1,NULL,1395275250,'27985724fe2a39931849c5e67de0144a97b526c1','a:0:{}',NULL,NULL,1,1395275034,1395275256),(15,'','',1,'',NULL,1,NULL,NULL,NULL,NULL,NULL,NULL,1,0,NULL);
 
 /*Table structure for table `users_clients` */
 
@@ -604,3 +647,8 @@ CREATE TABLE `users_providers` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /*Data for the table `users_providers` */
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
