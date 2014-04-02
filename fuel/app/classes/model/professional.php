@@ -57,7 +57,7 @@ class Model_Professional extends \Orm\Model {
    * @return Model_Professional
    */
   static public function getByUserId($user_id) {
-    return Model_Professional::query()->where('user_id', $user_id)->get_one();
+    return self::query()->where('user_id', $user_id)->get_one();
   } // getByUserId
 
 } // Model_Professional

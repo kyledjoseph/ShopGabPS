@@ -279,7 +279,7 @@ class Controller_User extends Controller_App
     $group_id = \Fuel\Core\Input::post('login_type') == 'professional' ? Model_User::PROFESSIONAL_GROUP_ID : Model_User::CLIENT_GROUP_ID;
     if ($group_id == Model_User::CLIENT_GROUP_ID) {
       // if client register check parent existence
-      $val->add_field('psid', "We're sorry the PSID you entered is not valid, please try again or contact your Personal Shopper", 'required|pro_user_id_exist');
+      $val->add_field('psid', "We're sorry the PSID you entered is not valid, please try again or contact your Personal Shopper", 'required|pro_user_id_exist|pro_user_id_active');
     } // if
 
     if ($val->run()) {
@@ -307,8 +307,15 @@ class Controller_User extends Controller_App
 
         $professional->save();
       } else {
+
         // create client user model
-        
+        $client = new Model_Client([
+          'user_id' => $user_id,
+          'parent_id' => \Fuel\Core\Input::post('psid'),
+          'gender' => 0
+        ]);
+
+        $client->save();
       } // if
 
       $user = Model_User::get_by_id($user_id);

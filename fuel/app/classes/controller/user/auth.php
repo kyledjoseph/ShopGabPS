@@ -33,6 +33,17 @@ class Controller_User_Auth extends Controller_App
         $auth->logout();
         $message = 'Wrong login role, please try again';
       } // if
+
+      // check if parent is correct
+      if ($login == true && $user->group == Model_User::CLIENT_GROUP_ID) {
+        $client = Model_Client::getByUserId($user->id);
+        if (!$client->parentIsActive()) {
+          $login = false;
+          $auth->dont_remember_me();
+          $auth->logout();
+          $message = "Your personal shopper's account is inactive. Please contact your personal shopper";
+        } // if
+      } // if
     } else {
       $message = 'Wrong email/password combination, please try again';
     } // if
@@ -41,7 +52,7 @@ class Controller_User_Auth extends Controller_App
       $this->redirect('/');
     } else {
       $this->template->notice = (object) array(
-        'type' => 'error',
+        'type' => 'danger',
         'message' => $message
       );
 

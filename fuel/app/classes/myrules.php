@@ -28,6 +28,22 @@ class MyRules
     return ($result->count() > 0);
   } // _validation_pro_user_id_exist
 
+  /**
+   * Validate if pro user exists
+   * @param $val
+   * @return bool
+   */
+  public static function _validation_pro_user_id_active($val) {
+    Validation::active()->set_message('pro_user_id_active', "We're sorry the PSID account you entered is not active, please contact your Personal Shopper");
+
+    $result = Model_Professional::getByUserId($val);
+    if ($result) {
+      return ($result->pricing_plan_type != Model_Professional::SUSPENDED_PRICING_PLAN);
+    } else {
+      return true;
+    } // if
+  } // _validation_pro_user_id_exist
+
   // note this is a non-static method
   public function _validation_is_upper($val) {
     return $val === strtoupper($val);
