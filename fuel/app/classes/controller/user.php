@@ -286,8 +286,16 @@ class Controller_User extends Controller_App
       // validation passed - create user
       $email = \Fuel\Core\Input::post('email');
       $username = substr($email, 0, strpos($email, '@'));
+      $new_username = $username;
+      $i = 0;
 
-      $user_id = Auth::create_user($username,\Fuel\Core\Input::post('password'),$email,$group_id);
+      // if username exists just add number to it
+      while (Model_User::query()->where('username', $new_username)->get_one()) {
+        $new_username = $username . $i;
+        $i++;
+      } // while
+
+      $user_id = Auth::create_user($new_username,\Fuel\Core\Input::post('password'),$email,$group_id);
 
       if ($group_id == Model_User::PROFESSIONAL_GROUP_ID) {
         // create professional user model
