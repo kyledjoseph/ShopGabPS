@@ -1,9 +1,6 @@
 	<div class="row">
 		<div class="col-12">
-			<ul class="nav nav-tabs">
-				<li class="active"><?= Html::anchor('/', 'My Quests') ?></li>
-				<li class="<?= $user->has_seen_notice('view_friends') ? : 'tour-quest-btn' ?>" data-container="body" data-placement="bottom" data-content="Check out what your friends are looking for." data-original-title="" title=""><?= Html::anchor('friends', 'Friends') ?></li>
-			</ul>
+			<h2>Quests:</h2>
 		</div>
 		<div class="col-12">
 		<div class="row">
@@ -40,13 +37,22 @@
 					</div>
 			</div>
 		</div>
-		<div class="col-12 col-sm-4 pad-top">
-			<div class="box my_clients">
-				<h4>Clients</h4>
-				<div class="content">
-          <p>Clients...</p>
-				</div>
-			</div>
-		</div>
+    <?php if ($user->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
+      <div class="col-12 col-sm-4 pad-top">
+        <div class="box my_clients">
+          <h4>Clients <a class="btn btn-success pull-right" href="/">Refresh</a></h4>
+          <div class="content">
+            <?php foreach ($user->getProfessionalModel()->getClients() as $client) { ?>
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <a href="/client/<?=$client->id ?>"><img class="force-32-32" src="<?= $client->getUser()->get_avatar_uri() ?>" /> <?= $client->getUser()->display_name() ?></a> -
+                  <a href="/client/client/<?=$client->id ?>/remove">Remove</a>
+                </li>
+              </ul>
+            <?php } ?>
+          </div>
+        </div>
+      </div>
+    <?php } ?>
 		</div>
 	</div>

@@ -6,6 +6,8 @@
 	<!-- Bootstrap -->
 	<script type="text/javascript" src="//use.typekit.net/kxv0tmh.js"></script>
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+  <!--  jQuery-->
+  <script src="//code.jquery.com/jquery.js"></script>
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="/assets/css/font-awesome.min.css" rel="stylesheet" media="screen">
 	<?= Casset::render_css() ?>

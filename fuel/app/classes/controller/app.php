@@ -28,7 +28,7 @@ class Controller_App extends Controller_Base
     if ($this->user_logged_in() && $this->user->group == Model_User::PROFESSIONAL_GROUP_ID) {
       $professional = Model_Professional::getByUserId($this->user->id);
       if ($professional->pricing_plan_type == Model_Professional::SUSPENDED_PRICING_PLAN && Uri::segment(1) !== 'account' && Uri::segment(1) !== 'logout') {
-        $this->redirect('/account', 'danger', 'Your account has expired. Please renew your subscription, balance due is 30$');
+        $this->redirect('/account', 'danger', 'Your account has expired. Please renew your subscription');
       } // if
     } // if
 	} // before

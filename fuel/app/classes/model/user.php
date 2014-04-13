@@ -10,6 +10,19 @@ class Model_User extends Auth\Model\Auth_User {
   const STATUS_PENDING_EMAIL_CONFIRM = 1;
   const STATUS_EMAIL_CONFIRMED = 2;
 
+  /**
+   * Cached professional model
+   * @var Model_Professional|null
+   */
+  private $professional_model = null;
+
+  /**
+   * Cached client model
+   * @var Model_Client|null
+   */
+  private $client_model = null;
+
+
 	protected static $_table_name = 'users';
 	protected static $_properties = array(
 		'id',
@@ -600,5 +613,42 @@ class Model_User extends Auth\Model\Auth_User {
         return 'Unknown';
     } // switch
   } // getVerboseAccountType
+
+  /**
+   * Return parent professional of client
+   * @return Model_User|bool
+   */
+  public function getParentUser() {
+    if ($this->group == Model_User::CLIENT_GROUP_ID) {
+      $client = Model_Client::getByUserId($this->id);
+      return Model_User::get_by_id($client->parent_id);
+    } else {
+      return false;
+    } // if
+  } // getParentUser
+
+  /**
+   * Return professional model
+   * @return Model_Professional
+   */
+  public function getProfessionalModel() {
+    if (!($this->professional_model instanceof Model_Professional)) {
+      $this->professional_model = Model_Professional::getByUserId($this->id);
+    } // if
+
+    return $this->professional_model;
+  } // getProfessionalModel
+
+  /**
+   * Return client model
+   * @return Model_Professional
+   */
+  public function getClientModel() {
+    if (!($this->client_model instanceof Model_Client)) {
+      $this->client_model = Model_Client::getByUserId($this->id);
+    } // if
+
+    return $this->client_model;
+  } // getClientModel
 
 }

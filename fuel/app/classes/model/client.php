@@ -19,6 +19,10 @@ class Model_Client extends \Orm\Model {
     'age',
     'height',
     'weight',
+    'bust',
+    'hips',
+    'cup_size',
+    'dress_size',
     'professional_information',
     'user_id',
     'parent_id',
@@ -47,6 +51,20 @@ class Model_Client extends \Orm\Model {
       return false;
     } // if
   } // parentIsActive
+
+  /**
+   * Cached value for model user
+   * @var Model_User|null
+   */
+  private $user_model = null;
+
+  function getUser() {
+    if (!($this->user_model instanceof Model_User)) {
+      $this->user_model = Model_User::get_by_id($this->user_id);
+    } // if
+
+    return $this->user_model;
+  } // getUser
 
   /**
    * Return client model

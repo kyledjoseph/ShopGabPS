@@ -11,6 +11,7 @@ class Model_Professional extends \Orm\Model {
     'user_id',
     'pricing_plan_type',
     'pricing_plan_started_on',
+    'automatic_plan_renewal'
   );
 
   protected static $_belongs_to = array(
@@ -50,6 +51,27 @@ class Model_Professional extends \Orm\Model {
 
     return ceil($time_left / (60 * 60 * 24));
   } // getSubscriptionDaysLeft
+
+  /**
+   * Get all professional clients
+   * @return Model_Client[]
+   */
+  function getClients() {
+    return Model_Client::query()->where('parent_id', $this->user_id)->get();
+  } // getClients
+
+  /**
+   * Cached value for model user
+   * @var Model_User|null
+   */
+  private $user_model = null;
+  function getUser() {
+    if (!($this->user_model instanceof Model_User)) {
+      $this->user_model = self::getByUserId($this->user_id);
+    } // if
+
+    return $this->user_model;
+  } // getUser
 
   /**
    * Return professional model

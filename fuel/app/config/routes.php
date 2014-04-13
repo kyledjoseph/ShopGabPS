@@ -18,6 +18,10 @@ return array(
 	'account/(:any)'                      => 'user/$1',
 	'account'                             => 'user/account',
 
+  'client/(:segment)/edit'              => 'clients/edit/$1',
+  'client/(:segment)/remove'            => 'clients/remove/$1',
+  'client/(:segment)'                   => 'clients/view/$1',
+
 	'quest/create'                        => 'quests/create',
 	'quest/(:segment)/remove/(:segment)'  => 'quests/remove/$1/$2',
 	'quest/(:segment)/like/(:segment)'    => 'quests/like/$1/$2',

@@ -6,8 +6,7 @@ class Controller_User extends Controller_App
 	/**
 	 * Forgot password
 	 */
-	public function get_forgot()
-	{
+	public function get_forgot() {
 		$this->template->body = View::forge('user/forgot');
 	}
 
@@ -19,10 +18,9 @@ class Controller_User extends Controller_App
 		$post = $this->post_data('email');
 		$user = Model_User::get_by_email($post->email);
 		
-		if (! isset($user))
-		{
+		if (! isset($user)) {
 			$this->redirect('forgot', 'error', 'That email address is not registered');
-		}
+		} // if
 
 		$user->generate_reset_code();
 		
@@ -148,12 +146,14 @@ class Controller_User extends Controller_App
 	public function get_account()	{
 		$this->require_auth();
     $paypal = Model_Paypal::getByUserId($this->user->id);
+    $client = $this->user->getClientModel();
 
 		$this->template->body = View::forge('user/account',[
       'paypal' => $paypal ? $paypal : new Model_Paypal(),
+      'client' => $client ? $client : new Model_Client(),
       'professional' => $this->user->group == Model_User::PROFESSIONAL_GROUP_ID ? Model_Professional::getByUserId($this->user->id) : null
     ]);
-	}
+	} // get_account
 
 	/**
 	 * undefined_method
@@ -165,7 +165,7 @@ class Controller_User extends Controller_App
 		$post = $this->post_data('name', 'email');
 
 		$this->user->fullname = $post->name;
-		//$this->user->email        = $post->email;
+		$this->user->email = $post->email;
 		$this->user->save();
 
 		$this->redirect('user/account', 'success', 'Account information updated');
@@ -396,4 +396,11 @@ class Controller_User extends Controller_App
 
     $this->redirect('/account', 'info', "Paypal info updated, renewal not needed");
   } // post_paypal
+
+  public function post_renewal() {
+    $professional = Model_Professional::getByUserId($this->user->id);
+    $professional->automatic_plan_renewal = $_POST['checked'];
+    $professional->save();
+    die();
+  } // post_renewal
 }
