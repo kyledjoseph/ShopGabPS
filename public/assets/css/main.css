@@ -2587,6 +2587,10 @@ footer .footer-bottom .footer-logo {
 	display: none;
 }
 
+.add_new_product_modal {
+  width: 800px;
+}
+
 .dropdown-menu.dropdown-left {
 	left: -115px;
 	text-align: right;
@@ -2596,6 +2600,3 @@ footer .footer-bottom .footer-logo {
 .dropdown-menu.dropdown-left a:link {
 	color: white;
 }
-
-
-

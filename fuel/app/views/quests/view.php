@@ -30,21 +30,9 @@
 		</div>
 
 		<div class="col-12 col-sm-4 col-lg-3 col-sm-offset-1 align-center">
-			<?php if (isset($user) and $quest->belongs_to_user($user, false)): ?>
-			<div class="pushups">
-
-				<?= View::forge('quests/access', array('quest' => $quest)) ?>
-
-				<button id="fb_share" class="marg-bottom push-center btn btn-fb btn-block push-center quest-invite"
-					data-picture="<?= $quest->default_thumb_url() ?>"
-					data-link="<?= $quest->full_url() ?>"
-					data-name="Help me find a <?= $quest->name ?>"
-					data-caption="ShopGab - Shop Socially!"
-					data-description="<?= $user->display_name() ?> is trying to find a <?= $quest->name ?> through ShopGab and has requested your input! Please click on the link below to see their page and join in the search. Thanks!"><i class="icon-facebook icon-large"></i>&nbsp;&nbsp;&nbsp;Post to timeline</button>
-				
-				<button id="fb_invite" class="btn btn-primary btn-fb btn-block push-center quest-message" href="" data-link="<?= $quest->full_url() ?>"><i class="icon-facebook icon-large"></i>&nbsp;&nbsp;&nbsp;Message friends</button>
-			</div>
-			<?php endif; ?>
+      <div class="box marg-top">
+        <?= View::forge('quests/messages', array('quest' => $quest, 'messages' => $quest_messages)) ?>
+      </div>
 		</div>
 	</div>
 
@@ -52,16 +40,6 @@
 		<div class="col-12 col-sm-8">
 			<div class="box marg-top no-border">
 				<?= View::forge('quests/products', array('quest' => $quest, 'quest_products' => $quest_products)) ?>
-			</div>
-		</div>
-
-		<div class="col-12 col-sm-4">
-			<div class="box marg-top participants">
-				<?= View::forge('quests/participants', array('quest' => $quest)) ?>
-			</div>
-
-			<div class="box marg-top">
-				<?= View::forge('quests/messages', array('quest' => $quest, 'messages' => $quest_messages)) ?>
 			</div>
 		</div>
 	</div>

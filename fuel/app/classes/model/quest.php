@@ -381,14 +381,13 @@ class Model_Quest extends \Orm\Model
 	/**
 	 *
 	 */
-	public function add_product(Model_Product $product)
-	{
+	public function add_product(Model_Product $product) {
 		$product = Model_Quest_Product::add_quest_product($this, array(
-			'product_id' => $product_id,
+			'product_id' => $product->id,
 			'added_by'   => $this->user->id,
 		));
 
-		$this->trigger('product', [$product]);
+//		$this->trigger('product', [$product]);
 
 		return $product ?: false;
 	}
@@ -418,10 +417,9 @@ class Model_Quest extends \Orm\Model
 	 */
 	public function new_message($user_id, $message)
 	{
-		if ($message = Model_Quest_Message::create_message($this->id, $user_id, $message))
-		{
+		if ($message = Model_Quest_Message::create_message($this->id, $user_id, $message)) {
 			$this->add_participant($user_id);
-			$this->trigger('message', [$message]);
+//			$this->trigger('message', [$message]);
 		}
 		
 		// Model_Quest_Notification::new_message($user_id, $this, $message->id);
@@ -520,7 +518,11 @@ class Model_Quest extends \Orm\Model
 	}
 
 
-	public static function get_by_id($quest_id)
+  /**
+   * @param $quest_id
+   * @return Model_Quest
+   */
+  public static function get_by_id($quest_id)
 	{
 		return static::query()->where('id', $quest_id)->get_one();
 	}

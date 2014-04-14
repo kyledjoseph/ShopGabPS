@@ -134,24 +134,27 @@ class Model_Product extends \Orm\Model
 		return $image->public_uri;
 	}
 
-	public function add_image($src_url)
-	{
+	public function add_image($src_url, $uploaded = false) {
 		ini_set('memory_limit', '128M');
 
-		$connection = Service_Cloudfiles::get_connection();
+    // save paths
+    $file_name = md5(uniqid(rand(), true));
+    $tmp_dir   = APPPATH . 'tmp/';
+    $tmp_path  = $tmp_dir . $file_name;
+    $connection = Service_Cloudfiles::get_connection();
 
-		// make request
-		$curl = Request::forge($src_url, 'curl');
-		$curl->execute();
-		$response   = $curl->response();
+    if ($uploaded) {
+      // save tmp
+      File::create($tmp_dir, $file_name, file_get_contents($src_url['tmp_name']));
+    } else {
+      // make request
+      $curl = Request::forge($src_url, 'curl');
+      $curl->execute();
+      $response   = $curl->response();
 
-		// save paths
-		$file_name = md5(uniqid(rand(), true));
-		$tmp_dir   = APPPATH . 'tmp/';
-		$tmp_path  = $tmp_dir . $file_name;
-
-		// save tmp
-		File::create($tmp_dir, $file_name, $response->body());
+      // save tmp
+      File::create($tmp_dir, $file_name, $response->body());
+    } // if
 
 		// add file extension
 		$tmp_type = exif_imagetype($tmp_path);
@@ -196,7 +199,7 @@ class Model_Product extends \Orm\Model
 			$product_image = new Model_Product_Image;
 			$product_image->product_id           = $this->id;
 			$product_image->name                 = $image->name;
-			$product_image->src_url              = $src_url;
+			$product_image->src_url              = $uploaded ? 'uploaded' : $src_url;
 			$product_image->public_uri           = $image->public_uri();
 			$product_image->public_ssl_uri       = $image->public_ssl_uri();
 			$product_image->public_streaming_uri = $image->public_streaming_uri();

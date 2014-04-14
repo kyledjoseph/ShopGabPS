@@ -177,6 +177,22 @@ class Controller_Quests extends Controller_App
 
 	}
 
+  public function post_add_product($quest_id) {
+    $quest = Model_Quest::get_by_id($quest_id);
+    $product_data = $_POST['product_data'];
+    $product_data['user_id'] = $this->user->id;
+    $product_data['created_at'] = $product_data['updated_at'] = time();
+
+    $product = new Model_Product();
+    $product->set($product_data);
+    $product->save();
+    $product->add_image($_FILES['product_image'], true);
+
+    $quest->add_product($product);
+
+    $this->redirect('quest/'.$quest->url, 'success', 'Product successfully added');
+  } // post_add_product
+
 
 
 
@@ -502,26 +518,21 @@ class Controller_Quests extends Controller_App
 
 
 
-	protected function _init_quest_assets()
-	{
+	protected function _init_quest_assets() {
 		// Casset::js('lib/jquery.expander.min.js');
 		Casset::js('lib/jquery.tipTip.js');
 		Casset::js('site/quest.js');
 		Casset::js('site/quest/tour.js');
-		Casset::js('fb/init.js');
 
 		Casset::css('lib/tipTip.css');
 	}
 
 
-	protected function _init_modals($quest)
-	{
-		if ($this->user_logged_in())
-		{
-			$this->add_modal(View::forge('quests/modal/invite', array('quest' => $quest)));
-			$this->add_modal(View::forge('quests/modal/add_product'));
+	protected function _init_modals($quest) {
+		if ($this->user_logged_in()) {
+			$this->add_modal(View::forge('quests/modal/add_product', array('quest' => $quest)));
 			$this->add_modal(View::forge('quests/modal/edit_quest', array('quest' => $quest)));
 			$this->add_modal(View::forge('quests/modal/delete_quest', array('quest' => $quest)));
-		}
+		} // if
 	}
 }

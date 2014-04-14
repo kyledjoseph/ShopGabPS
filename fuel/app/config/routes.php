@@ -32,6 +32,7 @@ return array(
 	'quest/(:segment)/within'             => 'quests/within/$1',
 	'quest/(:segment)/invite/email'       => 'quests/invite_email/$1',
 	'quest/(:segment)/invite/friends'     => 'quests/invite_friends/$1',
+  'quest/(:segment)/add-product'        => 'quests/add_product/$1',
 	'quest/(:segment)/edit'               => 'quests/edit/$1',
 	'quest/(:segment)/delete'             => 'quests/delete/$1',
 	'quest/(:segment)'                    => 'quests/view/$1',

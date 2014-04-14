@@ -26,7 +26,8 @@
 								<?php endif; ?>
 								&nbsp;
 							</div>
-							<a href="<?= $product->product_url() ?>" class="quest-product-image-div" style="background-image:url(<?= $product->image_url(250, 220) ?>)" target="_blank">
+							<a href="<?= $product->product_url() ? $product->product_url() : '/' ?>" class="quest-product-image-div" <?php if(is_null($product->product_url())) {?> onclick="return false;" <?php } ?>
+                 style="background-image:url(<?= $product->image_url(250, 220) ?>)" target="_blank">
 								<div class="product-name">
 									<div class="title-box"><?= $product->name() ?></div>
 									<span class="faded">

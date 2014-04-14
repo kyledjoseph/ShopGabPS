@@ -177,7 +177,7 @@ class Model_Quest_Product extends \Orm\Model
 		}
 		
 		//old $notice = Model_Quest_Notification::new_like($user->id, $this->quest, $vote->id);
-		$this->quest->trigger('like', [$vote]);
+//		$this->quest->trigger('like', [$vote]);
 
 		return $vote and $this->cache_votes();
 	}
@@ -196,7 +196,7 @@ class Model_Quest_Product extends \Orm\Model
 		}
 
 		//old $notice = Model_Quest_Notification::new_dislike($user->id, $this->quest, $vote->id);
-		$this->quest->trigger('dislike', [$vote]);
+//		$this->quest->trigger('dislike', [$vote]);
 
 		return $vote and $this->cache_votes();
 	}
@@ -249,7 +249,7 @@ class Model_Quest_Product extends \Orm\Model
 		$comment = Model_Quest_Product_Comment::create_comment($this->id, $user_id, $text);
 		//$notice  = Model_Quest_Notification::new_comment($user_id, $this->quest, $comment->id);
 
-		$this->quest->trigger('comment', [$comment]);
+//		$this->quest->trigger('comment', [$comment]);
 		$this->quest->add_participant($user_id);
 
 		return $comment;
@@ -278,7 +278,7 @@ class Model_Quest_Product extends \Orm\Model
 		$product->quest = $quest;
 		$product->save();
 
-		$this->quest->trigger('product', [$product]);
+//    $product->quest->trigger('product', [$product]);
 
 		return $product;
 	}

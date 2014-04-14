@@ -65,7 +65,9 @@ class Model_Quest_Product_Comment extends \Orm\Model
 			'comment' => $comment,
 		));
 		
-		$comment->save() and $comment->quest_product->quest->trigger('comment', [$comment]);
+		$comment->save();
+
+//    $comment->quest_product->quest->trigger('comment', [$comment]);
 
 		return $comment;
 	}

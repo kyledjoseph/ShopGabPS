@@ -37,7 +37,13 @@ class Controller_User_Auth extends Controller_App
       // check if parent is correct
       if ($login == true && $user->group == Model_User::CLIENT_GROUP_ID) {
         $client = Model_Client::getByUserId($user->id);
-        if (!$client->parentIsActive()) {
+        // check if client has parent
+        if ($client->parent_id == 0) {
+          $login = false;
+          $auth->dont_remember_me();
+          $auth->logout();
+          $message = "You do not have a personal shopper, your account is suspended.";
+        } else if (!$client->parentIsActive()) {
           $login = false;
           $auth->dont_remember_me();
           $auth->logout();

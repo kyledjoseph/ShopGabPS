@@ -63,7 +63,6 @@
 			shopgab.log('shopgab.quest.init');
 
 			this._init_interface();
-			shopgab.quest.facebook.init();
 		}
 
 	};
@@ -79,7 +78,6 @@
 
 		init: function()
 		{
-			shopgab.log('shopgab.quest.facebook.init');
 
 			$('#fb_invite').click(function() {
 

@@ -12,33 +12,27 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
 		</div>
 		<br />
 <div class="form-group">
-		<input type="text" class="form-control title" placeholder="Product Name" maxlength="50">
-	</div>
+  <input type="text" class="form-control title" placeholder="Product Name" maxlength="50">
+</div>
 <div class="form-group">
-		<input type="text" class="price form-control" placeholder="Price" maxlength="50">
-	</div>
-		<div class="form-group">
-		<textarea class="description form-control" placeholder="Description"></textarea>
-	</div>
-		<div id="add_to" class="form-group">
-			<?= Form::select('add_to', 'my', array('my' => 'My Quest', 'friend' => 'Friend\'s Quest', 'new' => 'New Quest'), array('class' => 'form-control')) ?>
-		</div>
-		<div id="friend_id" class="form-group" style="display:none">
-			<?= Form::select('friend_id', null, $user->select_friends(), array('class' => 'form-control')) ?>
-		</div>
-		<div id="friend_quest_id" class="form-group"style="display:none">
-			<?= Form::select('friend_quest_id', null, array('class' => 'form-control')) ?>
-		</div>
-		<div id="new_quest_name" class="form-group" style="display:none">
-			<?= Form::input('new_quest_name', null, array('class' => 'form-control', 'placeholder' => 'New Quest')) ?>
-		</div>
-		<div id="my_quest_url" class="form-group">
-			<?= Form::select('my_quest_url', null, $user->select_quest(), array('class' => 'form-control')) ?>
-		</div>
-		<div class="btn-container">
-			<a class="cancel btn btn-default" href="#">Cancel</a>
-			<a class="add btn btn-primary" href="#">Add Product</a>
-		</div>
+  <input type="text" class="price form-control" placeholder="Price" maxlength="50">
+</div>
+<div class="form-group">
+  <textarea class="description form-control" placeholder="Description"></textarea>
+</div>
+<div id="add_to" class="form-group">
+  <?= Form::select('add_to', 'my', array('my' => 'Existing Quests', 'new' => 'New Quest'), array('class' => 'form-control')) ?>
+</div>
+<div id="new_quest_name" class="form-group" style="display:none">
+  <?= Form::input('new_quest_name', null, array('class' => 'form-control', 'placeholder' => 'New Quest')) ?>
+</div>
+<div id="my_quest_url" class="form-group">
+  <?= Form::select('my_quest_url', null, $user->select_quest(), array('class' => 'form-control')) ?>
+</div>
+<div class="btn-container">
+  <a class="cancel btn btn-default" href="#">Cancel</a>
+  <a class="add btn btn-primary" href="#">Add Product</a>
+</div>
 
 <script type="text/javascript">
 $(".add").click(function() {

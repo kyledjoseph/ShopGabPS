@@ -40,4 +40,21 @@ class Controller_Clients extends Controller_App {
     $this->redirect('/client/'. $client->id, 'success', 'Client data updated');
   } // function
 
+  function get_remove($client_id) {
+    $client = Model_Client::query()->where('id', $client_id)->get_one();
+    if ($client instanceof Model_Client) {
+
+      // check if logged user is clients parent
+      if ($client->parent_id == $this->user->id) {
+        $client->set('parent_id', 0);
+        $client->save();
+        $this->redirect('/', 'success', 'Client successfully removed');
+      } else {
+        $this->redirect('/', 'danger', 'This client is not in your network');
+      } // if
+    } else {
+      $this->redirect('/', 'danger', 'Client not found');
+    } // if
+  } // get_remove
+
 } // Controller_Clients
