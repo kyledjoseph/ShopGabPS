@@ -44,7 +44,7 @@
 								<div class="pull-left fix-pull-left">
 									<?php if (isset($user)): ?>
 									<a class="no-dec" href="#commentsFor<?= $product_i ?>" data-toggle="modal">
-										<span class="badge"><?= $quest_product->total_comments() ?></span>
+										<span class="badge total_comments_<?= $quest_product->id ?>"><?= $quest_product->total_comments() ?></span>
 										<i class="icon-comments-alt faded icon-large"></i>
 									</a>
 									<?php else: ?>

@@ -25,17 +25,20 @@ class Controller_Cron extends Controller_App {
 
         if (($professional->pricing_plan_type == Model_Professional::PAID_PRICING_PLAN) && ($professional->automatic_plan_renewal)) {
           $paypal = Model_Paypal::getByUserId($professional->user_id);
-          $payment_info = $paypal->makePayment();
-          if ($payment_info === true) {
+
+          try {
+            $paypal->makePayment();
+
             $professional->set([
               'pricing_plan_type' => Model_Professional::PAID_PRICING_PLAN,
               'pricing_plan_started_on' => time()
             ]);
             $professional->save();
             continue;
-          } else {
+          } catch (Exception $e) {
+            echo 'Payment failed for user with id: '. $professional->user_id.'<br />';
             // @TODO notify pro user about renewal failing
-          } // if
+          } // try
         } // if
 
         $professional->set([

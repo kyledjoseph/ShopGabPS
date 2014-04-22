@@ -239,9 +239,10 @@ class Model_Quest extends \Orm\Model
 
 	public function purchase_within()
 	{
-		return ! empty($this->purchase_by)
+		$return = ! empty($this->purchase_by)
 		 ? round(($this->purchase_by - time()) / 86400)
 		 : $this->purchase_within_value($this->purchase_within) / 86400;
+    return $return > 0 ? $return : 0;
 	}
 
 	public function purchase_within_text()

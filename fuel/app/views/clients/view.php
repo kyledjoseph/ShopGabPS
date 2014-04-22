@@ -152,7 +152,7 @@
                 </div>
 
                 <div class="control-group account-form">
-                  <label class="control-label" for="professional_information">Client Information</label>
+                  <label class="control-label" for="professional_information">Client Information (hidden)</label>
                   <div class="controls">
                     <textarea class="form-control" name="client_data[professional_information]" id="professional_information"><?= $client->professional_information ?></textarea>
                   </div>

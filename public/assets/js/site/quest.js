@@ -499,13 +499,17 @@
 				type: 'POST',
 				dataType: 'json',
 				data: {
-					comment: comment,
+					comment: comment
 				},
 				success: function(response) {
 					if (response.success)
 					{
 						shopgab.quest.product.append_comment(response.view);
 						shopgab.quest.product.clear_comment(response.view);
+
+            // increase comment count for this product
+            var total_comments_wrapper = $('span.total_comments_'+product_id);
+            total_comments_wrapper.html((parseInt(total_comments_wrapper.html()) + 1).toString());
 					}
 					else
 					{

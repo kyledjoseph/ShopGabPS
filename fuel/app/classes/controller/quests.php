@@ -179,6 +179,11 @@ class Controller_Quests extends Controller_App
 
   public function post_add_product($quest_id) {
     $quest = Model_Quest::get_by_id($quest_id);
+
+    if ($_FILES['product_image']['error']) {
+      $this->redirect('quest/'.$quest->url, 'danger', 'Please provide product image');
+    } // if
+
     $product_data = $_POST['product_data'];
     $product_data['user_id'] = $this->user->id;
     $product_data['created_at'] = $product_data['updated_at'] = time();

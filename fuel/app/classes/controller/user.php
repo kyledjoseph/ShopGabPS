@@ -377,9 +377,8 @@ class Controller_User extends Controller_App
 
     // check if renewal if needed
     if ($professional->getSubscriptionDaysLeft() < 0 || $professional->pricing_plan_type != Model_Professional::PAID_PRICING_PLAN) {
-      $payment_info = $paypal_account->makePayment();
-      if ($payment_info === true) {
-        // payment successful
+      try {
+        $paypal_account->makePayment();
 
         $professional->set([
           'pricing_plan_type' => Model_Professional::PAID_PRICING_PLAN,
@@ -387,11 +386,11 @@ class Controller_User extends Controller_App
         ]);
         $professional->save();
         $this->redirect('/account', 'success', 'Payment successful, subscription renewed');
-      } else {
+      } catch (Exception $e) {
         // payment failed
         // @TODO notify pro user
-        $this->redirect('/account', 'error', "Payment failed: $payment_info");
-      } // if
+        $this->redirect('/account', 'danger', "Payment failed. Please check your payment credentials or contact administrator");
+      } // try
     } // if
 
     $this->redirect('/account', 'info', "Paypal info updated, renewal not needed");
