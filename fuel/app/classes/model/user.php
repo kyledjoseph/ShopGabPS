@@ -425,9 +425,9 @@ class Model_User extends Auth\Model\Auth_User {
 	/**
 	 * Create a new quest
 	 */
-	public function create_quest($name, $description, $purchase_within)
+	public function create_quest($name, $description, $purchase_within, $created_by = 0)
 	{
-		return Model_Quest::create_quest($this->id, $name, $description, $purchase_within);
+		return Model_Quest::create_quest($this->id, $name, $description, $purchase_within, $created_by);
 	}
 
 	/**

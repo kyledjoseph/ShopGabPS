@@ -39,7 +39,7 @@
 							<?php if (isset($user) and $quest->belongs_to_user($user)): ?>
 							<a class="close quest-page" href="<?= $quest_product->remove_url() ?>">&times;</a>
 							<?php endif; ?>
-		
+
 							<div class="row product-info">
 								<div class="pull-left fix-pull-left">
 									<?php if (isset($user)): ?>
