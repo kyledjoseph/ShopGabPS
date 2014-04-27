@@ -16,6 +16,7 @@ class Model_Quest extends \Orm\Model
 		'is_public',
 		'created_at',
 		'updated_at',
+    'created_by'
 	);
 
 
@@ -128,7 +129,8 @@ class Model_Quest extends \Orm\Model
 
 	public function belongs_to_user($user, $allow_admin = true)
 	{
-		return $user->id == $this->user_id or ($allow_admin and $user->is_admin());
+    $quest_user = Model_User::get_by_id($this->user_id);
+		return ($user->id == $this->user_id) || ($quest_user->getParentUser()->id == $user->id) || ($allow_admin and $user->is_admin());
 	}
 
 	public function date($format = "r")
@@ -239,9 +241,10 @@ class Model_Quest extends \Orm\Model
 
 	public function purchase_within()
 	{
-		return ! empty($this->purchase_by)
+		$return = ! empty($this->purchase_by)
 		 ? round(($this->purchase_by - time()) / 86400)
 		 : $this->purchase_within_value($this->purchase_within) / 86400;
+    return $return > 0 ? $return : 0;
 	}
 
 	public function purchase_within_text()
@@ -381,10 +384,11 @@ class Model_Quest extends \Orm\Model
 	/**
 	 *
 	 */
-	public function add_product(Model_Product $product) {
+	public function add_product(Model_Product $product, $logged_user_id = null) {
+    $user_id = $logged_user_id ? $logged_user_id : $this->user->id;
 		$product = Model_Quest_Product::add_quest_product($this, array(
 			'product_id' => $product->id,
-			'added_by'   => $this->user->id,
+			'added_by'   => $user_id,
 		));
 
 //		$this->trigger('product', [$product]);
@@ -542,13 +546,14 @@ class Model_Quest extends \Orm\Model
 		return static::query()->where('url', $quest_url)->get_one();
 	}
 
-	public static function create_quest($user_id, $name, $description, $purchase_within)
+	public static function create_quest($user_id, $name, $description, $purchase_within, $created_by = 0)
 	{
 		$quest = static::forge(array(
 			'user_id'         => $user_id,
 			'name'            => $name,
 			'description'     => $description,
 			'is_public'       => 1,
+      'created_by'      => $created_by
 		));
 
 		$quest->set_purchase_within($purchase_within);

@@ -20,7 +20,13 @@
             <div class="row product-rows">
               <?php foreach ($quests as $quest): ?>
                 <div class="col-12 col-sm-4 col-lg-3 dash-product-square">
-                  <div class="added-by">&nbsp;</div>
+                  <div class="added-by <?php if($quest->created_by){ ?>dark-grey<?php } ?>">
+                    <?php if ($quest->created_by) { ?>
+                      <i class="icon-user"></i> Added by <?= Model_User::get_by_id($quest->created_by)->display_name() ?>
+                    <?php } else { ?>
+                      &nbsp;
+                    <?php } ?>
+                  </div>
                   <a href="<?= Uri::create($quest->url()) ?>" class="dash-product-image-div" style="background-image:url(<?= $quest->default_thumb_url(250, 220) ?>)">
                     <div class="product-name"><?= $quest->name() ?></div>
                       <span class="close dash-close"><span class="badge"><?= $quest->total_unseen_notifications() ?></span>
@@ -152,7 +158,7 @@
                 </div>
 
                 <div class="control-group account-form">
-                  <label class="control-label" for="professional_information">Client Information</label>
+                  <label class="control-label" for="professional_information">Client Information (hidden)</label>
                   <div class="controls">
                     <textarea class="form-control" name="client_data[professional_information]" id="professional_information"><?= $client->professional_information ?></textarea>
                   </div>

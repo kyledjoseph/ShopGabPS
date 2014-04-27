@@ -8,6 +8,7 @@
         <input type="checkbox" id="automatic_plan_renewal" <?php if ($professional->automatic_plan_renewal) { ?> checked="checked" <?php } ?> />
         <label for="automatic_plan_renewal">Automatic plan renewal</label>
     <?php } ?>
+    <p>Pricing plan: $30/month</p>
 
     <h3 class="header-underline">Profile Picture</h3>
     <?= Form::open(array('action' => 'account/avatar', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal')) ?>
@@ -220,8 +221,10 @@
       <div class="control-group account-form">
         <div class="controls">
           <input type="submit" class="btn btn-default marg-top" name="submitted" value="Checkout with paypal">
+          <p>Pricing plan: $30/month</p>
         </div>
       </div>
+
 
       <script type="text/javascript">
         $('#checkout_form').submit(function(e) {

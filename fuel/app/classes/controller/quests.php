@@ -9,7 +9,7 @@ class Controller_Quests extends Controller_App
 
 
 	/**
-	 *
+	 * @return Model_Quest
 	 */
 	private function get_quest_by_url($quest_url)
 	{
@@ -179,6 +179,11 @@ class Controller_Quests extends Controller_App
 
   public function post_add_product($quest_id) {
     $quest = Model_Quest::get_by_id($quest_id);
+
+    if ($_FILES['product_image']['error']) {
+      $this->redirect('quest/'.$quest->url, 'danger', 'Please provide product image');
+    } // if
+
     $product_data = $_POST['product_data'];
     $product_data['user_id'] = $this->user->id;
     $product_data['created_at'] = $product_data['updated_at'] = time();
@@ -188,20 +193,10 @@ class Controller_Quests extends Controller_App
     $product->save();
     $product->add_image($_FILES['product_image'], true);
 
-    $quest->add_product($product);
+    $quest->add_product($product, $this->user->id);
 
     $this->redirect('quest/'.$quest->url, 'success', 'Product successfully added');
   } // post_add_product
-
-
-
-
-
-
-
-
-
-
 
 	/**
 	 * add a product comment to a quest
@@ -339,8 +334,16 @@ class Controller_Quests extends Controller_App
 	public function post_create()
 	{
 		$post  = $this->post_data('name', 'description', 'purchase_within');
+    $for_user_id = isset($_POST['for_user_id']) ? $_POST['for_user_id'] : false;
 
-		$quest = $this->user->create_quest($post->name, $post->description, $post->purchase_within);
+    if ($for_user_id) {
+      $for_user = Model_User::get_by_id($for_user_id);
+      $quest = $for_user->create_quest($post->name, $post->description, $post->purchase_within, $this->user->id);
+    } else {
+      $quest = $this->user->create_quest($post->name, $post->description, $post->purchase_within);
+    } // if
+
+
 		$this->user->mark_notice_seen('start_quest');
 
 		$this->redirect($quest->url());
@@ -356,7 +359,7 @@ class Controller_Quests extends Controller_App
 
 		$this->require_auth($quest->url());
 
-		if ($quest->user_id !== $this->user->id)
+		if (! $quest->belongs_to_user($this->user))
 		{
 			$this->redirect($quest->url());
 		}
@@ -372,7 +375,7 @@ class Controller_Quests extends Controller_App
 
 		$this->require_auth($quest->url());
 
-		if ($quest->user_id !== $this->user->id)
+    if (! $quest->belongs_to_user($this->user))
 		{
 			$this->redirect($quest->url());
 		}
@@ -398,7 +401,7 @@ class Controller_Quests extends Controller_App
 
 		$this->require_auth($quest->url());
 
-		if ($quest->user_id !== $this->user->id)
+    if (! $quest->belongs_to_user($this->user))
 		{
 			$this->redirect('/');
 		}

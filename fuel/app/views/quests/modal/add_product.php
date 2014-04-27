@@ -14,7 +14,7 @@
               <input type="file" class="product_image" name="product_image" placeholder="Upload image" />
             </div>
             <div class="form-group">
-              <input type="text" name="product_data[name]" class="form-control product_name" placeholder="Product Name" maxlength="50" />
+              <input type="text" name="product_data[name]" class="form-control product_name" placeholder="Product Name" required="required" maxlength="50" />
             </div>
             <div class="form-group">
               <input type="text" class="price form-control" name="product_data[price]" placeholder="Price" maxlength="50" />
