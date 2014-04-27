@@ -139,64 +139,60 @@ $(document).ready(function () {
             console.log('child.display_options(' + add_to + ')');
             if (add_to === 'my')
             {
-                $('#friend_id').hide();
-                $('#friend_quest_id').hide();
+                $('#client_id').hide();
+                $('#client_quest_url').hide();
                 $('#new_quest_name').hide();
                 $('#my_quest_url').show();
             }
-            if (add_to === 'friend')
+            if (add_to === 'client')
             {
-                $('#friend_id').show();
-                $('#friend_quest_id').hide();
+                $('#client_id').show();
+                $('#client_quest_url').show();
                 $('#new_quest_name').hide();
                 $('#my_quest_url').hide();
 
-                child.load_friend_quests($('#form_friend').val());
+                child.load_client_quests($('#form_client_id').val());
             }
             if (add_to === 'new')
             {
-                $('#friend_id').hide();
-                $('#friend_quest_id').hide();
+                $('#client_id').hide();
+                $('#client_quest_url').hide();
                 $('#new_quest_name').show();
                 $('#my_quest_url').hide();
             }
         },
 
-        load_friend_quests: function(friend_id) {
-            console.log('child.load_friend_quests(' + friend_id + ')');
-            if (friend_id === 'none' || typeof friend_id === 'undefined') {
+      load_client_quests: function(client_id) {
+
+            console.log('child.load_client_quests(' + client_id + ')');
+            if (client_id === 'none' || typeof client_id === 'undefined') {
                 return;
             }
             
             $.ajax({
-                url: '/bookmark/friend_quests/' + friend_id,
+                url: '/bookmark/client-quests/' + client_id,
                 type: 'GET',
                 timeout: 30000,
                 dataType: 'json',
                 success: function(response) {
-                    if (! response.success)
-                    {
-                        //response.message: invalid_friend_id, auth
-                        return;
-                    }
+                  if (! response.success) {
+                      //response.message: invalid_client_id, auth
+                      return;
+                  }
 
-                    var dropdown = $("#form_friend_quest_id"),
-                        total    = 0;
-                  
-                    dropdown.empty();
+                  var dropdown = $("#form_client_quest_url");
+                  var total    = 0;
 
-                    for (var key in response.quests)
-                    {
-                        dropdown.append($('<option></option>').attr("value", key).text(response.quests[key]));
-                        total++;
-                    }
-                    
-                    if (total == 0)
-                    {
-                        dropdown.append($('<option></option>').attr("value", 'none').text('None'));
-                    }
+                  dropdown.empty();
 
-                    $('#friend_quest_id').show();
+                  for (var key in response.quests) {
+                      dropdown.append($('<option></option>').attr("value", key).text(response.quests[key]));
+                      total++;
+                  } // for
+
+                  if (total == 0) {
+                      dropdown.append($('<option></option>').attr("value", 'none').text('None'));
+                  } // if
                 }
             });
             
@@ -221,10 +217,10 @@ $(document).ready(function () {
                 child.display_options(add_to);
             });
 
-            $('#form_friend_id').change(function() {
+            $('#form_client_id').change(function() {
                 if ($(this).val() == 'select') return;
-                var friend_id = $(this).val();
-                child.load_friend_quests(friend_id);
+                var client_id = $(this).val();
+                child.load_client_quests(client_id);
             });
 
             /* Populate the bookmarklet with any information sent by inline. */
@@ -300,8 +296,8 @@ $(document).ready(function () {
                 images: $('.product-image').attr('src'),
                 add_to: $("select[name='add_to']").val(),
                 chat_id: $("select[name='chat_id']").val(),
-                friend_id: $("select[name='friend_id']").val(),
-                friend_quest_id: $("select[name='friend_quest_id']").val(),
+                client_id: $("select[name='client_id']").val(),
+                client_quest_url: $("select[name='client_quest_url']").val(),
                 new_quest_name: $("input[name='new_quest_name']").val(),
                 my_quest_url: $("select[name='my_quest_url']").val()
             });

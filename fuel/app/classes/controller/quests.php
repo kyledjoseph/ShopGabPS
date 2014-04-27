@@ -237,17 +237,15 @@ class Controller_Quests extends Controller_App
 	 */
 	public function get_like($quest_url, $quest_product_id)
 	{
-		if (! $quest = $this->get_quest_by_url($quest_url))
-		{
+		if (! $quest = $this->get_quest_by_url($quest_url)) {
 			return array('success' => false, 'message' => 'invalid_quest');
-		}
+		} // if
 
-		if (! $this->user_logged_in())
-		{
+		if (! $this->user_logged_in()) {
 			return $this->is_ajax_request()
 				? array('success' => false, 'message' => 'auth')
 				: $this->redirect($quest->url());
-		}
+		} // if
 
 		if (! $quest_product = $quest->get_quest_product($quest_product_id))
 		{

@@ -164,42 +164,38 @@ class Model_Quest_Product extends \Orm\Model
 
 
 
-	public function like(Model_User $user)
-	{
-		if ($vote = $this->user_get_vote($this->user->id) and $vote->is_dislike())
-		{
+	public function like(Model_User $user) {
+		if ($vote = $this->user_get_vote($this->user->id) and $vote->is_dislike()) {
 			$vote->change_to_like();
-		}
-		else
-		{
+		} // if
+
+    if (!$vote) {
 			$vote = Model_Quest_Product_Vote::create_like($this->id, $user->id);
 			$this->quest->add_participant($user->id);
-		}
+		} // if
 		
 		//old $notice = Model_Quest_Notification::new_like($user->id, $this->quest, $vote->id);
 //		$this->quest->trigger('like', [$vote]);
 
 		return $vote and $this->cache_votes();
-	}
+	} // like
 
-	public function dislike(Model_User $user)
-	{
+	public function dislike(Model_User $user)	{
 		// has the user already voted?
-		if ($vote = $this->user_get_vote($user->id) and $vote->is_like())
-		{
+		if ($vote = $this->user_get_vote($user->id) and $vote->is_like()) {
 			$vote->change_to_dislike();
-		}
-		else
-		{
+		} // if
+
+    if (!$vote) {
 			$vote = Model_Quest_Product_Vote::create_dislike($this->id, $user->id);
 			$this->quest->add_participant($user->id);
-		}
+		} // if
 
 		//old $notice = Model_Quest_Notification::new_dislike($user->id, $this->quest, $vote->id);
 //		$this->quest->trigger('dislike', [$vote]);
 
 		return $vote and $this->cache_votes();
-	}
+	} // dislike
 
 
 

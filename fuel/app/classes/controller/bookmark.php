@@ -58,13 +58,12 @@ class Controller_Bookmark extends Controller_App
 
 		$post = $this->post_data(
 			'name', 'description', 'price', 'domain', 'url', 'images',
-			'add_to', 'friend_id', 'friend_quest_id', 'new_quest_name', 'my_quest_url');
+			'add_to', 'client_id', 'client_quest_url', 'new_quest_name', 'my_quest_url');
 
 
-		if (! in_array($post->add_to, array('my', 'friend', 'new')))
-		{
+		if (! in_array($post->add_to, array('my', 'client', 'new'))) {
 			return array('success' => true, 'message' => 'invalid_product_destination');
-		}
+		} // if
 
 		// create product
 		$product = Model_Product::add_product(array(
@@ -83,35 +82,29 @@ class Controller_Bookmark extends Controller_App
 		}
 
 		// 
-		switch ($post->add_to)
-		{
+		switch ($post->add_to) {
 			case 'my':
 				
 				$quest = $this->user->get_quest($post->my_quest_url);
-				if (! isset($quest))
-				{
+				if (! isset($quest)) {
 					return array('success' => true, 'message' => 'invalid_quest_id');
 				}
 
 				$quest->add_product($product);
 				break;
 
-			case 'friend':
+			case 'client':
 
-				$friend = $this->user->get_friend_by_id($post->friend_id);
-				if (! isset($friend))
-				{
-					return array('success' => true, 'message' => 'invalid_friend_id');
+				$client = Model_Client::getByUserId($post->client_id);
+				if (!($client instanceof Model_Client)) {
+					return array('success' => true, 'message' => 'invalid_client_id');
+				} // if
+
+				$quest = $client->getUser()->get_quest($post->client_quest_url);
+				if (! isset($quest)) {
+					return array('success' => true, 'message' => 'invalid_client_quest_id');
 				}
-
-				$quest = $friend->get_quest($post->friend_quest_id);
-				if (! isset($quest))
-				{
-					return array('success' => true, 'message' => 'invalid_friend_quest_id');
-				}
-
-				$quest->recommend_product($product, $this->user);
-
+        $quest->add_product($product, $this->user->id);
 				break;
 
 			case 'new':
@@ -122,8 +115,7 @@ class Controller_Bookmark extends Controller_App
 				
 			default:
 				return array('success' => true, 'message' => 'invalid_product_destination');
-				
-		}
+		} // switch
 
 		return array(
 			'success'    => true,
@@ -198,24 +190,20 @@ class Controller_Bookmark extends Controller_App
 	/**
 	 * 
 	 */
-	public function get_friend_quests($friend_id)
+	public function get_client_quests($client_id)
 	{
-		if (! $this->user_logged_in())
-		{
-			return array('success' => false, 'type' => 'invalid_friend_id');
-		}
+		if (! $this->user_logged_in()) {
+			return array('success' => false, 'type' => 'invalid_client_id');
+		} // if
 
-		$friend = $this->user->get_friend_by_id($friend_id);
+		$client = Model_Client::getByUserId($client_id);
 
-		if (! isset($friend))
-		{
-			return array('success' => false, 'type' => 'invalid_friend_id');
-		}
+		if (!($client instanceof Model_Client)) {
+			return array('success' => false, 'type' => 'invalid_client_id');
+		} // if
 
-
-
-		return array('success' => true, 'quests' => $friend->select_quest());
-	}
+		return array('success' => true, 'quests' => $client->getUser()->select_quest());
+	} // get_client_quests
 	
 	/**
 	 * 

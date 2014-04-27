@@ -20,7 +20,7 @@
               <input type="text" class="price form-control" name="product_data[price]" placeholder="Price" maxlength="50" />
             </div>
             <div class="form-group">
-              <textarea class="description form-control" name="product_data[description]" placeholder="Description"></textarea>
+              <input type="url" class="url form-control" name="product_data[url]" placeholder="Link" maxlength="50" />
             </div>
             <div class="form-actions">
               <input type="submit" name="submit" value="Add Product" class="add btn btn-primary" />

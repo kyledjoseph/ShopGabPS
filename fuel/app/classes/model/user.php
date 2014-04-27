@@ -416,9 +416,9 @@ class Model_User extends Auth\Model\Auth_User {
 
 	/**
 	 * Get a users quest by quest_url
+   * @return Model_Quest
 	 */
-	public function get_quest($quest_url)
-	{
+	public function get_quest($quest_url)	{
 		return Model_Quest::get_user_quest($this->id, $quest_url);
 	}
 
@@ -442,6 +442,16 @@ class Model_User extends Auth\Model\Auth_User {
 		}
 		return empty($options) ? array('none' => 'No Quests Available') : $options;
 	}
+
+  public function select_clients() {
+    $options = array();
+    $professional = Model_Professional::getByUserId($this->id);
+    foreach ($professional->getClients() as $client) {
+      $options[$client->user_id] = $client->getUser()->display_name();
+    } // foreach
+
+    return empty($options) ? array('none' => 'No Clients Found') : $options;
+  } // select_clients
 
 	/**
 	 *

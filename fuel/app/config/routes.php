@@ -4,6 +4,7 @@ return array(
 	'_404_'                               => 'error/404',
 
 	'bookmark'                            => 'bookmark/view',
+  'bookmark/client-quests/(:segment)'   => 'bookmark/client_quests/$1',
 
 	'login'                               => 'user/auth/login',
 	'authenticate'                        => 'user/auth/authenticate',

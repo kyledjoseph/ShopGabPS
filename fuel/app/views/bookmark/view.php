@@ -21,7 +21,7 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
   <textarea class="description form-control" placeholder="Description"></textarea>
 </div>
 <div id="add_to" class="form-group">
-  <?= Form::select('add_to', 'my', array('my' => 'Existing Quests', 'new' => 'New Quest'), array('class' => 'form-control')) ?>
+  <?= Form::select('add_to', 'my', array('my' => 'My Quests', 'client' => 'My Client\'s Quests', 'new' => 'New Quest'), array('class' => 'form-control')) ?>
 </div>
 <div id="new_quest_name" class="form-group" style="display:none">
   <?= Form::input('new_quest_name', null, array('class' => 'form-control', 'placeholder' => 'New Quest')) ?>
@@ -29,6 +29,17 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
 <div id="my_quest_url" class="form-group">
   <?= Form::select('my_quest_url', null, $user->select_quest(), array('class' => 'form-control')) ?>
 </div>
+<?php if ($user->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
+  <div id="client_id" class="form-group" style="display:none">
+    Client Name:
+    <?= Form::select('client_id', null, $user->select_clients(), array('class' => 'form-control')) ?>
+  </div>
+  <div id="client_quest_url" class="form-group" style="display:none">
+    Quest Name:
+    <?= Form::select('client_quest_url', null, array(), array('class' => 'form-control')) ?>
+  </div>
+<?php } ?>
+
 <div class="btn-container">
   <a class="cancel btn btn-default" href="#">Cancel</a>
   <a class="add btn btn-primary" href="#">Add Product</a>
