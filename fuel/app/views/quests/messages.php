@@ -3,7 +3,7 @@
 					<div class="col-12">
 						<div class="chat">
 							<?php if (empty($messages)): ?>
-							<div class="message">No messages</div>
+							<div class="message no-messages">No messages</div>
 							
 							<?php else: foreach ($messages as $message): ?>
 

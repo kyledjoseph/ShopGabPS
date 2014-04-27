@@ -40,11 +40,6 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
           <hr />
           <p>At ShopGab our mission is to help shoppers confidently purchase the best products for their needs. We provide a fun and simple way to store any product, gather feedback and get product recommendations from trusted friends. No longer does online shopping have to be a lonely, individualized process! Shop together and buy with the confidence and support of your friends and family.</p>
         </div>
-        <div class="flickr-widget col-12 col-sm-4">
-          <h4>Photostream</h4>
-          <hr />
-        <script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=9&amp;display=latest&amp;size=s&amp;layout=x&amp;source=user&amp;user=99861439@N02"></script>
-        </div>
         <div class="follow col-12 col-sm-4">
           <h4>Join the conversation</h4>
           <hr />

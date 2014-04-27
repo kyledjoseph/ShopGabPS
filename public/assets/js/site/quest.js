@@ -356,6 +356,7 @@
 					if (response.success)
 					{
 						shopgab.quest.chat.append_message(response.view);
+            $('div.no-messages').remove();
 						shopgab.quest.chat.clear_message();
 					}
 					else
