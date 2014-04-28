@@ -57,7 +57,7 @@ class Controller_Bookmark extends Controller_App
 		}
 
 		$post = $this->post_data(
-			'name', 'description', 'price', 'domain', 'url', 'images',
+			'name', 'price', 'domain', 'url', 'images',
 			'add_to', 'client_id', 'client_quest_url', 'new_quest_name', 'my_quest_url');
 
 
@@ -69,7 +69,6 @@ class Controller_Bookmark extends Controller_App
 		$product = Model_Product::add_product(array(
 			'user_id'     => $this->user->id,
 			'name'        => $post->name,
-			'description' => $post->description,
 			'price'       => $post->price,
 			'domain'      => $post->domain,
 			'url'         => $post->url,

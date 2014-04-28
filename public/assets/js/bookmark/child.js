@@ -13,7 +13,6 @@ $(document).ready(function () {
 
     var child = {
         info: {
-            description: '',
             domain: '',
             images: [],
             name: '',
@@ -262,7 +261,6 @@ $(document).ready(function () {
             child.info = jQuery.parseJSON(data);
 
             $('.title').val(child.info.name);
-            //$('.description').val(child.info.description);
             //$('.price').val(child.info.price[0]);
 
             $(child.info.images).each(function () {
@@ -291,7 +289,6 @@ $(document).ready(function () {
             /* Replace info object with current inputs. */
             $.extend(child.info, {
                 name: $('.title').val(),
-                description: $('.description').val(),
                 price: $('.price').val(),
                 images: $('.product-image').attr('src'),
                 add_to: $("select[name='add_to']").val(),

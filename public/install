@@ -1,0 +1,4 @@
+php composer.phar self-update
+php composer.phar update
+chmod -R 777 crawler/tmp
+chmod -R 777 crawler/webroot/temp_files/

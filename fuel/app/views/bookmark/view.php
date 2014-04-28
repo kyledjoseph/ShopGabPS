@@ -17,11 +17,12 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
 <div class="form-group">
   <input type="text" class="price form-control" placeholder="Price" maxlength="50">
 </div>
-<div class="form-group">
-  <textarea class="description form-control" placeholder="Description"></textarea>
-</div>
 <div id="add_to" class="form-group">
-  <?= Form::select('add_to', 'my', array('my' => 'My Quests', 'client' => 'My Client\'s Quests', 'new' => 'New Quest'), array('class' => 'form-control')) ?>
+  <?php if ($user->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
+    <?= Form::select('add_to', 'my', array('my' => 'My Quests', 'client' => 'My Client\'s Quests', 'new' => 'New Quest'), array('class' => 'form-control')) ?>
+  <?php } else { ?>
+    <?= Form::select('add_to', 'my', array('my' => 'My Quests', 'new' => 'New Quest'), array('class' => 'form-control')) ?>
+  <?php } ?>
 </div>
 <div id="new_quest_name" class="form-group" style="display:none">
   <?= Form::input('new_quest_name', null, array('class' => 'form-control', 'placeholder' => 'New Quest')) ?>
