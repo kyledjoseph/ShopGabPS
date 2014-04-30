@@ -408,7 +408,7 @@ class Model_Quest extends \Orm\Model
 
 		if (! $this->is_participant())
 		{
-			$this->add_participant($added_by);
+//			$this->add_participant($added_by);
 		}
 
 		return $product ?: false;
@@ -422,7 +422,7 @@ class Model_Quest extends \Orm\Model
 	public function new_message($user_id, $message)
 	{
 		if ($message = Model_Quest_Message::create_message($this->id, $user_id, $message)) {
-			$this->add_participant($user_id);
+//			$this->add_participant($user_id);
 			$this->trigger('quest_message', [$message]);
 		}
 		
