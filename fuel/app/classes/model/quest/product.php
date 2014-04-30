@@ -245,7 +245,6 @@ class Model_Quest_Product extends \Orm\Model
 		$comment = Model_Quest_Product_Comment::create_comment($this->id, $user_id, $text);
 		//$notice  = Model_Quest_Notification::new_comment($user_id, $this->quest, $comment->id);
 
-		$this->quest->trigger('product_comment', [$comment]);
 		$this->quest->add_participant($user_id);
 
 		return $comment;

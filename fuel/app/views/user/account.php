@@ -68,11 +68,8 @@
     <?= Form::open(array('action' => 'account/notifications', 'class' => 'form-horizontal')) ?>
     <div class="control-group account-form">
       <div class="controls">
-      </div>
-    </div>
-    <div class="control-group account-form">
-      <div class="controls">
-        <button class="btn btn-default marg-top">Update Notifications</button>
+        <input type="checkbox" id="receive_notifications" <?php if ($user->receive_notifications) { ?> checked="checked" <?php } ?> />
+        <label for="receive_notifications">Receive notifications</label>
       </div>
     </div>
     <?= Form::close() ?>
@@ -420,3 +417,39 @@
   </div>
 </div>
 
+<script type="text/javascript">
+  // receive notifications ajax
+  $('#receive_notifications').change(function(e) {
+    var checkbox = $(this);
+
+    var toggle_check_notifications = function() {
+      ajax_loader = $('<img alt="loading" id="ajax_loader" src="/assets/img/ajax_loader.gif" />');
+      checkbox.hide().after(ajax_loader);
+      $.ajax({
+        type : 'post',
+        data : {
+          'checked' : + checkbox.prop('checked')
+        },
+        url : 'account/notifications',
+        success : function() {
+          ajax_loader.remove();
+          checkbox.show();
+        } // success
+      });
+    }; // toggle_check_notifications
+
+    if (checkbox.prop('checked')) {
+      if (confirm('Enable receiving notifications?')) {
+        toggle_check_notifications();
+      } else {
+        checkbox.prop('checked', false);
+      } // if
+    } else {
+      if (confirm('Disable receiving notifications?')) {
+        toggle_check_notifications();
+      } else {
+        checkbox.prop('checked', true);
+      } // if
+    } // if
+  });
+</script>

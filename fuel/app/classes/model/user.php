@@ -39,6 +39,7 @@ class Model_User extends Auth\Model\Auth_User {
 		'reset_code',
     'reset_created_at',
 		'welcome_message',
+    'receive_notifications',
 		'created_at',
 		'updated_at'
 	);

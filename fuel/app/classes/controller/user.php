@@ -174,19 +174,6 @@ class Controller_User extends Controller_App
 	/**
 	 * undefined_method
 	 */
-	public function post_notifications()
-	{
-		$post = $this->post_data('digest');
-
-		$send_digest = $post->digest == '1';
-		$this->user->set_notification('digest', $send_digest);
-
-		$this->redirect('user/account', 'success', 'Notification settings updated');
-	}
-
-	/**
-	 * undefined_method
-	 */
 	public function post_avatar() {
 		$this->require_auth();
 
@@ -302,7 +289,8 @@ class Controller_User extends Controller_App
         $professional = new Model_Professional([
           'user_id' => $user_id,
           'pricing_plan_type' => Model_Professional::TRIAL_PRICING_PLAN,
-          'pricing_plan_started_on' => time()
+          'pricing_plan_started_on' => time(),
+          'automatic_plan_renewal' => true
         ]);
 
         $professional->save();
@@ -400,6 +388,13 @@ class Controller_User extends Controller_App
     $professional = Model_Professional::getByUserId($this->user->id);
     $professional->automatic_plan_renewal = $_POST['checked'];
     $professional->save();
+    die();
+  } // post_renewal
+
+  public function post_notifications() {
+    $user = Model_User::get_by_id($this->user->id);
+    $user->receive_notifications = $_POST['checked'];
+    $user->save();
     die();
   } // post_renewal
 }
