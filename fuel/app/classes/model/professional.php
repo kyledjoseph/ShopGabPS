@@ -67,7 +67,7 @@ class Model_Professional extends \Orm\Model {
   private $user_model = null;
   function getUser() {
     if (!($this->user_model instanceof Model_User)) {
-      $this->user_model = self::getByUserId($this->user_id);
+      $this->user_model = Model_User::get_by_id($this->user_id);
     } // if
 
     return $this->user_model;

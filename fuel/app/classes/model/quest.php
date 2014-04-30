@@ -87,11 +87,13 @@ class Model_Quest extends \Orm\Model
 	public function _init_events()
 	{
 		$event_types = [
-			'like',    // Model_Quest_Product_Vote
-			'dislike', // Model_Quest_Product_Vote
-			'comment', // Model_Quest_Product_Comment
-			'message', // Model_Quest_Message
-			'product', // Model_Quest_Product
+      'quest_created', // Model_Quest
+      'product_created', // Model_Quest_Product
+      'product_deleted', // Model_Quest_Product
+      'product_like',    // Model_Quest_Product_Vote
+      'product_dislike', // Model_Quest_Product_Vote
+      'product_comment', // Model_Quest_Product_Comment
+      'quest_message', // Model_Quest_Message
 		//	'expired', // Model_Quest
 		];
 
@@ -391,8 +393,6 @@ class Model_Quest extends \Orm\Model
 			'added_by'   => $user_id,
 		));
 
-//		$this->trigger('product', [$product]);
-
 		return $product ?: false;
 	}
 
@@ -423,7 +423,7 @@ class Model_Quest extends \Orm\Model
 	{
 		if ($message = Model_Quest_Message::create_message($this->id, $user_id, $message)) {
 			$this->add_participant($user_id);
-//			$this->trigger('message', [$message]);
+			$this->trigger('quest_message', [$message]);
 		}
 		
 		// Model_Quest_Notification::new_message($user_id, $this, $message->id);
@@ -553,11 +553,15 @@ class Model_Quest extends \Orm\Model
 			'name'            => $name,
 			'description'     => $description,
 			'is_public'       => 1,
-      'created_by'      => $created_by
+      'created_by'      => (($created_by == 0) ? $user_id : $created_by)
 		));
 
 		$quest->set_purchase_within($purchase_within);
 
-		return $quest->save() ? $quest : null;
-	}
+		if ($quest->save()) {
+      $quest->trigger('quest_created', [$quest]);
+    } // if
+
+    return $quest;
+	} // if
 }

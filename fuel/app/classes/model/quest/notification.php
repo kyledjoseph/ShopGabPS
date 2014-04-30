@@ -7,11 +7,12 @@ class Model_Quest_Notification extends \Orm\Model
 	protected static $_properties = array(
 		'id',
 		'user_id',
+    'model_id',
 		'quest_id',
-		'event_id',
-		'event',
+		'event_type',
 		'created_at',
 		'seen_at',
+    'sent_by_email'
 	);
 
 	protected static $_belongs_to = array(
@@ -43,12 +44,13 @@ class Model_Quest_Notification extends \Orm\Model
 	);
 
 	protected static $_event_types = array(
-		'like',       // Model_Quest_Product_Vote
-		'dislike',    // Model_Quest_Product_Vote
-		'comment',    // Model_Quest_Product_Comment
-		'message',    // Model_Quest_Message
-		'product',    // Model_Quest_Product
-		'participnt', // Model_Quest_Participant
+    'quest_created' => 'Model_Quest',
+    'product_created' => 'Model_Quest_Product',    //
+    'product_deleted' => 'Model_Quest_Product', //
+    'product_like' => 'Model_Quest_Product_Vote',       //
+    'product_dislike' => 'Model_Quest_Product_Vote',    //
+    'product_comment' => 'Model_Quest_Product_Comment',    //
+    'quest_message' => 'Model_Quest_Message'
 	);
 
 
@@ -59,11 +61,7 @@ class Model_Quest_Notification extends \Orm\Model
 		$this->save();
 	}
 
-
-
-
-	public static function new_notification(\Orm\Model $model, $event)
-	{
+	public static function new_notification(\Orm\Model $model, \Fuel\Event\Listener $event)	{
 		$notification = static::forge();
 
 		if ($method = "on_{$event->name()}" and ! method_exists($notification, $method))
@@ -71,137 +69,70 @@ class Model_Quest_Notification extends \Orm\Model
 			throw new Exception("Model_Quest_Notification handler method '{$method}' is not defined");
 		}
 
-		$notification->quest_id = $model->get_quest()->id;
-		$notification->user_id  = $model->user->id;
-		$notification->model_id = $model->id;
-		$notification->model    = get_class($model);
-		$notification->type     = $event->name();
+		$notification->quest_id = ($model instanceof Model_Quest) ? $model->id : $model->get_quest()->id;
+		$notification->user_id  = ($model instanceof Model_Quest) ? $model->created_by : $model->user->id;
+    $notification->model_id = $model->id;
+		$notification->event_type = $event->name();
+    $notification->sent_by_email = false;
 		$notification->save();
 
-		return $notification->$method($model);
+    return $notification;
+	} // new_notification
 
-	}
+  public function on_quest_created() {
+    // code for quest created
+    $quest_url = $this->quest->full_url();
+    $quest_name = $this->quest->name;
+    return "<li>Created a new quest: <a href='$quest_url'>$quest_name</a></li>";
+  } // on_quest_created
 
-	public function on_like(Model_Quest_Product_Vote $vote)
-	{
-		$quest = $vote->quest_product->quest;
+  public function on_product_created() {
+    $quest_product = Model_Quest_Product::get_by_id($this->model_id);
+    $quest_url = $quest_product->quest->full_url();
+    $quest_name = $quest_product->quest->name;
+    $product_name = $quest_product->product->name;
 
-		if (! $vote->user_id == $quest->user_id)
-		{
-			Service_Email::send(array(
-				'type'      => 'quest_like',
-				'to_addr'   => $quest->user->email,
-				'from_name' => 'ShopGab',
-				'from_addr' => 'notification@shopgab.com',
-				'subject'   => "{$vote->user->display_name()} liked a product on your quest '{$quest->name()}'",
-				'body'      => View::forge('emails/template', array(
-					'content' => View::forge('emails/notifications/quest/like', array(
-						'quest' => $quest,
-						'vote'  => $vote,
-					)),
-				), false),
-			));
-		}
+    return "<li>Added product $product_name in <a href='$quest_url'>$quest_name</a> quest</li>";
+  } // on_product_created
 
-		return $this;
-	}
+  public function on_product_deleted(Model_Quest_Product $product) {
 
-	public function on_dislike(Model_Quest_Product_Vote $vote)
-	{
-		$quest = $vote->quest_product->quest;
+  } // on_product_deleted
 
-		if (! $vote->user_id == $quest->user_id)
-		{
-			Service_Email::send(array(
-				'type'      => 'quest_dislike',
-				'to_addr'   => $quest->user->email,
-				'from_name' => 'ShopGab',
-				'from_addr' => 'notification@shopgab.com',
-				'subject'   => "{$vote->user->display_name()} disliked a product on your quest '{$quest->name()}'",
-				'body'      => View::forge('emails/template', array(
-					'content' => View::forge('emails/notifications/quest/dislike', array(
-						'quest' => $quest,
-						'vote'  => $vote,
-					)),
-				), false),
-			));
-		}
+	public function on_product_like()	{
+    $vote = Model_Quest_Product_Vote::get_by_id($this->model_id);
+    $quest_url = $vote->quest_product->quest->full_url();
+    $quest_name = $vote->quest_product->quest->name;
+    $product_name = $vote->quest_product->product->name;
 
-		return $this;
-	}
+    return "<li>Liked a product $product_name in <a href='$quest_url'>$quest_name</a> quest</li>";
+	} // on_product_like
 
-	public function on_comment(Model_Quest_Product_Comment $comment)
-	{
-		$quest = $comment->quest_product->quest;
+	public function on_product_dislike() {
+    $vote = Model_Quest_Product_Vote::get_by_id($this->model_id);
+    $quest_url = $vote->quest_product->quest->full_url();
+    $quest_name = $vote->quest_product->quest->name;
+    $product_name = $vote->quest_product->product->name;
 
-		if (! $comment->user_id == $quest->user_id)
-		{
-			Service_Email::send(array(
-				'type'      => 'quest_dislike',
-				'to_addr'   => $quest->user->email,
-				'from_name' => 'ShopGab',
-				'from_addr' => 'notification@shopgab.com',
-				'subject'   => "{$comment->user->display_name()} commented on a product on your quest '{$quest->name()}'",
-				'body'      => View::forge('emails/template', array(
-					'content' => View::forge('emails/notifications/quest/comment', array(
-						'quest'   => $quest,
-						'comment' => $comment,
-					)),
-				), false),
-			));
-		}
+    return "<li>Disliked a product $product_name in <a href='$quest_url'>$quest_name</a> quest</li>";
+	} // on_product_dislike
 
-		return $this;
-	}
+	public function on_product_comment() {
+    $comment = Model_Quest_Product_Comment::get_by_id($this->model_id);
+    $quest_url = $comment->quest_product->quest->full_url();
+    $quest_name = $comment->quest_product->quest->name;
+    $product_name = $comment->quest_product->product->name;
 
-	public function on_message(Model_Quest_Message $message)
-	{
-		$quest = $message->quest;
+    return "<li>Commented on a product $product_name in <a href='$quest_url'>$quest_name</a> quest</li>";
+	} // on_product_comment
 
-		if (! $message->user_id == $quest->user_id)
-		{
-			Service_Email::send(array(
-				'type'      => 'quest_dislike',
-				'to_addr'   => $quest->user->email,
-				'from_name' => 'ShopGab',
-				'from_addr' => 'notification@shopgab.com',
-				'subject'   => "{$message->user->display_name()} posted a message on your quest '{$quest->name()}'",
-				'body'      => View::forge('emails/template', array(
-					'content' => View::forge('emails/notifications/quest/message', array(
-						'quest'   => $quest,
-						'message' => $message,
-					)),
-				), false),
-			));
-		}
+	public function on_quest_message() {
+		$message = Model_Quest_Message::get_by_id($this->model_id);
+    $quest_url = $message->quest->full_url();
+    $quest_name = $message->quest->name;
 
-		return $this;
-	}
-
-	public function on_product(Model_Quest_Product $product)
-	{
-		$quest = $product->quest;
-
-		if (! $product->user_id == $quest->user_id)
-		{
-			Service_Email::send(array(
-				'type'      => 'quest_dislike',
-				'to_addr'   => $quest->user->email,
-				'from_name' => 'ShopGab',
-				'from_addr' => 'notification@shopgab.com',
-				'subject'   => "{$product->user->display_name()} recommended a product on your quest '{$quest->name()}'",
-				'body'      => View::forge('emails/template', array(
-					'content' => View::forge('emails/notifications/quest/product', array(
-						'quest'   => $quest,
-						'message' => $message,
-					)),
-				), false),
-			));
-		}
-
-		return $this;
-	}
-
+    return "<li>Wrote a message in <a href='$quest_url'>$quest_name</a> quest</li>";
+	} // on_quest_message
 
 	public function on_participant(Model_Quest_Participant $participant)
 	{

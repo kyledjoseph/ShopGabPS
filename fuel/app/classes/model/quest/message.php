@@ -90,6 +90,7 @@ class Model_Quest_Message extends \Orm\Model
 			'user_id' => $user_id,
 			'body'    => $body,
 		));
+
 		return $message->save() ? $message : null;
 	}
 

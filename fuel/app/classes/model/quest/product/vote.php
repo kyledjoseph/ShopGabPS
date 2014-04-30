@@ -61,7 +61,7 @@ class Model_Quest_Product_Vote extends \Orm\Model
 		$this->vote = '1';
 		$this->save();
 		$this->quest_product->cache_votes();
-//		$this->quest_product->quest->trigger('like', [$this]);
+		$this->quest_product->quest->trigger('product_like', [$this]);
 
 		return true;
 	}
@@ -71,7 +71,7 @@ class Model_Quest_Product_Vote extends \Orm\Model
 		$this->vote = '0';
 		$this->save();
 		$this->quest_product->cache_votes();
-//		$this->quest_product->quest->trigger('dislike', [$this]);
+		$this->quest_product->quest->trigger('product_dislike', [$this]);
 
 		return true;
 	}
