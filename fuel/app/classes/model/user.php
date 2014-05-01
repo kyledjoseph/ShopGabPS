@@ -439,7 +439,7 @@ class Model_User extends Auth\Model\Auth_User {
 		$options = array();
 		foreach ($this->get_quests() as $quest)
 		{
-			$options[$quest->url] = $quest->name();
+			$options[$quest->url] = htmlspecialchars_decode($quest->name, ENT_QUOTES);
 		}
 		return empty($options) ? array('none' => 'No Quests Available') : $options;
 	}

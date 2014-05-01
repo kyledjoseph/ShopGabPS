@@ -83,9 +83,12 @@ class Controller_Cron extends Controller_App {
              * @var Model_Quest_Notification $notification
              */
             $method = 'on_'.$notification->event_type;
-            $email_messages[$client->id] .= $notification->$method();
-            $notification->sent_by_email = true;
-            $notification->save();
+            $message = $notification->$method();
+            if ($message) {
+              $email_messages[$client->id] .= $message;
+              $notification->sent_by_email = true;
+              $notification->save();
+            } // if
           } // foreach
           $email_messages[$client->id] .= '</ul></div>';
         } // if
@@ -130,11 +133,14 @@ class Controller_Cron extends Controller_App {
            * @var Model_Quest_Notification $notification
            */
           $quest = Model_Quest::get_by_id($notification->quest_id);
-          if ($quest->user_id == $client->user_id) {
+          if ($quest && ($quest->user_id == $client->user_id)) {
             $method = 'on_'.$notification->event_type;
-            $email_message .= $notification->$method();
-            $notification->sent_by_email = true;
-          $notification->save();
+            $message = $notification->$method();
+            if ($message) {
+              $email_message .= $message;
+              $notification->sent_by_email = true;
+              $notification->save();
+            } // if
           } // if
         } // foreach
         if ($email_message) {

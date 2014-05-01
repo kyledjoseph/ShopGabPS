@@ -12,7 +12,7 @@
             </select>
           </div>
           <div class="col-12 col-sm-4 pad-top">
-            <button href="#questModal" class="btn btn-success pull-right" data-container="body" data-placement="top" data-original-title="" title="" data-toggle="modal">Start a new Quest!</button>
+            <button href="#questModal" class="btn btn-success pull-right" data-container="body" data-placement="top" data-original-title="" title="" data-toggle="modal">Start a new quest for <?= $client->getUser()->display_name()?>!</button>
           </div>
         </div>
         <div class="row pad-top">

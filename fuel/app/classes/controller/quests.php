@@ -404,6 +404,9 @@ class Controller_Quests extends Controller_App
 			$this->redirect('/');
 		}
 
+
+    Model_Quest_Notification::query()->where('quest_id', $quest->id)->delete();
+    
 		$quest->delete();
 		$this->redirect('/');
 	}

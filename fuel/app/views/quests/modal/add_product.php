@@ -20,7 +20,7 @@
               <input type="text" class="price form-control" name="product_data[price]" placeholder="Price" maxlength="50" />
             </div>
             <div class="form-group">
-              <input type="url" class="url form-control" name="product_data[url]" placeholder="Link" maxlength="50" />
+              <input type="url" class="url form-control" name="product_data[url]" placeholder="Link" maxlength="500" />
             </div>
             <div class="form-actions">
               <input type="submit" name="submit" value="Add Product" class="add btn btn-primary" />
@@ -44,7 +44,7 @@
             <?= Form::open(array('action' => 'http://google.com/search', 'method' => 'get', 'target' => '_blank')) ?>
             <h5 class="pad-top">Start shopping now!</h5>
             <div class="input-group pad-top">
-              <input type="text" id="google" name="q" class="form-control" placeholder="Search with Google">
+              <input type="text" id="google" name="q" class="form-control" placeho  lder="Search with Google">
                 <span class="input-group-btn">
                   <button class="btn btn-default btn-success btn-google-search" type="submit">Search</button>
                 </span>

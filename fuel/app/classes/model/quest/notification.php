@@ -88,11 +88,15 @@ class Model_Quest_Notification extends \Orm\Model
 
   public function on_product_created() {
     $quest_product = Model_Quest_Product::get_by_id($this->model_id);
-    $quest_url = $quest_product->quest->full_url();
-    $quest_name = $quest_product->quest->name;
-    $product_name = $quest_product->product->name;
+    if ($quest_product) {
+      $quest_url = $quest_product->quest->full_url();
+      $quest_name = $quest_product->quest->name;
+      $product_name = $quest_product->product->name;
 
-    return "<li>Added product $product_name in <a href='$quest_url'>$quest_name</a> quest</li>";
+      return "<li>Added product $product_name in <a href='$quest_url'>$quest_name</a> quest</li>";
+    } else {
+      return false;
+    } // if
   } // on_product_created
 
   public function on_product_deleted(Model_Quest_Product $product) {
