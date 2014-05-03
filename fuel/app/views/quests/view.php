@@ -1,4 +1,12 @@
-	<div id="quest" data-quest-url="<?= $quest->url ?>"></div>
+  <div id="quest" class="row" data-quest-url="<?= $quest->url ?>">
+    <?php if ($quest->user->getClientModel() instanceof Model_Client) { ?>
+      <ol class="breadcrumb">
+        <li><a href="<?= Uri::create('/') ?>">Home</a></li>
+        <li><a href="<?= Uri::create('/client/'.$quest->user->getClientModel()->id) ?>"><?= $quest->user->display_name() ?></a></li>
+        <li class="active">Quest: <?= $quest->name ?></li>
+      </ol>
+    <?php } ?>
+  </div>
 
 	<div class="row">
 		<div class="col-12 col-sm-2">
