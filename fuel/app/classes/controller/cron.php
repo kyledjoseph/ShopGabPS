@@ -21,8 +21,15 @@ class Controller_Cron extends Controller_App {
       /**
        * @var Model_Professional $professional
        */
-      if ($professional->getSubscriptionDaysLeft() < 0) {
+      $days_left = $professional->getSubscriptionDaysLeft();
 
+      if ($days_left == 2) {
+        if (($professional->pricing_plan_type == Model_Professional::PAID_PRICING_PLAN) && ($professional->automatic_plan_renewal)) {
+          $professional->notifyPaypalRenew();
+        } // if
+      } // if
+
+      if ($days_left < 0) {
         if (($professional->pricing_plan_type == Model_Professional::PAID_PRICING_PLAN) && ($professional->automatic_plan_renewal)) {
           $paypal = Model_Paypal::getByUserId($professional->user_id);
 
@@ -31,19 +38,21 @@ class Controller_Cron extends Controller_App {
 
             $professional->set([
               'pricing_plan_type' => Model_Professional::PAID_PRICING_PLAN,
-              'pricing_plan_started_on' => time()
+              'pricing_plan_started_on' => time(),
+              'automatic_plan_notification_sent' => false
             ]);
             $professional->save();
             continue;
           } catch (Exception $e) {
             echo 'Payment failed for user with id: '. $professional->user_id.'<br />';
-            // @TODO notify pro user about renewal failing
+            $professional->notifyPaypalFailed();
           } // try
         } // if
 
         $professional->set([
           'pricing_plan_type' => Model_Professional::SUSPENDED_PRICING_PLAN,
-          'pricing_plan_started_on' => time()
+          'pricing_plan_started_on' => time(),
+          'automatic_plan_notification_sent' => false
         ]);
         $professional->save();
       } // if

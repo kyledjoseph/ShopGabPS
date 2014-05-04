@@ -1,0 +1,1 @@
+<p>Your account will be renewed in 2 days.</p>

@@ -290,7 +290,8 @@ class Controller_User extends Controller_App
           'user_id' => $user_id,
           'pricing_plan_type' => Model_Professional::TRIAL_PRICING_PLAN,
           'pricing_plan_started_on' => time(),
-          'automatic_plan_renewal' => true
+          'automatic_plan_renewal' => true,
+          'automatic_plan_notification_sent' => false
         ]);
 
         $professional->save();
@@ -370,13 +371,14 @@ class Controller_User extends Controller_App
 
         $professional->set([
           'pricing_plan_type' => Model_Professional::PAID_PRICING_PLAN,
-          'pricing_plan_started_on' => time()
+          'pricing_plan_started_on' => time(),
+          'automatic_plan_notification_sent' => false
         ]);
         $professional->save();
         $this->redirect('/account', 'success', 'Payment successful, subscription renewed');
       } catch (Exception $e) {
         // payment failed
-        // @TODO notify pro user
+        $professional->notifyPaypalFailed();
         $this->redirect('/account', 'danger', "Payment failed. Please check your payment credentials or contact administrator");
       } // try
     } // if

@@ -1,0 +1,1 @@
+<p>Paypal failed</p>
