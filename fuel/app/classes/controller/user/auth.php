@@ -55,7 +55,8 @@ class Controller_User_Auth extends Controller_App
     } // if
 
     if ($login) {
-      $this->redirect('/');
+      $redirectUrl = (string)Session::get('redirectUrl');
+      $this->redirect("/$redirectUrl");
     } else {
       $this->template->notice = (object) array(
         'type' => 'danger',

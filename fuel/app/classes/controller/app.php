@@ -114,7 +114,10 @@ class Controller_App extends Controller_Base
 			$this->add_modal(View::forge('user/modal/login'));
 			$this->add_modal(View::forge('user/modal/register'));
 
-			Casset::js('site/auth.js');
+      if (Uri::string() !== 'login') {
+        Session::set('redirectUrl', Uri::string());
+      } // if
+      Casset::js('site/auth.js');
 		}
 
 		// feedback modal

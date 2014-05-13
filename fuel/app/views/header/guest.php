@@ -7,7 +7,7 @@
     <!-- Navigation -->
     <div class="col-8 col-sm-10">
       <ul class="landing-nav nav nav-pills pull-right">
-        <li><a class="header-log-in" href="<?= Uri::create('login') ?>">Login</a></li>
+        <li><a class="header-log-in" data-toggle="modal" href="#loginModal">Login</a></li>
         <li class="active header-sign-up"><a href="<?= Uri::create('register') ?>">Sign Up</button></a></li>
       </ul>
     </div>

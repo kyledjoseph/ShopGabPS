@@ -1,5 +1,5 @@
   <div id="quest" class="row" data-quest-url="<?= $quest->url ?>">
-    <?php if ($quest->user->getClientModel() instanceof Model_Client) { ?>
+    <?php if ($quest->user->getClientModel() instanceof Model_Client && isset($user)) { ?>
       <ol class="breadcrumb">
         <li><a href="<?= Uri::create('/') ?>">Home</a></li>
         <li><a href="<?= Uri::create('/client/'.$quest->user->getClientModel()->id) ?>"><?= $quest->user->display_name() ?></a></li>

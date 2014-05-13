@@ -13,12 +13,12 @@
 									<?php else: ?>
 									
 									<span class="badge"><?= $quest_product->total_likes() ?></span>
-									<a href="#registerModal" class="no-dec" data-toggle="modal">
+									<a href="#loginModal" class="no-dec" data-toggle="modal">
 										<i class="icon-thumbs-up-alt faded no-dec icon-large mx-rate"></i>
 									</a> &nbsp;
 									
 									<span class="badge"><?= $quest_product->total_dislikes() ?></span>
-									<a href="#registerModal" class="no-dec" data-toggle="modal">
+									<a href="#loginModal" class="no-dec" data-toggle="modal">
 										<i class="icon-thumbs-down-alt faded no-dec icon-large mx-rate"></i>
 									</a>
 

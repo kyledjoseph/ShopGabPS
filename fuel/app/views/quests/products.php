@@ -9,7 +9,7 @@
 				<?php if (isset($user)): ?>
 				<button style="position: relative; top: -58px;" href="#addProductModal" data-toggle="modal" class="btn btn-primary pull-right mx-install-extension">Add Product</button>
 				<?php else: ?>
-				<button style="position: relative; top: -58px;" href="#registerModal" data-toggle="modal" class="btn btn-primary pull-right">Add Product</button>
+				<button style="position: relative; top: -58px;" href="#loginModal" data-toggle="modal" class="btn btn-primary pull-right">Add Product</button>
 				<?php endif; ?>
 		
 				<div class="clear pad-bottom"></div>
@@ -48,7 +48,7 @@
 										<i class="icon-comments-alt faded icon-large"></i>
 									</a>
 									<?php else: ?>
-									<a class="no-dec" href="#registerModal" data-toggle="modal">
+									<a class="no-dec" href="#loginModal" data-toggle="modal">
 										<span class="badge"><?= $quest_product->total_comments() ?></span>
 										<i class="icon-comments-alt faded icon-large"></i>
 									</a>
@@ -114,7 +114,7 @@
 							<?php if (isset($user)): ?>
 							<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#addProductModal" class="quest-product-image-div mx-install-extension" data-toggle="modal"></a>
 							<?php else: ?>
-							<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#registerModal" class="quest-product-image-div" data-toggle="modal"></a>
+							<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-product.png)" href="#loginModal" class="quest-product-image-div" data-toggle="modal"></a>
 							<?php endif; ?>
 						</div>
 					</div>

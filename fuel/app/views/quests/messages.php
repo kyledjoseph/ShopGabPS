@@ -19,9 +19,9 @@
 					<div class="col-12">
 						<?= Form::open(array('id' => 'quest_message_form', 'action' => $quest->url('message'))) //, 'class' => 'mx-chat-form')) ?>
 							<div class="input-group">
-								<input id="quest_message_text" name="message" type="text" class="form-control" <?= isset($user) ? : 'href="#registerModal" data-toggle="modal"' ?>>
+								<input id="quest_message_text" name="message" type="text" class="form-control" <?= isset($user) ? : 'href="#loginModal" data-toggle="modal"' ?>>
 								<span class="input-group-btn">
-									<button class="chat-button btn btn-default" type="submit" <?= isset($user) ? : 'href="#registerModal" data-toggle="modal"' ?>>Send</button>
+									<button class="chat-button btn btn-default" type="submit" <?= isset($user) ? : 'href="#loginModal" data-toggle="modal"' ?>>Send</button>
 								</span>
 							</div>
 						<?= Form::close() ?>
