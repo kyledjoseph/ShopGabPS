@@ -4,4 +4,27 @@
 	<?= Html::anchor('admin/products', 'back to index') ?>
 	<hr>
 
-	<h3><?= $product->name ?></h3>
+  <h2>Product Information</h2>
+  <table class="table table-striped">
+    <tbody>
+    <tr>
+      <td>Name</td>
+      <td><?= $product->name ?></td>
+    </tr>
+
+    <tr>
+      <td>Price</td>
+      <td><?= $product->price ?></td>
+    </tr>
+
+    <tr>
+      <td>Link</td>
+      <td><?= Html::anchor($product->url, $product->url, ['target' => '_blank']) ?></td>
+    </tr>
+    </tbody>
+  </table>
+
+  <h2>Product Image</h2>
+  <div>
+    <img src="<?= $product->image_url(250, 220) ?>" />
+  </div>

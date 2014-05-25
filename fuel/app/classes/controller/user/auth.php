@@ -24,8 +24,7 @@ class Controller_User_Auth extends Controller_App
 
       $user = Model_User::get_by_id($auth->get_user_id()[1]);
       if (($_POST['login_type'] == 'professional' && $user->group == Model_User::PROFESSIONAL_GROUP_ID) ||
-        ($_POST['login_type'] == 'client' && $user->group == Model_User::CLIENT_GROUP_ID) || $user->group == Model_User::ADMIN_GROUP_ID
-      ) {
+        ($_POST['login_type'] == 'client' && $user->group == Model_User::CLIENT_GROUP_ID)) {
         // if correct login type then let login
         $login = true;
       } else {

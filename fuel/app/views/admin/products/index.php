@@ -12,8 +12,9 @@
 	<table class="table table-striped">
 		<thead>
 			<tr>
-				<th>name</th>
-				<th>brand</th>
+				<th>Name</th>
+        <th>Price</th>
+        <th>Link</th>
 			</tr>
 		</thead>
 
@@ -22,7 +23,8 @@
 		<tbody>
 			<tr>
 				<td><?= Html::anchor("admin/products/view/{$product->id}", $product->name) ?></td>
-				<td><?= $product->brand ?></td>
+        <td><?= $product->price ?></td>
+        <td><?= Html::anchor($product->url, $product->url, ['target' => '_blank']) ?></td>
 			</tr>
 		</tbody>
 

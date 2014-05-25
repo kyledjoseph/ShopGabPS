@@ -23,11 +23,6 @@
 				</tr>
 
 				<tr>
-					<td>authenticated with facebook</td>
-					<td><?= $admin->user->is_authenticated_with('facebook') ? 'yes' : 'no' ?></td>
-				</tr>
-
-				<tr>
 					<td>display name</td>
 					<td><?= $admin->user->display_name() ?></td>
 				</tr>
@@ -44,22 +39,3 @@
 			</tbody>
 		</table>
 		<hr>
-
-		<h2>Permissions</h2>
-
-		<table class="table table-striped">
-			<tbody>
-				<?php foreach (Model_Admin_Permission::get_permission_types() as $type => $name): ?>
-				<tr>
-					<td><?= $name ?></td>
-					<td>
-						<?php if ($admin->has_permission($type)): ?>
-							yes <?= Html::anchor("admin/admins/permission/revoke/{$admin->user_id}/{$type}", 'revoke') ?>
-						<?php else: ?>
-							no <?= Html::anchor("admin/admins/permission/grant/{$admin->user_id}/{$type}", 'grant') ?>
-						<?php endif; ?>
-					</td>
-				</tr>
-				<?php endforeach; ?>
-			</tbody>
-		</table>

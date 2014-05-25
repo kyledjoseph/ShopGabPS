@@ -88,11 +88,12 @@
 	  <script src="../assets/js/html5shiv.js"></script>
 	<![endif]-->
 
-	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-	<link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-	<link rel="shortcut icon" href="../assets/ico/favicon.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="shortcut icon" href="../assets/ico/favicon.png">
+    <script src="//code.jquery.com/jquery.js"></script>
   </head>
 
   <body>
@@ -108,11 +109,11 @@
 							<li class="<?= (isset($active_nav) and $active_nav == 'dashboard') ? 'active' : null ?>">
 								<?= Html::anchor('admin', 'Dashboard') ?>
 							</li>
+              <li class="<?= (isset($active_nav) and $active_nav == 'accounts') ? 'active' : null ?>">
+                <?= Html::anchor('admin/accounts', 'Accounts') ?>
+              </li>
 							<li class="<?= (isset($active_nav) and $active_nav == 'products') ? 'active' : null ?>">
 								<?= Html::anchor('admin/products', 'Products') ?>
-							</li>
-							<li class="<?= (isset($active_nav) and $active_nav == 'accounts') ? 'active' : null ?>">
-								<?= Html::anchor('admin/accounts', 'Accounts') ?>
 							</li>
 							<li class="<?= (isset($active_nav) and $active_nav == 'feedback') ? 'active' : null ?>">
 								<?= Html::anchor('admin/feedback', 'Feedback') ?>
@@ -128,12 +129,6 @@
 							</li>
 							<li class="<?= (isset($active_nav) and $active_nav == 'admins') ? 'active' : null ?>">
 								<?= Html::anchor('admin/admins', 'Admins') ?>
-							</li>
-							<li class="<?= (isset($active_nav) and $active_nav == 'servers') ? 'active' : null ?>">
-								<?= Html::anchor('admin/servers', 'Servers') ?>
-							</li>
-							<li class="<?= (isset($active_nav) and $active_nav == 'digest') ? 'active' : null ?>">
-								<?= Html::anchor('admin/digest/preview', 'Digest') ?>
 							</li>
 						</ul>
 					</div>

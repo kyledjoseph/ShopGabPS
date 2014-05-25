@@ -4,7 +4,6 @@ class Model_User extends Auth\Model\Auth_User {
 
   const CLIENT_GROUP_ID = 1;
   const PROFESSIONAL_GROUP_ID = 50;
-  const ADMIN_GROUP_ID = 100;
 
   const STATUS_BANNED = 0;
   const STATUS_PENDING_EMAIL_CONFIRM = 1;
@@ -121,6 +120,27 @@ class Model_User extends Auth\Model\Auth_User {
 			'key_to'   => 'user_id',
 			'cascade_delete' => true,
 		),
+    'admins' => array(
+      'key_from' => 'id',
+      'model_to' => 'Model_Admin',
+      'key_to' => 'user_id',
+      'cascade_save' => true,
+      'cascade_delete' => true,
+    ),
+    'clients' => array(
+      'key_from' => 'id',
+      'model_to' => 'Model_Client',
+      'key_to' => 'user_id',
+      'cascade_save' => true,
+      'cascade_delete' => true,
+    ),
+    'professionals' => array(
+      'key_from' => 'id',
+      'model_to' => 'Model_Professional',
+      'key_to' => 'user_id',
+      'cascade_save' => true,
+      'cascade_delete' => true,
+    ),
 	);
 
 	protected static $_eav = array(
@@ -183,7 +203,13 @@ class Model_User extends Auth\Model\Auth_User {
 	 */
 	public function is_admin()
 	{
-		return $this->property('group') == self::ADMIN_GROUP_ID;
+    $admin = Model_Admin::query()->where('user_id', $this->id)->get_one();
+
+    if ($admin) {
+      return $admin;
+    } else {
+      return false;
+    } // if
 	}
 
 	/**
@@ -526,7 +552,7 @@ class Model_User extends Auth\Model\Auth_User {
 	 */
 	public function remove()
 	{
-		return $this->delete();
+    $this->delete();
 	}
 
 
@@ -611,14 +637,11 @@ class Model_User extends Auth\Model\Auth_User {
    */
   public function getVerboseAccountType() {
     switch ($this->group) {
-      case self::ADMIN_GROUP_ID:
-        return 'Administrator';
+      case self::CLIENT_GROUP_ID:
+        return 'Client';
         break;
       case self::PROFESSIONAL_GROUP_ID:
         return 'Professional';
-        break;
-      case self::CLIENT_GROUP_ID:
-        return 'Client';
         break;
       default:
         return 'Unknown';
