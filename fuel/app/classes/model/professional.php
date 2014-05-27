@@ -12,7 +12,8 @@ class Model_Professional extends \Orm\Model {
     'pricing_plan_type',
     'pricing_plan_started_on',
     'automatic_plan_renewal',
-    'automatic_plan_notification_sent'
+    'automatic_plan_notification_sent',
+    'price'
   );
 
   protected static $_belongs_to = array(
@@ -112,6 +113,18 @@ class Model_Professional extends \Orm\Model {
       $this->save();
     } // if
   } // notifyPaypalFailed
+
+  /**
+   * Get price for this professional
+   * @return float
+   */
+  public function getPrice() {
+    if (is_null($this->price)) {
+      return Model_Paypal::getDefaultPrice();
+    } else {
+      return round($this->price, 2);
+    } // if
+  } // getPrice
 
   /**
    * Return professional model

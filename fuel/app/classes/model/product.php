@@ -217,6 +217,22 @@ class Model_Product extends \Orm\Model
 
 	}
 
+  /**
+   * Return added for user
+   * @return Model_User
+   */
+  public function getAddedFor() {
+    return Model_User::query()->where('id', $this->quest->quest->user_id)->get_one();
+  } // getAddedFor
+
+  /**
+   * Return added for user
+   * @return Model_User
+   */
+  public function getAddedBy() {
+    return Model_User::query()->where('id', $this->quest->added_by)->get_one();
+  } // getAddedFor
+
 
 
 	public static function get_index()

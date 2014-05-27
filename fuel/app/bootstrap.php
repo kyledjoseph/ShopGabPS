@@ -32,5 +32,32 @@ function pre_var_dump($data) {
   echo "</pre>";
 }
 
+/**
+ * Gets or sets config option
+ * @param string $name
+ * @param mixed $value
+ * @return mixed
+ */
+function configOption($name, $value = null) {
+  $config_options = json_decode(file_get_contents(APPPATH . 'config/config.json'), true);
+
+  if (is_null($value)) {
+    return $config_options[$name];
+  } else {
+    $config_options[$name] = (string)$value;
+    file_put_contents(APPPATH . 'config/config.json', json_encode($config_options));
+
+    return true;
+  } // if
+} // configOption
+
+/**
+ * Get all config options
+ * @return array
+ */
+function configOptions() {
+  return json_decode(file_get_contents(APPPATH . 'config/config.json'), true);
+} // configOption
+
 // Initialize the framework with the config file.
 Fuel::init('config.php');

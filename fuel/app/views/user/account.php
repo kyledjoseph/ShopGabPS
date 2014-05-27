@@ -5,10 +5,10 @@
     <p>User type: <?= $user->getVerboseAccountType() ?></p>
     <?php if ($professional) { ?>
       <p>Pricing plan: <?= $professional->getVerbosePricingPlanType() ?></p>
-        <input type="checkbox" id="automatic_plan_renewal" <?php if ($professional->automatic_plan_renewal) { ?> checked="checked" <?php } ?> />
-        <label for="automatic_plan_renewal">Automatic plan renewal</label>
+      <input type="checkbox" id="automatic_plan_renewal" <?php if ($professional->automatic_plan_renewal) { ?> checked="checked" <?php } ?> />
+      <label for="automatic_plan_renewal">Automatic plan renewal</label>
+      <p>Pricing plan: $<?= $professional->getPrice() ?>/month</p>
     <?php } ?>
-    <p>Pricing plan: $30/month</p>
 
     <h3 class="header-underline">Profile Picture</h3>
     <?= Form::open(array('action' => 'account/avatar', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal')) ?>
@@ -218,7 +218,7 @@
       <div class="control-group account-form">
         <div class="controls">
           <input type="submit" class="btn btn-default marg-top" name="submitted" value="Checkout with paypal">
-          <p>Pricing plan: $30/month</p>
+          <p>Pricing plan: $<?= $professional->getPrice() ?>/month</p>
         </div>
       </div>
 

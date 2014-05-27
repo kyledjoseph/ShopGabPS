@@ -46,8 +46,6 @@ class Model_Paypal extends \Orm\Model {
     ),
   );
 
-  const SUBSCRIPTION_PRICE = '30.00';
-
   /**
    * Perform payment to paypal
    * @return bool|string
@@ -80,7 +78,7 @@ class Model_Paypal extends \Orm\Model {
 
     $amount = new Amount();
     $amount->setCurrency("USD");
-    $amount->setTotal(self::SUBSCRIPTION_PRICE);
+    $amount->setTotal((string)$this->user->getProfessionalModel()->getPrice());
 
     $transaction = new Transaction();
     $transaction->setAmount($amount);
@@ -532,6 +530,20 @@ class Model_Paypal extends \Orm\Model {
     return $return;
   } // selectExpireYear
 
+  /**
+   * Return default price
+   * @return float
+   */
+  static function getDefaultPrice() {
+    return round(configOption('price'), 2);
+  } // getDefaultPrice
 
-
+  /**
+   * Sets default price
+   * @param $value
+   * @return mixed
+   */
+  static function setDefaultPrice($value) {
+    return configOption('price', round($value, 3));
+  } // setDefaultPrice
 } // Model_Paypal_Account

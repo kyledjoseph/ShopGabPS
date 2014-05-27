@@ -70,6 +70,62 @@ class Controller_Admin_Accounts extends Controller_Admin
 		$this->redirect("admin/accounts/view/{$account->id}", 'success', 'account information updated');
 	}
 
+  /**
+   * Edit an professional account
+   */
+  public function get_professional($user_id) {
+    $account = $this->_get_account($user_id);
+    $paypal = Model_Paypal::getByUserId($account->id);
+
+    $this->template->body = View::forge('admin/accounts/professional', [
+      'account' => $account,
+      'professional' => $account->getProfessionalModel(),
+      'paypal' => $paypal ? $paypal : new Model_Paypal()
+    ]);
+  } // get_professional
+
+  public function post_professional($user_id) {
+    $account = $this->_get_account($user_id);
+
+    $paypal_account = Model_Paypal::getByUserId($account->id);
+    if (!$paypal_account) {
+      $_POST['paypal']['parent_id'] = $account->id;
+      $paypal_account = new Model_Paypal();
+    } // if
+
+    $paypal_account->set($_POST['paypal']);
+    $paypal_account->save();
+
+    $professional = Model_Professional::getByUserId($account->id);
+    $professional->set('price', round($_POST['price'], 3));
+    $professional->save();
+
+    $this->redirect("admin/accounts/professional/{$account->id}", 'success', 'professional pricing data updated');
+  } // post_professional
+
+  /**
+   * Edit an client account
+   */
+  public function get_client($user_id) {
+    $account = $this->_get_account($user_id);
+
+    $this->template->body = View::forge('admin/accounts/client', [
+      'account' => $account,
+      'client' => $account->getClientModel(),
+    ]);
+  } // get_professional
+
+  public function post_client($user_id) {
+    $account = $this->_get_account($user_id);
+
+    $client = $account->getClientModel();
+
+    $client->set($_POST['client_data']);
+    $client->save();
+
+    $this->redirect("admin/accounts/client/{$account->id}", 'success', 'client personal data updated');
+  } // post_professional
+
 
 	/**
 	 * Delete an account

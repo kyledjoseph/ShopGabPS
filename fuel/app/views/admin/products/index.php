@@ -1,6 +1,5 @@
 
 	<h2>products &gt; index</h2>
-	<?= Html::anchor('admin/products/add', 'add product') ?>
 
 	<hr>
 
@@ -15,6 +14,8 @@
 				<th>Name</th>
         <th>Price</th>
         <th>Link</th>
+        <th>Added For</th>
+        <th>Added By</th>
 			</tr>
 		</thead>
 
@@ -25,6 +26,8 @@
 				<td><?= Html::anchor("admin/products/view/{$product->id}", $product->name) ?></td>
         <td><?= $product->price ?></td>
         <td><?= Html::anchor($product->url, $product->url, ['target' => '_blank']) ?></td>
+        <td><?= Html::anchor("admin/accounts/view/{$product->getAddedFor()->id}", $product->getAddedFor()->display_name()) ?></td>
+        <td><?= Html::anchor("admin/accounts/view/{$product->getAddedBy()->id}", $product->getAddedBy()->display_name()) ?></td>
 			</tr>
 		</tbody>
 

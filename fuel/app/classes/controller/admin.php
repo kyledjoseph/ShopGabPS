@@ -17,6 +17,21 @@ class Controller_Admin extends Controller_App
 		$this->template->body = View::forge('admin/dashboard/index');
 	}
 
+  public function get_config($config_name)
+  {
+    $this->template->body = View::forge('admin/dashboard/config', [
+      'config_name' => $config_name,
+      'config_value' => configOption($config_name)
+    ]);
+  } // get_config
+
+  public function post_config($config_name)
+  {
+    configOption($config_name, $_POST['config_value']);
+
+    $this->redirect('/admin', 'success', 'Config option updated');
+  }
+
 
 	/**
 	 * Require admin privileges to access 

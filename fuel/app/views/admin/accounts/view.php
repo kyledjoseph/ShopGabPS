@@ -45,6 +45,10 @@
             <td>Number of days left on plan</td>
             <td><?= $account->getProfessionalModel()->getSubscriptionDaysLeft() ?></td>
           </tr>
+          <tr>
+            <td>Monthly price for this user</td>
+            <td>$ <?= $account->getProfessionalModel()->getPrice() ?></td>
+          </tr>
         <?php } elseif ($account->group == Model_User::CLIENT_GROUP_ID) { ?>
           <tr>
             <td>Professional ID</td>
