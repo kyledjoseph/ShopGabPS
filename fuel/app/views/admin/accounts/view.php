@@ -21,6 +21,13 @@
     <h2>Avatar Image</h2>
     <img class="force-200-200" src="<?= $account->get_avatar_uri(200,200) ?>" />
 
+    <hr />
+    
+    <h2>Logo Image</h2>
+    <img class="" src="<?= $account->get_logo_uri() ?>" />
+
+    <hr />
+
 		<h2>Account Information</h2>
 		<table class="table table-striped">
 			<tbody>
