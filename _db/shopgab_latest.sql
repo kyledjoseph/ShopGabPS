@@ -1,6 +1,6 @@
 /*
-SQLyog Community v11.5 (64 bit)
-MySQL - 5.6.14 : Database - shopgab
+SQLyog Community v11.31 (32 bit)
+MySQL - 5.5.37-0ubuntu0.14.04.1 : Database - shopgab
 *********************************************************************
 */
 
@@ -296,6 +296,27 @@ CREATE TABLE `products` (
 
 insert  into `products`(`id`,`user_id`,`category_id`,`name`,`description`,`price`,`domain`,`url`,`brand`,`model`,`serial`,`warranty`,`type`,`dimensions`,`weight`,`created_at`,`updated_at`) values (1,1,NULL,'Facebook',NULL,'1 gazzilion usd',NULL,'http://facebook.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1401034775,1401034775),(2,1,NULL,'New Balance Releases &#039;Laces Only&#039; Minimalist Runni',NULL,'12 $','www.theonion.com','http://www.theonion.com/articles/new-balance-releases-laces-only-minimalist-running,30740/',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1401210861,1401210861);
 
+/*Table structure for table `professional_logos` */
+
+CREATE TABLE `professional_logos` (
+  `id` int(11) unsigned NOT NULL,
+  `professional_id` int(11) NOT NULL,
+  `name` varchar(64) CHARACTER SET latin1 DEFAULT NULL,
+  `public_uri` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `public_ssl_uri` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `public_streaming_uri` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
+  `width` int(4) DEFAULT NULL,
+  `height` int(4) DEFAULT NULL,
+  `content_length` int(11) DEFAULT NULL,
+  `created_at` int(11) DEFAULT NULL,
+  `updated_at` int(11) DEFAULT NULL,
+  UNIQUE KEY `professional_unique` (`professional_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `professional_logos` */
+
+insert  into `professional_logos`(`id`,`professional_id`,`name`,`public_uri`,`public_ssl_uri`,`public_streaming_uri`,`width`,`height`,`content_length`,`created_at`,`updated_at`) values (0,1,'c7b0fc9b2f0480f3e75dd55ed2b036f2.png','http://e0910123508b3468b48c-39753bfb29af831ecfecc41a53077e64.r92.cf1.rackcdn.com/c7b0fc9b2f0480f3e75dd55ed2b036f2.png','https://b098de2cbc2a1307d66b-39753bfb29af831ecfecc41a53077e64.ssl.cf1.rackcdn.com/c7b0fc9b2f0480f3e75dd55ed2b036f2.png','http://79a585eeee78152c2c4e-39753bfb29af831ecfecc41a53077e64.r92.stream.cf1.rackcdn.com/c7b0fc9b2f0480f3e75dd55ed2b036f2.png',120,60,3816,1401462480,1401462480);
+
 /*Table structure for table `professionals` */
 
 CREATE TABLE `professionals` (
@@ -430,7 +451,7 @@ CREATE TABLE `quests` (
 
 /*Data for the table `quests` */
 
-insert  into `quests`(`id`,`url`,`user_id`,`name`,`description`,`purchase_within`,`purchase_by`,`default_product_id`,`purchased_product_id`,`is_open`,`is_public`,`created_at`,`updated_at`,`created_by`) values (1,'l34h8o',1,'Jacket','123',2,1402242162,1,NULL,NULL,1,1401032562,1401210100,1),(2,'5ats7f',2,'Kyle quest for the best shoes','',2,1402420412,NULL,NULL,NULL,1,1401210812,1401210812,1);
+insert  into `quests`(`id`,`url`,`user_id`,`name`,`description`,`purchase_within`,`purchase_by`,`default_product_id`,`purchased_product_id`,`is_open`,`is_public`,`created_at`,`updated_at`,`created_by`) values (1,'l34h8o',1,'Jacket','123',2,1402242162,1,NULL,NULL,1,1401032562,1401210100,1),(2,'5ats7f',2,'Kyle quest for the best shoes','',2,1402420412,2,NULL,NULL,1,1401210812,1401460641,1);
 
 /*Table structure for table `throttle` */
 
@@ -493,11 +514,11 @@ CREATE TABLE `user_avatars` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_avatars` */
 
-insert  into `user_avatars`(`id`,`user_id`,`name`,`public_uri`,`public_ssl_uri`,`public_streaming_uri`,`width`,`height`,`content_length`,`created_at`,`updated_at`) values (1,1,'7d83da7bcdfad01564f7855feaf0a936.png','http://10b2369fd88484cb1829-301bfc721f36f2495d8a276d7e2b76e2.r18.cf1.rackcdn.com/7d83da7bcdfad01564f7855feaf0a936.png','https://e78f294bdb0a87abf91c-301bfc721f36f2495d8a276d7e2b76e2.ssl.cf1.rackcdn.com/7d83da7bcdfad01564f7855feaf0a936.png','http://d2725e9e7870c0e896db-301bfc721f36f2495d8a276d7e2b76e2.r18.stream.cf1.rackcdn.com/7d83da7bcdfad01564f7855feaf0a936.png',200,200,34986,1401032657,1401032657),(2,1,'7d83da7bcdfad01564f7855feaf0a936.png','http://7675188bf9e8133792bf-da4dce5cb75456dd15c437d9fff43577.r87.cf1.rackcdn.com/7d83da7bcdfad01564f7855feaf0a936.png','https://90790433881f76b3a12e-da4dce5cb75456dd15c437d9fff43577.ssl.cf1.rackcdn.com/7d83da7bcdfad01564f7855feaf0a936.png','http://591128c6a485981a6645-da4dce5cb75456dd15c437d9fff43577.r87.stream.cf1.rackcdn.com/7d83da7bcdfad01564f7855feaf0a936.png',32,32,1900,1401032660,1401032660);
+insert  into `user_avatars`(`id`,`user_id`,`name`,`public_uri`,`public_ssl_uri`,`public_streaming_uri`,`width`,`height`,`content_length`,`created_at`,`updated_at`) values (3,1,'96246dd2204c17f9377e7fb862fc1741.png','http://10b2369fd88484cb1829-301bfc721f36f2495d8a276d7e2b76e2.r18.cf1.rackcdn.com/96246dd2204c17f9377e7fb862fc1741.png','https://e78f294bdb0a87abf91c-301bfc721f36f2495d8a276d7e2b76e2.ssl.cf1.rackcdn.com/96246dd2204c17f9377e7fb862fc1741.png','http://d2725e9e7870c0e896db-301bfc721f36f2495d8a276d7e2b76e2.r18.stream.cf1.rackcdn.com/96246dd2204c17f9377e7fb862fc1741.png',200,200,49310,1401462317,1401462317),(4,1,'96246dd2204c17f9377e7fb862fc1741.png','http://7675188bf9e8133792bf-da4dce5cb75456dd15c437d9fff43577.r87.cf1.rackcdn.com/96246dd2204c17f9377e7fb862fc1741.png','https://90790433881f76b3a12e-da4dce5cb75456dd15c437d9fff43577.ssl.cf1.rackcdn.com/96246dd2204c17f9377e7fb862fc1741.png','http://591128c6a485981a6645-da4dce5cb75456dd15c437d9fff43577.r87.stream.cf1.rackcdn.com/96246dd2204c17f9377e7fb862fc1741.png',32,32,2134,1401462320,1401462320);
 
 /*Table structure for table `user_notices` */
 
@@ -555,7 +576,7 @@ CREATE TABLE `users` (
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`username`,`password`,`group`,`email`,`confirmation_code`,`status`,`display_name`,`last_login`,`login_hash`,`profile_fields`,`reset_code`,`reset_created_at`,`welcome_message`,`receive_notifications`,`created_at`,`updated_at`) values (1,'goran.blazin','uez0w3Y2xl007yaMtdFg45wr2jmXt3Oxd8e6DlOvCKY=',50,'goran.blazin@gmail.com','de22005e4fa1572d4406374c13fff9c9',2,NULL,1401212514,'3cfcffd5fcb4689175e1704256d7e430f240fd4f','a:0:{}',NULL,NULL,1,1,1401032532,1401032669),(2,'kyle','uez0w3Y2xl007yaMtdFg45wr2jmXt3Oxd8e6DlOvCKY=',1,'kyle@shopgab.com','9fede6c5ab51517fcc979f72b95c9f6a',2,NULL,1401032850,'83a9ec11fbeeead5ee4d8cde1107daf978f063f4','a:0:{}',NULL,NULL,1,1,1401032842,1401032842),(4,'testclient','uez0w3Y2xl007yaMtdFg45wr2jmXt3Oxd8e6DlOvCKY=',50,'testclient@test.com','61c91de418d70af12ff526dcd7d79631',1,NULL,1401211529,'1f1b279ee726bd5517b9f07c07ebbc339daf6b87','a:0:{}',NULL,NULL,1,1,1401211517,1401211518);
+insert  into `users`(`id`,`username`,`password`,`group`,`email`,`confirmation_code`,`status`,`display_name`,`last_login`,`login_hash`,`profile_fields`,`reset_code`,`reset_created_at`,`welcome_message`,`receive_notifications`,`created_at`,`updated_at`) values (1,'goran.blazin','uez0w3Y2xl007yaMtdFg45wr2jmXt3Oxd8e6DlOvCKY=',50,'goran.blazin@gmail.com','de22005e4fa1572d4406374c13fff9c9',2,NULL,1401455653,'0722137fd259da8c458015474d43ad4a7d71e6c5','a:0:{}',NULL,NULL,1,1,1401032532,1401032669),(2,'kyle','uez0w3Y2xl007yaMtdFg45wr2jmXt3Oxd8e6DlOvCKY=',1,'kyle@shopgab.com','9fede6c5ab51517fcc979f72b95c9f6a',2,NULL,1401461138,'da04dbcf4c388b99bfdf7aa671cfe20c74b00967','a:0:{}',NULL,NULL,1,1,1401032842,1401032842),(4,'testclient','uez0w3Y2xl007yaMtdFg45wr2jmXt3Oxd8e6DlOvCKY=',50,'testclient@test.com','61c91de418d70af12ff526dcd7d79631',1,NULL,1401462517,'513181b389c1884de235228ad01efa7c1409b9c7','a:0:{}',NULL,NULL,1,1,1401211517,1401211518);
 
 /*Table structure for table `users_clients` */
 

@@ -135,4 +135,103 @@ class Model_Professional extends \Orm\Model {
     return self::query()->where('user_id', $user_id)->get_one();
   } // getByUserId
 
+  /**
+   * Logos
+   */
+  protected $logo_sizes = array('120' => '60');
+
+  public function add_logo($file)
+  {
+    $connection = Service_Cloudfiles::get_connection();
+
+    foreach ($this->logo_sizes as $width => $height)
+    {
+      $tmp_path        = $file['saved_to'] . $file['saved_as'];
+      $file_name       = pathinfo($tmp_path, PATHINFO_FILENAME);
+      $new_file_name   = "{$file_name}.png";
+      $tmp_resize_path = APPPATH . "tmp/{$width}x{$height}_{$new_file_name}";
+
+      Image::load($file['saved_to'] . $file['saved_as'])
+        ->crop_resize($width, $height)
+        ->save($tmp_resize_path);
+
+      $container = $connection->get_container("logo_{$width}x{$height}");
+      $image     = $container->create_object($new_file_name);
+      $image->load_from_filename($tmp_resize_path);
+
+      $logo = new Model_Professional_Logo();
+      $logo->professional_id      = $this->id;
+      $logo->name                 = $image->name;
+      $logo->public_uri           = $image->public_uri();
+      $logo->public_ssl_uri       = $image->public_ssl_uri();
+      $logo->public_streaming_uri = $image->public_streaming_uri();
+      $logo->width                = $width;
+      $logo->height               = $height;
+      $logo->content_length       = $image->content_length;
+      $logo->save();
+
+      File::delete($tmp_resize_path);
+    }
+
+    File::delete($tmp_path);
+  }
+
+  /**
+   * undefined_method
+   */
+  public function has_logos()
+  {
+    return Model_Professional_Logo::query()->where('professional_id', $this->id)->count() > 0;
+  }
+
+  /**
+   * undefined_method
+   */
+  public function delete_logos()
+  {
+    $connection = Service_Cloudfiles::get_connection();
+
+    foreach ($this->get_logos() as $logo)
+    {
+      $container = $connection->get_container($logo->container_name());
+      $container->delete_object($logo->name);
+      $logo->delete();
+    }
+  }
+
+  /**
+   * @return Model_Professional_Logo[]
+   */
+  public function get_logos()
+  {
+    return Model_Professional_Logo::query()->where('professional_id', $this->id)->get();
+  }
+
+
+  public function get_logo_uri($width = 120, $height = 60) {
+    if ($logo = $this->get_logo($width, $height)) {
+      return $logo->public_uri;
+    }
+
+    return $this->default_logo_uri($width, $height);
+  }
+
+  /**
+   * undefined_method
+   */
+  public function get_logo($width = 120, $height = 60) {
+    return Model_Professional_Logo::query()
+      ->where('professional_id', $this->id)
+      ->where('width', $width)
+      ->where('height', $height)
+      ->get_one();
+  }
+
+  /**
+   * undefined_method
+   */
+  public function default_logo_uri() {
+    return Uri::create("assets/img/avatar/logo.png");
+  }
+
 } // Model_Professional

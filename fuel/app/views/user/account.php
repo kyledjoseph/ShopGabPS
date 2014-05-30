@@ -16,7 +16,7 @@
       <label class="control-label" for="inputName"></label>
 
       <div class="controls">
-        <img class="account-img" src="<?= $user->get_avatar_uri() ?>"/>
+        <img class="force-200-200" src="<?= $user->get_avatar_uri(200,200) ?>" />
 
       </div>
       <label class="control-label" for="avatar">Change avatar:</label>
@@ -25,15 +25,42 @@
         <input class="avatar-upload" type="file" name="avatar" id="avatar"/>
       </div>
     </div>
+
     <div class="control-group account-form">
       <div class="controls">
         <button class="btn btn-default marg-top">Upload Avatar</button>
       </div>
     </div>
-
     <?= Form::close() ?>
 
     <hr>
+
+    <?php if ($professional) { ?>
+      <h3 class="header-underline">Professional Logo</h3>
+      <?= Form::open(array('action' => 'account/logo', 'enctype' => 'multipart/form-data', 'class' => 'form-horizontal')) ?>
+      <div class="control-group account-form">
+        <label class="control-label" for="inputName"></label>
+
+        <div class="controls">
+          <img class="" src="<?= $professional->get_logo_uri() ?>" />
+
+        </div>
+        <label class="control-label" for="avatar">Change professional logo:</label>
+
+        <div class="controls">
+          <input class="avatar-upload" type="file" name="logo" id="logo"/>
+        </div>
+      </div>
+
+      <div class="control-group account-form">
+        <div class="controls">
+          <button class="btn btn-default marg-top">Upload Logo (120px x 60px)</button>
+        </div>
+      </div>
+      <?= Form::close() ?>
+
+      <hr>
+    <?php } ?>
 
     <?= Form::open(array('class' => 'form-horizontal')) ?>
 

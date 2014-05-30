@@ -1,7 +1,7 @@
 <div class="header row">
 	<!-- Logo -->
 	<div class="col-4 col-sm-2">
-		<h1><a href="/"><img class="logo-img" src="/assets/img/logo.png" alt="ShopGab" /></a></h1>
+		<h1><a href="/"><img class="logo-img" src="<?= $user->get_logo_uri() ?>" alt="ShopGab" /></a></h1>
     <?php if ($user->group == Model_User::CLIENT_GROUP_ID) { ?>
       <h4>Your stylist: <?= $user->getParentUser()->display_name() ?> <img class="force-32-32" src="<?= $user->getParentUser()->get_avatar_uri() ?>" /></h4>
     <?php } ?>

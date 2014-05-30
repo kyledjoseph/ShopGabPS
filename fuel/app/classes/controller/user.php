@@ -208,6 +208,41 @@ class Controller_User extends Controller_App
 		$this->redirect('user/account', 'success', 'Avatar Uploaded');
 	} // post_avatar
 
+  /**
+   * undefined_method
+   */
+  public function post_logo() {
+    $this->require_auth();
+    $professional = $this->user->getProfessionalModel();
+
+    Upload::process(array(
+      'path' => APPPATH . 'tmp',
+      'randomize' => true,
+      'ext_whitelist' => array('jpg', 'jpeg', 'gif', 'png', 'bmp'),
+    ));
+
+    if (Upload::is_valid()) {
+      Upload::save();
+
+      if ($professional->has_logos()) {
+        $professional->delete_logos();
+      } // if
+
+      foreach (Upload::get_files() as $file) {
+        $professional->add_logo($file);
+        break;
+      } // foreach
+    } // if
+
+    foreach (Upload::get_errors() as $file) {
+      // $file is an array with all file information,
+      // $file['errors'] contains an array of all error occurred
+      // each array element is an an array containing 'error' and 'message'
+    } // foreach
+
+    $this->redirect('user/account', 'success', 'Logo Uploaded');
+  } // post_logo
+
 	/**
 	 * Change Password
 	 */

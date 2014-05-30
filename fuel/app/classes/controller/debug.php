@@ -174,13 +174,15 @@ class Controller_Debug extends Controller_App
 		$conn = new CF_Connection($auth);
 		# $conn->ssl_use_cabundle();  # bypass cURL's old CA bundle
 
-
 		# Create a Container and make it public
 		$images = $conn->create_container("avatar_32x32");
 		$uri    = $images->make_public();
 
 		$images = $conn->create_container("avatar_200x200");
 		$uri    = $images->make_public();
+
+    $images = $conn->create_container("logo_120x60");
+    $uri    = $images->make_public();
 
 		return $uri;
 

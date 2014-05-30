@@ -685,4 +685,14 @@ class Model_User extends Auth\Model\Auth_User {
     return $this->client_model;
   } // getClientModel
 
+  public function get_logo_uri($width = 120, $height = 60) {
+    if ($this->group == self::CLIENT_GROUP_ID) {
+      $professional = Model_Professional::getByUserId($this->getClientModel()->parent_id);
+    } else {
+      $professional = Model_Professional::getByUserId($this->id);
+    } // if
+
+    return $professional->get_logo_uri();
+  } // get_logo_uri
+
 }
