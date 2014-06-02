@@ -23,8 +23,8 @@ class Model_Professional_Logo extends \Orm\Model
       'key_from' => 'professional_id',
       'model_to' => 'Model_Professional',
       'key_to' => 'id',
-      'cascade_save' => true,
-      'cascade_delete' => true,
+      'cascade_save' => false,
+      'cascade_delete' => false,
     ),
   );
 
