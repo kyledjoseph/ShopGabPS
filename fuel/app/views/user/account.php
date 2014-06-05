@@ -4,6 +4,7 @@
     <h3 class="header-underline">Profile Information</h3>
     <p>User type: <?= $user->getVerboseAccountType() ?></p>
     <?php if ($professional) { ?>
+      <p>PSID: <?= $user->id ?></p>
       <p>Pricing plan: <?= $professional->getVerbosePricingPlanType() ?></p>
       <input type="checkbox" id="automatic_plan_renewal" <?php if ($professional->automatic_plan_renewal) { ?> checked="checked" <?php } ?> />
       <label for="automatic_plan_renewal">Automatic plan renewal</label>
