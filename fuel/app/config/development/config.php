@@ -265,6 +265,7 @@ return array(
 			'email',
 			'orm',
 			'tinychimp',
+      'sprockets',
 		),
 
 		/**
