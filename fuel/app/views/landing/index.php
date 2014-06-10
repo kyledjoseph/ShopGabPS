@@ -14,6 +14,8 @@
   <!-- Bootstrap -->
   <link href="/landing/css/main.css" rel="stylesheet" media="screen">
 
+  <?php echo Sprockets::css('style.scss'); ?>
+
   <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!--[if lt IE 9]>
   <script src="../../assets/js/html5shiv.js"></script>

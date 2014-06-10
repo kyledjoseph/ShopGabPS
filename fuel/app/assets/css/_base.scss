@@ -1,0 +1,10 @@
+body{	
+	a{
+		color: #555555;
+		text-decoration: none;
+		&:hover{
+			color: #73b2a7;
+			text-decoration: none;
+		}
+	}
+}
