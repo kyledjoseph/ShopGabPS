@@ -1,0 +1,147 @@
+  
+.page-profile{
+	padding-top: 35px;	
+	.sidebar{ 		
+		width: 100%;
+		margin-right: 35px; 
+		padding: 10px 25px;		
+		position: relative;						
+		#main-profile{
+			text-align: center;
+			.main-profile-img{
+				img{
+					width: 150px; 
+					height: 150px;
+					@include border-radius(50%);
+					border: 2px solid #b6b6b6;
+				}
+			} 
+			.main-profile-name{
+				font-size: 24px;
+				margin: 5px 0 3px;
+			}
+			.main-profile-user-type, .main-profile-info{
+				color: #999999;
+				font-size: 15px;
+				margin-bottom: 5px;
+				span{
+					color: #555555;
+				}
+			}  
+		}
+		#profile-tabs{		
+			margin-top: 15px;	
+			padding-left: 0px;
+			border-bottom: 1px dotted #e8e8e8;
+			li{
+				a{
+					border-top: 1px dotted #e8e8e8;
+					display: block;
+					line-height: 100%;
+					font-size: 14px;					
+					font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+					padding: 20px 15px 18px 40px;
+					position: relative;
+					&.profile{
+						background: image-url("user.png") 10px center no-repeat;
+					}
+					&.billing{
+						background: image-url("billing.png") 10px center no-repeat;
+					}
+					&.settings{
+						background: image-url("settings.png") 10px center no-repeat;
+					}
+				}
+				&.active{
+					a{
+						color: #6eb2a6;
+						&:after {
+						  display: block;
+						  content: '';
+						  position: absolute;
+						  top: 50%;
+						  right: 15px;
+						  margin-top: -5px;
+						  opacity: 1;
+						  width: 6px;
+						  height: 10px;
+						  background: image-url("ar1.png") left top no-repeat;
+						}
+					}					
+				}
+			}
+		}
+	}  
+
+	.content{
+		display: block;
+		width: 100%;
+		clear: both;
+		overflow: hidden;
+	}
+	.tab-content{
+		padding-top: 0px;
+		section{
+			h1{
+				margin-bottom: 40px;	
+			}
+			.wrapp{
+				margin-left: 15px;
+				@include clearfix();
+				overflow: hidden;
+				.chg-profile-img{
+					img{
+						width: 120px;
+						height: 120px;						
+						@include border-radius(5px);
+					}
+				}
+				.controls{
+					img{
+						margin-bottom: 10px;
+					}
+				}
+			}
+		}
+	}
+ 
+} 
+
+@media only screen and (min-width: 641px){
+	.page-profile{
+		display: -webkit-box;
+		display: -moz-box;
+		display: box;
+		-webkit-box-orient: horizontal;
+		-moz-box-orient: horizontal;
+		box-orient: horizontal;
+		-webkit-box-align: stretch;
+		-moz-box-align: stretch;
+		box-align: stretch;
+		.sidebar{
+			width: 225px;
+			min-height: 942px;
+			border-right: 1px solid #dedede;				
+			&:after {
+			  display: block; 
+			  content: '';
+			  position: absolute;
+			  top: 10px;
+			  right: -9px;		  
+			  opacity: 1;
+			  height: 912px;
+			  width: 8px;
+			  background: image-url("shadow1.png") left top no-repeat;
+			}
+		}
+		.content{
+			display: block;
+			-webkit-box-flex: 1;
+			-moz-box-flex: 1;
+			box-flex: 1;
+			.content{
+
+			}
+		}
+	}	
+}

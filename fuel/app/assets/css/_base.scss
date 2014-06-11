@@ -1,10 +1,105 @@
 body{	
+	font-family: 'proxima-nova', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	color: #555;
 	a{
-		color: #555555;
+		color: #333;
 		text-decoration: none;
+		font-size: 14px;
 		&:hover{
 			color: #73b2a7;
 			text-decoration: none;
 		}
 	}
+	ul, ol{
+		list-style: none;
+	}
+	h1{
+		font-size: 26px;
+		font-weight: normal;
+		margin-bottom: 20px;
+	}
+	h3{
+		font-size: 18px;
+		font-weight: normal;
+		margin-bottom: 10px;
+	}
+	.header-underline{
+		border-bottom: 1px solid #dadada;
+		padding-bottom: 5px;
+		margin-bottom: 15px;
+	}
+	label{
+		font-weight: bold;		
+	}
+	.inline.form-group{
+		> *{
+			display: inline-block;
+			vertical-align: middle;
+		}
+		label{
+			margin: 0px 5px 0 0;
+		}
+	}	
+
+	.btn-default{
+		background-color: #73b2a7;
+		border: 1px solid #73b2a7;
+		font-size: 13px;
+		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		a{
+			color: #fff;
+			font-size: 13px;
+		}
+		&:hover, &:active{
+			background-color: #58b2a5;
+			border: 1px solid #58b2a5;
+		}
+	}
+
+	.page-inner{
+		max-width: 1020px;
+		margin: auto;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+
+}
+
+.mw-checkbox{
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  width: 52px;
+  height: 32px;
+  background: lighten(#d9dce3, 5%);
+  @include border-radius(16px);
+  @include transition(background 200ms linear);
+  .mw-checkbox-handler{
+    position: absolute;
+    top: -11px;
+    left: -16px;
+    background: image-url("checkbox-handle.png") no-repeat;
+    width: 69px;
+    height: 71px;
+    @include transition(-webkit-transform 200ms ease-in-out);
+  }
+  .mw-checkbox-background{
+    width: 52px;
+    height: 32px;
+    background: lighten(#d9dce3, 5%);
+    @include border-radius(16px);
+    @include transition(background 200ms linear);
+  }
+  &.mw-checked{
+    .mw-checkbox-background{
+      background-color: #084886;
+    }
+    .mw-checkbox-handler{
+      @include transform(translate3d(21px, 0, 0));
+    }
+  }
+
+  input[type=checkbox]{
+    display: none;
+  }  
 }

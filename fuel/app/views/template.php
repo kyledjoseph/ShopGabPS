@@ -8,6 +8,10 @@
 	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
   <!--  jQuery-->
   <script src="//code.jquery.com/jquery.js"></script>
+
+  <!-- Main JS -->
+  <?php echo Sprockets::js('main.js'); ?>
+
 	<link href="/assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
 	<link href="/assets/css/font-awesome.min.css" rel="stylesheet" media="screen">
 	<?= Casset::render_css() ?>
@@ -16,6 +20,7 @@ typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var
 b._i.push([a,e,d])};b.__SV=1.2}})(document,window.mixpanel||[]);
 mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
 
+  <!-- Main CSS -->
   <?php echo Sprockets::css('style.scss'); ?>
 
 	</head>
@@ -33,8 +38,8 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
 	<?php endif; ?>
 
 	<?= $body ?>
-</div>
-<!-- Footer -->
+  </div>
+  <!-- Footer -->
   <div class="footer">
     <div class="footer-white">
       <div class="footer">

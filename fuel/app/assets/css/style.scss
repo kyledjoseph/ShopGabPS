@@ -1,28 +1,12 @@
 @import "bourbon/_bourbon.scss"; 
 @import "_lib.scss"; 
 @import "_base.scss";
-
+ 
 /* Sections*/
 @import "sections/_header.scss"; 
-
-/* Pages */
+   
+/* Pages */ 
 @import "pages/_profile.scss"; 
 
-.page-profile{
-	margin-top: 35px;
-	.sidebar{
-		width: 225px;
-		margin-right: 15px;
-		#profile{
-			text-align: center;
-			.profile-img{
-				img{
-					width: 150px;
-					height: 150px;
-					@include border-radius(50%);
-					border: 2px solid #b6b6b6;
-				}
-			}
-		}
-	}
-} 
+
+ 

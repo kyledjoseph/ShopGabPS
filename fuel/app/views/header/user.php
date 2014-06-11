@@ -1,6 +1,6 @@
 <div class="header">
 	<!-- Logo -->
-	<div class="col-4 col-sm-2">
+	<div class="pull-left">
 		
 		<div class='logo'><a href="/"><img class="logo-img" src="<?= $user->get_logo_uri() ?>" alt="ShopGab" /></a></div>
 
@@ -10,12 +10,12 @@
 	</div>
 
 	<!-- Navigation -->
-	<div class="col-8 col-sm-10">
+	<div class="pull-right">
 		<ul class="landing-nav pull-right">
-			<li><?= Html::anchor('/', 'My Quests') ?></li>
-			<li class="dropdown">
+			<li class='quests'><?= Html::anchor('/', 'My Quests') ?></li>
+			<li class="dropdown profile">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-					<img class="force-32-32" src="<?= $user->get_avatar_uri() ?>" /><span><?= $user->display_name() ?></span>
+					<span><?= $user->display_name() ?></span><img class="force-32-32" src="<?= $user->get_avatar_uri() ?>" />
 				</a>
 				<ul class="dropdown-menu dropdown-left">
 					<li><?= Html::anchor('account', 'Account') ?></li>

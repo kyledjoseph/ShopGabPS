@@ -5,19 +5,61 @@
 	@include clearfix();
 	box-shadow: 0px 1px 3px rgba(0,0,0,.2);
 	.landing-nav{
-		margin: 0px;
+		margin: 0px 10px 0 0;
 		text-align: right;
+		padding: 0px;
 		li{
 			display: inline-block;
 			vertical-align: middle;			
-			padding: 12px 0;
-			&:last-child{
-				margin-left: 30px;
+			padding: 15px 0;
+			&.profile{
+				margin-left: 15px;								
 			}
-			img{
-				@include border-radius(50%);
-				margin-right: 5px;
+			&.quests{				
+				a{
+					text-indent: -9999px;
+					display: inline-block;
+					background: image-url("cart.png") center center no-repeat;
+					width: 32px;
+					height: 32px;
+					text-align: left;
+				}
 			}
+			.dropdown-toggle{
+				display: inline-block;
+				span{
+					display: none;
+				}
+				> *{					
+					vertical-align: middle;
+				}
+				img{
+					@include border-radius(50%);
+					margin-left: 10px;
+				}
+			}			
 		}
 	}
 } 
+
+@media only screen and (min-width: 641px){
+	.header .landing-nav li {
+		.dropdown-toggle{
+			span{
+				display: inline-block;
+			}
+		}
+		&:profile{
+			margin-left: 30px;
+		}
+		&.quests{			
+			a{
+				text-indent: 0px;
+				display: inline;
+				background: none;
+				width: auto;
+				height: auto;		
+			}
+		}
+	}
+}
