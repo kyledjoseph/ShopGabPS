@@ -345,7 +345,8 @@ class Controller_User extends Controller_App
       $user = Model_User::get_by_id($user_id);
       $user->send_confirmation_code();
 
-      $this->redirect('/login', 'success', 'You have successfully registered to ShopGap. Please login');
+      Auth::force_login($user->id);
+      $this->redirect('/', 'success', 'You have successfully registered to ShopGap');
     } else {
 
       $this->template->body = View::forge('user/register', array(

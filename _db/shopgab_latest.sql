@@ -32,11 +32,11 @@ CREATE TABLE `admins` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 /*Data for the table `admins` */
 
-insert  into `admins`(`id`,`user_id`,`created_at`,`updated_at`) values (2,1,1401032532,1401032532);
+insert  into `admins`(`id`,`user_id`,`created_at`,`updated_at`) values (2,5,1401032532,1401032532),(4,2,1402076787,1402076787);
 
 /*Table structure for table `auth_permissions_users` */
 
@@ -97,11 +97,11 @@ CREATE TABLE `clients` (
   `user_id` int(11) NOT NULL,
   `parent_id` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `clients` */
 
-insert  into `clients`(`id`,`gender`,`neck`,`arm`,`over_arm`,`chest`,`waist`,`glove`,`hat`,`shirt_size`,`age`,`height`,`weight`,`bust`,`hips`,`cup_size`,`dress_size`,`professional_information`,`user_id`,`parent_id`) values (4,0,'as123','asd','sad','sad','asd','asd','das','ads','asd','ads','asd','123','123','qw','qw','sadsad',2,1);
+insert  into `clients`(`id`,`gender`,`neck`,`arm`,`over_arm`,`chest`,`waist`,`glove`,`hat`,`shirt_size`,`age`,`height`,`weight`,`bust`,`hips`,`cup_size`,`dress_size`,`professional_information`,`user_id`,`parent_id`) values (4,0,'as123','asd','sad','sad','asd','asd','das','ads','asd','ads','asd','123','123','qw','qw','sadsad',2,7),(5,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,6,5);
 
 /*Table structure for table `deployment_payload_logs` */
 
@@ -200,11 +200,11 @@ CREATE TABLE `log_emails` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `log_emails` */
 
-insert  into `log_emails`(`id`,`type`,`to_name`,`to_addr`,`from_name`,`from_addr`,`subject`,`body`,`created_at`,`updated_at`) values (1,'confirmation_cod','goran.blazin@gmail.com','goran.blazin@gmail.com','ShopGab','info@shopgab.com','Confirm your ShopGab email','<p>Confirm your ShopGab email by clicking on the link below.</p>\r\n\r\n<a href=\"http://shopgab.dev/confirm/de22005e4fa1572d4406374c13fff9c9\">http://shopgab.dev/confirm/de22005e4fa1572d4406374c13fff9c9</a>',1401032533,1401032533),(2,'confirmation_cod','kyle@shopgab.com','kyle@shopgab.com','ShopGab','info@shopgab.com','Confirm your ShopGab email','<p>Confirm your ShopGab email by clicking on the link below.</p>\r\n\r\n<a href=\"http://shopgab.dev/confirm/9fede6c5ab51517fcc979f72b95c9f6a\">http://shopgab.dev/confirm/9fede6c5ab51517fcc979f72b95c9f6a</a>',1401032843,1401032843),(3,'confirmation_cod','testclient@test.com','testclient@test.com','ShopGab','info@shopgab.com','Confirm your ShopGab email','<p>Confirm your ShopGab email by clicking on the link below.</p>\r\n\r\n<a href=\"http://shopgab.dev/confirm/4281cb97768f138755900483849250f7\">http://shopgab.dev/confirm/4281cb97768f138755900483849250f7</a>',1401033222,1401033222),(4,'confirmation_cod','testclient@test.com','testclient@test.com','ShopGab','info@shopgab.com','Confirm your ShopGab email','<p>Confirm your ShopGab email by clicking on the link below.</p>\r\n\r\n<a href=\"http://shopgab.dev/confirm/61c91de418d70af12ff526dcd7d79631\">http://shopgab.dev/confirm/61c91de418d70af12ff526dcd7d79631</a>',1401211519,1401211519),(5,'client_notificat','testclient@test.com','testclient@test.com','ShopGab','notification@shopgab.com','ShopGab Notifications','<html>\r\n<img src=\"cid:SHOPGAB_LOGO\" style=\"width: 100px; margin-left: auto; margin-right: auto\" />\r\n<div class=\"content\">\r\n<p>Paypal failed</p></div>\r\n<div class=\"unsubscribe\">\r\n	<p style=\"text-align:center;\">To turn off e-mail notifications, please change the settings in your ShopGab profile.</p>\r\n  <p>If you have any questions please contact ShopGab support.</p>\r\n  <p>Thanks!</p>\r\n  <p>ShopGab Admin</p>\r\n</div>\r\n<div class=\"footer\">\r\n  <div style=\"width: 50%;\">\r\n    1871: Shopgab\r\n    222 Merchandise Mart Plaza Suite #1212\r\n    Chicago, IL  60654\r\n  </div>\r\n</div>\r\n</html>',1401212438,1401212438),(6,'confirmation_cod','goran.blazin@gmail.com','goran.blazin@gmail.com','ShopGab','info@shopgab.com','Confirm your ShopGab email','<p>Confirm your ShopGab email by clicking on the link below.</p>\n\n<a href=\"http://shopgab.dev/confirm/14a296590185e4e4d0fa62ff1453d821\">http://shopgab.dev/confirm/14a296590185e4e4d0fa62ff1453d821</a>',1401693959,1401693959);
+insert  into `log_emails`(`id`,`type`,`to_name`,`to_addr`,`from_name`,`from_addr`,`subject`,`body`,`created_at`,`updated_at`) values (1,'confirmation_cod','goran.blazin@gmail.com','goran.blazin@gmail.com','ShopGab','info@shopgab.com','Confirm your ShopGab email','<p>Confirm your ShopGab email by clicking on the link below.</p>\r\n\r\n<a href=\"http://shopgab.dev/confirm/de22005e4fa1572d4406374c13fff9c9\">http://shopgab.dev/confirm/de22005e4fa1572d4406374c13fff9c9</a>',1401032533,1401032533),(2,'confirmation_cod','kyle@shopgab.com','kyle@shopgab.com','ShopGab','info@shopgab.com','Confirm your ShopGab email','<p>Confirm your ShopGab email by clicking on the link below.</p>\r\n\r\n<a href=\"http://shopgab.dev/confirm/9fede6c5ab51517fcc979f72b95c9f6a\">http://shopgab.dev/confirm/9fede6c5ab51517fcc979f72b95c9f6a</a>',1401032843,1401032843),(3,'confirmation_cod','testclient@test.com','testclient@test.com','ShopGab','info@shopgab.com','Confirm your ShopGab email','<p>Confirm your ShopGab email by clicking on the link below.</p>\r\n\r\n<a href=\"http://shopgab.dev/confirm/4281cb97768f138755900483849250f7\">http://shopgab.dev/confirm/4281cb97768f138755900483849250f7</a>',1401033222,1401033222),(4,'confirmation_cod','testclient@test.com','testclient@test.com','ShopGab','info@shopgab.com','Confirm your ShopGab email','<p>Confirm your ShopGab email by clicking on the link below.</p>\r\n\r\n<a href=\"http://shopgab.dev/confirm/61c91de418d70af12ff526dcd7d79631\">http://shopgab.dev/confirm/61c91de418d70af12ff526dcd7d79631</a>',1401211519,1401211519),(5,'client_notificat','testclient@test.com','testclient@test.com','ShopGab','notification@shopgab.com','ShopGab Notifications','<html>\r\n<img src=\"cid:SHOPGAB_LOGO\" style=\"width: 100px; margin-left: auto; margin-right: auto\" />\r\n<div class=\"content\">\r\n<p>Paypal failed</p></div>\r\n<div class=\"unsubscribe\">\r\n	<p style=\"text-align:center;\">To turn off e-mail notifications, please change the settings in your ShopGab profile.</p>\r\n  <p>If you have any questions please contact ShopGab support.</p>\r\n  <p>Thanks!</p>\r\n  <p>ShopGab Admin</p>\r\n</div>\r\n<div class=\"footer\">\r\n  <div style=\"width: 50%;\">\r\n    1871: Shopgab\r\n    222 Merchandise Mart Plaza Suite #1212\r\n    Chicago, IL  60654\r\n  </div>\r\n</div>\r\n</html>',1401212438,1401212438),(6,'confirmation_cod','goran.blazin@gmail.com','goran.blazin@gmail.com','ShopGab','info@shopgab.com','Confirm your ShopGab email','<p>Confirm your ShopGab email by clicking on the link below.</p>\n\n<a href=\"http://shopgab.dev/confirm/14a296590185e4e4d0fa62ff1453d821\">http://shopgab.dev/confirm/14a296590185e4e4d0fa62ff1453d821</a>',1401693959,1401693959),(7,'confirmation_cod','pintaricn@gmail.com','pintaricn@gmail.com','ShopGab','info@shopgab.com','Confirm your ShopGab email','<p>Confirm your ShopGab email by clicking on the link below.</p>\n\n<a href=\"http://test.shopgab.com/confirm/aa38b1a1aa0ab3edff62f7fdb0853f80\">http://test.shopgab.com/confirm/aa38b1a1aa0ab3edff62f7fdb0853f80</a>',1401982012,1401982012),(8,'confirmation_cod','kyle@chicagofoodseum.com','kyle@chicagofoodseum.com','ShopGab','info@shopgab.com','Confirm your ShopGab email','<p>Confirm your ShopGab email by clicking on the link below.</p>\n\n<a href=\"http://test.shopgab.com/confirm/b83d87b54cbf03b2c8db246e6e473773\">http://test.shopgab.com/confirm/b83d87b54cbf03b2c8db246e6e473773</a>',1402076871,1402076871);
 
 /*Table structure for table `migration` */
 
@@ -244,8 +244,6 @@ CREATE TABLE `paypals` (
 
 /*Data for the table `paypals` */
 
-insert  into `paypals`(`id`,`first_name`,`last_name`,`company`,`address`,`email`,`city`,`state_province`,`zip_postal_code`,`country`,`telephone`,`card_number`,`card_type`,`expire_month`,`expire_year`,`cvv2`,`payer_id`,`parent_id`) values (5,'Goran','Blazin','none','Test address 12','goran.blazin@gmail.com','Test city','NULL','112334','US','+123123243421','5450960277411202','mastercard',2,2019,'202',NULL,1),(7,'Goran','Blazin','none2','Test address 12','goran.blazin@gmail.com','Test city','NULL','112334','US','+123123243421','1232424234as324','mastercard',4,2017,'1242',NULL,4);
-
 /*Table structure for table `product_images` */
 
 CREATE TABLE `product_images` (
@@ -263,11 +261,9 @@ CREATE TABLE `product_images` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `product_images` */
-
-insert  into `product_images`(`id`,`product_id`,`name`,`src`,`src_url`,`public_uri`,`public_ssl_uri`,`public_streaming_uri`,`width`,`height`,`content_length`,`created_at`,`updated_at`) values (5,1,'9253ed091e8187623639ab2eb577dbd8.png',NULL,'uploaded','http://b6318e2321bb88354523-47a82e5eb2d7e277bfb68bb434f3d01a.r18.cf1.rackcdn.com/9253ed091e8187623639ab2eb577dbd8.png','https://e6e7f839fe4501e64298-47a82e5eb2d7e277bfb68bb434f3d01a.ssl.cf1.rackcdn.com/9253ed091e8187623639ab2eb577dbd8.png','http://870935354a6d30caa711-47a82e5eb2d7e277bfb68bb434f3d01a.r18.stream.cf1.rackcdn.com/9253ed091e8187623639ab2eb577dbd8.png',250,220,30047,1401034781,1401034781),(6,1,'9253ed091e8187623639ab2eb577dbd8.png',NULL,'uploaded','http://af37c728244fcfe23a80-183062b960b96f404ce302a7175f78e4.r44.cf1.rackcdn.com/9253ed091e8187623639ab2eb577dbd8.png','https://89715acccb31bde5f707-183062b960b96f404ce302a7175f78e4.ssl.cf1.rackcdn.com/9253ed091e8187623639ab2eb577dbd8.png','http://f313ea3107c7ea3487c4-183062b960b96f404ce302a7175f78e4.r44.stream.cf1.rackcdn.com/9253ed091e8187623639ab2eb577dbd8.png',50,50,1731,1401034784,1401034784),(7,2,'882d9e94c7b529a346c42ec43539e1ca.jpg',NULL,'http://o.onionstatic.com/images/19/19048/original/700.hq.jpg?6611','http://b6318e2321bb88354523-47a82e5eb2d7e277bfb68bb434f3d01a.r18.cf1.rackcdn.com/882d9e94c7b529a346c42ec43539e1ca.jpg','https://e6e7f839fe4501e64298-47a82e5eb2d7e277bfb68bb434f3d01a.ssl.cf1.rackcdn.com/882d9e94c7b529a346c42ec43539e1ca.jpg','http://870935354a6d30caa711-47a82e5eb2d7e277bfb68bb434f3d01a.r18.stream.cf1.rackcdn.com/882d9e94c7b529a346c42ec43539e1ca.jpg',250,220,32174,1401210868,1401210868),(8,2,'882d9e94c7b529a346c42ec43539e1ca.jpg',NULL,'http://o.onionstatic.com/images/19/19048/original/700.hq.jpg?6611','http://af37c728244fcfe23a80-183062b960b96f404ce302a7175f78e4.r44.cf1.rackcdn.com/882d9e94c7b529a346c42ec43539e1ca.jpg','https://89715acccb31bde5f707-183062b960b96f404ce302a7175f78e4.ssl.cf1.rackcdn.com/882d9e94c7b529a346c42ec43539e1ca.jpg','http://f313ea3107c7ea3487c4-183062b960b96f404ce302a7175f78e4.r44.stream.cf1.rackcdn.com/882d9e94c7b529a346c42ec43539e1ca.jpg',50,50,3116,1401210871,1401210871);
 
 /*Table structure for table `products` */
 
@@ -290,16 +286,14 @@ CREATE TABLE `products` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `products` */
-
-insert  into `products`(`id`,`user_id`,`category_id`,`name`,`description`,`price`,`domain`,`url`,`brand`,`model`,`serial`,`warranty`,`type`,`dimensions`,`weight`,`created_at`,`updated_at`) values (1,1,NULL,'Facebook',NULL,'1 gazzilion usd',NULL,'http://facebook.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1401034775,1401034775),(2,1,NULL,'New Balance Releases &#039;Laces Only&#039; Minimalist Runni',NULL,'12 $','www.theonion.com','http://www.theonion.com/articles/new-balance-releases-laces-only-minimalist-running,30740/',NULL,NULL,NULL,NULL,NULL,NULL,NULL,1401210861,1401210861);
 
 /*Table structure for table `professional_logos` */
 
 CREATE TABLE `professional_logos` (
-  `id` int(11) unsigned NOT NULL,
+  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `professional_id` int(11) NOT NULL,
   `name` varchar(64) CHARACTER SET latin1 DEFAULT NULL,
   `public_uri` varchar(256) CHARACTER SET latin1 DEFAULT NULL,
@@ -310,12 +304,13 @@ CREATE TABLE `professional_logos` (
   `content_length` int(11) DEFAULT NULL,
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
   UNIQUE KEY `professional_unique` (`professional_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 
 /*Data for the table `professional_logos` */
 
-insert  into `professional_logos`(`id`,`professional_id`,`name`,`public_uri`,`public_ssl_uri`,`public_streaming_uri`,`width`,`height`,`content_length`,`created_at`,`updated_at`) values (0,4,'dd4d084d82a9e5ee8c5b007d9d6d9db4.png','http://e0910123508b3468b48c-39753bfb29af831ecfecc41a53077e64.r92.cf1.rackcdn.com/dd4d084d82a9e5ee8c5b007d9d6d9db4.png','https://b098de2cbc2a1307d66b-39753bfb29af831ecfecc41a53077e64.ssl.cf1.rackcdn.com/dd4d084d82a9e5ee8c5b007d9d6d9db4.png','http://79a585eeee78152c2c4e-39753bfb29af831ecfecc41a53077e64.r92.stream.cf1.rackcdn.com/dd4d084d82a9e5ee8c5b007d9d6d9db4.png',120,60,3816,1401694406,1401694406);
+insert  into `professional_logos`(`id`,`professional_id`,`name`,`public_uri`,`public_ssl_uri`,`public_streaming_uri`,`width`,`height`,`content_length`,`created_at`,`updated_at`) values (1,4,'bd5351503af0ca3bc873e2570b6f1fb5.png','http://e0910123508b3468b48c-39753bfb29af831ecfecc41a53077e64.r92.cf1.rackcdn.com/bd5351503af0ca3bc873e2570b6f1fb5.png','https://b098de2cbc2a1307d66b-39753bfb29af831ecfecc41a53077e64.ssl.cf1.rackcdn.com/bd5351503af0ca3bc873e2570b6f1fb5.png','http://79a585eeee78152c2c4e-39753bfb29af831ecfecc41a53077e64.r92.stream.cf1.rackcdn.com/bd5351503af0ca3bc873e2570b6f1fb5.png',120,60,3816,1402661967,1402661967);
 
 /*Table structure for table `professionals` */
 
@@ -328,11 +323,11 @@ CREATE TABLE `professionals` (
   `automatic_plan_notification_sent` tinyint(1) NOT NULL DEFAULT '0',
   `price` decimal(10,3) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 /*Data for the table `professionals` */
 
-insert  into `professionals`(`id`,`user_id`,`pricing_plan_type`,`pricing_plan_started_on`,`automatic_plan_renewal`,`automatic_plan_notification_sent`,`price`) values (4,5,1,1401693958,1,0,NULL);
+insert  into `professionals`(`id`,`user_id`,`pricing_plan_type`,`pricing_plan_started_on`,`automatic_plan_renewal`,`automatic_plan_notification_sent`,`price`) values (4,5,1,1401693958,1,0,NULL),(5,7,1,1402076870,1,0,NULL);
 
 /*Table structure for table `quest_messages` */
 
@@ -360,11 +355,9 @@ CREATE TABLE `quest_notifications` (
   `seen_at` int(11) DEFAULT NULL,
   `sent_by_email` tinyint(1) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `quest_notifications` */
-
-insert  into `quest_notifications`(`id`,`user_id`,`quest_id`,`model_id`,`event_type`,`created_at`,`seen_at`,`sent_by_email`) values (1,1,1,1,'quest_created',1401032562,1401032562,0),(2,1,1,1,'product_created',1401034784,1401034784,0),(3,1,1,2,'product_like',1401034818,1401210105,0),(4,1,2,2,'quest_created',1401210812,1401210812,0),(5,1,2,2,'product_created',1401210871,1401210875,0);
 
 /*Table structure for table `quest_participants` */
 
@@ -403,11 +396,9 @@ CREATE TABLE `quest_product_votes` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `quest_product_votes` */
-
-insert  into `quest_product_votes`(`id`,`quest_product_id`,`user_id`,`vote`,`created_at`,`updated_at`) values (1,NULL,12,1,1398879272,1398936609),(2,1,1,1,1401034818,1401034818);
 
 /*Table structure for table `quest_products` */
 
@@ -423,11 +414,9 @@ CREATE TABLE `quest_products` (
   `created_at` int(11) DEFAULT NULL,
   `updated_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `quest_products` */
-
-insert  into `quest_products`(`id`,`quest_id`,`product_id`,`description`,`total_likes`,`total_dislikes`,`vote_score`,`added_by`,`created_at`,`updated_at`) values (1,1,1,NULL,1,0,1,1,1401034784,1401034818),(2,2,2,NULL,NULL,NULL,NULL,1,1401210871,1401210871);
 
 /*Table structure for table `quests` */
 
@@ -447,11 +436,9 @@ CREATE TABLE `quests` (
   `updated_at` int(11) DEFAULT NULL,
   `created_by` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `quests` */
-
-insert  into `quests`(`id`,`url`,`user_id`,`name`,`description`,`purchase_within`,`purchase_by`,`default_product_id`,`purchased_product_id`,`is_open`,`is_public`,`created_at`,`updated_at`,`created_by`) values (1,'l34h8o',1,'Jacket','123',2,1402242162,1,NULL,NULL,1,1401032562,1401210100,1),(2,'5ats7f',2,'Kyle quest for the best shoes','',2,1402420412,2,NULL,NULL,1,1401210812,1401460641,1);
 
 /*Table structure for table `throttle` */
 
@@ -518,7 +505,7 @@ CREATE TABLE `user_avatars` (
 
 /*Data for the table `user_avatars` */
 
-insert  into `user_avatars`(`id`,`user_id`,`name`,`public_uri`,`public_ssl_uri`,`public_streaming_uri`,`width`,`height`,`content_length`,`created_at`,`updated_at`) values (5,1,'ff7e79f28ceff90dd3bdac864e715fe6.png','http://10b2369fd88484cb1829-301bfc721f36f2495d8a276d7e2b76e2.r18.cf1.rackcdn.com/ff7e79f28ceff90dd3bdac864e715fe6.png','https://e78f294bdb0a87abf91c-301bfc721f36f2495d8a276d7e2b76e2.ssl.cf1.rackcdn.com/ff7e79f28ceff90dd3bdac864e715fe6.png','http://d2725e9e7870c0e896db-301bfc721f36f2495d8a276d7e2b76e2.r18.stream.cf1.rackcdn.com/ff7e79f28ceff90dd3bdac864e715fe6.png',200,200,36693,1401693406,1401693406),(6,1,'ff7e79f28ceff90dd3bdac864e715fe6.png','http://7675188bf9e8133792bf-da4dce5cb75456dd15c437d9fff43577.r87.cf1.rackcdn.com/ff7e79f28ceff90dd3bdac864e715fe6.png','https://90790433881f76b3a12e-da4dce5cb75456dd15c437d9fff43577.ssl.cf1.rackcdn.com/ff7e79f28ceff90dd3bdac864e715fe6.png','http://591128c6a485981a6645-da4dce5cb75456dd15c437d9fff43577.r87.stream.cf1.rackcdn.com/ff7e79f28ceff90dd3bdac864e715fe6.png',32,32,2010,1401693408,1401693408),(7,5,'a344769c0904ed840773b50dcce94c65.png','http://10b2369fd88484cb1829-301bfc721f36f2495d8a276d7e2b76e2.r18.cf1.rackcdn.com/a344769c0904ed840773b50dcce94c65.png','https://e78f294bdb0a87abf91c-301bfc721f36f2495d8a276d7e2b76e2.ssl.cf1.rackcdn.com/a344769c0904ed840773b50dcce94c65.png','http://d2725e9e7870c0e896db-301bfc721f36f2495d8a276d7e2b76e2.r18.stream.cf1.rackcdn.com/a344769c0904ed840773b50dcce94c65.png',200,200,36693,1401694691,1401694691),(8,5,'a344769c0904ed840773b50dcce94c65.png','http://7675188bf9e8133792bf-da4dce5cb75456dd15c437d9fff43577.r87.cf1.rackcdn.com/a344769c0904ed840773b50dcce94c65.png','https://90790433881f76b3a12e-da4dce5cb75456dd15c437d9fff43577.ssl.cf1.rackcdn.com/a344769c0904ed840773b50dcce94c65.png','http://591128c6a485981a6645-da4dce5cb75456dd15c437d9fff43577.r87.stream.cf1.rackcdn.com/a344769c0904ed840773b50dcce94c65.png',32,32,2010,1401694694,1401694694);
+insert  into `user_avatars`(`id`,`user_id`,`name`,`public_uri`,`public_ssl_uri`,`public_streaming_uri`,`width`,`height`,`content_length`,`created_at`,`updated_at`) values (7,5,'a344769c0904ed840773b50dcce94c65.png','http://10b2369fd88484cb1829-301bfc721f36f2495d8a276d7e2b76e2.r18.cf1.rackcdn.com/a344769c0904ed840773b50dcce94c65.png','https://e78f294bdb0a87abf91c-301bfc721f36f2495d8a276d7e2b76e2.ssl.cf1.rackcdn.com/a344769c0904ed840773b50dcce94c65.png','http://d2725e9e7870c0e896db-301bfc721f36f2495d8a276d7e2b76e2.r18.stream.cf1.rackcdn.com/a344769c0904ed840773b50dcce94c65.png',200,200,36693,1401694691,1401694691),(8,5,'a344769c0904ed840773b50dcce94c65.png','http://7675188bf9e8133792bf-da4dce5cb75456dd15c437d9fff43577.r87.cf1.rackcdn.com/a344769c0904ed840773b50dcce94c65.png','https://90790433881f76b3a12e-da4dce5cb75456dd15c437d9fff43577.ssl.cf1.rackcdn.com/a344769c0904ed840773b50dcce94c65.png','http://591128c6a485981a6645-da4dce5cb75456dd15c437d9fff43577.r87.stream.cf1.rackcdn.com/a344769c0904ed840773b50dcce94c65.png',32,32,2010,1401694694,1401694694);
 
 /*Table structure for table `user_notices` */
 
@@ -528,11 +515,9 @@ CREATE TABLE `user_notices` (
   `type` varchar(16) DEFAULT NULL,
   `created_at` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `user_notices` */
-
-insert  into `user_notices`(`id`,`user_id`,`type`,`created_at`) values (1,1,'start_quest',1401032562);
 
 /*Table structure for table `user_notifications` */
 
@@ -572,11 +557,11 @@ CREATE TABLE `users` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `reset_unique` (`reset_code`),
   UNIQUE KEY `confirm_unique` (`confirmation_code`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 
 /*Data for the table `users` */
 
-insert  into `users`(`id`,`username`,`password`,`group`,`email`,`confirmation_code`,`status`,`display_name`,`last_login`,`login_hash`,`profile_fields`,`reset_code`,`reset_created_at`,`welcome_message`,`receive_notifications`,`created_at`,`updated_at`) values (2,'kyle','uez0w3Y2xl007yaMtdFg45wr2jmXt3Oxd8e6DlOvCKY=',1,'kyle@shopgab.com','9fede6c5ab51517fcc979f72b95c9f6a',2,NULL,1401461138,'da04dbcf4c388b99bfdf7aa671cfe20c74b00967','a:0:{}',NULL,NULL,1,1,1401032842,1401032842),(5,'goran.blazin','uez0w3Y2xl007yaMtdFg45wr2jmXt3Oxd8e6DlOvCKY=',50,'goran.blazin@gmail.com','14a296590185e4e4d0fa62ff1453d821',2,NULL,1401693962,'7386e648e83ebd193eef7712706248b54405fb7e','a:0:{}',NULL,NULL,1,1,1401693958,1401693958);
+insert  into `users`(`id`,`username`,`password`,`group`,`email`,`confirmation_code`,`status`,`display_name`,`last_login`,`login_hash`,`profile_fields`,`reset_code`,`reset_created_at`,`welcome_message`,`receive_notifications`,`created_at`,`updated_at`) values (2,'kyle','uez0w3Y2xl007yaMtdFg45wr2jmXt3Oxd8e6DlOvCKY=',1,'kyle@shopgab.com','9fede6c5ab51517fcc979f72b95c9f6a',2,NULL,1402076808,'4bfe86fd9dfc8b4ae845b9b0197697bb9cf25bb9','a:0:{}',NULL,NULL,1,1,1401032842,1401032842),(5,'goran.blazin','uez0w3Y2xl007yaMtdFg45wr2jmXt3Oxd8e6DlOvCKY=',50,'goran.blazin@gmail.com','14a296590185e4e4d0fa62ff1453d821',2,NULL,1402659918,'57ab919b2cce8f15274ad517d5803360c822fc10','a:0:{}',NULL,NULL,1,1,1401693958,1402077246),(6,'pintaricn','uez0w3Y2xl007yaMtdFg45wr2jmXt3Oxd8e6DlOvCKY=',1,'pintaricn@gmail.com','aa38b1a1aa0ab3edff62f7fdb0853f80',2,NULL,1401982050,'323186a9f23c95ebb115f1b13b9279fdcd86e0ad','a:0:{}',NULL,NULL,1,1,1401982012,1401982093),(7,'kyle0','uez0w3Y2xl007yaMtdFg45wr2jmXt3Oxd8e6DlOvCKY=',50,'kyle@chicagofoodseum.com','b83d87b54cbf03b2c8db246e6e473773',2,NULL,1402076921,'ad31c4f052092e50d69c54d60ee9aa59b92088d7','a:0:{}',NULL,NULL,1,1,1402076870,1402076957);
 
 /*Table structure for table `users_clients` */
 
@@ -608,11 +593,11 @@ CREATE TABLE `users_metadata` (
   `created_at` int(11) DEFAULT '0',
   `updated_at` int(11) DEFAULT '0',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 /*Data for the table `users_metadata` */
 
-insert  into `users_metadata`(`id`,`parent_id`,`key`,`value`,`user_id`,`created_at`,`updated_at`) values (1,NULL,'fullname','Goran Blazin',1,1401032669,0);
+insert  into `users_metadata`(`id`,`parent_id`,`key`,`value`,`user_id`,`created_at`,`updated_at`) values (1,NULL,'fullname','Goran Blazin',1,1401032669,0),(3,NULL,'fullname','Kyle Joseph',7,1402076957,0),(4,NULL,'fullname','goran.blazin',5,1402077246,0);
 
 /*Table structure for table `users_permissions` */
 

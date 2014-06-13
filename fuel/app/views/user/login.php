@@ -4,10 +4,6 @@
 		<h1>Login</h1>
 
     <form id="login_form" action="/login" method="post">
-      <div class="type_wrapper">
-        <label>Professional <input type="radio" class="radio professional_radio_button" name="login_type" checked="checked" value="professional"/></label>
-        <label>Client <input type="radio" class="radio client_radio_button" name="login_type" value="client" id="client_radio"/></label>
-      </div>
       <div class="login_wrapper form_wrapper">
         <div class="textlike_wrapper">
           <label>
@@ -33,8 +29,3 @@
 	</section>
 
   <script src="//code.jquery.com/jquery.js"></script>
-  <script type="text/javascript">
-    <?php if ($client) { ?>
-    $('#client_radio').click();
-    <?php } ?>
-  </script>

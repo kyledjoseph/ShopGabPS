@@ -44,12 +44,14 @@
             </label>
           </div>
           <div class="checkbox_wrapper">
-            <label>I Agree To The Terms &amp; Conditions <input type="checkbox" value="1" name="terms_conditions"
-                                                                class="checkbox" checked="checked"/></label>
+            <label><a href="/terms" target="_blank">I Agree To The Terms &amp; Conditions</a>
+              <input type="checkbox" value="1" name="terms_conditions" id="terms_conditions" class="checkbox" checked="checked"/>
+            </label>
           </div>
           <div class="checkbox_wrapper">
-            <label>Privacy policy <input type="checkbox" value="1" name="privacy_policy" class="checkbox"
-                                         checked="checked"/></label>
+            <label><a href="/privacy" target="_blank">Privacy policy</a>
+              <input type="checkbox" value="1" name="privacy_policy" id="privacy_policy" class="checkbox" checked="checked"/>
+            </label>
           </div>
         </div>
         <div id="client_register_wrapper" style="display: none">
@@ -65,7 +67,7 @@
           </div>
         </div>
         <div class="submit_wrapper">
-          <input type="submit" value="Create Account" class="btn green2">
+          <input type="submit" value="Create Account" id="create_account" class="btn green2">
         </div>
       </div>
     </form>
@@ -90,4 +92,14 @@
     <?php if ($client) { ?>
       $('#client_radio').click();
     <?php } ?>
+
+    // privacy & terms checkboxes
+    $('input#terms_conditions, input#privacy_policy').change(function(event) {
+      var create_account = $('#create_account');
+      if ($('input#terms_conditions').prop('checked') && $('input#privacy_policy').prop('checked')) {
+        create_account.prop('disabled', false);
+      } else {
+        create_account.prop('disabled', true);
+      } // if
+    });
   </script>

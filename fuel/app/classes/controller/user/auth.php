@@ -8,7 +8,7 @@ class Controller_User_Auth extends Controller_App
 	 */
 	public function post_login() {
     // try logging in
-    $login = false;
+    $login = true;
     if (Auth::login()) {
       //successful login
       $auth = \Auth\Auth::instance();
@@ -20,21 +20,10 @@ class Controller_User_Auth extends Controller_App
         $auth->dont_remember_me();
       } // if
 
-      // check if right role
-
       $user = Model_User::get_by_id($auth->get_user_id()[1]);
-      if (($_POST['login_type'] == 'professional' && $user->group == Model_User::PROFESSIONAL_GROUP_ID) ||
-        ($_POST['login_type'] == 'client' && $user->group == Model_User::CLIENT_GROUP_ID)) {
-        // if correct login type then let login
-        $login = true;
-      } else {
-        $auth->dont_remember_me();
-        $auth->logout();
-        $message = 'Wrong login role, please try again';
-      } // if
 
-      // check if parent is correct
-      if ($login == true && $user->group == Model_User::CLIENT_GROUP_ID) {
+      // check if parent is correct for clients
+      if ($user->group == Model_User::CLIENT_GROUP_ID) {
         $client = Model_Client::getByUserId($user->id);
         // check if client has parent
         if ($client->parent_id == 0) {
@@ -63,7 +52,6 @@ class Controller_User_Auth extends Controller_App
       );
 
       $this->template->body = View::forge('user/login', array(
-        'client' => $_POST['login_type'] == 'client',
         'data' => $_POST
       ));
     } // if

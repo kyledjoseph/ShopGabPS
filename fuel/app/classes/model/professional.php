@@ -194,7 +194,13 @@ class Model_Professional extends \Orm\Model {
     foreach ($this->get_logos() as $logo)
     {
       $container = $connection->get_container($logo->container_name());
-      $container->delete_object($logo->name);
+
+      try {
+        $container->delete_object($logo->name);
+      } catch (NoSuchObjectException $e) {
+
+      } // try
+
       $logo->delete();
     }
   }
@@ -220,12 +226,30 @@ class Model_Professional extends \Orm\Model {
    * undefined_method
    */
   public function get_logo($width = 120, $height = 60) {
-    return Model_Professional_Logo::query()
+    $logo = Model_Professional_Logo::query()
       ->where('professional_id', $this->id)
       ->where('width', $width)
       ->where('height', $height)
       ->get_one();
-  }
+
+    // check if logo url is valid
+    if ($logo) {
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $logo->public_uri);
+      // don't download content
+      curl_setopt($ch, CURLOPT_NOBODY, 1);
+      curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      if(curl_exec($ch) !== false) {
+        return $logo;
+      } else {
+        $this->delete_logos();
+        return false;
+      } // if
+    } // if
+
+    return false;
+  } // get_logo
 
   /**
    * undefined_method

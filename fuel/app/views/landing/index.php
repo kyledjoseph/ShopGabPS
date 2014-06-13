@@ -216,10 +216,14 @@
                 </label>
               </div>
               <div class="checkbox_wrapper">
-                <label>I Agree To The Terms &amp; Conditions <input type="checkbox" value="1" name="terms_conditions" class="checkbox" checked="checked" /></label>
+                <label><a href="/terms" target="_blank">I Agree To The Terms &amp; Conditions</a>
+                  <input type="checkbox" value="1" name="terms_conditions" id="terms_conditions" class="checkbox" checked="checked"/>
+                </label>
               </div>
               <div class="checkbox_wrapper">
-                <label>Privacy policy <input type="checkbox" value="1" name="privacy_policy" class="checkbox" checked="checked" /></label>
+                <label><a href="/privacy" target="_blank">Privacy policy</a>
+                  <input type="checkbox" value="1" name="privacy_policy" id="privacy_policy" class="checkbox" checked="checked"/>
+                </label>
               </div>
             </div>
             <div id="client_register_wrapper">
@@ -231,7 +235,7 @@
               </div>
             </div>
             <div class="submit_wrapper">
-              <input type="submit" value="Create Account" class="sg-button-secondary">
+              <input type="submit" value="Create Account" id="create_account" class="sg-button-secondary">
             </div>
           </div>
         </form>
@@ -254,10 +258,6 @@
       </div>
       <div class="modal-body">
         <form id="login_form" action="/login" method="post">
-          <div class="type_wrapper">
-            <label>Professional <input type="radio" class="radio professional_radio_button" name="login_type" checked="checked" value="professional"/></label>
-            <label>Client <input type="radio" class="radio client_radio_button" name="login_type" value="client" /></label>
-          </div>
           <div class="login_wrapper form_wrapper">
             <div class="textlike_wrapper">
               <label>
@@ -302,6 +302,16 @@
       $('#professional_register_wrapper').show();
       $('#client_register_wrapper').hide();
       $('#client_register_wrapper input').removeAttr('required');
+    } // if
+  });
+
+  // privacy & terms checkboxes
+  $('input#terms_conditions, input#privacy_policy').change(function(event) {
+    var create_account = $('#create_account');
+    if ($('input#terms_conditions').prop('checked') && $('input#privacy_policy').prop('checked')) {
+      create_account.prop('disabled', false);
+    } else {
+      create_account.prop('disabled', true);
     } // if
   });
 </script>
