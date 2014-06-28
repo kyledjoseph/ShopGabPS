@@ -4,9 +4,49 @@
  
 /* Sections*/
 @import "sections/_header.scss"; 
-   
+@import "sections/_footer.scss"; 
+    
 /* Pages */ 
 @import "pages/_profile.scss"; 
 
 
- 
+#mw-footer{
+ 	background-color: #242424;
+ 	padding: 25px 0 15px;
+ 	margin-top: 70px;
+ 	.footer-data{
+ 		@include clearfix();
+ 		> div{
+ 			padding: 20px 0px;
+ 			h4{
+ 				font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+ 				color: #777777;
+ 				font-size: 18px;
+ 			}
+ 			p{
+ 				color: #555555;
+ 			}
+ 		}
+ 		.social-links{
+ 			padding-top: 0px;
+ 			a{
+	 			margin: 7px 3px;
+	 			display: inline-block;
+	 			vertical-align: middle;
+	 			img{
+	 				margin-top: 0px;
+	 			}
+	 		}
+ 		} 
+ 	}
+ 	.footer-closer{
+ 		text-align: center;
+ 		padding: 25px 10px 5px;
+ 		background: image-url("footer-sep.png") left top repeat-x;
+ 		@include clearfix(); 		
+ 		p{
+ 			color: #444444;
+ 			font-size: 12px;
+ 		}
+ 	}
+}

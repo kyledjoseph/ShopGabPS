@@ -40,17 +40,15 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
 	<?= $body ?>
   </div>
   <!-- Footer -->
-  <div class="footer">
-    <div class="footer-white">
-      <div class="footer">
-        <div class="about col-12 col-sm-4">
-          <h4>About Us</h4>
-          <hr />
+  <div id="mw-footer">
+    <div class="page-inner">
+      <div class="footer-data">
+        <div class="about col-12 col-sm-7">
+          <h4>About</h4>
           <p>At ShopGab our mission is to help shoppers confidently purchase the best products for their needs. We provide a fun and simple way to store any product, gather feedback and get product recommendations from trusted friends. No longer does online shopping have to be a lonely, individualized process! Shop together and buy with the confidence and support of your friends and family.</p>
         </div>
-        <div class="follow col-12 col-sm-4">
+        <div class="follow col-12 col-sm-4 pull-right">
           <h4>Join the conversation</h4>
-          <hr />
           <div class="social-links">
             <a href="http://facebook.com/shopgab" class="facebook">
               <i class="icon-facebook icon-2x icon-light"></i>
@@ -68,10 +66,10 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
               <img src="/assets/img/wordpress.png" />
             </a>
           </div>
-          <a href="http://rackspace.com/"><img class="rackspace" src="/assets/img/rackspace.png" /></a>
+          <!-- <a href="http://rackspace.com/"><img class="rackspace" src="/assets/img/rackspace.png" /></a> -->
         </div>
       </div>
-      <div class="footer">
+      <div class="footer-closer">
       <div class="col-12">
           <p class="text-muted">&copy; ShopGab 2013, all rights reserved.</p>
           </div>
