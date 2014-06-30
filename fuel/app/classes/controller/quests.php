@@ -86,6 +86,7 @@ class Controller_Quests extends Controller_App
 	 */
 	public function post_message($quest_url)
 	{
+    $this->require_auth();
 		if (! $quest = $this->get_quest_by_url($quest_url))
 		{
 			return array('success' => false, 'message' => 'invalid_quest');
@@ -155,6 +156,7 @@ class Controller_Quests extends Controller_App
 	 */
 	public function post_within($quest_url)
 	{
+    $this->require_auth();
 		$post = $this->post_data('purchase_within');
 		
 		if (! $quest = $this->get_quest_by_url($quest_url))
@@ -178,6 +180,7 @@ class Controller_Quests extends Controller_App
 	}
 
   public function post_add_product($quest_id) {
+    $this->require_auth();
     $quest = Model_Quest::get_by_id($quest_id);
 
     if ($_FILES['product_image']['error']) {
@@ -194,6 +197,7 @@ class Controller_Quests extends Controller_App
     $product->add_image($_FILES['product_image'], true);
 
     $quest->add_product($product, $this->user->id);
+    $this->user->mark_notice_seen('start_product');
 
     $this->redirect('quest/'.$quest->url, 'success', 'Product successfully added');
   } // post_add_product
@@ -203,6 +207,7 @@ class Controller_Quests extends Controller_App
 	 */
 	public function post_comment($quest_url, $quest_product_id)
 	{
+    $this->require_auth();
 		if (! $quest = $this->get_quest_by_url($quest_url))
 		{
 			return array('success' => false, 'message' => 'invalid_quest');
@@ -331,6 +336,7 @@ class Controller_Quests extends Controller_App
 	 */
 	public function post_create()
 	{
+    $this->require_auth();
 		$post  = $this->post_data('name', 'description', 'purchase_within');
     $for_user_id = isset($_POST['for_user_id']) ? $_POST['for_user_id'] : false;
 
@@ -369,6 +375,7 @@ class Controller_Quests extends Controller_App
 
 	public function post_edit($quest_url)
 	{
+    $this->require_auth();
 		$quest = $this->get_quest_by_url($quest_url);
 
 		$this->require_auth($quest->url());
@@ -462,6 +469,7 @@ class Controller_Quests extends Controller_App
 	 */
 	public function post_invite_email($quest_url)
 	{
+    $this->require_auth();
 		$quest = $this->get_quest_by_url($quest_url);
 		$this->require_auth($quest->url());
 
@@ -523,6 +531,7 @@ class Controller_Quests extends Controller_App
 
 
 	protected function _init_quest_assets() {
+
 		// Casset::js('lib/jquery.expander.min.js');
 		Casset::js('lib/jquery.tipTip.js');
 		Casset::js('site/quest.js');

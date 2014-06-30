@@ -96,12 +96,27 @@ class Controller_Admin_Accounts extends Controller_Admin
     $paypal_account->set($_POST['paypal']);
     $paypal_account->save();
 
+    $this->redirect("admin/accounts/professional/{$account->id}", 'success', 'professional pricing data updated');
+  } // post_professional
+
+  public function get_pricing($user_id) {
+    $account = $this->_get_account($user_id);
+
+    $this->template->body = View::forge('admin/accounts/pricing', [
+      'account' => $account,
+      'professional' => $account->getProfessionalModel(),
+    ]);
+  } // get_pricing
+
+  public function post_pricing($user_id) {
+    $account = $this->_get_account($user_id);
+
     $professional = Model_Professional::getByUserId($account->id);
     $professional->set('price', round($_POST['price'], 3));
     $professional->save();
 
-    $this->redirect("admin/accounts/professional/{$account->id}", 'success', 'professional pricing data updated');
-  } // post_professional
+    $this->redirect("admin/accounts/view/{$account->id}", 'success', 'pricing data updated');
+  } // post_pricing
 
   /**
    * Edit an client account

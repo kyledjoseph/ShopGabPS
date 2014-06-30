@@ -7,7 +7,7 @@
 				<?php endif; ?>
 		
 				<?php if (isset($user)): ?>
-				<button style="position: relative; top: -58px;" href="#addProductModal" data-toggle="modal" class="btn btn-primary pull-right mx-install-extension">Add Product</button>
+				<button style="position: relative; top: -58px;" href="#addProductModal" data-toggle="modal" class="btn btn-primary pull-right mx-install-extension <?= $user->has_seen_notice('start_product') ? : 'tour-product-btn' ?>" data-container="body" data-placement="top" data-content="Add your first product." data-original-title="" title="">Add Product</button>
 				<?php else: ?>
 				<button style="position: relative; top: -58px;" href="#loginModal" data-toggle="modal" class="btn btn-primary pull-right">Add Product</button>
 				<?php endif; ?>

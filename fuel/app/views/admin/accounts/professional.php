@@ -134,14 +134,6 @@
 </div>
 
 <div class="control-group account-form">
-  <label class="control-label" for="paypal_last_name">Monthly price($) *</label>
-
-  <div class="controls">
-    <input type="text" class="form-control" name="price" id="paypal_last_name" value="<?= $professional->getPrice() ?>" required="">
-  </div>
-</div>
-
-<div class="control-group account-form">
   <div class="controls">
     <input type="submit" class="btn btn-default marg-top" name="submitted" value="Edit pricing data">
   </div>

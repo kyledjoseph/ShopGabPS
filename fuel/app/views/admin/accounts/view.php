@@ -11,6 +11,7 @@
 			<?= Html::anchor("admin/accounts/edit/{$account->id}", 'edit this account', array('class' => 'btn btn-primary')) ?>
       <?php if ($account->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
         <?= Html::anchor("admin/accounts/professional/{$account->id}", 'edit pricing data', array('class' => 'btn btn-primary')) ?>
+        <?= Html::anchor("admin/accounts/pricing/{$account->id}", 'edit monthly price', array('class' => 'btn btn-primary')) ?>
       <?php } elseif ($account->group == Model_User::CLIENT_GROUP_ID) { ?>
         <?= Html::anchor("admin/accounts/client/{$account->id}", 'edit client data', array('class' => 'btn btn-primary')) ?>
       <?php } ?>
