@@ -1,14 +1,116 @@
+@-webkit-keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -webkit-transform: translateY(0);
+  }
+  40% {
+    -webkit-transform: translateY(-30px);
+  }
+  60% {
+    -webkit-transform: translateY(-15px);
+  }
+}
+@-moz-keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -moz-transform: translateY(0);
+  }
+  40% {
+    -moz-transform: translateY(-30px);
+  }
+  60% {
+    -moz-transform: translateY(-15px);
+  }
+}
+@-o-keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    -o-transform: translateY(0);
+  }
+  40% {
+    -o-transform: translateY(-30px);
+  }
+  60% {
+    -o-transform: translateY(-15px);
+  }
+}
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
+@mixin rotate($degrees) {
+  -webkit-transform: rotate($degrees);
+     -moz-transform: rotate($degrees);
+      -ms-transform: rotate($degrees);
+       -o-transform: rotate($degrees);
+          transform: rotate($degrees);
+}
+@mixin scale($ratio) {
+  -webkit-transform: scale($ratio);
+     -moz-transform: scale($ratio);
+      -ms-transform: scale($ratio);
+       -o-transform: scale($ratio);
+          transform: scale($ratio);
+}
+@mixin translate($x, $y) {
+  -webkit-transform: translate($x, $y);
+     -moz-transform: translate($x, $y);
+      -ms-transform: translate($x, $y);
+       -o-transform: translate($x, $y);
+          transform: translate($x, $y);
+}
+@mixin skew($x, $y) {
+  -webkit-transform: skew($x, $y);
+     -moz-transform: skew($x, $y);
+      -ms-transform: skewX($x) skewY($y); // See https://github.com/twitter/bootstrap/issues/4885
+       -o-transform: skew($x, $y);
+          transform: skew($x, $y);
+  -webkit-backface-visibility: hidden; // See https://github.com/twitter/bootstrap/issues/5319
+}
+@mixin translate3d($x, $y, $z) {
+  -webkit-transform: translate3d($x, $y, $z);
+     -moz-transform: translate3d($x, $y, $z);
+       -o-transform: translate3d($x, $y, $z);
+          transform: translate3d($x, $y, $z);
+}
+
+
 body{	
 	font-family: 'proxima-nova', "Helvetica Neue", Helvetica, Arial, sans-serif;
 	color: #555;
+	position: relative;
 	a{
-		color: #333;
+		color: #6eb2a6;
 		text-decoration: none;
 		font-size: 14px;
 		&:hover{
 			color: #73b2a7;
 			text-decoration: none;
 		}
+	}
+	p{
+		color: #555555;
 	}
 	ul, ol{
 		list-style: none;
@@ -23,10 +125,16 @@ body{
 		font-weight: normal;
 		margin-bottom: 10px;
 	}
+	img{
+		max-width: 100%;
+	}
 	.header-underline{
 		border-bottom: 1px solid #dadada;
 		padding-bottom: 5px;
 		margin-bottom: 15px;
+	}
+	input[type="checkbox"]{
+		display: inline-block;
 	}
 	label{
 		font-weight: bold;		
@@ -39,21 +147,45 @@ body{
 		label{
 			margin: 0px 5px 0 0;
 		}
-	}	
+	}
+	.radio-option{
+		margin-left: 5px;
+		margin-bottom: 5px;
+		label{
+			font-weight: normal;
+		}
+		input[type="radio"]{
+			margin: 1px;
+			display: inline-block;
+			margin-top: -3px;
+		}
+	}
 
 	.btn-default{
-		background-color: #73b2a7;
-		border: 1px solid #73b2a7;
-		font-size: 13px;
+		font-size: 14px;
+		padding: 15px 20px;
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+		@include border-radius(10px);
+		color: #FFF;
+		background-color: #43A795;
+		letter-spacing: 0.5px;
 		a{
 			color: #fff;
 			font-size: 13px;
 		}
 		&:hover, &:active{
-			background-color: #58b2a5;
-			border: 1px solid #58b2a5;
+			background-color: #3c9889;
 		}
+	}
+	.btn{
+		border: 0px none #777;
+	}
+	.btn-shadow{
+		border-bottom: 2px solid #327066;
+		text-transform: uppercase;
+	}
+	.btn-big{
+		padding: 15px 40px;		
 	}
 
 	.page-inner{
@@ -61,45 +193,138 @@ body{
 		margin: auto;
 		padding-left: 20px;
 		padding-right: 20px;
+		@include clearfix();
+	}
+
+	#main{
+		background-color: #fff;
+		padding-bottom: 50px;
+		min-height: 400px;
+	}
+	.bounce {
+		-webkit-animation-name: bounce;
+		-moz-animation-name: bounce;
+		-o-animation-name: bounce;
+		animation-name: bounce;
+	}
+	.animated {
+		-webkit-animation-fill-mode: both;
+		-moz-animation-fill-mode: both;
+		-ms-animation-fill-mode: both;
+		-o-animation-fill-mode: both;
+		animation-fill-mode: both;
+		-webkit-animation-duration: 1s;
+		-moz-animation-duration: 1s;
+		-ms-animation-duration: 1s;
+		-o-animation-duration: 1s;
+		animation-duration: 1s;
+	}
+}
+
+.checkbox_wrapper{
+	vertical-align: middle;
+	input[type="checkbox"]{
+		margin-top: -3px;
+		margin-right: 5px;
+	}
+}
+
+#main-section{
+	margin-top: 25px;
+}
+
+$slider-width: 255px;
+#mw-body-content{
+  position: relative;
+  z-index: 1;
+  max-width: 100%;
+  overflow: hidden;
+  background: white; 
+  box-shadow: 0px 1px 3px rgba(0,0,0,.8);
+  // Fixes the flashing that occurs when the universal navigation is clicked due to the redraw
+  @include transform(translate(0, 0));
+  @if (not($android)) {
+    @include prefixer(backface-visibility, hidden);
+  }
+  @include transition (all 0.3s ease);
+  // Fixes the flashing that occurs when togglers and tabs clicked due to the redraw
+  [data-ur-set = 'tabs'], [data-ur-set = 'toggler'] {
+    @include transform(translate(0, 0));
+  }
+  &.mw-pers-nav-active {
+    @if ($android) {
+      @include transform(translate(-$slider-width, 0));
+      -webkit-transform: translate(-$slider-width, 0);
+         -moz-transform: translate(-$slider-width, 0);
+          -ms-transform: translate(-$slider-width, 0);
+           -o-transform: translate(-$slider-width, 0);
+              transform: translate(-$slider-width, 0);
+    }
+    @else {
+      @include transform(translate3d(-$slider-width, 0, 0) !important);
+      -webkit-transform: translate3d(-$slider-width, 0, 0) !important;
+         -moz-transform: translate3d(-$slider-width, 0, 0) !important;
+           -o-transform: translate3d(-$slider-width, 0, 0) !important;
+              transform: translate3d(-$slider-width, 0, 0) !important;
+    }
+  }
+}
+
+#mw-pers-nav-mask {
+  display: none;
+  &.mw-pers-nav-active {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100000;
+  }
+}
+
+#mw-pers-nav{
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: $slider-width;
+  min-height: 100%;
+  height: 100%;
+  background-color: #212121;
+  @include transition (all 0.3s ease);
+  @if (not($android)) {
+    @include prefixer(backface-visibility, hidden);
+  }
+  &.mw-pers-nav-active {
+    opacity: 1;
+    @include prefixer(transition-delay, 0s);
+  }
+
+	ul{
+		margin: 20px 0 0 0;
+		-webkit-padding-start: 0px;
+		border-bottom: 1px solid #2B2B2B;
+		margin-left: 20px;
+		li{
+			a{
+				color: #FFF;
+				display: block;
+				padding: 18px 10px 12px;
+				text-transform: uppercase;
+				border-bottom: 1px solid #131313;
+				border-top: 1px solid #2B2B2B;
+				&:hover{
+					color: #327066;
+				}
+			}
+			&:first-child{
+				a{
+					border-top: 0 none #777;
+				}				
+			}
+		}
 	}
 
 }
 
-.mw-checkbox{
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  width: 52px;
-  height: 32px;
-  background: lighten(#d9dce3, 5%);
-  @include border-radius(16px);
-  @include transition(background 200ms linear);
-  .mw-checkbox-handler{
-    position: absolute;
-    top: -11px;
-    left: -16px;
-    background: image-url("checkbox-handle.png") no-repeat;
-    width: 69px;
-    height: 71px;
-    @include transition(-webkit-transform 200ms ease-in-out);
-  }
-  .mw-checkbox-background{
-    width: 52px;
-    height: 32px;
-    background: lighten(#d9dce3, 5%);
-    @include border-radius(16px);
-    @include transition(background 200ms linear);
-  }
-  &.mw-checked{
-    .mw-checkbox-background{
-      background-color: #084886;
-    }
-    .mw-checkbox-handler{
-      @include transform(translate3d(21px, 0, 0));
-    }
-  }
-
-  input[type=checkbox]{
-    display: none;
-  }  
-}

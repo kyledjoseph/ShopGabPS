@@ -1,0 +1,244 @@
+#login_form{
+	max-width: 550px;
+	.form-group{
+		@include clearfix();
+		.link_wrapper{
+			float: right;
+		}
+		.checkbox_wrapper{
+			float: left;
+		}
+	}
+	.submit_wrapper{		
+		input{
+			min-width: 120px;
+		}
+	}
+}
+#register_form{
+	max-width: 550px;
+}
+
+/*    MODALS    */
+.modal{
+	.modal-dialog{
+		.modal-content{
+			@include border-radius(25px);
+			box-shadow: 0px 0px 0px rgba(0,0,0,.5);
+			border-bottom: 0px none #777;
+			background-color: #F4F8FA;
+			@include clearfix();
+			height: 100%;
+			&:after, &:before {
+			  display: block;
+			  width: 100%; 
+			  height: 100%;
+			  content: '';
+			  position: absolute; 
+			  top: -5px;
+			  left: 0px;			  
+			  opacity: 1;
+			  z-index: -5;
+			  background-color: #2A7E5C;
+			  @include border-radius(25px);
+			}
+			&:before{
+				top: auto;
+				bottom: -5px;
+			}
+			.modal-header{
+				text-align: center;
+				border-bottom: 0px none #777;
+				h4{
+					color: #276988;					
+					font-weight: 200;
+					font-size: 26px;
+					margin-top: 5px;
+					text-shadow: 0px 1px 0px #fff;
+				}				
+				.close{
+					display: none;
+				}
+			}
+			> .row, .modal-body{
+				background-color: #ffffff;
+				margin: 0 15px 15px;
+				@include border-radius(15px);
+				border: 1px solid #b4ccd7;
+			}
+			.modal-footer{
+				display: none;
+			}
+		} 
+	}
+	input[type='text'],input[type='password'],input[type='email']{
+		border: 1px solid #b8cbd4;
+		@include border-radius(8px);
+		line-height: 100%;
+		padding: 15px 15px 13px;
+		color: #6B8C9C;
+		display: block;
+		width: 100%;
+		text-align: center;
+		background: #fff;
+		margin-bottom: 15px;
+		font-size: 16px;
+		&:focus{  
+			color: #2c6786;
+			outline: none;
+			@include transition(all, 1s, ease-in);
+			background-color: #fff;
+		}
+		&::-webkit-input-placeholder {
+		   color: #6B8C9C;
+		}
+		&::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+		  display: none;
+		}
+	}	
+	.submit_wrapper{
+		text-align: center;
+		margin: 10px 0;
+		input{
+			width: 95%;
+			max-width: 290px;
+			font-size: 14px;
+		}
+	}
+	.field-info{
+		text-align: center;
+		margin-top: -10px;
+		margin-bottom: 20px;
+		color: #94afbe;
+	}	
+	&#login{
+		.modal-dialog{
+			max-width: 450px;
+		}
+	}
+	&#signup{
+		.modal-dialog{
+			max-width: 450px;
+			.modal-content{
+				&:before, &:after{
+					background-color: #2D7DA2;
+				}
+			}
+		}
+		.type_wrapper{
+			text-align: center;
+			margin-top: 5px;
+			padding: 0px 25px;
+			label{
+				background-color: #d2e1e8;
+				display: inline-block;
+				color: #527b8e;
+				padding: 15px 30px;
+				margin: 0px 1% -1px;
+				width: 45%;
+				font-weight: normal;
+				position: relative;
+				@include border-radius(10px 10px 0 0);
+				border: 1px solid #b4ccd7;
+				border-bottom: 1px solid #fff;				
+				margin-top: 4px;
+				top: 7px;
+				&:hover{
+					cursor: pointer;
+				}
+				&.active{
+					background-color: #fff;
+					z-index: 5;
+					top: 0px;
+				}
+			}
+			input{
+				display: none;
+			}
+		}
+		.pricing_plan_wrapper{
+			display: none;
+		}
+		.pricing_plan_select{
+			text-align: center;
+			margin: 20px 0 15px;
+			p{
+				color: #a1b2ba;
+				margin-bottom: 5px;
+				font-size: 16px;
+				strong{
+					display: block;
+				}
+			}
+			> div{
+				display: inline-block;
+				vertical-align: top;
+			}
+			.option{
+				padding: 0px 20px;
+				.checkbox{
+					width: 31px;
+					height: 31px;
+					display: inline-block;
+					background: image-url("check-off.png") left top no-repeat;
+				}
+				&.active{
+					p{
+						color: #4388a9;
+					}				
+					.checkbox{	
+						background: image-url("check-on.png") left top no-repeat;
+					}
+				}
+			}
+			.sep{
+				height: 103px;
+				width: 1px;
+				background: image-url("sep-signup.png") left top no-repeat;
+			}
+		}
+		.submit_wrapper{
+			.btn{
+				background-color: #4AB3E4;
+				border-bottom: solid #2D7DA2;
+			}			
+		}
+		.switch-modal{
+			a{
+				color: #2D7DA2;
+			}
+		}
+	}
+
+	.switch-modal{
+		text-align: center;
+		color: #fff;
+		font-size: 16px;
+		margin-top: 10px;
+	}
+
+}
+
+
+
+
+#addProductModal{
+	.modal-dialog{ 
+		width: 95%;
+		.col-3, .col-4{
+			display: none;
+		}
+	} 	
+}
+
+@media only screen and (min-width: 768px){
+	
+	#addProductModal{
+		.modal-dialog{
+			.col-3, .col-4{
+				display: block;
+			}	
+		}			
+	}
+ 	
+}

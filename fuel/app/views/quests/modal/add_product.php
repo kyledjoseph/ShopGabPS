@@ -1,12 +1,12 @@
 <div class="modal fade" id="addProductModal">
-	<div class="modal-dialog add_new_product_modal" style="width: 1000px">
+	<div class="modal-dialog add_new_product_modal">
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title">Add Product</h4>
 			</div>
 			<div class="row">
-        <div class="col-5">
+        <div class="col-12 col-sm-5">
           <div class="modal-slice">
             <h4>Create new product</h4>
             <?= Form::open(array('action' => '/quest/'.$quest->id.'/add-product', 'method' => 'post', 'enctype' => 'multipart/form-data' )) ?>

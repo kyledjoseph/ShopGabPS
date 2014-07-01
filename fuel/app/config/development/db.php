@@ -8,7 +8,7 @@ return array(
 		'connection'  => array(
 			'dsn'        => 'mysql:host=localhost;dbname=shopgab',
 			'username'   => 'root',
-			'password'   => '',
+			'password'   => 'root',
 		),
 		'profiling'      => true,
 	),

@@ -37,44 +37,78 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
 		</div>
 	<?php endif; ?>
 
-	<?= $body ?>
+  <div id='main'>
+    <div class="page-inner">
+	     <?= $body ?>
+    </div>
+  </div>
   </div>
   <!-- Footer -->
-  <div id="mw-footer">
-    <div class="page-inner">
-      <div class="footer-data">
-        <div class="about col-12 col-sm-7">
-          <h4>About</h4>
-          <p>At ShopGab our mission is to help shoppers confidently purchase the best products for their needs. We provide a fun and simple way to store any product, gather feedback and get product recommendations from trusted friends. No longer does online shopping have to be a lonely, individualized process! Shop together and buy with the confidence and support of your friends and family.</p>
-        </div>
-        <div class="follow col-12 col-sm-4 pull-right">
-          <h4>Join the conversation</h4>
-          <div class="social-links">
-            <a href="http://facebook.com/shopgab" class="facebook">
-              <i class="icon-facebook icon-2x icon-light"></i>
-          </a>
-            <a href="http://twitter.com/weshopgab" class="twitter">
-              <i class="icon-twitter icon-2x icon-light"></i>
-            </a>
-            <a href="http://pinterest.com/WeShopGab/boards/" class="pinterest">
-              <i class="icon-pinterest icon-2x icon-light"></i>
-            </a>
-            <a href="https://plus.google.com/u/0/113964272651935695754/posts" class="google-plus">
-              <i class="icon-google-plus icon-2x icon-light"></i>
-            </a>
-            <a href="https://shopgab.wordpress.com" class="wordpress">
-              <img src="/assets/img/wordpress.png" />
-            </a>
+
+  <?php if (Auth::check()) { ?> 
+    <div id="mw-footer">
+      <div class="page-inner">
+        <div class="footer-data">
+          <div class="about col-12 col-sm-7">
+            <h4>About</h4>
+            <p>At ShopGab our mission is to help shoppers confidently purchase the best products for their needs. We provide a fun and simple way to store any product, gather feedback and get product recommendations from trusted friends. No longer does online shopping have to be a lonely, individualized process! Shop together and buy with the confidence and support of your friends and family.</p>
           </div>
-          <!-- <a href="http://rackspace.com/"><img class="rackspace" src="/assets/img/rackspace.png" /></a> -->
+          <div class="follow col-12 col-sm-4 pull-right">
+            <h4>Join the conversation</h4>
+            <div class="social-links">
+              <a href="http://facebook.com/shopgab" class="facebook">
+                <i class="icon-facebook icon-2x icon-light"></i>
+            </a>
+              <a href="http://twitter.com/weshopgab" class="twitter">
+                <i class="icon-twitter icon-2x icon-light"></i>
+              </a>
+              <a href="http://pinterest.com/WeShopGab/boards/" class="pinterest">
+                <i class="icon-pinterest icon-2x icon-light"></i>
+              </a>
+              <a href="https://plus.google.com/u/0/113964272651935695754/posts" class="google-plus">
+                <i class="icon-google-plus icon-2x icon-light"></i>
+              </a>
+              <a href="https://shopgab.wordpress.com" class="wordpress">
+                <img src="/assets/img/wordpress.png" />
+              </a>
+            </div>
+            <!-- <a href="http://rackspace.com/"><img class="rackspace" src="/assets/img/rackspace.png" /></a> -->
+          </div>
+        </div>
+        <div class="footer-closer">
+        <div class="col-12">
+            <p class="text-muted">&copy; ShopGab 2013, all rights reserved.</p>
+            </div>
         </div>
       </div>
-      <div class="footer-closer">
-      <div class="col-12">
-          <p class="text-muted">&copy; ShopGab 2013, all rights reserved.</p>
-          </div>
-      </div>
-    </div>
+  <?php } 
+  else {?>
+   <div id="footer-login">
+     <div class="col-xs-12">
+       
+       <div class="col-xs-12 social-icons pages">
+         <div class="page-inner">
+           <a class='fb' href="http://facebook.com/shopgab" target="_blank">Facebook </a>
+           <a class='tw' href="http://pinterest.com/WeShopGab/boards/" target="_blank">Pinterest </a>
+           <a class='pi' href="http://twitter.com/weshopgab" target="_blank">Twitter </a>      
+           <a class='em' href="mailto:Kyle@shopgab.com" target="_blank">Rackspace</a>
+         </div>     
+       </div>
+
+
+
+       <div class="col-xs-12 closer">
+         <div class="page-inner">
+           <p class='info'>1871, 222 MERCHANDISE MART PLAZA, SUITE 1212, CHICAGO, IL 60654, USA3094721533 <a href="mailto:kyle@shopgab.com">kyle@shopgab.com</a></p>
+           <p class='copyright'>ShopGab 2014, all rights reserved.</p> 
+         </div>
+       </div>  
+
+     </div>
+   </div>
+  <?php } ?>
+
+
 
 	<a href="#feedbackModal" class="feedback-button" data-toggle="modal"><img src="/assets/img/feedback.png" /></a>
 

@@ -18,7 +18,20 @@
 
     <ul id="profile-tabs">
       <li class='active'><a class="profile" href="#profile" data-toggle="tab">Profile</a></li>
-      <li><a class='billing' href="#billing" data-toggle="tab">Billing</a></li>
+      <li>
+        
+          <?php if ($user->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
+            <a class='billing' href="#billing" data-toggle="tab">
+              Billing
+            </a>
+          <?php } ?>
+          <?php if ($user->group == Model_User::CLIENT_GROUP_ID) { ?>
+            <a class='measurements' href="#billing" data-toggle="tab">
+              Measurements
+            </a> 
+          <?php } ?>
+       
+      </li>
       <li><a class='settings' href="#settings" data-toggle="tab">Settings</a></li>
     </ul>
 
@@ -117,10 +130,12 @@
       </section>
 
       <!-- Billing tab -->
-      <section class="tab-pane" id="billing">
-            <h1>Billing</h1>
+      <section class="tab-pane" id="billing">            
             <?php if ($user->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
         <!--      professional payment data-->
+
+            <h1>Billing</h1>
+
             <?= Form::open(array('action' => 'account/paypal', 'id' => 'checkout_form')) ?>
               <h3 class="header-underline">Personal Info</h3>
               <div class='wrapp'>
@@ -314,118 +329,121 @@
 
         <!--    client data-->
             <?php if ($user->group == Model_User::CLIENT_GROUP_ID) { ?>
+              <h1>Measurements</h1>
               <div class="content">
-                <p>Email: <?= $client->getUser()->email ?></p>
+                <!--  <p>Email: 
+                <? // $client->getUser()->email ?>
+                </p> -->
                 <?= Form::open(array('action' => 'client/'.$client->id.'/edit', 'id' => 'client_form')) ?>
-                <div class="control-group account-form">
+                <div class="control-group account-form form-group">
                   <div class="controls">
                     <label class="control-label">Gender: </label>
-                    <label class="control-label" for="gender_male">Male </label>
-
-                    <input type="radio" class="" name="client_data[gender]"
-                      <?php if ($client->gender == Model_Client::CLIENT_MALE) { ?> checked="checked" <?php } ?>
-                           id="gender_male" value="<?= Model_Client::CLIENT_MALE?>" />
-
-                    <label class="control-label" for="gender_female">Female </label>
-
-                    <input type="radio" class="" name="client_data[gender]"
-                      <?php if ($client->gender == Model_Client::CLIENT_FEMALE) { ?> checked="checked" <?php } ?>
-                           id="gender_female" value="<?= Model_Client::CLIENT_FEMALE?>" />
-
+                    <div class='radio-option'>                      
+                      <input type="radio" class="" name="client_data[gender]"
+                        <?php if ($client->gender == Model_Client::CLIENT_MALE) { ?> checked="checked" <?php } ?>
+                             id="gender_male" value="<?= Model_Client::CLIENT_MALE?>" />
+                      <label class="control-label" for="gender_male">Male </label>
+                    </div>
+                    <div class='radio-option'>
+                      <input type="radio" class="" name="client_data[gender]"
+                        <?php if ($client->gender == Model_Client::CLIENT_FEMALE) { ?> checked="checked" <?php } ?>
+                             id="gender_female" value="<?= Model_Client::CLIENT_FEMALE?>" />
+                      <label class="control-label" for="gender_female">Female </label>                      
+                    </div>                    
                   </div>
                 </div>
-                <div class="control-group account-form male">
+                <div class="control-group form-group account-form male">
                   <label class="control-label" for="neck">Neck</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[neck]" id="neck" value="<?= $client->neck?>">
                   </div>
                 </div>
-                <div class="control-group account-form male">
+                <div class="control-group account-form form-group male">
                   <label class="control-label" for="neck">Arm</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[arm]" id="arm" value="<?= $client->arm?>">
                   </div>
                 </div>
-                <div class="control-group account-form male">
+                <div class="control-group account-form form-group male">
                   <label class="control-label" for="over_arm">Over Arm</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[over_arm]" id="over_arm" value="<?= $client->over_arm?>">
                   </div>
                 </div>
-                <div class="control-group account-form male">
+                <div class="control-group account-form form-group male">
                   <label class="control-label" for="chest">Chest</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[chest]" id="chest" value="<?= $client->chest?>">
                   </div>
                 </div>
-                <div class="control-group account-form female">
+                <div class="control-group account-form form-group female">
                   <label class="control-label" for="bust">Bust</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[bust]" id="bust" value="<?= $client->bust?>">
                   </div>
                 </div>
-                <div class="control-group account-form female">
+                <div class="control-group account-form female form-group">
                   <label class="control-label" for="hips">Hips</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[hips]" id="hips" value="<?= $client->hips?>">
                   </div>
                 </div>
-                <div class="control-group account-form female">
+                <div class="control-group account-form female form-group">
                   <label class="control-label" for="cup_size">Cup Size</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[cup_size]" id="cup_size" value="<?= $client->cup_size?>">
                   </div>
                 </div>
-                <div class="control-group account-form female">
+                <div class="control-group account-form female form-group">
                   <label class="control-label" for="dress_size">Dress Size</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[dress_size]" id="dress_size" value="<?= $client->dress_size?>">
                   </div>
                 </div>
-                <div class="control-group account-form">
+                <div class="control-group account-form form-group ">
                   <label class="control-label" for="waist">Waist</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[waist]" id="waist" value="<?= $client->waist?>">
                   </div>
                 </div>
-                <div class="control-group account-form">
+                <div class="control-group account-form form-group">
                   <label class="control-label" for="glove">Glove</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[glove]" id="glove" value="<?= $client->glove?>">
                   </div>
                 </div>
-                <div class="control-group account-form">
+                <div class="control-group account-form form-group">
                   <label class="control-label" for="hat">Hat</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[hat]" id="hat" value="<?= $client->hat?>">
                   </div>
                 </div>
-                <div class="control-group account-form">
+                <div class="control-group account-form form-group">
                   <label class="control-label" for="shirt_size">Shirt Size</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[shirt_size]" id="shirt_size" value="<?= $client->shirt_size?>">
                   </div>
                 </div>
-                <div class="control-group account-form">
+                <div class="control-group account-form form-group">
                   <label class="control-label" for="age">Age</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[age]" id="age" value="<?= $client->age?>">
                   </div>
                 </div>
-                <div class="control-group account-form">
+                <div class="control-group account-form form-group">
                   <label class="control-label" for="height">Height</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[height]" id="height" value="<?= $client->height?>">
                   </div>
                 </div>
-                <div class="control-group account-form">
+                <div class="control-group account-form form-group">
                   <label class="control-label" for="weight">Weight</label>
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[weight]" id="weight" value="<?= $client->weight?>">
                   </div>
                 </div>
 
-                <div class="control-group account-form">
+                <div class="control-group account-form form-group">
                   <div class="controls">
                     <input type="submit" class="btn btn-default marg-top" name="submitted" value="Save client data">
                   </div>
