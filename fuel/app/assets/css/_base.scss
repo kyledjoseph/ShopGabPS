@@ -136,6 +136,14 @@ body{
 	input[type="checkbox"]{
 		display: inline-block;
 	}
+
+	select{
+		background-color: #fff;
+		border-radius: 0; 		
+		width: 100%;		
+		color: $gray7;
+	}       
+
 	label{
 		font-weight: bold;		
 	}
@@ -148,6 +156,7 @@ body{
 			margin: 0px 5px 0 0;
 		}
 	}
+
 	.radio-option{
 		margin-left: 5px;
 		margin-bottom: 5px;

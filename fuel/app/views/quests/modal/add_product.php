@@ -23,7 +23,7 @@
               <input type="url" class="url form-control" name="product_data[url]" placeholder="Link" maxlength="500" />
             </div>
             <div class="form-actions">
-              <input type="submit" name="submit" value="Add Product" class="add btn btn-primary" />
+              <input type="submit" name="submit" value="Add Product" class="add btn btn-default" />
             </div>
             <?= Form::close() ?>
           </div>

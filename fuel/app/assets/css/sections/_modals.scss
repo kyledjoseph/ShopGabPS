@@ -29,6 +29,7 @@
 			background-color: #F4F8FA;
 			@include clearfix();
 			height: 100%;
+			padding-bottom: 1px;
 			&:after, &:before {
 			  display: block;
 			  width: 100%; 
@@ -71,7 +72,7 @@
 			}
 		} 
 	}
-	input[type='text'],input[type='password'],input[type='email']{
+	input[type='text'],input[type='password'],input[type='email'], input[type="url"]{
 		border: 1px solid #b8cbd4;
 		@include border-radius(8px);
 		line-height: 100%;
@@ -120,6 +121,7 @@
 		.modal-dialog{
 			max-width: 450px;
 			.modal-content{
+				@include clearfix();
 				&:before, &:after{
 					background-color: #2D7DA2;
 				}
@@ -182,6 +184,9 @@
 					display: inline-block;
 					background: image-url("check-off.png") left top no-repeat;
 				}
+				p{
+					cursor: pointer;
+				}
 				&.active{
 					p{
 						color: #4388a9;
@@ -206,6 +211,7 @@
 		.switch-modal{
 			a{
 				color: #2D7DA2;
+				font-size: 16px;
 			}
 		}
 	}
@@ -215,6 +221,9 @@
 		color: #fff;
 		font-size: 16px;
 		margin-top: 10px;
+		a:hover{
+			cursor: pointer;
+		}
 	}
 
 }
@@ -223,12 +232,16 @@
 
 
 #addProductModal{
+	input{
+		text-align: left;
+	}
 	.modal-dialog{ 
 		width: 95%;
 		.col-3, .col-4{
 			display: none;
 		}
-	} 	
+	}
+
 }
 
 @media only screen and (min-width: 768px){
@@ -242,3 +255,4 @@
 	}
  	
 }
+ 
