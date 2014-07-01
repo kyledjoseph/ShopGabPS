@@ -1,0 +1,14 @@
+@import "bourbon/_bourbon.scss"; 
+@import "_lib.scss"; 
+@import "_base.scss";
+ 
+/* Sections*/
+@import "sections/_header.scss"; 
+@import "sections/_footer.scss";  
+@import "sections/_modals.scss"; 
+     
+/* Pages */  
+@import "pages/_profile.scss";
+@import "pages/_landing.scss";
+    
+                 
