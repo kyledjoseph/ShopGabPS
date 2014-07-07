@@ -77,7 +77,7 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
         </div>
         <div class="footer-closer">
         <div class="col-12">
-            <p class="text-muted">&copy; ShopGab 2013, all rights reserved.</p>
+            <p class="text-muted">&copy; ShopGab <?php echo date('Y') ?>, all rights reserved.</p>
             </div>
         </div>
       </div>

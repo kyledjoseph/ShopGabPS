@@ -95,10 +95,13 @@
 
 }));
 
-//if ($.cookie('old_user') == 'false' || $.cookie('old_user') == undefined) {
-	$('.tour-quest-btn').popover('show');
-	$('.tour-friends-tab').popover('show');
-//}
+var quest_button = $('.tour-quest-btn');
+quest_button.popover('show');
+quest_button.click(function() {
+  quest_button.popover('destroy');
+});
+
+$('.tour-friends-tab').popover('show');
 
     $('.dash-product-image-div').css('height', $('.dash-product-image-div').width());
 

@@ -109,4 +109,8 @@ if (self_quest) {
     mixpanel.track("View Quest (self)");
 }
 
-$('.tour-product-btn').popover('show');
+var product_button = $('.tour-product-btn');
+product_button.popover('show');
+product_button.click(function() {
+  product_button.popover('destroy');
+});

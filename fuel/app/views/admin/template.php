@@ -157,7 +157,7 @@
 		<hr>
 
 		<div class="footer">
-			<p>&copy; ShopGab 2013</p>
+			<p>&copy; ShopGab <?php echo date('Y') ?></p>
 		</div>
 
 	</div> <!-- /container -->
