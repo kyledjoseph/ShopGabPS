@@ -1,4 +1,5 @@
 <div class='page-quest'>
+		<h2><?= $quest->name ?></h2>
 	  <div id="quest" class="row" data-quest-url="<?= $quest->url ?>">
 	    <?php if ($quest->user->getClientModel() instanceof Model_Client && isset($user)) { ?>
 	      <ol class="breadcrumb">

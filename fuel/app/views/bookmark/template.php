@@ -14,21 +14,23 @@
 </head>
 <body class="bookmarklet">
 	<div class="itemnation-box">
+		<div class="bg">
+			<div>
+				<img class="image" src="/assets/img/logo1.png" />
+			</div>
+			<?php if (isset($notice)): ?>
 
-		<div>
-			<img class="image" src="/assets/tmp/img/logo.png" />
+			<br><br>
+			<div class="alert alert-<?= $notice->type ?>">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<?= $notice->message ?>
+			</div>
+
+			<?php endif; ?>
+
+			<?= isset($body) ? $body : null ?>
 		</div>
-		<?php if (isset($notice)): ?>
 
-		<br><br>
-		<div class="alert alert-<?= $notice->type ?>">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<?= $notice->message ?>
-		</div>
-
-		<?php endif; ?>
-
-		<?= isset($body) ? $body : null ?>
 	</div>
 
 	<?= View::forge('analytics/bookmark') ?>

@@ -19,10 +19,10 @@
 					<div class="form-group">
 						<input class="form-control" name="referral" type="hidden" value="<?= Uri::current() ?>">
 					</div>
-					
+					<button class="btn btn-primary" type="submit">Send Feedback</button>
 				</div>
 				<div class="modal-footer">
-					<button class="btn btn-primary" type="submit">Send Feedback</button>
+					
 					<button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>	
 					</form>
 				</div>

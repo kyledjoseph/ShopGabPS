@@ -82,9 +82,9 @@
 										<label class="control-label" for="description">Description</label>
 										<textarea class="form-control" name="description" rows="7"><?= $user->display_name() ?> is trying to find a <?= $quest->name ?> through ShopGab and has requested your input! Please click on the link below to see their page and join in the search. Thanks!</textarea>
 									</div>
-								</div>
-								<div class="modal-footer">
 									<button class="btn btn-primary">Invite</button>
+								</div>
+								<div class="modal-footer">									
 									<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
 								</div>
 							</form>

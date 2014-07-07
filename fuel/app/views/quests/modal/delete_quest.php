@@ -7,12 +7,13 @@
 			</div>
 			<div class="modal-body">
 				<p>This change is permanent and can <strong>not</strong> be reversed.</p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<a href="<?= Uri::create($quest->url('delete')) ?>">
 					<button type="button" class="btn btn-danger">Delete Quest</button>
 				</a>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				
 
 			</div>
 		</div><!-- /.modal-content -->

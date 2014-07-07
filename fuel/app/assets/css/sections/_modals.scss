@@ -56,9 +56,17 @@
 					font-size: 26px;
 					margin-top: 5px;
 					text-shadow: 0px 1px 0px #fff;
+					padding: 0 40px;
 				}				
 				.close{
-					display: none;
+					position: absolute;
+					background: image-url("close-g.png") left top no-repeat;
+					width: 64px;
+					height: 49px;
+					top: -1px;
+					right: 0;
+					text-indent: -9999px;
+					opacity: 1;
 				}
 			}
 			> .row, .modal-body{
@@ -72,18 +80,28 @@
 			}
 		} 
 	}
-	input[type='text'],input[type='password'],input[type='email'], input[type="url"]{
+	.image-wrap{
+		padding: 7px;
+		border: 1px solid #d1d1d1;		
+		overflow: hidden;
+		@include border-radius(3px);
+		img{
+			@include border-radius(3px);
+			border: 1px solid #f7f7f7;
+		}
+	}
+	input[type='text'],input[type='password'],input[type='email'], input[type="url"], textarea{
 		border: 1px solid #b8cbd4;
-		@include border-radius(8px);
+		@include border-radius(5px);
 		line-height: 100%;
-		padding: 15px 15px 13px;
+		padding: 13px 15px 12px;
 		color: #6B8C9C;
 		display: block;
 		width: 100%;
-		text-align: center;
+		text-align: left;
 		background: #fff;
 		margin-bottom: 15px;
-		font-size: 16px;
+		font-size: 14px;
 		&:focus{  
 			color: #2c6786;
 			outline: none;
@@ -97,6 +115,9 @@
 		  display: none;
 		}
 	}	
+	textarea{
+		line-height: 130%;
+	}
 	.submit_wrapper{
 		text-align: center;
 		margin: 10px 0;
@@ -117,6 +138,12 @@
 			max-width: 450px;
 		}
 	}
+	&#signup, &#login{
+		input[type='text'],input[type='password'],input[type='email'], input[type="url"]{
+			text-align: center;
+		}	
+	}
+	
 	&#signup{
 		.modal-dialog{
 			max-width: 450px;
@@ -124,7 +151,14 @@
 				@include clearfix();
 				&:before, &:after{
 					background-color: #2D7DA2;
+					display: block;
+					content: "";
 				}
+				.modal-header{
+					.close{
+						background: image-url("close-b.png") left top no-repeat;
+					}	
+				}				
 			}
 		}
 		.type_wrapper{
@@ -208,28 +242,33 @@
 				border-bottom: solid #2D7DA2;
 			}			
 		}
-		.switch-modal{
-			a{
-				color: #2D7DA2;
-				font-size: 16px;
-			}
+
+	}
+
+	.checkbox_wrapper{
+		text-align: center;
+		a{
+			color: #4388A9;
 		}
 	}
 
 	.switch-modal{
 		text-align: center;
-		color: #fff;
-		font-size: 16px;
-		margin-top: 10px;
-		a:hover{
-			cursor: pointer;
-		}
+		color: #555;
+		font-size: 15px;
+		margin-top: -5px;
+		a{
+			color: #6eb2a6;
+			font-size: 15px;
+			&:hover{
+				cursor: pointer;
+			}
+		}		
 	}
 
+
+
 }
-
-
-
 
 #addProductModal{
 	input{
@@ -241,7 +280,13 @@
 			display: none;
 		}
 	}
+}
 
+#questModal{
+	text-align: left;
+	input, textarea{
+		text-align: left;
+	}
 }
 
 @media only screen and (min-width: 768px){

@@ -53,6 +53,12 @@
             <div class="content">
               <p>Email: <?= $client->getUser()->email ?></p>
               <?= Form::open(array('action' => 'client/'.$client->id.'/edit', 'class' => 'form-horizontal', 'id' => 'client_form')) ?>
+              <div class="control-group account-form">
+                <label class="control-label" for="professional_information">Client Information (hidden)</label>
+                <div class="controls">
+                  <textarea class="form-control" name="client_data[professional_information]" id="professional_information"><?= $client->professional_information ?></textarea>
+                </div>
+              </div>
                 <div class="control-group account-form">
                   <div class="controls">
                     <label class="control-label">Gender: </label>
@@ -159,14 +165,7 @@
                   <div class="controls">
                     <input type="text" class="form-control" name="client_data[weight]" id="weight" value="<?= $client->weight?>">
                   </div>
-                </div>
-
-                <div class="control-group account-form">
-                  <label class="control-label" for="professional_information">Client Information (hidden)</label>
-                  <div class="controls">
-                    <textarea class="form-control" name="client_data[professional_information]" id="professional_information"><?= $client->professional_information ?></textarea>
-                  </div>
-                </div>
+                </div>               
 
                 <div class="control-group account-form">
                   <div class="controls">

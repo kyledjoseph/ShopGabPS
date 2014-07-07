@@ -17,16 +17,20 @@
 				<label class="control-label" for="description">Tell your friends more about what you're looking for.</label>
 				<textarea name="description" class="form-control" id="inputDescription" rows="6"><?= $quest->description ?></textarea>
 			</div>
-			<div class="control-group">
+			<div class="control-group form-group">
 				<label class="control-label" for="purchase_within">When would you like to buy it?</label>
 				<div class="controls">
+					<div class='styled-select'>
 					<?= Form::select('purchase_within', $quest->purchase_within_option(), Model_Quest::purchase_within_fields(), array('class' => 'form-control')) ?>
+					</div>
 				</div>
+			</div>
+			<div>				
+					<button type="submit" class="btn btn-primary">Save Changes</button>				
 			</div>
 		</div>
 		<div class="modal-footer">
-				<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>
-				<button type="submit" class="btn btn-primary">Save Changes</button>
+				<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Close</button>				
 			</div>
 		</form>
 	  </div>

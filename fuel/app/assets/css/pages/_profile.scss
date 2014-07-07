@@ -28,6 +28,58 @@
 				}
 			}  
 		}
+		#your-stylist {
+			h5{	
+				position: relative;
+				margin-bottom: 0px;
+				font-size: 13px;
+				font-weight: normal;
+				&:after {
+				  display: block;
+				  content: '';
+				  position: absolute;
+				  top: 50%;
+				  width: 100%;
+				  height: 1px;		  		  
+				  opacity: 1;
+				  margin-top: -1px;
+				  z-index: 1;
+				  border-bottom: 1px dotted #E8E8E8;	  
+				}
+				> span{
+					display: inline-block;
+					background-color: #fff;
+					padding: 8px 10px;
+					position: relative;
+					z-index: 5;
+					color: #6b6b6b;
+				}
+			}
+			.stylist{
+				text-align: left;
+				display: inline-block;
+				margin-bottom: 5px;
+				img{
+					float: left;
+					@include border-radius(50%);
+					margin-right: 8px;
+				}	
+				p{
+					line-height: 100%;
+				}
+				.stylist-name{
+					font-size: 14px;
+					color: #555;
+					margin-bottom: 3px;
+					padding-top: 1px;
+				}
+				.stylist-id{
+					color: #878787;
+					font-size: 13px;
+					margin-bottom: 0;
+				}
+			}
+		}
 		#profile-tabs{		
 			margin-top: 15px;	
 			padding-left: 0px;

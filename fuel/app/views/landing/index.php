@@ -295,14 +295,14 @@
                   </label>
                 </div>
                 <div class="checkbox_wrapper">
-   <!--                <label><a href="/terms" target="_blank">I Agree To The Terms &amp; Conditions</a>
-                    <input type="checkbox" value="1" name="terms_conditions" id="terms_conditions" class="checkbox" checked="checked"/>
-                  </label> -->
+                  <input type="checkbox" value="1" name="terms_conditions" id="terms_conditions" class="checkbox" checked="checked"/>
+                  <label><a href="/terms" target="_blank">I Agree To The Terms &amp; Conditions</a                    
+                  </label>
                 </div>
-                <div class="checkbox_wrapper">
-                  <!-- <label><a href="/privacy" target="_blank">Privacy policy</a>
-                    <input type="checkbox" value="1" name="privacy_policy" id="privacy_policy" class="checkbox" checked="checked"/>
-                  </label> -->
+                <div class="checkbox_wrapper form-group">
+                  <input type="checkbox" value="1" name="privacy_policy" id="privacy_policy" class="checkbox" checked="checked"/>
+                  <label><a href="/privacy" target="_blank">Privacy policy</a>                    
+                  </label>
                 </div>
               </div>
               <div id="client_register_wrapper" style='display: none;'>
@@ -317,11 +317,16 @@
             </div>
           </div>        
         </div>
+        <div class="footer-in-form">
+          <p id='switch-to-login' class='switch-modal'>Already a user? <a>Log In</a>.</p>     
+        </div>
       </form>
+
     </div>
-    <p id='switch-to-login' class='switch-modal'>Already a user? <a>Log In</a>.</p>
+   
     <!-- /.modal-content -->
   </div>
+
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
@@ -354,11 +359,13 @@
             <div class="submit_wrapper">
               <input class='btn btn-default btn-shadow btn-big' type="submit" value="Login" class="sg-button-secondary">
             </div>
-          </div>
+          </div>          
         </form>
       </div>
-    </div>
-    <p id='switch-to-signup' class='switch-modal'>Not a member? <a>Sign Up</a>.</p>
+      <div class="footer-in-form">
+        <p id='switch-to-signup' class='switch-modal'>Not a member? <a>Sign Up</a>.</p>
+      </div>
+    </div>    
   </div>
 </div>
 

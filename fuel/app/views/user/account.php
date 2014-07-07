@@ -8,12 +8,33 @@
       <div class='main-profile-name'>
         <div><?= $user->display_name() ?></div>        
       </div>
-      <div class='main-profile-user-type'>
-        <div><?= $user->getVerboseAccountType() ?></div>
-      </div>
+
+      <?php if ($user->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
       <div class='main-profile-info'>
         <div>PSID: <span><?= $user->id ?></span></div>
-      </div>      
+      </div>
+      <?php } ?>  
+
+      
+        <?php if ($user->group == Model_User::CLIENT_GROUP_ID) { ?>
+        <div id='your-stylist'>
+          <h5><span>Stylist</span></h5>
+          <div class='stylist'>
+            <div class='mw-flex-box'>
+              <div>
+                <img class="force-32-32" src="<?= $user->getParentUser()->get_avatar_uri() ?>" />
+              </div>
+              <div class='mw-flex-box-item-1'>
+                <p class='stylist-name'><?= $user->getParentUser()->display_name() ?> </p>
+                <p class='stylist-id'>PSID: <span><?= $user->getParentUser()->id ?></span></p>
+              </div>
+            </div>
+            
+          </div>
+          
+        </div>
+        <?php } ?>
+      
     </div>
 
     <ul id="profile-tabs">

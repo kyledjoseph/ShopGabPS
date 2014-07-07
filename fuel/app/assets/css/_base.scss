@@ -172,7 +172,7 @@ body{
 
 	.btn-default{
 		font-size: 14px;
-		padding: 15px 20px;
+		padding: 12px 20px;
 		font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 		@include border-radius(10px);
 		color: #FFF;
@@ -228,6 +228,9 @@ body{
 		-o-animation-duration: 1s;
 		animation-duration: 1s;
 	}
+
+	
+
 }
 
 .checkbox_wrapper{
@@ -237,6 +240,36 @@ body{
 		margin-right: 5px;
 	}
 }
+
+.styled-select{
+	border: 1px solid #b8cbd4;
+	@include border-radius(8px);
+	line-height: 100%;
+	color: #6B8C9C;
+	display: block;
+	width: 100%;
+	text-align: center;
+	background: #fff;
+	margin-bottom: 15px;
+	background: image-url("drop-down.png") 99% center no-repeat;
+	select {
+		background: transparent;
+		width: 100%;
+		padding: 15px 15px 13px;
+		font-size: 14px;
+		line-height: 1;
+		border: 0;
+		border-radius: 0;
+		color: #6B8C9C;
+		-webkit-appearance: none;
+		box-shadow: 0px 0px 0px rgba(0,0,0,.5);
+		&:focus{
+			outline: none;
+			border: 0px none #777;
+			box-shadow: 0px 0px 0px rgba(0,0,0,.5);
+		}
+	}
+} 
 
 #main-section{
 	margin-top: 25px;
@@ -336,4 +369,3 @@ $slider-width: 255px;
 	}
 
 }
-

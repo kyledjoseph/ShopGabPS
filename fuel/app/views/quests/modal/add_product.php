@@ -32,7 +32,9 @@
           <div class="modal-slice">
             <h4>Or drag this to your bookmarks!</h4>
             <a class="grab bookmarklet" href="javascript:(function(){var e=document.createElement('script');e.id='itemnation-script';e.src='<?= Uri::base(); ?>bookmark.js?cacheblock=' + Math.floor(Math.random() * 999999999);document.getElementsByTagName('head')[0].appendChild(e)})();"><img class="grab" src="<?= Uri::create('assets/img/bookmark.png') ?>" alt="Add to ShopGab" /></a>
-            <img width="100%" src="/assets/img/drag.png" />
+            <div class='image-wrap'>
+              <img width="100%" src="/assets/img/drag.png" />  
+            </div>            
             <div class="block">
               <a class="learn-more-2 block" href="http://youtu.be/NzKArZOkmEk" target="_blank"><i class="icon-facetime-video"></i> Not sure what to do? Click here!</a>
             </div>

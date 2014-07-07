@@ -23,11 +23,7 @@
 	</div>
 </div>
 
-<div id='your-stylist'>
-	<?php if ($user->group == Model_User::CLIENT_GROUP_ID) { ?>
-	  <h4>Your stylist: <?= $user->getParentUser()->display_name() ?> <img class="force-32-32" src="<?= $user->getParentUser()->get_avatar_uri() ?>" /></h4>
-	<?php } ?>
-</div>
+
 
 <script type="text/javascript">
 mixpanel.identify("<?= $user->email ?>");
