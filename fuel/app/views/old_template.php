@@ -210,7 +210,7 @@
 			</div>
 
 			<div class="footer-bottom">
-				<span>&copy; 2013 ItemNation. All rights reserved. <?= Html::anchor('privacy', 'Privacy Policy') ?> - <?= Html::anchor('terms', 'Terms of Use') ?></span>
+				<span>&copy; <?php echo date('Y') ?> ItemNation. All rights reserved. <?= Html::anchor('privacy', 'Privacy Policy') ?> - <?= Html::anchor('terms', 'Terms of Use') ?></span>
 				<i class="sprites footer-logo"></i>
 			</div>
 
