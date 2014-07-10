@@ -31,10 +31,12 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
 		<?= $view->header ?>
 
 		<?php if (isset($notice)): ?>
-		<div class="alert alert-<?= $notice->type ?>">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<?= $notice->message ?>
-		</div>
+    <div class='page-inner'>
+  		<div class="alert alert-<?= $notice->type ?>">
+  			<button type="button" class="close" data-dismiss="alert">&times;</button>
+  			<?= $notice->message ?>
+  		</div>
+    </div>
 	<?php endif; ?>
 
   <div id='main'>

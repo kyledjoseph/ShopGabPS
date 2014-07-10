@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-12">
-    <h2>Quests:</h2>
+    <h2>My Quests</h2>
     <ol class="breadcrumb">
       <li><a href="<?= Uri::create('/') ?>">Home</a></li>
       <li class="active">Client: <?= $client->getUser()->display_name() ?></li>

@@ -14,21 +14,33 @@
 </head>
 <body class="bookmarklet">
 	<div class="itemnation-box">
-		<div class="bg">
-			<div>
-				<img class="image" src="/assets/img/logo1.png" />
+		<div class='shadow-wrap'>
+			<div class='loader'>
+				<img src="/assets/img/ajax-loader.gif" alt="">
 			</div>
-			<?php if (isset($notice)): ?>
+			<div class='shadow'>
+				
+			</div>
+					
+			<div class="bg">
+				<div>
+					<img class="image" src="/assets/img/logo1.png" />
+				</div>
+				<?php if (isset($notice)): ?>
 
-			<br><br>
-			<div class="alert alert-<?= $notice->type ?>">
-				<button type="button" class="close" data-dismiss="alert">&times;</button>
-				<?= $notice->message ?>
+				<br><br>
+				<div class='page-inner'>
+					<div class="alert alert-<?= $notice->type ?>">
+						<button type="button" class="close" data-dismiss="alert">&times;</button>
+						<?= $notice->message ?>
+					</div>
+				</div>
+
+				<?php endif; ?>
+
+				<?= isset($body) ? $body : null ?>
 			</div>
 
-			<?php endif; ?>
-
-			<?= isset($body) ? $body : null ?>
 		</div>
 
 	</div>

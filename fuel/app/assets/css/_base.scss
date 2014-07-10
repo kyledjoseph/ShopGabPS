@@ -125,6 +125,10 @@ body{
 		font-weight: normal;
 		margin-bottom: 10px;
 	}
+	h1, h2, h3, h4{
+		font-family: 'proxima-nova', "Helvetica Neue", Helvetica, Arial, sans-serif;
+		font-weight: normal;
+	}
 	img{
 		max-width: 100%;
 	}
@@ -146,6 +150,11 @@ body{
 
 	label{
 		font-weight: bold;		
+	}
+	.warning{
+		color: red;
+		font-size: 12px;
+		margin-top: 3px;
 	}
 	.inline.form-group{
 		> *{

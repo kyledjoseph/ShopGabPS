@@ -1,7 +1,7 @@
   <div class="header row">
     <!-- Logo -->
     <div class="pull-left">
-      <a href="/"><img src="/assets/img/logo.png" alt="ShopGab" /></a>
+      <a href="/"><img src="/assets/img/logo1.png" alt="ShopGab" /></a>
     </div>
 
     <!-- Navigation -->

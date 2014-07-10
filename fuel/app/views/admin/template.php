@@ -138,10 +138,13 @@
 
 		<?php if (isset($notice)): ?>
 
-		<div class="alert alert-<?= $notice->type ?>">
-			<button type="button" class="close" data-dismiss="alert">&times;</button>
-			<?= $notice->message ?>
+		<div class='page-inner'>
+			<div class="alert alert-<?= $notice->type ?>">
+				<button type="button" class="close" data-dismiss="alert">&times;</button>
+				<?= $notice->message ?>
+			</div>	
 		</div>
+		
 
 		<?php endif; ?>
 

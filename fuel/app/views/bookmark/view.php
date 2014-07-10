@@ -48,6 +48,7 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
 
 <script type="text/javascript">
 $(".add").click(function() {
+    $('.itemnation-box, .shadow').addClass('mw-active')
     mixpanel.track("Add product");
 });
 </script>
