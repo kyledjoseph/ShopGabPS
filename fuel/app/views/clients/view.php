@@ -1,5 +1,5 @@
-<div class="row">
-  <div class="col-12">
+<div class="row page-client">
+  <div>
     <h2>My Quests</h2>
     <ol class="breadcrumb">
       <li><a href="<?= Uri::create('/') ?>">Home</a></li>
@@ -10,20 +10,21 @@
     <div class="row">
       <div class="col-12 col-sm-8">
         <div class="row">
-          <div class="col-12 col-sm-8 pad-top">
-            <select class="dash-search-select form-control">
-              <option disabled selected>Sort By Recent Updates</option>
-            </select>
+          <div class='mw-title'>
+            <div class="col-sm-8 pad-top pull-left mw-title-text">
+              <h2>Quests</h2>
+            </div>
+            <div class="col-sm-4 pad-top pull-right mw-title-button">
+              <button href="#questModal" data-container="body" data-placement="top" data-original-title="" title="" data-toggle="modal">Start a new quest!</button>
+            </div>
           </div>
-          <div class="col-12 col-sm-4 pad-top">
-            <button href="#questModal" class="btn btn-success pull-right" data-container="body" data-placement="top" data-original-title="" title="" data-toggle="modal">Start a new quest for <?= $client->getUser()->display_name()?>!</button>
-          </div>
+          
         </div>
         <div class="row pad-top">
           <div class="col-12"
             <div class="row product-rows">
               <?php foreach ($quests as $quest): ?>
-                <div class="col-12 col-sm-4 col-lg-3 dash-product-square">
+                <div class="col-12 col-sm-4 col-lg-3 quest-square dash-product-square">
                   <div class="added-by <?php if($quest->created_by){ ?>dark-grey<?php } ?>">
                     <?php if ($quest->created_by) { ?>
                       <i class="icon-user"></i> Added by <?= Model_User::get_by_id($quest->created_by)->display_name() ?>
@@ -31,9 +32,18 @@
                       &nbsp;
                     <?php } ?>
                   </div>
-                  <a href="<?= Uri::create($quest->url()) ?>" class="dash-product-image-div" style="background-image:url(<?= $quest->default_thumb_url(250, 220) ?>)">
-                    <div class="product-name"><?= $quest->name() ?></div>
+                  <a href="<?= Uri::create($quest->url()) ?>" class="quest-link" >                    
+                    <div class='dash-product-image-div' style="background-image:url(<?= $quest->default_thumb_url(250, 220) ?>)">
+                      <div class='quest-shadow'>
+                        
+                      </div>
+                      <div class='quest-zoom'>
+                        
+                      </div>
                       <span class="close dash-close"><span class="badge"><?= $quest->total_unseen_notifications() ?></span>
+                    </div>
+                    <div class="product-name"><?= $quest->name() ?></div>
+                      
                   </a>
                 </div>
               <?php endforeach; ?>
@@ -49,9 +59,13 @@
         </div>
         <div class="col-12 col-sm-4 pad-top">
           <div class="box my_clients">
-            <h4><img class="force-32-32" src="<?= $client->getUser()->get_avatar_uri() ?>" /> <?= $client->getUser()->display_name() ?></h4>
+            <div class='client'>
+              <img class="" src="<?= $client->getUser()->get_avatar_uri(200,200) ?>" />
+              <h4> <?= $client->getUser()->display_name() ?></h4>
+            </div>
+            
             <div class="content">
-              <p>Email: <?= $client->getUser()->email ?></p>
+              
               <?= Form::open(array('action' => 'client/'.$client->id.'/edit', 'class' => 'form-horizontal', 'id' => 'client_form')) ?>
               <div class="control-group account-form">
                 <label class="control-label" for="professional_information">Client Information (hidden)</label>
@@ -59,6 +73,14 @@
                   <textarea class="form-control" name="client_data[professional_information]" id="professional_information"><?= $client->professional_information ?></textarea>
                 </div>
               </div>
+              <div class="mw-collapse-title">
+                <h5><a class='collapsed' data-toggle="collapse" data-target="#meas-content">Measurements</a></h5>
+              </div>
+              <div id="meas-content" class="collapse mw-tw-cont">
+                <div class="control-group account-form">
+                  <label class="control-label">Email: </label>
+                  <p>Email: <?= $client->getUser()->email ?></p>
+                </div>
                 <div class="control-group account-form">
                   <div class="controls">
                     <label class="control-label">Gender: </label>
@@ -172,6 +194,8 @@
                     <input type="submit" class="btn btn-default marg-top" name="submitted" value="Save client data">
                   </div>
                 </div>
+              </div>
+                
 
               <script type="text/javascript">
                 function toggle_inputs(gender) {

@@ -774,16 +774,13 @@ textarea.itemnation-box select{height:auto}
 .quest-product-square .close{font-size:30px;position:absolute;top:24px;right:22px;display:none;opacity:.6;color:#f00}.quest-product-square .close:hover{opacity:.7}
 .quest-product-square .close.quest-page{top:45px !important}
 .quest-product-square:hover .close{display:block}
-.dash-product-square .dash-product-image-div{border:1px solid #eee;position:relative;margin-top:2em}.dash-product-square .dash-product-image-div:hover{border:1px solid #ddd}
-.dash-product-square:hover .product-name{background-color:rgba(0,0,0,0.8)}
-.dash-product-square .product-name{position:absolute;bottom:-34px;left:0;display:none;width:100%;padding:.5em;color:#fff;display:block;background-color:rgba(0,0,0,0.6)}
-.dash-product-square .close{font-size:30px;position:absolute;top:24px;right:22px;display:none;opacity:.6;color:#f00}.dash-product-square .close:hover{opacity:.7}
+.dash-product-square .dash-product-image-div{border:1px solid #eee;position:relative;}
+.dash-product-square .close{font-size:30px;position:absolute;top:24px;right:22px;display:none;opacity:1;color:#f00}.dash-product-square .close:hover{opacity:.7}
 .dash-product-square:hover .close{display:block}
 .hide-overflow{overflow:hidden;height:45px}
 .logo-img{max-width:100%}
 .quest-product-square{margin-top:3em}
 .dash-close{position:absolute;top:8px !important;right:12px !important;display:block !important;opacity:.8;color:#f00}.dash-close:hover{opacity:.7}
-.dash-close .badge{font-size:20px;padding:5px 8px}
 .pushups{padding-top:1em}
 .added-by{opacity:.4;padding-bottom:.2em;color:#fff;padding:.2em;height:20px;padding-left:.6em;font-size:12px}.added-by.dark-grey{background-color:#242323}
 .spacer{display:none}

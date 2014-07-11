@@ -44,8 +44,8 @@
           <div class="modal-slice">
             <h4>And capture from the web!</h4>
             <?= Form::open(array('action' => 'http://google.com/search', 'method' => 'get', 'target' => '_blank')) ?>
-            <h5 class="pad-top">Start shopping now!</h5>
-            <div class="input-group pad-top">
+            <h5 class="">Start shopping now!</h5>
+            <div class="input-group">
               <input type="text" id="google" name="q" class="form-control" placeho  lder="Search with Google">
                 <span class="input-group-btn">
                   <button class="btn btn-default btn-success btn-google-search" type="submit">Search</button>

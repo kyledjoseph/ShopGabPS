@@ -1,6 +1,7 @@
 #mw-footer{
- 	background-color: #242424;
+ 	/*background-color: #242424;*/
  	padding: 20px 0 10px;
+ 	color: #333;
  	.footer-data{
  		@include clearfix();
  		> div{
@@ -28,8 +29,10 @@
  	}
  	.footer-closer{
  		text-align: center;
- 		padding: 25px 10px 5px;
- 		background: image-url("footer-sep.png") left top repeat-x;
+ 		padding: 20px 10px 5px;
+ 		margin-top: 40px;
+ 		border-top: 1px solid #e6e6e6;
+ 		/*background: image-url("footer-sep.png") left top repeat-x;*/
  		@include clearfix(); 		
  		p{
  			color: #444444;

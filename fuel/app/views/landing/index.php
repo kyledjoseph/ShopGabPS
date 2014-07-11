@@ -91,7 +91,7 @@
           </div>
           <nav class="col-xs-6 authentication pull-right">
             <ul>          
-              <li><a>Learn more</a></li>
+              <!-- <li><a>Learn more</a></li> -->
               <li><a class="align-center register call-to-action sg-button-secondary" data-toggle="modal" href="#login">Login</a></li>
               <li><a class="pull-right btn-default btn sg-button-primary" data-toggle="modal" href="#signup">Sign up</a></li>
             </ul>      
@@ -100,7 +100,7 @@
         <div class="col-xs-12 col-sm-10 tagline">
           <h1 class="clickthrough">Are you a <br/>personal shopper?</h1>
           <h2>Manage Clients, Shop Online, and Grow Your Business</h2>
-          <a class='btn-default btn animated delay-cta bounce' href="#">Schedule a free demonstration</a>
+          <a class='btn-default btn animated delay-cta bounce' data-toggle="modal" href="#signup">Try ShopGab Now for Free</a>
         </div>
       </div>
     </div>
@@ -186,7 +186,7 @@
     <div id="second-cta">
       <div class="page-inner">
         <h3>Ready to try it out?</h3>
-        <a class="btn-default btn" data-toggle="modal" href="#signup">Schedule a free demonstration</a>
+        <a class="btn-default btn" data-toggle="modal" href="#signup">Try ShopGab Now for Free</a>
       </div>  
     </div>
 
@@ -293,23 +293,23 @@
                       <option value="paid">$29.99 / month</option>
                     </select>
                   </label>
-                </div>
-                <div class="checkbox_wrapper">
-                  <input type="checkbox" value="1" name="terms_conditions" id="terms_conditions" class="checkbox" checked="checked"/>
-                  <label><a href="/terms" target="_blank">I Agree To The Terms &amp; Conditions</a                    
-                  </label>
-                </div>
-                <div class="checkbox_wrapper form-group">
-                  <input type="checkbox" value="1" name="privacy_policy" id="privacy_policy" class="checkbox" checked="checked"/>
-                  <label><a href="/privacy" target="_blank">Privacy policy</a>                    
-                  </label>
-                </div>
+                </div>               
               </div>
               <div id="client_register_wrapper" style='display: none;'>
                 <div class="textlike_wrapper">
                     <input placeholder='PSID' type="text" name="psid" />
                   <p class='field-info'>(Provided by your Personal Shopper)</p>
                 </div>
+              </div>
+              <div class="checkbox_wrapper">
+                <input type="checkbox" value="1" name="terms_conditions" id="terms_conditions" class="checkbox" checked="checked"/>
+                <label><a href="/terms" target="_blank">I Agree To The Terms &amp; Conditions</a>
+                </label>
+              </div>
+              <div class="checkbox_wrapper form-group">
+                <input type="checkbox" value="1" name="privacy_policy" id="privacy_policy" class="checkbox" checked="checked"/>
+                <label><a href="/privacy" target="_blank">Privacy policy</a>                    
+                </label>
               </div>
               <div class="submit_wrapper">
                 <input type="submit" value="Create Account" id="create_account" class="btn btn-default btn-shadow btn-big">

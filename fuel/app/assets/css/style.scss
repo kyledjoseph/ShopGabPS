@@ -11,6 +11,79 @@
 @import "pages/_profile.scss";
 @import "pages/_landing.scss";
 @import "pages/_quest.scss";
+@import "pages/_client.scss";
+     
+.page-client{
+	.my_clients{
+		.client{
+			text-align: center;
+			img{
+				max-width: 120px;
+				max-height: 120px;
+				@include border-radius(50%);
+				border: 2px solid #b6b6b6;
+			}
+		}
+	}
 
-
+} 
  
+ .badge{
+ 	@include border-radius(50%);
+ 	font-weight: normal;
+ 	width: 30px;
+ 	height: 30px;
+ 	text-align: center;
+ 	font-size: 16px;
+ 	padding: 0px;
+ 	line-height: 30px;
+ 	background-color: rgba(170,170,170,.92);
+ }
+
+.quest-square{
+	@include clearfix();
+	margin-bottom: 15px;
+	.quest-link{
+		display: block;
+		padding: 3px;
+		position: relative;
+		&:hover{
+			margin-bottom: 1px;
+			.quest-shadow{
+				display: block;
+			}
+			.quest-zoom{
+				display: block;
+			}	
+		}
+	}
+	.dash-product-image-div{
+		margin-bottom: 3px;
+		position: relative;
+		.quest-shadow{
+			position: absolute;
+			height: 100%;
+			width: 100%;
+			background-color: rgba(255,255,255,.85);
+			display: none;
+			z-index: 50;
+			display: none;
+		}	
+		.quest-zoom{
+			width: 36px;
+			height: 36px;
+			left: 50%;
+			top: 50%;
+			margin-top: -18px;
+			margin-left: -18px;
+			position: absolute;
+			background: image-url("zoom.png") left top no-repeat;
+			display: none;
+			z-index: 51;
+		}
+	}
+	.product-name{
+		font-size: 15px;
+	}
+
+} 

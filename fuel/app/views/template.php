@@ -50,7 +50,7 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
   <?php if (Auth::check()) { ?> 
     <div id="mw-footer">
       <div class="page-inner">
-        <div class="footer-data">
+<!--         <div class="footer-data">
           <div class="about col-12 col-sm-7">
             <h4>About</h4>
             <p>At ShopGab our mission is to help shoppers confidently purchase the best products for their needs. We provide a fun and simple way to store any product, gather feedback and get product recommendations from trusted friends. No longer does online shopping have to be a lonely, individualized process! Shop together and buy with the confidence and support of your friends and family.</p>
@@ -74,9 +74,8 @@ mixpanel.init("0c06e22671690f1006e02a4d071839e9");</script><!-- end Mixpanel -->
                 <img src="/assets/img/wordpress.png" />
               </a>
             </div>
-            <!-- <a href="http://rackspace.com/"><img class="rackspace" src="/assets/img/rackspace.png" /></a> -->
           </div>
-        </div>
+        </div> -->
         <div class="footer-closer">
         <div class="col-12">
             <p class="text-muted">&copy; ShopGab <?php echo date('Y') ?>, all rights reserved.</p>
