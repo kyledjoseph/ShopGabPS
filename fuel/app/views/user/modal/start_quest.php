@@ -20,13 +20,20 @@
 					<div class='styled-select'>
 						<?= Form::select('purchase_within', null, Model_Quest::purchase_within_fields(), array('class' => 'form-control')) ?>
 					</div>
-					
 				</div>
+
+        <?php if ($logged_user->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
+          <div class="control-group form-group">
+            <label for="for_user_id">Client Name</label>
+            <div class='styled-select'>
+              <?= Form::select('for_user_id', $selected_client, $user->select_clients(), array('class' => 'form-control')) ?>
+            </div>
+          </div>
+        <?php } ?>
+
 				<button class="mx-start-quest btn btn-primary">Start Quest</button>
 			</div>
-      <?php if (isset($for_user_id)) { ?>
-        <input type="hidden" name="for_user_id" value="<?=$for_user_id ?>" />
-      <?php } ?>
+
 			<div class="modal-footer footer-in-form">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>				
 			</div>

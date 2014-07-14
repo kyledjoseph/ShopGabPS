@@ -17,7 +17,11 @@ class Controller_Clients extends Controller_App {
       if ($client->parent_id == $this->user->id) {
         Casset::js('site/dashboard/tour.js');
         Casset::js('site/dashboard.js');
-        $this->add_modal(View::forge('user/modal/start_quest',array('for_user_id' => $client->user_id)));
+        $this->add_modal(View::forge('user/modal/start_quest', array(
+          'logged_user' => $this->user,
+          'selected_client' => $client->user_id
+        )));
+
         $this->template->body = View::forge('clients/view', array(
           'quests' => $client->getUser()->get_quests(),
           'client' => $client
