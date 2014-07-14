@@ -1,0 +1,14 @@
+.page-client{
+	.my_clients{
+		.client{
+			text-align: center;
+			img{
+				max-width: 120px;
+				max-height: 120px;
+				@include border-radius(50%);
+				border: 2px solid #b6b6b6;
+			}
+		}
+	}
+
+} 

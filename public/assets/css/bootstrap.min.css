@@ -774,7 +774,7 @@ textarea.itemnation-box select{height:auto}
 .quest-product-square .close{font-size:30px;position:absolute;top:24px;right:22px;display:none;opacity:.6;color:#f00}.quest-product-square .close:hover{opacity:.7}
 .quest-product-square .close.quest-page{top:45px !important}
 .quest-product-square:hover .close{display:block}
-.dash-product-square .dash-product-image-div{border:1px solid #eee;position:relative;}
+.dash-product-square .dash-product-image-div{position:relative;}
 .dash-product-square .close{font-size:30px;position:absolute;top:24px;right:22px;display:none;opacity:1;color:#f00}.dash-product-square .close:hover{opacity:.7}
 .dash-product-square:hover .close{display:block}
 .hide-overflow{overflow:hidden;height:45px}

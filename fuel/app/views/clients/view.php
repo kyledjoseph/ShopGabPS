@@ -1,6 +1,7 @@
 <div class="row page-client">
   <div>
-    <h2>My Quests</h2>
+    <h3 class='title-context'>Client:</h5>
+    <h2 class='title-data'><?= $client->getUser()->display_name() ?></h2>
     <ol class="breadcrumb">
       <li><a href="<?= Uri::create('/') ?>">Home</a></li>
       <li class="active">Client: <?= $client->getUser()->display_name() ?></li>
@@ -33,14 +34,21 @@
                     <?php } ?>
                   </div>
                   <a href="<?= Uri::create($quest->url()) ?>" class="quest-link" >                    
-                    <div class='dash-product-image-div' style="background-image:url(<?= $quest->default_thumb_url(250, 220) ?>)">
-                      <div class='quest-shadow'>
-                        
-                      </div>
-                      <div class='quest-zoom'>
-                        
-                      </div>
-                      <span class="close dash-close"><span class="badge"><?= $quest->total_unseen_notifications() ?></span>
+                    <div class='dash-product-image-div-wrap'>
+                       <div class='dash-product-image-div' style="background-image:url(<?= $quest->default_thumb_url(250, 220) ?>)">
+
+                         <div class='quest-shadow'>
+                           
+                         </div>
+                         <div class='quest-zoom'>
+                           
+                         </div>
+                         <span class="close dash-close"><span class="badge"><?= $quest->total_unseen_notifications() ?></span>
+                       </div>           
+                    </div>
+                    <div class='dash-quest-stack'>                      
+                    </div>
+                    <div class='dash-quest-stack-2'>                      
                     </div>
                     <div class="product-name"><?= $quest->name() ?></div>
                       
