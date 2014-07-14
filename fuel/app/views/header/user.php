@@ -9,7 +9,7 @@
 	<!-- Navigation -->
 	<div class="pull-right">
 		<ul class="landing-nav pull-right">
-			<li class='quests'><?= Html::anchor('/', 'My Quests') ?></li>
+			<li class='quests'><?= Html::anchor('/', $user->group == Model_User::PROFESSIONAL_GROUP_ID ? 'Clients Quests' : 'My Quests') ?></li>
 			<li class="dropdown profile">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 					<span><?= $user->display_name() ?></span><img class="force-32-32" src="<?= $user->get_avatar_uri() ?>" />
@@ -22,8 +22,6 @@
 		</ul>
 	</div>
 </div>
-
-
 
 <script type="text/javascript">
 mixpanel.identify("<?= $user->email ?>");

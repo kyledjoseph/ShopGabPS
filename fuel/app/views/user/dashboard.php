@@ -1,6 +1,10 @@
 	<div class="row">
 		<div class="">
-			<h2>My Quests</h2>
+            <?php if ($user->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
+			    <h2>Clients Quests</h2>
+            <?php } else { ?>
+                <h2>My Quests</h2>
+            <?php } // if ?>
 		</div>
 		<div class="col-12">
 		<div class="row">
@@ -52,14 +56,20 @@
 							  	       <span class="close dash-close"><span class="badge"><?= $quest->total_unseen_notifications() ?></span>
 							  	     </div>          	
 								  	</div>
-								    
 
 								    <div class='dash-quest-stack'>                      
 								    </div>
 								    <div class='dash-quest-stack-2'>                      
 								    </div>
 								    <div class="product-name"><?= $quest->name() ?></div>
-								      
+
+<!--                                    if logged user is professional show who does this quest belongs to-->
+                                    <?php if ($user->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
+                                      <div class="quest-owner">
+                                        Belongs to <?php echo $quest->user->display_name() ?>
+                                      </div>
+                                    <?php } // if ?>
+
 								  </a>
 								</div>
 							<?php endforeach; ?>

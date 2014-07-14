@@ -430,7 +430,16 @@ class Model_User extends Auth\Model\Auth_User {
 	 */
 	public function get_quests()
 	{
-		return Model_Quest::get_user_quests($this->id);
+        if ($this->group == self::PROFESSIONAL_GROUP_ID) {
+          $user_ids = array($this->id);
+          foreach ($this->getProfessionalModel()->getClients() as $client) {
+            $user_ids[] = $client->user_id;
+          } // foreach
+
+        } else {
+          $user_ids = $this->id;
+        } // if
+		return Model_Quest::get_user_quests($user_ids);
 	}
 
 	/**

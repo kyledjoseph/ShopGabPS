@@ -538,7 +538,8 @@ class Model_Quest extends \Orm\Model
 
 	public static function get_user_quests($user_id)
 	{
-		return static::query()->where('user_id', $user_id)->order_by('name', 'asc')->get();
+        $user_id = is_array($user_id) ? $user_id : array($user_id);
+		return static::query()->where('user_id', 'IN', $user_id)->order_by('name', 'asc')->get();
 	}
 
 	public static function get_user_quest($user_id, $quest_url)
