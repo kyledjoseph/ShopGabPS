@@ -55,13 +55,16 @@
                   </a>
                 </div>
               <?php endforeach; ?>
+              
               <div class="col-12 col-sm-4 col-lg-3 dash-product-square no">
-                <div class="added-by">
-                  &nbsp;
+                <div class='dash-product-new-wrap'>
+                  <div class="added-by">
+                    &nbsp;
+                  </div>
+                  <a style="border: 2px dashed #aaa;" href="#questModal" class="dash-product-image-div" data-toggle="modal">Start a new Quest!</a>
                 </div>
-                <a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-quest.png)" href="#questModal" class="dash-product-image-div" data-toggle="modal">
-                </a>
               </div>
+             
             </div>
           </div>
         </div>

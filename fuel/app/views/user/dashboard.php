@@ -32,18 +32,20 @@
 				  </div>				  
 				</div>
 				<div class="row pad-top">
-					<div class="col-12"
+					<div class="col-12">
 						<div class="row product-rows">
 							<?php foreach ($quests as $quest): ?>
 								<div class="col-12 col-sm-4 col-lg-3 quest-square dash-product-square">
-								  <div class="added-by <?php if($quest->created_by){ ?>dark-grey<?php } ?>">
-								    <?php if ($quest->created_by) { ?>
-								      <i class="icon-user"></i> Added by <?= Model_User::get_by_id($quest->created_by)->display_name() ?>
-								    <?php } else { ?>
-								      &nbsp;
-								    <?php } ?>
-								  </div>
-								  <a href="<?= Uri::create($quest->url()) ?>" class="quest-link" >     
+
+								  <a href="<?= Uri::create($quest->url()) ?>" class="quest-link" >    
+
+									<!--if logged user is professional show who does this quest belongs to-->
+                    <?php if ($user->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
+                      <div class="quest-owner">
+                        <?php echo $quest->user->display_name() ?>
+                      </div>
+                    <?php } // if ?>
+
 								  	<div class='dash-product-image-div-wrap'>
 							  	     <div class='dash-product-image-div' style="background-image:url(<?= $quest->default_thumb_url(250, 220) ?>)">
 
@@ -63,26 +65,21 @@
 								    </div>
 								    <div class="product-name"><?= $quest->name() ?></div>
 
-<!--                                    if logged user is professional show who does this quest belongs to-->
-                                    <?php if ($user->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
-                                      <div class="quest-owner">
-                                        Belongs to <?php echo $quest->user->display_name() ?>
-                                      </div>
-                                    <?php } // if ?>
-
 								  </a>
 								</div>
 							<?php endforeach; ?>
 							<div class="col-12 col-sm-4 col-lg-3 dash-product-square no">
-								<div class="added-by">
-									&nbsp;
-								</div>
-								<a style="border: 2px dashed #aaa; background-image:url(/assets/img/add-quest.png)" href="#questModal" class="dash-product-image-div" data-toggle="modal">
-								</a>
+							  <div class='dash-product-new-wrap'>
+							    <div class="added-by">
+							      &nbsp;
+							    </div>
+							    <a style="border: 2px dashed #aaa;" href="#questModal" class="dash-product-image-div" data-toggle="modal">Start a new Quest!</a>
+							  </div>
 							</div>
 					</div>
 			</div>
 		</div>
+	</div>
     <?php if ($user->group == Model_User::PROFESSIONAL_GROUP_ID) { ?>
       <div class="col-12 col-sm-4 pad-top right-sidebar">
         <div class="box my_clients">

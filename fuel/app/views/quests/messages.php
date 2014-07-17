@@ -1,4 +1,8 @@
-				<h4>Chat</h4>
+				<div class='mw-title'>
+				  <div class="pad-top pull-left mw-title-text">
+				    <h2>Chat</h2>
+				  </div>
+				</div>				
 				<div class="row">
 					<div class="col-12">
 						<div class="chat">
