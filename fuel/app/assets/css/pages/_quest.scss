@@ -1,2 +1,54 @@
-                     
-  
+/* Quest */
+.page-quest{
+	.chat-button{
+		padding: 9px 12px;
+	}	
+	.client{
+		text-align: center;		
+		h4{
+			font-size: 16px;
+		}
+		img{
+			@include border-radius(50%);
+		}
+	}    
+	.bubble{ 
+		margin: 0px -15px;
+		padding: 10px;
+		h4{
+			font-size: 16px;
+			font-weight: bold;
+			margin: 0px 0 5px;
+			color: #444;
+			line-height: 120%;
+		}
+		&:after{
+			top: 32px;
+			left: -10px;
+			border-width: 10px 10px 10px 0;
+		}
+		&:before{
+			top: 32px;
+			left: -11px;			
+			border-width: 10px 10px 10px 0;
+		}
+	}
+	.controls{
+		text-align: right;
+		margin: 0 -10px;
+		a{
+			padding: 5px;
+			display: inline-block;
+			font-size: 13px;
+		}
+	}
+
+	.chat-wrap{
+		margin: 0px -15px 0 0;
+
+	}
+	#quest_message_form{
+		margin-top: 10px;
+	}
+
+}                       

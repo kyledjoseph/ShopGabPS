@@ -597,7 +597,7 @@ a:hover .icon-background-circle{background-color:#f17baf}
 .dash-search-select{display:inline-block !important;width:180px !important}
 .dash-search-select-small{display:inline-block !important;width:100px !important}
 .comment-modal .name{opacity:.8}
-.comment-modal .content{background-color:#e2ebee;border-radius:.5em;padding-bottom:1em;margin-bottom:1.5em}
+.comment-modal .content{border-radius:.5em;}
 .comment-modal .time{margin-top:0;font-style:italic;opacity:.8}
 .comment-modal .input-group{margin-top:1em}
 .nav-image{margin-top:-5px}
@@ -647,9 +647,7 @@ a:hover .icon-background-circle{background-color:#f17baf}
 #addProductModal .control-label{display:none}
 .add-product{position:absolute;top:.3em;right:.4em;padding-left:1.5em;padding-right:1.5em;padding-top:.2em;padding-bottom:.2em}
 .chat{max-height:280px;overflow-y:scroll}.chat .message{margin:1em;margin-left:0;margin-right:0}
-.chat .name{padding-bottom:.5em;opacity:.8}
-.chat .content{padding:.5em;background-color:#e2ebee;border-radius:.5em}
-.chat .time{margin-top:0;font-style:italic;opacity:.8}
+
 .chat-append{margin-bottom:-1px;margin-left:-1px;width:100%}.chat-append input{width:81%;box-sizing:border-box;height:30px}
 .chat-append button{width:20%;box-sizing:border-box}
 .no-dec:hover{text-decoration:none}
