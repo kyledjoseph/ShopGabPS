@@ -363,6 +363,7 @@
 					{
 						//TODO: error handler
 					}
+                    shopgab.quest.chat.html.chat.scrollTop(shopgab.quest.chat.html.chat[0].scrollHeight);
 				},
 				error: function() {
 					shopgab.log('ajax_error');
@@ -550,6 +551,8 @@
 
 			// product comment
 			$("form.comment").submit(this.comment);
+
+            
 		},
 
 		/**
