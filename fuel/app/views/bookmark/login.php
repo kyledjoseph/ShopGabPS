@@ -1,8 +1,4 @@
 <form id="login_form" action="/login" method="post">
-  <div class="type_wrapper">
-    <label>Professional <input type="radio" class="radio professional_radio_button" name="login_type" checked="checked" value="professional"/></label>
-    <label>Client <input type="radio" class="radio client_radio_button" name="login_type" value="client" /></label>
-  </div>
   <div class="login_wrapper form_wrapper">
     <div class="textlike_wrapper">
       <label>
