@@ -363,7 +363,7 @@
 					{
 						//TODO: error handler
 					}
-                    shopgab.quest.chat.html.chat.scrollTop(shopgab.quest.chat.html.chat[0].scrollHeight);
+          shopgab.quest.chat.html.chat.scrollTop(shopgab.quest.chat.html.chat[0].scrollHeight);
 				},
 				error: function() {
 					shopgab.log('ajax_error');
@@ -537,6 +537,7 @@
 		append_comment: function(view)
 		{
 			$(".product-comments").append(view);
+      $('.product-comments').scrollTop($('.product-comments')[0].scrollHeight);
 		},
 
 		clear_comment: function()
@@ -546,13 +547,16 @@
 
 		_init_events: function()
 		{
+
+      $('div.comment-modal').on('shown.bs.modal', function() {
+        $(this).find('div.product-comments').scrollTop(1000000);
+      });
+
 			// product vote
 			$(document).on('click', ".user_product_vote", this.vote);
 
 			// product comment
 			$("form.comment").submit(this.comment);
-
-            
 		},
 
 		/**
