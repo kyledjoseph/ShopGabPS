@@ -1,4 +1,4 @@
-							<div class="message">
+							<div class="message<?php if ($message->user->getProfessionalModel()) echo ' professional' ?>">
 
 									<div class="content ">
 										

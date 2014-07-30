@@ -1,6 +1,6 @@
 <div class="row page-client">
   <div>
-    <h3 class='title-context'>Client:</h5>
+    <h5 class='title-context'>Client:</h5>
     <h2 class='title-data'><?= $client->getUser()->display_name() ?></h2>
     <ol class="breadcrumb">
       <li><a href="<?= Uri::create('/') ?>">Home</a></li>
@@ -79,6 +79,12 @@
               
               <?= Form::open(array('action' => 'client/'.$client->id.'/edit', 'class' => 'form-horizontal', 'id' => 'client_form')) ?>
               <div class="control-group account-form">
+                <div><a href="/client/<?=$client->id ?>/remove" class="remove_client_link">Remove</a></div>
+                <script type="text/javascript">
+                  $('a.remove_client_link').click(function(e) {
+                    return confirm('Remove this client from your network?');
+                  });
+                </script>
                 <label class="control-label" for="professional_information">Client Information (hidden)</label>
                 <div class="controls">
                   <textarea class="form-control" name="client_data[professional_information]" id="professional_information"><?= $client->professional_information ?></textarea>

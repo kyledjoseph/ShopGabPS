@@ -95,19 +95,14 @@
             <?php foreach ($user->getProfessionalModel()->getClients() as $client) { ?>
               <ul class="list-group client-list">
                 <li class="list-group-item">
-                  <a href="/client/<?=$client->id ?>"><img class="force-32-32" src="<?= $client->getUser()->get_avatar_uri() ?>" /> <?= $client->getUser()->display_name() ?></a> -
-                  <a href="/client/<?=$client->id ?>/remove" class="remove_client_link">Remove</a>
+                  <a href="/client/<?=$client->id ?>"><img class="force-32-32" src="<?= $client->getUser()->get_avatar_uri() ?>" /> <?= $client->getUser()->display_name() ?></a>
                 </li>
               </ul>
             <?php } ?>
           </div>
         </div>
       </div>
-      <script type="text/javascript">
-        $('a.remove_client_link').click(function(e) {
-          return confirm('Remove this client from your network?');
-        });
-      </script>
+
     <?php } ?>
 		</div>
 	</div>
